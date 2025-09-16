@@ -24,3 +24,24 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.gradient-border {
+  position: relative;
+  border-radius: 0.9rem; /* Match Tailwind rounded-lg */
+  overflow: hidden;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px; /* Border thickness */
+  border-radius: inherit;
+  background: linear-gradient(to right, rgba(0, 255, 30, 1), rgba(0, 244, 175, 1));
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
