@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Container from "../Shared/Container";
+import Container from "../../Shared/Container";
 
 export default function FatwaHeadline() {
   const fatwas = [

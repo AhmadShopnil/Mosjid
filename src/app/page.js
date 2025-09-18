@@ -1,18 +1,26 @@
 import Navbar from "@/components/Header/Navbar";
-import Dictionary from "@/components/Home/Dictionary";
-import FatwaHeadline from "@/components/Home/FatwaHeadline";
+
+import FatwaHeadline from "@/components/Home/FatwaHeadline/FatwaHeadline";
 import HeroSection from "@/components/Home/HeroSection";
-import MakeDonation from "@/components/Home/MakeDonation";
+import MakeDonation from "@/components/Home/Directory_Donation/Donation/MakeDonation";
 
 import NoticeBoard from "@/components/Home/NoticeBoard";
 import PrayerTimes from "@/components/Home/PrayerTimes";
 import QuickLinks from "@/components/Home/QuickLinks";
 import Container from "@/components/Shared/Container";
-import Image from "next/image";
+
+import IslamicBlogEvents from "@/components/Home/Blog_Events/IslamicBlogEvents";
+import DictionarySection from "@/components/Home/Dictionary/DictionarySection";
+import DuaSection from "@/components/Home/Dua/DuaSection";
+import Directory from "@/components/Home/Directory_Donation/Directory/Directory";
+import DirecToryDonation from "@/components/Home/Directory_Donation/DirecToryDonation";
+import ImageGallery from "@/components/Home/Gallery/Gallery";
+import IslamicBooks from "@/components/Home/IslamicBooks/IslamicBooks";
+import Fatwah from "@/components/Home/Fatwah/Fatwah";
 
 export default function Home() {
   return (
-   <main className="bg-gray-50  mb-10">
+   <main className="bg-gray-50  mb-10 space-y-10">
       <Navbar />
       <HeroSection />
       
@@ -21,7 +29,7 @@ export default function Home() {
        <QuickLinks />
      </div>
 
-      <Container className=" flex w-full gap-6  py-10 ">
+      <Container className=" flex w-full gap-6   ">
         <div className="w-[60%]">
           <PrayerTimes />
         </div>
@@ -29,17 +37,13 @@ export default function Home() {
           <NoticeBoard />
       </div>
       </Container>
-
-      <Container className="  flex w-full h-full gap-6">
-         <div className="w-[50%]">
-          <Dictionary/>
-        </div>
-         <div className="w-[50%] h-full">
-          <MakeDonation/>
-        </div>
-        
-        
-      </Container>
+      <Fatwah/>
+       <DictionarySection/>
+      <DirecToryDonation/>
+      <DuaSection/>
+      <ImageGallery/>
+      <IslamicBooks/>
+      <IslamicBlogEvents/>
     </main>
   );
 }
