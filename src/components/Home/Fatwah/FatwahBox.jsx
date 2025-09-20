@@ -3,12 +3,12 @@ import Image from "next/image";
 import { Download } from "lucide-react";
 
   const fatwahs = [
-    { id: 1, title: "Lorem ipsum dolor sit amet dolor sit amet, consectetur...", link: "#" },
-    { id: 2, title: "Lorem ipsum dolor sit amet dolor sit amet, consectetur...", link: "#" },
-    { id: 3, title: "Lorem ipsum dolor sit amet dolor sit amet, consectetur...", link: "#" },
-    { id: 4, title: "Lorem ipsum dolor sit amet dolor sit amet, consectetur...", link: "#" },
-    { id: 5, title: "Lorem ipsum dolor sit amet dolor sit amet, consectetur...", link: "#" },
-    { id: 6, title: "Lorem ipsum dolor sit amet  dolor sit amet, consectetur...", link: "#" },
+    { id: 1, title: "Lorem ipsum dolor sit amet dolor sit amet, consectetur", link: "#" },
+    { id: 2, title: "Lorem ipsum dolor sit amet dolor sit amet, consectetur", link: "#" },
+    { id: 3, title: "Lorem ipsum dolor sit amet dolor sit amet, consectetur", link: "#" },
+    { id: 4, title: "Lorem ipsum dolor sit amet dolor sit amet, consectetur", link: "#" },
+    { id: 5, title: "Lorem ipsum dolor sit amet dolor sit amet, consectetur", link: "#" },
+    { id: 6, title: "Lorem ipsum dolor sit amet  dolor sit amet, consectetur", link: "#" },
   ];
 
 export default function FatwahBox() {
@@ -26,11 +26,21 @@ export default function FatwahBox() {
               alt="Logo"
               width={160}
               height={100}
+              className='hidden sm:flex'
+            />
+               <Image
+              src="/images/fatwah/fatwahHeader.png" 
+              alt="Logo"
+              width={110}
+              height={80}
+              className='flex sm:hidden'
             />
           </div>
 
           {/* Arabic Heading */}
-          <div className=" flex flex-col justify-end items-end gap-3 ">
+         <div>
+          {/* for big screen */}
+           <div className="hidden sm:flex  flex-col justify-end items-end gap-3 ">
              <Image
               src="/images/fatwah/fatwahArabicheader.png" 
               alt="Logo"
@@ -44,12 +54,29 @@ export default function FatwahBox() {
               height={36}
             />
           </div>
+          {/* for small screen */}
+           <div className=" flex sm:hidden flex-col justify-end items-end gap-3 ">
+             <Image
+              src="/images/fatwah/fatwahArabicheader.png" 
+              alt="Logo"
+              width={210}
+              height={50}
+            />
+             <Image
+              src="/images/fatwah/arabic3.png" 
+              alt="Logo"
+              width={120}
+              height={30}
+            />
+          </div>
+         </div>
 
          
         </div>
 
         {/* Fatwah Content Box */}
-        <div className="max-w-6xl  mx-auto relative bg-white rounded-2xl shadow-lg overflow-hidden p-6 md:p-12">
+        <div className="max-w-6xl  mx-auto relative bg-white 
+        rounded-2xl shadow-lg overflow-hidden p-4 md:p-12">
           
           {/* Mosque Image Positioned at Bottom Right */}
           <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[400px]">
@@ -63,7 +90,7 @@ export default function FatwahBox() {
           </div>
 
           {/* Content Area */}
-          <div className="relative  w-[70%] z-10">
+          <div className="relative  w-full lg:w-[70%] z-10 items-center">
            {/* heading */}
              <div className='flex justify-between mb-6 '>
                  <div className='flex gap-2 items-center   gradient-border_b  pb-2  '>
@@ -73,7 +100,7 @@ export default function FatwahBox() {
                      width={40}
                      height={40}
                      />
-                     <h3 className='text-3xl font-bold text-[#00401A]'>
+                     <h3 className='text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]'>
                          Fatwah
                      </h3>
                  </div>
@@ -84,10 +111,23 @@ export default function FatwahBox() {
                alt='a1'
                width={180}
                height={50}
+               className='hidden sm:flex'
                />
-               <button className="px-6 py-2 text-base font-bold text-[#00401A] border border-[#00401A] rounded-full hover:bg-gray-100 transition-colors">
+                {/* <Image
+               src="/images/fatwah/fatwahArabic.png"
+               alt='a1'
+               width={100}
+               height={30}
+               className='flex sm:hidden'
+               /> */}
+              <div className=' my-auto'>   
+              <button className="px-5 sm:px-6 py-2  text-sm sm:text-base
+                font-bold text-[#00401A] border border-[#00401A] rounded-full
+                 hover:bg-gray-100 transition-colors">
                View More
               </button>
+              </div>
+
                  </div>
 
              </div>
@@ -97,28 +137,36 @@ export default function FatwahBox() {
                 <li
                   key={item.id}
                   className="flex justify-between items-center border bg-white
-                   border-[#D9E2DD] p-2 rounded-full relative z-10"
+                   border-[#D9E2DD] p-1.5 md:p-2 rounded-full relative z-10"
                 >
                   {/* Left Content */}
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2 sm:gap-4">
                     <div
-                    className=" border border-[#E6ECE8] rounded-full p-2 "
+                    className=" border border-[#E6ECE8] rounded-full p-1.5 md:p-2 "
                     >
                       <Image
                         src="/images/fatwah/pen.png"
                         alt="icon"
                         width={50}
                         height={50}
+                        className='hidden sm:flex'
+                        />
+                         <Image
+                        src="/images/fatwah/pen.png"
+                        alt="icon"
+                        width={40}
+                        height={40}
+                        className='flex sm:hidden'
                         />
                     </div>
                     <div>
-                      <p className="text-[#00401A] truncate w-[180px] md:w-[420px] 
-                      text-lg font-bold">
+                      <p className="text-[#00401A] truncate w-[110px] sm:w-[250px] md:w-[420px] 
+                     text-sm md:text-lg font-bold">
                         {item.title}
                       </p>
                       <a
                         href={item.link}
-                        className="text-[#00401A] font-bold text-sm hover:text-[#F7BA2A]"
+                        className="text-[#00401A] font-bold text-xs md:text-sm hover:text-[#F7BA2A]"
                       >
                         Read More →
                       </a>
@@ -126,9 +174,9 @@ export default function FatwahBox() {
                   </div>
 
                   {/* Download Button */}
-                  <button className="flex items-center gap-2 px-5 py-2.5 cursor-pointer gradient-border3 
-                  rounded-[100px] text-[#00401A] font-bold text-base">
-                    Download Now
+                  <button className="flex items-center gap-2 px-4 md:px-5 py-2.5 cursor-pointer gradient-border3 
+                  rounded-[100px] text-[#00401A] font-bold text-xs sm:text-sm md:text-lg">
+                    Download
                     <Download className="w-4 h-4" />
                   </button>
                 </li>

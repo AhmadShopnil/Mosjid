@@ -1,7 +1,7 @@
 // components/NoticeBoard.tsx
 import Link from "next/link";
 import React from "react";
-import { PrayerTimesIcon } from "../Icons/QuickLinks";
+import { PageSearchPrayerTimesIcon } from "@/components/Icons/Dictionary";
 
 const notices = [
   { date: "14 August 2025", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
@@ -25,7 +25,7 @@ export default function NoticeBoard() {
       {/* Header with Icon */}
       <div className="flex items-center gap-3 mb-4">
         <span>
-          <PrayerTimesIcon w={30} h={34} />
+          <PageSearchPrayerTimesIcon w={30} h={34} />
         </span>
         <h2 className="text-2xl font-bold text-[#00401A]">
           Notice <span className="text-yellow-400">Board</span>

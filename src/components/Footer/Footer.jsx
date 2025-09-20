@@ -4,7 +4,7 @@ import FooterContent from './FooterContentBox'
 export default function Footer() {
   return (
     <div
-    className='h-[400px] relative mt-[200px]'
+    className='h-[400px] relative mt-[220px]'
         style={{
         backgroundImage: "url('/images/footer/footerbg.png')",
         backgroundSize: "cover",          
@@ -13,7 +13,7 @@ export default function Footer() {
       }}
     >
 
-      <div className='absolute top-[-130px] left-0 w-full '>
+      <div className='absolute top-[-140px] left-0 w-full '>
         <FooterContent/>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { PrayerTimesIcon } from "../Icons/QuickLinks";
+import { PrayerTimesIcon } from "../../Icons/QuickLinks";
 import { Sun, Moon, Star } from "lucide-react";
 
 

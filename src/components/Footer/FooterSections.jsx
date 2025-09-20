@@ -25,38 +25,40 @@ export default function FooterSections() {
   };
 
   return (
-    <footer className="bg-white shadow-md px-6 md:px-16 py-10">
+    <footer className="bg-white shadow-md px-6 md:px-16 py-10 rounded-[30px]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Logo + About */}
         <div>
-          <div className="flex items-center gap-2 mb-4">
+          <div className=" mb-4 gradient-border_b pb-2">
             <Image
-              src="/images/logo.png"
+              src="/images/footer/footer logo.png"
               alt="Osaka Masjid Logo"
-              width={50}
-              height={50}
+              width={280}
+              height={60}
             />
-            <h2 className="text-xl font-bold text-yellow-600">OSAKA MASJID</h2>
+         
           </div>
-          <p className="text-sm text-gray-600">
+          <p className="text-[#333333] text-base ">
             Lorem ipsum dolor sit amet consectetur. Sodales integer vitae sed mauris proin gravida. 
-            Proin vestibulum adipiscing iaculis quis quis.
+            Proin vestibulum adipiscing iaculis quis quis.Proin vestibulum adipiscing iaculis quis quis.
           </p>
         </div>
 
         {/* Get In Touch */}
         <div>
-          <h3 className="text-lg font-semibold mb-3">Get In Touch</h3>
+          <h3 className="text-2xl text-[#00401A] font-bold mb-4">Get In Touch</h3>
           <ul className="space-y-2 text-sm text-gray-700">
-            <li className="flex items-start gap-2">
-              <FaMapMarkerAlt className="text-green-700 mt-1" />
-              <span>555-0032 4-12-16 Owada, Nishiyodogawa-ku, Osaka City, Osaka Prefecture</span>
+            <li className="flex items-start gap-2 ">
+              <FaMapMarkerAlt  className="text-[#00401A]  " />
+              <span className="text-[#333333] text-base">555-0032 4-12-16 Owada, Nishiyodogawa-ku, Osaka City, Osaka Prefecture</span>
             </li>
             <li className="flex items-center gap-2">
-              <FaPhoneAlt className="text-green-700" /> <span>+(81) 080-3822-4143</span>
+              <FaPhoneAlt className="text-[#00401A]" /> 
+              <span className="text-[#333333] text-base">+(81) 080-3822-4143</span>
             </li>
             <li className="flex items-center gap-2">
-              <FaEnvelope className="text-green-700" /> <span>info@osakamasjid.org</span>
+              <FaEnvelope className="text-[#00401A]" />
+               <span className="text-[#333333] text-base">info@osakamasjid.org</span>
             </li>
           </ul>
           <div className="flex gap-3 mt-4 text-green-700">
@@ -68,21 +70,21 @@ export default function FooterSections() {
 
         {/* Useful Links */}
         <div>
-          <h3 className="text-lg font-semibold mb-3">Useful Link</h3>
+          <h3 className="text-2xl text-[#00401A] font-bold mb-3">Useful Link</h3>
           <ul className="space-y-2 text-sm text-gray-700">
-            <li><a href="#" className="hover:text-green-700">Home</a></li>
-            <li><a href="#" className="text-yellow-600 font-medium">Fatwa</a></li>
-            <li><a href="#" className="hover:text-green-700">Prayer Time</a></li>
-            <li><a href="#" className="hover:text-green-700">Notice Board</a></li>
-            <li><a href="#" className="hover:text-green-700">Blog & Event</a></li>
-            <li><a href="#" className="hover:text-green-700">Dictionary</a></li>
-            <li><a href="#" className="hover:text-green-700">Contact Us</a></li>
+            <li><a href="#" className="text-[#333333] text-lg hover:text-[#F7BA2A]">Home</a></li>
+            <li><a href="#" className="text-[#333333] text-lg hover:text-[#F7BA2A]">Fatwa</a></li>
+            <li><a href="#" className="text-[#333333] text-lg hover:text-[#F7BA2A]">Prayer Time</a></li>
+            <li><a href="#" className="text-[#333333] text-lg hover:text-[#F7BA2A]">Notice Board</a></li>
+            <li><a href="#" className="text-[#333333] text-lg hover:text-[#F7BA2A]">Blog & Event</a></li>
+            <li><a href="#" className="text-[#333333] text-lg hover:text-[#F7BA2A]">Dictionary</a></li>
+            <li><a href="#" className="text-[#333333] text-lg hover:text-[#F7BA2A]">Contact Us</a></li>
           </ul>
         </div>
 
         {/* Quick Contact Form */}
         <div>
-          <h3 className="text-lg font-semibold mb-3">Quick Contact</h3>
+          <h3 className="text-2xl text-[#00401A] font-bold mb-3">Quick Contact</h3>
           <form onSubmit={handleSubmit} className="space-y-3">
             <input
               type="text"

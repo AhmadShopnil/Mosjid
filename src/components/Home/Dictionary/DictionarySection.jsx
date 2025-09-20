@@ -30,28 +30,29 @@ export default function DictionarySection() {
   const sections = ["Section", "Verse 1-10", "Verse 11-20", "Verse 21-30"]
 
   return (
-    <div className="bg-white rounded-[20px] max-w-6xl mx-auto gradient-border p-8 relative">
+ <div className="max-w-6xl mx-auto px-4">
+     <div className="bg-white rounded-[20px] gradient-border px-4 py-16  sm:p-14 relative">
       {/* Decorative floral pattern */}
-      {/* <div className="absolute top-4 right-4">
+      <div className="absolute top-4 right-4">
         <Image
-          src="/images/floral-decoration.jpg"
+          src="/images/dictionary/topImage.png"
           alt="Decorative floral pattern"
-          width={80}
-          height={80}
+          width={40}
+          height={40}
           className="opacity-80"
         />
-      </div> */}
+      </div>
 
            {/* heading */}
-             <div className='flex justify-between mb-2 '>
-                 <div className='flex gap-2 items-center   gradient-border_b w-[60%] pb-2  '>
+             <div className='flex justify-between mb-2  items-center'>
+                 <div className='flex gap-1 sm:gap-2 items-center   gradient-border_b w-[60%] pb-2  '>
                      <Image
                      src="/images/dictionary/icon.png"
                      alt='a1'
                      width={40}
                      height={40}
                      />
-                     <h3 className='text-3xl font-bold text-[#00401A]'>
+                     <h3 className='text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]'>
                          Dictionary
                      </h3>
                  </div>
@@ -62,6 +63,14 @@ export default function DictionarySection() {
                alt='a1'
                width={300}
                height={60}
+               className="hidden sm:flex"
+               />
+                  <Image
+               src="/images/directory/a1.png"
+               alt='a1'
+               width={200}
+               height={40}
+               className="flex sm:hidden"
                />
                  </div>
              </div>
@@ -129,56 +138,57 @@ export default function DictionarySection() {
          </div>
       </div>
 
-      {/* Dropdown menus */}
-      <div className="flex gap-4">
-        {/* Book dropdown */}
-        <div className="relative">
-          <select
-            value={selectedBook}
-            onChange={(e) => setSelectedBook(e.target.value)}
-            className="appearance-none bg-gray-100 border border-gray-300 rounded-3xl px-4 py-2 mt-1 pr-16 text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent cursor-pointer"
-          >
-            {books.map((book) => (
-              <option key={book} value={book}>
-                {book}
-              </option>
-            ))}
-          </select>
-          <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
-        </div>
+<div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 w-full">
+  {/* Book dropdown */}
+  <div className="relative flex-1 min-w-[150px]">
+    <select
+      value={selectedBook}
+      onChange={(e) => setSelectedBook(e.target.value)}
+      className="w-full appearance-none bg-gray-100 border border-gray-300 rounded-3xl px-4 py-2 pr-10 text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent cursor-pointer"
+    >
+      {books.map((book) => (
+        <option key={book} value={book}>
+          {book}
+        </option>
+      ))}
+    </select>
+    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+  </div>
 
-        {/* Chapter dropdown */}
-        <div className="relative">
-          <select
-            value={selectedChapter}
-            onChange={(e) => setSelectedChapter(e.target.value)}
-            className="appearance-none bg-gray-100 border border-gray-300 rounded-3xl px-4 py-2 mt-1 pr-16 text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent cursor-pointer"
-          >
-            {chapters.map((chapter) => (
-              <option key={chapter} value={chapter}>
-                {chapter}
-              </option>
-            ))}
-          </select>
-          <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
-        </div>
+  {/* Chapter dropdown */}
+  <div className="relative flex-1 min-w-[150px]">
+    <select
+      value={selectedChapter}
+      onChange={(e) => setSelectedChapter(e.target.value)}
+      className="w-full appearance-none bg-gray-100 border border-gray-300 rounded-3xl px-4 py-2 pr-10 text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent cursor-pointer"
+    >
+      {chapters.map((chapter) => (
+        <option key={chapter} value={chapter}>
+          {chapter}
+        </option>
+      ))}
+    </select>
+    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+  </div>
 
-        {/* Section dropdown */}
-        <div className="relative">
-          <select
-            value={selectedSection}
-            onChange={(e) => setSelectedSection(e.target.value)}
-            className="appearance-none bg-gray-100 border border-gray-300 rounded-3xl px-4 py-2 mt-1 pr-16 text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent cursor-pointer"
-          >
-            {sections.map((section) => (
-              <option key={section} value={section}>
-                {section}
-              </option>
-            ))}
-          </select>
-          <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
-        </div>
-      </div>
+  {/* Section dropdown */}
+  <div className="relative flex-1 min-w-[150px]">
+    <select
+      value={selectedSection}
+      onChange={(e) => setSelectedSection(e.target.value)}
+      className="w-full appearance-none bg-gray-100 border border-gray-300 rounded-3xl px-4 py-2 pr-10 text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent cursor-pointer"
+    >
+      {sections.map((section) => (
+        <option key={section} value={section}>
+          {section}
+        </option>
+      ))}
+    </select>
+    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+  </div>
+</div>
+
     </div>
+ </div>
   )
 }
