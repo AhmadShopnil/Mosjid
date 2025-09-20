@@ -49,27 +49,29 @@ export default function ImageGallery() {
   };
 
   return (
-    <Container className="p-6 bg-gray-50 ">
+    <Container className="p-6 bg-gray-50">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
         <div className="flex items-center gap-2">
           <Image
-           src="/images/gallery/icon.png"
-            alt='a1'
+            src="/images/gallery/icon.png"
+            alt="gallery-icon"
             width={40}
-           height={40}
-           />
-          <h1 className="text-3xl font-bold text-[#00401A]">Gallery</h1>
+            height={40}
+          />
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#00401A]">
+            Gallery
+          </h1>
         </div>
-        <button className="px-5 py-2.5 text-base font-bold text-[#00401A] border border-[#00401A] rounded-full hover:bg-gray-100 transition-colors">
+        <button className="px-5 py-2 text-sm sm:text-base font-bold text-[#00401A] border border-[#00401A] rounded-full hover:bg-gray-100 transition-colors">
           View More
         </button>
       </div>
 
       {/* Gallery Grid */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* First column - tall image */}
-        <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[400px]">
+        <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[250px] sm:h-[300px] lg:h-[400px]">
           <img
             src={images[0].src}
             alt={images[0].alt}
@@ -80,7 +82,7 @@ export default function ImageGallery() {
 
         {/* Second column - two stacked images */}
         <div className="flex flex-col gap-4">
-          <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[190px]">
+          <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[120px] sm:h-[140px] lg:h-[190px]">
             <img
               src={images[1].src}
               alt={images[1].alt}
@@ -88,7 +90,7 @@ export default function ImageGallery() {
             />
             <ImageOverlay onClick={() => openModal(images[1])} />
           </div>
-          <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[190px]">
+          <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[120px] sm:h-[140px] lg:h-[190px]">
             <img
               src={images[2].src}
               alt={images[2].alt}
@@ -99,7 +101,7 @@ export default function ImageGallery() {
         </div>
 
         {/* Third column - tall image */}
-        <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[400px]">
+        <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[250px] sm:h-[300px] lg:h-[400px]">
           <img
             src={images[3].src}
             alt={images[3].alt}
@@ -110,7 +112,7 @@ export default function ImageGallery() {
 
         {/* Fourth column - two stacked images */}
         <div className="flex flex-col gap-4">
-          <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[190px]">
+          <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[120px] sm:h-[140px] lg:h-[190px]">
             <img
               src={images[4].src}
               alt={images[4].alt}
@@ -118,7 +120,7 @@ export default function ImageGallery() {
             />
             <ImageOverlay onClick={() => openModal(images[4])} />
           </div>
-          <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[190px]">
+          <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[120px] sm:h-[140px] lg:h-[190px]">
             <img
               src={images[5].src}
               alt={images[5].alt}

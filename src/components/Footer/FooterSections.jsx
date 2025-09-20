@@ -3,7 +3,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaEnvelope,
+} from "react-icons/fa";
+import { FaPhoneVolume, FaLocationDot } from "react-icons/fa6";
 
 export default function FooterSections() {
   const [formData, setFormData] = useState({
@@ -13,6 +19,47 @@ export default function FooterSections() {
     message: "",
   });
 
+  // -----------------------------
+  // Demo Data
+  // -----------------------------
+
+  const contactInfo = [
+    {
+      id: 1,
+      icon: <FaLocationDot className="text-[#00401A] min-w-[20px]" />,
+      text: "555-0032 4-12-16 Owada, Nishiyodogawa-ku, Osaka City, Osaka Prefecture",
+    },
+    {
+      id: 2,
+      icon: <FaPhoneVolume className="text-[#00401A] min-w-[20px]" />,
+      text: "+(81) 080-3822-4143",
+    },
+    {
+      id: 3,
+      icon: <FaEnvelope className="text-[#00401A] min-w-[20px]" />,
+      text: "info@osakamasjid.org",
+    },
+  ];
+
+  const socialLinks = [
+    { id: 1, icon: <FaFacebookF />, url: "#" },
+    { id: 2, icon: <FaInstagram />, url: "#" },
+    { id: 3, icon: <FaLinkedinIn />, url: "#" },
+  ];
+
+  const usefulLinks = [
+    { id: 1, label: "Home", url: "#" },
+    { id: 2, label: "Fatwa", url: "#" },
+    { id: 3, label: "Prayer Time", url: "#" },
+    { id: 4, label: "Notice Board", url: "#" },
+    { id: 5, label: "Blog & Event", url: "#" },
+    { id: 6, label: "Dictionary", url: "#" },
+    { id: 7, label: "Contact Us", url: "#" },
+  ];
+
+  // -----------------------------
+  // Handlers
+  // -----------------------------
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -20,71 +67,84 @@ export default function FooterSections() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Data:", formData);
-    // Later: replace with API call
-    // fetch("/api/contact", { method: "POST", body: JSON.stringify(formData) })
+    // TODO: Replace with API call
   };
 
+  // -----------------------------
+  // Render
+  // -----------------------------
   return (
-    <footer className="bg-white shadow-md px-6 md:px-16 py-10 rounded-[30px]">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-white shadow-md px-6 md:px-12 xl:px-16 py-10 rounded-[30px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4
+       gap-10 xl:gap-8">
         {/* Logo + About */}
         <div>
-          <div className=" mb-4 gradient-border_b pb-2">
+          <div className="mb-4 gradient-border_b pb-2">
             <Image
               src="/images/footer/footer logo.png"
               alt="Osaka Masjid Logo"
               width={280}
               height={60}
             />
-         
           </div>
-          <p className="text-[#333333] text-base ">
-            Lorem ipsum dolor sit amet consectetur. Sodales integer vitae sed mauris proin gravida. 
-            Proin vestibulum adipiscing iaculis quis quis.Proin vestibulum adipiscing iaculis quis quis.
+          <p className="text-[#333333] text-base">
+            Lorem ipsum dolor sit amet consectetur. Sodales integer vitae sed
+            mauris proin gravida. Proin vestibulum adipiscing iaculis quis quis.
           </p>
         </div>
 
         {/* Get In Touch */}
         <div>
-          <h3 className="text-2xl text-[#00401A] font-bold mb-4">Get In Touch</h3>
+          <h3 className="text-2xl text-[#00401A] font-bold mb-4">
+            Get In Touch
+          </h3>
           <ul className="space-y-2 text-sm text-gray-700">
-            <li className="flex items-start gap-2 ">
-              <FaMapMarkerAlt  className="text-[#00401A]  " />
-              <span className="text-[#333333] text-base">555-0032 4-12-16 Owada, Nishiyodogawa-ku, Osaka City, Osaka Prefecture</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <FaPhoneAlt className="text-[#00401A]" /> 
-              <span className="text-[#333333] text-base">+(81) 080-3822-4143</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <FaEnvelope className="text-[#00401A]" />
-               <span className="text-[#333333] text-base">info@osakamasjid.org</span>
-            </li>
+            {contactInfo.map((info) => (
+              <li key={info.id} className="flex items-start   gap-2">
+               <span className=" text-lg bg-[#D9E2DD] p-2 rounded-full">
+                 {info.icon}
+               </span>
+                <span className="text-[#333333] text-base">{info.text}</span>
+              </li>
+            ))}
           </ul>
           <div className="flex gap-3 mt-4 text-green-700">
-            <FaFacebookF className="cursor-pointer hover:text-green-900" />
-            <FaInstagram className="cursor-pointer hover:text-green-900" />
-            <FaLinkedinIn className="cursor-pointer hover:text-green-900" />
+            {socialLinks.map((social) => (
+              <a
+                key={social.id}
+                href={social.url}
+                className="cursor-pointer hover:text-green-900"
+              >
+                {social.icon}
+              </a>
+            ))}
           </div>
         </div>
 
         {/* Useful Links */}
         <div>
-          <h3 className="text-2xl text-[#00401A] font-bold mb-3">Useful Link</h3>
+          <h3 className="text-2xl text-[#00401A] font-bold mb-3">
+            Useful Link
+          </h3>
           <ul className="space-y-2 text-sm text-gray-700">
-            <li><a href="#" className="text-[#333333] text-lg hover:text-[#F7BA2A]">Home</a></li>
-            <li><a href="#" className="text-[#333333] text-lg hover:text-[#F7BA2A]">Fatwa</a></li>
-            <li><a href="#" className="text-[#333333] text-lg hover:text-[#F7BA2A]">Prayer Time</a></li>
-            <li><a href="#" className="text-[#333333] text-lg hover:text-[#F7BA2A]">Notice Board</a></li>
-            <li><a href="#" className="text-[#333333] text-lg hover:text-[#F7BA2A]">Blog & Event</a></li>
-            <li><a href="#" className="text-[#333333] text-lg hover:text-[#F7BA2A]">Dictionary</a></li>
-            <li><a href="#" className="text-[#333333] text-lg hover:text-[#F7BA2A]">Contact Us</a></li>
+            {usefulLinks.map((link) => (
+              <li key={link.id}>
+                <a
+                  href={link.url}
+                  className="text-[#333333] text-lg hover:text-[#F7BA2A]"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
         {/* Quick Contact Form */}
         <div>
-          <h3 className="text-2xl text-[#00401A] font-bold mb-3">Quick Contact</h3>
+          <h3 className="text-2xl text-[#00401A] font-bold mb-3">
+            Quick Contact
+          </h3>
           <form onSubmit={handleSubmit} className="space-y-3">
             <input
               type="text"

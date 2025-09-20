@@ -5,7 +5,7 @@ import FooterSections from './FooterSections'
 export default function FooterContent() {
   return (
       <Container className='  '>
-        <div className='bg-white h-[300px] border border-[#E6ECE8]
+        <div className='bg-white h-[300px] mx-4 border border-[#E6ECE8]
          rounded-[30px]'>
       <FooterSections/>           
         </div>
