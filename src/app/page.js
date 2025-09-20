@@ -1,8 +1,7 @@
-import Navbar from "@/components/Header/Navbar";
+
 import FatwaHeadline from "@/components/Home/FatwaHeadline/FatwaHeadline";
 import HeroSection from "@/components/Home/HeroSection";
 import QuickLinks from "@/components/Home/QuickLinks";
-import Container from "@/components/Shared/Container";
 import IslamicBlogEvents from "@/components/Home/Blog_Events/IslamicBlogEvents";
 import DictionarySection from "@/components/Home/Dictionary/DictionarySection";
 import DuaSection from "@/components/Home/Dua/DuaSection";
@@ -14,8 +13,8 @@ import PrayerTimesAndNotices from "@/components/Home/PrayerTimesAndNotices/Praye
 
 export default function Home() {
   return (
-   <main className="bg-gray-50  mb-10 space-y-10">
-      <Navbar />
+   <main className="bg-gray-50  mb-10 ">
+  
       <HeroSection />
       
      <div className="">

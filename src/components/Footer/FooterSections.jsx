@@ -10,6 +10,7 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 import { FaPhoneVolume, FaLocationDot } from "react-icons/fa6";
+import { ImFacebook2 } from "react-icons/im";
 
 export default function FooterSections() {
   const [formData, setFormData] = useState({
@@ -108,17 +109,30 @@ export default function FooterSections() {
               </li>
             ))}
           </ul>
-          <div className="flex gap-3 mt-4 text-green-700">
-            {socialLinks.map((social) => (
-              <a
-                key={social.id}
-                href={social.url}
-                className="cursor-pointer hover:text-green-900"
-              >
-                {social.icon}
-              </a>
-            ))}
-          </div>
+            <div className='flex gap-2 mt-6 px-1  items-center'>
+                <span className='text-blue-500 text-xl'>
+            <ImFacebook2 />
+                </span>
+                <span className=''>
+             <Image
+              src="/images/footer/insta.png"
+              alt='a1'
+              width={38}
+              height={38}
+              className='hidden sm:flex'
+             />
+                </span>
+                <span className='text-blue-500'>
+             <Image
+              src="/images/footer/linkdin.png"
+              alt='a1'
+              width={26}
+              height={26}
+              className='hidden sm:flex'
+             />
+
+                </span>
+            </div>
         </div>
 
         {/* Useful Links */}

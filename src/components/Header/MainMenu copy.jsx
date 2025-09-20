@@ -1,4 +1,5 @@
 // components/Navbar.tsx
+import Image from "next/image";
 import React from "react";
 
 const menuItems=[
@@ -15,15 +16,20 @@ const menuItems=[
           ]
 
 
-export default function Navbar() {
+export default function MainMenu() {
   return (
-   <div className="bg-[#00401A] text-white overflow-hidden">
-     <div className="max-w-7xl mx-auto flex items-center px-4">
-        <div className="w-[10%] ">
-         <span>OsakaMasjid</span>
+   <div className="reletive bg-[#00401A] text-white  h-[40px]">
+     <div className="max-w-7xl mx-auto flex items-center px-4 ">
+        <div className="w-[15%] top-0 absolute">
+           <Image
+           src="/images/logo.png"
+           alt='a1'
+           width={400}
+           height={400}
+           />
         </div>
         {/* Navigation Links */}
-        <div className="w-[90%]">
+        <div className="absolute   top-[30px] bg-red-300 left-[200px]">
         <div className=" flex space-x-3 px-4 py-2 text-sm">
           {menuItems.map((link, i) => (
             <a

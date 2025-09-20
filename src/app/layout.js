@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono, Merriweather } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer/Footer";
+import Header from "@/components/Header/Header";
 
 // Geist Sans
 const geistSans = Geist({
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} antialiased`}
       >
+        <Header/>
         {children}
         <Footer />
       </body>

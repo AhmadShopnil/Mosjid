@@ -9,14 +9,14 @@ import Link from "next/link";
 export default function HeroSection() {
   return (
     <section className="bg-green-50 h-[570px] ">
-      <div className="absolute  top-1/4  w-[50%] h-[330px] border-y-4 border-r-4
+      {/* <div className="absolute  top-1/4  w-[50%] h-[330px] border-y-4 border-r-4
        border-[#3096A3]  ">
 
-      </div> 
+      </div>  */}
       <Container className="flex  h-full  ">
         {/* Left Content */}
         <div className="w-[60%] h-full flex  items-center "> 
-          <div className="w-[75%]">
+          {/* <div className="w-[75%]">
   
               <h3 className="text-4xl font-bold text-[#00401A] leading-11 mb-2">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</h3>
               <h4 className="text-2xl font-bold text-[#00401A] leading-11 mb-2">Lorem ipsum dolor sit amet consectetur</h4>
@@ -27,7 +27,7 @@ export default function HeroSection() {
               >
                 Read More
               </Link>
-          </div>
+          </div> */}
         </div>
           {/* right side */}
           <div className="w-[40%] h-full "> 
