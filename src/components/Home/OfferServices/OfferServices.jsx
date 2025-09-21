@@ -8,12 +8,16 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const books = [
-  { id: 1, name: "Book Name", writer: "Writer Name", selected: false },
-  { id: 2, name: "Book Name", writer: "Writer Name", selected: true },
-  { id: 3, name: "Book Name", writer: "Writer Name", selected: false },
-  { id: 4, name: "Book Name", writer: "Writer Name", selected: false },
-  { id: 5, name: "Book Name", writer: "Writer Name", selected: false },
+const services = [
+  { id: 1, name: "Daily 5 time prayers ", writer: "Writer Name", selected: false,image:"/images/offerServices/Daily 5 time prayers.png" },
+  { id: 2, name: "Jumma Prayer", writer: "Writer Name", selected: true ,image:"/images/offerServices/Jumma prayer.png" },
+  { id: 3, name: "Eid Prayer", writer: "Writer Name", selected: false ,image:"/images/offerServices/Eid prayers.png" },
+  { id: 4, name: "Marriage facilities & certification", writer: "Writer Name", selected: false ,image:"/images/offerServices/Marriage facilities & certification.png" },
+  { id: 5, name: "Islamic library", writer: "Writer Name", selected: false ,image:"/images/offerServices/Islamic library.png" },
+   { id: 6, name: "Eid Prayer", writer: "Writer Name", selected: false ,image:"/images/offerServices/Eid prayers.png" },
+  { id: 7, name: "Marriage facilities & certification", writer: "Writer Name", selected: false ,image:"/images/offerServices/Marriage facilities & certification.png" },
+  { id: 8, name: "Islamic library", writer: "Writer Name", selected: false ,image:"/images/offerServices/Islamic library.png" },
+
 ];
 
 export default function OfferServices() {
@@ -62,23 +66,23 @@ export default function OfferServices() {
 
             <div className="flex items-center gap-3 sm:gap-4">
               <Image
-                src="/images/isamicBooks/arabic-islamicbooks.png"
+                src="/images/offerServices/arabictext.png"
                 alt="Arabic text"
                 width={160}
                 height={50}
                 className="object-contain hidden sm:flex"
               />
                <Image
-                src="/images/isamicBooks/arabic-islamicbooks.png"
+                src="/images/offerServices/arabictext.png"
                 alt="Arabic text"
                 width={135}
                 height={40}
                 className="object-contain sm:hidden"
               />
-              <button className="border border-[#00401A] text-[#00401A]
+              {/* <button className="border border-[#00401A] text-[#00401A]
                font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer">
                 Find More
-              </button>
+              </button> */}
             </div>
           </div>
 
@@ -95,34 +99,36 @@ export default function OfferServices() {
                 320: { slidesPerView: 1.5 },
                 400: { slidesPerView: 2 },
                  500: { slidesPerView: 2.3 },
-                640: { slidesPerView: 2.8 },
-                840: { slidesPerView: 3.8 },
-                1024: { slidesPerView: 4.4 },
+                550: { slidesPerView: 3.3 },
+                640: { slidesPerView: 3.8 },
+                840: { slidesPerView: 4 },
+                1024: { slidesPerView: 4.7 },
+                1250: { slidesPerView: 5.4 },
                 // 1424: { slidesPerView: 4 },
                 // 1524: { slidesPerView: 4 },
               }}
             >
-              {books.map((book) => (
-                <SwiperSlide key={book.id}>
+              {services.map((service) => (
+                <SwiperSlide key={service.id}>
                 <div
-                className={`w-[200px] h-[330px] relative flex flex-col 
+                className={`w-[180px] h-[300px] md:w-[210px] md:h-[340px]  relative flex flex-col 
                     items-center justify-between text-center rounded-full 
                     shadow-md bg-white mx-auto cursor-pointer
-                    group hover:border hover:border-green-500
+                    group hover:border hover:border-green-500 p-3
                 `}
                 >
-                <div className="p-7 rounded-full mt-4 bg-[#F8F8F8]">
+                <div className="p-3 rounded-full mt-4 bg-[#F8F8F8]">
                     <Image
-                    src="/images/isamicBooks/bookIcon.png"
+                    src={service?.image}
                     alt="Book"
-                    width={90}
-                    height={90}
+                    width={100}
+                    height={100}
                     />
                 </div>
 
                 <div className="flex flex-col items-center mt-4">
-                    <p className="text-xl font-bold text-[#333333]">{book.name}</p>
-                    <p className="text-sm text-[#333333]">{book.writer}</p>
+                    <p className="text -lg md:text-xl font-bold text-[#333333] leading-9">{service.name}</p>
+                    <p className="text-sm text-[#333333]">{service.writer}</p>
                 </div>
 
                 <div className="pb-4">

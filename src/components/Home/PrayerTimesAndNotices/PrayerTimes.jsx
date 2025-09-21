@@ -70,8 +70,25 @@ const prayerData = [
 
 export default function PrayerTimes() {
   return (
-    <div className="  rounded-2xl p-5 h-full gradient-border">
-     
+    <div className="  rounded-2xl px-5 sm:px-8 pt-5 sm:pt-8 pb-24 h-full gradient-border relative">
+           <div className="absolute top-0 right-0">
+             <Image
+               src="/images/prayertimes/1.png"
+               alt="Decorative floral pattern"
+               width={65}
+               height={65}
+               className="opacity-80"
+             />
+           </div>
+             <div className="absolute bottom-0 left-0">
+             <Image
+               src="/images/prayertimes/bottomImg.png"
+               alt="Decorative floral pattern"
+               width={400}
+               height={80}
+               className="opacity-80"
+             />
+           </div>
       {/* heading */}
        <p className="text-sm mb-2 text-center sm:text-start">Last Update: 17 Aug 2015 at 9:30pm</p>
 
@@ -145,7 +162,7 @@ export default function PrayerTimes() {
         </table>
       </div>
 
-      <p className="mt-2 text-sm font-bold text-[#FF0000]">
+      <p className="mt-4 text-sm font-bold text-[#FF0000]">
         Note :  <span className="text-[#FF3737] font-normal ">Friday services will be held at 1:30 PM starting August 1, 2025.</span>
       </p>
     </div>

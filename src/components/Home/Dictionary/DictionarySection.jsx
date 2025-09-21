@@ -31,14 +31,15 @@ export default function DictionarySection() {
 
   return (
  <div className="max-w-6xl mx-auto px-4 py-12">
-     <div className="bg-white rounded-[20px] gradient-border px-4 py-16  sm:p-14 relative">
+     <div className="bg-white rounded-[20px] gradient-border
+      px-4 py-16  sm:p-14 relative">
       {/* Decorative floral pattern */}
-      <div className="absolute top-4 right-4">
+      <div className="absolute top-0 right-0">
         <Image
           src="/images/dictionary/topImage.png"
           alt="Decorative floral pattern"
-          width={40}
-          height={40}
+          width={60}
+          height={60}
           className="opacity-80"
         />
       </div>
@@ -103,8 +104,8 @@ export default function DictionarySection() {
       </div>
 
       {/* Search bar */}
-      <div className="relative mb-6 flex gap-3">
-        <div className="bg-[#00401A] rounded-full p-1 flex  items-center w-full">
+      <div className="relative mb-6 flex flex-col sm:flex-row  gap-3">
+        <div className="bg-[#00401A] rounded-full p-1 flex  items-center w-[100%] sm:w-[95%]">
           <input
             type="text"
             placeholder="Search Word..."
@@ -130,10 +131,17 @@ export default function DictionarySection() {
 
         
         </div>
-         <div className="my-auto">
+         <div className="my-auto w-[100%] sm:w-[5%]">
             {/* Search button */}
-          <button className="bg-[#00401A] cursor-pointer rounded-full p-4 transition-colors">
+          <button className="hidden sm:flex bg-[#00401A] cursor-pointer rounded-full p-4 transition-colors">
             <Search className="w-5 h-5 text-[#F7BA2A]" />
+          </button>
+            <button className="sm:hidden flex gap-2 bg-[#00401A] w-full cursor-pointer
+             rounded-xl p-3 items-center justify-center font-bold transition-colors">
+            {/* <Search className="w-5 h-5 text-[#F7BA2A]" />  */}
+            <span className="text-white text-sm">
+              Search
+            </span>
           </button>
          </div>
       </div>

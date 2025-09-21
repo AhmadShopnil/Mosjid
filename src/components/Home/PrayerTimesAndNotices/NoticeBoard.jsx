@@ -15,7 +15,7 @@ const notices = [
 export default function NoticeBoard() {
   return (
     <div
-      className=" rounded-2xl p-5 bg-cover bg-center h-full gradient-border"
+      className=" rounded-2xl p-5 sm:p-8 bg-cover bg-center h-full gradient-border"
       style={{
         backgroundImage: "url('/images/home/noticeBg.png')",
       }}
