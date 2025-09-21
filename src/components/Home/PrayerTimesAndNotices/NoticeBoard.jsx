@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import { PageSearchPrayerTimesIcon } from "@/components/Icons/Dictionary";
+import Image from "next/image";
 
 const notices = [
   { date: "14 August 2025", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
@@ -19,18 +20,34 @@ export default function NoticeBoard() {
         backgroundImage: "url('/images/home/noticeBg.png')",
       }}
     >
-      {/* Last Update */}
-      <p className="text-sm mb-2 text-gray-700">Last Update: 17 Aug 2015 at 9:30pm</p>
+        {/* heading */}
+         <p className="text-sm mb-2 text-center sm:text-start ">Last Update: 17 Aug 2015 at 9:30pm</p>
 
-      {/* Header with Icon */}
-      <div className="flex items-center gap-3 mb-4">
-        <span>
-          <PageSearchPrayerTimesIcon w={30} h={34} />
-        </span>
-        <h2 className="text-2xl font-bold text-[#00401A]">
-          Notice <span className="text-yellow-400">Board</span>
-        </h2>
-      </div>
+          <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
+           
+           <div className="flex items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3">
+             <Image
+              src="/images/prayertimes/noticeicon.png"
+              alt="Book Icon"
+              width={35}
+               height={24}
+              />
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+              Notice <span className="text-yellow-400">Board</span>
+            </h2>
+           </div>
+
+            <div className="flex items-center gap-3 sm:gap-4">
+
+              <button className="border border-[#00401A] text-[#00401A]
+               font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer">
+                 View More
+               </button>
+            </div>
+
+          </div>
+    
+     
 
       {/* Notices List */}
       <ul className="space-y-3">

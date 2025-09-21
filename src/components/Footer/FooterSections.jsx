@@ -75,7 +75,7 @@ export default function FooterSections() {
   // Render
   // -----------------------------
   return (
-    <footer className="bg-white shadow-md px-6 md:px-12 xl:px-16 py-10 rounded-[30px]">
+    <footer className="bg-white shadow-md px-4 md:px-12 xl:px-16 py-10 rounded-[30px]">
       <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4
        gap-10 xl:gap-8">
         {/* Logo + About */}

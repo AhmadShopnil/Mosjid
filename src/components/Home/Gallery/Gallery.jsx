@@ -49,7 +49,7 @@ export default function ImageGallery() {
   };
 
   return (
-    <Container className="p-6 bg-gray-50">
+    <Container className="p-6 mt-6 bg-gray-50">
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
         <div className="flex items-center gap-2">
@@ -63,9 +63,11 @@ export default function ImageGallery() {
             Gallery
           </h1>
         </div>
-        <button className="px-5 py-2 text-sm sm:text-base font-bold text-[#00401A] border border-[#00401A] rounded-full hover:bg-gray-100 transition-colors">
+
+         <button className="px-5 py-2 text-sm sm:text-base font-bold text-[#00401A] border border-[#00401A] rounded-full hover:bg-gray-100 transition-colors">
           View More
         </button>
+
       </div>
 
       {/* Gallery Grid */}

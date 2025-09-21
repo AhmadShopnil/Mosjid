@@ -15,7 +15,11 @@ export default function FatwahSection() {
   ];
 
   return (
-    <div className="relative bg-gradient-to-br from-green-100 to-white min-h-screen">
+    <div
+    className="relative min-h-screen"
+    //  className="relative bg-gradient-to-br from-green-100 to-white min-h-screen"
+     
+     >
       <FatwahBox/>
     </div>
   );

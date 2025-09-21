@@ -76,8 +76,24 @@ export default function FatwahBox() {
 
         {/* Fatwah Content Box */}
         <div className="max-w-6xl  mx-auto relative bg-white 
-        rounded-2xl shadow-lg overflow-hidden p-4 md:p-12">
-          
+        rounded-2xl shadow-lg overflow-hidden p-4 md:p-12"
+        style={{
+          background: `
+            linear-gradient(to right, 
+              rgba(255,255,255,0) 0%,   /* top-left start */
+              rgba(244,231,203,1) 100%  /* top-right */
+            ),
+            linear-gradient(to top, 
+              rgba(208,255,228,1) 0%,   /* bottom-left */
+              rgba(255,255,255,1) 100%  /* bottom-right */
+            )
+          `,
+          backgroundBlendMode: "screen",
+        }}
+    // style={{
+    //   background: "linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(208,255,228,1) 40%, rgba(244,231,203,1) 70%, rgba(255,255,255,1) 100%)",
+    // }}
+        >    
           {/* Mosque Image Positioned at Bottom Right */}
           <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[400px]">
             <Image

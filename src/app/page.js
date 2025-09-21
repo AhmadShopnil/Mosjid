@@ -10,6 +10,7 @@ import ImageGallery from "@/components/Home/Gallery/Gallery";
 import IslamicBooks from "@/components/Home/IslamicBooks/IslamicBooks";
 import Fatwah from "@/components/Home/Fatwah/Fatwah";
 import PrayerTimesAndNotices from "@/components/Home/PrayerTimesAndNotices/PrayerTimesAndNotices";
+import OfferServices from "@/components/Home/OfferServices/OfferServices";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
    <PrayerTimesAndNotices/>
 
       <Fatwah/>
+      <OfferServices/>
        <DictionarySection/>
       <DirecToryDonation/>
       <DuaSection/>
