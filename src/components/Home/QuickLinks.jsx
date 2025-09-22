@@ -27,13 +27,13 @@ export default function QuickLinks() {
           <div
             key={i}
             className="flex flex-col items-center justify-center
-             bg-white shadow rounded-3xl py-2  hover:bg-teal-50
-              transition cursor-pointer text-center"
+             bg-white shadow rounded-3xl py-5.5  hover:bg-teal-50
+              transition cursor-pointer text-center gradient-border "
           >
            
 
             {link.icon}
-            <p className="mt-2 text-sm text-gray-700">{link.name}</p>
+            <p className="mt-2 text-base font-bold text-[#00401A]">{link.name}</p>
           </div>
         ))}
       </Container>
