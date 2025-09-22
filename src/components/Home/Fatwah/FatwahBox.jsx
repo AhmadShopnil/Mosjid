@@ -18,7 +18,7 @@ export default function FatwahBox() {
         
         {/* Top Section - Logo & Arabic Title */}
         <div className="max-w-6xl   mx-auto flex
-         justify-between items-center mb-8">
+         justify-between items-end mb-6">
           {/* Logo */}
           <div>
             <Image
@@ -38,7 +38,7 @@ export default function FatwahBox() {
           </div>
 
           {/* Arabic Heading */}
-         <div>
+         <div className=''>
           {/* for big screen */}
            <div className="hidden sm:flex  flex-col justify-end items-end gap-3 ">
              <Image

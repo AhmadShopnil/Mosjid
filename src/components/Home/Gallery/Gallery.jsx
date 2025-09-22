@@ -52,7 +52,7 @@ export default function ImageGallery() {
     <Container className="p-6 mt-6 bg-gray-50">
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 gradient-border_b pb-3">
           <Image
             src="/images/gallery/icon.png"
             alt="gallery-icon"

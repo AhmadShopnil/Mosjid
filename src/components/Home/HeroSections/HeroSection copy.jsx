@@ -3,8 +3,9 @@
 // components/HeroSection.tsx
 import Image from "next/image";
 import React from "react";
-import Container from "../Shared/Container";
+
 import Link from "next/link";
+import Container from "@/components/Shared/Container";
 
 export default function HeroSection() {
   return (

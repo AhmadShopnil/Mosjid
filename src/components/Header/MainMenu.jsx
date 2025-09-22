@@ -8,11 +8,11 @@ const menuItems = [
   "Prayer Time",
   "Notice Board",
   "Fatwa",
-//   "Dictionary",
-//   "Directory",
-//   "Gallery",
-//   "Blog & Event",
-//   "Contact Us",
+  "Dictionary",
+  "Directory",
+  "Gallery",
+  "Blog & Event",
+  "Contact Us",
 ];
 
 export default function MainMenu() {

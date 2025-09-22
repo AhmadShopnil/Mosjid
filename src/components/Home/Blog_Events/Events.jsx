@@ -40,8 +40,8 @@ export default function Events() {
             className="flex space-x-3 bg-white/90 backdrop-blur-sm border border-gray-300 p-2 rounded-md shadow-sm"
           >
             {/* Date Section */}
-            <div className="w-22 text-center bg-gray-100 rounded-md px-3 py-3.5 leading-5">
-              <p className="text-3xl font-bold text-green-900 leading-4">
+            <div className="w-22 text-center bg-gray-100 rounded-md px-3 py-2 leading-5 space-y-0.5">
+              <p className="text-2xl font-bold text-green-900 leading-5">
                 {notice.date.split(" ")[0]}
               </p>
               <p className="text-xs text-green-900">{notice.date.split(" ")[1]}</p>

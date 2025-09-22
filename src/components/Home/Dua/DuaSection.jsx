@@ -48,43 +48,45 @@ export default function DuaSection() {
       }}
     >
       <Container className=" px-4">
-     {/* heading */}
+        {/* heading */}
         <div className="flex flex-col sm:flex-row  justify-between items-center mb-8">
-            <div className="flex gap-2 gradient-border_b mb-6 sm:mb-0">
+          <div className="flex gap-2 justify-center items-center gradient-border_b pb-2 ">
             <Image
               src="/images/others/duaicon.png"
-                                    alt="mosque"
-                                    width={40}
-                                    height={40}
-                                    className="mx-auto mb-3"
-              />
-              <h4 className="text-[#00401A] font-bold text-3xl">Submit a Dua</h4>
-            </div>
-            <div className="flex gap-4 items-center justify-center ">
-           <Image
+              alt="mosque"
+              width={45}
+              height={40}
+              className="mx-auto "
+            />
+            <h4 className="text-[#00401A] font-bold text-3xl">
+              <span className="text-[#F7BA2A]">Submit </span>
+               a Duah</h4>
+          </div>
+          <div className="flex gap-4 items-center justify-center ">
+            <Image
               src="/images/others/duaarabic.png"
-               alt="mosque"
-               width={150}
-               height={50}
-               className="mx-auto "
-              />
+              alt="mosque"
+              width={150}
+              height={50}
+              className="mx-auto "
+            />
             <div>
-            <Link
-              href="/"
-               className="border rounded-[50px] font-bold text-[#00401A]  border-[#00401A] text-base py-2.5 px-5"
-                >
-               Find More Dua
-            </Link>
+              <Link
+                href="/"
+                className="border rounded-[50px] font-bold text-[#00401A]  border-[#00401A] text-base py-2.5 px-5"
+              >
+                Find More Duah
+              </Link>
             </div>
-            </div>
+          </div>
         </div>
         {/* Dua list */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
-       {/* Dua Card  */}
-          {duas.map((dua) => (  
+          {/* Dua Card  */}
+          {duas.map((dua) => (
             <DuaCard
-            key={dua.id}
-            dua={dua}
+              key={dua.id}
+              dua={dua}
             />
           ))}
         </div>

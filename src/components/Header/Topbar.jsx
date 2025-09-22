@@ -27,11 +27,11 @@ export default function Topbar() {
 const [selectedLanguage, setSelectedLanguage] = useState("English") 
 
   return (
-    <Container className='bg-white'>
+    <Container className='bg-white my-2'>
         <div className="justify-end flex items-center gap-4 md:gap-6 ">
             
             {/* language selection */}
-            <div className="flex items-center gap-2 my-6 justify-end">
+            <div className="flex items-center gap-2  justify-end">
                 <span className='text-lg text-[#00401A] font-bold'>Select Language: </span>
                     {languages.map((language) => (
                     <button

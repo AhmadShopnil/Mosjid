@@ -1,6 +1,6 @@
 
 import FatwaHeadline from "@/components/Home/FatwaHeadline/FatwaHeadline";
-import HeroSection from "@/components/Home/HeroSection";
+import HeroSection from "@/components/Home/HeroSections/HeroSection";
 import QuickLinks from "@/components/Home/QuickLinks";
 import IslamicBlogEvents from "@/components/Home/Blog_Events/IslamicBlogEvents";
 import DictionarySection from "@/components/Home/Dictionary/DictionarySection";

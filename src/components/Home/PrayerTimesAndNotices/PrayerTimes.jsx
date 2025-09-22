@@ -53,7 +53,7 @@ const prayerData = [
     icon: "/images/prayertimes/fajar.png",
   },
   {
-    name: "Eid Ul Fitar", 
+    name: "Eid Ul Fitar",
     jamaat: "04:15 am",
     start: "04:15 am",
     end: "05:28 am",
@@ -70,58 +70,58 @@ const prayerData = [
 
 export default function PrayerTimes() {
   return (
-    <div className="  rounded-2xl px-5 sm:px-8 pt-5 sm:pt-8 pb-24 h-full gradient-border relative">
-           <div className="absolute top-0 right-0">
-             <Image
-               src="/images/prayertimes/1.png"
-               alt="Decorative floral pattern"
-               width={65}
-               height={65}
-               className="opacity-80"
-             />
-           </div>
-             <div className="absolute bottom-0 left-0">
-             <Image
-               src="/images/prayertimes/bottomImg.png"
-               alt="Decorative floral pattern"
-               width={400}
-               height={80}
-               className="opacity-80"
-             />
-           </div>
+    <div className="  rounded-2xl px-5 sm:px-8 pt-5 sm:pt-8 pb-20 h-full gradient-border relative">
+      <div className="absolute top-0 right-0">
+        <Image
+          src="/images/prayertimes/1.png"
+          alt="Decorative floral pattern"
+          width={65}
+          height={65}
+          className="opacity-80"
+        />
+      </div>
+      <div className="absolute bottom-0 left-0">
+        <Image
+          src="/images/prayertimes/bottomImg.png"
+          alt="Decorative floral pattern"
+          width={400}
+          height={80}
+          className="opacity-80"
+        />
+      </div>
       {/* heading */}
-       <p className="text-sm mb-2 text-center sm:text-start">Last Update: 17 Aug 2015 at 9:30pm</p>
+      <p className="text-sm mb-2 text-center sm:text-start">Last Update: 17 Aug 2015 at 9:30pm</p>
 
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
-       <div className="flex items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3">
-              <Image
-                  src="/images/prayertimes/icon.png"
-                  alt="Book Icon"
-                  width={35}
-                  height={24}
-                />
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
-          <span className="text-[#F7BA2A]">Prayer</span> Times
-        </h2>
-       </div>
+        <div className="flex items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3">
+          <Image
+            src="/images/prayertimes/icon.png"
+            alt="Book Icon"
+            width={35}
+            height={24}
+          />
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+            <span className="text-[#F7BA2A]">Prayer</span> Times
+          </h2>
+        </div>
 
 
         <div className="flex items-center gap-3 sm:gap-4">
-                      <Image
-                        src="/images/isamicBooks/arabic-islamicbooks.png"
-                        alt="Arabic text"
-                        width={160}
-                        height={50}
-                        className="object-contain hidden sm:flex"
-                      />
-                      <Image
-                        src="/images/isamicBooks/arabic-islamicbooks.png"
-                        alt="Arabic text"
-                        width={135}
-                        height={40}
-                        className="object-contain sm:hidden"
-                      />
-                   
+          <Image
+            src="/images/isamicBooks/arabic-islamicbooks.png"
+            alt="Arabic text"
+            width={160}
+            height={50}
+            className="object-contain hidden sm:flex"
+          />
+          <Image
+            src="/images/isamicBooks/arabic-islamicbooks.png"
+            alt="Arabic text"
+            width={135}
+            height={40}
+            className="object-contain sm:hidden"
+          />
+
         </div>
 
 
@@ -143,14 +143,14 @@ export default function PrayerTimes() {
                 key={index}
                 className="bg-[#F6FFF1] text-gray-800 border-y border-gray-200"
               >
-                <td className="p-3 flex items-center gap-2">
+                <td className="px-3 flex items-center gap-2">
                   {/* {prayer.icon} */}
-                   <Image
+                  <Image
                     src={prayer?.icon}
                     alt="gallery-icon"
                     width={40}
                     height={40}
-                            />
+                  />
                   <span className="font-bold text-base text-[#00401A]">{prayer.name}</span>
                 </td>
                 <td className="p-3 text-[#56410F] text-base">{prayer.jamaat}</td>

@@ -76,7 +76,7 @@ export default function BankInfo() {
       </div>
 
       {/* Note Section */}
-      <p className="mt-6 text-red-600 text-sm">
+      <p className="mt-6 text-red-600 text-xs">
         <span className="font-semibold">Note :</span> Please refrain from paying Zakat ( obligatory charity ) 
         or Wajib Sadaqat ( obligatory charity ). 
         <span className="ml-2 font-normal">(جزاكم الله تعالى خيرا)</span>
