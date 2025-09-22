@@ -20,8 +20,8 @@ export default function MainMenu() {
     <div className="relative bg-[#00401A] text-white">
       <Container className=" flex items-center justify-center relative px-4">
         {/* Logo - absolutely positioned to overlap */}
-        <div className="absolute -top-8 left-4 sm:left-8">
-          <div className="bg-white shadow-lg rounded-xl w-[120px] h-[120px] flex items-center justify-center">
+        <div className="absolute -top-8 left-4 sm:left-8 z-50">
+          <div className="bg-white shadow-xl rounded-xl w-[120px] h-[120px] flex items-center justify-center">
             <Image
               src="/images/logo.png"
               alt="Logo"
@@ -33,7 +33,7 @@ export default function MainMenu() {
         </div>
 
         {/* Navigation Links */}
-        <div className="w-full flex justify-center ">
+        <div className="hidden w-full md:flex justify-center ">
           <nav className="flex flex-wrap justify-center gap-3 py-3 text-sm sm:text-base">
             {menuItems.map((link, i) => (
               <a
