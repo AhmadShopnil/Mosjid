@@ -27,8 +27,8 @@ export default function Topbar() {
 const [selectedLanguage, setSelectedLanguage] = useState("English") 
 
   return (
-    <Container className='bg-white my-2 min-h-[20px]'>
-        <div className="justify-end  items-center gap-4 md:gap-6 hidden xl:flex ">
+    <Container className='bg-white my-2'>
+        <div className="justify-end flex items-center gap-4 md:gap-6 ">
             
             {/* language selection */}
             <div className="flex items-center gap-2  justify-end">

@@ -102,11 +102,11 @@ export default function OfferServicesSlider({services}) {
             loop={true}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             breakpoints={{
-              320: { slidesPerView: 1.5 },
-              400: { slidesPerView: 2 },
+              320: { slidesPerView: 1.8 },
+              370: { slidesPerView: 2 },
               500: { slidesPerView: 2.3 },
               550: { slidesPerView: 3.3 },
-              640: { slidesPerView: 3.8 },
+              680: { slidesPerView: 3.6 },
               840: { slidesPerView: 4 },
               1024: { slidesPerView: 4.7 },
               1250: { slidesPerView: 5.4 },
@@ -117,15 +117,15 @@ export default function OfferServicesSlider({services}) {
             {services.map((service) => (
               <SwiperSlide key={service.id}>
                 <div
-                  className={`w-[180px] h-[300px] md:w-[210px] md:h-[340px]  relative flex flex-col 
+                  className={`w-[150px] h-[250px] sm:w-[180px] sm:h-[300px] md:w-[210px] md:h-[340px]  relative flex flex-col 
                     items-center justify-between text-center rounded-full 
                     shadow-md bg-white mx-auto cursor-pointer
-                    group hover:border hover:border-green-500 p-3
+                    group hover:border hover:border-green-500 p-2 sm:p-3
                 `}
                   onMouseEnter={() => setHoveredCard(service?.id)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
-                  <div className="p-3 rounded-full mt-4 bg-[#F8F8F8]">
+                  <div className="p-1.5 sm:p-3 rounded-full mt-2 sm:mt-4 bg-[#F8F8F8]">
                     <Image
                       src={service?.featured_image}
                       alt="Book"
@@ -134,8 +134,8 @@ export default function OfferServicesSlider({services}) {
                     />
                   </div>
 
-                  <div className="flex flex-col items-center mt-4">
-                    <p className="text -lg md:text-xl font-bold text-[#333333] leading-9">{service?.name}</p>
+                  <div className="flex flex-col items-center mt-2 sm:mt-4">
+                    <p className="text -lg md:text-xl font-bold text-[#333333] leading-6 md:leading-8">{service?.name}</p>
                     {/* <p className="text-sm text-[#333333]">{service.writer}</p> */}
                   </div>
 

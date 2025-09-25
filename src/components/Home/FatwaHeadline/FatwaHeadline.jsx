@@ -37,7 +37,7 @@ export default function FatwaHeadline({ fatwahs }) {
               className="absolute w-full pl-2 text-white text-sm flex items-center justify-start animate-fadeSlide"
               style={{ height: "2.5rem" }}
             >
-              {fatwahs[currentIndex]?.name}
+              {fatwahs[currentIndex]?.name.slice(0,30)}
             </div>
           </div>
         </div>
