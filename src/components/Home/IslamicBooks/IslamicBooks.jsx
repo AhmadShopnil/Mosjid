@@ -102,8 +102,10 @@ export default function IslamicBooks() {
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               breakpoints={{
                 320: { slidesPerView: 1.5 },
-                400: { slidesPerView: 2 },
-                 500: { slidesPerView: 2.3 },
+                370: { slidesPerView: 2 },
+                420: { slidesPerView: 2.5 },
+                 470: { slidesPerView: 3 },
+                 500: { slidesPerView: 3.3 },
                 640: { slidesPerView: 2.8 },
                 840: { slidesPerView: 3.8 },
                 1024: { slidesPerView: 2.7 },
@@ -114,24 +116,32 @@ export default function IslamicBooks() {
               {books.map((book) => (
                 <SwiperSlide key={book.id}>
                 <div
-                className={`w-[200px] h-[330px] relative flex flex-col 
+                className={`w-[150px] h-[250px] sm:w-[200px] sm:h-[330px] relative flex flex-col 
                     items-center justify-between text-center rounded-full 
                     shadow-md bg-white mx-auto cursor-pointer
                     group hover:border hover:border-green-500
                 `}
                 >
-                <div className="p-7 rounded-full mt-4 bg-[#F8F8F8]">
+                <div className="p-4 sm:p-7 rounded-full mt-2 sm:mt-4 bg-[#F8F8F8]">
                     <Image
+                    src="/images/isamicBooks/bookIcon.png"
+                    alt="Book"
+                    width={70}
+                    height={70}
+                    className=" flex sm:hidden"
+                    />
+                      <Image
                     src="/images/isamicBooks/bookIcon.png"
                     alt="Book"
                     width={90}
                     height={90}
+                    className="hidden sm:flex"
                     />
                 </div>
 
                 <div className="flex flex-col items-center mt-4">
-                    <p className="text-xl font-bold text-[#333333]">{book.name}</p>
-                    <p className="text-sm text-[#333333]">{book.writer}</p>
+                    <p className="text-lg sm:text-xl font-bold text-[#333333]">{book.name}</p>
+                    <p className="text-xs sm:text-sm text-[#333333]">{book.writer}</p>
                 </div>
 
                 <div className="pb-4">

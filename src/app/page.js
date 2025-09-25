@@ -1,6 +1,6 @@
 
 import FatwaHeadline from "@/components/Home/FatwaHeadline/FatwaHeadline";
-import HeroSection from "@/components/Home/HeroSections/HeroSection";
+
 import QuickLinks from "@/components/Home/QuickLinks/QuickLinks";
 import IslamicBlogEvents from "@/components/Home/Blog_Events/IslamicBlogEvents";
 import DictionarySection from "@/components/Home/Dictionary/DictionarySection";
@@ -12,6 +12,7 @@ import Fatwah from "@/components/Home/Fatwah/Fatwah";
 import PrayerTimesAndNotices from "@/components/Home/PrayerTimesAndNotices/PrayerTimesAndNotices";
 import OfferServices from "@/components/Home/OfferServices/OfferServices";
 import { getFatwa } from "@/helper/actions";
+import HeroMain from "@/components/Home/HeroSections/HeroMain";
 
 export default async function Home() {
 
@@ -20,8 +21,7 @@ export default async function Home() {
   return (
    <main className="bg-gray-50  mb-10 ">
   
-      <HeroSection />
-      
+      <HeroMain/>
      <div className="">
       <FatwaHeadline fatwahs={fatwahs}/>
        <QuickLinks />
