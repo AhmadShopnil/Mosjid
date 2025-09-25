@@ -4,49 +4,66 @@
 import { useState } from "react";
 import Image from "next/image";
 import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
   FaEnvelope,
 } from "react-icons/fa";
 import { FaPhoneVolume, FaLocationDot } from "react-icons/fa6";
 import { ImFacebook2 } from "react-icons/im";
+import { getMediaLinkByMetaName, getMetaValueByMetaName } from "@/helper/metaHelpers";
+import { BASE_URL } from "@/helper/baseUrl";
+import Link from "next/link";
+import QuickContactForm from "./QuickContactForm";
 
-export default function FooterSections() {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    message: "",
-  });
+export default function FooterSections({ settings }) {
 
-  // -----------------------------
+
+
+
+
+  const phone = getMetaValueByMetaName(settings, "company_phone") || "";
+  const company_email = getMetaValueByMetaName(settings, "company_email") || "";
+  const facebookLink = getMetaValueByMetaName(settings, "facebook_url") || "#";
+  const linkedinLink = getMetaValueByMetaName(settings, "linkedin_url") || "#";
+  const instagramLink =
+    getMetaValueByMetaName(settings, "instagram_url") || "#";
+  const location = getMetaValueByMetaName(settings, "office_location") || "";
+  const looter_logo_path = getMediaLinkByMetaName(settings, "footer_logo");
+  const footer_logo_url = `${BASE_URL}${looter_logo_path}`;
+
+  const footer_content =
+    getMetaValueByMetaName(settings, "site_description") || "";
+  const copyright_content =
+    getMetaValueByMetaName(settings, "bottom_footer_content") ||
+    "OSAKA MASJID© 2025 | ALL RIGHTS RESERVED";
+
+  // sectionTittles
+  const section_1_title = getMetaValueByMetaName(settings, "section_1_title") || "";
+  const section_2_title = getMetaValueByMetaName(settings, "section_2_title") || "";
+  const section_3_title = getMetaValueByMetaName(settings, "section_3_title") || "";
+
+
+
   // Demo Data
-  // -----------------------------
+
 
   const contactInfo = [
     {
       id: 1,
       icon: <FaLocationDot className="text-[#00401A] min-w-[20px]" />,
-      text: "555-0032 4-12-16 Owada, Nishiyodogawa-ku, Osaka City, Osaka Prefecture",
+      text: location,
     },
     {
       id: 2,
       icon: <FaPhoneVolume className="text-[#00401A] min-w-[20px]" />,
-      text: "+(81) 080-3822-4143",
+      text: phone,
     },
     {
       id: 3,
       icon: <FaEnvelope className="text-[#00401A] min-w-[20px]" />,
-      text: "info@osakamasjid.org",
+      text: company_email,
     },
   ];
 
-  const socialLinks = [
-    { id: 1, icon: <FaFacebookF />, url: "#" },
-    { id: 2, icon: <FaInstagram />, url: "#" },
-    { id: 3, icon: <FaLinkedinIn />, url: "#" },
-  ];
+
 
   const usefulLinks = [
     { id: 1, label: "Home", url: "#" },
@@ -58,22 +75,15 @@ export default function FooterSections() {
     { id: 7, label: "Contact Us", url: "#" },
   ];
 
-  // -----------------------------
-  // Handlers
-  // -----------------------------
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Data:", formData);
-    // TODO: Replace with API call
-  };
 
-  // -----------------------------
-  // Render
-  // -----------------------------
+ 
+
+
+
+
+
+
   return (
     <footer className="bg-white shadow-md px-4 md:px-12 xl:px-16 py-10 rounded-[30px]">
       <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4
@@ -82,63 +92,69 @@ export default function FooterSections() {
         <div>
           <div className="mb-4 gradient-border_b pb-2">
             <Image
-              src="/images/footer/footer logo.png"
+              src={footer_logo_url}
+              // src="/images/footer/footer logo.png"
               alt="Osaka Masjid Logo"
               width={280}
               height={60}
             />
           </div>
           <p className="text-[#333333] text-base">
-            Lorem ipsum dolor sit amet consectetur. Sodales integer vitae sed
-            mauris proin gravida. Proin vestibulum adipiscing iaculis quis quis.
+            {footer_content}
           </p>
         </div>
 
         {/* Get In Touch */}
         <div>
           <h3 className="text-2xl text-[#00401A] font-bold mb-4">
-            Get In Touch
+            {section_1_title}
           </h3>
           <ul className="space-y-2 text-sm text-gray-700">
             {contactInfo.map((info) => (
               <li key={info.id} className="flex items-start   gap-2">
-               <span className=" text-lg bg-[#D9E2DD] p-2 rounded-full">
-                 {info.icon}
-               </span>
+                <span className=" text-lg bg-[#D9E2DD] p-2 rounded-full">
+                  {info.icon}
+                </span>
                 <span className="text-[#333333] text-base">{info.text}</span>
               </li>
             ))}
           </ul>
-            <div className='flex gap-2 mt-6 px-1  items-center'>
-                <span className='text-blue-500 text-xl'>
-            <ImFacebook2 />
-                </span>
-                <span className=''>
-             <Image
-              src="/images/footer/insta.png"
-              alt='a1'
-              width={38}
-              height={38}
-              className='hidden sm:flex'
-             />
-                </span>
-                <span className='text-blue-500'>
-             <Image
-              src="/images/footer/linkdin.png"
-              alt='a1'
-              width={26}
-              height={26}
-              className='hidden sm:flex'
-             />
+          <div className='flex gap-2 mt-6 px-1  items-center'>
+            <Link
+              href={facebookLink}
+              className='text-blue-500 text-xl'>
+              <ImFacebook2 />
+            </Link>
+            <Link
+              href={instagramLink}
+              className=''>
+              <Image
+                src="/images/footer/insta.png"
+                alt='a1'
+                width={38}
+                height={38}
+                className='hidden sm:flex'
+              />
+            </Link>
+            <Link
+              href={linkedinLink}
+              className='text-blue-500'>
+              <Image
+                src="/images/footer/linkdin.png"
+                alt='a1'
+                width={26}
+                height={26}
+                className='hidden sm:flex'
+              />
 
-                </span>
-            </div>
+            </Link>
+          </div>
         </div>
 
         {/* Useful Links */}
         <div>
           <h3 className="text-2xl text-[#00401A] font-bold mb-3">
-            Useful Link
+            {section_2_title}
           </h3>
           <ul className="space-y-2 text-sm text-gray-700">
             {usefulLinks.map((link) => (
@@ -155,51 +171,7 @@ export default function FooterSections() {
         </div>
 
         {/* Quick Contact Form */}
-        <div>
-          <h3 className="text-2xl text-[#00401A] font-bold mb-3">
-            Quick Contact
-          </h3>
-          <form onSubmit={handleSubmit} className="space-y-3">
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full border rounded-md px-3 py-2 text-sm outline-none focus:border-green-600"
-            />
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone"
-              value={formData.phone}
-              onChange={handleChange}
-              className="w-full border rounded-md px-3 py-2 text-sm outline-none focus:border-green-600"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full border rounded-md px-3 py-2 text-sm outline-none focus:border-green-600"
-            />
-            <textarea
-              name="message"
-              placeholder="Message"
-              rows="3"
-              value={formData.message}
-              onChange={handleChange}
-              className="w-full border rounded-md px-3 py-2 text-sm outline-none focus:border-green-600"
-            />
-            <button
-              type="submit"
-              className="w-full bg-green-600 text-white py-2 rounded-md font-medium hover:bg-green-700 transition"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
+<QuickContactForm section_3_title={section_3_title}/>
       </div>
     </footer>
   );

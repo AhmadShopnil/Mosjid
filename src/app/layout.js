@@ -2,6 +2,8 @@ import { Geist, Geist_Mono, Merriweather } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
+import ScrollToTopButton from "@/components/Shared/ScrollToTopButton";
+import { Toaster } from "react-hot-toast";
 
 // Geist Sans
 const geistSans = Geist({
@@ -37,6 +39,8 @@ export default function RootLayout({ children }) {
         <Header/>
         {children}
         <Footer />
+        <ScrollToTopButton />
+        <Toaster position="top-right" />
       </body>
     </html>
   );

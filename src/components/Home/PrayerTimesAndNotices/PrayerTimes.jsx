@@ -2,6 +2,10 @@ import React from "react";
 import { PrayerTimesIcon } from "../../Icons/QuickLinks";
 import { Sun, Moon, Star } from "lucide-react";
 import Image from "next/image";
+import { getPage, getSettings } from "@/helper/actions";
+import { getMetaValueByMetaName } from "@/helper/metaHelpers";
+import { splitBySpace } from "@/helper/splitBySpace";
+import { getImageUrl } from "@/helper/getImageUrl";
 
 
 const prayerData = [
@@ -68,13 +72,30 @@ const prayerData = [
   },
 ];
 
-export default function PrayerTimes() {
+export default async function PrayerTimes() {
+
+  const settings = await getSettings()
+  const view_more = getMetaValueByMetaName(settings, "view_more") || "";
+  
+  // get notice extra data from home page section management
+  const homePage = await getPage("home-sections-heading-management")
+  const sections = homePage?.sections_on_api;
+  const prayer_time = sections.find((s) => s.title_slug === "prayer_time");
+  const heading_part_1 = splitBySpace(prayer_time?.sub_title)[0]
+  const heading_part_2 = splitBySpace(prayer_time?.sub_title)[1]
+
+const image = getImageUrl(prayer_time?.image_media) 
+
+
+
+
+
   return (
     <div className="  rounded-2xl px-5 sm:px-8 pt-5 sm:pt-8 pb-20 h-full gradient-border relative">
       <div className="absolute top-0 right-0">
         <Image
           src="/images/prayertimes/1.png"
-          alt="Decorative floral pattern"
+          alt="Prayer times"
           width={65}
           height={65}
           className="opacity-80"
@@ -101,21 +122,21 @@ export default function PrayerTimes() {
             height={24}
           />
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
-            <span className="text-[#F7BA2A]">Prayer</span> Times
+            <span className="text-[#F7BA2A]">{heading_part_1}</span> {heading_part_2}
           </h2>
         </div>
 
 
         <div className="flex items-center gap-3 sm:gap-4">
           <Image
-            src="/images/isamicBooks/arabic-islamicbooks.png"
+            src={image}
             alt="Arabic text"
             width={160}
             height={50}
             className="object-contain hidden sm:flex"
           />
           <Image
-            src="/images/isamicBooks/arabic-islamicbooks.png"
+            src={image}
             alt="Arabic text"
             width={135}
             height={40}

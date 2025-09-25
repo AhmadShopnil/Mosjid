@@ -30,7 +30,9 @@ export default function DictionarySection() {
   const sections = ["Section", "Verse 1-10", "Verse 11-20", "Verse 21-30"]
 
   return (
- <div className="max-w-6xl mx-auto px-4 pt-12  ">
+ <div 
+ id="dictionary"
+ className="max-w-6xl mx-auto px-4 pt-12  ">
      <div className="bg-white rounded-[20px] gradient-border
       px-4 py-16  sm:p-14 relative">
       {/* Decorative floral pattern */}

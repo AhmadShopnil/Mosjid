@@ -11,15 +11,19 @@ import IslamicBooks from "@/components/Home/IslamicBooks/IslamicBooks";
 import Fatwah from "@/components/Home/Fatwah/Fatwah";
 import PrayerTimesAndNotices from "@/components/Home/PrayerTimesAndNotices/PrayerTimesAndNotices";
 import OfferServices from "@/components/Home/OfferServices/OfferServices";
+import { getFatwa } from "@/helper/actions";
 
-export default function Home() {
+export default async function Home() {
+
+  const fatwahs = await getFatwa();
+
   return (
    <main className="bg-gray-50  mb-10 ">
   
       <HeroSection />
       
      <div className="">
-      <FatwaHeadline/>
+      <FatwaHeadline fatwahs={fatwahs}/>
        <QuickLinks />
      </div>
 
@@ -33,6 +37,12 @@ export default function Home() {
       <ImageGallery/>
       <IslamicBooks/>
       <IslamicBlogEvents/>
+{/* 
+    <div>
+      <button>
+        Up
+      </button>
+    </div> */}
     </main>
   );
 }

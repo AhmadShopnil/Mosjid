@@ -1,10 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-;
-
 import Image from "next/image";
-import { DictionaryIcon, DonationIcon, GalleryIcon, PrayerTimesIcon } from "@/components/Icons/QuickLinks";
 import Container from "@/components/Shared/Container";
 
 const quickLinks = [
@@ -34,42 +31,40 @@ export default function QuickLinks() {
   const [hoveredCard, setHoveredCard] = useState(null);
 
   return (
-    <section className="bg-[#E5F5DE] py-6">
+    <section className="bg-[#E5F5DE] py-8">
       <Container className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-4">
-        {quickLinks.map((link, i) => (
-          <div
-            key={i}
-            className="flex flex-col items-center justify-center
-             bg-white shadow rounded-[50px] py-3.5 hover:bg-[#007724] 
-             transition cursor-pointer text-center gradient-border text-[#00401A] hover:text-white"
-            onMouseEnter={() => setHoveredCard(i)}
-            onMouseLeave={() => setHoveredCard(null)}
-          >
-            <div className="w-[130px] h-[90px] flex items-center justify-center">
-              {hoveredCard === i ? (
+        {quickLinks.map((link, i) => {
+          const isHovered = hoveredCard === i;
+
+          return (
+            <div
+              key={i}
+              className={`flex flex-col items-center justify-center 
+                rounded-[50px] py-3.5 cursor-pointer text-center gradient-border
+                transition-all duration-200 
+                ${isHovered
+                  ? "bg-gradient-to-r  from-[rgba(81,250,6,1)] to-[rgba(0,119,36,1)] text-white shadow-lg scale-105"
+                  : "bg-white text-[#00401A] shadow"
+                }`}
+              onMouseEnter={() => setHoveredCard(i)}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              {/* Icon Section */}
+              <div className="w-[130px] h-[90px] flex items-center justify-center">
                 <Image
-                  src={link.activeIcon}
-                  alt={`${link.name} Active Icon`}
+                  src={isHovered ? link.activeIcon : link.icon}
+                  alt={link.name}
                   width={150}
                   height={100}
-                  className="object-contain"
+                  className="object-contain transition-all duration-300"
                 />
-              ) : (
-                <div className="text-teal-700">
-                  <Image
-                    src={link.icon}
-                    alt={`${link.name} Active Icon`}
-                    width={150}
-                    height={100}
-                    className="object-contain"
-                  /></div>
-              )}
+              </div>
+
+              {/* Title */}
+              <p className="mt-2 text-base font-bold">{link.name}</p>
             </div>
-            <p className="mt-2 text-base font-bold ">
-              {link.name}
-            </p>
-          </div>
-        ))}
+          );
+        })}
       </Container>
     </section>
   );

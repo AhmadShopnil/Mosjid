@@ -3,24 +3,17 @@ import Container from "@/components/Shared/Container";
 import React, { useEffect, useState } from "react";
 
 
-export default function FatwaHeadline() {
-  const fatwas = [
-    "Fatwa 1: প্রতিদিন নামাজের নিয়ম ও সময় সম্পর্কে সাধারণ নির্দেশনা।",
-    "Fatwa 2: যাকাত হিসাব ও দরকারি বিষয়াবলী।",
-    "Fatwa 3: ব্যবসায় হালাল-হারাম নির্ণয়ের সাধারণ নীতিমালা।",
-    "Fatwa 4: পারিবারিক ও বিবাহকর্মে ইসলামিক পরামর্শ।",
-    "Fatwa 5: রমাদানের রোজা ও ব্যক্তিগত দায়িত্বাদি।",
-  ];
+export default function FatwaHeadline({ fatwahs }) {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % fatwas.length);
+      setCurrentIndex((prev) => (prev + 1) % fatwahs?.length);
     }, 5000); // Change every 5 seconds
 
     return () => clearInterval(interval);
-  }, [fatwas.length]);
+  }, [fatwahs?.length]);
 
   return (
     <div
@@ -42,9 +35,9 @@ export default function FatwaHeadline() {
             <div
               key={currentIndex} // triggers animation when text changes
               className="absolute w-full pl-2 text-white text-sm flex items-center justify-start animate-fadeSlide"
-              style={{ height: "2.5rem" }} // same as h-10 for perfect alignment
+              style={{ height: "2.5rem" }}
             >
-              {fatwas[currentIndex]}
+              {fatwahs[currentIndex]?.name}
             </div>
           </div>
         </div>

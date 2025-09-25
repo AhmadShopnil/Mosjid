@@ -1,72 +1,84 @@
+"use client";
 
-"use client"
-
-// components/Home/QuickLinks.jsx
 import React, { useState } from "react";
-
-// FIX: Import individually to prevent "__barrel_optimize__" error
-import Book from "lucide-react/dist/esm/icons/book";
-import Heart from "lucide-react/dist/esm/icons/heart";
-import ImageIcon from "lucide-react/dist/esm/icons/image";
-import FileText from "lucide-react/dist/esm/icons/file-text";
-import { DictionaryIcon, DonationIcon, FatwaIcon, GalleryIcon, PrayerTimesIcon } from "../../Icons/QuickLinks";
-import Container from "../../Shared/Container";
 import Image from "next/image";
+import Container from "@/components/Shared/Container";
 
 const quickLinks = [
   {
     name: "Prayer Times",
-    icon: <PrayerTimesIcon />,
-    activeIcon: "/images/QuickLinks/hover/prayer times.png"
-  },
-  //   { name: "Fatwa", icon: <FatwaIcon/> },
-  {
-    name: "Dictionary", icon: <DictionaryIcon />,
-    activeIcon: "/images/QuickLinks/hover/Dictionary.png"
+    targetId: "prayer-times",
+    icon: "/images/QuickLinks/normal/prayer times.png",
+    activeIcon: "/images/QuickLinks/hover/prayer times.png",
   },
   {
-    name: "Gallery", icon: <GalleryIcon />,
-    activeIcon: "/images/QuickLinks/hover/Gallery.png"
+    name: "Dictionary",
+    targetId: "dictionary",
+    icon: "/images/QuickLinks/normal/Dictionary.png",
+    activeIcon: "/images/QuickLinks/hover/Dictionary.png",
   },
   {
-    name: "Donation", icon: <DonationIcon />,
-    activeIcon: "/images/QuickLinks/hover/Donation.png"
+    name: "Gallery",
+    targetId: "gallery",
+    icon: "/images/QuickLinks/normal/Gallery.png",
+    activeIcon: "/images/QuickLinks/hover/Gallery.png",
+  },
+  {
+    name: "Donation",
+    targetId: "donation",
+    icon: "/images/QuickLinks/normal/Donation.png",
+    activeIcon: "/images/QuickLinks/hover/Donation.png",
   },
 ];
+
 
 export default function QuickLinks() {
   const [hoveredCard, setHoveredCard] = useState(null);
 
-  
+  const handleScroll = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+
   return (
-    <section className="bg-[#E5F5DE] py-6">
-      <Container className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-4">
+    <section className="bg-[#E5F5DE] py-8">
+      <Container className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-4">
+        {quickLinks.map((link, i) => {
+          const isHovered = hoveredCard === i;
 
+          return (
+            <div
+              key={i}
+              className={`flex flex-col items-center justify-center 
+                rounded-[50px] py-3.5 cursor-pointer text-center gradient-border
+                transition-all duration-200 
+                ${isHovered
+                  ? "bg-gradient-to-r  from-[rgba(81,250,6,1)] to-[rgba(0,119,36,1)] text-white shadow-lg scale-105"
+                  : "bg-white text-[#00401A] shadow"
+                }`}
+              onMouseEnter={() => setHoveredCard(i)}
+              onMouseLeave={() => setHoveredCard(null)}
+               onClick={() => handleScroll(link.targetId)}
+            >
+              {/* Icon Section */}
+              <div className="w-[130px] h-[90px] flex items-center justify-center">
+                <Image
+                  src={isHovered ? link.activeIcon : link.icon}
+                  alt={link.name}
+                  width={150}
+                  height={100}
+                  className="object-contain transition-all duration-300"
+                />
+              </div>
 
-        {quickLinks.map((link, i) => (
-          <div
-            key={i}
-            className="flex flex-col items-center justify-center
-             bg-white shadow rounded-3xl py-5.5  hover:bg-teal-50
-              transition cursor-pointer text-center gradient-border "
-            onMouseEnter={() => setHoveredCard(true)}
-            onMouseLeave={() => setHoveredCard(null)}
-          >
-
-            <Image
-              src={
-                hoveredCard === true
-                  ? `${link?.activeIcon}`
-                  : `${link?.icon}`
-              }
-              alt="Details Button"
-              width={100}
-              height={100}
-            />
-            {link.icon}
-            <p className="mt-2 text-base font-bold text-[#00401A]">{link.name}</p>
-          </div>
-        ))}
+              {/* Title */}
+              <p className="mt-2 text-base font-bold">{link.name}</p>
+            </div>
+          );
+        })}
       </Container>
     </section>
   );
