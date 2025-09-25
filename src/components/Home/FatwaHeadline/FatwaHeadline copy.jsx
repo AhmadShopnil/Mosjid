@@ -1,6 +1,7 @@
 "use client";
-import React from "react";
-import Container from "../../Shared/Container";
+import Container from "@/components/Shared/Container";
+import React, { useEffect, useState } from "react";
+
 
 export default function FatwaHeadline() {
   const fatwas = [
@@ -11,75 +12,67 @@ export default function FatwaHeadline() {
     "Fatwa 5: রমাদানের রোজা ও ব্যক্তিগত দায়িত্বাদি।",
   ];
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % fatwas.length);
+    }, 5000); // Change every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [fatwas.length]);
+
   return (
     <div
-      className="w-full "
+      className="w-full"
       style={{
-        background: "linear-gradient(180deg, rgba(100,164,69,1) 0%, rgba(48,150,163,1) 100%)",
+        background:
+          "linear-gradient(180deg, rgba(100,164,69,1) 0%, rgba(48,150,163,1) 100%)",
       }}
     >
-      <Container className="">
+      <Container>
         <div className="h-10 flex items-center gap-4 overflow-hidden">
           {/* Left fixed label */}
-          <div className="bg-[#E5F5DE] text-[#00401A] h-10 w-20 flex items-center justify-center font-medium ">
+          <div className="bg-[#E5F5DE] text-[#00401A] h-10 w-20 flex items-center justify-center font-medium">
             Fatwa
           </div>
 
-          {/* Vertical ticker */}
-          <div className="relative h-10 flex-1 overflow-hidden">
-            <div className="ticker-inner">
-              {/* Original list */}
-              {fatwas.map((t, i) => (
-                <div key={i} className="ticker-item">
-                  {t}
-                </div>
-              ))}
-              {/* Duplicate for seamless looping */}
-              {fatwas.map((t, i) => (
-                <div key={`dup-${i}`} className="ticker-item">
-                  {t}
-                </div>
-              ))}
+          {/* Fatwa text with smooth fade animation */}
+          <div className="relative flex-1 h-10 overflow-hidden flex items-center">
+            <div
+              key={currentIndex} // triggers animation when text changes
+              className="absolute w-full pl-2 text-white text-sm flex items-center justify-start animate-fadeSlide"
+              style={{ height: "2.5rem" }} // same as h-10 for perfect alignment
+            >
+              {fatwas[currentIndex]}
             </div>
           </div>
         </div>
       </Container>
 
-      {/* Local CSS */}
+      {/* Animation Styles */}
       <style jsx>{`
-        /* The ticker container */
-        .ticker-inner {
-          display: flex;
-          flex-direction: column;
-          /* Slower speed: 8s for smooth scrolling */
-          animation: scroll-vertical 18s linear infinite;
-          will-change: transform;
-        }
-
-        /* Each scrolling item */
-        .ticker-item {
-          height: 2.5rem; /* Matches Tailwind h-10 */
-          display: flex;
-          align-items: center;
-          padding-left: 0.5rem;
-          color: #ffffff;
-          font-size: 0.875rem; /* text-sm */
-          white-space: nowrap;
-        }
-
-        /* Pause animation on hover */
-        .ticker-inner:hover {
-          animation-play-state: paused;
-        }
-
-        /* Keyframes for smooth vertical scroll */
-        @keyframes scroll-vertical {
+        @keyframes fadeSlide {
           0% {
-            transform: translateY(0);
+            opacity: 0;
+            transform: translateY(100%);
+          }
+          15% {
+            opacity: 1;
+            transform: translateY(0%);
+          }
+          85% {
+            opacity: 1;
+            transform: translateY(0%);
           }
           100% {
-            transform: translateY(-50%);
+            opacity: 0;
+            transform: translateY(-100%);
           }
+        }
+
+        .animate-fadeSlide {
+          animation: fadeSlide 5s ease-in-out forwards;
         }
       `}</style>
     </div>

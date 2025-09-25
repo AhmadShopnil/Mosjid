@@ -3,8 +3,14 @@ import Image from 'next/image'
 import React from 'react'
 import Blogs from './Blogs'
 import Events from './Events'
+import { getBlogs, getEvents } from '@/helper/actions'
 
-export default function IslamicBlogEvents() {
+export default async function IslamicBlogEvents() {
+
+const blogs=await getBlogs();
+const events= await getEvents();
+
+
   return (
     <div
       className="  w-full"
@@ -45,10 +51,10 @@ export default function IslamicBlogEvents() {
               <div className='flex flex-col md:flex-row gap-4 mt-6'>
         
                 <div className='w-full md:w-[60%] '>
-                  <Blogs/>
+                  <Blogs blogs={blogs}/>
                 </div>
                   <div className='w-full md:w-[40%] '>
-                  <Events/>
+                  <Events events={events}/>
                 </div>
 
             </div>

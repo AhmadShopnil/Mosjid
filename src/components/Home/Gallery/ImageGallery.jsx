@@ -4,41 +4,45 @@ import Container from "@/components/Shared/Container";
 import Image from "next/image";
 import { useState } from "react";
 
-export default function ImageGallery() {
+export default function ImageGallery({gallery,img_gallery_heading,view_more_button_text}) {
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const images = [
-    {
-      id: 1,
-      src: "/images/gallery/1.png",
-      alt: "Historic Islamic Building",
-    },
-    {
-      id: 2,
-      src: "/images/gallery/2.png",
-      alt: "Dome of the Rock",
-    },
-    {
-      id: 3,
-      src: "/images/gallery/3.png",
-      alt: "Blue Mosque",
-    },
-    {
-      id: 4,
-      src: "/images/gallery/1.png",
-      alt: "Traditional Islamic Architecture",
-    },
-    {
-      id: 5,
-      src: "/images/gallery/5.png",
-      alt: "Prophet's Mosque",
-    },
-    {
-      id: 6,
-      src: "/images/gallery/6.png",
-      alt: "Sheikh Zayed Grand Mosque",
-    },
-  ];
+  // const images = [
+  //   {
+  //     id: 1,
+  //     src: "/images/gallery/1.png",
+  //     alt: "Historic Islamic Building",
+  //   },
+  //   {
+  //     id: 2,
+  //     src: "/images/gallery/2.png",
+  //     alt: "Dome of the Rock",
+  //   },
+  //   {
+  //     id: 3,
+  //     src: "/images/gallery/3.png",
+  //     alt: "Blue Mosque",
+  //   },
+  //   {
+  //     id: 4,
+  //     src: "/images/gallery/1.png",
+  //     alt: "Traditional Islamic Architecture",
+  //   },
+  //   {
+  //     id: 5,
+  //     src: "/images/gallery/5.png",
+  //     alt: "Prophet's Mosque",
+  //   },
+  //   {
+  //     id: 6,
+  //     src: "/images/gallery/6.png",
+  //     alt: "Sheikh Zayed Grand Mosque",
+  //   },
+  // ];
+const images = transformGalleryData(gallery);
+// console.log(images);
+
+
 
   const openModal = (image) => {
     setSelectedImage(image);
@@ -60,12 +64,12 @@ export default function ImageGallery() {
             height={40}
           />
           <h1 className="text-2xl sm:text-3xl font-bold text-[#00401A]">
-            Gallery
+            {img_gallery_heading?.title}
           </h1>
         </div>
 
          <button className="px-5 py-2 text-sm sm:text-base font-bold text-[#00401A] border border-[#00401A] rounded-full hover:bg-gray-100 transition-colors">
-          View More
+          {view_more_button_text}
         </button>
 
       </div>
@@ -205,4 +209,15 @@ function ImageOverlay({ onClick }) {
       </div>
     </div>
   );
+}
+
+
+
+
+export function transformGalleryData(apiData) {
+  return apiData.map((item, index) => ({
+    id: index + 1, // Start IDs from 1
+    src: item.featured_image || "/images/gallery/default.png", // Use default if no image
+    alt: item.name || "Gallery Image", // Use name as alt text
+  }));
 }
