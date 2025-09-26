@@ -29,7 +29,7 @@ export default function HeroSectionMobileSlider({ sliders }) {
                     <div className="bg-white px-4 py-10 ">
                         {/* Title */}
                         <h3 className="text-3xl sm:text-4xl text-[#00401A] font-bold leading-snug">
-                            {slide?.name || "Default Title"}
+                            {slide?.name }
                         </h3>
 
                         {/* Subtitle */}

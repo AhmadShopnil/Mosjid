@@ -21,7 +21,7 @@ const menuItems = [
   "Contact Us",
 ];
 
-export default function MainMenu() {
+export default function MainMenu({settings}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = () => {
@@ -107,7 +107,7 @@ export default function MainMenu() {
               </Link>
             ))}
           </div>
-          <TopbarMobile/>
+          <TopbarMobile settings={settings}/>
         </div>
       </div>
     </div>

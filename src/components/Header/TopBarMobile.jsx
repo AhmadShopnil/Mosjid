@@ -6,6 +6,8 @@ import Container from "../Shared/Container";
 import { TbMailFilled } from "react-icons/tb";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { ImFacebook2 } from "react-icons/im";
+import { getMetaValueByMetaName } from "@/helper/metaHelpers";
+import Link from "next/link";
 
 const languages = [
   {
@@ -22,8 +24,15 @@ const languages = [
   },
 ];
 
-export default function TopbarMobile() {
+export default function TopbarMobile({ settings }) {
   const [selectedLanguage, setSelectedLanguage] = useState("English");
+
+  const phone = getMetaValueByMetaName(settings, "company_phone") || "";
+  const company_email = getMetaValueByMetaName(settings, "company_email") || "";
+  const facebookLink = getMetaValueByMetaName(settings, "facebook_url") || "#";
+  const linkedinLink = getMetaValueByMetaName(settings, "linkedin_url") || "#";
+  const instagramLink =
+    getMetaValueByMetaName(settings, "instagram_url") || "#";
 
   return (
     <div className="bg-white py-2 z-[50]">
@@ -39,11 +48,10 @@ export default function TopbarMobile() {
                 <button
                   key={language.title}
                   onClick={() => setSelectedLanguage(language.title)}
-                  className={`px-3 sm:px-5 flex items-center gap-2 py-1.5 rounded-full text-sm font-bold transition-colors ${
-                    selectedLanguage === language.title
+                  className={`px-3 sm:px-5 flex items-center gap-2 py-1.5 rounded-full text-sm font-bold transition-colors ${selectedLanguage === language.title
                       ? "bg-[#00401A] text-white"
                       : "bg-white text-[#00401A] hover:bg-gray-300 border border-[#00401a51]"
-                  }`}
+                    }`}
                 >
                   <Image
                     src={language.icon}
@@ -64,7 +72,7 @@ export default function TopbarMobile() {
             <div className="flex items-center gap-2">
               <TbMailFilled className="text-lg text-[#00401A]" />
               <span className="text-sm sm:text-base text-[#00401A]">
-                info.soakamasjid@gmail.com
+                {company_email}
               </span>
             </div>
 
@@ -72,19 +80,21 @@ export default function TopbarMobile() {
             <div className="flex items-center gap-2">
               <FaPhoneVolume className="text-lg text-[#00401A]" />
               <span className="text-sm sm:text-base text-[#00401A]">
-                +880 150 3230 232
+                {phone}
               </span>
             </div>
 
             {/* Social Links */}
             <div className="flex gap-3 items-center">
-              <a
-                href="#"
+              <Link
+                href={facebookLink}
                 className="text-blue-500 text-xl hover:text-blue-600 transition"
               >
                 <ImFacebook2 />
-              </a>
-              <a href="#">
+              </Link>
+              <Link
+                href={instagramLink}
+              >
                 <Image
                   src="/images/footer/insta.png"
                   alt="Instagram"
@@ -92,8 +102,10 @@ export default function TopbarMobile() {
                   height={28}
                   className="hover:opacity-80 transition"
                 />
-              </a>
-              <a href="#">
+              </Link>
+              <Link
+                href={linkedinLink}
+              >
                 <Image
                   src="/images/footer/linkdin.png"
                   alt="LinkedIn"
@@ -101,7 +113,7 @@ export default function TopbarMobile() {
                   height={24}
                   className="hover:opacity-80 transition"
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

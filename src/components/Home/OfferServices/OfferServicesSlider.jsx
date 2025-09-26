@@ -98,12 +98,12 @@ export default function OfferServicesSlider({services}) {
           <Swiper
             modules={[Navigation]}
             spaceBetween={20}
-            slidesPerView={4}
+            slidesPerView={1}
             loop={true}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             breakpoints={{
-              320: { slidesPerView: 1.8 },
-              370: { slidesPerView: 2 },
+              280: { slidesPerView: 1.8 },
+              340: { slidesPerView: 2 },
               500: { slidesPerView: 2.3 },
               550: { slidesPerView: 3.3 },
               680: { slidesPerView: 3.6 },

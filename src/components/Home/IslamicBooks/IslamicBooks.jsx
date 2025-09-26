@@ -85,7 +85,7 @@ export default function IslamicBooks() {
                 className="object-contain sm:hidden"
               />
               <button className="border border-[#00401A] text-[#00401A]
-               font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer">
+               font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer hover:bg-[#00401A] hover:text-white transition-colors duration-400">
                 Find More Books
               </button>
             </div>

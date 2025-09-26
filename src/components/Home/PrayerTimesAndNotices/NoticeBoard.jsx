@@ -53,7 +53,7 @@ export default async function NoticeBoard() {
 
         <div className="flex items-center gap-3 sm:gap-4">
 
-          <button className="border border-[#00401A] text-[#00401A]
+          <button className="border border-[#00401A] text-[#00401A] hover:bg-[#00401A] hover:text-white transition-colors duration-400
                font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer">
             {view_more}
           </button>

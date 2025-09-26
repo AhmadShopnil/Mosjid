@@ -38,7 +38,7 @@ export default async function EventCard({ event }) {
                 <Link
                     href={`/notice`}
                     className="mt-2 text-xs font-semibold text-[#001609]
-                 hover:text-green-800 cursor-pointer"
+                 cursor-pointer hover:text-[#F7BA2A]"
                 >
                     {read_more_button_text} --
                 </Link>

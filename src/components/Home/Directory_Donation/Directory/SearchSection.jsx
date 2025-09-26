@@ -26,7 +26,7 @@ export default function SearchSection() {
       </div>
 
       {/* Find Button */}
-      <button className="bg-[#F5B623] hover:bg-[#e0a320] text-green-900 font-semibold px-7 py-2 rounded-full shadow-md transition text-lg">
+      <button className="bg-[#F5B623] hover:bg-[#e0a320] text-white font-semibold px-7 py-2 rounded-full shadow-md transition text-lg">
         Find
       </button>
     </div>

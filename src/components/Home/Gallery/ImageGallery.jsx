@@ -68,7 +68,8 @@ const images = transformGalleryData(gallery);
           </h1>
         </div>
 
-         <button className="px-5 py-2 text-sm sm:text-base font-bold text-[#00401A] border border-[#00401A] rounded-full hover:bg-gray-100 transition-colors">
+         <button className="px-5 py-2 text-sm sm:text-base font-bold text-[#00401A] border border-[#00401A] rounded-full
+          hover:bg-[#00401A] hover:text-white transition-colors duration-400 cursor-pointer">
           {view_more_button_text}
         </button>
 

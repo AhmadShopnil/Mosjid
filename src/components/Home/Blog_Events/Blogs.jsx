@@ -3,9 +3,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import BlogCardHome from './BlogCardHome'
+import { getSettings } from '@/helper/actions'
+import { getMetaValueByMetaName } from '@/helper/metaHelpers'
 
-export default function Blogs({ blogs }) {
+export default async function Blogs({ blogs }) {
+  const settings = await getSettings();
 
+  const view_more_button_text = getMetaValueByMetaName(settings, "view_more") || "";
 
   return (
     <div className='gradient-border rounded-3xl p-5 bg-white'>
@@ -18,7 +22,7 @@ export default function Blogs({ blogs }) {
           href=''
           className='text-[#00401A] font-bold text-sm flex gap-2 items-center '
         >
-          View More
+        {view_more_button_text}
           <Image
             src="/images/others/arrowR.png"
             alt='a1'
