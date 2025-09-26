@@ -21,6 +21,7 @@ export default function HeroSectionSlider({ sliders }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
+
   return (
     <section className="bg-green-50 h-[570px] relative">
       <Swiper
@@ -42,7 +43,7 @@ export default function HeroSectionSlider({ sliders }) {
               <div className="absolute inset-0 w-full h-full">
                 <Image
                   src={
-                    getMetaValueFromExtraFields(slide, "banner_image") ||
+                   slide?.featured_image ||
                     "/images/banner/ban1.png"
                   }
                   alt={slide?.name || "Hero Banner"}

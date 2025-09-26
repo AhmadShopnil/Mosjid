@@ -10,11 +10,8 @@ export default async function HeroMain() {
 
   const sliders = await getSliders();
   const settings = await getSettings();
-//  const short_description = getMetaValueFromExtra_Fields(
-//     slide,
-//     "short_description"
-//   );
 
+// console.log("slider",sliders)
     return (
         <div>
             <div className="hidden xl:block">

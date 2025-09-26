@@ -8,6 +8,7 @@ import { FaPhoneVolume } from "react-icons/fa6";
 import { ImFacebook2 } from "react-icons/im";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import Link from "next/link";
+import LanguageSelector from "../Shared/LanguageSelector";
 
 const languages = [
   {
@@ -25,7 +26,7 @@ const languages = [
 ];
 
 export default function TopbarMobile({ settings }) {
-  const [selectedLanguage, setSelectedLanguage] = useState("English");
+  // const [selectedLanguage, setSelectedLanguage] = useState("English");
 
   const phone = getMetaValueByMetaName(settings, "company_phone") || "";
   const company_email = getMetaValueByMetaName(settings, "company_email") || "";
@@ -39,7 +40,8 @@ export default function TopbarMobile({ settings }) {
       <Container>
         <div className="flex flex-col  items-center justify-between gap-4">
           {/* Language Selection */}
-          <div className="flex flex-col  items-center sm:gap-4 w-full">
+          <LanguageSelector/>
+          {/* <div className="flex flex-col  items-center sm:gap-4 w-full">
             <span className="text-sm sm:text-base text-[#00401A] font-bold mb-2 sm:mb-0">
               Select Language:
             </span>
@@ -64,7 +66,7 @@ export default function TopbarMobile({ settings }) {
                 </button>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Contact and Social Section */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 w-full">
