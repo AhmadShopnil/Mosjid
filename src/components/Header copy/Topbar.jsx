@@ -15,7 +15,7 @@ const languages = [
   { title: "Arabic", icon: "/images/others/Arabic.png", code: "ar" },
 ];
 
-export default function LanguageSelector({ settings }) {
+export default function Topbar({ settings }) {
   const [selectedLanguage, setSelectedLanguage] = useState("English");
   const [isTranslateLoaded, setIsTranslateLoaded] = useState(false);
 
@@ -117,11 +117,10 @@ export default function LanguageSelector({ settings }) {
         }
       `}</style>
 
-      <div className="flex flex-col justify-center items-center ">
+      <div className="justify-end items-center gap-4 md:gap-6 hidden xl:flex ">
         {/* language selection */}
-         <span className="text-lg text-[#00401A] font-bold">Select Language: </span>
         <div className="flex items-center gap-2  justify-end">
-         
+          <span className="text-lg text-[#00401A] font-bold">Select Language: </span>
           {languages.map((language) => (
             <button
               key={language.title}
@@ -140,6 +139,46 @@ export default function LanguageSelector({ settings }) {
           ))}
         </div>
 
+        {/* mail */}
+        <div className="flex gap-2 items-center">
+          <span className="text-xl text-[#00401A]">
+            <TbMailFilled />
+          </span>
+          <span className="text-base text-[#00401A]">{company_email}</span>
+        </div>
+
+        {/* phone no */}
+        <div className="flex gap-2 items-center">
+          <span className="text-xl text-[#00401A]">
+            <FaPhoneVolume />
+          </span>
+          <span className="text-base text-[#00401A]">{phone}</span>
+        </div>
+
+        {/* social links */}
+        <div className="flex gap-2 justify-center items-center">
+          <Link href={facebookLink} className="text-blue-500">
+            <ImFacebook2 />
+          </Link>
+          <Link href={instagramLink}>
+            <Image
+              src="/images/footer/insta.png"
+              alt="Instagram"
+              width={30}
+              height={30}
+              className="hidden sm:flex"
+            />
+          </Link>
+          <Link href={linkedinLink}>
+            <Image
+              src="/images/footer/linkdin.png"
+              alt="LinkedIn"
+              width={22}
+              height={22}
+              className="hidden sm:flex"
+            />
+          </Link>
+        </div>
       </div>
     </Container>
   );

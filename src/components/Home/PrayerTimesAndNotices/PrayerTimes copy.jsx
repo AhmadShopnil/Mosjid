@@ -7,7 +7,6 @@ import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import { splitBySpace } from "@/helper/splitBySpace";
 import { getImageUrl } from "@/helper/getImageUrl";
 import PrayerTimeTableRow from "./PrayerTimeTableRow";
-import PrayerTimesMobile from "./PrayerTimesMobile";
 
 
 
@@ -95,7 +94,7 @@ export default async function PrayerTimes() {
       </div>
 
       <div className="bg-white rounded-xl overflow-hidden">
-        <table className="w-full text-sm hidden sm:table">
+        <table className="w-full text-sm">
           <thead>
             <tr className="bg-[#52B920] text-white text-left text-bold text-xl">
               <th className="p-3 rounded-tl-xl">{name_of_salat?.value}</th>
@@ -119,8 +118,6 @@ export default async function PrayerTimes() {
       <p className="mt-4 text-sm  text-[#FF0000]">
         {prayer_time?.description}
       </p>
-  {/* Mobile Cards */}
-  <PrayerTimesMobile prayerTimes={prayerTimes} prayer_time={prayer_time} />
     </div>
   );
 }

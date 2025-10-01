@@ -1,9 +1,10 @@
 import React from 'react'
 import Image from "next/image";
 import { Download } from "lucide-react";
-import { getFatwa, getSettings } from '@/helper/actions';
+import { getFatwa, getPage, getSettings } from '@/helper/actions';
 import { getMetaValueByMetaName } from '@/helper/metaHelpers';
 import Link from 'next/link';
+import { getImageUrl } from '@/helper/getImageUrl';
 
 
 
@@ -14,7 +15,10 @@ export default async function FatwahBox() {
   const view_more = getMetaValueByMetaName(settings, "view_more") || "";
   const read_more = getMetaValueByMetaName(settings, "read_more") || "";
   const download = getMetaValueByMetaName(settings, "download") || "";
-
+  const homePage = await getPage("home-sections-heading-management")
+  const sections = homePage?.sections_on_api;
+  const fatwah_ExtraData = sections.find((s) => s.title_slug === "fatwah");
+  const image = getImageUrl(fatwah_ExtraData?.image_media) 
 
   return (
 
@@ -94,9 +98,7 @@ export default async function FatwahBox() {
           `,
           backgroundBlendMode: "screen",
         }}
-      // style={{
-      //   background: "linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(208,255,228,1) 40%, rgba(244,231,203,1) 70%, rgba(255,255,255,1) 100%)",
-      // }}
+ 
       >
         {/* Mosque Image Positioned at Bottom Right */}
         <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[400px]">
@@ -121,25 +123,19 @@ export default async function FatwahBox() {
                 height={40}
               />
               <h3 className='text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]'>
-                Fatwah
+                {fatwah_ExtraData?.sub_title}
               </h3>
             </div>
             {/* arabic text */}
             <div className="flex gap-3">
               <Image
-                src="/images/fatwah/fatwahArabic.png"
+                src={image}
                 alt='a1'
                 width={180}
                 height={50}
                 className='hidden sm:flex'
               />
-              {/* <Image
-               src="/images/fatwah/fatwahArabic.png"
-               alt='a1'
-               width={100}
-               height={30}
-               className='flex sm:hidden'
-               /> */}
+          
               <div className=' my-auto'>
                 <button className="px-5 sm:px-6 py-2  text-sm sm:text-base
                 font-bold text-[#00401A] border border-[#00401A] rounded-full

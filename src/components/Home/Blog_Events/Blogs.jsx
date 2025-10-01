@@ -6,7 +6,7 @@ import BlogCardHome from './BlogCardHome'
 import { getSettings } from '@/helper/actions'
 import { getMetaValueByMetaName } from '@/helper/metaHelpers'
 
-export default async function Blogs({ blogs }) {
+export default async function Blogs({ blogs, blogsSectionTitle }) {
   const settings = await getSettings();
 
   const view_more_button_text = getMetaValueByMetaName(settings, "view_more") || "";
@@ -16,13 +16,13 @@ export default async function Blogs({ blogs }) {
       {/* heading */}
       <div className='gradient-border_b pb-2 flex justify-between'>
         <h4 className='text-[#00401A] font-bold text-base  ' >
-          Top Blogs
+          {blogsSectionTitle}
         </h4>
         <Link
           href=''
           className='text-[#00401A] font-bold text-sm flex gap-2 items-center '
         >
-        {view_more_button_text}
+          {view_more_button_text}
           <Image
             src="/images/others/arrowR.png"
             alt='a1'

@@ -2,51 +2,48 @@
 
 import Container from "@/components/Shared/Container";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function ImageGallery() {
-  const [selectedImage, setSelectedImage] = useState(null);
+export default function ImageGallery({
+  gallery,
+  img_gallery_heading,
+  view_more_button_text,
+}) {
+  const images = transformGalleryData(gallery);
 
-  const images = [
-    {
-      id: 1,
-      src: "/images/gallery/1.png",
-      alt: "Historic Islamic Building",
-    },
-    {
-      id: 2,
-      src: "/images/gallery/2.png",
-      alt: "Dome of the Rock",
-    },
-    {
-      id: 3,
-      src: "/images/gallery/3.png",
-      alt: "Blue Mosque",
-    },
-    {
-      id: 4,
-      src: "/images/gallery/1.png",
-      alt: "Traditional Islamic Architecture",
-    },
-    {
-      id: 5,
-      src: "/images/gallery/5.png",
-      alt: "Prophet's Mosque",
-    },
-    {
-      id: 6,
-      src: "/images/gallery/6.png",
-      alt: "Sheikh Zayed Grand Mosque",
-    },
-  ];
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
-  const openModal = (image) => {
-    setSelectedImage(image);
+  const openModal = (index) => {
+    setSelectedIndex(index);
   };
 
   const closeModal = () => {
-    setSelectedImage(null);
+    setSelectedIndex(null);
   };
+
+  const showPrev = () => {
+    if (selectedIndex === null) return;
+    setSelectedIndex((prev) =>
+      prev === 0 ? images.length - 1 : prev - 1
+    );
+  };
+
+  const showNext = () => {
+    if (selectedIndex === null) return;
+    setSelectedIndex((prev) => (prev + 1) % images.length);
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (selectedIndex === null) return;
+      if (e.key === "ArrowLeft") showPrev();
+      if (e.key === "ArrowRight") showNext();
+      if (e.key === "Escape") closeModal();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [selectedIndex]);
 
   return (
     <Container className="p-6 mt-6 bg-gray-50">
@@ -60,14 +57,14 @@ export default function ImageGallery() {
             height={40}
           />
           <h1 className="text-2xl sm:text-3xl font-bold text-[#00401A]">
-            Gallery
+            {img_gallery_heading?.title}
           </h1>
         </div>
 
-         <button className="px-5 py-2 text-sm sm:text-base font-bold text-[#00401A] border border-[#00401A] rounded-full hover:bg-gray-100 transition-colors">
-          View More
+        <button className="px-5 py-2 text-sm sm:text-base font-bold text-[#00401A] border border-[#00401A] rounded-full
+          hover:bg-[#00401A] hover:text-white transition-colors duration-400 cursor-pointer">
+          {view_more_button_text}
         </button>
-
       </div>
 
       {/* Gallery Grid */}
@@ -79,7 +76,7 @@ export default function ImageGallery() {
             alt={images[0].alt}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
-          <ImageOverlay onClick={() => openModal(images[0])} />
+          <ImageOverlay onClick={() => openModal(0)} />
         </div>
 
         {/* Second column - two stacked images */}
@@ -90,7 +87,7 @@ export default function ImageGallery() {
               alt={images[1].alt}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
-            <ImageOverlay onClick={() => openModal(images[1])} />
+            <ImageOverlay onClick={() => openModal(1)} />
           </div>
           <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[120px] sm:h-[140px] lg:h-[190px]">
             <img
@@ -98,7 +95,7 @@ export default function ImageGallery() {
               alt={images[2].alt}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
-            <ImageOverlay onClick={() => openModal(images[2])} />
+            <ImageOverlay onClick={() => openModal(2)} />
           </div>
         </div>
 
@@ -109,7 +106,7 @@ export default function ImageGallery() {
             alt={images[3].alt}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
-          <ImageOverlay onClick={() => openModal(images[3])} />
+          <ImageOverlay onClick={() => openModal(3)} />
         </div>
 
         {/* Fourth column - two stacked images */}
@@ -120,7 +117,7 @@ export default function ImageGallery() {
               alt={images[4].alt}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
-            <ImageOverlay onClick={() => openModal(images[4])} />
+            <ImageOverlay onClick={() => openModal(4)} />
           </div>
           <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[120px] sm:h-[140px] lg:h-[190px]">
             <img
@@ -128,41 +125,49 @@ export default function ImageGallery() {
               alt={images[5].alt}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
-            <ImageOverlay onClick={() => openModal(images[5])} />
+            <ImageOverlay onClick={() => openModal(5)} />
           </div>
         </div>
       </div>
 
-      {/* Modal */}
-      {selectedImage && (
+      {/* Modal with slider */}
+      {selectedIndex !== null && (
         <div
-          className="fixed inset-0 backdrop-blur-md bg-black/60 flex items-center justify-center z-50 p-4 animate-in fade-in duration-300"
+          className="fixed inset-0 backdrop-blur-md bg-black/60 flex items-center justify-center z-50 p-4"
           onClick={closeModal}
         >
-          <div className="relative max-w-4xl max-h-full animate-in zoom-in-95 duration-300">
+          <div
+            className="relative max-w-4xl max-h-full flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
             <img
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
+              src={images[selectedIndex].src}
+              alt={images[selectedIndex].alt}
+              className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
             />
+
+            {/* Close Button */}
             <button
               onClick={closeModal}
               className="absolute top-4 right-4 text-white bg-gray-800 bg-opacity-70 hover:bg-opacity-90 rounded-full p-2 transition-all duration-200 backdrop-blur-sm"
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              ✕
+            </button>
+
+            {/* Prev Button */}
+            <button
+              onClick={showPrev}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
+            >
+              ◀
+            </button>
+
+            {/* Next Button */}
+            <button
+              onClick={showNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
+            >
+              ▶
             </button>
           </div>
         </div>
@@ -179,10 +184,7 @@ function ImageOverlay({ onClick }) {
         className="relative opacity-0 group-hover:opacity-100 cursor-pointer transform hover:scale-110 transition-all duration-200"
         onClick={onClick}
       >
-        {/* Soft dark circular background behind the icon */}
         <div className="absolute inset-0 -m-4 rounded-full bg-black/30 backdrop-blur-[1px]"></div>
-
-        {/* Eye icon */}
         <svg
           className="relative w-6 h-6 text-[#F7BA2A] z-10"
           fill="none"
@@ -205,4 +207,12 @@ function ImageOverlay({ onClick }) {
       </div>
     </div>
   );
+}
+
+export function transformGalleryData(apiData) {
+  return apiData.map((item, index) => ({
+    id: index + 1,
+    src: item.featured_image || "/images/gallery/default.png",
+    alt: item.name || "Gallery Image",
+  }));
 }
