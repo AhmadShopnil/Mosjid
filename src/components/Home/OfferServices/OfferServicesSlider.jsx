@@ -7,26 +7,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-
-
-const services = [
-  { id: 1, name: "Daily 5 time prayers ", writer: "Writer Name", selected: false, image: "/images/offerServices/Daily 5 time prayers.png" },
-  { id: 2, name: "Jumma Prayer", writer: "Writer Name", selected: true, image: "/images/offerServices/Jumma prayer.png" },
-  { id: 3, name: "Eid Prayer", writer: "Writer Name", selected: false, image: "/images/offerServices/Eid prayers.png" },
-  { id: 4, name: "Marriage facilities & certification", writer: "Writer Name", selected: false, image: "/images/offerServices/Marriage facilities & certification.png" },
-  { id: 5, name: "Islamic library", writer: "Writer Name", selected: false, image: "/images/offerServices/Islamic library.png" },
-  { id: 6, name: "Eid Prayer", writer: "Writer Name", selected: false, image: "/images/offerServices/Eid prayers.png" },
-  { id: 7, name: "Marriage facilities & certification", writer: "Writer Name", selected: false, image: "/images/offerServices/Marriage facilities & certification.png" },
-  { id: 8, name: "Islamic library", writer: "Writer Name", selected: false, image: "/images/offerServices/Islamic library.png" },
-
-];
-
-export default function OfferServicesSlider({services}) {
+import { splitBySpace } from "@/helper/splitBySpace";
+import { getImageUrl } from "@/helper/getImageUrl";
 
 
 
+
+export default function OfferServicesSlider({ services, offered_services_ExtraData }) {
   const [hoveredCard, setHoveredCard] = useState(null);
-
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -48,6 +36,11 @@ export default function OfferServicesSlider({services}) {
 
 
 
+  const heading_part_1 = splitBySpace(offered_services_ExtraData?.sub_title)[0]
+  const heading_part_2 = splitBySpace(offered_services_ExtraData?.sub_title)[1]
+    const image = getImageUrl(offered_services_ExtraData?.image_media)
+
+
   return (
     <div className="px-4 py-10">
 
@@ -63,8 +56,8 @@ export default function OfferServicesSlider({services}) {
                 height={24}
               />
               <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">
-                <span className="text-[#DEA726]">Offered</span>{" "}
-                <span className="text-green-700">Services</span>
+                <span className="text-[#DEA726]">{heading_part_1}</span>{" "}
+                <span className="text-green-700">{heading_part_2}</span>
               </h2>
             </div>
 
@@ -72,14 +65,14 @@ export default function OfferServicesSlider({services}) {
 
           <div className="flex items-center gap-3 sm:gap-4">
             <Image
-              src="/images/offerServices/arabictext.png"
+              src={image}
               alt="Arabic text"
               width={160}
               height={50}
               className="object-contain hidden sm:flex"
             />
             <Image
-              src="/images/offerServices/arabictext.png"
+              src={image}
               alt="Arabic text"
               width={135}
               height={40}
@@ -98,12 +91,12 @@ export default function OfferServicesSlider({services}) {
           <Swiper
             modules={[Navigation]}
             spaceBetween={20}
-            slidesPerView={4}
+            slidesPerView={1}
             loop={true}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             breakpoints={{
-              320: { slidesPerView: 1.8 },
-              370: { slidesPerView: 2 },
+              280: { slidesPerView: 1.8 },
+              340: { slidesPerView: 2 },
               500: { slidesPerView: 2.3 },
               550: { slidesPerView: 3.3 },
               680: { slidesPerView: 3.6 },

@@ -73,7 +73,8 @@ export default function DuaSection() {
             <div>
               <Link
                 href="/"
-                className="border rounded-[50px] font-bold text-[#00401A]  border-[#00401A] text-base py-2.5 px-5"
+                className="border rounded-[50px] font-bold text-[#00401A]  border-[#00401A] text-base py-2.5 px-5
+                 hover:bg-[#00401A] hover:text-white transition-colors duration-400"
               >
                 Find More Duah
               </Link>

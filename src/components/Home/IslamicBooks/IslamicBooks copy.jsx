@@ -36,10 +36,10 @@ export default function IslamicBooks() {
   }, []);
 
   return (
-    <Container className="w-full py-12 ">
-      <div className=" flex flex-col md:flex-row items-center gap-10">
+    <Container className="w-full py-12 bg-white ">
+      <div className=" flex flex-col lg:flex-row items-center gap-10">
         {/* LEFT IMAGE */}
-        <div className="w-full md:w-[40%] flex  h-full">
+        <div className="w-full lg:w-[40%] flex  h-full">
           <Image
             src="/images/isamicBooks/bookImage.png"
             alt="Islamic Illustration"
@@ -50,35 +50,42 @@ export default function IslamicBooks() {
         </div>
 
         {/* RIGHT CONTENT */}
-        <div className="w-full md:w-[60%] ">
+        <div className="w-full lg:w-[60%] ">
           {/* Top Section */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 sm:gap-3 gradient-border_b pb-3 mb-4 sm:mb-0">
                 <Image
                   src="/images/isamicBooks/bookIcon.png"
                   alt="Book Icon"
-                  width={24}
+                  width={28}
                   height={24}
                 />
-                <h2 className="text-2xl font-semibold">
-                  <span className="text-orange-500">Islamic</span>{" "}
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold">
+                  <span className="text-[#F7BA2A]">Islamic</span>{" "}
                   <span className="text-green-700">Books</span>
                 </h2>
               </div>
-              <div className="h-[1px] bg-green-700 mt-1 w-20"></div>
+            
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 sm:gap-4 ">
               <Image
                 src="/images/isamicBooks/arabic-islamicbooks.png"
                 alt="Arabic text"
                 width={160}
                 height={50}
-                className="object-contain"
+                className="object-contain hidden sm:flex"
+              />
+               <Image
+                src="/images/isamicBooks/arabic-islamicbooks.png"
+                alt="Arabic text"
+                width={135}
+                height={40}
+                className="object-contain sm:hidden"
               />
               <button className="border border-[#00401A] text-[#00401A]
-               font-bold rounded-full px-5 py-2.5 text-base cursor-pointer">
+               font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer">
                 Find More Books
               </button>
             </div>
@@ -94,10 +101,14 @@ export default function IslamicBooks() {
               loop={true}
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               breakpoints={{
-                320: { slidesPerView: 1 },
-                640: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-                1424: { slidesPerView: 4 },
+                320: { slidesPerView: 1.5 },
+                400: { slidesPerView: 2 },
+                 500: { slidesPerView: 2.3 },
+                640: { slidesPerView: 2.8 },
+                840: { slidesPerView: 3.8 },
+                1024: { slidesPerView: 2.7 },
+                1424: { slidesPerView: 3.4 },
+                1524: { slidesPerView: 4 },
               }}
             >
               {books.map((book) => (

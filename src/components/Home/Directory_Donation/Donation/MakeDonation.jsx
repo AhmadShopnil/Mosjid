@@ -5,10 +5,13 @@ import React, { useState } from 'react'
 import BankInfo from './BankInfo'
 import { getDonationsMethods } from '@/helper/actions';
 import { getImageUrl } from '@/helper/getImageUrl';
+import { splitBySpace } from '@/helper/splitBySpace';
 
 function MakeDonation({ donationMethods, make_your_donation }) {
-
   const [activeTab, setActiveTab] = useState(donationMethods[0]);
+  
+    const heading_part_1 = splitBySpace(make_your_donation?.sub_title)[0]
+    const heading_part_2 = splitBySpace(make_your_donation?.sub_title)[1]
   const image_arabic = getImageUrl(make_your_donation?.image_media);
 
   return (
@@ -33,7 +36,7 @@ function MakeDonation({ donationMethods, make_your_donation }) {
             className="object-contain sm:hidden"
           />
           <h3 className='text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]'>
-            <span className='text-[#F7BA2A]'>Make</span> a Donation
+            <span className='text-[#F7BA2A]'>{heading_part_1}</span> {heading_part_2}
           </h3>
         </div>
         {/* arabic text */}
@@ -47,20 +50,11 @@ function MakeDonation({ donationMethods, make_your_donation }) {
             className="object-contain hidden sm:flex"
           />
 
-          {/* <Image
-               src="/images/directory/a1.png"
-               alt="Arabic text"
-              width={135}
-             height={40}
-              className="object-contain sm:hidden"
-              /> */}
+        
         </div>
       </div>
 
-      <p className='text-sm '>{make_your_donation?.sub_title}</p>
-
-
-
+      <p className='text-sm '>{make_your_donation?.short_description}</p>
 
       <div className="flex gap-3 flex-wrap mt-6">
         {donationMethods?.map((tab, i) => (

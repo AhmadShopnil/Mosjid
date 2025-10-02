@@ -36,12 +36,37 @@ export default function TopbarMobile({ settings }) {
     getMetaValueByMetaName(settings, "instagram_url") || "#";
 
   return (
-    <div className="bg-white py-2 z-[50] ">
+    <div className="bg-white py-2 z-[50]">
       <Container>
         <div className="flex flex-col  items-center justify-between gap-4">
           {/* Language Selection */}
           <LanguageSelector/>
-    
+          {/* <div className="flex flex-col  items-center sm:gap-4 w-full">
+            <span className="text-sm sm:text-base text-[#00401A] font-bold mb-2 sm:mb-0">
+              Select Language:
+            </span>
+            <div className="flex flex-wrap justify-center gap-2">
+              {languages.map((language) => (
+                <button
+                  key={language.title}
+                  onClick={() => setSelectedLanguage(language.title)}
+                  className={`px-3 sm:px-5 flex items-center gap-2 py-1.5 rounded-full text-sm font-bold transition-colors ${selectedLanguage === language.title
+                      ? "bg-[#00401A] text-white"
+                      : "bg-white text-[#00401A] hover:bg-gray-300 border border-[#00401a51]"
+                    }`}
+                >
+                  <Image
+                    src={language.icon}
+                    alt={language.title}
+                    width={20}
+                    height={10}
+                    className="object-contain"
+                  />
+                  <span>{language.title}</span>
+                </button>
+              ))}
+            </div>
+          </div> */}
 
           {/* Contact and Social Section */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 w-full">

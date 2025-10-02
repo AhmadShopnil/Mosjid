@@ -160,7 +160,7 @@ export async function getSinglePillarOfIslam(slug) {
 }
 
 export async function getPryerTime() {
-  const API_URL = `${BASE_URL}/api/v1/posts?term_type=prayer_time`;
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=prayer_time&order_by=order_column:asc`;
 
   const res = await fetch(API_URL, {
     next: { revalidate: 30 },
