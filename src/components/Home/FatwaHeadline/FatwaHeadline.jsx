@@ -24,17 +24,17 @@ export default function FatwaHeadline({ fatwahs }) {
       }}
     >
       <Container>
-        <div className="h-10 flex items-center gap-4 overflow-hidden">
+        <div className="h-12.5 flex items-center gap-4 overflow-hidden">
           {/* Left fixed label */}
-          <div className="bg-[#E5F5DE] text-[#00401A] h-10 w-20 flex items-center justify-center font-medium">
-            Fatwa
+          <div className=" bg-[#E5F5DE] text-md sm:text-lg md:text-xl text-[#00401A] h-12.5 w-29 flex items-center justify-center font-bold">
+            FATWA
           </div>
 
           {/* Fatwa text with smooth fade animation */}
           <div className="relative flex-1 h-10 overflow-hidden flex items-center">
             <div
               key={currentIndex} // triggers animation when text changes
-              className="absolute w-full pl-2 text-white text-sm flex items-center justify-start animate-fadeSlide"
+              className="absolute w-full pl-2 text-white text-base font-semibold flex items-center justify-start animate-fadeSlide"
               style={{ height: "2.5rem" }}
             >
               {fatwahs[currentIndex]?.name.slice(0,30)}

@@ -51,10 +51,10 @@ export default async function DuaSection() {
 
 
   return (
-    <div className="py-20"
-      style={{
-        background: "linear-gradient(to bottom, rgba(245, 255, 250, 1), rgba(206, 255, 227, 1))",
-      }}
+    <div className="pt-18 pb-2 "
+      // style={{
+      //   background: "linear-gradient(to bottom, rgba(245, 255, 250, 1), rgba(206, 255, 227, 1))",
+      // }}
     >
       <Container className=" px-4">
         {/* heading */}

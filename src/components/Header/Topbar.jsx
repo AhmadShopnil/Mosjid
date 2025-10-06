@@ -158,11 +158,17 @@ export default function Topbar({ settings }) {
         {/* social links */}
         <div className="flex gap-2 justify-center items-center">
           <Link href={facebookLink} className="text-blue-500">
-            <ImFacebook2 />
+              <Image
+              src="/images/social/fb.png"
+              alt="LinkedIn"
+              width={28}
+              height={28}
+              className="hidden sm:flex"
+            />
           </Link>
           <Link href={instagramLink}>
             <Image
-              src="/images/footer/insta.png"
+              src="/images/social/instagram.png"
               alt="Instagram"
               width={30}
               height={30}
@@ -171,10 +177,10 @@ export default function Topbar({ settings }) {
           </Link>
           <Link href={linkedinLink}>
             <Image
-              src="/images/footer/linkdin.png"
+              src="/images/social/linkdin.png"
               alt="LinkedIn"
-              width={22}
-              height={22}
+              width={28}
+              height={28}
               className="hidden sm:flex"
             />
           </Link>
