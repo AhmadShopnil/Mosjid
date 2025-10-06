@@ -20,6 +20,25 @@ export async function getServices() {
   const json = await res.json();
   return json?.data || [];
 }
+export async function getIslamicBooks() {
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=islamic_books`;
+
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+  return json?.data || [];
+}
+
+export async function getDua() {
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=dua`;
+
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+  return json?.data || [];
+}
 
 export async function getSingleService(slug) {
   const API_URL = `${BASE_URL}/api/v1/post?slug=${slug}`;

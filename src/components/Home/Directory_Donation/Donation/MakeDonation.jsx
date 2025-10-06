@@ -61,9 +61,9 @@ function MakeDonation({ donationMethods, make_your_donation }) {
           <button
             key={i}
             onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 rounded-md font-semibold text-sm border transition duration-300 ${activeTab?.name === tab?.name
-              ? "bg-[#F7BA2A] text-white border-[#F7BA2A]"
-              : "text-[#00401A] border-[#F7BA2A] hover:bg-[#F7BA2A] hover:text-white"
+            className={`px-4 py-2 rounded-md font-extrabold cursor-pointer text-sm border text-[#001609] transition duration-300 ${activeTab?.name === tab?.name
+              ? "bg-[#F7BA2A]  border-[#F7BA2A]"
+              : " border-[#F7BA2A] hover:bg-[#F7BA2A] "
               }`}
           >
             {tab?.name}

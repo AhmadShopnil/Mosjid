@@ -32,7 +32,7 @@ export default function PrayerTimeTableRow({ prayer }) {
 
             <td className="px-3 text-[#3E8B18] text-base ">
                 <span>{waktStartTime}</span> <br></br>
-                <span> {waktStartTime_2}</span>
+                <span className='border-t-1 border-gray-300'> {waktStartTime_2}</span>
             </td>
             {/* <td className="p-3 text-[#FF0000] text-base">{waktEndTime}</td> */}
             <td className="p-3 text-[#FF0000] text-base">{waktEndTime}</td>

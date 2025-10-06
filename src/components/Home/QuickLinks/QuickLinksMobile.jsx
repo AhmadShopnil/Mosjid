@@ -32,7 +32,7 @@ const quickLinks = [
 ];
 
 
-export default function QuickLinks() {
+export default function QuickLinksMobile() {
   const [hoveredCard, setHoveredCard] = useState(null);
 
   const handleScroll = (id) => {
@@ -45,7 +45,7 @@ export default function QuickLinks() {
 
   return (
     <section className="bg-[#E5F5DE] py-8">
-      <Container className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-4">
+      <Container className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-9 gap-4">
         {quickLinks.map((link, i) => {
           const isHovered = hoveredCard === i;
 
@@ -64,18 +64,18 @@ export default function QuickLinks() {
                onClick={() => handleScroll(link.targetId)}
             >
               {/* Icon Section */}
-              <div className="w-[130px] h-[90px] flex items-center justify-center">
+              <div className=" flex items-center justify-center">
                 <Image
                   src={isHovered ? link.activeIcon : link.icon}
                   alt={link.name}
-                  width={150}
-                  height={100}
+                  width={80}
+                  height={80}
                   className="object-contain transition-all duration-300"
                 />
               </div>
 
               {/* Title */}
-              <p className="mt-2 text-base font-bold">{link.name}</p>
+              <p className="mt-2 text-xs sm:text-base font-bold">{link.name}</p>
             </div>
           );
         })}
