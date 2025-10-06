@@ -24,7 +24,7 @@ export default function PrayerTimeTableRow({ prayer }) {
                     width={40}
                     height={40}
                 />
-                <span className="font-bold text-base text-[#00401A]">{prayer?.name}</span>
+                <span className="font-bold text-base text-[#00401A]">{prayer?.name} ファジル</span>
             </td>
             <td className="p-3 text-[#56410F] text-base">{prayerTime}</td>
 

@@ -37,18 +37,18 @@ export default function MainMenu({settings}) {
             <Image
               src="/images/logo.png"
               alt="Logo"
-              width={310}
-              height={310}
-              className="object-cover w-[95px] h-[95px]"
+              width={300}
+              height={300}
+              className="object-cover w-[80px] h-[100px]"
             />
           </div>
-           <div className="lg:hidden bg-white shadow-xl rounded-xl w-[80px] h-[80px] flex items-center justify-center">
+           <div className="lg:hidden bg-white shadow-xl rounded-xl w-[80px] h-[85 px] flex items-center justify-center">
             <Image
               src="/images/logo.png"
               alt="Logo"
               width={100}
               height={100}
-              className="object-cover w-[65px] h-[65px]"
+              className="object-cover w-[50px] h-[65px]"
             />
           </div>
         </div>
