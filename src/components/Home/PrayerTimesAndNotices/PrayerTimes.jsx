@@ -88,7 +88,6 @@ export default async function PrayerTimes() {
             height={40}
             className="object-contain sm:hidden"
           />
-
         </div>
 
 
@@ -98,7 +97,7 @@ export default async function PrayerTimes() {
         <table className="w-full text-sm hidden sm:table">
           <thead>
             <tr className="bg-[#52B920] text-white text-left text-bold text-xl">
-              <th className="p-3 rounded-tl-xl">{name_of_salat?.value}</th>
+              <th className="p-3 rounded-tl-xl">{name_of_salat?.value} </th>
               <th className="p-3">{jamat_start?.value}</th>
               <th className="p-3">{wakt_start?.value}</th>
               <th className="p-3 rounded-tr-xl">{wakt_end?.value}</th>

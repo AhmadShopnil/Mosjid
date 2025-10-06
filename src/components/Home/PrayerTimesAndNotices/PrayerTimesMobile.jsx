@@ -33,7 +33,7 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
             className="rounded-2xl border border-gray-100 bg-gradient-to-tr from-[#F9FFF5] to-[#FFFFFF] p-5 shadow-md transition hover:shadow-lg"
           >
             {/* Header */}
-            <div className="mb-4 flex items-center justify-between">
+            <div className="mb-4 flex items-center justify-between border-b-2 border-[#E5F5DE] pb-2">
               <div className="flex items-center gap-3">
                 <Image
                   src="/images/prayertimes/eid.png"
@@ -42,11 +42,18 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
                   height={42}
                   className="rounded-full bg-[#E8F9E4] p-2"
                 />
-                <span className="text-lg font-semibold text-[#00401A]">
+               <div className="flex flex-col">
+                 <span className="text-lg font-semibold text-[#00401A]">
                   {prayer?.name}
                 </span>
+                 <span className="text-lg font-semibold text-[#00401a86]">
+                  ファジル
+                </span>
+               </div>
+
+              
               </div>
-              <span className="rounded-full bg-[#E6F3FF] px-3 py-1 text-xs font-medium text-[#1D6FD6]">
+              <span className="rounded-md bg-[#E6F3FF] px-3 py-1 text-md font-medium text-[#1D6FD6]">
                 {prayerTime}
               </span>
             </div>

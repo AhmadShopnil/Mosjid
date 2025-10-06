@@ -45,7 +45,7 @@ export default function QuickLinksMobile() {
 
   return (
     <section className="bg-[#E5F5DE] py-8">
-      <Container className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-9 gap-4">
+      <Container className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-4">
         {quickLinks.map((link, i) => {
           const isHovered = hoveredCard === i;
 
@@ -56,7 +56,7 @@ export default function QuickLinksMobile() {
                 rounded-[50px] py-3.5 cursor-pointer text-center gradient-border
                 transition-all duration-200 
                 ${isHovered
-                  ? "bg-gradient-to-r  from-[rgba(81,250,6,1)] to-[rgba(0,119,36,1)] text-white shadow-lg scale-105"
+                  ? "gradient-bg-quicklinks text-white shadow-lg scale-105"
                   : "bg-white text-[#00401A] shadow"
                 }`}
               onMouseEnter={() => setHoveredCard(i)}
@@ -68,8 +68,8 @@ export default function QuickLinksMobile() {
                 <Image
                   src={isHovered ? link.activeIcon : link.icon}
                   alt={link.name}
-                  width={80}
-                  height={80}
+                  width={120}
+                  height={100}
                   className="object-contain transition-all duration-300"
                 />
               </div>

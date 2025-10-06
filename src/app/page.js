@@ -20,7 +20,7 @@ export default async function Home() {
   const fatwahs = await getFatwa();
 
   return (
-   <main className="bg-gray-50  mb-10 ">
+   <main className=" mb-10 ">
   
       <HeroMain/>
      <div className="">

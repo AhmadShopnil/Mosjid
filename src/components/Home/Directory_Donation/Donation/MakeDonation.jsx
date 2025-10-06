@@ -9,9 +9,9 @@ import { splitBySpace } from '@/helper/splitBySpace';
 
 function MakeDonation({ donationMethods, make_your_donation }) {
   const [activeTab, setActiveTab] = useState(donationMethods[0]);
-  
-    const heading_part_1 = splitBySpace(make_your_donation?.sub_title)[0]
-    const heading_part_2 = splitBySpace(make_your_donation?.sub_title)[1]
+
+  const heading_part_1 = splitBySpace(make_your_donation?.sub_title)[0]
+  const heading_part_2 = splitBySpace(make_your_donation?.sub_title)[1]
   const image_arabic = getImageUrl(make_your_donation?.image_media);
 
   return (
@@ -42,7 +42,7 @@ function MakeDonation({ donationMethods, make_your_donation }) {
         {/* arabic text */}
         <div className='flex'>
           <Image
-          src={image_arabic}
+            src={image_arabic}
             // src="/images/directory/a1.png"
             alt='a1'
             width={300}
@@ -50,7 +50,7 @@ function MakeDonation({ donationMethods, make_your_donation }) {
             className="object-contain hidden sm:flex"
           />
 
-        
+
         </div>
       </div>
 
@@ -74,12 +74,16 @@ function MakeDonation({ donationMethods, make_your_donation }) {
 
 
 
-
-      <div>
-        {/* Bank Info */}
+      <div className='pt-4'>
+        <h3 className='text-base text-[#333333] mb-2'>Bank information (BANK DETAIL) </h3>
+        <h2 className='text-xl font-bold text-[#00401A] gradient-border_b pb-2'>Religious Corporation Osaka Masjid</h2>
+        <BankInfo />
+      </div>
+      {/* <div>
+       
         <div className=" p-6   ">
           <h4 className="text-xl font-bold mb-4 text-[#00401A]">
-            {/* {make_your_donation?.short_description} */}
+           
           </h4>
           <div
             className="text-[#333333] text-sm"
@@ -90,7 +94,7 @@ function MakeDonation({ donationMethods, make_your_donation }) {
 
         </div>
 
-      </div>
+      </div> */}
 
     </div>
   )
