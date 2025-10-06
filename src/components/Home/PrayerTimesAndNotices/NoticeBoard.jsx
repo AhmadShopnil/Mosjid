@@ -47,13 +47,13 @@ export default async function NoticeBoard() {
             height={24}
           />
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
-            {heading_part_1} <span className="text-yellow-400"> {heading_part_2}</span>
+            {heading_part_1} <span className="text-[#F7BA2A]"> {heading_part_2}</span>
           </h2>
         </div>
 
         <div className="flex items-center gap-3 sm:gap-4">
 
-          <button className="border border-[#00401A] text-[#00401A] hover:bg-[#00401A] hover:text-white transition-colors duration-400
+          <button className="border border-[#00401A] text-[#001609] hover:bg-[#00401A] hover:text-white transition-colors duration-400
                font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer">
             {view_more}
           </button>
@@ -74,21 +74,21 @@ export default async function NoticeBoard() {
           >
 
             {/* Date Section */}
-            <div className="w-16 text-center bg-gray-100 rounded-md p-2 leading-5">
-              <p className="text-lg font-bold text-green-900 leading-4">
+            <div className="w-18 text-center bg-gray-100 rounded-md pt-2 leading-5">
+              <p className="text-3xl font-bold text-[#00401A] leading-6">
 
                 {getDay_Month_Year(notice?.created_at, "day")}
               </p>
-              <p className="text-xs text-green-900"> {getDay_Month_Year(notice?.created_at, "month")}</p>
-              <p className="text-xs text-green-900"> {getDay_Month_Year(notice?.created_at, "year")}</p>
+              <p className="text-sm text-[#00401A] leading-5"> {getDay_Month_Year(notice?.created_at, "month")}</p>
+              <p className="text-sm text-[#00401A]"> {getDay_Month_Year(notice?.created_at, "year")}</p>
             </div>
 
             {/* Notice Text */}
             <div>
-              <p className="text-green-800 text-sm">{notice?.name}</p>
+              <p className="text-[#00401A] text-sm">{notice?.name}</p>
               <Link
                 href={`/notice`}
-                className="text-xs font-semibold text-gray-700 hover:text-green-800"
+                className="text-sm font-bold text-[#001609]"
               >
                 Read More --
               </Link>

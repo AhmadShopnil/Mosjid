@@ -1,11 +1,11 @@
-// app/components/DuaSection.jsx
-"use client";
+
 import Container from "@/components/Shared/Container";
 import Image from "next/image";
 import DuaCard from "./DuaCard";
 import Link from "next/link";
+import { getDua } from "@/helper/actions";
+import DuaCardNew from "./DuaCardNew";
 
-export default function DuaSection() {
   const duas = [
     {
       id: 1,
@@ -39,7 +39,16 @@ export default function DuaSection() {
       japanese: "主よ、私たちを不正を働く人々と一緒にしないでください。",
       meaning: "主よ、私たちを不正を働く人々と一緒にしないでください。",
     },
-  ];
+  ]
+
+
+
+export default async function DuaSection() {
+;
+
+  const duas =await getDua()
+
+
 
   return (
     <div className="py-20"
@@ -82,10 +91,10 @@ export default function DuaSection() {
           </div>
         </div>
         {/* Dua list */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 justify-center items-center">
           {/* Dua Card  */}
           {duas.map((dua) => (
-            <DuaCard
+            <DuaCardNew
               key={dua.id}
               dua={dua}
             />

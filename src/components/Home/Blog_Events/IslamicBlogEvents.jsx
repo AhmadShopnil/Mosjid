@@ -33,19 +33,22 @@ export default async function IslamicBlogEvents() {
     >
 
       <Container className="h-full   ">
-        <div className='w-full lg:w-[80%] xl:w-[65%] py-20 h-full  '  >
+        <div className='w-full lg:w-[80%] xl:w-[65%] py-4 sm:py-10 md:py-20 h-full  '  >
           {/* heading */}
-          <div className='flex flex-col sm:flex-row gap-4   justify-between mb-2 '>
-            <div className='flex gap-2 items-center   gradient-border_b w-full  sm:w-[60%] pb-2  '>
-              <Image
+          <div className='flex flex-col sm:flex-row gap-4 items-center  sm:justify-between mb-2 '>
+            <div className='flex gap-2 items-center justify-center sm:justify-start    w-full  sm:w-[60%]    '>
+           <div className='flex gap-2 items-center gradient-border_b pb-4'>
+               <Image
                 src="/images/blogEvents/icon.png"
                 alt='a1'
                 width={40}
                 height={40}
+                className=' '
               />
-              <h3 className='text-2xl sm:text-2xl md:text-3xl font-bold text-[#00401A]'>
+              <h3 className='text-2xl sm:text-2xl md:text-3xl font-bold text-[#00401A] '>
                 {blog_events_ExtraData?.sub_title}
               </h3>
+           </div>
             </div>
             {/* arabic text */}
             <div>

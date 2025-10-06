@@ -13,6 +13,7 @@ import PrayerTimesAndNotices from "@/components/Home/PrayerTimesAndNotices/Praye
 import OfferServices from "@/components/Home/OfferServices/OfferServices";
 import { getFatwa } from "@/helper/actions";
 import HeroMain from "@/components/Home/HeroSections/HeroMain";
+import QuickLinksMobile from "@/components/Home/QuickLinks/QuickLinksMobile";
 
 export default async function Home() {
 
@@ -24,18 +25,29 @@ export default async function Home() {
       <HeroMain/>
      <div className="">
       <FatwaHeadline fatwahs={fatwahs}/>
-       <QuickLinks />
+      
+        <div className="hidden lg:block">
+         <QuickLinks />
+       </div>
+       <div className="lg:hidden">
+        <QuickLinksMobile/>
+       </div>
      </div>
 
    <PrayerTimesAndNotices/>
 
-      <Fatwah/>
+     <div
+     className="hidden lg:block"
+     >
+       <Fatwah/>
       <OfferServices/>
        <DictionarySection/>
       <DirecToryDonation/>
       <DuaSection/>
       <ImageGallery/>
       <IslamicBooks/>
+     </div>
+      
       <IslamicBlogEvents/>
 {/* 
     <div>

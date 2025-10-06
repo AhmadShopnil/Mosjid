@@ -53,22 +53,23 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
 
             {/* Times */}
             <div className="grid grid-cols-3 gap-3 text-center">
+             
               <div className="flex flex-col items-center">
+                <span className="text-xs text-gray-500">{wakt_start?.value}</span>
+                <span className="mt-1 text-base font-medium text-[#3E8B18]  ">
+                  {waktStartTime}
+                </span>
+                {waktStartTime_2 && (
+                  <span className="text-sm font-medium text-[#3E8B18] border-t-1 border-gray-300">
+                    {waktStartTime_2}
+                  </span>
+                )}
+              </div>
+               <div className="flex flex-col items-center">
                 <span className="text-xs text-gray-500">{jamat_start?.value}</span>
                 <span className="mt-1 text-base font-medium text-[#56410F]">
                   {prayerTime}
                 </span>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="text-xs text-gray-500">{wakt_start?.value}</span>
-                <span className="mt-1 text-base font-medium text-[#3E8B18]">
-                  {waktStartTime}
-                </span>
-                {waktStartTime_2 && (
-                  <span className="text-sm font-medium text-[#3E8B18]">
-                    {waktStartTime_2}
-                  </span>
-                )}
               </div>
               <div className="flex flex-col items-center">
                 <span className="text-xs text-gray-500">{wakt_end?.value}</span>

@@ -36,7 +36,7 @@ export default function DictionarySection() {
       <div className="bg-white rounded-[20px] gradient-border
       px-4 py-16  sm:p-14 relative">
         
-        <div className="absolute top-0 right-0">
+        <div className="absolute top-[1px] right-[0px]">
           <Image
             src="/images/dictionary/topImage.png"
             alt="Decorative floral pattern"

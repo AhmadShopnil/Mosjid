@@ -61,17 +61,16 @@ export default function ImageGallery({
           </h1>
         </div>
 
-        <button className="px-5 py-2.5 text-sm sm:text-base font-bold text-[#001609] border border-[#00401A] rounded-full
+        <button className="px-5 py-2 text-sm sm:text-base font-bold text-[#00401A] border border-[#00401A] rounded-full
           hover:bg-[#00401A] hover:text-white transition-colors duration-400 cursor-pointer">
           {view_more_button_text}
         </button>
       </div>
 
       {/* Gallery Grid */}
-      {/* Gallery Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1fr_1.4fr_1fr_1.4fr] gap-6">
-        {/* 1️⃣ First column - tall image */}
-        <div className="relative group cursor-pointer overflow-hidden rounded-2xl h-[600px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* First column - tall image */}
+        <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[250px] sm:h-[300px] lg:h-[600px] lg:w-[300px]">
           <img
             src={images[0].src}
             alt={images[0].alt}
@@ -80,9 +79,9 @@ export default function ImageGallery({
           <ImageOverlay onClick={() => openModal(0)} />
         </div>
 
-        {/* 2️⃣ Second column - two stacked images */}
-        <div className="flex flex-col gap-4 h-[600px]">
-          <div className="relative group cursor-pointer overflow-hidden rounded-2xl flex-1">
+        {/* Second column - two stacked images */}
+        <div className="flex flex-col gap-4 w-[450px]">
+          <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[120px] sm:h-[140px] lg:h-[300px]">
             <img
               src={images[1].src}
               alt={images[1].alt}
@@ -90,7 +89,7 @@ export default function ImageGallery({
             />
             <ImageOverlay onClick={() => openModal(1)} />
           </div>
-          <div className="relative group cursor-pointer overflow-hidden rounded-2xl flex-1">
+          <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[120px] sm:h-[140px] lg:h-[300px]">
             <img
               src={images[2].src}
               alt={images[2].alt}
@@ -100,8 +99,8 @@ export default function ImageGallery({
           </div>
         </div>
 
-        {/* 3️⃣ Third column - tall image */}
-        <div className="relative group cursor-pointer overflow-hidden rounded-2xl h-[600px]">
+        {/* Third column - tall image */}
+        <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[250px] sm:h-[300px] lg:h-[600px] lg:w-[300px]">
           <img
             src={images[3].src}
             alt={images[3].alt}
@@ -110,9 +109,9 @@ export default function ImageGallery({
           <ImageOverlay onClick={() => openModal(3)} />
         </div>
 
-        {/* 4️⃣ Fourth column - two stacked images */}
-        <div className="flex flex-col gap-4 h-[600px]">
-          <div className="relative group cursor-pointer overflow-hidden rounded-2xl flex-1">
+        {/* Fourth column - two stacked images */}
+        <div className="flex flex-col gap-4 lg:w-[450px]">
+          <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[120px] sm:h-[140px] lg:h-[300px] ">
             <img
               src={images[4].src}
               alt={images[4].alt}
@@ -120,7 +119,7 @@ export default function ImageGallery({
             />
             <ImageOverlay onClick={() => openModal(4)} />
           </div>
-          <div className="relative group cursor-pointer overflow-hidden rounded-2xl flex-1">
+          <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[120px] sm:h-[140px] lg:h-[300px]">
             <img
               src={images[5].src}
               alt={images[5].alt}
@@ -130,7 +129,6 @@ export default function ImageGallery({
           </div>
         </div>
       </div>
-
 
       {/* Modal with slider */}
       {selectedIndex !== null && (
@@ -145,7 +143,7 @@ export default function ImageGallery({
             <img
               src={images[selectedIndex].src}
               alt={images[selectedIndex].alt}
-              className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl"
+              className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
             />
 
             {/* Close Button */}
