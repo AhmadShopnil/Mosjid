@@ -83,21 +83,21 @@ export default async function FatwahBox() {
       </div>
 
       {/* Fatwah Content Box */}
-      <div className="max-w-6xl  mx-auto relative bg-white 
+      <div className="max-w-6xl  mx-auto relative gradient-bg-fatwah 
         rounded-2xl shadow-lg overflow-hidden p-4 md:p-12"
-        style={{
-          background: `
-            linear-gradient(to right, 
-              rgba(255,255,255,0) 0%,   /* top-left start */
-              rgba(244,231,203,1) 100%  /* top-right */
-            ),
-            linear-gradient(to top, 
-              rgba(208,255,228,1) 0%,   /* bottom-left */
-              rgba(255,255,255,1) 100%  /* bottom-right */
-            )
-          `,
-          backgroundBlendMode: "screen",
-        }}
+        // style={{
+        //   background: `
+        //     linear-gradient(to right, 
+        //       rgba(255,255,255,0) 0%,   /* top-left start */
+        //       rgba(244,231,203,1) 100%  /* top-right */
+        //     ),
+        //     linear-gradient(to top, 
+        //       rgba(208,255,228,1) 0%,   /* bottom-left */
+        //       rgba(255,255,255,1) 100%  /* bottom-right */
+        //     )
+        //   `,
+        //   backgroundBlendMode: "screen",
+        // }}
  
       >
         {/* Mosque Image Positioned at Bottom Right */}

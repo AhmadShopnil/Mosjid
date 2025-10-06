@@ -115,6 +115,14 @@ background: linear-gradient(170deg, rgba(81, 250, 6, 1) 0%, rgba(0, 119, 36, 1) 
 }
 
 
+.gradient-bg-fatwah{
+background: #D0FFE4;
+background: linear-gradient(24deg, rgba(208, 255, 228, 1) 0%, rgba(255, 255, 255, 1) 66%, rgba(244, 231, 203, 1) 100%);
+}
+
+
+
+
 .gradient-border-bottom {
   position: relative;
 }
