@@ -36,15 +36,15 @@ export default function IslamicBooksSlider({books}) {
   }, []);
 
   return (
-    <Container className="w-full py-12 bg-white ">
+    <div className="w-full max-w-[1780px] mx-auto py-12 bg-white ">
       <div className=" flex flex-col lg:flex-row items-center gap-10">
         {/* LEFT IMAGE */}
-        <div className="w-full lg:w-[40%] flex  h-full">
+        <div className="w-full lg:w-[32%] flex  h-full ">
           <Image
             src="/images/isamicBooks/bookImage.png"
             alt="Islamic Illustration"
-            width={550}
-            height={550}
+            width={600}
+            height={600}
             className="object-contain "
           />
         </div>
@@ -116,13 +116,13 @@ export default function IslamicBooksSlider({books}) {
               {books.map((book) => (
                 <SwiperSlide key={book.id}>
                 <div
-                className={`w-[150px] h-[250px] sm:w-[200px] sm:h-[330px] relative flex flex-col 
+                className={`w-[150px] h-[250px] sm:w-[240px] sm:h-[380px] relative flex flex-col 
                     items-center justify-between text-center rounded-full 
                     shadow-md bg-white mx-auto cursor-pointer
                     group hover:border hover:border-green-500
                 `}
                 >
-                <div className="p-4 sm:p-7 rounded-full mt-2 sm:mt-4 bg-[#F8F8F8]">
+                <div className="p-4 sm:p-9 rounded-full mt-2 sm:mt-4 bg-[#F8F8F8]">
                     <Image
                     src={book?.featured_image}
                     // src="/images/isamicBooks/bookIcon.png"
@@ -179,6 +179,6 @@ export default function IslamicBooksSlider({books}) {
           </div>
         </div>
       </div>
-    </Container>
+    </div>
   );
 }
