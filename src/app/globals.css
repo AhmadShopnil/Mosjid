@@ -27,7 +27,8 @@ body {
 
 .gradient-border {
   position: relative;
-  border-radius: 0.9rem; /* Match Tailwind rounded-lg */
+  border-radius: 20px;
+  /* Match Tailwind rounded-lg */
   overflow: hidden;
 }
 
@@ -35,11 +36,12 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  padding: 1px; /* Border thickness */
+  padding: 1px;
+  /* Border thickness */
   border-radius: inherit;
-  background: linear-gradient(to right, rgba(0, 255, 30, 1), rgba(0, 244, 175, 1));
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
+  background: linear-gradient(to right, rgba(0, 244, 175, 1), rgba(0, 255, 30, 1));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -47,9 +49,28 @@ body {
 }
 
 
+.gradient-bordernew {
+  background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 19px, transparent 19px) 0% 0%/20px 20px no-repeat,
+    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 19px, transparent 19px) 100% 0%/20px 20px no-repeat,
+    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 19px, transparent 19px) 0% 100%/20px 20px no-repeat,
+    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 19px, transparent 19px) 100% 100%/20px 20px no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 2px) calc(100% - 40px) no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 40px) calc(100% - 2px) no-repeat,
+    linear-gradient(62deg, rgba(0, 244, 175, 1) 0%, rgba(0, 255, 30, 1) 100%);
+  border-radius: 20px;
+
+  /* box-sizing:
+   content-box; */
+}
+
+
+
+
+
 .gradient-border2 {
   position: relative;
-  border-radius: 0.9rem; /* Match Tailwind rounded-lg */
+  border-radius: 0.9rem;
+  /* Match Tailwind rounded-lg */
   overflow: hidden;
 }
 
@@ -57,11 +78,12 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  padding: 1px; /* Border thickness */
+  padding: 1px;
+  /* Border thickness */
   border-radius: inherit;
-  background: linear-gradient(to right,rgba(0, 244, 175, 1), rgba(0, 255, 30, 1) );
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
+  background: linear-gradient(to right, rgba(0, 244, 175, 1), rgba(0, 255, 30, 1));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -71,7 +93,8 @@ body {
 
 .gradient-border3 {
   position: relative;
-  border-radius: 0.9rem; /* Match Tailwind rounded-lg */
+  border-radius: 0.9rem;
+  /* Match Tailwind rounded-lg */
   overflow: hidden;
 }
 
@@ -79,16 +102,24 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  padding: 1px; /* Border thickness */
+  padding: 1px;
+  /* Border thickness */
   border-radius: 100px;
-  background: linear-gradient(to right,rgba(49, 152, 160, 0.76), rgba(81, 249, 9, 0.692) );
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
+  background: linear-gradient(to right, rgba(49, 152, 160, 0.76), rgba(81, 249, 9, 0.692));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
 }
+
+
+
+
+
+
+
 
 
 .gradient-border_b {
@@ -102,22 +133,27 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0; /* Position at the bottom */
-  height: 1.5px; /* Border thickness */
+  bottom: 0;
+  /* Position at the bottom */
+  height: 1.5px;
+  /* Border thickness */
 
   background: linear-gradient(to right, rgb(163, 166, 163), rgb(245, 247, 246));
   pointer-events: none;
 }
 
-.gradient-bg-quicklinks{
-background: #51FA06;
-background: linear-gradient(170deg, rgba(81, 250, 6, 1) 0%, rgba(0, 119, 36, 1) 100%);
+
+.gradient-bg-quicklinks {
+  background: #51FA06;
+background: linear-gradient(147deg, rgba(81, 250, 6, 1) 0%, rgba(0, 119, 36, 1) 100%);
+  /* background: #51FA06;
+  background: linear-gradient(170deg, rgba(81, 250, 6, 1) 0%, rgba(0, 119, 36, 1) 100%); */
 }
 
 
-.gradient-bg-fatwah{
-background: #D0FFE4;
-background: linear-gradient(24deg, rgba(208, 255, 228, 1) 0%, rgba(255, 255, 255, 1) 66%, rgba(244, 231, 203, 1) 100%);
+.gradient-bg-fatwah {
+  background: #D0FFE4;
+  background: linear-gradient(24deg, rgba(208, 255, 228, 1) 0%, rgba(255, 255, 255, 1) 66%, rgba(244, 231, 203, 1) 100%);
 }
 
 
@@ -133,15 +169,17 @@ background: linear-gradient(24deg, rgba(208, 255, 228, 1) 0%, rgba(255, 255, 255
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 3px; /* thickness */
+  height: 3px;
+  /* thickness */
   background: linear-gradient(to right, #A35024, #F6C249, #A35024);
-  border-bottom-left-radius: 0.75rem; /* match rounded-xl */
+  border-bottom-left-radius: 0.75rem;
+  /* match rounded-xl */
   border-bottom-right-radius: 0.75rem;
 }
 
 
 
 
-.polygon{
-  clipPath: polygon(0 0,  85% 0, 100% 100%, 0 100%);
+.polygon {
+  clipPath: polygon(0 0, 85% 0, 100% 100%, 0 100%);
 }

@@ -14,7 +14,8 @@ export default async function NoticeBoard() {
   const notices = await getNotices();
   const settings = await getSettings()
   const view_more = getMetaValueByMetaName(settings, "view_more") || "";
-  
+  const read_more = getMetaValueByMetaName(settings, "read_more") || "";
+
   // get notice extra data from home page section management
   const homePage = await getPage("home-sections-heading-management")
   const sections = homePage?.sections_on_api;
@@ -22,14 +23,14 @@ export default async function NoticeBoard() {
   const heading_part_1 = splitBySpace(notice_heading?.sub_title)[0]
   const heading_part_2 = splitBySpace(notice_heading?.sub_title)[1]
 
-
+  const notice_board_title_2 = notice_heading?.custom_information.find((item) => item.label === "notice_board_title_2")
 
 
   // console.log("string",string)
 
   return (
     <div
-      className=" rounded-2xl p-5 sm:p-8 bg-cover bg-center h-full gradient-border"
+      className=" p-5 sm:p-8 bg-cover bg-center h-full gradient-border"
       style={{
         backgroundImage: "url('/images/home/noticeBg.png')",
       }}
@@ -39,16 +40,25 @@ export default async function NoticeBoard() {
 
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
 
-        <div className="flex items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3">
+        <div className="flex items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3 ">
+
+
           <Image
             src="/images/prayertimes/noticeicon.png"
             alt="Book Icon"
-            width={35}
-            height={24}
+            width={60}
+            height={70}
           />
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
-            {heading_part_1} <span className="text-[#F7BA2A]"> {heading_part_2}</span>
-          </h2>
+
+
+
+          <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+            <p><span >{heading_part_1} </span>
+              <span className="text-[#F7BA2A]">{heading_part_2}</span>
+            </p>
+            <p>{notice_board_title_2?.value}</p>
+
+          </div>
         </div>
 
         <div className="flex items-center gap-3 sm:gap-4">
@@ -65,7 +75,7 @@ export default async function NoticeBoard() {
 
       {/* Notices List */}
       <ul className="space-y-3">
-        {notices?.slice(0,6).map((notice, i) => (
+        {notices?.slice(0, 6).map((notice, i) => (
 
 
           <li
@@ -84,13 +94,20 @@ export default async function NoticeBoard() {
             </div>
 
             {/* Notice Text */}
-            <div>
+            <div className="flex flex-col justify-between">
               <p className="text-[#00401A] text-sm">{notice?.name}</p>
               <Link
                 href={`/notice`}
-                className="text-sm font-bold text-[#001609]"
+                className="text-sm font-bold text-[#001609] flex gap-2 items-center"
               >
-                Read More --
+                <span> {read_more}</span>
+
+                <Image
+                  src="/images/others/arrowR.png"
+                  alt='a1'
+                  width={19}
+                  height={19}
+                />
               </Link>
             </div>
           </li>
