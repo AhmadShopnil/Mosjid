@@ -38,7 +38,7 @@ export default async function Events({ events,eventsSectionTitle }) {
       {/* Events */}
       <div className="mt-6 flex flex-col gap-3">
         {events?.slice(0, 3).map((event, i) => (
-          <EventCard key={i} event={event} />
+          <EventCard key={i} event={event} index={i} />
           // <div
           //   key={i}
           //   className="flex space-x-3 bg-white/90 backdrop-blur-sm border border-gray-300 p-2 rounded-md shadow-sm"

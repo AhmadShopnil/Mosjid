@@ -31,13 +31,14 @@ export default async function PrayerTimes() {
   const name_of_salat = prayer_time?.custom_information.find((item) => item.label === "name_of_salat")
   const wakt_start = prayer_time?.custom_information.find((item) => item.label === "wakt_start")
   const wakt_end = prayer_time?.custom_information.find((item) => item.label === "wakt_end")
+    const prayer_times_title_2 = prayer_time?.custom_information.find((item) => item.label === "prayer_times_title_2")
 
 
-
+// console.log("prayer times",prayer_times_title_2)
 
 
   return (
-    <div className="  rounded-2xl px-5 sm:px-8 pt-5 sm:pt-8 pb-20 h-full gradient-border relative">
+    <div className="   px-5 sm:px-8 pt-5 sm:pt-8  pb-24 h-full gradient-bordernew relative overflow-hidden">
       <div className="absolute top-0 right-0">
         <Image
           src="/images/prayertimes/1.png"
@@ -47,7 +48,7 @@ export default async function PrayerTimes() {
           className="opacity-80"
         />
       </div>
-      <div className="absolute bottom-0 left-0">
+      <div className="absolute bottom-0.5 left-0.5 ">
         <Image
           src="/images/prayertimes/bottomImg.png"
           alt="Decorative floral pattern"
@@ -57,19 +58,32 @@ export default async function PrayerTimes() {
         />
       </div>
       {/* heading */}
-      <p className="text-sm mb-2 text-center sm:text-start">{prayer_time?.short_description}</p>
+      <p className="text-sm mb-2.5 text-center sm:text-start ml-1">{prayer_time?.short_description}</p>
 
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
-        <div className="flex items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3">
-          <Image
+        <div className="flex justify-between  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
+      
+           <Image
             src="/images/prayertimes/icon.png"
             alt="Book Icon"
-            width={35}
-            height={24}
+            width={62}
+            height={70}
+            className=""
           />
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
-            <span className="text-[#F7BA2A]">{heading_part_1}</span> {heading_part_2}
-          </h2>
+       
+         
+           {/* <div
+            className=""
+            dangerouslySetInnerHTML={{
+              __html: prayer_time?.sub_title,
+            }}
+          /> */}
+         
+          <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+            <p><span className="text-[#F7BA2A]">{heading_part_1}</span> {heading_part_2} </p>
+            <p>{prayer_times_title_2?.value}</p>
+             
+          </div>
         </div>
 
 

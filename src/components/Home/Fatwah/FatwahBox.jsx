@@ -127,18 +127,18 @@ export default async function FatwahBox() {
               </h3>
             </div>
             {/* arabic text */}
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               <Image
                 src={image}
                 alt='a1'
-                width={180}
+                width={170}
                 height={50}
                 className='hidden sm:flex'
               />
           
               <div className=' my-auto'>
-                <button className="px-5 sm:px-6 py-2  text-sm sm:text-base
-                font-bold text-[#00401A] border border-[#00401A] rounded-full
+                <button className="px-5 sm:px-6 py-2.5  text-sm sm:text-base
+                font-bold text-white border border-[#00401A] rounded-full bg-[#00401A]
                   hover:bg-[#00401A] hover:text-white transition-colors duration-400 cursor-pointer">
                   {view_more}
                 </button>
