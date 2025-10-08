@@ -133,7 +133,7 @@ export default function QuickLinks() {
             return (
               <SwiperSlide key={i} className="flex justify-center ">
                 <div
-                  className={`gradient-border   flex flex-col w-[200px] h-[200px] items-center justify-center rounded-[30px] py-3.5 cursor-pointer text-center transition-all duration-200 ${isHovered
+                  className={`  flex flex-col w-[200px] h-[200px] items-center justify-center rounded-[30px] py-3.5 cursor-pointer text-center transition-all duration-200 ${isHovered
                       ? "gradient-bg-quicklinks text-white shadow-lg"
                       : "bg-white text-[#00401A] shadow"
                     }`}

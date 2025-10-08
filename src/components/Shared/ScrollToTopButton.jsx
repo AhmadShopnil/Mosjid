@@ -34,7 +34,7 @@ export default function ScrollToTopButton() {
     return (
         <div
             className={clsx(
-                "fixed bottom-6 right-6 z-50 transition-opacity duration-300",
+                "fixed bottom-5 right-3 z-50 transition-opacity duration-300",
                 isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
         >
