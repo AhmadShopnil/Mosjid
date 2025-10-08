@@ -18,7 +18,7 @@ export default function TopbarMobile({ settings }) {
   const instagramLink = getMetaValueByMetaName(settings, "instagram_url") || "#";
 
   return (
-    <div className="bg-gradient-to-b py-4 px-3 rounded-xl shadow-inner border border-gray-100">
+   
       <Container>
         <div className="flex flex-col items-center gap-2">
 
@@ -59,7 +59,7 @@ export default function TopbarMobile({ settings }) {
             <Link
               href={facebookLink}
               target="_blank"
-              className="p-2 rounded-full bg-blue-100 hover:bg-blue-200 transition-all"
+              className=""
             >
               <ImFacebook2 className="text-[#1877F2] text-lg" />
             </Link>
@@ -67,13 +67,13 @@ export default function TopbarMobile({ settings }) {
             <Link
               href={instagramLink}
               target="_blank"
-              className="p-2 rounded-full bg-pink-100 hover:bg-pink-200 transition-all"
+              className=" "
             >
               <Image
                 src="/images/footer/insta.png"
                 alt="Instagram"
-                width={20}
-                height={20}
+                width={34}
+                height={30}
                 className="object-contain"
               />
             </Link>
@@ -81,12 +81,12 @@ export default function TopbarMobile({ settings }) {
             <Link
               href={linkedinLink}
               target="_blank"
-              className="p-2 rounded-full bg-sky-100 hover:bg-sky-200 transition-all"
+              className=" "
             >
               <Image
                 src="/images/footer/linkdin.png"
                 alt="LinkedIn"
-                width={18}
+                width={24}
                 height={18}
                 className="object-contain"
               />
@@ -94,6 +94,6 @@ export default function TopbarMobile({ settings }) {
           </div>
         </div>
       </Container>
-    </div>
+   
   );
 }

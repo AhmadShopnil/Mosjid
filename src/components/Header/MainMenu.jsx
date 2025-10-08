@@ -218,7 +218,7 @@ export default function MainMenu({ settings }) {
 </div>
 
         {/* Fixed Bottom Section */}
-        <div className=" border-gray-200 bg-white  shadow-inner ">
+        <div className=" border-gray-200 bg-white  shadow-inner sticky bottom-0 py-3 ">
           <TopbarMobile settings={settings} />
         </div>
       </div>

@@ -5,7 +5,7 @@ import React from "react";
 
 const DuaCardNew = ({ dua }) => {
   return (
-    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden ">
+    <div className="max-w-[515px] mx-auto bg-white rounded-xl shadow-md overflow-hidden ">
       {/* Header */}
       <div className="flex justify-between items-center  bg-gradient-to-b from-[#EEF8E9] to-[#BAFF98] px-4 py-4 gradient-border-bottom">
         <span className="text-[#00401A] font-bold text-2xl">{dua?.name}</span>
@@ -22,7 +22,7 @@ const DuaCardNew = ({ dua }) => {
 
       {/* Content (dangerous HTML) */}
       <div
-        className="p-4 text-gray-700 text-sm leading-relaxed"
+        className="p-3 text-gray-700 text-sm leading-relaxed"
         dangerouslySetInnerHTML={{ __html: dua?.description }}
       />
 

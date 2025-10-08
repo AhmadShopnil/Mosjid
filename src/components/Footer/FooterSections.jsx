@@ -122,8 +122,15 @@ export default function FooterSections({ settings }) {
           <div className='flex gap-2 mt-6 px-1  items-center'>
             <Link
               href={facebookLink}
-              className='text-blue-500 text-xl'>
-              <ImFacebook2 />
+              className=''>
+              {/* <ImFacebook2 /> */}
+                <Image
+                src="/images/footer/fb.png"
+                alt='a1'
+                width={26}
+                height={24}
+                className='hidden sm:flex'
+              />
             </Link>
             <Link
               href={instagramLink}
