@@ -44,10 +44,10 @@ export default async function NoticeBoard() {
 
 
           <Image
-            src="/images/prayertimes/noticeicon.png"
+            src="/images/prayertimes/noticeicon2.png"
             alt="Book Icon"
-            width={60}
-            height={70}
+            width={55}
+            height={73}
           />
 
 
@@ -94,8 +94,8 @@ export default async function NoticeBoard() {
             </div>
 
             {/* Notice Text */}
-            <div className="flex flex-col justify-between">
-              <p className="text-[#00401A] text-sm">{notice?.name}</p>
+            <div className="flex flex-col justify-between w-[412px] ">
+              <p className="text-[#00401A] text-sm">{notice?.sub_title.slice(0,120)}</p>
               <Link
                 href={`/notice`}
                 className="text-sm font-bold text-[#001609] flex gap-2 items-center"

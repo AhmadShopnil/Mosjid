@@ -1,97 +1,96 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import Container from "../Shared/Container";
 import { TbMailFilled } from "react-icons/tb";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { ImFacebook2 } from "react-icons/im";
-import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import Link from "next/link";
+import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import LanguageSelector from "../Shared/LanguageSelector";
 
-const languages = [
-  {
-    title: "English",
-    icon: "/images/others/English.png",
-  },
-  {
-    title: "Japanese",
-    icon: "/images/others/Japan.png",
-  },
-  {
-    title: "Arabic",
-    icon: "/images/others/Arabic.png",
-  },
-];
-
 export default function TopbarMobile({ settings }) {
-  // const [selectedLanguage, setSelectedLanguage] = useState("English");
-
   const phone = getMetaValueByMetaName(settings, "company_phone") || "";
   const company_email = getMetaValueByMetaName(settings, "company_email") || "";
   const facebookLink = getMetaValueByMetaName(settings, "facebook_url") || "#";
   const linkedinLink = getMetaValueByMetaName(settings, "linkedin_url") || "#";
-  const instagramLink =
-    getMetaValueByMetaName(settings, "instagram_url") || "#";
+  const instagramLink = getMetaValueByMetaName(settings, "instagram_url") || "#";
 
   return (
-    <div className="bg-white py-2 z-[50] ">
+    <div className="bg-gradient-to-b py-4 px-3 rounded-xl shadow-inner border border-gray-100">
       <Container>
-        <div className="flex flex-col  items-center justify-between gap-4">
-          {/* Language Selection */}
-          <LanguageSelector/>
-    
+        <div className="flex flex-col items-center gap-2">
 
-          {/* Contact and Social Section */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 w-full">
-            {/* Mail */}
-            <div className="flex items-center gap-2">
-              <TbMailFilled className="text-lg text-[#00401A]" />
-              <span className="text-sm sm:text-base text-[#00401A]">
-                {company_email}
-              </span>
-            </div>
+          {/* 🌍 Language Selector */}
+          {/* <div className="w-full">
+            <LanguageSelector />
+          </div> */}
 
-            {/* Phone Number */}
-            <div className="flex items-center gap-2">
-              <FaPhoneVolume className="text-lg text-[#00401A]" />
-              <span className="text-sm sm:text-base text-[#00401A]">
-                {phone}
-              </span>
-            </div>
+          {/* ✉️ Contact Info */}
+          <div className="flex flex-col gap-2 w-full text-center">
+            {/* Email */}
+            {company_email && (
+              <div className="flex items-center justify-center gap-2">
+                <div className="flex items-center justify-center w-8 h-8 bg-green-100 rounded-full">
+                  <TbMailFilled className="text-lg text-[#00401A]" />
+                </div>
+                <span className="text-sm font-medium text-[#00401A]">
+                  {company_email}
+                </span>
+              </div>
+            )}
 
-            {/* Social Links */}
-            <div className="flex gap-3 items-center">
-              <Link
-                href={facebookLink}
-                className="text-blue-500 text-xl hover:text-blue-600 transition"
-              >
-                <ImFacebook2 />
-              </Link>
-              <Link
-                href={instagramLink}
-              >
-                <Image
-                  src="/images/footer/insta.png"
-                  alt="Instagram"
-                  width={28}
-                  height={28}
-                  className="hover:opacity-80 transition"
-                />
-              </Link>
-              <Link
-                href={linkedinLink}
-              >
-                <Image
-                  src="/images/footer/linkdin.png"
-                  alt="LinkedIn"
-                  width={24}
-                  height={24}
-                  className="hover:opacity-80 transition"
-                />
-              </Link>
-            </div>
+            {/* Phone */}
+            {phone && (
+              <div className="flex items-center justify-center gap-2">
+                <div className="flex items-center justify-center w-8 h-8 bg-green-100 rounded-full">
+                  <FaPhoneVolume className="text-lg text-[#00401A]" />
+                </div>
+                <span className="text-sm font-medium text-[#00401A]">
+                  {phone}
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* 🌐 Social Links */}
+          <div className="flex gap-5 items-center justify-center mt-2">
+            <Link
+              href={facebookLink}
+              target="_blank"
+              className="p-2 rounded-full bg-blue-100 hover:bg-blue-200 transition-all"
+            >
+              <ImFacebook2 className="text-[#1877F2] text-lg" />
+            </Link>
+
+            <Link
+              href={instagramLink}
+              target="_blank"
+              className="p-2 rounded-full bg-pink-100 hover:bg-pink-200 transition-all"
+            >
+              <Image
+                src="/images/footer/insta.png"
+                alt="Instagram"
+                width={20}
+                height={20}
+                className="object-contain"
+              />
+            </Link>
+
+            <Link
+              href={linkedinLink}
+              target="_blank"
+              className="p-2 rounded-full bg-sky-100 hover:bg-sky-200 transition-all"
+            >
+              <Image
+                src="/images/footer/linkdin.png"
+                alt="LinkedIn"
+                width={18}
+                height={18}
+                className="object-contain"
+              />
+            </Link>
           </div>
         </div>
       </Container>

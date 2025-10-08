@@ -156,6 +156,15 @@ background: linear-gradient(147deg, rgba(81, 250, 6, 1) 0%, rgba(0, 119, 36, 1) 
   background: linear-gradient(24deg, rgba(208, 255, 228, 1) 0%, rgba(255, 255, 255, 1) 66%, rgba(244, 231, 203, 1) 100%);
 }
 
+.gradient-bg-headline {
+
+
+background: #64A445;
+background: linear-gradient(180deg, rgba(100, 164, 69, 1) 0%, rgba(48, 150, 163, 1) 100%);
+
+
+}
+
 
 
 
@@ -175,6 +184,17 @@ background: linear-gradient(147deg, rgba(81, 250, 6, 1) 0%, rgba(0, 119, 36, 1) 
   border-bottom-left-radius: 0.75rem;
   /* match rounded-xl */
   border-bottom-right-radius: 0.75rem;
+}
+
+
+
+.gradient-border-quicklinks {
+
+    border-radius: 30px; /* outer radius */
+  padding: 1px; /* border thickness */
+  background: linear-gradient(to right, #3096A3, #53FF00);
+ 
+
 }
 
 

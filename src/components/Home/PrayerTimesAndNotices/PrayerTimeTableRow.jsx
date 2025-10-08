@@ -13,7 +13,7 @@ export default function PrayerTimeTableRow({ prayer }) {
 
     return (
         <tr
-            className="bg-[#F6FFF1] text-gray-800 border-y border-gray-200  "
+            className="bg-[#F6FFF1] text-gray-800 border-b border-gray-200 last:border-b-0   "
         >
             <td className="p-3 flex items-center gap-2  ">
                 {/* {prayer.icon} */}
@@ -25,20 +25,20 @@ export default function PrayerTimeTableRow({ prayer }) {
                     height={40}
                 />
                 <span className="font-bold text-base text-[#00401A]">{prayer?.name}
-                     <span
-                className='text-[#00401a5d] ml-2'
-                >ファジル</span></span>
+                    <span
+                        className='text-[#00401a5d] ml-2'
+                    >ファジル
+                    </span></span>
             </td>
-            <td className="p-3 text-[#56410F] text-base">{prayerTime}</td>
+            <td className="p-3 text-[#56410F] text-base text-center">{prayerTime}</td>
 
 
-
-            <td className="px-3 text-[#3E8B18] text-base ">
+            <td className="px-3 text-[#3E8B18] text-base text-center ">
                 <span>{waktStartTime}</span> <br></br>
                 <span className='border-t-1 border-gray-300'> {waktStartTime_2}</span>
             </td>
             {/* <td className="p-3 text-[#FF0000] text-base">{waktEndTime}</td> */}
-            <td className="p-3 text-[#FF0000] text-base">{waktEndTime}</td>
+            <td className="p-3 text-[#FF0000] text-base text-center">{waktEndTime}</td>
         </tr>
     )
 }

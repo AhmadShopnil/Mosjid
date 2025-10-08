@@ -12,10 +12,10 @@ export default function PrayerTimesAndNotices() {
     <Container className=" flex flex-col lg:flex-row w-full gap-6 py-14   ">
             <div 
             
-            className="w-full lg:w-[60%]">
+            className="w-full lg:w-[65%]">
               <PrayerTimes />
             </div>
-          <div className="w-full lg:w-[40%]">
+          <div className="w-full lg:w-[35%]">
               <NoticeBoard />
           </div>
           </Container>

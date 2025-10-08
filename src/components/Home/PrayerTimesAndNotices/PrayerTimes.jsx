@@ -31,10 +31,10 @@ export default async function PrayerTimes() {
   const name_of_salat = prayer_time?.custom_information.find((item) => item.label === "name_of_salat")
   const wakt_start = prayer_time?.custom_information.find((item) => item.label === "wakt_start")
   const wakt_end = prayer_time?.custom_information.find((item) => item.label === "wakt_end")
-    const prayer_times_title_2 = prayer_time?.custom_information.find((item) => item.label === "prayer_times_title_2")
+  const prayer_times_title_2 = prayer_time?.custom_information.find((item) => item.label === "prayer_times_title_2")
 
 
-// console.log("prayer times",prayer_times_title_2)
+  // console.log("prayer times",prayer_times_title_2)
 
 
   return (
@@ -62,27 +62,27 @@ export default async function PrayerTimes() {
 
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
         <div className="flex justify-between  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
-      
-           <Image
-            src="/images/prayertimes/icon.png"
+
+          <Image
+            src="/images/prayertimes/icon2.png"
             alt="Book Icon"
-            width={62}
+            width={60}
             height={70}
             className=""
           />
-       
-         
-           {/* <div
+
+
+          {/* <div
             className=""
             dangerouslySetInnerHTML={{
               __html: prayer_time?.sub_title,
             }}
           /> */}
-         
+
           <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
             <p><span className="text-[#F7BA2A]">{heading_part_1}</span> {heading_part_2} </p>
             <p>{prayer_times_title_2?.value}</p>
-             
+
           </div>
         </div>
 
@@ -107,10 +107,58 @@ export default async function PrayerTimes() {
 
       </div>
 
-      <div className="bg-white rounded-xl overflow-hidden">
-        <table className="w-full text-sm hidden sm:table">
+      <div className=" overflow-hidden space-y-6">
+        {/* table-1 */}
+
+        <div className="overflow-hidden rounded-[20px] border-b border-gray-200 ">
+          <table className="w-full text-sm hidden sm:table ">
+            <thead>
+              <tr className="bg-[#52B920] text-white  text-bold text-lg">
+                <th className="p-3 text-left ">{name_of_salat?.value}</th>
+                <th className="p-3 ">{jamat_start?.value}</th>
+                <th className="p-3">{wakt_start?.value}</th>
+                <th className="p-3">{wakt_end?.value}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {prayerTimes.map((prayer, index) => (
+                <PrayerTimeTableRow key={index} prayer={prayer} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+
+        {/* Table 2 */}
+
+        <div className="overflow-hidden rounded-[20px] border-b border-gray-200 ">
+          <table className="w-full text-sm hidden sm:table ">
+            <thead>
+              <tr className="bg-[#EB5757] text-white  text-bold text-lg">
+                <th className="p-3 text-left">{name_of_salat?.value}</th>
+                <th className="p-3">{jamat_start?.value}</th>
+                <th className="p-3">Prohibited Time Start</th>
+                <th className="p-3">Prohibited Time End</th>
+              </tr>
+            </thead>
+            <tbody>
+              {prayerTimes.slice(0, 4).map((prayer, index) => (
+
+
+                index != 2 && <PrayerTimeTableRow
+                  key={index}
+                  prayer={prayer} />
+
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+
+
+        {/* <table className="w-full text-sm hidden sm:table">
           <thead>
-            <tr className="bg-[#52B920] text-white text-left text-bold text-xl">
+            <tr className="bg-[#EB5757] text-white text-left text-bold text-xl">
               <th className="p-3 rounded-tl-xl">{name_of_salat?.value} </th>
               <th className="p-3">{jamat_start?.value}</th>
               <th className="p-3">{wakt_start?.value}</th>
@@ -118,22 +166,26 @@ export default async function PrayerTimes() {
             </tr>
           </thead>
           <tbody className="">
-            {prayerTimes.map((prayer, index) => (
+            {prayerTimes.slice(0, 4).map((prayer, index) => (
 
-              <PrayerTimeTableRow
+
+              index != 2 && <PrayerTimeTableRow
                 key={index}
                 prayer={prayer} />
 
             ))}
           </tbody>
-        </table>
+        </table> */}
       </div>
 
+
+
+      {/* bottom note */}
       <p className="mt-4 text-sm  text-[#FF0000]">
         {prayer_time?.description}
       </p>
-  {/* Mobile Cards */}
-  <PrayerTimesMobile prayerTimes={prayerTimes} prayer_time={prayer_time} />
+      {/* Mobile Cards */}
+      <PrayerTimesMobile prayerTimes={prayerTimes} prayer_time={prayer_time} />
     </div>
   );
 }

@@ -55,8 +55,9 @@ export default function HeroSectionSlider({ sliders }) {
 
               {/* Content on top of the banner */}
               <Container className="relative flex h-full">
-                <div className="absolute top-1/4 w-[40%]">
-                  <h3 className="text-2xl 2xl:text-4xl text-[#00401A] font-bold leading-12">
+                <div className="absolute top-1/4 w-[40%] min-h-[280px] flex flex-col justify-between ">
+                <div>
+                    <h3 className="text-2xl 2xl:text-4xl text-[#00401A] font-bold leading-12">
                     {slide?.name}
                   </h3>
                   <p className="text-lg 2xl:text-2xl text-[#00401A] font-bold leading-10 my-2">
@@ -65,9 +66,11 @@ export default function HeroSectionSlider({ sliders }) {
                   <p className="text-base text-[#001609] mb-10">
                     {getMetaValueFromExtraFields(slide, "short_description")}
                   </p>
+                </div>
                   <Link
                     href="/"
-                    className="bg-[#F7BA2A] px-5 py-3 rounded-xl text-white text-lg hover:bg-[#d4a129]"
+                    className="bg-[#F7BA2A] px-5 py-4 rounded-[10px] text-[#00401A] text-xl font-semibold w-[148px]
+                    h-[60px]"
                   >
                     Read more
                   </Link>
