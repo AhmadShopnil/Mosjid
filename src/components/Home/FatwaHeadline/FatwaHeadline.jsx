@@ -17,11 +17,11 @@ export default function FatwaHeadline({ fatwahs }) {
 
   return (
     <div
-      className="w-full"
-      style={{
-        background:
-          "linear-gradient(180deg, rgba(100,164,69,1) 0%, rgba(48,150,163,1) 100%)",
-      }}
+      className="w-full bg-[#549F62]"
+      // style={{
+      //   background:
+      //     "linear-gradient(180deg, rgba(100,164,69,1) 0%, rgba(48,150,163,1) 100%)",
+      // }}
     >
       <Container>
         <div className="h-12.5 flex items-center gap-4 overflow-hidden">
