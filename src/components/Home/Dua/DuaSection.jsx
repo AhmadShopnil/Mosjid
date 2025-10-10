@@ -6,60 +6,77 @@ import Link from "next/link";
 import { getDua } from "@/helper/actions";
 import DuaCardNew from "./DuaCardNew";
 
-  const duas = [
-    {
-      id: 1,
-      title: "اسم الدعاء",
-      arabic:
-        "رَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِينَ",
-      japanese: "主よ、私たちを不正を働く人々と一緒にしないでください。",
-      meaning: "主よ、私たちを不正を働く人々と一緒にしないでください。",
-    },
-    {
-      id: 2,
-      title: "اسم الدعاء",
-      arabic:
-        "رَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِينَ",
-      japanese: "主よ、私たちを不正を働く人々と一緒にしないでください。",
-      meaning: "主よ、私たちを不正を働く人々と一緒にしないでください。",
-    },
-    {
-      id: 3,
-      title: "اسم الدعاء",
-      arabic:
-        "رَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِينَ",
-      japanese: "主よ、私たちを不正を働く人々と一緒にしないでください。",
-      meaning: "主よ、私たちを不正を働く人々と一緒にしないでください。",
-    },
-    {
-      id: 4,
-      title: "اسم الدعاء",
-      arabic:
-        "رَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِينَ",
-      japanese: "主よ、私たちを不正を働く人々と一緒にしないでください。",
-      meaning: "主よ、私たちを不正を働く人々と一緒にしないでください。",
-    },
-  ]
+const duas = [
+  {
+    id: 1,
+    title: "اسم الدعاء",
+    arabic:
+      "رَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِينَ",
+    japanese: "主よ、私たちを不正を働く人々と一緒にしないでください。",
+    meaning: "主よ、私たちを不正を働く人々と一緒にしないでください。",
+  },
+  {
+    id: 2,
+    title: "اسم الدعاء",
+    arabic:
+      "رَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِينَ",
+    japanese: "主よ、私たちを不正を働く人々と一緒にしないでください。",
+    meaning: "主よ、私たちを不正を働く人々と一緒にしないでください。",
+  },
+  {
+    id: 3,
+    title: "اسم الدعاء",
+    arabic:
+      "رَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِينَ",
+    japanese: "主よ、私たちを不正を働く人々と一緒にしないでください。",
+    meaning: "主よ、私たちを不正を働く人々と一緒にしないでください。",
+  },
+  {
+    id: 4,
+    title: "اسم الدعاء",
+    arabic:
+      "رَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِينَ",
+    japanese: "主よ、私たちを不正を働く人々と一緒にしないでください。",
+    meaning: "主よ、私たちを不正を働く人々と一緒にしないでください。",
+  },
+]
 
 
 
 export default async function DuaSection() {
-;
+  ;
 
-  const duas =await getDua()
+  const duas = await getDua()
 
 
 
   return (
     <div className="pt-18 pb-2 "
-      // style={{
-      //   background: "linear-gradient(to bottom, rgba(245, 255, 250, 1), rgba(206, 255, 227, 1))",
-      // }}
+    // style={{
+    //   background: "linear-gradient(to bottom, rgba(245, 255, 250, 1), rgba(206, 255, 227, 1))",
+    // }}
     >
       <Container className=" px-4">
         {/* heading */}
         <div className="flex flex-col sm:flex-row  justify-between items-center mb-8">
-          <div className="flex gap-2 justify-center items-center gradient-border_b pb-2 ">
+
+          <div className="flex justify-between items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
+            <Image
+              src="/images/dua/icon.png"
+              alt="Book Icon"
+              width={65}
+              height={65}
+              className=""
+            />
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+              <p><span className="text-[#F7BA2A]">Submit</span> a Duah</p>
+              <p>祈りを捧げる</p>
+
+            </div>
+          </div>
+
+
+          {/* <div className="flex gap-2 justify-center items-center gradient-border_b pb-2 ">
             <Image
               src="/images/others/duaicon.png"
               alt="mosque"
@@ -70,7 +87,10 @@ export default async function DuaSection() {
             <h4 className="text-[#00401A] font-bold text-3xl">
               <span className="text-[#F7BA2A]">Submit </span>
                a Duah</h4>
-          </div>
+          </div> */}
+
+
+
           <div className="flex gap-4 items-center justify-center ">
             <Image
               src="/images/others/duaarabic.png"

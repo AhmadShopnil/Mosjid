@@ -77,7 +77,7 @@ export default function FooterSections({ settings }) {
 
 
 
- 
+
 
 
 
@@ -106,7 +106,7 @@ export default function FooterSections({ settings }) {
 
         {/* Get In Touch */}
         <div>
-          <h3 className="text-2xl text-[#00401A] font-bold mb-4">
+          <h3 className="text-2xl text-[#00401A] font-bold mb-4 gradient-border_b pb-2.5">
             {section_1_title}
           </h3>
           <ul className="space-y-2 text-sm text-gray-700">
@@ -124,7 +124,7 @@ export default function FooterSections({ settings }) {
               href={facebookLink}
               className=''>
               {/* <ImFacebook2 /> */}
-                <Image
+              <Image
                 src="/images/footer/fb.png"
                 alt='a1'
                 width={26}
@@ -160,7 +160,7 @@ export default function FooterSections({ settings }) {
 
         {/* Useful Links */}
         <div>
-          <h3 className="text-2xl text-[#00401A] font-bold mb-3">
+          <h3 className="text-2xl text-[#00401A] font-bold mb-3 gradient-border_b pb-2.5">
             {section_2_title}
           </h3>
           <ul className="space-y-2 text-sm text-gray-700">
@@ -178,7 +178,7 @@ export default function FooterSections({ settings }) {
         </div>
 
         {/* Quick Contact Form */}
-<QuickContactForm section_3_title={section_3_title}/>
+        <QuickContactForm section_3_title={section_3_title} />
       </div>
     </footer>
   );

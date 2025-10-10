@@ -9,7 +9,7 @@ export default function PrayerTimeTableRow({ prayer }) {
     const waktStartTime = getMetaValueFromExtraFields(prayer, "start_time")
     const waktStartTime_2 = getMetaValueFromExtraFields(prayer, "start_time_2")
     const waktEndTime = getMetaValueFromExtraFields(prayer, "end_time")
-    // console?.log("localRaw",localRaw)
+    // console?.log("localRaw",prayer)
 
     return (
         <tr
@@ -18,8 +18,8 @@ export default function PrayerTimeTableRow({ prayer }) {
             <td className="p-3 flex items-center gap-2  ">
                 {/* {prayer.icon} */}
                 <Image
-                    src="/images/prayertimes/eid.png"
-                    // src={prayer?.icon}
+                    // src="/images/prayertimes/eid.png"
+                    src={prayer?.featured_image}
                     alt="gallery-icon"
                     width={40}
                     height={40}

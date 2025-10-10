@@ -60,7 +60,7 @@ export default function QuickContactForm({ section_3_title }) {
 
     return (
         <div>
-            <h3 className="text-2xl text-[#00401A] font-bold mb-3">
+            <h3 className="text-2xl text-[#00401A] font-bold mb-4 gradient-border_b pb-2.5">
                 {section_3_title}
             </h3>
             <form onSubmit={handleSubmit} className="space-y-3">

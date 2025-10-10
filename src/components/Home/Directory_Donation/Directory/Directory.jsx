@@ -18,25 +18,24 @@ export default function Directory() {
     <div className='gradient-border h-full  px-5 sm:px-8 pt-5 sm:pt-8 pb-20 rounded-2xl bg-white '>
       {/* heading */}
       <div className='flex justify-between mb-3 '>
-        <div className='flex gap-1.5 sm:gap-2 items-center   gradient-border_b w-[60%] pb-2  '>
+
+        <div className="flex justify-between items-center  gap-1 gradient-border_b mb-4 sm:mb-0 pb-3  ">
           <Image
             src="/images/directory/icon.png"
-            alt='a1'
-            width={40}
-            height={40}
-            className="object-contain hidden sm:flex"
+            alt="Book Icon"
+            width={60}
+            height={60}
+            className=""
           />
-          <Image
-            src="/images/directory/icon.png"
-            alt='a1'
-            width={30}
-            height={30}
-            className="object-contain sm:hidden"
-          />
-          <h3 className='text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]'>
-            Directory
-          </h3>
+
+          <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+            <p> Directory</p>
+            {/* <p>{donation_title_2?.value}</p> */}
+            <p>ディレクトリ</p>
+
+          </div>
         </div>
+
         {/* arabic text */}
         <div className='flex '>
           <Image

@@ -33,7 +33,7 @@ export default async function PrayerTimes() {
   const wakt_end = prayer_time?.custom_information.find((item) => item.label === "wakt_end")
   const prayer_times_title_2 = prayer_time?.custom_information.find((item) => item.label === "prayer_times_title_2")
 
-
+// console.log("prayer_times_title_2",prayer_time?.custom_information)
   // console.log("prayer times",prayer_times_title_2)
 
 
@@ -61,13 +61,13 @@ export default async function PrayerTimes() {
       <p className="text-sm mb-2.5 text-center sm:text-start ml-1">{prayer_time?.short_description}</p>
 
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
-        <div className="flex justify-between  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
 
+        <div className="flex justify-between items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
           <Image
             src="/images/prayertimes/icon2.png"
             alt="Book Icon"
-            width={60}
-            height={70}
+            width={55}
+            height={55}
             className=""
           />
 
@@ -180,12 +180,13 @@ export default async function PrayerTimes() {
 
 
 
-      {/* bottom note */}
+     
+      {/* Mobile Cards */}
+      <PrayerTimesMobile prayerTimes={prayerTimes} prayer_time={prayer_time} />
+       {/* bottom note */}
       <p className="mt-4 text-sm  text-[#FF0000]">
         {prayer_time?.description}
       </p>
-      {/* Mobile Cards */}
-      <PrayerTimesMobile prayerTimes={prayerTimes} prayer_time={prayer_time} />
     </div>
   );
 }

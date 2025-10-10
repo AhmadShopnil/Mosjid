@@ -16,9 +16,9 @@ export default async function IslamicBlogEvents() {
   const image = getImageUrl(blog_events_ExtraData?.image_media)
 
   const blogsSectionTitle = blog_events_ExtraData?.custom_information.find((item) => item.label === "top_blogs")
-    const eventsSectionTitle = blog_events_ExtraData?.custom_information.find((item) => item.label === "upcoming_events")
-
-// console.log("title", blogsSectionTitle)
+  const eventsSectionTitle = blog_events_ExtraData?.custom_information.find((item) => item.label === "upcoming_events")
+const blog_events_title_2 = blog_events_ExtraData?.custom_information.find((item) => item.label === "blog_events_title_2")
+  // console.log("title", blogsSectionTitle)
 
 
   return (
@@ -37,18 +37,29 @@ export default async function IslamicBlogEvents() {
           {/* heading */}
           <div className='flex flex-col sm:flex-row gap-4 items-center  sm:justify-between mb-2 '>
             <div className='flex gap-2 items-center justify-center sm:justify-start    w-full  sm:w-[60%]    '>
-           <div className='flex gap-2 items-center gradient-border_b pb-4'>
-               <Image
-                src="/images/blogEvents/icon.png"
-                alt='a1'
-                width={40}
-                height={40}
-                className=' '
-              />
-              <h3 className='text-2xl sm:text-2xl md:text-3xl font-bold text-[#00401A] '>
-                {blog_events_ExtraData?.sub_title}
-              </h3>
-           </div>
+
+              <div className="flex justify-between items-center gap-2.5 gradient-border_b mb-4 sm:mb-0 pb-3  ">
+                <Image
+                  src="/images/blogEvents/icon2.png"
+                  alt='blogEvents'
+                  width={55}
+                  height={55}
+                  className=""
+                />
+
+
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+                  <p><span className="text-[#F7BA2A]">Islamic Blogs</span>  & Events </p>
+                  {/* <p>{blog_events_ExtraData?.sub_title} </p> */}
+                  <p>{blog_events_title_2?.value}</p>
+
+                </div>
+              </div>
+
+
+
+
+            
             </div>
             {/* arabic text */}
             <div>

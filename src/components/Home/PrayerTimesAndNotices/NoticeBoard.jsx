@@ -42,15 +42,12 @@ export default async function NoticeBoard() {
 
         <div className="flex items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3 ">
 
-
           <Image
             src="/images/prayertimes/noticeicon2.png"
             alt="Book Icon"
             width={55}
             height={73}
           />
-
-
 
           <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
             <p><span >{heading_part_1} </span>
@@ -84,7 +81,7 @@ export default async function NoticeBoard() {
           >
 
             {/* Date Section */}
-            <div className="w-18 text-center bg-gray-100 rounded-md pt-2 leading-5">
+            <div className="w-[100px]  md:w-[130px]  text-center bg-gray-100 rounded-md pt-2 leading-5">
               <p className="text-3xl font-bold text-[#00401A] leading-6">
 
                 {getDay_Month_Year(notice?.created_at, "day")}
@@ -93,9 +90,13 @@ export default async function NoticeBoard() {
               <p className="text-sm text-[#00401A]"> {getDay_Month_Year(notice?.created_at, "year")}</p>
             </div>
 
+       
+
+
             {/* Notice Text */}
-            <div className="flex flex-col justify-between w-[412px] ">
-              <p className="text-[#00401A] text-sm">{notice?.sub_title.slice(0,120)}</p>
+            <div className="flex flex-col justify-between  ">
+              <p className="sm:hidden text-[#00401A] text-sm">{notice?.sub_title.slice(0, 40)}</p>
+              <p className="hidden sm:block text-[#00401A] text-sm">{notice?.sub_title.slice(0,120)}</p>
               <Link
                 href={`/notice`}
                 className="text-sm font-bold text-[#001609] flex gap-2 items-center"

@@ -54,7 +54,25 @@ export default function IslamicBooksSlider({books}) {
           {/* Top Section */}
           <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
             <div>
-              <div className="flex items-center gap-2 sm:gap-3 gradient-border_b pb-3 mb-4 sm:mb-0">
+
+
+    <div className="flex justify-between items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
+          <Image
+            src="/images/isamicBooks/bookIcon.png"
+            alt="Book Icon"
+            width={55}
+            height={55}
+            className=""
+          />
+
+          <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+            <p><span className="text-[#F7BA2A]">Islamic</span> Books </p>
+            <p>イスラム教の書籍</p>
+
+          </div>
+        </div>
+
+              {/* <div className="flex items-center gap-2 sm:gap-3 gradient-border_b pb-3 mb-4 sm:mb-0">
                 <Image
                   src="/images/isamicBooks/bookIcon.png"
                   alt="Book Icon"
@@ -65,7 +83,7 @@ export default function IslamicBooksSlider({books}) {
                   <span className="text-[#F7BA2A]">Islamic</span>{" "}
                   <span className="text-green-700">Books</span>
                 </h2>
-              </div>
+              </div> */}
             
             </div>
 
