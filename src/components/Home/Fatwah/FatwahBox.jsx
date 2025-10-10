@@ -5,7 +5,7 @@ import { getFatwa, getPage, getSettings } from '@/helper/actions';
 import { getMetaValueByMetaName } from '@/helper/metaHelpers';
 import Link from 'next/link';
 import { getImageUrl } from '@/helper/getImageUrl';
-
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 
 export default async function FatwahBox() {
@@ -18,14 +18,14 @@ export default async function FatwahBox() {
   const homePage = await getPage("home-sections-heading-management")
   const sections = homePage?.sections_on_api;
   const fatwah_ExtraData = sections.find((s) => s.title_slug === "fatwah");
-  const image = getImageUrl(fatwah_ExtraData?.image_media) 
-
+  const image = getImageUrl(fatwah_ExtraData?.image_media)
+ const fatwah_title_2 = fatwah_ExtraData?.custom_information.find((item) => item.label === "fatwah_title_2")
   return (
 
     <div className="  px-4 py-10 relative">
 
       {/* Top Section - Logo & Arabic Title */}
-      <div className="max-w-6xl   mx-auto flex
+      <div className="max-w-7xl   mx-auto flex
          justify-between items-end mb-6">
         {/* Logo */}
         <div>
@@ -83,22 +83,9 @@ export default async function FatwahBox() {
       </div>
 
       {/* Fatwah Content Box */}
-      <div className="max-w-6xl  mx-auto relative gradient-bg-fatwah 
+      <div className="max-w-7xl  mx-auto relative gradient-bg-fatwah 
         rounded-2xl shadow-lg overflow-hidden p-4 md:p-12"
-        // style={{
-        //   background: `
-        //     linear-gradient(to right, 
-        //       rgba(255,255,255,0) 0%,   /* top-left start */
-        //       rgba(244,231,203,1) 100%  /* top-right */
-        //     ),
-        //     linear-gradient(to top, 
-        //       rgba(208,255,228,1) 0%,   /* bottom-left */
-        //       rgba(255,255,255,1) 100%  /* bottom-right */
-        //     )
-        //   `,
-        //   backgroundBlendMode: "screen",
-        // }}
- 
+
       >
         {/* Mosque Image Positioned at Bottom Right */}
         <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[400px]">
@@ -115,17 +102,23 @@ export default async function FatwahBox() {
         <div className="relative  w-full lg:w-[70%] z-10 items-center">
           {/* heading */}
           <div className='flex justify-between mb-6 '>
-            <div className='flex gap-2 items-center   gradient-border_b  pb-2  '>
+
+            <div className="flex justify-between  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3   ">
+
               <Image
                 src="/images/fatwah/pen.png"
-                alt='a1'
-                width={40}
-                height={40}
+                alt="Book Icon"
+                width={60}
+                height={70}
+                className="mb-2"
               />
-              <h3 className='text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]'>
-                {fatwah_ExtraData?.sub_title}
-              </h3>
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+                <p> {fatwah_ExtraData?.sub_title} </p>
+                <p>{fatwah_title_2?.value}</p>
+
+              </div>
             </div>
+       
             {/* arabic text */}
             <div className="flex gap-4">
               <Image
@@ -135,7 +128,7 @@ export default async function FatwahBox() {
                 height={50}
                 className='hidden sm:flex'
               />
-          
+
               <div className=' my-auto'>
                 <button className="px-5 sm:px-6 py-2.5  text-sm sm:text-base
                 font-bold text-white border border-[#00401A] rounded-full bg-[#00401A]
@@ -149,11 +142,11 @@ export default async function FatwahBox() {
           </div>
           {/* List */}
           <ul className="space-y-4">
-            {fatwahs.slice(0,6).map((item) => (
+            {fatwahs.slice(0, 6).map((item) => (
               <li
                 key={item.id}
                 className="flex justify-between items-center border bg-white
-                   border-[#D9E2DD] p-1.5 md:p-2 rounded-full relative z-10"
+                   border-[#D9E2DD] p-1.5  rounded-full relative z-10"
               >
                 {/* Left Content */}
                 <div className="flex items-center gap-2 sm:gap-4">
@@ -164,8 +157,8 @@ export default async function FatwahBox() {
                     <Image
                       src="/images/fatwah/pen.png"
                       alt="icon"
-                      width={50}
-                      height={50}
+                      width={45}
+                      height={45}
                       className='hidden sm:flex'
                     />
                     <Image
@@ -183,15 +176,17 @@ export default async function FatwahBox() {
                     </p>
                     <Link
                       href="/"
-                      className="text-[#00401A] font-bold text-xs md:text-sm hover:text-[#F7BA2A]"
+                      className="text-[#00401A] font-bold text-xs md:text-sm hover:text-[#F7BA2A] 
+                      flex gap-1 items-center "
                     >
-                      {read_more} →
+                      {read_more} 
+                     <span className='mt-0.5'><FaLongArrowAltRight /></span>
                     </Link>
                   </div>
                 </div>
 
                 {/* Download Button */}
-                <button className="flex items-center gap-2 px-4 md:px-5 py-2.5 cursor-pointer gradient-border3 
+                <button className="flex items-center gap-2 px-4 md:px-5 py-3 cursor-pointer gradient-border3 
                   rounded-[100px] text-[#00401A] font-bold text-xs sm:text-sm md:text-lg ">
                   {download}
                   <Download className="w-4 h-4" />

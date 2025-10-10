@@ -32,10 +32,10 @@ export default function DictionarySection() {
   return (
     <div
       id="dictionary"
-      className="max-w-6xl mx-auto px-4 pt-12  ">
+      className="max-w-7xl mx-auto px-4 pt-12  ">
       <div className="bg-white rounded-[20px] gradient-border
       px-4 py-16  sm:p-14 relative">
-        
+
         <div className="absolute top-[1px] right-[0px]">
           <Image
             src="/images/dictionary/topImage.png"
@@ -48,17 +48,28 @@ export default function DictionarySection() {
 
         {/* heading */}
         <div className='flex justify-between mb-2  items-center'>
-          <div className='flex gap-1 sm:gap-2 items-center   gradient-border_b w-[60%] pb-2  '>
+
+          <div className="flex justify-between  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
+
             <Image
               src="/images/dictionary/icon.png"
-              alt='a1'
-              width={40}
-              height={40}
+              alt="Book Icon"
+              width={60}
+              height={70}
+              className=""
             />
-            <h3 className='text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]'>
-              Dictionary
-            </h3>
+
+
+
+
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+              <p> Dictionary </p>
+              <p>辞書</p>
+
+            </div>
           </div>
+
+
           {/* arabic text */}
           <div>
             <Image
@@ -85,7 +96,7 @@ export default function DictionarySection() {
               key={language?.title}
               onClick={() => setSelectedLanguage(language?.title)}
               className={`px-4 flex gap-1 py-2 rounded-full text-base font-bold  transition-colors ${selectedLanguage === language?.title ? "bg-[#00401A] text-white" :
-                  "bg-white text-[#00401A] hover:bg-gray-300 border border-[#00401a51]"
+                "bg-white text-[#00401A] hover:bg-gray-300 border border-[#00401a51]"
                 }`}
             >
 

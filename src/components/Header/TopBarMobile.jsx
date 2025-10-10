@@ -20,7 +20,7 @@ export default function TopbarMobile({ settings }) {
   return (
    
       <Container>
-        <div className="flex flex-col items-center gap-2">
+        <div className="flex flex-col  gap-2">
 
           {/* 🌍 Language Selector */}
           {/* <div className="w-full">
@@ -28,10 +28,10 @@ export default function TopbarMobile({ settings }) {
           </div> */}
 
           {/* ✉️ Contact Info */}
-          <div className="flex flex-col gap-2 w-full text-center">
+          <div className="flex flex-col gap-2 w-full ">
             {/* Email */}
             {company_email && (
-              <div className="flex items-center justify-center gap-2">
+              <div className="flex items-center  gap-2">
                 <div className="flex items-center justify-center w-8 h-8 bg-green-100 rounded-full">
                   <TbMailFilled className="text-lg text-[#00401A]" />
                 </div>
@@ -43,7 +43,7 @@ export default function TopbarMobile({ settings }) {
 
             {/* Phone */}
             {phone && (
-              <div className="flex items-center justify-center gap-2">
+              <div className="flex items-center  gap-2">
                 <div className="flex items-center justify-center w-8 h-8 bg-green-100 rounded-full">
                   <FaPhoneVolume className="text-lg text-[#00401A]" />
                 </div>
@@ -55,7 +55,7 @@ export default function TopbarMobile({ settings }) {
           </div>
 
           {/* 🌐 Social Links */}
-          <div className="flex gap-5 items-center justify-center mt-2">
+          <div className="flex gap-5 items-center ml-1  mt-2">
             <Link
               href={facebookLink}
               target="_blank"

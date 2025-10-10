@@ -9,13 +9,13 @@ export default function PrayerTimesAndNotices() {
     <div
     id='prayer-times'
     >
-    <Container className=" flex flex-col lg:flex-row w-full gap-6 py-14   ">
+    <Container className=" flex flex-col xl:flex-row w-full gap-6 py-14   ">
             <div 
             
-            className="w-full lg:w-[62%]">
+            className="w-full xl:w-[62%]">
               <PrayerTimes />
             </div>
-          <div className="w-full lg:w-[38%]">
+          <div className="w-full xl:w-[38%]">
               <NoticeBoard />
           </div>
           </Container>

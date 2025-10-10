@@ -14,43 +14,50 @@ function MakeDonation({ donationMethods, make_your_donation }) {
   const heading_part_2 = splitBySpace(make_your_donation?.sub_title)[1]
   const image_arabic = getImageUrl(make_your_donation?.image_media);
 
+  // const donation_title_2 = make_your_donation?.custom_information.find((item) => item.label === "donation_title_2")
+  // console.log("make_your_donation",make_your_donation?.custom_information)
+
   return (
     <div className='gradient-border bg-white  px-5 sm:px-8 pt-5 sm:pt-8 pb-20p-4 rounded-2xl'>
 
       {/* heading */}
       <div className='flex justify-between mb-3 '>
+        <div className="flex justify-between items-center  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
+          <Image
+            src="/images/donation/icon.png"
+            alt="Book Icon"
+            width={60}
+            height={70}
+            className=""
+          />
 
-        <div className='flex gap-1.5 sm:gap-2 items-center   gradient-border_b w-[90%] sm:w-[60% pb-2  '>
-          <Image
-            src="/images/directory/icon.png"
-            alt='a1'
-            width={40}
-            height={40}
-            className="object-contain hidden sm:flex"
-          />
-          <Image
-            src="/images/directory/icon.png"
-            alt='a1'
-            width={40}
-            height={30}
-            className="object-contain sm:hidden"
-          />
-          <h3 className='text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]'>
-            <span className='text-[#F7BA2A]'>{heading_part_1}</span> {heading_part_2}
-          </h3>
+          <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+            <p><span className="text-[#F7BA2A]">{heading_part_1}</span> {heading_part_2} </p>
+            {/* <p>{donation_title_2?.value}</p> */}
+            <p>寄付をする</p>
+
+          </div>
         </div>
+
+
         {/* arabic text */}
-        <div className='flex'>
+        <div className='flex gap-3'>
           <Image
             src={image_arabic}
             // src="/images/directory/a1.png"
             alt='a1'
-            width={300}
+            width={60}
             height={60}
             className="object-contain hidden sm:flex"
           />
 
+          <div className="flex items-center gap-3 sm:gap-4">
 
+          <button className="border border-[#00401A] text-[#001609] hover:bg-[#00401A] hover:text-white transition-colors duration-400
+               font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer">
+           Donate Now
+          </button>
+        </div>
         </div>
       </div>
 
@@ -79,22 +86,7 @@ function MakeDonation({ donationMethods, make_your_donation }) {
         <h2 className='text-xl font-bold text-[#00401A] gradient-border_b pb-2'>Religious Corporation Osaka Masjid</h2>
         <BankInfo />
       </div>
-      {/* <div>
-       
-        <div className=" p-6   ">
-          <h4 className="text-xl font-bold mb-4 text-[#00401A]">
-           
-          </h4>
-          <div
-            className="text-[#333333] text-sm"
-            dangerouslySetInnerHTML={{
-              __html: activeTab?.description,
-            }}
-          />
 
-        </div>
-
-      </div> */}
 
     </div>
   )
