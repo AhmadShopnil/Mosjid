@@ -143,12 +143,45 @@ body {
 }
 
 
-.gradient-bg-quicklinks {
+/* .gradient-bg-quicklinks {
   background: #51FA06;
-background: linear-gradient(147deg, rgba(81, 250, 6, 1) 0%, rgba(0, 119, 36, 1) 100%);
-  /* background: #51FA06;
-  background: linear-gradient(170deg, rgba(81, 250, 6, 1) 0%, rgba(0, 119, 36, 1) 100%); */
+  background: linear-gradient(147deg, rgba(81, 250, 6, 1) 0%, rgba(0, 119, 36, 1) 100%);
+
+} */
+
+
+
+
+
+.quicklinks {
+ background: white;
+  height: 200px;
+  width: 200px;
+  position: relative;
+  border-radius: 30px;
 }
+.quicklinks:hover{
+ background: #51FA06;
+  background: linear-gradient(147deg, rgba(81, 250, 6, 1) 0%, rgba(0, 119, 36, 1) 100%);
+}
+
+.quicklinks::before {
+  content: '';
+  background: linear-gradient(to right, #3096A3, #53FF00);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: -1px;
+  z-index: -1;
+  border-radius: 30px;
+
+}
+
+
+
+
 
 
 .gradient-bg-fatwah {
@@ -158,10 +191,8 @@ background: linear-gradient(147deg, rgba(81, 250, 6, 1) 0%, rgba(0, 119, 36, 1) 
 
 .gradient-bg-headline {
 
-
-background: #64A445;
-background: linear-gradient(180deg, rgba(100, 164, 69, 1) 0%, rgba(48, 150, 163, 1) 100%);
-
+  background: #64A445;
+  background: linear-gradient(180deg, rgba(100, 164, 69, 1) 0%, rgba(48, 150, 163, 1) 100%);
 
 }
 
@@ -171,7 +202,6 @@ background: linear-gradient(180deg, rgba(100, 164, 69, 1) 0%, rgba(48, 150, 163,
 .gradient-border-bottom {
   position: relative;
 }
-
 .gradient-border-bottom::after {
   content: "";
   position: absolute;
@@ -188,14 +218,11 @@ background: linear-gradient(180deg, rgba(100, 164, 69, 1) 0%, rgba(48, 150, 163,
 
 
 
-.gradient-border-quicklinks {
-
-    border-radius: 30px; /* outer radius */
-  padding: 1px; /* border thickness */
+/* .gradient-border-quicklinks {
+  border-radius: 30px;
+  padding: 1px;
   background: linear-gradient(to right, #3096A3, #53FF00);
- 
-
-}
+} */
 
 
 

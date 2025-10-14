@@ -15,7 +15,19 @@ const quickLinks = [
 
 export default function Directory() {
   return (
-    <div className='gradient-border h-full  px-5 sm:px-8 pt-5 sm:pt-8 pb-20 rounded-2xl bg-white '>
+    <div className='gradient-border h-full  px-5 sm:px-8 pt-5 sm:pt-8 pb-20 rounded-2xl bg-white relative'>
+   <div
+        className="absolute right-0 top-0"
+      >
+        <Image
+          src="/images/directory/Directory bg.png"
+          alt='img'
+          width={510}
+          height={200}
+          className="object-contain transition-all duration-300"
+        />
+      </div>
+
       {/* heading */}
       <div className='flex justify-between mb-3 '>
 
@@ -39,7 +51,7 @@ export default function Directory() {
         {/* arabic text */}
         <div className='flex '>
           <Image
-            src="/images/directory/a1.png"
+            src="/images/directory/a2.png"
             alt='a1'
             width={300}
             height={60}
@@ -47,7 +59,7 @@ export default function Directory() {
           />
 
           <Image
-            src="/images/directory/a1.png"
+            src="/images/directory/a2.png"
             alt="Arabic text"
             width={150}
             height={40}
@@ -57,20 +69,20 @@ export default function Directory() {
       </div>
       <p className='text-sm '>Where Worship, Knowledge, and Remembrance Unite</p>
       {/* inputs */}
-      <div className='my-6'>
+      <div className='mt-6'>
         <SearchSection />
       </div>
 
       {/* Links with icons */}
 
-      <div className="mt-8 md:mt-14 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-4 2xl:grid-cols-5 gap-2 ">
+      <div className="mt-8 md:mt-11 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-4 2xl:grid-cols-5 gap-2.5 ">
 
 
         {quickLinks.map((link, i) => (
           <div
             key={i}
-            className="gradient-border2 flex flex-col items-center justify-center
-             bg-white  rounded-[20px] px-3 py-6  hover:bg-teal-50
+            className="border border-gray-200 flex flex-col items-center justify-center
+             bg-white  rounded-[20px] px-3 py-3  hover:bg-teal-50
               transition cursor-pointer text-center"
           >
 
@@ -83,7 +95,7 @@ export default function Directory() {
                 height={55}
               />
             </div>
-            <p className="mt-2 text-sm text-gray-700">{link.name}</p>
+            <p className="mt-2 text-base font-bold text-gray-700">{link.name}</p>
           </div>
         ))}
       </div>

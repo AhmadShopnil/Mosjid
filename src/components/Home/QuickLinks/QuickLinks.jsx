@@ -3,10 +3,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Container from "@/components/Shared/Container";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
 
 const quickLinks = [
   {
@@ -69,6 +65,20 @@ const quickLinks = [
 
 export default function QuickLinks() {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const visibleCount = 5; // how many cards visible at once
+  const maxIndex = quickLinks.length - visibleCount;
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev < maxIndex ? prev + 1 : 0));
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) =>
+      prev > 0 ? prev - 1 : maxIndex
+    );
+  };
 
   const handleScroll = (id) => {
     const section = document.getElementById(id);
@@ -76,91 +86,94 @@ export default function QuickLinks() {
   };
 
   return (
-    <section className="bg-[#E5F5DE] py-8 relative ">
-
-      <div
-        className="absolute right-0 bottom-0"
-      >
-        <Image
-          src="/images/QuickLinks/img1.png"
-          alt='img'
-          width={210}
-          height={100}
-          className="object-contain transition-all duration-300"
-        />
-      </div>
+    <section className="bg-[#E5F5DE] py-10 relative overflow-hidden">
       <Container>
-        {/* Custom Navigation Buttons */}
-        <div className="absolute left-18 top-1/2 z-10 transform -translate-y-1/2">
-          <button
-            className="swiper-button-prev-custom w-11 h-11 bg-white shadow-md rounded-full flex items-center justify-center
-             text-green-800 hover:text-amber-300 text-2xl  transition duration-150 cursor-pointer"
-            aria-label="Previous"
-          >
-            <span className="">‹</span>
-          </button>
-        </div>
-        <div className="absolute right-20 top-1/2 z-10 transform -translate-y-1/2">
-          <button
-            className="swiper-button-next-custom w-11 h-11 bg-white shadow-md rounded-full flex items-center justify-center
-              text-green-800 hover:text-amber-300 text-2xl transition duration-150 cursor-pointer"
-            aria-label="Next"
-          >
-            <span className="">›</span>
-          </button>
-        </div>
-
-        {/* Swiper Section */}
-        <Swiper
-          modules={[Navigation]}
-          navigation={{
-            prevEl: ".swiper-button-prev-custom",
-            nextEl: ".swiper-button-next-custom",
-          }}
-          spaceBetween={20}
-          slidesPerView={2}
-          breakpoints={{
-            640: { slidesPerView: 3 },
-            768: { slidesPerView: 4 },
-            1024: { slidesPerView: 5 },
-            1280: { slidesPerView: 6 },
-            1536: { slidesPerView: 7 },
-          }}
-          className="px-10"
+        {/* Buttons */}
+        <button
+          onClick={handlePrev}
+          className="absolute left-8 top-1/2 z-10 -translate-y-1/2 w-11 h-11 bg-white rounded-full shadow-md flex items-center justify-center text-green-800 hover:text-amber-400 text-3xl transition"
         >
-          {quickLinks.map((link, i) => {
-            const isHovered = hoveredCard === i;
-            return (
-              <SwiperSlide key={i} className="flex justify-center ">
+          ‹
+        </button>
+        <button
+          onClick={handleNext}
+          className="absolute right-8 top-1/2 z-10 -translate-y-1/2 w-11 h-11 bg-white rounded-full shadow-md flex items-center justify-center text-green-800 hover:text-amber-400 text-3xl transition"
+        >
+          ›
+        </button>
+
+        {/* Slider Container */}
+        <div className="overflow-hidden w-full">
+          <div
+            className="flex gap-6 transition-transform duration-500 ease-in-out"
+            style={{
+              transform: `translateX(-${currentIndex * (200 + 24)}px)`, // card width + gap
+            }}
+          >
+            {quickLinks.map((link, i) => {
+              const isHovered = hoveredCard === i;
+              return (
                 <div
-                  className={`  flex flex-col w-[200px] h-[200px] items-center justify-center rounded-[30px] py-3.5 cursor-pointer text-center transition-all duration-200 ${isHovered
-                      ? "gradient-bg-quicklinks text-white shadow-lg"
-                      : "bg-white text-[#00401A] shadow"
-                    }`}
+                  key={i}
+                  className={`quicklinks relative flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-300 ${
+                    isHovered ? "text-white" : "text-[#00401A]"
+                  }`}
                   onMouseEnter={() => setHoveredCard(i)}
                   onMouseLeave={() => setHoveredCard(null)}
                   onClick={() => handleScroll(link.targetId)}
                 >
-                  {/* Icon */}
-                  <div className="w-[116px] h-[90px] flex items-center justify-center">
-                    <Image
-                      src={isHovered ? link.activeIcon : link.icon}
-                      alt={link.name}
-                      width={130}
-                      height={90}
-                      className="object-contain transition-all duration-300"
-                    />
+                  <div className="relative z-10 flex flex-col items-center justify-center w-full h-full rounded-[30px]">
+                    <div className="w-[116px] h-[90px] flex items-center justify-center">
+                      <Image
+                        src={isHovered ? link.activeIcon : link.icon}
+                        alt={link.name}
+                        width={130}
+                        height={90}
+                        className="object-contain transition-all duration-300"
+                      />
+                    </div>
+                    <p className="text-lg font-bold">{link.name}</p>
+                    <p className="text-lg font-bold">{link.jp}</p>
                   </div>
-
-                  {/* Title */}
-                  <p className="text-lg font-bold">{link.name}</p>
-                  <p className="text-lg font-bold">{link.jp}</p>
                 </div>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+              );
+            })}
+          </div>
+        </div>
       </Container>
+
+      {/* ✅ Gradient border CSS */}
+      <style jsx>{`
+        .quicklinks {
+          width: 200px;
+          height: 200px;
+          border-radius: 30px;
+          position: relative;
+          overflow: hidden;
+          background: white;
+          z-index: 0;
+          flex-shrink: 0;
+        }
+
+        .quicklinks::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          padding: 2px; /* border thickness */
+          border-radius: 30px;
+          background: linear-gradient(to right, #3096a3, #53ff00);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          z-index: 1;
+        }
+
+        .quicklinks:hover {
+          background: linear-gradient(147deg, #51fa06 0%, #007724 100%);
+          color: white;
+        }
+      `}</style>
     </section>
   );
 }

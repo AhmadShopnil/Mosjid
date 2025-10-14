@@ -8,6 +8,7 @@ import { splitBySpace } from "@/helper/splitBySpace";
 import { getImageUrl } from "@/helper/getImageUrl";
 import PrayerTimeTableRow from "./PrayerTimeTableRow";
 import PrayerTimesMobile from "./PrayerTimesMobile";
+import ProhibitedTimeTableRow from "./ProhibitedTimeTableRow";
 
 
 
@@ -114,10 +115,19 @@ export default async function PrayerTimes() {
           <table className="w-full text-sm hidden sm:table ">
             <thead>
               <tr className="bg-[#52B920] text-white  text-bold text-lg">
-                <th className="p-3 text-left ">{name_of_salat?.value}</th>
-                <th className="p-3 ">{jamat_start?.value}</th>
-                <th className="p-3">{wakt_start?.value}</th>
-                <th className="p-3">{wakt_end?.value}</th>
+                <th className="p-3 text-left flex flex-col "><span>
+                  {name_of_salat?.value}
+                </span>
+                  <span className="text-[#C9E9BA]"> 名前</span>
+                </th>
+                <th className="p-3 "><span>
+                  {jamat_start?.value}</span> <br />
+                  <span className=" text-[#C9E9BA]">ジャマットスタート</span>
+                  </th>
+                <th className="p-3">{wakt_start?.value} <br /> <span className="text-[#C9E9BA]">ワクトスタート </span></th>
+                <th className="p-3">{wakt_end?.value} <br /> 
+                <span className="text-[#C9E9BA]" >ワクトエンド</span>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -134,18 +144,31 @@ export default async function PrayerTimes() {
         <div className="overflow-hidden rounded-[20px] border-b border-gray-200 ">
           <table className="w-full text-sm hidden sm:table ">
             <thead>
-              <tr className="bg-[#EB5757] text-white  text-bold text-lg">
-                <th className="p-3 text-left">{name_of_salat?.value}</th>
-                <th className="p-3">{jamat_start?.value}</th>
-                <th className="p-3">Prohibited Time Start</th>
-                <th className="p-3">Prohibited Time End</th>
+              <tr className="bg-[#FED6D6] text-[#FF0000]  text-bold text-lg">
+                   <th className="p-3 text-left flex flex-col "><span>
+                  {name_of_salat?.value}
+                </span>
+                  <span className=""> 名前</span>
+                </th>
+                  {/* <th className="p-3 "><span>
+                  {jamat_start?.value}</span> <br />
+                  <span className=" text-gray-300">ジャマットスタート</span>
+                  </th> */}
+                <th className="p-3">Prohibited Time Start 
+                  <br />
+                  <span className=" ">禁止時間開始</span>
+                </th>
+                <th className="p-3">Prohibited Time End
+                  <br />
+                  <span className=" ">禁止時間終了</span>
+                </th>
               </tr>
             </thead>
             <tbody>
               {prayerTimes.slice(0, 4).map((prayer, index) => (
 
 
-                index != 2 && <PrayerTimeTableRow
+                index != 2 && <ProhibitedTimeTableRow
                   key={index}
                   prayer={prayer} />
 
