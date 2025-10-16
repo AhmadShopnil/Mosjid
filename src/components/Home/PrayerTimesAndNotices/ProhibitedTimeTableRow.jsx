@@ -2,7 +2,7 @@ import { getMetaValueFromExtraFields } from '@/helper/metaHelpers'
 import Image from 'next/image'
 import React from 'react'
 
-export default function PrayerTimeTableRow({ prayer }) {
+export default function ProhibitedTimeTableRow({ prayer }) {
 
 
     const prayerTime = getMetaValueFromExtraFields(prayer, "time")
@@ -30,7 +30,7 @@ export default function PrayerTimeTableRow({ prayer }) {
                     >ファジル
                     </span></span>
             </td>
-            <td className="p-3 text-[#56410F] text-base text-center">{prayerTime}</td>
+            {/* <td className="p-3 text-[#56410F] text-base text-center">{prayerTime}</td> */}
 
 
             <td className="px-3 text-[#3E8B18] text-base text-center ">

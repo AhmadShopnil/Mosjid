@@ -90,14 +90,16 @@ export default function FooterSections({ settings }) {
        gap-10 xl:gap-8">
         {/* Logo + About */}
         <div>
-          <div className="mb-4 gradient-border_b pb-2">
+          <div className="mb-4 gradient-border_b pb-2 flex gap-3 items-center">
             <Image
               src={footer_logo_url}
-              // src="/images/footer/footer logo.png"
+              // src="/images/logo.png"
               alt="Osaka Masjid Logo"
-              width={280}
-              height={60}
+              width={70}
+              height={75}
+              className="w-[61px] h-[76px]"
             />
+            <span className="text-[#F7BA2A] font-bold text-3xl">OSAKA MASJID</span>
           </div>
           <p className="text-[#333333] text-base">
             {footer_content}

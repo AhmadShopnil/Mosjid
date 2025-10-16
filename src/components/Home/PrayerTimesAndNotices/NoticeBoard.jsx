@@ -32,7 +32,9 @@ export default async function NoticeBoard() {
     <div
       className=" p-5 sm:p-8 bg-cover bg-center h-full gradient-border"
       style={{
-        backgroundImage: "url('/images/home/noticeBg.png')",
+          backgroundImage: "url('/images/home/noticeBg.png')",
+        // backgroundImage: "url('/images/home/noticeBg.png')",
+        
       }}
     >
       {/* heading */}
@@ -81,7 +83,7 @@ export default async function NoticeBoard() {
           >
 
             {/* Date Section */}
-            <div className="w-[100px]  md:w-[130px]  text-center bg-gray-100 rounded-md pt-2 leading-5">
+            <div className="w-[100px]  md:w-[130px]  text-center bg-gray-100 rounded-md pt-3 sm:pt-3 leading-5">
               <p className="text-3xl font-bold text-[#00401A] leading-6">
 
                 {getDay_Month_Year(notice?.created_at, "day")}

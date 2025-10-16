@@ -111,13 +111,14 @@ export default async function DuaSection() {
           </div>
         </div>
         {/* Dua list */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 justify-center items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 justify-center items-center">
           {/* Dua Card  */}
           {duas.map((dua) => (
             <DuaCardNew
               key={dua.id}
               dua={dua}
             />
+            
           ))}
         </div>
       </Container>

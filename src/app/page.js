@@ -34,7 +34,13 @@ export default async function Home() {
        </div>
      </div>
 
+
+     
+
    <PrayerTimesAndNotices/>
+
+
+
 
      <div
      className="hidden lg:block"
