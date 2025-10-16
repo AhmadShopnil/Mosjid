@@ -6,6 +6,8 @@ import Container from "../Shared/Container";
 import { Menu, X } from "lucide-react";
 import TopbarMobile from "./TopBarMobile";
 import Link from "next/link";
+import { getMediaLinkByMetaName } from "@/helper/metaHelpers";
+import { BASE_URL } from "@/helper/baseUrl";
 
 const menuItems = [
   {
@@ -100,6 +102,9 @@ export default function MainMenu({ settings }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = () => setIsOpen(!isOpen);
 
+   const logo_path = getMediaLinkByMetaName(settings, "footer_logo");
+    const logo_url = `${BASE_URL}${logo_path}`;
+
   return (
     <div className="relative bg-[#00401A] text-white py-2 xl:py-0">
       <Container className="flex items-center justify-center relative px-4">
@@ -107,7 +112,7 @@ export default function MainMenu({ settings }) {
         <div className="absolute -top-8 left-4 sm:left-8 z-40">
           <div className="hidden lg:flex bg-white shadow-xl rounded-xl w-[120px] h-[110px] items-center justify-center">
             <Image
-              src="/images/logo.png"
+              src={logo_url}
               alt="Logo"
               width={300}
               height={300}
@@ -116,7 +121,7 @@ export default function MainMenu({ settings }) {
           </div>
           <div className="lg:hidden bg-white shadow-xl rounded-xl w-[100px] h-[100px] flex items-center justify-center">
             <Image
-              src="/images/logo.png"
+             src={logo_url}
               alt="Logo"
               width={80}
               height={80}
@@ -178,7 +183,7 @@ export default function MainMenu({ settings }) {
         <div className="flex justify-between items-center px-5 py-4 border-b border-gray-200 bg-white shadow-sm">
           <div className="flex items-center gap-3">
             <Image
-              src="/images/logo.png"
+              src={logo_url}
               alt="Logo"
               width={40}
               height={40}

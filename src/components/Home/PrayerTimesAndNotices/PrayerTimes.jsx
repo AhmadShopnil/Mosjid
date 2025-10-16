@@ -9,6 +9,7 @@ import { getImageUrl } from "@/helper/getImageUrl";
 import PrayerTimeTableRow from "./PrayerTimeTableRow";
 import PrayerTimesMobile from "./PrayerTimesMobile";
 import ProhibitedTimeTableRow from "./ProhibitedTimeTableRow";
+import ProhibitedTimeMobile from "./ProhibitedTimeMobile";
 
 
 
@@ -34,7 +35,7 @@ export default async function PrayerTimes() {
   const wakt_end = prayer_time?.custom_information.find((item) => item.label === "wakt_end")
   const prayer_times_title_2 = prayer_time?.custom_information.find((item) => item.label === "prayer_times_title_2")
 
-// console.log("prayer_times_title_2",prayer_time?.custom_information)
+  // console.log("prayer_times_title_2",prayer_time?.custom_information)
   // console.log("prayer times",prayer_times_title_2)
 
 
@@ -123,10 +124,10 @@ export default async function PrayerTimes() {
                 <th className="p-3 "><span>
                   {jamat_start?.value}</span> <br />
                   <span className=" text-[#C9E9BA]">ジャマットスタート</span>
-                  </th>
+                </th>
                 <th className="p-3">{wakt_start?.value} <br /> <span className="text-[#C9E9BA]">ワクトスタート </span></th>
-                <th className="p-3">{wakt_end?.value} <br /> 
-                <span className="text-[#C9E9BA]" >ワクトエンド</span>
+                <th className="p-3">{wakt_end?.value} <br />
+                  <span className="text-[#C9E9BA]" >ワクトエンド</span>
                 </th>
               </tr>
             </thead>
@@ -145,16 +146,16 @@ export default async function PrayerTimes() {
           <table className="w-full text-sm hidden sm:table ">
             <thead>
               <tr className="bg-[#FED6D6] text-[#FF0000]  text-bold text-lg">
-                   <th className="p-3 text-left flex flex-col "><span>
+                <th className="p-3 text-left flex flex-col "><span>
                   {name_of_salat?.value}
                 </span>
                   <span className=""> 名前</span>
                 </th>
-                  {/* <th className="p-3 "><span>
+                {/* <th className="p-3 "><span>
                   {jamat_start?.value}</span> <br />
                   <span className=" text-gray-300">ジャマットスタート</span>
                   </th> */}
-                <th className="p-3">Prohibited Time Start 
+                <th className="p-3">Prohibited Time Start
                   <br />
                   <span className=" ">禁止時間開始</span>
                 </th>
@@ -165,8 +166,7 @@ export default async function PrayerTimes() {
               </tr>
             </thead>
             <tbody>
-              {prayerTimes.slice(0, 4).map((prayer, index) => (
-
+              {prayerTimes.slice(0, 3).map((prayer, index) => (
 
                 index != 2 && <ProhibitedTimeTableRow
                   key={index}
@@ -203,10 +203,18 @@ export default async function PrayerTimes() {
 
 
 
-     
+
       {/* Mobile Cards */}
       <PrayerTimesMobile prayerTimes={prayerTimes} prayer_time={prayer_time} />
-       {/* bottom note */}
+
+      <h4 className=" text-2xl text-center mt-5">
+        <span className="text-[#F7BA2A]">Prohibited </span>
+        Time Start
+        <br />
+        <span className=" ">禁止時間開始</span>
+      </h4>
+      <ProhibitedTimeMobile prayerTimes={prayerTimes.slice(0, 4)} prayer_time={prayer_time} />
+      {/* bottom note */}
       <p className="mt-4 text-sm  text-[#FF0000]">
         {prayer_time?.description}
       </p>

@@ -9,7 +9,7 @@ const details=" رَبَّنَا لَا تَجْعَلْنَا مَعَ الْق
   return (
     <div className="max-w-[520px] mx-auto bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
       {/* Header */}
-      <div className="flex justify-between items-center bg-gradient-to-b from-[#EEF8E9] to-[#BAFF98] px-4 py-4 border-b-3 border-[#a35024ab]">
+      <div className="flex justify-between items-center bg-gradient-to-b from-[#EEF8E9] to-[#BAFF98] px-4 py-4 gradient-border-bottom">
         <span className="text-[#00401A] font-bold text-xl sm:text-2xl">
           {dua?.name || "مسجد أوساكا"}
         </span>

@@ -120,7 +120,7 @@ export default function QuickLinks() {
           <div
             className="flex gap-6 transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(-${currentIndex * (200 + 24)}px)`, 
+              transform: `translateX(-${currentIndex * (200 + 24)}px)`, // card width + gap
             }}
           >
             {quickLinks.map((link, i) => {
