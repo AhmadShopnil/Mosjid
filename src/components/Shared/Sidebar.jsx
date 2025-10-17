@@ -108,9 +108,9 @@ export default function Sidebar() {
   ]
 
   return (
-    <div className="w-80 bg-white rounded-[10px] border border-[#C9E9BA] overflow-hidden shadow-sm">
+    <div className=" bg-white rounded-[10px] border border-[#C9E9BA] overflow-hidden shadow-sm">
       {/* Header */}
-      <div className="bg-white px-4 py-3 ">
+      <div className="bg-white p-5  ">
         <h3 className="text-2xl font-bold text-[#00401A] gradient-border_b pb-2">Category/カテゴリ</h3>
       </div>
 

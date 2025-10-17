@@ -1,25 +1,28 @@
-import React from 'react'
+"use client"
+
+import React, { useState } from 'react'
 import Image from "next/image";
 import { Download } from "lucide-react";
-import { getFatwa, getPage, getSettings } from '@/helper/actions';
 import { getMetaValueByMetaName } from '@/helper/metaHelpers';
 import Link from 'next/link';
 import { getImageUrl } from '@/helper/getImageUrl';
 import { FaLongArrowAltRight } from "react-icons/fa";
+import Pagination from '../Shared/Pagination';
 
 
-export default async function FatwaListInner() {
+export default function FatwaListInner({ fatwahs, settings, homePage, title, titleWidth = "w-[420px]" }) {
 
-    const fatwahs = await getFatwa();
-    const settings = await getSettings()
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(5);
     const view_more = getMetaValueByMetaName(settings, "view_more") || "";
     const read_more = getMetaValueByMetaName(settings, "read_more") || "";
     const download = getMetaValueByMetaName(settings, "download") || "";
-    const homePage = await getPage("home-sections-heading-management")
+
     const sections = homePage?.sections_on_api;
     const fatwah_ExtraData = sections.find((s) => s.title_slug === "fatwah");
     const image = getImageUrl(fatwah_ExtraData?.image_media)
     const fatwah_title_2 = fatwah_ExtraData?.custom_information.find((item) => item.label === "fatwah_title_2")
+
     return (
 
         <div
@@ -32,7 +35,7 @@ export default async function FatwaListInner() {
             {/* Content Area */}
             <div className=" w-full bg-[#e9f3e536] rounded-[10px] p-4 md:p-12">
                 <div className='flex justify-between'>
-                    <div className="flex items-center gap-2 gradient-border_b  sm:mb-0 pb-2   ">
+                    <div className="flex items-center ju gap-2 gradient-border_b  sm:mb-0 pb-2   ">
                         <Image
                             src="/images/fatwah/pen.png"
                             alt="Book Icon"
@@ -41,10 +44,7 @@ export default async function FatwaListInner() {
                             className="mb-2"
                         />
                         <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
-                            <p> New Fatwah </p>
-                            {/* <p> {fatwah_ExtraData?.sub_title} </p> */}
-                            {/* <p>{fatwah_title_2?.value}</p> */}
-
+                            <p>{title}</p>
                         </div>
 
                     </div>
@@ -87,8 +87,8 @@ export default async function FatwaListInner() {
                                     />
                                 </div>
                                 <div>
-                                    <p className="text-[#00401A] truncate w-[110px] sm:w-[250px] md:w-[420px] 
-                     text-sm md:text-lg font-bold">
+                                    <p className={`text-[#00401A] truncate w-[110px] sm:w-[250px]  
+                     text-sm md:text-lg font-bold md:${titleWidth}`}>
                                         {item.name}
                                     </p>
                                     <Link
@@ -111,7 +111,15 @@ export default async function FatwaListInner() {
                         </li>
                     ))}
                 </ul>
+                  <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+            />
             </div>
+
+          
+
         </div>
     )
 }
