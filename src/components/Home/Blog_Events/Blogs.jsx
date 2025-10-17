@@ -16,7 +16,7 @@ export default async function Blogs({ blogs, blogsSectionTitle }) {
       {/* heading */}
       <div className='gradient-border_b pb-2 flex justify-between'>
         <h4 className='text-[#00401A] font-bold text-base  ' >
-          {blogsSectionTitle}
+          {/* {blogsSectionTitle} */}
         </h4>
         <Link
           href=''

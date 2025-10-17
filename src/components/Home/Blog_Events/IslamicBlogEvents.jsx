@@ -17,7 +17,7 @@ export default async function IslamicBlogEvents() {
 
   const blogsSectionTitle = blog_events_ExtraData?.custom_information.find((item) => item.label === "top_blogs")
   const eventsSectionTitle = blog_events_ExtraData?.custom_information.find((item) => item.label === "upcoming_events")
-const blog_events_title_2 = blog_events_ExtraData?.custom_information.find((item) => item.label === "blog_events_title_2")
+  const blog_events_title_2 = blog_events_ExtraData?.custom_information.find((item) => item.label === "blog_events_title_2")
   // console.log("title", blogsSectionTitle)
 
 
@@ -54,12 +54,7 @@ const blog_events_title_2 = blog_events_ExtraData?.custom_information.find((item
                   <p>{blog_events_title_2?.value}</p>
 
                 </div>
-              </div>
-
-
-
-
-            
+              </div>      
             </div>
             {/* arabic text */}
             <div>
