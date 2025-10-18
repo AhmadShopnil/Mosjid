@@ -12,7 +12,7 @@ import { BASE_URL } from "@/helper/baseUrl";
 const menuItems = [
   {
     name: "Home",
-    link: "prayer-times",
+    link: "/",
     icon: "/images/QuickLinks/hover/home-05.png",
     activeIcon: "/images/QuickLinks/hover/home-05.png",
   },
@@ -36,14 +36,14 @@ const menuItems = [
   },
   {
     name: "Fatwah",
-    link: "prayer-times",
+    link: "fatwah",
     icon: "/images/QuickLinks/hover/Fatwa 03.png",
     activeIcon: "/images/QuickLinks/normal2/4.png",
   },
 
   {
     name: "Services",
-    link: "prayer-times",
+    link: "services",
     icon: "/images/QuickLinks/hover/prayer times.png",
     activeIcon: "/images/QuickLinks/normal2/5.png",
   },

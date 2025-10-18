@@ -1,5 +1,4 @@
 import AskQuestionSidebar from '@/components/Fatwah/AskQuestionSidebar'
-import FatwaDetailSection from '@/components/Fatwah/FatwaDetailSection'
 import FatwaFinder from '@/components/Fatwah/FatwahFinder'
 import FatwaListInner from '@/components/Fatwah/FatwaListInner'
 import SubmitRequest from '@/components/Fatwah/SubmitRequest'
@@ -33,12 +32,10 @@ export default async function page() {
                 </div>
                 {/* main content */}
                 <div className=' w-full'>
-                    <div>
-                        <FatwaDetailSection />
-                    </div>
+                    <FatwaListInner title="New Fatawa" titleWidth="w-[420px]" fatwahs={fatwahs} settings={settings} homePage={homePage} />
                     <div className='grid grid-cols-2 gap-6  mt-6'>
-                        <FatwaListInner title="Related Fatawa " titleWidth="w-[220px]" fatwahs={fatwahs} settings={settings} homePage={homePage} />
-                        <FatwaListInner title="Related Topics" titleWidth="w-[220px]" fatwahs={fatwahs} settings={settings} homePage={homePage} />
+                        <FatwaListInner title="Selected Fatawa " titleWidth="w-[220px]" fatwahs={fatwahs} settings={settings} homePage={homePage}/>
+                        <FatwaListInner title="Top Rated Fatawa" titleWidth="w-[220px]" fatwahs={fatwahs} settings={settings} homePage={homePage} />
                     </div>
                 </div>
             </Container>

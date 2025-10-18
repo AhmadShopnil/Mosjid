@@ -1,12 +1,11 @@
+import AskQuestionPage from '@/components/Fatwah/AskQuestionPage'
 import AskQuestionSidebar from '@/components/Fatwah/AskQuestionSidebar'
-import FatwaDetailSection from '@/components/Fatwah/FatwaDetailSection'
-import FatwaFinder from '@/components/Fatwah/FatwahFinder'
-import FatwaListInner from '@/components/Fatwah/FatwaListInner'
 import SubmitRequest from '@/components/Fatwah/SubmitRequest'
 import BannerInnerPage from '@/components/Shared/BannerInnerPage'
 import Container from '@/components/Shared/Container'
 import Sidebar from '@/components/Shared/Sidebar'
 import { getFatwa, getPage, getSettings } from '@/helper/actions'
+import Image from 'next/image'
 import React from 'react'
 
 export default async function page() {
@@ -20,8 +19,19 @@ export default async function page() {
             <div>
                 <BannerInnerPage />
             </div>
+            {/* Header */}
             <Container className='mt-10'>
-                <FatwaFinder />
+
+                <div className="bg-[#52B920] h-[85px] text-white px-6 py-4 rounded-lg mt-4 flex justify-between items-center shadow-md">
+                    <h1 className="text-4xl ">イスラム教のファトワ</h1>
+                    <Image
+                        src="/images/fatwah/fatwaharbic_white.png"
+                        alt="Logo"
+                        width={200}
+                        height={60}
+                        className='hidden sm:flex w-[223px] h-[60px]'
+                    />
+                </div>
             </Container>
 
             <Container className='flex gap-6 my-6'>
@@ -34,11 +44,7 @@ export default async function page() {
                 {/* main content */}
                 <div className=' w-full'>
                     <div>
-                        <FatwaDetailSection />
-                    </div>
-                    <div className='grid grid-cols-2 gap-6  mt-6'>
-                        <FatwaListInner title="Related Fatawa " titleWidth="w-[220px]" fatwahs={fatwahs} settings={settings} homePage={homePage} />
-                        <FatwaListInner title="Related Topics" titleWidth="w-[220px]" fatwahs={fatwahs} settings={settings} homePage={homePage} />
+                        <AskQuestionPage />
                     </div>
                 </div>
             </Container>
