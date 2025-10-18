@@ -1,4 +1,4 @@
-import AskQuestion from '@/components/Fatwah/AskQuestion'
+import AskQuestionSidebar from '@/components/Fatwah/AskQuestionSidebar'
 import FatwaFinder from '@/components/Fatwah/FatwahFinder'
 import FatwaListInner from '@/components/Fatwah/FatwaListInner'
 import SubmitRequest from '@/components/Fatwah/SubmitRequest'
@@ -27,7 +27,7 @@ export default async function page() {
                 {/* sidebar */}
                 <div className='w-[400px] space-y-6'>
                     <Sidebar />
-                    <AskQuestion />
+                    <AskQuestionSidebar />
                     <SubmitRequest />
                 </div>
                 {/* main content */}

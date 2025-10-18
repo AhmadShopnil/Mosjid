@@ -11,11 +11,6 @@ export default function SubmitRequest() {
                     <h4 className='text-[#00401A] text-2xl font-bold'>Submit Your Request </h4>
                     <h4 className='text-[#00401A] text-2xl font-bold'>リクエストを送信</h4>
                 </div>
-
-             
-
-       
-
             <div className='min-h-[150px] mt-5 flex flex-col justify-between '>
                 <p className='text-sm text-[#00401A]'>If you have any Query, Please Submit Your Request</p>
                 <Link

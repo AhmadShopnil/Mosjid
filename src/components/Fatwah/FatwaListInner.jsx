@@ -92,7 +92,7 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
                                         {item.name}
                                     </p>
                                     <Link
-                                        href="/"
+                                        href="/fatwah/1"
                                         className="text-[#00401A] font-bold text-xs md:text-sm hover:text-[#F7BA2A] 
                       flex gap-1 items-center "
                                     >
