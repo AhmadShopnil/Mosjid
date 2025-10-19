@@ -27,7 +27,7 @@ export default function Sidebar() {
     {
       id: "worship",
       icon: "/images/fatwah/pen.png",
-      activeIcon: "/images/QuickLinks/hover/1.png",
+      activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
       title: "Worship",
       subtitle: "イバーダ",
       hasSubItems: true,
@@ -36,7 +36,7 @@ export default function Sidebar() {
     {
       id: "lifeMatters",
       icon: "/images/fatwah/pen.png",
-      activeIcon: "/images/QuickLinks/hover/Blog & event-1.png",
+      activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
       title: "Life Matters",
       subtitle: "詳細",
       hasSubItems: true,
@@ -129,7 +129,6 @@ export default function Sidebar() {
       <div className="flex flex-col gap-3 px-4 pb-4">
         {categories.map((category) => {
           const isExpanded = expandedItems[category.id];
-
           return (
             <div key={category.id}>
               {/* Category Item */}
@@ -138,56 +137,28 @@ export default function Sidebar() {
                   category.hasSubItems && toggleExpand(category.id)
                 }
                 className={`group w-full h-[60px] px-4 py-3 flex items-center gap-3 rounded-xl transition-all
-                  ${
-                    isExpanded
-                      ? "gradient-bg-sidebar-item text-white"
-                      : "bg-[#EEF8E9] gradient-bg-sidebar-item-b hover:bg-[#B6EB9B]"
-                  }`}
+                ${
+                  isExpanded
+                    ? "gradient-bg-sidebar-item text-white"
+                    : "bg-[#EEF8E9] gradient-bg-sidebar-item-b hover:bg-[#B6EB9B]"
+                }`}
               >
-                {/* Icon with hover/active change */}
-                  <span className="relative flex-shrink-0 w-[42px] h-[42px]">
-                  {/* Normal icon */}
-                  <img
+                {/* Icon */}
+                <span className="text-xl flex-shrink-0">
+                  <Image
                     src={category.icon}
-                    alt={category.title + " icon"}
-                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-200
-                      ${isExpanded ? "opacity-0" : "opacity-100 group-hover:opacity-0"}`}
-                    draggable={false}
-                  />
-
-                  {/* Active icon */}
-                  <img
-                    src={category.activeIcon}
-                    alt={category.title + " active icon"}
-                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-200
-                      ${isExpanded ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
-                    draggable={false}
+                    alt="Book Icon"
+                    width={40}
+                    height={40}
+                    className="w-[48px] h-[48px]"
                   />
                 </span>
-                {/* <span className="relative flex-shrink-0 w-[48px] h-[48px]">
-                  <Image
-                    src={category.icon}
-                    alt="icon"
-                    fill
-                    className={`object-contain transition-opacity duration-300 ${
-                      isExpanded ? "opacity-0" : "opacity-100 group-hover:opacity-0"
-                    }`}
-                  />
-                  <Image
-                    src={category.activeIcon}
-                    alt="active icon"
-                    fill
-                    className={`object-contain transition-opacity duration-300 ${
-                      isExpanded ? "opacity-100" : "opacity-0 group-hover:opacity-100 "
-                    }`}
-                  />
-                </span> */}
-                
 
                 {/* Text Content */}
                 <div className="flex-1 text-left">
                   <p
-                    className={`font-bold text-sm transition-colors ${
+                    className={`font-bold text-sm transition-colors
+                    ${
                       isExpanded
                         ? "text-white"
                         : "text-[#B98C20] group-hover:text-white"
@@ -197,7 +168,8 @@ export default function Sidebar() {
                   </p>
                   {category.subtitle && (
                     <p
-                      className={`text-sm font-bold transition-colors ${
+                      className={`text-sm font-bold transition-colors
+                      ${
                         isExpanded
                           ? "text-white"
                           : "text-[#00401A] group-hover:text-white"
@@ -208,7 +180,7 @@ export default function Sidebar() {
                   )}
                 </div>
 
-                {/* Chevron Icons */}
+                {/* Chevron */}
                 {category.hasSubItems ? (
                   <ChevronDown
                     size={24}

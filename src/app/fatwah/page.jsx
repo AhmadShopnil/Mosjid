@@ -1,4 +1,5 @@
 import AskQuestionSidebar from '@/components/Fatwah/AskQuestionSidebar'
+import Breadcrumb from '@/components/Fatwah/Breadcrumb'
 import FatwaFinder from '@/components/Fatwah/FatwahFinder'
 import FatwaListInner from '@/components/Fatwah/FatwaListInner'
 import SubmitRequest from '@/components/Fatwah/SubmitRequest'
@@ -18,6 +19,7 @@ export default async function page() {
 
             <div>
                 <BannerInnerPage />
+                <Breadcrumb/>
             </div>
             <Container className='mt-10'>
                 <FatwaFinder />

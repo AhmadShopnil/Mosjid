@@ -21,12 +21,19 @@ export default function FatwaSearchForm() {
           <button
             key={m.name}
             onClick={() => setSelected(m.name)}
+
             className={`flex flex-col justify-center h-[56px] items-center py-3 rounded-md text-sm font-semibold transition-all duration-300
-              ${
-                selected === m.name
-                  ? "bg-gradient-to-r from-[#0EBD65] via-[#4DDE5E] to-[#8AE52E] text-white shadow"
-                  : "bg-[#D7EFD8] hover:bg-[#C9E8CA]"
+              ${selected === m.name
+                ? "gradient-bg-fatwah-finder text-white shadow"
+                : "bg-[#D7EFD8] hover:bg-[#C9E8CA]"
               }`}
+
+          // className={`flex flex-col justify-center h-[56px] items-center py-3 rounded-md text-sm font-semibold transition-all duration-300
+          //   ${
+          //     selected === m.name
+          //       ? "bg-gradient-to-r from-[#0EBD65] via-[#4DDE5E] to-[#8AE52E] text-white shadow"
+          //       : "bg-[#D7EFD8] hover:bg-[#C9E8CA]"
+          //   }`}
           >
             <span className="text-sm font-bold">{m.arabic}</span>
             <span className="text-sm font-bold">{m.jp}</span>
