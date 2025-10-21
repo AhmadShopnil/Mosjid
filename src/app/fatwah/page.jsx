@@ -1,9 +1,10 @@
 import AskQuestionSidebar from '@/components/Fatwah/AskQuestionSidebar'
-import Breadcrumb from '@/components/Fatwah/Breadcrumb'
+
 import FatwaFinder from '@/components/Fatwah/FatwahFinder'
 import FatwaListInner from '@/components/Fatwah/FatwaListInner'
 import SubmitRequest from '@/components/Fatwah/SubmitRequest'
 import BannerInnerPage from '@/components/Shared/BannerInnerPage'
+import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import Sidebar from '@/components/Shared/Sidebar'
 import { getFatwa, getPage, getSettings } from '@/helper/actions'
@@ -19,7 +20,7 @@ export default async function page() {
 
             <div>
                 <BannerInnerPage />
-                <Breadcrumb/>
+               <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Fatwah" />
             </div>
             <Container className='mt-10'>
                 <FatwaFinder />

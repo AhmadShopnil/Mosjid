@@ -1,14 +1,13 @@
 
-
 import SubmitRequest from '@/components/Fatwah/SubmitRequest'
-import ArchiveNotice from '@/components/Notice/ArchiveNotice'
-import NoticeBoard from '@/components/Notice/NoticeBoard'
+
+import PrayerTimes from '@/components/PrayerTimes/PrayerTimes'
 import BannerInnerPage from '@/components/Shared/BannerInnerPage'
 import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
 import Sidebar from '@/components/Shared/Sidebar'
-import {  getNotices, getPage, getSettings } from '@/helper/actions'
+import { getFatwa, getNotices, getPage, getSettings } from '@/helper/actions'
 
 import React from 'react'
 
@@ -24,7 +23,7 @@ export default async function page() {
 
             <div>
                 <BannerInnerPage />
-               <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Notices Board" />
+                 <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Prayer Times" />
             </div>
 
 
@@ -39,8 +38,7 @@ export default async function page() {
                 <div className=' w-full space-y-6'>
                     {/* Header */}
                     <InnerHeader title={"掲示板"} image={"/images/fatwah/fatwaharbic_white.png"} />
-                    <NoticeBoard homePage={homePage} notices={notices} settings={settings} />
-                    <ArchiveNotice/>
+                    <PrayerTimes/>
                 </div>
             </Container>
 

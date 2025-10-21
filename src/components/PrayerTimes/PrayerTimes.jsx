@@ -1,15 +1,13 @@
 import React from "react";
-import { PrayerTimesIcon } from "../../Icons/QuickLinks";
-import { Sun, Moon, Star } from "lucide-react";
 import Image from "next/image";
 import { getPage, getPryerTime, getSettings } from "@/helper/actions";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import { splitBySpace } from "@/helper/splitBySpace";
 import { getImageUrl } from "@/helper/getImageUrl";
-import PrayerTimeTableRow from "./PrayerTimeTableRow";
-import PrayerTimesMobile from "./PrayerTimesMobile";
-import ProhibitedTimeTableRow from "./ProhibitedTimeTableRow";
-import ProhibitedTimeMobile from "./ProhibitedTimeMobile";
+import PrayerTimeTableRow from "../Home/PrayerTimesAndNotices/PrayerTimeTableRow";
+import PrayerTimesMobile from "../Home/PrayerTimesAndNotices/PrayerTimesMobile";
+import ProhibitedTimeTableRow from "../Home/PrayerTimesAndNotices/ProhibitedTimeTableRow";
+import ProhibitedTimeMobile from "../Home/PrayerTimesAndNotices/ProhibitedTimeMobile";
 
 
 
@@ -40,7 +38,7 @@ export default async function PrayerTimes() {
 
 
   return (
-    <div className="   px-5 sm:px-8 pt-5 sm:pt-8  pb-24 h-full gradient-bordernew relative overflow-hidden">
+    <div className="   px-5 sm:px-8 pt-5 sm:pt-8  pb-24  gradient-bordernew relative overflow-hidden">
       <div className="absolute top-0 right-0">
         <Image
           src="/images/prayertimes/1.png"
@@ -177,18 +175,15 @@ export default async function PrayerTimes() {
           </table>
         </div>
 
-
-
-
+    
       </div>
-
 
 
 
       {/* Mobile Cards */}
       <PrayerTimesMobile prayerTimes={prayerTimes} prayer_time={prayer_time} />
 
-      <h4 className="block sm:hidden text-2xl text-center mt-5">
+      <h4 className=" block sm:hidden text-2xl text-center mt-5">
         <span className="text-[#F7BA2A]">Prohibited </span>
         Time Start
         <br />
