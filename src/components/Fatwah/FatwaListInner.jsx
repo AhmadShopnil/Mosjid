@@ -111,14 +111,14 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
                         </li>
                     ))}
                 </ul>
-                  <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
-            />
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={setCurrentPage}
+                />
             </div>
 
-          
+
 
         </div>
     )

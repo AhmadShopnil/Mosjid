@@ -30,7 +30,7 @@ const menuItems = [
   },
   {
     name: "Notice Board",
-    link: "notice-board",
+    link: "notices",
     icon: "/images/QuickLinks/hover/notice board ES.png",
     activeIcon: "/images/QuickLinks/normal2/3.png",
   },
