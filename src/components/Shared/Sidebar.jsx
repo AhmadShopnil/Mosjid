@@ -137,15 +137,14 @@ export default function Sidebar() {
                 onClick={() =>
                   category.hasSubItems && toggleExpand(category.id)
                 }
-                className={`group w-full h-[60px] px-4 py-3 flex items-center gap-3 rounded-xl transition-all
-                  ${
-                    isExpanded
-                      ? "gradient-bg-sidebar-item text-white"
-                      : "bg-[#EEF8E9] gradient-bg-sidebar-item-b hover:bg-[#B6EB9B]"
+                className={`group w-full h-[60px] px-4 py-3 flex items-center gap-3  transition-all
+                  ${isExpanded
+                    ? "gradient-bg-sidebar-item text-white rounded-t-[10px]"
+                    : "bg-[#EEF8E9] gradient-bg-sidebar-item-b hover:bg-[#B6EB9B] rounded-[10px]"
                   }`}
               >
                 {/* Icon with hover/active change */}
-                  <span className="relative flex-shrink-0 w-[42px] h-[42px]">
+                <span className="relative flex-shrink-0 w-[42px] h-[42px]">
                   {/* Normal icon */}
                   <img
                     src={category.icon}
@@ -182,26 +181,24 @@ export default function Sidebar() {
                     }`}
                   />
                 </span> */}
-                
+
 
                 {/* Text Content */}
                 <div className="flex-1 text-left">
                   <p
-                    className={`font-bold text-sm transition-colors ${
-                      isExpanded
-                        ? "text-white"
-                        : "text-[#B98C20] group-hover:text-white"
-                    }`}
+                    className={`font-bold text-sm transition-colors ${isExpanded
+                      ? "text-white"
+                      : "text-[#B98C20] group-hover:text-white"
+                      }`}
                   >
                     {category.title}
                   </p>
                   {category.subtitle && (
                     <p
-                      className={`text-sm font-bold transition-colors ${
-                        isExpanded
-                          ? "text-white"
-                          : "text-[#00401A] group-hover:text-white"
-                      }`}
+                      className={`text-sm font-bold transition-colors ${isExpanded
+                        ? "text-white"
+                        : "text-[#00401A] group-hover:text-white"
+                        }`}
                     >
                       {category.subtitle}
                     </p>
@@ -212,11 +209,10 @@ export default function Sidebar() {
                 {category.hasSubItems ? (
                   <ChevronDown
                     size={24}
-                    className={`flex-shrink-0 transition-transform ${
-                      isExpanded
-                        ? "rotate-180 text-white"
-                        : "text-[#141B34] group-hover:text-white"
-                    }`}
+                    className={`flex-shrink-0 transition-transform ${isExpanded
+                      ? "rotate-180 text-white"
+                      : "text-[#141B34] group-hover:text-white"
+                      }`}
                   />
                 ) : category.isArrow ? (
                   <ChevronRight
@@ -227,18 +223,25 @@ export default function Sidebar() {
               </button>
 
               {/* Sub Items */}
+              {/* Sub Items */}
               {category.hasSubItems && isExpanded && (
-                <div className="bg-gray-50 border-t border-gray-200">
+                <div className="bg-[#EEF8E9] border-t border-gray-200 p-2 space-y-2">
                   {category.subItems.map((subItem, index) => (
                     <button
                       key={index}
-                      className="w-full px-8 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                      className="w-full px-3 py-2 h-[54px] flex items-center justify-between text-left text-sm text-[#00401A]
+         bg-white hover:bg-[#C9E9BA] transition-colors rounded-[10px]"
                     >
-                      {subItem}
+                      <div className="flex flex-col leading-tight font-semibold">
+                        <span>{subItem}</span>
+                        <span className="text-sm text-gray-600">イスラム教の書籍</span>
+                      </div>
+                      <ChevronRight size={20} className="text-[#141B34] flex-shrink-0" />
                     </button>
                   ))}
                 </div>
               )}
+
             </div>
           );
         })}

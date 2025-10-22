@@ -16,7 +16,8 @@ export default function Breadcrumb({
       <Container className="w-full h-full">
         <div className="flex h-full">
          {/* Home Section */}
-        <div
+        <Link
+        href={homeLink}
           className="gradient-bredcumb-a text-lg font-medium px-6 flex items-center justify-center  h-full w-[106px] text-[#00401A]"
           style={{
             backgroundColor: "#3198A0",
@@ -25,7 +26,7 @@ export default function Breadcrumb({
           }}
         >
           <span>  {homeLabel}</span>
-        </div>
+        </Link>
 
           {/* Dynamic Section */}
           <div
