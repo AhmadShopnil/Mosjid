@@ -178,6 +178,16 @@ export async function getSinglePillarOfIslam(slug) {
   return json?.data || {};
 }
 
+
+export async function getProhibitedTime() {
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=prohibited_time&order_by=order_column:asc`;
+
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+  return json?.data || [];
+}
 export async function getPryerTime() {
   const API_URL = `${BASE_URL}/api/v1/posts?term_type=prayer_time&order_by=order_column:asc`;
 

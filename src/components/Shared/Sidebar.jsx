@@ -140,7 +140,7 @@ export default function Sidebar() {
                 className={`group w-full h-[60px] px-4 py-3 flex items-center gap-3  transition-all
                   ${isExpanded
                     ? "gradient-bg-sidebar-item text-white rounded-t-[10px]"
-                    : "bg-[#EEF8E9] gradient-bg-sidebar-item-b hover:bg-[#B6EB9B] rounded-[10px]"
+                    : "bg-[#EEF8E9] gradient-bg-sidebar-item-b  rounded-[10px]"
                   }`}
               >
                 {/* Icon with hover/active change */}
