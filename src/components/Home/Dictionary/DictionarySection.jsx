@@ -174,6 +174,7 @@ export default function DictionarySection() {
           </div>
 
           {/* Chapter dropdown */}
+          
          <div className=" flex-1 min-w-[150px]">
 
             <CustomSelectRounded lvl="Chapter" options={[
