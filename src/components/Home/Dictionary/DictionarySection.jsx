@@ -174,13 +174,13 @@ export default function DictionarySection() {
           </div>
 
           {/* Chapter dropdown */}
-          
+
          <div className=" flex-1 min-w-[150px]">
 
             <CustomSelectRounded lvl="Chapter" options={[
               { labelEn: "Al-Fatiha", labelJp: "マドラサ" },
               { labelEn: "Al-Baqarah", labelJp: "モスク" },
-              { labelEn: "Cemetery", labelJp: "墓地" },
+              { labelEn: "Al-Imran", labelJp: "墓地" },
               { labelEn: "Converted Muslim", labelJp: "改宗したイスラム教徒" },
             ]} />
 

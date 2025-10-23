@@ -5,11 +5,10 @@ import React from 'react'
 export default function ProhibitedTimeTableRow({ prayer }) {
 
 
-    const prayerTime = getMetaValueFromExtraFields(prayer, "time")
-    const waktStartTime = getMetaValueFromExtraFields(prayer, "start_time")
-    const waktStartTime_2 = getMetaValueFromExtraFields(prayer, "start_time_2")
-    const waktEndTime = getMetaValueFromExtraFields(prayer, "end_time")
-    // console?.log("localRaw",prayer)
+    const prohibited_time_start = getMetaValueFromExtraFields(prayer, "prohibited-time-start")
+    const prohibited_time_end = getMetaValueFromExtraFields(prayer, "prohibited-time-end")
+   
+    // console?.log("prohibited_time_start sss",prohibited_time_start)
 
     return (
         <tr
@@ -34,11 +33,11 @@ export default function ProhibitedTimeTableRow({ prayer }) {
 
 
             <td className="px-3 text-[#3E8B18] text-base text-center ">
-                <span>{waktStartTime}</span> <br></br>
-                <span className='border-t-1 border-gray-300'> {waktStartTime_2}</span>
+                <span>{prohibited_time_start}</span> <br></br>
+               
             </td>
             {/* <td className="p-3 text-[#FF0000] text-base">{waktEndTime}</td> */}
-            <td className="p-3 text-[#FF0000] text-base text-center">{waktEndTime}</td>
+            <td className="p-3 text-[#FF0000] text-base text-center">{prohibited_time_end}</td>
         </tr>
     )
 }

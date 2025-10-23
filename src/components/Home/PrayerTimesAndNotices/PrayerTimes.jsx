@@ -2,7 +2,7 @@ import React from "react";
 import { PrayerTimesIcon } from "../../Icons/QuickLinks";
 import { Sun, Moon, Star } from "lucide-react";
 import Image from "next/image";
-import { getPage, getPryerTime, getSettings } from "@/helper/actions";
+import { getPage, getProhibitedTime, getPryerTime, getSettings } from "@/helper/actions";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import { splitBySpace } from "@/helper/splitBySpace";
 import { getImageUrl } from "@/helper/getImageUrl";
@@ -17,6 +17,7 @@ export default async function PrayerTimes() {
   const settings = await getSettings()
   const view_more = getMetaValueByMetaName(settings, "view_more") || "";
   const prayerTimes = await getPryerTime();
+  const ProhibitedTime = await getProhibitedTime();
 
   // get notice extra data from home page section management
   const homePage = await getPage("home-sections-heading-management")
@@ -166,9 +167,9 @@ export default async function PrayerTimes() {
               </tr>
             </thead>
             <tbody>
-              {prayerTimes.slice(0, 3).map((prayer, index) => (
+              {ProhibitedTime.map((prayer, index) => (
 
-                index != 2 && <ProhibitedTimeTableRow
+                <ProhibitedTimeTableRow
                   key={index}
                   prayer={prayer} />
 
