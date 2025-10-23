@@ -163,24 +163,7 @@ export default function Sidebar() {
                     draggable={false}
                   />
                 </span>
-                {/* <span className="relative flex-shrink-0 w-[48px] h-[48px]">
-                  <Image
-                    src={category.icon}
-                    alt="icon"
-                    fill
-                    className={`object-contain transition-opacity duration-300 ${
-                      isExpanded ? "opacity-0" : "opacity-100 group-hover:opacity-0"
-                    }`}
-                  />
-                  <Image
-                    src={category.activeIcon}
-                    alt="active icon"
-                    fill
-                    className={`object-contain transition-opacity duration-300 ${
-                      isExpanded ? "opacity-100" : "opacity-0 group-hover:opacity-100 "
-                    }`}
-                  />
-                </span> */}
+             
 
 
                 {/* Text Content */}

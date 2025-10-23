@@ -1,127 +1,224 @@
-// app/components/DictionarySection.jsx
-"use client";
-import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
-import { MdOutlineClose } from "react-icons/md";
+"use client"
+
+import { useState } from "react"
+import { Search, ChevronDown, MoreVertical, X } from "lucide-react"
+import Image from "next/image"
 
 export default function DictionarySection() {
-  const [language, setLanguage] = useState("English");
-  const [searchWord, setSearchWord] = useState("");
-  const [book, setBook] = useState("");
-  const [chapter, setChapter] = useState("");
-  const [section, setSection] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState("English")
+  const [searchTerm, setSearchTerm] = useState("")
+  const [selectedBook, setSelectedBook] = useState("Book")
+  const [selectedChapter, setSelectedChapter] = useState("Chapter")
+  const [selectedSection, setSelectedSection] = useState("Section")
 
-  // demo data
-  const books = ["Book One", "Book Two", "Book Three"];
-  const chapters = ["Chapter 1", "Chapter 2", "Chapter 3"];
-  const sections = ["Section A", "Section B", "Section C"];
-
-  const handleSearch = () => {
-    alert(
-      `Searching for "${searchWord}" in ${language}\nBook: ${book}\nChapter: ${chapter}\nSection: ${section}`
-    );
-  };
+  const languages = [
+    {
+      title: "English",
+      icon: "/images/others/English.png"
+    },
+    {
+      title: "Japanese",
+      icon: "/images/others/Japan.png"
+    },
+    {
+      title: "Arabic",
+      icon: "/images/others/Arabic.png"
+    },
+  ]
+  const books = ["Book", "Quran", "Hadith", "Tafsir"]
+  const chapters = ["Chapter", "Al-Fatiha", "Al-Baqarah", "Al-Imran"]
+  const sections = ["Section", "Verse 1-10", "Verse 11-20", "Verse 21-30"]
 
   return (
-    <div className="max-w-6xl mx-auto my-10 p-6 border border-green-400 rounded-xl shadow-sm bg-white">
-      {/* Top Section */}
-      <div className="flex items-center justify-between flex-wrap gap-4">
-        <div className="flex items-center gap-2">
-          <img src="/dictionary-icon.png" alt="icon" className="w-8 h-8" />
-          <h2 className="text-2xl font-bold text-green-900">Dictionary</h2>
+    <div
+      id="dictionary"
+      className="max-w-7xl mx-auto px-4 pt-12  ">
+      <div className="bg-white rounded-[20px] gradient-border
+      px-4 py-16  sm:p-14 relative">
+
+        <div className="absolute top-[1px] right-[0px]">
+          <Image
+            src="/images/dictionary/topImage.png"
+            alt="Decorative floral pattern"
+            width={60}
+            height={60}
+            className="opacity-80"
+          />
         </div>
 
-        <div className="flex gap-2">
-          {["English", "Japanese", "Arabic"].map((lang) => (
+        {/* heading */}
+        <div className='flex justify-between mb-2  items-center'>
+
+          <div className="flex justify-between  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
+
+            <Image
+              src="/images/dictionary/icon.png"
+              alt="Book Icon"
+              width={60}
+              height={70}
+              className=""
+            />
+
+
+
+
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+              <p> Dictionary </p>
+              <p>辞書</p>
+
+            </div>
+          </div>
+
+
+          {/* arabic text */}
+          <div>
+            <Image
+              src="/images/directory/a1.png"
+              alt='a1'
+              width={300}
+              height={60}
+              className="hidden sm:flex"
+            />
+            <Image
+              src="/images/directory/a1.png"
+              alt='a1'
+              width={200}
+              height={40}
+              className="flex sm:hidden"
+            />
+          </div>
+        </div>
+
+        {/* Language selection */}
+        <div className="flex gap-2 my-6">
+          {languages.map((language) => (
             <button
-              key={lang}
-              onClick={() => setLanguage(lang)}
-              className={`px-4 py-1 rounded-full border ${
-                language === lang
-                  ? "bg-green-800 text-white"
-                  : "bg-white text-gray-700 border-gray-300"
-              }`}
+              key={language?.title}
+              onClick={() => setSelectedLanguage(language?.title)}
+              className={`px-4 flex gap-1 py-2 rounded-full text-base font-bold  transition-colors ${selectedLanguage === language?.title ? "bg-[#00401A] text-white" :
+                "bg-white text-[#00401A] hover:bg-gray-300 border border-[#00401a51]"
+                }`}
             >
-              {lang === "English" && "🇬🇧"} {lang}
+
+              <div className=" my-auto">
+                <Image
+                  src={language?.icon}
+                  alt='a1'
+                  width={20}
+                  height={10}
+                />
+              </div>
+              <div className=" my-auto">
+                {language?.title}
+              </div>
             </button>
           ))}
         </div>
-      </div>
 
-      {/* Arabic Title */}
-      <div className="text-center mt-4">
-        <p className="text-2xl font-arabic text-green-900">
-          المصطلحات الاسلامية باللغة اليابانية
-        </p>
-      </div>
+        {/* Search bar */}
+        <div className="relative mb-6 flex flex-col sm:flex-row  gap-3">
+          <div className="bg-[#00401A] rounded-full p-1 flex  items-center w-[100%] sm:w-[95%]">
+            <input
+              type="text"
+              placeholder="Search Word..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="flex-1 bg-transparent text-white text-sm placeholder-[#B0C4B8] px-4 py-2 outline-none"
+            />
 
-      {/* Search Bar */}
-      <div className="mt-6 flex items-center bg-green-900 rounded-full px-4 py-2">
-        <input
-          type="text"
-          placeholder="Search Word..."
-          value={searchWord}
-          onChange={(e) => setSearchWord(e.target.value)}
-          className="flex-1 bg-transparent text-white placeholder-gray-200 outline-none"
-        />
-        {searchWord && (
-          <button
-            onClick={() => setSearchWord("")}
-            className="text-white text-xl mr-2"
-          >
-            <MdOutlineClose />
-          </button>
-        )}
-        <span className="text-white mr-2">{language}</span>
-        <button
-          onClick={handleSearch}
-          className="bg-green-700 hover:bg-green-600 text-white p-2 rounded-full"
-        >
-          <FaSearch />
-        </button>
-      </div>
+            {/* Clear button */}
+            {searchTerm && (
+              <button onClick={() => setSearchTerm("")} className="text-teal-200 hover:text-white p-1 mr-2">
+                <X className="w-4 h-4" />
+              </button>
+            )}
 
-      {/* Dropdowns */}
-      <div className="mt-6 flex flex-wrap gap-4">
-        <select
-          className="border rounded-lg px-4 py-2"
-          value={book}
-          onChange={(e) => setBook(e.target.value)}
-        >
-          <option value="">Book</option>
-          {books.map((b) => (
-            <option key={b} value={b}>
-              {b}
-            </option>
-          ))}
-        </select>
+            {/* Language indicator and more options */}
+            <div className="flex items-center gap-2 mr-2">
+              <span className="text-[#B0C4B8] text-sm">{selectedLanguage}</span>
+              <button className="text-teal-200 hover:text-white">
+                <MoreVertical className="w-4 h-4" />
+              </button>
+            </div>
 
-        <select
-          className="border rounded-lg px-4 py-2"
-          value={chapter}
-          onChange={(e) => setChapter(e.target.value)}
-        >
-          <option value="">Chapter</option>
-          {chapters.map((ch) => (
-            <option key={ch} value={ch}>
-              {ch}
-            </option>
-          ))}
-        </select>
 
-        <select
-          className="border rounded-lg px-4 py-2"
-          value={section}
-          onChange={(e) => setSection(e.target.value)}
-        >
-          <option value="">Section</option>
-          {sections.map((sec) => (
-            <option key={sec} value={sec}>
-              {sec}
-            </option>
-          ))}
-        </select>
+          </div>
+          <div className="my-auto w-[100%] sm:w-[5%]">
+            {/* Search button */}
+            <button className="hidden sm:flex bg-[#00401A] cursor-pointer rounded-full p-4 transition-colors">
+              <Search className="w-5 h-5 text-[#F7BA2A]" />
+            </button>
+            <button className="sm:hidden flex gap-2 bg-[#00401A] w-full cursor-pointer
+             rounded-xl p-3 items-center justify-center font-bold transition-colors">
+              {/* <Search className="w-5 h-5 text-[#F7BA2A]" />  */}
+              <span className="text-white text-sm">
+                Search
+              </span>
+            </button>
+          </div>
+        </div>
+        {/* drop down selection */}
+        <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 w-full xs:w-[50%]">
+          {/* Book dropdown */}
+          <div className="relative flex-1 min-w-[150px]">
+            <select
+              value={selectedBook}
+              onChange={(e) => setSelectedBook(e.target.value)}
+              className="w-full appearance-none bg-gray-100 border border-gray-300 rounded-3xl
+                    px-4 py-3 lg:py-1.5 lg:text-sm 
+                    pr-10 text-gray-700 focus:outline-none focus:ring-2 
+                    focus:ring-teal-500 focus:border-transparent cursor-pointer transition-all duration-200"
+            >
+              {books.map((book) => (
+                <option key={book} value={book}>
+                  {book}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+          </div>
+
+          {/* Chapter dropdown */}
+          <div className="relative flex-1 min-w-[150px]">
+            <select
+              value={selectedChapter}
+              onChange={(e) => setSelectedChapter(e.target.value)}
+              className="w-full appearance-none bg-gray-100 border border-gray-300 rounded-3xl
+                    px-4 py-3 lg:py-1.5 lg:text-sm 
+                    pr-10 text-gray-700 focus:outline-none focus:ring-2 
+                    focus:ring-teal-500 focus:border-transparent cursor-pointer transition-all duration-200"
+            >
+              {chapters.map((chapter) => (
+                <option key={chapter} value={chapter}>
+                  {chapter}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+          </div>
+
+          {/* Section dropdown */}
+          <div className="relative flex-1 min-w-[150px]">
+            <select
+              value={selectedSection}
+              onChange={(e) => setSelectedSection(e.target.value)}
+              className="w-full appearance-none bg-gray-100 border border-gray-300 rounded-3xl
+                    px-4 py-3 lg:py-1.5 lg:text-sm 
+                    pr-10 text-gray-700 focus:outline-none focus:ring-2 
+                    focus:ring-teal-500 focus:border-transparent cursor-pointer transition-all duration-200"
+            >
+              {sections.map((section) => (
+                <option key={section} value={section}>
+                  {section}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+          </div>
+        </div>
+
+
       </div>
     </div>
-  );
+  )
 }

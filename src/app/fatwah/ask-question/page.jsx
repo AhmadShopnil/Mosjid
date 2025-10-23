@@ -2,6 +2,7 @@ import AskQuestionPage from '@/components/Fatwah/AskQuestionPage'
 import AskQuestionSidebar from '@/components/Fatwah/AskQuestionSidebar'
 import SubmitRequest from '@/components/Fatwah/SubmitRequest'
 import BannerInnerPage from '@/components/Shared/BannerInnerPage'
+import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import Sidebar from '@/components/Shared/Sidebar'
 import { getFatwa, getPage, getSettings } from '@/helper/actions'
@@ -18,6 +19,7 @@ export default async function page() {
 
             <div>
                 <BannerInnerPage />
+                <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Fatwah" />
             </div>
             {/* Header */}
             <Container className='mt-10'>

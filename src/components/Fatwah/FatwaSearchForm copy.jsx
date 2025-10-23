@@ -65,34 +65,24 @@ export default function FatwaSearchForm() {
 
         {/* Row 2 */}
         <div className="flex gap-2 h-[56px]">
-          <div className="w-1/2">
-            <CustomSelect options={ [
-              { labelEn: "Chapter", labelJp: "マドラサ" },
-              { labelEn: "Mosque", labelJp: "モスク" },
-              { labelEn: "Cemetery", labelJp: "墓地" },
-              { labelEn: "Converted Muslim", labelJp: "改宗したイスラム教徒" },
-            ]} />
-          </div>
+          <select className="w-1/2 border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400">
+            <option>Chapter</option>
+          </select>
           <input
             type="text"
-            placeholder="By Word..."
+            placeholder="Fatwa By Number..."
             className="w-1/2 border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
           />
         </div>
 
         {/* Row 3 */}
-       <div className="flex gap-2 h-[56px]">
-          <div className="w-1/2">
-            <CustomSelect options={ [
-              { labelEn: "Madrassa", labelJp: "マドラサ" },
-              { labelEn: "Mosque", labelJp: "モスク" },
-              { labelEn: "Cemetery", labelJp: "墓地" },
-              { labelEn: "Converted Muslim", labelJp: "改宗したイスラム教徒" },
-            ]} />
-          </div>
+        <div className="flex gap-2  h-[56px] ">
+          <select className="w-1/2 border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400">
+            <option>Section</option>
+          </select>
           <input
             type="text"
-            placeholder="By Word..."
+            placeholder="Fatwa Verify By Number..."
             className="w-1/2 border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
           />
         </div>

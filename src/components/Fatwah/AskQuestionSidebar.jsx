@@ -26,21 +26,17 @@ export default function AskQuestionSidebar() {
                 <p className='text-sm text-[#00401A]'>If you dont have the question you want, Click below to ask your question</p>
                 <Link
                     href="/fatwah/ask-question"
-                    className="text-sm font-bold text-white  h-[36px] px-6 py-2 rounded-[10px] 
+                     className="gradient-bg-fatwah-finder text-sm font-bold text-white  h-[36px] px-6 py-2 rounded-[10px] 
                      shadow-md transition-all duration-300 hover:opacity-90
-                      bg-gradient-to-r from-[#3198A0] to-[#51F909] flex items-center justify-center gap-2"
+                       flex items-center justify-center gap-2"
+                    // className="text-sm font-bold text-white  h-[36px] px-6 py-2 rounded-[10px] 
+                    //  shadow-md transition-all duration-300 hover:opacity-90
+                    //   bg-gradient-to-r from-[#3198A0] to-[#51F909] flex items-center justify-center gap-2"
                 >
                   <span>  Ask a Question</span>
                       <span className="text-xl">›</span>
                 </Link>
-                {/* <button className="px-6 py-2 rounded-[10px] text-white font-medium shadow-md transition-all duration-300 hover:opacity-90 bg-gradient-to-r from-[#3198A0] to-[#51F909] flex items-center gap-2">
-                    Ask a Question
-                    <span className="text-lg">›</span>
-                </button> */}
-                {/* <button className="px-6 py-2 rounded-[10px] text-white font-medium shadow-md transition-all duration-300 hover:opacity-90 bg-[linear-gradient(to_bottom,_#3198A0_20%,_#51F909_60%)] flex items-center gap-2">
-                    Ask a Question
-                    <span className="text-lg">›</span>
-                </button> */}
+              
 
 
             </div>

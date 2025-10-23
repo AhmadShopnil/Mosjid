@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Search, ChevronDown, MoreVertical, X } from "lucide-react"
 import Image from "next/image"
+import CustomSelectRounded from "@/components/UI/CustomSelectRounded"
 
 export default function DictionarySection() {
   const [selectedLanguage, setSelectedLanguage] = useState("English")
@@ -160,60 +161,44 @@ export default function DictionarySection() {
         {/* drop down selection */}
         <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 w-full xs:w-[50%]">
           {/* Book dropdown */}
-          <div className="relative flex-1 min-w-[150px]">
-            <select
-              value={selectedBook}
-              onChange={(e) => setSelectedBook(e.target.value)}
-              className="w-full appearance-none bg-gray-100 border border-gray-300 rounded-3xl
-                    px-4 py-3 lg:py-1.5 lg:text-sm 
-                    pr-10 text-gray-700 focus:outline-none focus:ring-2 
-                    focus:ring-teal-500 focus:border-transparent cursor-pointer transition-all duration-200"
-            >
-              {books.map((book) => (
-                <option key={book} value={book}>
-                  {book}
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+          <div className=" flex-1 min-w-[150px]">
+
+            <CustomSelectRounded lvl="Books" options={[
+              { labelEn: "Books", labelJp: "マドラサ" },
+              { labelEn: "Quran", labelJp: "モスク" },
+              { labelEn: "Hadith", labelJp: "墓地" },
+              { labelEn: "Converted Muslim", labelJp: "改宗したイスラム教徒" },
+            ]} />
+
+
           </div>
 
           {/* Chapter dropdown */}
-          <div className="relative flex-1 min-w-[150px]">
-            <select
-              value={selectedChapter}
-              onChange={(e) => setSelectedChapter(e.target.value)}
-              className="w-full appearance-none bg-gray-100 border border-gray-300 rounded-3xl
-                    px-4 py-3 lg:py-1.5 lg:text-sm 
-                    pr-10 text-gray-700 focus:outline-none focus:ring-2 
-                    focus:ring-teal-500 focus:border-transparent cursor-pointer transition-all duration-200"
-            >
-              {chapters.map((chapter) => (
-                <option key={chapter} value={chapter}>
-                  {chapter}
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+          
+         <div className=" flex-1 min-w-[150px]">
+
+            <CustomSelectRounded lvl="Chapter" options={[
+              { labelEn: "Al-Fatiha", labelJp: "マドラサ" },
+              { labelEn: "Al-Baqarah", labelJp: "モスク" },
+              { labelEn: "Cemetery", labelJp: "墓地" },
+              { labelEn: "Converted Muslim", labelJp: "改宗したイスラム教徒" },
+            ]} />
+
+
           </div>
 
+
           {/* Section dropdown */}
-          <div className="relative flex-1 min-w-[150px]">
-            <select
-              value={selectedSection}
-              onChange={(e) => setSelectedSection(e.target.value)}
-              className="w-full appearance-none bg-gray-100 border border-gray-300 rounded-3xl
-                    px-4 py-3 lg:py-1.5 lg:text-sm 
-                    pr-10 text-gray-700 focus:outline-none focus:ring-2 
-                    focus:ring-teal-500 focus:border-transparent cursor-pointer transition-all duration-200"
-            >
-              {sections.map((section) => (
-                <option key={section} value={section}>
-                  {section}
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+          <div className=" flex-1 min-w-[150px]">
+
+            <CustomSelectRounded options={[
+              { labelEn: "Verse 1-10", labelJp: "マドラサ" },
+              { labelEn: "Verse 11-20", labelJp: "モスク" },
+              { labelEn: "Cemetery", labelJp: "墓地" },
+              { labelEn: "Converted Muslim", labelJp: "改宗したイスラム教徒" },
+            ] } lvl="Sections" />
+
+
           </div>
         </div>
 

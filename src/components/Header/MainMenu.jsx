@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import Container from "../Shared/Container";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import TopbarMobile from "./TopBarMobile";
 import Link from "next/link";
 import { getMediaLinkByMetaName } from "@/helper/metaHelpers";
@@ -30,7 +30,7 @@ const menuItems = [
   },
   {
     name: "Notice Board",
-    link: "notice-board",
+    link: "notices",
     icon: "/images/QuickLinks/hover/notice board ES.png",
     activeIcon: "/images/QuickLinks/normal2/3.png",
   },
@@ -39,19 +39,54 @@ const menuItems = [
     link: "fatwah",
     icon: "/images/QuickLinks/hover/Fatwa 03.png",
     activeIcon: "/images/QuickLinks/normal2/4.png",
+    submenu: [
+      {
+        name: "Ask Fatwah",
+        link: "/fatwah/ask",
+        icon: "/images/QuickLinks/normal2/4.png",
+      },
+      {
+        name: "View Fatwahs",
+        link: "/fatwah/all",
+        icon: "/images/QuickLinks/normal2/4.png",
+      },
+    ],
   },
-
   {
     name: "Services",
     link: "services",
     icon: "/images/QuickLinks/hover/prayer times.png",
     activeIcon: "/images/QuickLinks/normal2/5.png",
+    submenu: [
+      {
+        name: "Marriage Service",
+        link: "/services/marriage",
+         icon: "/images/QuickLinks/normal2/5.png",
+      },
+      {
+        name: "Funeral Service",
+        link: "/services/funeral",
+        icon: "/images/QuickLinks/normal2/2.png",
+      },
+    ],
   },
   {
     name: "Dictionary",
     link: "dictionary",
     icon: "/images/QuickLinks/hover/Dictionary.png",
     activeIcon: "/images/QuickLinks/normal2/6.png",
+    submenu: [
+      {
+        name: "Arabic-English",
+        link: "/dictionary/arabic",
+         icon: "/images/QuickLinks/normal2/2.png",
+      },
+      {
+        name: "Islamic Terms",
+        link: "/dictionary/islamic",
+        icon: "/images/QuickLinks/normal2/5.png",
+      },
+    ],
   },
   {
     name: "Directory",
@@ -77,7 +112,6 @@ const menuItems = [
     icon: "/images/QuickLinks/hover/Gallery.png",
     activeIcon: "/images/QuickLinks/normal2/4.png",
   },
-
   {
     name: "Books",
     link: "books",
@@ -100,10 +134,11 @@ const menuItems = [
 
 export default function MainMenu({ settings }) {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleDrawer = () => setIsOpen(!isOpen);
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
-   const logo_path = getMediaLinkByMetaName(settings, "footer_logo");
-    const logo_url = `${BASE_URL}${logo_path}`;
+  const toggleDrawer = () => setIsOpen(!isOpen);
+  const logo_path = getMediaLinkByMetaName(settings, "footer_logo");
+  const logo_url = `${BASE_URL}${logo_path}`;
 
   return (
     <div className="relative bg-[#00401A] text-white py-2 xl:py-0">
@@ -111,45 +146,70 @@ export default function MainMenu({ settings }) {
         {/* Logo */}
         <div className="absolute -top-8 left-4 sm:left-8 z-40">
           <div className="hidden lg:flex bg-white shadow-xl rounded-xl w-[120px] h-[110px] items-center justify-center">
-            <Image
-              src={logo_url}
-              alt="Logo"
-              width={300}
-              height={300}
-              className="object-cover w-[80px] h-[100px]"
-            />
+            <Image src={logo_url} alt="Logo" width={80} height={100} className="object-cover" />
           </div>
           <div className="lg:hidden bg-white shadow-xl rounded-xl w-[100px] h-[100px] flex items-center justify-center">
-            <Image
-             src={logo_url}
-              alt="Logo"
-              width={80}
-              height={80}
-              className="object-cover"
-            />
+            <Image src={logo_url} alt="Logo" width={80} height={80} className="object-cover" />
           </div>
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden w-full xl:flex justify-center">
-          <nav className="flex flex-wrap justify-center gap-1.5 py-3 text-sm sm:text-base">
+        <div className="hidden w-full xl:flex justify-end ">
+          <nav className="flex flex-wrap justify-center gap-1 py-3 text-sm sm:text-base relative">
             {menuItems.map((item, i) => (
-              <Link
+              <div
                 key={i}
-                href={`/${item.link}`}
-                className="hover:text-yellow-400 px-0.5 py-1 transition-colors duration-200 flex justify-center items-center"
+                className="relative"
+                onMouseEnter={() => setActiveDropdown(i)}
+                onMouseLeave={() => setActiveDropdown(null)}
               >
-                <div className="w-6 h-6 flex justify-center items-center mr-1">
+                <Link
+                  href={`/${item.link}`}
+                  className="hover:text-yellow-400 px-1 py-1 transition-colors duration-200 flex justify-center items-center
+                  "
+                >
                   <Image
-                    src={item?.icon}
-                    alt={item?.name}
-                    width={26}
-                    height={26}
-                    className="object-contain"
+                    src={item.icon}
+                    alt={item.name}
+                    width={22}
+                    height={22}
+                    className="object-contain mr-1"
                   />
-                </div>
-                <span className="text-[13px] font-semibold">{item?.name}</span>
-              </Link>
+                  <span className="text-sm font-semibold flex items-center gap-1">
+                    {item.name}
+                    {item.submenu && <ChevronDown className="w-3 h-3 mt-0.5" />}
+                  </span>
+                </Link>
+
+                {/* Dropdown */}
+                {item.submenu && (
+                  <div
+                    className={`absolute left-0 top-full bg-[#EEF8E9] text-[#00401A] shadow-xl rounded-md mt-3 min-w-[200px] 
+                      z-50 transition-all duration-200 ease-in-out transform ${
+                      activeDropdown === i
+                        ? "opacity-100 visible translate-y-0"
+                        : "opacity-0 invisible -translate-y-2"
+                    }`}
+                  >
+                    {item.submenu.map((sub, j) => (
+                      <Link
+                        key={j}
+                        href={sub.link}
+                        className="flex items-center gap-2 px-4 py-2  hover:text-[#F7BA2A] text-xs"
+                      >
+                        <Image
+                          src={sub.icon}
+                          alt={sub.name}
+                          width={18}
+                          height={18}
+                          className="object-contain"
+                        />
+                        {sub.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
         </div>
@@ -157,40 +217,23 @@ export default function MainMenu({ settings }) {
         {/* Mobile Hamburger */}
         <div className="xl:hidden ml-auto">
           <button onClick={toggleDrawer} aria-label="Toggle Menu">
-            {isOpen ? (
-              <X className="w-7 h-7 text-white" />
-            ) : (
-              <Menu className="w-7 h-7 text-white" />
-            )}
+            {isOpen ? <X className="w-7 h-7 text-white" /> : <Menu className="w-7 h-7 text-white" />}
           </button>
         </div>
       </Container>
 
       {/* Overlay */}
-      {isOpen && (
-        <div
-          onClick={toggleDrawer}
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-300"
-        ></div>
-      )}
+      {isOpen && <div onClick={toggleDrawer} className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40" />}
 
       {/* Sidebar Drawer */}
       <div
-        className={`fixed top-0 left-0 h-full w-[80%] sm:w-[320px] bg-gradient-to-b from-green-50 to-white text-gray-800 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"
-          } flex flex-col`}
+        className={`fixed top-0 left-0 h-full w-[80%] sm:w-[320px] bg-gradient-to-b from-green-50 to-white text-gray-800 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } flex flex-col`}
       >
         {/* Header */}
         <div className="flex justify-between items-center px-5 py-4 border-b border-gray-200 bg-white shadow-sm">
-          <div className="flex items-center gap-3">
-            <Image
-              src={logo_url}
-              alt="Logo"
-              width={40}
-              height={40}
-              className="object-contain"
-            />
-            {/* <span className="font-bold text-[#00401A] text-lg">Menu</span> */}
-          </div>
+          <Image src={logo_url} alt="Logo" width={40} height={40} className="object-contain" />
           <button onClick={toggleDrawer}>
             <X className="w-6 h-6 text-gray-600" />
           </button>
@@ -200,47 +243,36 @@ export default function MainMenu({ settings }) {
         <div className="flex-1 overflow-y-auto py-6">
           <nav className="space-y-1">
             {menuItems.map((item, i) => (
-              <Link
-                key={i}
-                href={`/${item.link}`}
-                onClick={() => setIsOpen(false)}
-                className="group flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-green-100 transition-all duration-200 border-b border-gray-200 last:border-none"
-              >
-                {/* Left Section: Icon + Text */}
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 flex items-center justify-center rounded-lg bg-white shadow-sm border border-gray-100">
-                    <Image
-                      src={item?.activeIcon}
-                      alt={item.name}
-                      width={24}
-                      height={24}
-                      className="object-contain w-5 h-5"
-                    />
-                  </div>
-                  <span className="font-medium text-gray-800 text-[15px] group-hover:text-green-600 transition-colors duration-200">
-                    {item.name}
-                  </span>
-                </div>
-
-                {/* Right Arrow */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4 text-gray-400 group-hover:text-green-500 transition-transform duration-200 group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
+              <div key={i} className="relative group border-b border-gray-200 last:border-none">
+                <Link
+                  href={`/${item.link}`}
+                  onClick={() => setIsOpen(false)}
+                  className="group flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r
+                   hover:from-green-50 hover:to-green-100 transition-all duration-200 "
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 flex items-center justify-center rounded-lg bg-white shadow-sm border border-gray-100">
+                      <Image
+                        src={item?.activeIcon}
+                        alt={item.name}
+                        width={24}
+                        height={24}
+                        className="object-contain w-5 h-5"
+                      />
+                    </div>
+                    <span className="font-medium text-gray-800 text-[15px] group-hover:text-green-600 transition-colors duration-200">
+                      {item.name}
+                    </span>
+                  </div>
+                  <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-green-500 transition-transform duration-200" />
+                </Link>
+              </div>
             ))}
           </nav>
         </div>
 
-
-        {/* Fixed Bottom Section */}
-        <div className=" border-gray-200 bg-white  shadow-inner sticky bottom-0 py-3 ">
+        {/* Bottom Section */}
+        <div className="border-gray-200 bg-white shadow-inner sticky bottom-0 py-3">
           <TopbarMobile settings={settings} />
         </div>
       </div>

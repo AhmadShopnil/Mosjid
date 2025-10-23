@@ -154,14 +154,15 @@ body {
 
 
 .quicklinks {
- background: white;
+  background: white;
   height: 200px;
   width: 200px;
   position: relative;
   border-radius: 30px;
 }
-.quicklinks:hover{
- background: #51FA06;
+
+.quicklinks:hover {
+  background: #51FA06;
   background: linear-gradient(147deg, rgba(81, 250, 6, 1) 0%, rgba(0, 119, 36, 1) 100%);
 }
 
@@ -222,6 +223,7 @@ body {
 .gradient-border-bottom {
   position: relative;
 }
+
 .gradient-border-bottom::after {
   content: "";
   position: absolute;
@@ -245,8 +247,49 @@ body {
 } */
 
 
+.gradient-bredcumb {
+  background: #38E300;
+  background: linear-gradient(180deg, rgba(56, 227, 0, 1) 0%, rgba(210, 255, 191, 1) 100%);
+}
 
+.gradient-bredcumb-a {
+  background: #3198A0;
+  background: linear-gradient(180deg, rgba(49, 152, 160, 1) 0%, rgba(81, 249, 9, 1) 100%);
+}
+
+.gradient-bg-sidebar-item {
+  background: #3198A0;
+  background: linear-gradient(180deg, rgba(49, 152, 160, 1) 0%, rgba(81, 249, 9, 1) 100%);
+}
+
+.gradient-bg-fatwah-finder {
+  background: #3198A0;
+  background: linear-gradient(180deg, rgba(49, 152, 160, 1) 0%, rgba(81, 249, 9, 1) 100%);
+}
+
+
+
+
+
+.gradient-bg-sidebar-item-b{
+
+}
+.gradient-bg-sidebar-item-b:hover{
+ background: #3198A0;
+  background: linear-gradient(180deg, rgba(49, 152, 160, 1) 0%, rgba(81, 249, 9, 1) 100%);
+  color: white!;
+}
 
 .polygon {
   clipPath: polygon(0 0, 85% 0, 100% 100%, 0 100%);
+}
+
+
+/* Hide scrollbar on mobile */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
