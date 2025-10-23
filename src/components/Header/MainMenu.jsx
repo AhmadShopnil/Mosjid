@@ -154,7 +154,7 @@ export default function MainMenu({ settings }) {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden w-full xl:flex justify-center">
+        <div className="hidden w-full xl:flex justify-end ">
           <nav className="flex flex-wrap justify-center gap-1 py-3 text-sm sm:text-base relative">
             {menuItems.map((item, i) => (
               <div
@@ -165,7 +165,8 @@ export default function MainMenu({ settings }) {
               >
                 <Link
                   href={`/${item.link}`}
-                  className="hover:text-yellow-400 px-2 py-1 transition-colors duration-200 flex justify-center items-center"
+                  className="hover:text-yellow-400 px-1 py-1 transition-colors duration-200 flex justify-center items-center
+                  "
                 >
                   <Image
                     src={item.icon}

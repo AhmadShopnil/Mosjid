@@ -7,6 +7,8 @@ import { getDay_Month_Year } from "@/helper/formateDate";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import { splitBySpace } from "@/helper/splitBySpace";
 import Pagination from "../Shared/Pagination";
+import { Download } from "lucide-react";
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 
 
@@ -81,39 +83,50 @@ export default function NoticeBoard({ notices, settings, homePage }) {
 
                     <li
                         key={i}
-                        className="flex space-x-3 bg-white/90 backdrop-blur-sm border border-gray-300 p-2 rounded-md shadow-sm"
+                        className="flex space-x-3 justify-between bg-white/90 backdrop-blur-sm border border-gray-300  rounded-md shadow-sm"
                     >
 
-                        {/* Date Section */}
-                        <div className="w-[100px]  md:w-[100px]  text-center bg-gray-100 rounded-md pt-3 sm:pt-3 leading-5">
-                            <p className="text-3xl font-bold text-[#00401A] leading-6">
+                        <div className="flex gap-3 p-2">
+                            {/* Date Section */}
+                            <div className="w-[80px]  md:w-[90px]  text-center bg-gray-100 rounded-md p-2.5 leading-5">
+                                <p className="text-3xl font-bold text-[#00401A] leading-6">
 
-                                {getDay_Month_Year(notice?.created_at, "day")}
-                            </p>
-                            <p className="text-sm text-[#00401A] leading-5"> {getDay_Month_Year(notice?.created_at, "month")}</p>
-                            <p className="text-sm text-[#00401A]"> {getDay_Month_Year(notice?.created_at, "year")}</p>
-                        </div>
+                                    {getDay_Month_Year(notice?.created_at, "day")}
+                                </p>
+                                <p className="text-sm text-[#00401A] leading-5"> {getDay_Month_Year(notice?.created_at, "month")}</p>
+                                <p className="text-sm text-[#00401A]"> {getDay_Month_Year(notice?.created_at, "year")}</p>
+                            </div>
 
-
-
-
-                        {/* Notice Text */}
-                        <div className="flex flex-col justify-between  ">
-                            <p className="sm:hidden text-[#00401A] text-sm">{notice?.sub_title.slice(0, 40)}</p>
-                            <p className="hidden sm:block text-[#00401A] text-sm">{notice?.sub_title.slice(0, 120)}</p>
-                            <Link
-                                href={`/notice`}
-                                className="text-sm font-bold text-[#001609] flex gap-2 items-center"
-                            >
-                                <span> {read_more}</span>
-
-                                <Image
+                            {/* Notice Text */}
+                            <div className="flex flex-col justify-start gap-1  ">
+                                <p className="sm:hidden text-[#00401A] text-sm">{notice?.sub_title.slice(0, 40)}</p>
+                                <p className="hidden sm:block text-[#00401A] text-sm">{notice?.sub_title.slice(0, 120)}</p>
+                                <Link
+                                    href={`/notice`}
+                                    className="text-sm font-bold text-[#001609] flex gap-2 items-center hover:text-[#F7BA2A]"
+                                >
+                                    <span> {read_more}</span>
+                                    <FaLongArrowAltRight />
+                                    {/* <Image
                                     src="/images/others/arrowR.png"
                                     alt='a1'
                                     width={19}
                                     height={19}
-                                />
-                            </Link>
+                                /> */}
+                                </Link>
+                                {/* <button className="flex items-center gap-2 mt-3 cursor-pointer 
+                  rounded-[10px] text-[#0E7560] font-bold text-xs sm:text-sm  hover:text-[#F7BA2A] ">
+                                    Download
+                                    <Download className="w-4 h-4" />
+                                </button> */}
+                            </div>
+                        </div>
+                        <div className="">
+                            <button className="flex items-center gap-2 px-4 md:px-5 py-3 cursor-pointer 
+                  rounded-[10px] text-[#00401A] font-bold text-xs sm:text-sm md:text-base hover:text-[#F7BA2A] ">
+                            Download
+                            <Download className="w-5 h-5" />
+                        </button>
                         </div>
                     </li>
                 ))}

@@ -283,3 +283,13 @@ body {
 .polygon {
   clipPath: polygon(0 0, 85% 0, 100% 100%, 0 100%);
 }
+
+
+/* Hide scrollbar on mobile */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -28,7 +28,7 @@ export default async function page() {
             </div>
 
 
-            <Container className='flex gap-6 my-6'>
+            <Container className='flex  gap-6 my-6'>
                 {/* sidebar */}
                 <div className='w-[400px] space-y-6'>
                     <Sidebar />

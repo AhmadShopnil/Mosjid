@@ -54,8 +54,8 @@ export default async function page() {
                                 Ultrices diam mus lacus commodo. Eget adipiscing tortor nisi quis mus amet sed. Sed at nisi tortor nunc. Integer tristique
                                 quam amet laoreet in augue nec commodo pharetra. Platea porttitor viverra morbi tincidunt. Eu dictumst senectus ornare lacus et.</p>
                         </div>
-                        <div className="border-t mt-8 pt-3 flex items-center gap-6 text-[#D9E2DD]">
-                            <div>
+                        <div className="border-t mt-8 pt-3 flex items-center gap-4 text-[#D9E2DD]">
+                            <div className="border-r-2 border-gray-300 pr-3">
                                 <Image
                                     src="/images/notice/twiter.png"
                                     alt='a1'
@@ -63,7 +63,7 @@ export default async function page() {
                                     height={23}
                                 />
                             </div>
-                            <div>
+                            <div className="border-r-2 border-gray-300 pr-3">
                                 <Image
                                     src="/images/notice/fb.png"
                                     alt='a1'
@@ -71,7 +71,7 @@ export default async function page() {
                                     height={15}
                                 />
                             </div>
-                            <div>
+                            <div className="border-r-2 border-gray-300 pr-3">
                                 <Image
                                     src="/images/notice/whatsapp.png"
                                     alt='a1'
@@ -79,7 +79,7 @@ export default async function page() {
                                     height={20}
                                 />
                             </div>
-                            <div>
+                            <div className="border-r-2 border-gray-300 pr-3">
                                 <Image
                                     src="/images/notice/printer.png"
                                     alt='a1'

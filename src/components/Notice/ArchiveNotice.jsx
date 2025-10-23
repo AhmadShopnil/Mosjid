@@ -65,7 +65,7 @@ export default function ArchiveNotice() {
 
                             {/* Divider */}
                             <div className="border-t mt-3 pt-3 flex items-center gap-3 text-[#D9E2DD]">
-                                <div>
+                                <div className="border-r-2 border-gray-300 pr-3">
                                     <Image
                                         src="/images/notice/twiter.png"
                                         alt='a1'
@@ -73,7 +73,7 @@ export default function ArchiveNotice() {
                                         height={23}
                                     />
                                 </div>
-                                <div>
+                                <div className="border-r-2 border-gray-300 pr-3">
                                     <Image
                                         src="/images/notice/fb.png"
                                         alt='a1'
@@ -81,7 +81,7 @@ export default function ArchiveNotice() {
                                         height={15}
                                     />
                                 </div>
-                                <div>
+                                <div className="border-r-2 border-gray-300 pr-3">
                                     <Image
                                         src="/images/notice/whatsapp.png"
                                         alt='a1'
@@ -89,7 +89,7 @@ export default function ArchiveNotice() {
                                         height={20}
                                     />
                                 </div>
-                                <div>
+                                <div className="border-r-2 border-gray-300 pr-3">
                                     <Image
                                         src="/images/notice/printer.png"
                                         alt='a1'
