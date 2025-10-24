@@ -42,12 +42,12 @@ const menuItems = [
     submenu: [
       {
         name: "Ask Fatwah",
-        link: "/fatwah/ask",
+        link: "/fatwah/ask-question",
         icon: "/images/QuickLinks/normal2/4.png",
       },
       {
         name: "View Fatwahs",
-        link: "/fatwah/all",
+        link: "/fatwah",
         icon: "/images/QuickLinks/normal2/4.png",
       },
     ],
