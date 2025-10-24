@@ -271,13 +271,14 @@ body {
 
 
 
-.gradient-bg-sidebar-item-b{
-
+.gradient-bg-sidebar-item-b {
+  background: #ffff;
 }
-.gradient-bg-sidebar-item-b:hover{
- background: #3198A0;
+
+.gradient-bg-sidebar-item-b:hover {
+  background: #3198A0;
   background: linear-gradient(180deg, rgba(49, 152, 160, 1) 0%, rgba(81, 249, 9, 1) 100%);
-  color: white!;
+  color: white !;
 }
 
 .polygon {
@@ -289,6 +290,7 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
