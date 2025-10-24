@@ -120,9 +120,21 @@ const menuItems = [
   },
   {
     name: "Blog and Events",
-    link: "books",
+    link: "blogs",
     icon: "/images/QuickLinks/hover/Blog & event.png",
     activeIcon: "/images/QuickLinks/normal2/6.png",
+     submenu: [
+      {
+        name: "Blogs",
+        link: "/blogs",
+        icon: "/images/QuickLinks/normal2/4.png",
+      },
+      {
+        name: "Events",
+        link: "/events",
+        icon: "/images/QuickLinks/normal2/4.png",
+      },
+    ],
   },
   {
     name: "Contact",
@@ -191,11 +203,11 @@ export default function MainMenu({ settings }) {
                         : "opacity-0 invisible -translate-y-2"
                     }`}
                   >
-                    {item.submenu.map((sub, j) => (
+                    {item?.submenu?.map((sub, j) => (
                       <Link
                         key={j}
                         href={sub.link}
-                        className="flex items-center gap-2 px-4 py-2  hover:text-[#F7BA2A] text-xs"
+                        className="flex items-center gap-2 px-4 py-2.5 font-bold  hover:text-[#F7BA2A] text-xs"
                       >
                         <Image
                           src={sub.icon}
