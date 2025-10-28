@@ -6,7 +6,7 @@ import IslamicBlogEvents from "@/components/Home/Blog_Events/IslamicBlogEvents";
 import DictionarySection from "@/components/Home/Dictionary/DictionarySection";
 import DuaSection from "@/components/Home/Dua/DuaSection";
 import DirecToryDonation from "@/components/Home/Directory_Donation/DirecToryDonation";
-import ImageGallery from "@/components/Home/Gallery/Gallery";
+
 import IslamicBooks from "@/components/Home/IslamicBooks/IslamicBooks";
 import Fatwah from "@/components/Home/Fatwah/Fatwah";
 import PrayerTimesAndNotices from "@/components/Home/PrayerTimesAndNotices/PrayerTimesAndNotices";
@@ -14,6 +14,8 @@ import OfferServices from "@/components/Home/OfferServices/OfferServices";
 import { getFatwa } from "@/helper/actions";
 import HeroMain from "@/components/Home/HeroSections/HeroMain";
 import QuickLinksMobile from "@/components/Home/QuickLinks/QuickLinksMobile";
+
+import GallerySection from "@/components/Home/Gallery/GallerySection";
 
 export default async function Home() {
 
@@ -50,7 +52,7 @@ export default async function Home() {
        <DictionarySection/>
       <DirecToryDonation/>
       <DuaSection/>
-      <ImageGallery/>
+      <GallerySection/>
       <IslamicBooks/>
      </div>
       

@@ -3,7 +3,7 @@ import React from 'react'
 import ImageGallery from './ImageGallery'
 import { getMetaValueByMetaName } from '@/helper/metaHelpers';
 
-export default async function Gallery() {
+export default async function GallerySection() {
   const gallery = await getImageGallery();
 
   const settings = await getSettings();

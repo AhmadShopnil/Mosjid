@@ -72,7 +72,7 @@ const menuItems = [
   },
   {
     name: "Dictionary",
-    link: "dictionary",
+    link: "/dictionary/arabic",
     icon: "/images/QuickLinks/hover/Dictionary.png",
     activeIcon: "/images/QuickLinks/normal2/6.png",
     submenu: [
@@ -90,9 +90,36 @@ const menuItems = [
   },
   {
     name: "Directory",
-    link: "prayer-times",
+    link: "/directory/masjid",
     icon: "/images/QuickLinks/hover/prayer times.png",
     activeIcon: "/images/QuickLinks/normal2/7.png",
+      submenu: [
+      {
+        name: "Masjid",
+        link: "/directory/masjid",
+         icon: "/images/QuickLinks/normal2/2.png",
+      },
+      {
+        name: "Madrasha",
+        link: "/directory/madrasha",
+        icon: "/images/QuickLinks/normal2/5.png",
+      },
+         {
+        name: "Quranic Center",
+        link: "/directory/quranic-center",
+        icon: "/images/QuickLinks/normal2/5.png",
+      },
+         {
+        name: "Islamic Center",
+        link: "/directory/islamic-center",
+        icon: "/images/QuickLinks/normal2/5.png",
+      },
+         {
+        name: "Others",
+        link: "/directory/others",
+        icon: "/images/QuickLinks/normal2/5.png",
+      },
+    ],
   },
   {
     name: "Donation",
