@@ -1,4 +1,6 @@
 
+import DictionaryPage from '@/components/Dictionary/DictionaryPage'
+import DictionarySearchSection from '@/components/Directory/DictionarySearchSection'
 import DirectoryPage from '@/components/Directory/Directorypage'
 import SubmitRequest from '@/components/Fatwah/SubmitRequest'
 import SearchSection from '@/components/Home/Directory_Donation/Directory/SearchSection'
@@ -90,11 +92,11 @@ export default async function page() {
                     {/* Header */}
                     <InnerHeader title={"掲示板"} image={"/images/fatwah/fatwaharbic_white.png"} />
                    <div className=''>
-                     <div className='w-full md:w-[90%] lg:w-[75%] xl:w-[60%] py-2'>
-                        <SearchSection/>
+                     <div className='w-full py-2'>
+                        <DictionarySearchSection/>
                      </div>
                    </div>
-                   <DirectoryPage/>
+                   <DictionaryPage/>
                 </div>
             </Container>
 

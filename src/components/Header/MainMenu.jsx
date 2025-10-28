@@ -72,7 +72,7 @@ const menuItems = [
   },
   {
     name: "Dictionary",
-    link: "dictionary",
+    link: "/dictionary/arabic",
     icon: "/images/QuickLinks/hover/Dictionary.png",
     activeIcon: "/images/QuickLinks/normal2/6.png",
     submenu: [
@@ -90,7 +90,7 @@ const menuItems = [
   },
   {
     name: "Directory",
-    link: "prayer-times",
+    link: "/directory/masjid",
     icon: "/images/QuickLinks/hover/prayer times.png",
     activeIcon: "/images/QuickLinks/normal2/7.png",
       submenu: [

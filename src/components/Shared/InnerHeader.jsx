@@ -11,8 +11,8 @@ export default function InnerHeader({title,image}) {
                     // src="/images/fatwah/fatwaharbic_white.png"
                     alt="Logo"
                     width={200}
-                    height={60}
-                    className='hidden sm:flex w-[223px] h-[60px]'
+                    height={50}
+                    className='hidden sm:flex w-[215px] h-[50px]'
                 />
             </div>
        

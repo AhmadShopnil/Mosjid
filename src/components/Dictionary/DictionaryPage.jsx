@@ -1,74 +1,26 @@
 import Image from "next/image";
 
-export default function DirectoryPage() {
+export default function DictionaryPage() {
     return (
         <div className=" bg-gray-50 space-y-4">
             {/* First Section - Table */}
             <div className="  gradient-border rounded-2xl p-8 bg-white">
                 {/* Table Header */}
-                <div className="bg-[#52B920] h-[50px] text-white  flex items-center justify-center rounded-t-[10px] ">
+                <div className="bg-[#52B920] h-[50px] text-[#FFFFFF]  flex items-center justify-center rounded-t-[10px] ">
                     <h2 className=" text-center text-xl font-bold">Table for selected category</h2>
                 </div>
 
                 {/* Table */}
-                {/* <table className="w-full border-collapse">
-                    <thead>
-                        <tr className="bg-[#D9E2DD] h-[28px]">
-                            <th className="border border-[#B0C4B8] py-1 text-base  text-center text-[#000000]">SL.No</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base  text-center  text-[#000000]">Name</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base  text-center  text-[#000000]">Phone</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base  text-center  text-[#000000]">Juma Time</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base  text-center  text-[#000000]">Address</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base  text-center  text-[#000000]">View in Detail</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className="bg-white h-[28px]">
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                        </tr>
-                        <tr className="bg-[#E5F5DE] h-[28px]">
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                        </tr>
-                        <tr className="bg-white h-[28px]">
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                        </tr>
-                        <tr className="bg-[#E5F5DE] h-[28px]">
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                            <td className="border border-gray-300 p-3"></td>
-                        </tr>
-                    </tbody>
-                </table> */}
-
-
                 <table className="w-full border-collapse table-fixed font-normal">
                     <thead>
                         <tr className="bg-[#D9E2DD] h-[28px] font-normal">
                             <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">SL.No</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">Name</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">Phone</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">Juma Time</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">Address</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">View in Detail</th>
-
+                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">Arabic</th>
+                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">English</th>
+                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">Japanese</th>
+                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">Japanese</th>
+                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">Pronunciation in Roman</th>
+                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">View in Card</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,7 +29,7 @@ export default function DirectoryPage() {
                                 key={i}
                                 className={`${i % 2 === 0 ? "bg-white" : "bg-[#E5F5DE]"} h-[28px]`}
                             >
-                                {[...Array(6)].map((_, j) => (
+                                {[...Array(7)].map((_, j) => (
                                     <td
                                         key={j}
                                         className="border border-gray-300 p-3 text-center"
@@ -87,7 +39,6 @@ export default function DirectoryPage() {
                         ))}
                     </tbody>
                 </table>
-
 
 
                 {/* Website URL */}
@@ -156,35 +107,35 @@ export default function DirectoryPage() {
                         <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
                             <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
                           text-base text-[#000000]">
-                                <span className=" ">Name</span>
+                                <span className=" ">Japanese</span>
                                 <span className="">:</span>
                             </div>
                         </div>
                         <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
                             <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
                           text-base text-[#000000]">
-                                <span className=" ">Address</span>
+                                <span className=" ">Pron in Japanese</span>
                                 <span className="">:</span>
                             </div>
                         </div>
                         <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
                             <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
                           text-base text-[#000000]">
-                                <span className=" ">Phone/Fax</span>
+                                <span className=" ">Pron in Roman</span>
                                 <span className="">:</span>
                             </div>
                         </div>
                         <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
                             <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
                           text-base text-[#000000]">
-                                <span className=" ">Email</span>
+                                <span className=" ">Explanation</span>
                                 <span className="">:</span>
                             </div>
                         </div>
                         <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
                             <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
                           text-base text-[#000000]">
-                                <span className=" ">Website</span>
+                                <span className=" ">Usage</span>
                                 <span className="">:</span>
                             </div>
                         </div>
@@ -195,14 +146,14 @@ export default function DirectoryPage() {
                         <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
                             <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
                           text-base text-[#000000]">
-                                <span className=" ">Established in</span>
+                                <span className=" ">Arabic</span>
                                 <span className="">:</span>
                             </div>
                         </div>
                         <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
                             <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
                           text-base text-[#000000]">
-                                <span className=" ">Juma prayer</span>
+                                <span className=" ">English</span>
                                 <span className="">:</span>
                             </div>
                         </div>
@@ -212,25 +163,12 @@ export default function DirectoryPage() {
                         <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
                             <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
                           text-base text-[#000000]">
-                                <span className=" ">Status</span>
+                                <span className=" ">Usage</span>
                                 <span className="">:</span>
                             </div>
                         </div>
 
-                        <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
-                            <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
-                          text-base text-[#000000]">
-                                <span className=" ">Facilities</span>
-                                <span className="">:</span>
-                            </div>
-                        </div>
-                        <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
-                            <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
-                          text-base text-[#000000]">
-                                <span className=" ">Others</span>
-                                <span className="">:</span>
-                            </div>
-                        </div>
+                    
 
                     </div>
                 </div>
