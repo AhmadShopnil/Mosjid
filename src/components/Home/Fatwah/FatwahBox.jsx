@@ -33,7 +33,7 @@ export default async function FatwahBox() {
             src="/images/fatwah/fatwahHeader.png"
             alt="Logo"
             width={160}
-            height={100}
+            height={181}
             className='hidden sm:flex'
           />
           <Image
@@ -52,13 +52,13 @@ export default async function FatwahBox() {
             <Image
               src="/images/fatwah/fatwahArabicheader.png"
               alt="Logo"
-              width={400}
-              height={50}
+              width={515}
+              height={70}
             />
             <Image
               src="/images/fatwah/arabic3.png"
               alt="Logo"
-              width={150}
+              width={157}
               height={36}
             />
           </div>
@@ -106,10 +106,10 @@ export default async function FatwahBox() {
             <div className="flex justify-between  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3   ">
 
               <Image
-                src="/images/fatwah/pen.png"
+                src="/images/fatwah/pen2.png"
                 alt="Book Icon"
-                width={60}
-                height={70}
+                width={65}
+                height={53}
                 className="mb-2"
               />
               <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
@@ -120,13 +120,13 @@ export default async function FatwahBox() {
             </div>
        
             {/* arabic text */}
-            <div className="flex gap-4">
+            <div className="flex gap-4 items-center">
               <Image
                 src={image}
                 alt='a1'
-                width={170}
+                width={186}
                 height={50}
-                className='hidden sm:flex'
+                className='w-[186px] h-[50px] hidden sm:flex'
               />
 
               <div className=' my-auto'>

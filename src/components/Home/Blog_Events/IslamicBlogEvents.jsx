@@ -42,8 +42,8 @@ export default async function IslamicBlogEvents() {
                 <Image
                   src="/images/blogEvents/icon2.png"
                   alt='blogEvents'
-                  width={55}
-                  height={55}
+                  width={57}
+                  height={57}
                   className=""
                 />
 
@@ -61,8 +61,8 @@ export default async function IslamicBlogEvents() {
               <Image
                 src={image}
                 alt='a1'
-                width={300}
-                height={60}
+                width={211}
+                height={50}
               />
             </div>
           </div>

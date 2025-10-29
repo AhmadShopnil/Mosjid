@@ -7,23 +7,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { splitBySpace } from "@/helper/splitBySpace";
+import { getImageUrl } from "@/helper/getImageUrl";
 
 
-const services = [
-  { id: 1, name: "Daily 5 time prayers ", writer: "Writer Name", selected: false, image: "/images/offerServices/Daily 5 time prayers.png" },
-  { id: 2, name: "Jumma Prayer", writer: "Writer Name", selected: true, image: "/images/offerServices/Jumma prayer.png" },
-  { id: 3, name: "Eid Prayer", writer: "Writer Name", selected: false, image: "/images/offerServices/Eid prayers.png" },
-  { id: 4, name: "Marriage facilities & certification", writer: "Writer Name", selected: false, image: "/images/offerServices/Marriage facilities & certification.png" },
-  { id: 5, name: "Islamic library", writer: "Writer Name", selected: false, image: "/images/offerServices/Islamic library.png" },
-  { id: 6, name: "Eid Prayer", writer: "Writer Name", selected: false, image: "/images/offerServices/Eid prayers.png" },
-  { id: 7, name: "Marriage facilities & certification", writer: "Writer Name", selected: false, image: "/images/offerServices/Marriage facilities & certification.png" },
-  { id: 8, name: "Islamic library", writer: "Writer Name", selected: false, image: "/images/offerServices/Islamic library.png" },
 
-];
 
-export default function OfferServices() {
+export default function OfferServicesSlider({ services, offered_services_ExtraData }) {
   const [hoveredCard, setHoveredCard] = useState(null);
-
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -45,94 +36,106 @@ export default function OfferServices() {
 
 
 
+  const heading_part_1 = splitBySpace(offered_services_ExtraData?.sub_title)[0]
+  const heading_part_2 = splitBySpace(offered_services_ExtraData?.sub_title)[1]
+  const image = getImageUrl(offered_services_ExtraData?.image_media)
+const offered_services_title_2 = offered_services_ExtraData?.custom_information.find((item) => item.label === "offered_services_title_2")
+
+
+
   return (
     <div className="px-4 py-10">
 
-      <div className="max-w-6xl  mx-auto ">
+      <div className="max-w-7xl  mx-auto ">
         {/* Top Section */}
         <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
-          <div>
-            <div className="flex items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3">
-              <Image
-                src="/images/isamicBooks/bookIcon.png"
-                alt="Book Icon"
-                width={24}
-                height={24}
-              />
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">
-                <span className="text-[#DEA726]">Offered</span>{" "}
-                <span className="text-green-700">Services</span>
-              </h2>
-            </div>
 
+          <div className="flex justify-between  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3 items-center  ">
+
+            <Image
+              src="/images/offerServices/icon.png"
+              alt="Book Icon"
+              width={55}
+              height={40}
+              className=""
+            />
+
+
+
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+              <p><span className="text-[#F7BA2A]">{heading_part_1}</span> {heading_part_2} </p>
+              <p>{offered_services_title_2?.value}</p>
+
+            </div>
           </div>
+       
 
           <div className="flex items-center gap-3 sm:gap-4">
             <Image
-              src="/images/offerServices/arabictext.png"
+              src={image}
               alt="Arabic text"
               width={160}
               height={50}
               className="object-contain hidden sm:flex"
             />
             <Image
-              src="/images/offerServices/arabictext.png"
+              src={image}
               alt="Arabic text"
               width={135}
               height={40}
               className="object-contain sm:hidden"
             />
-            {/* <button className="border border-[#00401A] text-[#00401A]
-               font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer">
-                Find More
-              </button> */}
+  
           </div>
         </div>
 
-        {/* BOOK SLIDER */}
-        <div className="relative">
+        {/* Service slider */}
+        <div className=" ">
           {/* Swiper Slider */}
           <Swiper
             modules={[Navigation]}
             spaceBetween={20}
-            slidesPerView={4}
+            slidesPerView={1}
             loop={true}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             breakpoints={{
-              320: { slidesPerView: 1.5 },
-              400: { slidesPerView: 2 },
+              280: { slidesPerView: 1.8 },
+              340: { slidesPerView: 2 },
               500: { slidesPerView: 2.3 },
               550: { slidesPerView: 3.3 },
-              640: { slidesPerView: 3.8 },
-              840: { slidesPerView: 4 },
-              1024: { slidesPerView: 4.7 },
-              1250: { slidesPerView: 5.4 },
-   
+              680: { slidesPerView: 3.6 },
+              840: { slidesPerView: 4.2 },
+              1024: { slidesPerView: 5 },
+              1250: { slidesPerView: 6 },
+             
             }}
           >
             {services.map((service) => (
               <SwiperSlide key={service.id}>
                 <div
-                  className={`w-[180px] h-[300px] md:w-[210px] md:h-[340px]  relative flex flex-col 
+                  className={`w-[150px] h-[250px] sm:w-[180px] sm:h-[300px] md:w-[195px] md:h-[360px] 
+                      flex flex-col 
                     items-center justify-between text-center rounded-full 
-                    shadow-md bg-white mx-auto cursor-pointer
-                    group hover:border hover:border-green-500 p-3
+                    shadow-2xl bg-white mx-auto cursor-pointer
+                    group hover:border hover:border-green-500 p-2 sm:p-3
                 `}
-                  onMouseEnter={() => setHoveredCard(service.id)}
+                  onMouseEnter={() => setHoveredCard(service?.id)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
-                  <div className="p-3 rounded-full mt-4 bg-[#F8F8F8]">
-                    <Image
-                      src={service?.image}
+                  <div className="p-1.5 sm:p-3 rounded-full mt-2 sm:mt-4 bg-[#F8F8F8]">
+                  <div>
+                      <Image
+                      src={service?.featured_image}
                       alt="Book"
                       width={100}
                       height={100}
                     />
                   </div>
+                  </div>
 
-                  <div className="flex flex-col items-center mt-4">
-                    <p className="text -lg md:text-xl font-bold text-[#333333] leading-9">{service.name}</p>
-                    <p className="text-sm text-[#333333]">{service.writer}</p>
+                  <div className="flex flex-col items-center mt-2 sm:mt-4">
+                    <p className="text -lg md:text-xl font-bold text-[#333333] leading-6 md:leading-8">{service?.name}</p>
+                    {/* <p className="text-sm text-[#333333]">{service.writer}</p> */}
                   </div>
 
                   <div className="pb-4">
