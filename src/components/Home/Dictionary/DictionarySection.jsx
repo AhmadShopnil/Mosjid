@@ -76,8 +76,8 @@ export default function DictionarySection() {
             <Image
               src="/images/directory/a1.png"
               alt='a1'
-              width={300}
-              height={60}
+              width={500}
+              height={70}
               className="hidden sm:flex"
             />
             <Image
