@@ -5,8 +5,9 @@ import { useState } from "react";
 import Sidebar from "./Sidebar";
 import SubmitRequest from "../Fatwah/SubmitRequest";
 import { MdArrowForwardIos } from "react-icons/md";
+import AskQuestionSidebar from "../Fatwah/AskQuestionSidebar";
 
-export default function SidebarMainDrawer({ categories }) {
+export default function SidebarMainDrawer({ categories,isAskQuestion=false }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
@@ -62,6 +63,8 @@ export default function SidebarMainDrawer({ categories }) {
         {/* Sidebar + SubmitRequest */}
         <div className="h-full overflow-y-auto p-4 xl:p-0 space-y-6">
           <Sidebar categories={categories} />
+          {isAskQuestion && <AskQuestionSidebar /> }
+          
           <SubmitRequest />
         </div>
       </div>

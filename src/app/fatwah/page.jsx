@@ -124,7 +124,7 @@ export default async function page() {
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
 
-        <SidebarMainDrawer categories={categories} />
+        <SidebarMainDrawer categories={categories} isAskQuestion={true}/>
 
         {/* <div className='w-[400px] space-y-6'>
                      <Sidebar categories={categories} />
