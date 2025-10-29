@@ -9,7 +9,7 @@ export default function BannerInnerPage() {
                 alt={"Hero Banner"}
                 width={2000}
               height={300}
-              className='w-full h-[270px]'
+              className='w-full h-[90px] xs:[100px] sm:h-[120px]  md:h-[170px] lg:h-[200px] xl:h-[270px]'
             />
 
         </div>

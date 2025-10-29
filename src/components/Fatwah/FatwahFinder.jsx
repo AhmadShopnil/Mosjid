@@ -27,20 +27,20 @@ export default function FatwaFinder() {
       <div className="bg-[#E5F5DE] text-center py-4  ">
         <h2 className="text-3xl font-bold text-[#00401A]">Fatwa Finder</h2>
       </div>
-        <div className="flex gap-8 py-8">
+        <div className="flex flex-col lg:flex-row gap-8 py-8">
           {/* Left Sidebar - Logo Section */}
-          <div className=" w-[20%] flex flex-col items-center justify-center">
+          <div className="w-full lg:w-[20%] flex flex-col items-center justify-center">
             <Image
               src="/images/fatwah/fatwahHeader.png"
               alt="Logo"
               width={260}
               height={200}
-              className='hidden sm:flex'
+              className=''
             />
           </div>
 
           {/* Right Section - Search Form */}
-          <div className="w-[75%]">
+          <div className="w-full lg:w-[75%]">
             <div className="">
             <FatwaSearchForm/>
             </div>

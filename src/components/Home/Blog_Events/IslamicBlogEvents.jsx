@@ -33,7 +33,7 @@ export default async function IslamicBlogEvents() {
     >
 
       <Container className="h-full   ">
-        <div className='w-full lg:w-[80%] xl:w-[65%] py-4 sm:py-10 md:py-20 h-full  '  >
+        <div className='w-full lg:w-[80%] xl:w-[65%] py-10  md:py-20 h-full  '  >
           {/* heading */}
           <div className='flex flex-col sm:flex-row gap-4 items-center  sm:justify-between mb-2 '>
             <div className='flex gap-2 items-center justify-center sm:justify-start    w-full  sm:w-[60%]    '>

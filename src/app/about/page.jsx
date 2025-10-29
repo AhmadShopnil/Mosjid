@@ -7,6 +7,7 @@ import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
 import Sidebar from '@/components/Shared/Sidebar'
+import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 
 import Image from 'next/image'
 import React from 'react'
@@ -119,11 +120,11 @@ export default async function page() {
 
             <Container className='flex gap-6 my-6'>
                 {/* sidebar */}
-                <div className='w-[400px] space-y-6'>
+                <SidebarMainDrawer categories={categories} />
+                {/* <div className='w-[400px] space-y-6'>
                  <Sidebar categories={categories} />
-
                     <SubmitRequest />
-                </div>
+                </div> */}
                 {/* main content */}
                 <div className=' w-full space-y-6'>
                     <InnerHeader title={"掲示板"} image={"/images/fatwah/fatwaharbic_white.png"} />
