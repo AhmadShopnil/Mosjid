@@ -106,10 +106,10 @@ export default async function FatwahBox() {
             <div className="flex justify-between  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3   ">
 
               <Image
-                src="/images/fatwah/pen.png"
+                src="/images/fatwah/pen2.png"
                 alt="Book Icon"
-                width={60}
-                height={70}
+                width={65}
+                height={53}
                 className="mb-2"
               />
               <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">

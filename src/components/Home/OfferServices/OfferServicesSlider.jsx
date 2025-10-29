@@ -31,12 +31,12 @@ export default function OfferServicesSlider({ services, offered_services_ExtraDa
       <div className="max-w-7xl mx-auto">
         {/* Top Section */}
         <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
-          <div className="flex justify-between gap-2 gradient-border_b mb-4 sm:mb-0 pb-3 items-center">
+          <div className="flex justify-between gap-2.5 gradient-border_b mb-4 sm:mb-0 pb-3 items-center">
             <Image
               src="/images/offerServices/icon.png"
               alt="Book Icon"
-              width={55}
-              height={40}
+              width={60}
+              height={63}
             />
             <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
               <p>

@@ -16,7 +16,7 @@ const books = [
   { id: 5, name: "Book Name", writer: "Writer Name", selected: false },
 ];
 
-export default function IslamicBooks() {
+export default function IslamicBooksSlider({books}) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const swiperRef = useRef(null);
@@ -36,15 +36,15 @@ export default function IslamicBooks() {
   }, []);
 
   return (
-    <Container className="w-full py-12 bg-white ">
+    <div className="w-full max-w-[1780px] mx-auto py-12 bg-white ">
       <div className=" flex flex-col lg:flex-row items-center gap-10">
         {/* LEFT IMAGE */}
-        <div className="w-full lg:w-[40%] flex  h-full">
+        <div className="w-full lg:w-[32%] flex  h-full ">
           <Image
             src="/images/isamicBooks/bookImage.png"
             alt="Islamic Illustration"
-            width={550}
-            height={550}
+            width={600}
+            height={600}
             className="object-contain "
           />
         </div>
@@ -54,7 +54,25 @@ export default function IslamicBooks() {
           {/* Top Section */}
           <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
             <div>
-              <div className="flex items-center gap-2 sm:gap-3 gradient-border_b pb-3 mb-4 sm:mb-0">
+
+
+    <div className="flex justify-between items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
+          <Image
+            src="/images/isamicBooks/bookIcon.png"
+            alt="Book Icon"
+            width={55}
+            height={55}
+            className=""
+          />
+
+          <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+            <p><span className="text-[#F7BA2A]">Islamic</span> Books </p>
+            <p>イスラム教の書籍</p>
+
+          </div>
+        </div>
+
+              {/* <div className="flex items-center gap-2 sm:gap-3 gradient-border_b pb-3 mb-4 sm:mb-0">
                 <Image
                   src="/images/isamicBooks/bookIcon.png"
                   alt="Book Icon"
@@ -65,7 +83,7 @@ export default function IslamicBooks() {
                   <span className="text-[#F7BA2A]">Islamic</span>{" "}
                   <span className="text-green-700">Books</span>
                 </h2>
-              </div>
+              </div> */}
             
             </div>
 
@@ -85,7 +103,7 @@ export default function IslamicBooks() {
                 className="object-contain sm:hidden"
               />
               <button className="border border-[#00401A] text-[#00401A]
-               font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer">
+               font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer hover:bg-[#00401A] hover:text-white transition-colors duration-400">
                 Find More Books
               </button>
             </div>
@@ -102,8 +120,10 @@ export default function IslamicBooks() {
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               breakpoints={{
                 320: { slidesPerView: 1.5 },
-                400: { slidesPerView: 2 },
-                 500: { slidesPerView: 2.3 },
+                370: { slidesPerView: 2 },
+                420: { slidesPerView: 2.5 },
+                 470: { slidesPerView: 3 },
+                 500: { slidesPerView: 3.3 },
                 640: { slidesPerView: 2.8 },
                 840: { slidesPerView: 3.8 },
                 1024: { slidesPerView: 2.7 },
@@ -114,24 +134,33 @@ export default function IslamicBooks() {
               {books.map((book) => (
                 <SwiperSlide key={book.id}>
                 <div
-                className={`w-[200px] h-[330px] relative flex flex-col 
+                className={`w-[150px] h-[250px] sm:w-[240px] sm:h-[380px] relative flex flex-col 
                     items-center justify-between text-center rounded-full 
                     shadow-md bg-white mx-auto cursor-pointer
                     group hover:border hover:border-green-500
                 `}
                 >
-                <div className="p-7 rounded-full mt-4 bg-[#F8F8F8]">
+                <div className="p-4 sm:p-9 rounded-full mt-2 sm:mt-4 bg-[#F8F8F8]">
                     <Image
-                    src="/images/isamicBooks/bookIcon.png"
+                    src={book?.featured_image}
+                    // src="/images/isamicBooks/bookIcon.png"
+                    alt="Book"
+                    width={70}
+                    height={70}
+                    className=" flex sm:hidden"
+                    />
+                      <Image
+                    src={book?.featured_image}
                     alt="Book"
                     width={90}
                     height={90}
+                    className="hidden sm:flex"
                     />
                 </div>
 
                 <div className="flex flex-col items-center mt-4">
-                    <p className="text-xl font-bold text-[#333333]">{book.name}</p>
-                    <p className="text-sm text-[#333333]">{book.writer}</p>
+                    <p className="text-lg sm:text-xl font-bold text-[#333333]">{book?.name}</p>
+                    <p className="text-xs sm:text-sm text-[#333333]">{book?.sub_title}</p>
                 </div>
 
                 <div className="pb-4">
@@ -168,6 +197,6 @@ export default function IslamicBooks() {
           </div>
         </div>
       </div>
-    </Container>
+    </div>
   );
 }

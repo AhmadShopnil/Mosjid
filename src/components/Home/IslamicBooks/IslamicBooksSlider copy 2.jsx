@@ -39,8 +39,8 @@ export default function IslamicBooksSlider({ books }) {
                 <Image
                   src="/images/isamicBooks/bookIcon.png"
                   alt="Book Icon"
-                  width={60}
-                  height={64}
+                  width={55}
+                  height={55}
                 />
 
                 <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
@@ -56,7 +56,7 @@ export default function IslamicBooksSlider({ books }) {
               <Image
                 src="/images/isamicBooks/arabic-islamicbooks.png"
                 alt="Arabic text"
-                width={171}
+                width={160}
                 height={50}
                 className="object-contain hidden sm:flex"
               />
@@ -87,10 +87,10 @@ export default function IslamicBooksSlider({ books }) {
               {books.map((book) => (
                 <div
                   key={book.id}
-                  className={`snap-start flex-shrink-0 w-[150px] h-[250px] sm:w-[240px] sm:h-[380px]
-        flex flex-col items-center justify-between text-center rounded-full
-        shadow-md bg-white cursor-pointer
-        group hover:border hover:border-green-500`}
+                  className={`snap-start flex-shrink-0 w-[150px] h-[250px] sm:w-[240px] sm:h-[380px] 
+                    flex flex-col items-center justify-between text-center rounded-full 
+                    shadow-md bg-white mx-auto cursor-pointer
+                    group hover:border hover:border-green-500 `}
                 >
                   <div className="p-4 sm:p-9 rounded-full mt-2 sm:mt-4 bg-[#F8F8F8]">
                     <Image
@@ -103,14 +103,16 @@ export default function IslamicBooksSlider({ books }) {
                   </div>
 
                   <div className="flex flex-col items-center mt-4">
-                    <p className="text-lg sm:text-xl font-bold text-[#333333]">{book?.name}</p>
+                    <p className="text-lg sm:text-xl font-bold text-[#333333]">
+                      {book?.name}
+                    </p>
                     <p className="text-xs sm:text-sm text-[#333333]">{book?.sub_title}</p>
                   </div>
 
                   <div className="pb-4">
                     <button
                       className="cursor-pointer p-2 rounded-full border border-gray-300 text-gray-300
-          transition-colors duration-300 group-hover:border-orange-400 group-hover:text-orange-400"
+                      transition-colors duration-300 group-hover:border-orange-400 group-hover:text-orange-400"
                     >
                       <Download className="w-4 h-4" />
                     </button>
@@ -118,7 +120,6 @@ export default function IslamicBooksSlider({ books }) {
                 </div>
               ))}
             </div>
-
 
             {/* Left Arrow */}
             <button

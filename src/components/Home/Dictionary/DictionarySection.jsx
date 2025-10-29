@@ -53,10 +53,10 @@ export default function DictionarySection() {
           <div className="flex justify-between  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
 
             <Image
-              src="/images/dictionary/icon.png"
+              src="/images/dictionary/icon2.png"
               alt="Book Icon"
               width={60}
-              height={70}
+              height={50}
               className=""
             />
 
