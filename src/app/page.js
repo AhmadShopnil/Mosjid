@@ -55,6 +55,9 @@ export default async function Home() {
       <GallerySection/>
       <IslamicBooks/>
      </div>
+      <div className=" lg:hidden">
+        <OfferServices/>
+      </div>
       
       <IslamicBlogEvents/>
 {/* 

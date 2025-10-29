@@ -4,26 +4,8 @@ import { useState } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
-export default function Sidebar() {
-  const [expandedItems, setExpandedItems] = useState({
-    worship: false,
-    lifeMatters: false,
-    prohibition: false,
-    quran: false,
-    purity: false,
-    social: false,
-    beliefs: false,
-    decency: false,
-  });
 
-  const toggleExpand = (item) => {
-    setExpandedItems((prev) => ({
-      ...prev,
-      [item]: !prev[item],
-    }));
-  };
-
-  const categories = [
+ const categories = [
     {
       id: "worship",
       icon: "/images/fatwah/pen.png",
@@ -116,6 +98,30 @@ export default function Sidebar() {
     },
   ];
 
+
+
+
+export default function Sidebar({categories}) {
+  const [hovered, setHovered]=useState("")
+  const [expandedItems, setExpandedItems] = useState({
+    worship: false,
+    lifeMatters: false,
+    prohibition: false,
+    quran: false,
+    purity: false,
+    social: false,
+    beliefs: false,
+    decency: false,
+  });
+
+  const toggleExpand = (item) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [item]: !prev[item],
+    }));
+  };
+
+ 
   return (
     <div className="bg-white rounded-[10px] border border-[#C9E9BA] overflow-hidden shadow-sm">
       {/* Header */}
@@ -127,21 +133,35 @@ export default function Sidebar() {
 
       {/* Categories List */}
       <div className="flex flex-col gap-3 px-4 pb-4">
-        {categories.map((category) => {
+        {categories?.map((category) => {
           const isExpanded = expandedItems[category.id];
 
           return (
             <div key={category.id}>
               {/* Category Item */}
               <button
+              onMouseEnter={()=>setHovered(category.id)}
+              onMouseLeave={()=>setHovered("")}
                 onClick={() =>
                   category.hasSubItems && toggleExpand(category.id)
                 }
                 className={`group w-full h-[60px] px-4 py-3 flex items-center gap-3  transition-all
-                  ${isExpanded
+                   
+                  ${isExpanded || category.id==hovered
                     ? "gradient-bg-sidebar-item text-white rounded-t-[10px]"
-                    : "bg-[#EEF8E9] gradient-bg-sidebar-item-b hover:bg-[#B6EB9B] rounded-[10px]"
-                  }`}
+                    : "bg-[#EEF8E9] rounded-[10px]"
+                  }
+                
+                  
+                  `
+                
+                
+                }
+                  // className={`group w-full h-[60px] px-4 py-3 flex items-center gap-3  transition-all
+                  // ${isExpanded
+                  //   ? "gradient-bg-sidebar-item text-white rounded-t-[10px]"
+                  //   : "bg-[#EEF8E9] gradient-bg-sidebar-item-b  rounded-[10px]"
+                  // }`}
               >
                 {/* Icon with hover/active change */}
                 <span className="relative flex-shrink-0 w-[42px] h-[42px]">
@@ -163,7 +183,24 @@ export default function Sidebar() {
                     draggable={false}
                   />
                 </span>
-             
+                {/* <span className="relative flex-shrink-0 w-[48px] h-[48px]">
+                  <Image
+                    src={category.icon}
+                    alt="icon"
+                    fill
+                    className={`object-contain transition-opacity duration-300 ${
+                      isExpanded ? "opacity-0" : "opacity-100 group-hover:opacity-0"
+                    }`}
+                  />
+                  <Image
+                    src={category.activeIcon}
+                    alt="active icon"
+                    fill
+                    className={`object-contain transition-opacity duration-300 ${
+                      isExpanded ? "opacity-100" : "opacity-0 group-hover:opacity-100 "
+                    }`}
+                  />
+                </span> */}
 
 
                 {/* Text Content */}

@@ -42,7 +42,7 @@ export default async function EventCard({ event, index = 0 }) {
 
 
 
-            <div className={`w-20 h-20 text-center bg-gray-100 rounded-md  leading-6 flex flex-col items-center justify-center  ${colorClass}`}>
+            <div className={`w-28 lg:w-26 h-20 text-center bg-gray-100 rounded-md  leading-6 flex flex-col items-center justify-center  ${colorClass}`}>
                 <p className="text-3xl font-bold text-green-900 leading-7">
                     {day}
                 </p>
