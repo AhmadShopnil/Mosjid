@@ -265,6 +265,20 @@ export async function getSingleFatwa(slug) {
   return json?.data || {};
 }
 
+
+export async function getCategories(type) {
+  const API_URL = `${BASE_URL}/api/v1/categories?taxonomy_type=${type}&order_direction=desc`;
+  // console.log("from action slug", slug)
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+  // console.log("from action", json)
+
+  return json?.data || {};
+}
+
+
 export async function getImageGallery() {
   const API_URL = `${BASE_URL}/api/v1/posts?term_type=img_gallery`;
 

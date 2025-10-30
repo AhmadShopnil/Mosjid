@@ -19,7 +19,7 @@ const colorClasses = [
     'bg-amber-100 ',
 ];
 
-export default  function EventCard({ event, index = 0 },settings) {
+export default  function EventCard({ event, index = 0,settings }) {
    
 
     const read_more_button_text = getMetaValueByMetaName(settings, "read_more") || "";
@@ -64,7 +64,7 @@ export default  function EventCard({ event, index = 0 },settings) {
                 >
                     <span
                         className='mt-0.5'
-                    >{read_more_button_text} </span>
+                    >{read_more_button_text}  </span>
                     <Image
                         src="/images/blogEvents/arrow.png"
                         alt='a1'

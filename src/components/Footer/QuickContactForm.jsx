@@ -6,16 +6,16 @@ import toast from "react-hot-toast";
 
 
 const postForm = async (endpoint, formData) => {
-  try {
-    const res = await axiosInstance.post(endpoint, formData);
-    return {
-      success: true,
-      message: res.data.message || "Submitted successfully",
-    };
-  } catch (error) {
-    const message = error.response?.data?.message || "Submission failed";
-    return { success: false, message };
-  }
+    try {
+        const res = await axiosInstance.post(endpoint, formData);
+        return {
+            success: true,
+            message: res.data.message || "Submitted successfully",
+        };
+    } catch (error) {
+        const message = error.response?.data?.message || "Submission failed";
+        return { success: false, message };
+    }
 };
 
 
@@ -60,7 +60,7 @@ export default function QuickContactForm({ section_3_title }) {
 
     return (
         <div>
-            <h3 className="text-2xl text-[#00401A] font-bold mb-4 gradient-border_b pb-2.5">
+            <h3 className="text-2xl text-[#00401A] font-bold mb-4 gradient-border_b pb-3.5">
                 {section_3_title}
             </h3>
             <form onSubmit={handleSubmit} className="space-y-3">
@@ -70,15 +70,16 @@ export default function QuickContactForm({ section_3_title }) {
                     placeholder="Name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full border rounded-md px-3 py-2 text-sm outline-none focus:border-green-600"
+                    className="w-full border border-[#003014] h-[46px] text-[#333333] placeholder:text-[#333333] rounded-2xl px-3 py-2 text-sm outline-none focus:border-green-600"
                 />
+
                 <input
                     type="text"
                     name="phone"
                     placeholder="Phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full border rounded-md px-3 py-2 text-sm outline-none focus:border-green-600"
+                    className="w-full border border-[#003014] h-[46px] text-[#333333] placeholder:text-[#333333] rounded-2xl px-3 py-2 text-sm outline-none focus:border-green-600"
                 />
                 <input
                     type="email"
@@ -86,7 +87,7 @@ export default function QuickContactForm({ section_3_title }) {
                     placeholder="Email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full border rounded-md px-3 py-2 text-sm outline-none focus:border-green-600"
+                    className="w-full border border-[#003014] h-[46px] text-[#333333] placeholder:text-[#333333] rounded-2xl px-3 py-2 text-sm outline-none focus:border-green-600"
                 />
                 <textarea
                     name="message"
@@ -94,11 +95,11 @@ export default function QuickContactForm({ section_3_title }) {
                     rows="3"
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full border rounded-md px-3 py-2 text-sm outline-none focus:border-green-600"
+                    className="w-full border border-[#003014] h-[46px] text-[#333333] placeholder:text-[#333333]  rounded-2xl px-3 py-2 text-sm outline-none focus:border-green-600"
                 />
                 <button
                     type="submit"
-                    className="w-full bg-green-600 text-white py-2 rounded-md font-medium hover:bg-green-700 transition"
+                    className="w-full text-bold text-[20px] bg-[#52B920] text-white py-2 rounded-[100px] h-[50px] font-medium hover:bg-green-700 transition"
                 >
                     Submit
                 </button>

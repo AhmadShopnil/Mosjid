@@ -15,8 +15,7 @@ function MakeDonationInner({ donationMethods, make_your_donation }) {
   const heading_part_2 = splitBySpace(make_your_donation?.sub_title)[1]
   const image_arabic = getImageUrl(make_your_donation?.image_media);
 
-  // const donation_title_2 = make_your_donation?.custom_information.find((item) => item.label === "donation_title_2")
-  // console.log("make_your_donation",make_your_donation?.custom_information)
+
 
   return (
     <div className='gradient-border bg-white  px-5 sm:px-8 pt-5 sm:pt-8 pb-20p-4 rounded-2xl'>
@@ -24,17 +23,11 @@ function MakeDonationInner({ donationMethods, make_your_donation }) {
       {/* heading */}
       <div className='flex justify-between mb-6 '>
         <div className="flex justify-between items-center  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
-          {/* <Image
-            src="/images/donation/icon.png"
-            alt="Book Icon"
-            width={60}
-            height={70}
-            className=""
-          /> */}
+    
 
           <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A] flex gap-4">
             <p><span className="text-[#F7BA2A]">{heading_part_1}</span> {heading_part_2} </p> /
-            {/* <p>{donation_title_2?.value}</p> */}
+         
             <p>寄付をする</p>
 
           </div>

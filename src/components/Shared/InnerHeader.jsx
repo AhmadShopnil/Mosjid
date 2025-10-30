@@ -6,14 +6,15 @@ export default function InnerHeader({title,image}) {
        
             <div className="bg-[#52B920] h-[85px] text-white px-6 py-4 rounded-lg  flex justify-between items-center shadow-md">
                 <h1 className="text-4xl ">{title}</h1>
-                <Image
-                src={image}
-                    // src="/images/fatwah/fatwaharbic_white.png"
-                    alt="Logo"
-                    width={200}
-                    height={50}
-                    className='hidden sm:flex w-[215px] h-[50px]'
-                />
+          <Image
+  src={image}
+  alt="Logo"
+  width={215}
+  height={50}
+  className="hidden sm:flex object-contain"
+  quality={100}
+/>
+
             </div>
        
     )

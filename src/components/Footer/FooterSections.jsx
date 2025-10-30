@@ -45,20 +45,24 @@ export default function FooterSections({ settings }) {
   // Demo Data
 
 
+
   const contactInfo = [
     {
       id: 1,
       icon: <FaLocationDot className="text-[#00401A] min-w-[20px]" />,
+      iconImage: "/images/footer/location.png",
       text: location,
     },
     {
       id: 2,
       icon: <FaPhoneVolume className="text-[#00401A] min-w-[20px]" />,
+      iconImage: "/images/footer/phone.png",
       text: phone,
     },
     {
       id: 3,
       icon: <FaEnvelope className="text-[#00401A] min-w-[20px]" />,
+      iconImage: "/images/footer/mail.png",
       text: company_email,
     },
   ];
@@ -90,7 +94,7 @@ export default function FooterSections({ settings }) {
        gap-10 xl:gap-8">
         {/* Logo + About */}
         <div>
-          <div className="mb-4 gradient-border_b pb-2 flex gap-3 items-center">
+          <div className="mb-4 gradient-border_b pb-3 flex gap-3 items-center">
             <Image
               src={footer_logo_url}
               // src="/images/logo.png"
@@ -108,16 +112,35 @@ export default function FooterSections({ settings }) {
 
         {/* Get In Touch */}
         <div>
-          <h3 className="text-2xl text-[#00401A] font-bold mb-4 gradient-border_b pb-2.5">
+          <h3 className="text-2xl text-[#00401A] font-bold mb-4 gradient-border_b pb-3.5">
             {section_1_title}
           </h3>
-          <ul className="space-y-2 text-sm text-gray-700">
+          <ul className="space-y-4 text-sm text-gray-700">
             {contactInfo.map((info) => (
-              <li key={info.id} className="flex items-start   gap-2">
-                <span className=" text-lg bg-[#D9E2DD] p-2 rounded-full">
-                  {info.icon}
+              <li key={info.id} className="flex items-start   gap-2.5">
+                <span className=" text-lg bg-[#D9E2DD] p-2 rounded-full ">
+
+                  {
+
+                    info?.id == 1 ? <span className="">{info?.icon} </span>
+                      :
+                      <Image
+                        src={info?.iconImage}
+
+                        alt="Osaka Masjid Logo"
+                        width={24}
+                        height={24}
+                        className="w-[19px] h-[19px] "
+                      />
+
+
+                  }
+
+
+
+
                 </span>
-                <span className="text-[#333333] text-base">{info.text}</span>
+                <span className="text-[#333333] text-base mt-0.5 ">{info.text}</span>
               </li>
             ))}
           </ul>
@@ -162,7 +185,7 @@ export default function FooterSections({ settings }) {
 
         {/* Useful Links */}
         <div>
-          <h3 className="text-2xl text-[#00401A] font-bold mb-3 gradient-border_b pb-2.5">
+          <h3 className="text-2xl text-[#00401A] font-bold mb-3 gradient-border_b pb-3.5">
             {section_2_title}
           </h3>
           <ul className="space-y-2 text-sm text-gray-700">
