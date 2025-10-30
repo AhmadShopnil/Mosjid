@@ -14,7 +14,7 @@ export default function SubmitRequest() {
             <div className='min-h-[150px] mt-5 flex flex-col justify-between '>
                 <p className='text-sm text-[#00401A]'>If you have any Query, Please Submit Your Request</p>
                 <Link
-                    href="/fatwah/submit-request"
+                    href="/contact"
                     className="gradient-bg-fatwah-finder text-sm font-bold text-white  h-[36px] px-6 py-2 rounded-[10px] 
                      shadow-md transition-all duration-300 hover:opacity-90
                       flex items-center justify-center gap-2"
@@ -22,10 +22,6 @@ export default function SubmitRequest() {
                     <span>Submit A Request</span>
                     <span className="text-xl">›</span>
                 </Link>
-
-
-
-
             </div>
         </div>
     )

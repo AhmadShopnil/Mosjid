@@ -122,9 +122,29 @@ body {
 
 
 
-.gradient-border_b {
+.gradient-border_b2 {
   position: relative;
 
+  overflow: hidden;
+}
+
+.gradient-border_b2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Position at the bottom */
+  height: 2px;
+  /* Border thickness */
+
+  background: linear-gradient(to right, rgb(163, 166, 163), rgb(245, 247, 246));
+  pointer-events: none;
+}
+
+
+.gradient-border_b {
+  position: relative;
   overflow: hidden;
 }
 
@@ -134,14 +154,16 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  /* Position at the bottom */
   height: 1.5px;
-  /* Border thickness */
-
-  background: linear-gradient(to right, rgb(163, 166, 163), rgb(245, 247, 246));
+  background: linear-gradient(
+    to right,
+    /* rgba(0, 0, 0, 1) 0%,    */
+    rgba(0, 0, 0, 1) 1%, 
+    rgb(255, 255, 255) 95%,        
+    rgb(255, 255, 255) 100%
+  );
   pointer-events: none;
 }
-
 
 /* .gradient-bg-quicklinks {
   background: #51FA06;

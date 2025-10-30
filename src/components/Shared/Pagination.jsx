@@ -11,7 +11,7 @@ export default function Pagination({
   totalPages,
   onPageChange,
 }) {
-  if (totalPages <= 1) return null; // Hide if only one page
+  // if (totalPages <= 1) return null; 
 
   const pages= [];
 

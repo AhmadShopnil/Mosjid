@@ -59,7 +59,7 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
                 </div>
                 {/* List */}
                 <ul className="space-y-4 mt-6">
-                    {fatwahs.slice(0, 6).map((item) => (
+                    {fatwahs.map((item) => (
                         <li
                             key={item.id}
                             className="flex justify-between items-center border 

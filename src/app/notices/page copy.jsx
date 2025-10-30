@@ -1,15 +1,16 @@
 
-"use client"
-
+import ArchiveNotice from '@/components/Notice/ArchiveNotice'
+import NoticeBoard from '@/components/Notice/NoticeBoard'
 import BannerInnerPage from '@/components/Shared/BannerInnerPage'
 import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
-import React, { useEffect, useState } from 'react'
-import Blogs from './Blogs'
-import axiosInstance from '@/helper/axiosInstance'
-import SidebarMainDrawer from '../Shared/SidebarMainDrawer'
+import Sidebar from '@/components/Shared/Sidebar'
+import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
+import { getCategories, getNotices, getPage, getSettings } from '@/helper/actions'
+import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
 
+import React from 'react'
 
 
 const categories = [
@@ -105,83 +106,20 @@ const categories = [
   },
 ];
 
-const categories2 = [
-  {
-    id: "worship",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/1.png",
-    title: "Worship",
-    subtitle: "イバーダ",
-    hasSubItems: true,
-    subItems: ["Prayer", "Fasting", "Hajj"],
-  },
-  {
-    id: "lifeMatters",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/Blog & event-1.png",
-    title: "Life Matters",
-    subtitle: "詳細",
-    hasSubItems: true,
-    subItems: ["Family", "Work", "Health"],
-  },
-  {
-    id: "prohibition",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
-    title: "Prohibition & Lawful",
-    subtitle: "ハラール",
-    hasSubItems: true,
-    subItems: ["Halal", "Haram", "Makruh"],
-  },
-
-];
 
 
-export default function BlogsPage({ homePage, settings, formattedCategories }) {
-  const [blogs, setBlogs] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const [selectedCat, setSelectedCat] = useState(null)
-  // pagination states
-  const [currentPage, setCurrentPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(10)
-  const perPage = 6
+export default async function page() {
+
+  const notices = await getNotices();
+  const settings = await getSettings()
+  const homePage = await getPage("home-sections-heading-management")
+  const cat = await getCategories("notice_categories")
+
+  const formattedCategories = transformNoticeCategories(cat);
 
 
 
-  // fetching data
-  useEffect(() => {
-    const fetchBlogs = async () => {
-
-      setLoading(true)
-
-      let url = `/posts?term_type=post&page=${currentPage}&per_page=${perPage}`
-      if (selectedCat) {
-        url = `/posts?term_type=post&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`
-      }
-
-
-      try {
-        const response = await axiosInstance.get(url)
-        const data = response?.data?.data || []
-        const meta = response?.data?.meta || {}
-
-        setBlogs(data)
-        setTotalPages(meta.last_page || 1)
-      } catch (err) {
-        console.error("Error fetching blogs:", err)
-        setError(err.message || "Failed to fetch blogs")
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchBlogs()
-  }, [selectedCat, currentPage])
-
-
-  // console.log("blogs", blogs)
-
+  console.log("notice cats", formattedCategories)
 
 
   return (
@@ -189,37 +127,20 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
 
       <div>
         <BannerInnerPage />
-        <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Blogs" />
-
+        <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Notices Board" />
       </div>
 
 
-      <Container className='flex gap-6 my-6'>
+      <Container className='flex  gap-6 my-6'>
         {/* sidebar */}
-        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} />
-
-        {/* <div className='w-[400px] space-y-6'>
-          <Sidebar categories={formattedCategories} setSelectedCat={setSelectedCat} />
-          <Sidebar categories={formattedCategories} setSelectedCat={setSelectedCat} />
-        </div> */}
-
-
+        <SidebarMainDrawer categories={formattedCategories} />
+      
         {/* main content */}
         <div className=' w-full space-y-6'>
+          {/* Header */}
           <InnerHeader title={"掲示板"} image={"/images/fatwah/fatwaharbic_white.png"} />
-
-          <div>
-            <Blogs
-              blogs={blogs}
-              settings={settings}
-              homePage={homePage}
-              loading={loading}
-              currentPage={currentPage}
-              totalPages={totalPages}
-              setCurrentPage={setCurrentPage}
-            />
-          </div>
-
+          <NoticeBoard homePage={homePage} notices={notices} settings={settings} />
+          <ArchiveNotice />
         </div>
       </Container>
 
