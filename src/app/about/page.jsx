@@ -107,7 +107,6 @@ export default async function page() {
     },
   ];
 
-
     return (
         <div>
 
@@ -120,11 +119,8 @@ export default async function page() {
 
             <Container className='flex gap-6 my-6'>
                 {/* sidebar */}
-                <SidebarMainDrawer categories={categories} />
-                {/* <div className='w-[400px] space-y-6'>
-                 <Sidebar categories={categories} />
-                    <SubmitRequest />
-                </div> */}
+                <SidebarMainDrawer categories={categories} isNavigate={false} />
+                
                 {/* main content */}
                 <div className=' w-full space-y-6'>
                     <InnerHeader title={"掲示板"} image={"/images/fatwah/fatwaharbic_white.png"} />

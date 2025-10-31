@@ -24,6 +24,19 @@ function MakeDonation({ donationMethods, make_your_donation }) {
   return (
     <div className='gradient-border bg-white  px-5 sm:px-8 pt-5 sm:pt-8 pb-20p-4 rounded-2xl'>
 
+
+   <div
+        className="absolute right-0 top-1/5"
+      >
+        <Image
+          src="/images/donation/bg-1.png"
+          alt='img'
+          width={118}
+          height={160}
+          className="object-contain transition-all duration-300"
+        />
+      </div>
+
       {/* heading */}
       <div className='flex justify-between mb-3 '>
         <div className="flex justify-between items-center  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
