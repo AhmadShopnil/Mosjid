@@ -2,6 +2,8 @@
 
 import Container from "@/components/Shared/Container";
 import { useState, useEffect } from "react";
+import SocialShare from "../Shared/SocialShare";
+import Image from "next/image";
 
 export default function ImageGalleryInnerPage({ gallery }) {
   const images = transformGalleryData(gallery);
@@ -53,41 +55,138 @@ export default function ImageGalleryInnerPage({ gallery }) {
           onClick={closeModal}
         >
           <div
-            className="relative max-w-4xl max-h-full flex items-center justify-center"
+            className="relative max-w-4xl max-h-full flex flex-col items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={images[selectedIndex].src}
-              alt={images[selectedIndex].alt}
-              className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl"
-            />
+            {/* Image Section */}
+            <div className="relative flex items-center justify-center">
+              <img
+                src={images[selectedIndex].src}
+                alt={images[selectedIndex].alt}
+                className="max-w-full max-h-[80vh] object-contain rounded-t-2xl shadow-2xl"
+              />
 
-            {/* Close Button */}
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 text-white bg-gray-800 bg-opacity-70 hover:bg-opacity-90 rounded-full p-2 transition-all duration-200 backdrop-blur-sm"
-            >
-              ✕
-            </button>
+              {/* Close Button */}
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 text-white bg-gray-800 bg-opacity-70 hover:bg-opacity-90 rounded-full p-2 transition-all duration-200 backdrop-blur-sm"
+              >
+                ✕
+              </button>
 
-            {/* Prev Button */}
-            <button
-              onClick={showPrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
-            >
-              ◀
-            </button>
+              {/* Prev Button */}
+              <button
+                onClick={showPrev}
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
+              >
+                ◀
+              </button>
 
-            {/* Next Button */}
-            <button
-              onClick={showNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
-            >
-              ▶
-            </button>
+              {/* Next Button */}
+              <button
+                onClick={showNext}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
+              >
+                ▶
+              </button>
+            </div>
+
+            {/* Description Section */}
+            <div className="bg-white w-full  p-4 rounded-b-xl shadow-lg text-gray-800 text-center">
+
+              <p className="text-sm leading-relaxed text-[#00401A]">
+                {images[selectedIndex]?.description || "This is a sample description for the image."}
+              </p>
+              <div className="mt-4 flex justify-center">
+                <div className="  flex items-center gap-4 text-[#D9E2DD]">
+                  <div className="border-r-2 border-gray-300 pr-3">
+                    <Image
+                      src="/images/notice/twiter.png"
+                      alt='a1'
+                      width={20}
+                      height={20}
+                    />
+                  </div>
+                  <div className="border-r-2 border-gray-300 pr-3">
+                    <Image
+                      src="/images/notice/fb.png"
+                      alt='a1'
+                      width={12}
+                      height={12}
+                    />
+                  </div>
+                  <div className="border-r-2 border-gray-300 pr-3">
+                    <Image
+                      src="/images/notice/whatsapp.png"
+                      alt='a1'
+                      width={17}
+                      height={17}
+                    />
+                  </div>
+                  <div className="border-r-2 border-gray-300 pr-3">
+                    <Image
+                      src="/images/notice/printer.png"
+                      alt='a1'
+                      width={19}
+                      height={19}
+                    />
+                  </div>
+                  <div>
+                    <Image
+                      src="/images/notice/download.png"
+                      alt='a1'
+                      width={19}
+                      height={19}
+                    />
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
           </div>
-         
         </div>
+
+        // <div
+        //   className="fixed inset-0 backdrop-blur-md bg-black/60 flex flex-col items-center justify-center z-50 p-4"
+        //   onClick={closeModal}
+        // >
+        //   <div
+        //     className="relative max-w-4xl max-h-full flex items-center justify-center"
+        //     onClick={(e) => e.stopPropagation()}
+        //   >
+        //     <img
+        //       src={images[selectedIndex].src}
+        //       alt={images[selectedIndex].alt}
+        //       className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl"
+        //     />
+
+        //     {/* Close Button */}
+        //     <button
+        //       onClick={closeModal}
+        //       className="absolute top-4 right-4 text-white bg-gray-800 bg-opacity-70 hover:bg-opacity-90 rounded-full p-2 transition-all duration-200 backdrop-blur-sm"
+        //     >
+        //       ✕
+        //     </button>
+
+        //     {/* Prev Button */}
+        //     <button
+        //       onClick={showPrev}
+        //       className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
+        //     >
+        //       ◀
+        //     </button>
+
+        //     {/* Next Button */}
+        //     <button
+        //       onClick={showNext}
+        //       className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
+        //     >
+        //       ▶
+        //     </button>
+        //   </div>
+
+        // </div>
       )}
     </div>
   );

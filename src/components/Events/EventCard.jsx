@@ -19,8 +19,8 @@ const colorClasses = [
     'bg-amber-100 ',
 ];
 
-export default  function EventCard({ event, index = 0,settings }) {
-   
+export default function EventCard({ event, index = 0, settings }) {
+
 
     const read_more_button_text = getMetaValueByMetaName(settings, "read_more") || "";
 
@@ -40,25 +40,22 @@ export default  function EventCard({ event, index = 0,settings }) {
         <div
             className="flex space-x-3 bg-white/90 backdrop-blur-sm border border-gray-300 p-2 rounded-md shadow-sm"
         >
-
-
-
-           <div>
-             <div className={`w-[80px]  md:w-[90px] px-4 py-3 h-auto text-center bg-gray-100 rounded-md  leading-6 flex flex-col items-center justify-center  ${colorClass}`}>
-                <p className="text-3xl font-bold text-green-900 leading-7">
-                    {day}
-                </p>
-                <p className="text-xs text-green-900">{month}</p>
-                <p className="text-xs text-green-900">{year}</p>
+            <div>
+                <div className={`w-[80px]  md:w-[90px] px-4 py-3 h-auto text-center bg-gray-100 rounded-md  leading-6 flex flex-col items-center justify-center  ${colorClass}`}>
+                    <p className="text-3xl font-bold text-green-900 leading-7">
+                        {day}
+                    </p>
+                    <p className="text-xs text-green-900">{month}</p>
+                    <p className="text-xs text-green-900">{year}</p>
+                </div>
             </div>
-           </div>
 
 
             {/* Notice Text */}
             <div className='flex flex-col justify-between my-1'>
                 <p className="text-[#00401A] text-sm">{event?.sub_title}</p>
                 <Link
-                    href={`/notice`}
+                    href={`/events/${event?.slug}`}
                     className="mt-2 text-xs font-semibold text-[#001609]
                  cursor-pointer hover:text-[#F7BA2A] flex gap-2 items-center "
                 >

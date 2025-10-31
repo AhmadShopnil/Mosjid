@@ -12,9 +12,6 @@ export default  function GalleryPage({ gallery,
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(5);
 
-
-
-
   return (
     <div
       id='gallery'

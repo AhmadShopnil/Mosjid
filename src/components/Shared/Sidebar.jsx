@@ -31,37 +31,34 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate }) {
   };
 
 
-
-  const handleOnClickItem = (category) => {
-
-
-    if (!category?.hasSubItems) {
-      setSelectedCat(category.id);
-
-      if (isNavigate) {
-        router.push("/blogs");
-        // return; 
-      }
-    }
-
-    if (category?.hasSubItems) {
-      toggleExpand(category.id);
-    }
-  };
-
- 
-
-  const handleOnClickSubItem = (subItem) => {
+const handleOnClickItem = (category) => {
+  if (!category?.hasSubItems) {
+    setSelectedCat(category.id);
 
     if (isNavigate) {
-      router.push("/blogs");
-      // return; 
+      router.push(`/${isNavigate}`);
     }
-
-
-    setSelectedCat(subItem?.id)
-
   }
+
+  if (category?.hasSubItems) {
+    toggleExpand(category.id);
+  }
+};
+
+const handleOnClickSubItem = (subItem) => {
+  // console.log("isNavigate", isNavigate);
+
+  if (isNavigate) {
+    router.push(`/${isNavigate}`);
+    // return;  // You can uncomment this if you don't want to set category after navigation
+  }
+
+  setSelectedCat(subItem?.id);
+};
+
+
+
+
 
   return (
     <div className="bg-white rounded-[10px] border border-[#C9E9BA] overflow-hidden shadow-sm">
@@ -138,20 +135,20 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate }) {
                   >
                     {category.title}
                   </p>
-                  {category.subtitle && (
+                  {category?.subtitle && (
                     <p
                       className={`text-sm font-bold transition-colors ${isExpanded
                         ? "text-white"
                         : "text-[#00401A] group-hover:text-white"
                         }`}
                     >
-                      {category.subtitle}
+                      {category?.subtitle}
                     </p>
                   )}
                 </div>
 
                 {/* Chevron Icons */}
-                {category.hasSubItems ? (
+                {category?.hasSubItems ? (
                   <ChevronDown
                     size={24}
                     className={`flex-shrink-0 transition-transform ${isExpanded
@@ -159,7 +156,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate }) {
                       : "text-[#141B34] group-hover:text-white"
                       }`}
                   />
-                ) : category.isArrow ? (
+                ) : category?.isArrow ? (
                   <ChevronRight
                     size={24}
                     className="flex-shrink-0 text-[#141B34] group-hover:text-white"
@@ -169,9 +166,9 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate }) {
 
               {/* Sub Items */}
               {/* Sub Items */}
-              {category.hasSubItems && isExpanded && (
+              {category?.hasSubItems && isExpanded && (
                 <div className="bg-[#EEF8E9] border-t border-gray-200 p-2 space-y-2">
-                  {category.childs.map((subItem, index) => (
+                  {category?.childs?.map((subItem, index) => (
                     <button
                       onClick={() => handleOnClickSubItem(subItem)}
                       key={index}

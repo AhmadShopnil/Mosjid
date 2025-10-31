@@ -140,7 +140,7 @@ const categories2 = [
 
 export default function EventsPage({ homePage, settings, formattedCategories }) {
   const [events, setEvents] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [selectedCat, setSelectedCat] = useState(null)
   // pagination states

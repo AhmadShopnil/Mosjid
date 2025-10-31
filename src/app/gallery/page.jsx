@@ -126,7 +126,7 @@ export default async function page() {
 
             <div>
                 <BannerInnerPage />
-                <Breadcrumb homeLabel="Home" homeLink="/" currentPage="About us" />
+                <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Gallery" />
 
             </div>
 
