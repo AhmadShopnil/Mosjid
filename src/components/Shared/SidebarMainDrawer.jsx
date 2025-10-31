@@ -7,32 +7,36 @@ import SubmitRequest from "../Fatwah/SubmitRequest";
 import { MdArrowForwardIos } from "react-icons/md";
 import AskQuestionSidebar from "../Fatwah/AskQuestionSidebar";
 
-export default function SidebarMainDrawer({ categories,isAskQuestion=false ,isSubmitRequest=true, setSelectedCat=null }) {
+export default function SidebarMainDrawer({
+  categories,
+  isAskQuestion = false,
+  isSubmitRequest = true, setSelectedCat = null,
+  isNavigate = false }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
     <>
       {/* Floating Arrow Toggle (over main content) */}
-     {!isDrawerOpen && (
-         <button
-        onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-        className={`
+      {!isDrawerOpen && (
+        <button
+          onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+          className={`
           fixed top-1/2 -translate-y-1/2 left-0 z-[60]
           flex items-center justify-center w-10 h-10
           bg-[#EEF8E9] border border-[#C9E9BA] rounded-r-2xl
           shadow-md hover:bg-[#E2F4D9]
           transition-transform duration-300 lg:hidden
         `}
-      >
-        {isDrawerOpen ? (
+        >
+          {isDrawerOpen ? (
             <MdArrowBackIosNew />
-        //   <ArrowLeft size={18} className="text-[#00401A]" />
-        ) : (
+            //   <ArrowLeft size={18} className="text-[#00401A]" />
+          ) : (
             <MdArrowForwardIos />
-        //   <ArrowRight size={18} className="text-[#00401A]" />
-        )}
-      </button>
-     )}
+            //   <ArrowRight size={18} className="text-[#00401A]" />
+          )}
+        </button>
+      )}
 
       {/* Overlay */}
       {isDrawerOpen && (
@@ -62,10 +66,13 @@ export default function SidebarMainDrawer({ categories,isAskQuestion=false ,isSu
 
         {/* Sidebar + SubmitRequest */}
         <div className="h-full overflow-y-auto p-4 xl:p-0 space-y-6">
-          <Sidebar categories={categories} setSelectedCat={setSelectedCat} />
-          {isAskQuestion && <AskQuestionSidebar /> }
+          <Sidebar
+            categories={categories}
+            setSelectedCat={setSelectedCat}
+            isNavigate={isNavigate} />
+          {isAskQuestion && <AskQuestionSidebar />}
           {isSubmitRequest && <SubmitRequest />}
-          
+
         </div>
       </div>
     </>

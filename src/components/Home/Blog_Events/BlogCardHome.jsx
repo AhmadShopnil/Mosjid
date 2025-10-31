@@ -38,11 +38,11 @@ export default async function BlogCardHome({ blog }) {
           <p className="text-[#333333] text-xs sm:text-sm mb-1">{month} {day}th, {year}</p>
           <p className="hidden sm:flex text-[#333333] font-semibold md:font-bold 
         text-sm sm:text-lg ">
-            {description.slice(0, 55)}
+            {blog?.sub_title.slice(0, 55)}
           </p>
           <p className="flex sm:hidden text-[#333333] font-semibold md:font-bold 
         text-sm sm:text-lg ">
-            {description.slice(0, 30)}
+            {blog?.sub_title.slice(0, 30)}
           </p>
         </div>
         <Link href="/" className="sm:mt-2 text-[#001609] font-semibold md:font-bold 

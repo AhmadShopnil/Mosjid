@@ -34,18 +34,17 @@ export default  function BlogCard({ blog ,settings}) {
       {/* Content */}
       <div className="flex flex-col justify-between sm:py-1">
         <div>
-          {/* <p className="text-[#333333] text-xs sm:text-sm mb-1">August 14th, 2025</p> */}
           <p className="text-[#333333] text-xs sm:text-sm mb-1">{month} {day}th, {year}</p>
           <p className="hidden sm:flex text-[#333333] font-semibold md:font-bold 
         text-sm sm:text-lg ">
-            {description.slice(0, 55)}
+            {blog?.sub_title.slice(0, 55)}
           </p>
           <p className="flex sm:hidden text-[#333333] font-semibold md:font-bold 
         text-sm sm:text-lg ">
-            {description.slice(0, 30)}
+            {blog?.sub_title.slice(0, 30)}
           </p>
         </div>
-        <Link href="/" className="sm:mt-2 text-[#001609] font-semibold md:font-bold 
+        <Link href={`/blogs/${blog?.slug}`} className="sm:mt-2 text-[#001609] font-semibold md:font-bold 
         flex gap-2 items-center text-xs sm:text-sm hover:text-[#F7BA2A] ">
           {read_more_button_text}
           <BsArrowUpRightCircle className="text-[16px] text-[#00401A] font-bold" />

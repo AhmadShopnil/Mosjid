@@ -10,7 +10,7 @@ export default function InnerHeader({ title, image }) {
         <Image
           src={image}
           alt="Logo"
-          className="object-contain h-auto w-auto max-h-[70px] max-w-full"
+          className="object-contain h-auto w-auto max-h-[70px] max-w-full brightness-0 invert"
           quality={100}
           width={0}
           height={0}

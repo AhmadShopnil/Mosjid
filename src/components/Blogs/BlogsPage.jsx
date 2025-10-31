@@ -24,7 +24,6 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
   const perPage = 6
 
 
-
   // fetching data
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -55,9 +54,7 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
     fetchBlogs()
   }, [selectedCat, currentPage])
 
-
   // console.log("blogs", blogs)
-
 
 
   return (
@@ -74,15 +71,10 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
         {/* sidebar */}
         <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} />
 
-        {/* <div className='w-[400px] space-y-6'>
-          <Sidebar categories={formattedCategories} setSelectedCat={setSelectedCat} />
-          <Sidebar categories={formattedCategories} setSelectedCat={setSelectedCat} />
-        </div> */}
-
-
+       
         {/* main content */}
         <div className=' w-full space-y-6'>
-          <InnerHeader title={"掲示板"} image={"/images/fatwah/fatwaharbic_white.png"} />
+          <InnerHeader title={"ブログとイベント"} image={"/images/fatwah/fatwaharbic_white.png"} />
 
           <div>
             <Blogs
