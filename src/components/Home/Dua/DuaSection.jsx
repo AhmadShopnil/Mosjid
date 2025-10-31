@@ -76,18 +76,7 @@ export default async function DuaSection() {
           </div>
 
 
-          {/* <div className="flex gap-2 justify-center items-center gradient-border_b pb-2 ">
-            <Image
-              src="/images/others/duaicon.png"
-              alt="mosque"
-              width={45}
-              height={40}
-              className="mx-auto "
-            />
-            <h4 className="text-[#00401A] font-bold text-3xl">
-              <span className="text-[#F7BA2A]">Submit </span>
-               a Duah</h4>
-          </div> */}
+       
 
 
 
@@ -102,7 +91,7 @@ export default async function DuaSection() {
             <div>
               <Link
                 href="/"
-                className="border rounded-[50px] font-bold text-[#00401A]  border-[#00401A] text-base py-2.5 px-5
+                className=" border rounded-[50px] font-bold text-[#00401A]  border-[#00401A] text-base py-3 px-5
                  hover:bg-[#00401A] hover:text-white transition-colors duration-400"
               >
                 Find More Duah

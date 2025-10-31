@@ -88,8 +88,6 @@ export default async function PrayerTimes() {
 
           </div>
         </div>
-
-
         <div className="flex items-center gap-3 sm:gap-4">
           <Image
             src={image}
@@ -106,7 +104,6 @@ export default async function PrayerTimes() {
             className="object-contain sm:hidden"
           />
         </div>
-
 
       </div>
 

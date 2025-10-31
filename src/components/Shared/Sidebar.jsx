@@ -131,11 +131,11 @@ export default function Sidebar({ categories, setSelectedCat }) {
     category.hasSubItems && toggleExpand(category.id)
   }
 
-  
+
   const handleOnClickSubItem = (subItem) => {
 
-      setSelectedCat(subItem?.id)
-  
+    setSelectedCat(subItem?.id)
+
   }
 
   return (
@@ -174,7 +174,18 @@ export default function Sidebar({ categories, setSelectedCat }) {
               >
                 {/* Icon with hover/active change */}
                 <span className="relative flex-shrink-0 w-[42px] h-[42px]">
-                  {/* Normal icon */}
+
+                  <img
+                    src={category?.icon}
+                    alt={category?.title + " icon"}
+                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-200
+                      group-hover:brightness-0 group-hover:invert  ${isExpanded && "brightness-0 invert" }`}
+                  
+                  />
+               
+                </span>
+
+                {/* <span className="relative flex-shrink-0 w-[42px] h-[42px]">
                   <img
                     src={category?.icon}
                     alt={category?.title + " icon"}
@@ -183,7 +194,6 @@ export default function Sidebar({ categories, setSelectedCat }) {
                     draggable={false}
                   />
 
-                  {/* Active icon */}
                   <img
                     src={category.activeIcon}
                     alt={category.title + " active icon"}
@@ -191,9 +201,7 @@ export default function Sidebar({ categories, setSelectedCat }) {
                       ${isExpanded ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
                     draggable={false}
                   />
-                </span>
-
-
+                </span> */}
 
                 {/* Text Content */}
                 <div className="flex-1 text-left">
@@ -240,7 +248,7 @@ export default function Sidebar({ categories, setSelectedCat }) {
                 <div className="bg-[#EEF8E9] border-t border-gray-200 p-2 space-y-2">
                   {category.childs.map((subItem, index) => (
                     <button
-                    onClick={()=>handleOnClickSubItem(subItem)}
+                      onClick={() => handleOnClickSubItem(subItem)}
                       key={index}
                       className="w-full px-3 py-2 h-[54px] flex items-center justify-between text-left text-sm text-[#00401A]
          bg-white hover:bg-[#C9E9BA] transition-colors rounded-[10px]"

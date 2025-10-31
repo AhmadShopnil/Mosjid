@@ -9,56 +9,64 @@ const quickLinks = [
     name: "Prayer Times",
     jp: "祈りの時間",
     targetId: "prayer-times",
-    icon: "/images/QuickLinks/normal/prayer times.png",
+    icon: "/images/QuickLinks/prayer-times.png",
+    // icon: "/images/QuickLinks/normal/prayer times.png",
     activeIcon: "/images/QuickLinks/hover/prayer times.png",
   },
   {
     name: "Notice Board",
     jp: "掲示板",
     targetId: "notice-board",
-    icon: "/images/QuickLinks/normal/notice board.png",
+    icon: "/images/QuickLinks/notice.png",
+    // icon: "/images/QuickLinks/normal/notice board.png",
     activeIcon: "/images/QuickLinks/hover/notice board ES.png",
   },
   {
     name: "Fatwa",
     jp: "ファトワ",
     targetId: "fatwah",
-    icon: "/images/QuickLinks/normal/Fatwa 03.png",
+    icon: "/images/QuickLinks/fatwa.png",
+    // icon: "/images/QuickLinks/normal/Fatwa 03.png",
     activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
   },
   {
     name: "Offered Services",
     jp: "提供されるサービス",
     targetId: "offered-services",
-    icon: "/images/QuickLinks/normal/Blog & event.png",
+    icon: "/images/QuickLinks/offer-service.png",
+    // icon: "/images/QuickLinks/normal/Blog & event.png",
     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
   },
   {
     name: "Dictionary",
     jp: "辞書",
     targetId: "dictionary",
-    icon: "/images/QuickLinks/normal/Dictionary.png",
+    icon: "/images/QuickLinks/dictionary.png",
+    // icon: "/images/QuickLinks/normal/Dictionary.png",
     activeIcon: "/images/QuickLinks/hover/Dictionary.png",
   },
   {
     name: "Directory",
     jp: "ディレクトリ",
     targetId: "directory",
-    icon: "/images/QuickLinks/normal/Directory.png",
+    icon: "/images/QuickLinks/directory.png",
+    // icon: "/images/QuickLinks/normal/Directory.png",
     activeIcon: "/images/QuickLinks/hover/Directory.png",
   },
   {
     name: "Donation",
     jp: "寄付",
     targetId: "donation",
-    icon: "/images/QuickLinks/normal/Donation.png",
+    icon: "/images/QuickLinks/donation.png",
+    // icon: "/images/QuickLinks/normal/Donation.png",
     activeIcon: "/images/QuickLinks/hover/Donation.png",
   },
   {
     name: "Gallery",
     jp: "ギャラリー",
     targetId: "gallery",
-    icon: "/images/QuickLinks/normal/Gallery.png",
+    icon: "/images/QuickLinks/gallery.png",
+    // icon: "/images/QuickLinks/normal/Gallery.png",
     activeIcon: "/images/QuickLinks/hover/Gallery.png",
   },
 ];
@@ -120,7 +128,7 @@ export default function QuickLinks() {
           <div
             className="flex gap-6 transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(-${currentIndex * (200 + 24)}px)`, 
+              transform: `translateX(-${currentIndex * (200 + 24)}px)`,
             }}
           >
             {quickLinks.map((link, i) => {
@@ -128,7 +136,7 @@ export default function QuickLinks() {
               return (
                 <div
                   key={i}
-                  className={`quicklinks relative flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-300 ${isHovered ? "text-white" : "text-[#00401A]"
+                  className={`quicklinks  relative flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-300 ${isHovered ? "text-white" : "text-[#00401A]"
                     }`}
                   onMouseEnter={() => setHoveredCard(i)}
                   onMouseLeave={() => setHoveredCard(null)}
@@ -136,12 +144,21 @@ export default function QuickLinks() {
                 >
                   <div className="relative z-10 flex flex-col items-center justify-center w-full h-full rounded-[30px]">
                     <div className="w-[116px] h-[90px] flex items-center justify-center">
-                      <Image
+                      {/* <Image
                         src={isHovered ? link.activeIcon : link.icon}
                         alt={link.name}
                         width={130}
                         height={90}
                         className="object-contain transition-all duration-300"
+                      /> */}
+                      <Image
+                        src={link.icon}
+                        alt={link.name}
+                        width={60}
+                        height={60}
+                        // className="object-contain transition-all duration-300"
+                        className={`object-contain transition-all duration-100
+                      group-hover:brightness-0 group-hover:invert  ${isHovered && "brightness-0 invert"}`}
                       />
                     </div>
                     <p className="text-lg font-bold">{link.name}</p>

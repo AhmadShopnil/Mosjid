@@ -16,7 +16,7 @@ const quickLinks = [
 export default function Directory() {
   return (
     <div className='gradient-border h-full  px-5 sm:px-8 pt-5 sm:pt-8 pb-20 rounded-2xl bg-white relative'>
-   <div
+      <div
         className="absolute right-0 top-0"
       >
         <Image
