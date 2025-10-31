@@ -3,7 +3,7 @@
 import { getMetaValueFromExtraFields } from "@/helper/metaHelpers";
 import { splitByComma, splitBySpace } from "@/helper/splitBySpace";
 
-export default function BankInfo({ selectedDonation }) {
+export default function BankInfoInner({ selectedDonation }) {
 
 const note = getMetaValueFromExtraFields(selectedDonation, "note_donation")
   const from = getMetaValueFromExtraFields(selectedDonation, "from")|| " , "
@@ -37,68 +37,68 @@ const note = getMetaValueFromExtraFields(selectedDonation, "note_donation")
           <div className="flex ">
             <span className="w-32 text-[#333333] text-sm ">From </span>
             <span className="mx-2">: </span>
-            <span className="w-38 text-[#333333] font-bold text-sm">{from_part_1}</span>
-            {/* <span className="w-38 text-[#333333] font-bold text-sm">Japan Post Bank to Japan Post Bank</span> */}
+            <span className="w-32 md:w-auto text-[#333333] font-bold text-sm">{from_part_1}</span>
+            {/* <span className="w-32 md:w-auto text-[#333333] font-bold text-sm">Japan Post Bank to Japan Post Bank</span> */}
           </div>
 
           <div className="flex">
             <span className="w-32 text-[#333333] text-sm ">Bank name</span>
             <span className="mx-2">:</span>
-            <span className="w-38 text-[#333333] font-bold text-sm">{bank_name_1}</span>
+            <span className="w-32 md:w-auto text-[#333333] font-bold text-sm">{bank_name_1}</span>
           </div>
 
           <div className="flex">
             <span className="w-32 text-[#333333] text-sm ">Account name</span>
             <span className="mx-2">:</span>
-            <span className="w-38 text-[#333333] font-bold text-sm">{account_name_1}</span>
+            <span className="w-32 md:w-auto text-[#333333] font-bold text-sm">{account_name_1}</span>
           </div>
 
           <div className="flex">
             <span className="w-32 text-[#333333] text-sm ">Symbol</span>
             <span className="mx-2">:</span>
-            <span className="w-38 text-[#333333] font-bold text-sm">{symbol_1}</span>
+            <span className="w-32 md:w-auto text-[#333333] font-bold text-sm">{symbol_1}</span>
           </div>
 
           <div className="flex">
             <span className="w-32 text-[#333333] text-sm ">Account number</span>
             <span className="mx-2">:</span>
-            <span className="w-38 text-[#333333] text-sm  font-bold">{account_number_1}</span>
+            <span className="w-32 md:w-auto text-[#333333] text-sm  font-bold">{account_number_1}</span>
           </div>
         </div>
 
         {/* Vertical Divider */}
-        <div className="hidden xl:block absolute top-0 bottom-0 left-1/2 w-px bg-gray-300"></div>
+        <div className="hidden xl:block absolute top-0 bottom-0 left-1/2 w-px bg-gray-300  "></div>
 
         {/* Right Column */}
-        <div className="space-y-3">
+        <div className="md:pl-14 space-y-3">
           <div className="flex ">
             <span className="w-32 text-[#333333] text-sm ">From </span>
             <span className="mx-2">:</span>
-            <span className="w-38 text-[#333333] font-bold text-sm">{from_part_2}</span>
+            <span className="w-32 md:w-auto text-[#333333] font-bold text-sm">{from_part_2}</span>
           </div>
 
           <div className="flex">
             <span className="w-32 text-[#333333] text-sm ">Bank name</span>
             <span className="mx-2">:</span>
-            <span className="w-38 text-[#333333] font-bold text-sm">{bank_name_2}</span>
+            <span className="w-32 md:w-auto text-[#333333] font-bold text-sm">{bank_name_2}</span>
           </div>
 
           <div className="flex">
             <span className="w-32 text-[#333333] text-sm ">Account name</span>
             <span className="mx-2">:</span>
-            <span className="w-38 text-[#333333] font-bold text-sm">{account_name_2}</span>
+            <span className="w-32 md:w-auto text-[#333333] font-bold text-sm">{account_name_2}</span>
           </div>
 
           <div className="flex">
             <span className="w-32 text-[#333333] text-sm ">Symbol</span>
             <span className="mx-2">:</span>
-            <span className="w-38 text-[#333333] font-bold text-sm">{symbol_2}</span>
+            <span className="w-32 md:w-auto text-[#333333] font-bold text-sm">{symbol_2}</span>
           </div>
 
           <div className="flex">
             <span className="w-32 text-[#333333] text-sm ">Account number</span>
             <span className="mx-2">:</span>
-            <span className="w-38 text-[#333333] text-sm  font-bold">{account_number_2}</span>
+            <span className="w-32 md:w-auto text-[#333333] text-sm  font-bold">{account_number_2}</span>
           </div>
         </div>
       </div>

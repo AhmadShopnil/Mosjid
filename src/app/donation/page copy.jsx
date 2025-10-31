@@ -8,6 +8,7 @@ import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
 import Sidebar from '@/components/Shared/Sidebar'
+import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 import { getPage } from '@/helper/actions'
 import { getImageUrl } from '@/helper/getImageUrl'
 
@@ -16,7 +17,7 @@ import React from 'react'
 
 export default async function page() {
 
-     const categories = [
+  const categories = [
     {
       id: "worship",
       icon: "/images/fatwah/pen.png",
@@ -109,44 +110,41 @@ export default async function page() {
     },
   ];
 
-const homePage = await getPage("home-sections-heading-management")
+  const homePage = await getPage("home-sections-heading-management")
 
   const sections = homePage.sections_on_api;
-  const make_your_donation = sections.find((s) => s.title_slug === "make-your-doantion"); 
-   const image_arabic = getImageUrl(make_your_donation?.image_media);
+  const make_your_donation = sections.find((s) => s.title_slug === "make-your-doantion");
+  const image_arabic = getImageUrl(make_your_donation?.image_media);
 
 
 
 
 
-    return (
-        <div>
+  return (
+    <div>
 
-            <div>
-                <BannerInnerPage />
-                <Breadcrumb homeLabel="Home" homeLink="/" currentPage="About us" />
+      <div>
+        <BannerInnerPage />
+        <Breadcrumb homeLabel="Home" homeLink="/" currentPage="About us" />
 
-            </div>
+      </div>
 
 
-            <Container className='flex gap-6 my-6'>
-                {/* sidebar full area */}
-                <div className=' w-[400px] space-y-6'>
-                 <Sidebar categories={categories} />
+    <Container className="relative flex gap-6 my-6">
+  {/* Sidebar Drawer (fixed over content, not taking layout space) */}
+  <SidebarMainDrawer categories={categories} />
 
-                    <SubmitRequest />
-                </div>
-              {/* sidebar full area */}
+  {/* Main Content (always full width) */}
+  <div className="w-full space-y-6">
+    <InnerHeader
+      title={"掲示板"}
+      image={"/images/fatwah/fatwaharbic_white.png"}
+    />
+    <DonationPage />
+  </div>
+</Container>
 
-                {/* main content */}
-                <div className=' w-full space-y-6'>
-                    <InnerHeader title={"掲示板"} image={"/images/fatwah/fatwaharbic_white.png"} />
 
-                 <DonationPage/>
-
-                </div>
-            </Container>
-
-        </div>
-    )
+    </div>
+  )
 }

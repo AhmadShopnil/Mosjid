@@ -12,130 +12,6 @@ import SidebarMainDrawer from '../Shared/SidebarMainDrawer'
 
 
 
-const categories = [
-  {
-    id: "worship",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/1.png",
-    title: "Worship",
-    subtitle: "イバーダ",
-    hasSubItems: true,
-    subItems: ["Prayer", "Fasting", "Hajj"],
-  },
-  {
-    id: "lifeMatters",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/Blog & event-1.png",
-    title: "Life Matters",
-    subtitle: "詳細",
-    hasSubItems: true,
-    subItems: ["Family", "Work", "Health"],
-  },
-  {
-    id: "prohibition",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
-    title: "Prohibition & Lawful",
-    subtitle: "ハラール",
-    hasSubItems: true,
-    subItems: ["Halal", "Haram", "Makruh"],
-  },
-  {
-    id: "chapter",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
-    title: "Chapter",
-    subtitle: "イスラムの章",
-    hasSubItems: false,
-    isArrow: true,
-  },
-  {
-    id: "section",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
-    title: "Section",
-    subtitle: "イスラムの章",
-    hasSubItems: false,
-    isArrow: true,
-  },
-  {
-    id: "quran",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
-    title: "Quran and Hadith",
-    subtitle: "ギャラリー",
-    hasSubItems: true,
-    subItems: ["Quran", "Hadith", "Tafsir"],
-  },
-  {
-    id: "purity",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
-    title: "Purity and Impurity",
-    subtitle: "詳細",
-    hasSubItems: true,
-    subItems: ["Wudu", "Ghusl", "Tayammum"],
-  },
-  {
-    id: "social",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
-    title: "Social Life",
-    subtitle: "ブログイベント",
-    hasSubItems: true,
-    subItems: ["Etiquette", "Rights", "Duties"],
-  },
-  {
-    id: "beliefs",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
-    title: "Beliefs",
-    subtitle: "",
-    hasSubItems: true,
-    subItems: ["Aqeedah", "Tawheed"],
-  },
-  {
-    id: "decency",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
-    title: "Decency",
-    subtitle: "イスラム教の道徳",
-    hasSubItems: true,
-    subItems: ["Modesty", "Honesty", "Kindness"],
-  },
-];
-
-const categories2 = [
-  {
-    id: "worship",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/1.png",
-    title: "Worship",
-    subtitle: "イバーダ",
-    hasSubItems: true,
-    subItems: ["Prayer", "Fasting", "Hajj"],
-  },
-  {
-    id: "lifeMatters",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/Blog & event-1.png",
-    title: "Life Matters",
-    subtitle: "詳細",
-    hasSubItems: true,
-    subItems: ["Family", "Work", "Health"],
-  },
-  {
-    id: "prohibition",
-    icon: "/images/fatwah/pen.png",
-    activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
-    title: "Prohibition & Lawful",
-    subtitle: "ハラール",
-    hasSubItems: true,
-    subItems: ["Halal", "Haram", "Makruh"],
-  },
-
-];
-
 
 export default function BlogsPage({ homePage, settings, formattedCategories }) {
   const [blogs, setBlogs] = useState([])
@@ -146,7 +22,6 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(10)
   const perPage = 6
-
 
 
   // fetching data
@@ -179,9 +54,7 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
     fetchBlogs()
   }, [selectedCat, currentPage])
 
-
   // console.log("blogs", blogs)
-
 
 
   return (
@@ -198,15 +71,10 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
         {/* sidebar */}
         <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} />
 
-        {/* <div className='w-[400px] space-y-6'>
-          <Sidebar categories={formattedCategories} setSelectedCat={setSelectedCat} />
-          <Sidebar categories={formattedCategories} setSelectedCat={setSelectedCat} />
-        </div> */}
-
-
+       
         {/* main content */}
         <div className=' w-full space-y-6'>
-          <InnerHeader title={"掲示板"} image={"/images/fatwah/fatwaharbic_white.png"} />
+          <InnerHeader title={"ブログとイベント"} image={"/images/fatwah/fatwaharbic_white.png"} />
 
           <div>
             <Blogs

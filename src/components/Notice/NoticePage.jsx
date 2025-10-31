@@ -19,7 +19,7 @@ export default function NoticePage({ homePage, settings, formattedCategories }) 
     // pagination states
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(10)
-    const perPage=1
+    const perPage=6
 
     useEffect(() => {
         const fetchNotices = async () => {

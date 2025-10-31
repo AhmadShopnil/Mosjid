@@ -7,6 +7,7 @@ import { getNotices, getPage, getSettings } from "@/helper/actions";
 import { getDay_Month_Year } from "@/helper/formateDate";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import { splitBySpace } from "@/helper/splitBySpace";
+import { getImageUrl } from "@/helper/getImageUrl";
 
 
 
@@ -19,11 +20,12 @@ export default async function NoticeBoard() {
   // get notice extra data from home page section management
   const homePage = await getPage("home-sections-heading-management")
   const sections = homePage?.sections_on_api;
-  const notice_heading = sections.find((s) => s.title_slug === "notice-board");
-  const heading_part_1 = splitBySpace(notice_heading?.sub_title)[0]
-  const heading_part_2 = splitBySpace(notice_heading?.sub_title)[1]
+  const notice_Extra_data = sections.find((s) => s.title_slug === "notice-board");
+  const heading_part_1 = splitBySpace(notice_Extra_data?.sub_title)[0]
+  const heading_part_2 = splitBySpace(notice_Extra_data?.sub_title)[1]
+   const image = getImageUrl(notice_Extra_data?.image_media)
 
-  const notice_board_title_2 = notice_heading?.custom_information.find((item) => item.label === "notice_board_title_2")
+  const notice_board_title_2 = notice_Extra_data?.custom_information.find((item) => item.label === "notice_board_title_2")
 
 
   // console.log("string",string)
@@ -32,13 +34,11 @@ export default async function NoticeBoard() {
     <div
       className=" p-5 sm:p-8 bg-cover bg-center h-full gradient-border"
       style={{
-          backgroundImage: "url('/images/home/noticeBg.png')",
-        // backgroundImage: "url('/images/home/noticeBg.png')",
-        
+          backgroundImage: "url('/images/home/noticeBg.png')",     
       }}
     >
       {/* heading */}
-      <p className="text-sm mb-2 text-center sm:text-start ">Last Update: 17 Aug 2015 at 9:30pm</p>
+      <p className="text-sm mb-2 text-center sm:text-start ">{notice_Extra_data?.short_description}</p>
 
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
 
@@ -62,10 +62,12 @@ export default async function NoticeBoard() {
 
         <div className="flex items-center gap-3 sm:gap-4">
 
-          <button className="border border-[#00401A] text-[#001609] hover:bg-[#00401A] hover:text-white transition-colors duration-400
+          <Link
+            href="/notices"
+          className="border border-[#00401A] text-[#001609] hover:bg-[#00401A] hover:text-white transition-colors duration-400
                font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer">
             {view_more}
-          </button>
+          </Link>
         </div>
 
       </div>

@@ -1,9 +1,19 @@
 "use client";
+import { getMetaValueFromExtraFields } from "@/helper/metaHelpers";
 import React from "react";
 
 const DuaCardNew = ({ dua }) => {
 
-const details=" رَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَرَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَرَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَ رَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَرَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَرَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَ رَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَرَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَرَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَ رَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَرَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَرَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَ رَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَرَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَرَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَ رَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَرَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَرَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِيْنَ"
+  const header_left = getMetaValueFromExtraFields(dua, "header_left")
+  const header_right = getMetaValueFromExtraFields(dua, "header_right")
+  const dua_no = getMetaValueFromExtraFields(dua, "dua_no")
+  const dua_main = getMetaValueFromExtraFields(dua, "info_1")
+  const pronunciation = getMetaValueFromExtraFields(dua, "info_2")
+  const meaning = getMetaValueFromExtraFields(dua, "info_3")
+  const info_4 = getMetaValueFromExtraFields(dua, "info_4")
+  const info_5 = getMetaValueFromExtraFields(dua, "info_5")
+  const note = getMetaValueFromExtraFields(dua, "note")
+  const footer_info = getMetaValueFromExtraFields(dua, "footer_info")
 
 
   return (
@@ -11,15 +21,15 @@ const details=" رَبَّنَا لَا تَجْعَلْنَا مَعَ الْق
       {/* Header */}
       <div className="flex justify-between items-center bg-gradient-to-b from-[#EEF8E9] to-[#BAFF98] px-4 py-4 gradient-border-bottom">
         <span className="text-[#00401A] font-bold text-xl sm:text-2xl">
-          {dua?.name || "مسجد أوساكا"}
+          {header_left}
         </span>
 
         <span className="bg-[#00401A] text-white text-sm sm:text-lg font-bold px-4 py-1 rounded-full">
-          Dua No: {dua?.id || "01"}
+          Dua No: {dua_no}
         </span>
 
         <span className="text-[#00401A] font-bold text-xl sm:text-2xl">
-          {dua?.sub_title || "大阪モスク"}
+          {header_right}
         </span>
       </div>
 
@@ -28,41 +38,38 @@ const details=" رَبَّنَا لَا تَجْعَلْنَا مَعَ الْق
         {/* Dua Title */}
         <div className="space-y-2">
           <p className="text-[#333333] font-semibold text-2xl mb-4">
-           اسم الدعاء : سيكون النص الوهمي هنا سيكون النص الوهمي هنا 
-          </p>
+            {dua?.name}  </p>
           <p className="text-[#333333] font-semibold text-2xl border-t-1  border-[#F6C249] pt-5">
-            ドゥア名：ダミーテキストはここにあります
+            {dua?.sub_title}
           </p>
         </div>
 
         {/* Arabic Text */}
         <p className="text-[#333333] leading-8 text-base ">
-     { details?.slice(0,580)}
+          {dua_main.slice(0, 580)}
         </p>
 
         {/* Japanese Pronunciation Section */}
         <div className="space-y-10">
           <div className="flex ">
-            <span className="w-30 text-[#333333] text-base">発音 ：</span>
+            <span className="w-30 text-[#333333] text-base">{info_4} ：</span>
             <p className="text-[#333333] text-left">
-              主よ、私たちを不正を働く人々と一緒にしないでください。主よ、
-              私たちを不正を働く人々と一緒にしないで...
+              {pronunciation.slice(0, 50)}
             </p>
           </div>
 
-            <div className="flex  ">
-            <span className="w-30 text-[#333333] text-base">発音 ：</span>
+          <div className="flex  ">
+            <span className="w-30 text-[#333333] text-base">{info_5} ：</span>
             <p className="text-[#333333] text-left">
-              主よ、私たちを不正を働く人々と一緒にしないでください。主よ、
-              私たちを不正を働く人々と一緒にしないで...
+              {meaning.slice(0, 50)}
             </p>
           </div>
         </div>
 
         {/* Note */}
         <div className=" border-gray-300 pt-3 text-base text-[#828282] ">
-          <span className="font-semibold text-[#00401A]">Note:</span > Lorem ipsum
-          dolor sit amet, consectetur Pellentesque Lorem ipsum dolor sit amet.
+          <span className="font-semibold text-[#00401A]">Note: </span >
+          <span>{note}</span>
         </div>
       </div>
 
@@ -72,7 +79,7 @@ const details=" رَبَّنَا لَا تَجْعَلْنَا مَعَ الْق
           href="https://www.osakamasjid.com"
           className="text-[#000000] text-xl sm:text-2xl font-medium hover:underline"
         >
-          www.osakamasjid.com
+          {footer_info}
         </a>
       </div>
     </div>

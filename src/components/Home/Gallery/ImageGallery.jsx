@@ -2,6 +2,7 @@
 
 import Container from "@/components/Shared/Container";
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 export default function ImageGallery({
@@ -50,38 +51,30 @@ export default function ImageGallery({
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
 
-         <div className="flex justify-between items-center  gap-2.5 gradient-border_b mb-4 sm:mb-0 pb-3  ">
-                  <Image
-                    src="/images/gallery/icon2.png"
-                    alt="Book Icon"
-                    width={60}
-                    height={60}
-                    className=""
-                  />
-        
-                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
-                    {img_gallery_heading?.title}
-                    {/* <p>{donation_title_2?.value}</p> */}
-                    <p>ギャラリー</p>
-        
-                  </div>
-                </div>
-        {/* <div className="flex items-center gap-2 gradient-border_b pb-3">
+        <div className="flex justify-between items-center  gap-2.5 gradient-border_b mb-4 sm:mb-0 pb-3  ">
           <Image
-            src="/images/gallery/icon.png"
-            alt="gallery-icon"
-            width={40}
-            height={40}
+            src="/images/gallery/icon2.png"
+            alt="Book Icon"
+            width={60}
+            height={60}
+            className=""
           />
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#00401A]">
-            {img_gallery_heading?.title}
-          </h1>
-        </div> */}
 
-        <button className="px-5 py-2.5 text-sm sm:text-base font-bold text-[#001609] border border-[#00401A] rounded-full
+          <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+            {img_gallery_heading?.title}
+            {/* <p>{donation_title_2?.value}</p> */}
+            <p>ギャラリー</p>
+
+          </div>
+        </div>
+
+
+        <Link 
+        href="/gallery"
+        className="px-5 py-2.5 text-sm sm:text-base font-bold text-[#001609] border border-[#00401A] rounded-full
           hover:bg-[#00401A] hover:text-white transition-colors duration-400 cursor-pointer">
           {view_more_button_text}
-        </button>
+        </Link>
       </div>
 
       {/* Gallery Grid */}

@@ -1,9 +1,7 @@
 
 "use client"
-import { getImageGallery, getPage, getSettings } from '@/helper/actions'
-import React, { useState } from 'react'
 
-import { getMetaValueByMetaName } from '@/helper/metaHelpers';
+import React, { useState } from 'react'
 import ImageGalleryInnerPage from './ImageGalleryInnerPage';
 import Pagination from '../Shared/Pagination';
 

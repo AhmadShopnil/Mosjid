@@ -130,11 +130,13 @@ export default async function FatwahBox() {
               />
 
               <div className=' my-auto'>
-                <button className="px-5 sm:px-6 py-2.5  text-sm sm:text-base
+                <Link 
+                 href="/fatwa"
+                className="px-5 sm:px-6 py-3  text-sm sm:text-base
                 font-bold text-white border border-[#00401A] rounded-full bg-[#00401A]
                   hover:bg-[#00401A] hover:text-white transition-colors duration-400 cursor-pointer">
                   {view_more}
-                </button>
+                </Link>
               </div>
 
             </div>
