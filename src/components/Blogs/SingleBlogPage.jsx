@@ -11,6 +11,7 @@ import SingleBlogDetailsCard from './SingleBlogDetailsCard'
 import { getImageUrl } from '@/helper/getImageUrl'
 import RelatedItemsSection from '../Shared/RelatedItemsSection'
 import axiosInstance from '@/helper/axiosInstance'
+import SocialShare from '../Shared/SocialShare'
 
 
 
@@ -83,6 +84,9 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
                         <InnerHeader title={"ブログとイベント"} image={arabic} />
 
                         <SingleBlogDetailsCard blog={blog} />
+                        <div className='flex justify-end'>
+                            <SocialShare/>
+                        </div>
 
                     </div>
                 </div>
