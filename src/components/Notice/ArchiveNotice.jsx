@@ -44,17 +44,6 @@ export default function ArchiveNotice() {
     }, [currentPage])
 
 
-    // console.log("notices", notices)
-
-
-    // const notices = Array(6).fill({
-    //     date: "14",
-    //     month: "August",
-    //     year: "2025",
-    //     title: "Turpis purus vestibulum pellentesque ac.",
-    //     description:
-    //         "Turpis purus vestibulum pellentesque ac pretium sit at. Vitae massa posuere nulla tristique eu facilisi imperdiet sapien proin. Risus id nam quis nulla faucibus metus tristique molestie phasellus. Tellus ultricies convallis etiam lacus posuere nisl. Mattis massa facilisi sodales integer fermentum ultricies adipiscing.",
-    // });
 
     return (
         <div className="">
