@@ -10,24 +10,31 @@ import Pagination from "../Shared/Pagination";
 import { Download } from "lucide-react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import SkeletonNoticeItem from "../Shared/Skeleton/SkeletonNoticeItem";
+import NoticeModal from "./NoticeModal";
 
 
 
-export default function NoticeBoard({ notices, settings, homePage, loading,currentPage,setCurrentPage,totalPages }) {
+export default function NoticeBoard({ notices, settings, homePage, loading, currentPage, setCurrentPage, totalPages }) {
+    const [selectedNotice, setSelectedNotice] = useState (null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const view_more = getMetaValueByMetaName(settings, "view_more") || "";
     const read_more = getMetaValueByMetaName(settings, "read_more") || "";
     const download = getMetaValueByMetaName(settings, "download") || "";
 
-    
-    // get notice extra data from home page section management
 
+    // get notice extra data from home page section management
     const sections = homePage?.sections_on_api;
     const notice_heading = sections.find((s) => s.title_slug === "notice-board");
     const heading_part_1 = splitBySpace(notice_heading?.sub_title)[0]
     const heading_part_2 = splitBySpace(notice_heading?.sub_title)[1]
     const notice_board_title_2 = notice_heading?.custom_information.find((item) => item.label === "notice_board_title_2")
 
+
+  const handleOpenModal = (notice) => {
+    setSelectedNotice(notice);
+    setIsModalOpen(true);
+  };
 
 
     return (
@@ -107,14 +114,14 @@ export default function NoticeBoard({ notices, settings, homePage, loading,curre
                                 <div>
                                     <p className="sm:hidden text-[#00401A] font-semibold text-[12px] ">{item?.sub_title.slice(0, 18)}</p>
                                     <p className="hidden sm:block text-[#00401A] font-semibold text-[15px]">{item?.sub_title.slice(0, 120)}</p>
-                                    <Link
-                                        href="/notices"
-                                        className="text-[#00401A] font-semibold sm:font-bold text-xs md:text-sm hover:text-[#F7BA2A] 
-                      flex gap-1 items-center "
+                                    <button
+                                        onClick={() => handleOpenModal(item)}
+                                        className="text-[#00401A] font-semibold sm:font-bold text-xs md:text-sm
+                                         hover:text-[#F7BA2A]  flex gap-1 items-center  cursor-pointer"
                                     >
                                         {read_more}
                                         <span className='mt-0.5'><FaLongArrowAltRight /></span>
-                                    </Link>
+                                    </button>
                                 </div>
                             </div>
 
@@ -131,7 +138,11 @@ export default function NoticeBoard({ notices, settings, homePage, loading,curre
                 </ul>
             }
 
-
+            <NoticeModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                notice={selectedNotice}
+            />
             <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
