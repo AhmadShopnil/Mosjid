@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 
 
 
-export default function Sidebar({ categories, setSelectedCat, isNavigate }) {
+export default function Sidebar({ categories, setSelectedCat, isNavigate, directoryNavigate }) {
   const router = useRouter();
   const [hovered, setHovered] = useState("")
   const [expandedItems, setExpandedItems] = useState({
@@ -31,21 +31,27 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate }) {
   };
 
 
+// handle different useCase in same sidebar
   const handleOnClickItem = (category) => {
-
-
 
     if (!category?.hasSubItems) {
 
+      if (directoryNavigate) {
+        router.push(`/directory/${category?.id}`);
+      }
 
-      if (isNavigate) {
+      else if (isNavigate) {
         router.push(`/${isNavigate}`);
       }
       else if (category?.link) {
         router.push(`${category?.link}`);
       }
       else {
-        setSelectedCat(category.id);
+
+        if (setSelectedCat != null) {
+          setSelectedCat(category.id);
+        }
+
       }
 
     }
@@ -56,14 +62,18 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate }) {
   };
 
   const handleOnClickSubItem = (subItem) => {
-    // setSelectedCat(subItem?.id);
-    if (isNavigate) {
+
+    if (directoryNavigate) {
+      router.push(`/directory/${subItem?.id}`);
+    }
+
+    else if (isNavigate) {
       router.push(`/${isNavigate}`);
 
     }
     else if (subItem?.link) {
 
-    
+
 
       router.push(`${subItem?.link}`);
     }
@@ -78,7 +88,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate }) {
 
 
   return (
-    <div className="bg-white rounded-[10px] border border-[#C9E9BA] overflow-hidden shadow-sm">
+    <div className="bg-white rounded-[10px] border border-[#C9E9BA] overflow-hidden shadow-sm ">
       {/* Header */}
       <div className="bg-white p-5">
         <h3 className="text-2xl font-bold text-[#00401A] gradient-border_b pb-2">

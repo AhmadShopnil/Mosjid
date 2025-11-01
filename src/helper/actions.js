@@ -76,6 +76,30 @@ export async function getSingleEvent(slug) {
   return json?.data || {};
 }
 
+export async function getSingleDirectory(slug) {
+  const API_URL = `${BASE_URL}/api/v1/post?slug=${slug}`;
+
+  // console.log("from action slug", slug)
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+  // console.log("from action", json)
+
+  return json?.data || {};
+}
+
+export async function getDirectory(slug) {
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=directory&category_id=${slug}`;
+
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+  return json?.data || [];
+}
+
+
 export async function getSliders() {
   const API_URL = `${BASE_URL}/api/v1/posts?term_type=slider`;
 
@@ -253,6 +277,7 @@ export async function getFatwa() {
   const json = await res.json();
   return json?.data || [];
 }
+
 export async function getSingleFatwa(slug) {
   const API_URL = `${BASE_URL}/api/v1/post?slug=${slug}`;
   // console.log("from action slug", slug)

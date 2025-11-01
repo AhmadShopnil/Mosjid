@@ -2,7 +2,7 @@
 import { getMetaValueFromExtraFields } from "@/helper/metaHelpers";
 import React from "react";
 
-const DuaCardNew = ({ dua }) => {
+export const DuaCardInnerPage = ({ dua }) => {
 
   const header_left = getMetaValueFromExtraFields(dua, "header_left")
   const header_right = getMetaValueFromExtraFields(dua, "header_right")
@@ -17,14 +17,14 @@ const DuaCardNew = ({ dua }) => {
 
 
   return (
-    <div className="max-w-[520px] mx-auto bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+    <div className=" bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
       {/* Header */}
       <div className="flex justify-between items-center bg-gradient-to-b from-[#EEF8E9] to-[#BAFF98] px-4 py-4 gradient-border-bottom">
         <span className="text-[#00401A] font-bold text-xl sm:text-2xl">
           {header_left}
         </span>
 
-        <span className="bg-[#00401A] text-white text-sm sm:text-lg font-bold px-4 py-1 rounded-full">
+        <span className="bg-[#00401A] text-white text-xs sm:text-lg font-bold px-3 sm:px-5 py-3 rounded-full">
           Dua No: {dua_no}
         </span>
 
@@ -46,7 +46,7 @@ const DuaCardNew = ({ dua }) => {
 
         {/* Arabic Text */}
         <p className="text-[#333333] leading-8 text-base ">
-          {dua_main?.slice(0, 580)}
+          {dua_main}
         </p>
 
         {/* Japanese Pronunciation Section */}
@@ -54,14 +54,14 @@ const DuaCardNew = ({ dua }) => {
           <div className="flex ">
             <span className="w-30 text-[#333333] text-base">{info_4} ：</span>
             <p className="text-[#333333] text-left">
-              {pronunciation?.slice(0, 50)}
+              {pronunciation}
             </p>
           </div>
 
           <div className="flex  ">
             <span className="w-30 text-[#333333] text-base">{info_5} ：</span>
             <p className="text-[#333333] text-left">
-              {meaning?.slice(0, 50)}
+              {meaning}
             </p>
           </div>
         </div>
@@ -86,4 +86,4 @@ const DuaCardNew = ({ dua }) => {
   );
 };
 
-export default DuaCardNew;
+

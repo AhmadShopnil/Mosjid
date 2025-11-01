@@ -108,7 +108,7 @@ export default function NoticeBoard({ notices, settings, homePage, loading,curre
                                     <p className="sm:hidden text-[#00401A] font-semibold text-[12px] ">{item?.sub_title.slice(0, 18)}</p>
                                     <p className="hidden sm:block text-[#00401A] font-semibold text-[15px]">{item?.sub_title.slice(0, 120)}</p>
                                     <Link
-                                        href="/fatwah/1"
+                                        href="/notices"
                                         className="text-[#00401A] font-semibold sm:font-bold text-xs md:text-sm hover:text-[#F7BA2A] 
                       flex gap-1 items-center "
                                     >

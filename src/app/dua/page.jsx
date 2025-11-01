@@ -1,29 +1,34 @@
 
+import DuaPageInner from '@/components/Dua/DuaPageInner'
 
-import AboutInnerPage from '@/components/About/AboutInnerPage';
-import { getCategories, getPage, getSettings } from '@/helper/actions'
+import { getCategories, getNotices, getPage, getSettings } from '@/helper/actions'
 import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
+
 import React from 'react'
 
 
 
 export default async function page() {
-  const settings = await getSettings();
+
+  const notices = await getNotices();
+  const settings = await getSettings()
   const homePage = await getPage("home-sections-heading-management")
-  const cat = await getCategories("donation_categories")
+  const cat = await getCategories("dua_categories")
 
   const formattedCategories = transformNoticeCategories(cat);
+  // console.log("notice cats", formattedCategories)
 
- 
 
 
   return (
     <div>
 
-      <AboutInnerPage
+      <DuaPageInner
         settings={settings}
         homePage={homePage}
+        notices={notices}
         formattedCategories={formattedCategories}
+
       />
 
     </div>

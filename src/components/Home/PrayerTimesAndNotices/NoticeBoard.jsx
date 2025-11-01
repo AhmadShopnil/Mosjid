@@ -94,15 +94,13 @@ export default async function NoticeBoard() {
               <p className="text-sm text-[#00401A]"> {getDay_Month_Year(notice?.created_at, "year")}</p>
             </div>
 
-       
-
 
             {/* Notice Text */}
             <div className="flex flex-col justify-between  ">
               <p className="sm:hidden text-[#00401A] text-sm">{notice?.sub_title.slice(0, 40)}</p>
               <p className="hidden sm:block text-[#00401A] text-sm">{notice?.sub_title.slice(0,120)}</p>
               <Link
-                href={`/notice`}
+                href={`/notice/`}
                 className="text-sm font-bold text-[#001609] flex gap-2 items-center"
               >
                 <span> {read_more}</span>

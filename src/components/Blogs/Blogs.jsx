@@ -24,8 +24,8 @@ export default function Blogs({ blogs, settings, homePage, loading, currentPage,
       {/* heading */}
       <div className=' flex justify-between'>
         <h4 className='text-[#00401A] font-bold text-xl sm:text-2xl lg:text-3xl  gradient-border_b  pb-2 ' >
-          {/* {blogsSectionTitle} */}
-          Latest Blogs
+          {blogsSectionTitle?.value}
+          {/* Latest Blogs */}
         </h4>
 
       </div>

@@ -8,6 +8,8 @@ import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
 import Sidebar from '@/components/Shared/Sidebar'
+import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
+import { sideBarCategories } from '@/data/sidebar'
 import { getImageGallery, getPage, getSettings } from '@/helper/actions'
 import { getMetaValueByMetaName } from '@/helper/metaHelpers'
 
@@ -133,16 +135,12 @@ export default async function page() {
 
             <Container className='flex gap-6 my-6'>
                 {/* sidebar */}
-                <div className='w-[400px] space-y-6'>
-                 <Sidebar categories={categories} />
-
-                    <SubmitRequest />
-                </div>
+                <SidebarMainDrawer categories={sideBarCategories} isNavigate={false} />
                 {/* main content */}
                 <div className=' w-full space-y-6'>
                     <InnerHeader title={img_gallery_heading?.title} image={"/images/gallery/arabic2.png"} />
 
-                    <div>
+                    <div className='overflow-hidden'>
                        <GalleryPage gallery={gallery} img_gallery_heading={img_gallery_heading} view_more_button_text={view_more_button_text}/>
 
                     </div>
