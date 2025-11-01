@@ -90,33 +90,33 @@ const menuItems = [
   },
   {
     name: "Directory",
-    link: "directory/masjid",
+    link: "directory/19",
     icon: "/images/QuickLinks/hover/prayer times.png",
     activeIcon: "/images/QuickLinks/normal2/7.png",
       submenu: [
       {
         name: "Masjid",
-        link: "/directory/masjid",
+        link: "/directory/19",
          icon: "/images/QuickLinks/normal2/2.png",
       },
       {
         name: "Madrasha",
-        link: "/directory/madrasha",
+        link: "/directory/19",
         icon: "/images/QuickLinks/normal2/5.png",
       },
          {
         name: "Quranic Center",
-        link: "/directory/quranic-center",
+        link: "/directory/19",
         icon: "/images/QuickLinks/normal2/5.png",
       },
          {
         name: "Islamic Center",
-        link: "/directory/islamic-center",
+        link: "/directory/19",
         icon: "/images/QuickLinks/normal2/5.png",
       },
          {
         name: "Others",
-        link: "/directory/others",
+        link: "/directory/19",
         icon: "/images/QuickLinks/normal2/5.png",
       },
     ],

@@ -13,6 +13,7 @@ export default function SidebarMainDrawer({
   isSubmitRequest = true,
   setSelectedCat = null,
   isNavigate = false,
+  directoryNavigate=false
 }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -70,6 +71,7 @@ export default function SidebarMainDrawer({
             categories={categories}
             setSelectedCat={setSelectedCat}
             isNavigate={isNavigate}
+            directoryNavigate={directoryNavigate}
           />
 
           {/* Shown below sidebar content */}

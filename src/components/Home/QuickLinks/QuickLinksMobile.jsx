@@ -57,7 +57,7 @@ const quickLinks = [
     name: "Dictionary",
     jp: "辞書",
     targetId: "dictionary",
-    link: "/dictionary",
+    link: "/dictionary/aaa",
     icon: "/images/QuickLinks/dictionary.png",
     // icon: "/images/QuickLinks/normal/Dictionary.png",
     activeIcon: "/images/QuickLinks/hover/Dictionary.png",

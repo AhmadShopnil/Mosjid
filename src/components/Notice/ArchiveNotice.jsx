@@ -2,24 +2,59 @@
 
 
 import Image from "next/image";
-import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
 import Pagination from "../Shared/Pagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getDay_Month_Year } from "@/helper/formateDate";
+import axiosInstance from "@/helper/axiosInstance";
 
 export default function ArchiveNotice() {
-
+    const [notices, setNotices] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(5);
 
+    const perPage = 6
 
-    const notices = Array(6).fill({
-        date: "14",
-        month: "August",
-        year: "2025",
-        title: "Turpis purus vestibulum pellentesque ac.",
-        description:
-            "Turpis purus vestibulum pellentesque ac pretium sit at. Vitae massa posuere nulla tristique eu facilisi imperdiet sapien proin. Risus id nam quis nulla faucibus metus tristique molestie phasellus. Tellus ultricies convallis etiam lacus posuere nisl. Mattis massa facilisi sodales integer fermentum ultricies adipiscing.",
-    });
+    useEffect(() => {
+        const fetchNotices = async () => {
+            setLoading(true)
+            let url = `/posts?term_type=notices&category_id=20&page=${currentPage}&per_page=${perPage}`
+
+
+            try {
+                const response = await axiosInstance.get(url)
+                const data = response?.data?.data || []
+                const meta = response?.data?.meta || {}
+
+                setNotices(data)
+
+
+                setTotalPages(meta.last_page || 1)
+            } catch (err) {
+                console.error("Error fetching notices:", err)
+                setError(err.message || "Failed to fetch notices")
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchNotices()
+
+    }, [currentPage])
+
+
+    // console.log("notices", notices)
+
+
+    // const notices = Array(6).fill({
+    //     date: "14",
+    //     month: "August",
+    //     year: "2025",
+    //     title: "Turpis purus vestibulum pellentesque ac.",
+    //     description:
+    //         "Turpis purus vestibulum pellentesque ac pretium sit at. Vitae massa posuere nulla tristique eu facilisi imperdiet sapien proin. Risus id nam quis nulla faucibus metus tristique molestie phasellus. Tellus ultricies convallis etiam lacus posuere nisl. Mattis massa facilisi sodales integer fermentum ultricies adipiscing.",
+    // });
 
     return (
         <div className="">
@@ -41,13 +76,13 @@ export default function ArchiveNotice() {
                                     {/* Date box */}
                                     <div className=" rounded-md w-[70px] h-[70px] flex flex-col items-center justify-center py-1 bg-[#F2F2F2] text-[#00401A]">
                                         <span className="text-3xl font-bold leading-tight ">
-                                            {notice.date}
+                                            {getDay_Month_Year(notice?.created_at, "day")}
                                         </span>
                                         <span className="text-sm text-gray-600 leading-none">
-                                            {notice.month}
+                                            {getDay_Month_Year(notice?.created_at, "month")}
                                         </span>
                                         <span className="text-sm font-medium text-gray-500 leading-none">
-                                            {notice.year}
+                                            {getDay_Month_Year(notice?.created_at, "year")}
                                         </span>
                                     </div>
                                 </div>
@@ -55,11 +90,15 @@ export default function ArchiveNotice() {
                                 {/* Content */}
                                 <div className="flex-1">
                                     <h3 className="text-lg font-bold text-[#333333] mb-1">
-                                        {notice.title}
+                                        {notice?.name}
                                     </h3>
-                                    <p className="text-base  text-[#333333] leading-relaxed">
-                                        {notice.description}
-                                    </p>
+
+
+
+                                    <div
+                                        className="text-base  text-[#333333] leading-relaxed "
+                                        dangerouslySetInnerHTML={{ __html: notice?.description }}
+                                    />
                                 </div>
                             </div>
 
