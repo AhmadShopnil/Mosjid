@@ -129,7 +129,7 @@ const menuItems = [
   },
   {
     name: "Dua",
-    link: "doa",
+    link: "dua",
     icon: "/images/QuickLinks/hover/Dua.png",
     activeIcon: "/images/QuickLinks/normal2/3.png",
   },

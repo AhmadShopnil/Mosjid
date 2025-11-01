@@ -29,9 +29,9 @@ export default function ImageGalleryInnerPage({ gallery }) {
   }, [selectedIndex]);
 
   return (
-    <div className=" mt-6">
+    <div className="overflow-hidden mt-6">
       {/* Simple 3-column grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6  w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-hidden  w-full">
         {images.map((image, index) => (
           <div
             key={image.id}
