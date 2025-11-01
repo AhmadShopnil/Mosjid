@@ -36,6 +36,7 @@ export default async function BlogsPage({ params }) {
         homePage={homePage}
         formattedCategories={formattedCategories}
         blog={blog} />
+        
     </div>
   )
 }

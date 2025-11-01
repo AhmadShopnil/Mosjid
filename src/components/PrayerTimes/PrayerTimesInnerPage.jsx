@@ -11,7 +11,7 @@ import ProhibitedTimeMobile from "../Home/PrayerTimesAndNotices/ProhibitedTimeMo
 
 
 
-export default async function PrayerTimes() {
+export default async function PrayerTimesInnerPage() {
   const settings = await getSettings()
   const view_more = getMetaValueByMetaName(settings, "view_more") || "";
   const prayerTimes = await getPryerTime();
@@ -92,8 +92,8 @@ export default async function PrayerTimes() {
           <Image
             src={image}
             alt="Arabic text"
-            width={160}
-            height={50}
+            width={240}
+            height={70}
             className="object-contain hidden sm:flex"
           />
           <Image

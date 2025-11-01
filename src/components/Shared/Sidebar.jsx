@@ -31,31 +31,48 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate }) {
   };
 
 
-const handleOnClickItem = (category) => {
-  if (!category?.hasSubItems) {
-    setSelectedCat(category.id);
+  const handleOnClickItem = (category) => {
 
+
+
+    if (!category?.hasSubItems) {
+
+
+      if (isNavigate) {
+        router.push(`/${isNavigate}`);
+      }
+      else if (category?.link) {
+        router.push(`${category?.link}`);
+      }
+      else {
+        setSelectedCat(category.id);
+      }
+
+    }
+
+    if (category?.hasSubItems) {
+      toggleExpand(category.id);
+    }
+  };
+
+  const handleOnClickSubItem = (subItem) => {
+    // setSelectedCat(subItem?.id);
     if (isNavigate) {
       router.push(`/${isNavigate}`);
+
     }
-  }
+    else if (subItem?.link) {
 
-  if (category?.hasSubItems) {
-    toggleExpand(category.id);
-  }
-};
+    
 
-const handleOnClickSubItem = (subItem) => {
-  // console.log("isNavigate", isNavigate);
+      router.push(`${subItem?.link}`);
+    }
+    else {
+      setSelectedCat(subItem.id);
+    }
 
-  if (isNavigate) {
-    router.push(`/${isNavigate}`);
-    // return;  // You can uncomment this if you don't want to set category after navigation
-  }
 
-  setSelectedCat(subItem?.id);
-};
-
+  };
 
 
 
