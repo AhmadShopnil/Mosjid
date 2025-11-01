@@ -13,7 +13,7 @@ export default async function page() {
   const notices = await getNotices();
   const settings = await getSettings()
   const homePage = await getPage("home-sections-heading-management")
-  const cat = await getCategories("notice_categories")
+  const cat = await getCategories("dua_categories")
 
   const formattedCategories = transformNoticeCategories(cat);
   // console.log("notice cats", formattedCategories)

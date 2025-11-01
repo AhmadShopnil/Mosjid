@@ -46,7 +46,7 @@ export const DuaCardInnerPage = ({ dua }) => {
 
         {/* Arabic Text */}
         <p className="text-[#333333] leading-8 text-base ">
-          {dua_main?.slice(0, 580)}
+          {dua_main}
         </p>
 
         {/* Japanese Pronunciation Section */}
@@ -54,14 +54,14 @@ export const DuaCardInnerPage = ({ dua }) => {
           <div className="flex ">
             <span className="w-30 text-[#333333] text-base">{info_4} ：</span>
             <p className="text-[#333333] text-left">
-              {pronunciation?.slice(0, 50)}
+              {pronunciation}
             </p>
           </div>
 
           <div className="flex  ">
             <span className="w-30 text-[#333333] text-base">{info_5} ：</span>
             <p className="text-[#333333] text-left">
-              {meaning?.slice(0, 50)}
+              {meaning}
             </p>
           </div>
         </div>

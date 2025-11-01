@@ -75,11 +75,6 @@ export default async function DuaSection() {
             </div>
           </div>
 
-
-       
-
-
-
           <div className="flex gap-4 items-center justify-center ">
             <Image
               src="/images/others/duaarabic.png"
@@ -90,7 +85,7 @@ export default async function DuaSection() {
             />
             <div>
               <Link
-                href="/"
+                href="/dua"
                 className=" border rounded-[50px] font-bold text-[#00401A]  border-[#00401A] text-base py-3 px-5
                  hover:bg-[#00401A] hover:text-white transition-colors duration-400"
               >
@@ -107,7 +102,7 @@ export default async function DuaSection() {
               key={dua.id}
               dua={dua}
             />
-            
+
           ))}
         </div>
       </Container>

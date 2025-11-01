@@ -9,6 +9,7 @@ import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
 import Sidebar from '@/components/Shared/Sidebar'
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
+import { sideBarCategories } from '@/data/sidebar'
 
 import Image from 'next/image'
 import React from 'react'
@@ -121,7 +122,7 @@ export default async function page() {
 
             <Container className='flex gap-6 my-6'>
                 {/* sidebar */}
-                <SidebarMainDrawer isSubmitRequest={false} categories={categories} />
+                <SidebarMainDrawer isSubmitRequest={false} categories={sideBarCategories} />
             
                 {/* main content */}
                 <div className=' w-full space-y-6'>

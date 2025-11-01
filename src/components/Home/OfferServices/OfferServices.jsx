@@ -11,7 +11,7 @@ export default async function OfferServices() {
   const offered_services_ExtraData = sections.find((s) => s.title_slug === "offered-services");
 
   return (
-    <div>
+    <div id='offered-services'>
       <OfferServicesSlider services={services} offered_services_ExtraData={offered_services_ExtraData}/>
     </div>
   )

@@ -5,32 +5,6 @@ import Image from "next/image";
 import Container from "@/components/Shared/Container";
 import Link from "next/link";
 
-// const quickLinks = [
-//   {
-//     name: "Prayer Times",
-//     targetId: "prayer-times",
-//     icon: "/images/QuickLinks/normal/prayer times.png",
-//     activeIcon: "/images/QuickLinks/hover/prayer times.png",
-//   },
-//   {
-//     name: "Dictionary",
-//     targetId: "dictionary",
-//     icon: "/images/QuickLinks/normal/Dictionary.png",
-//     activeIcon: "/images/QuickLinks/hover/Dictionary.png",
-//   },
-//   {
-//     name: "Gallery",
-//     targetId: "gallery",
-//     icon: "/images/QuickLinks/normal/Gallery.png",
-//     activeIcon: "/images/QuickLinks/hover/Gallery.png",
-//   },
-//   {
-//     name: "Donation",
-//     targetId: "donation",
-//     icon: "/images/QuickLinks/normal/Donation.png",
-//     activeIcon: "/images/QuickLinks/hover/Donation.png",
-//   },
-// ];
 
 const quickLinks = [
   {
@@ -115,7 +89,17 @@ const quickLinks = [
     icon: "/images/QuickLinks/gallery.png",
     // icon: "/images/QuickLinks/normal/Gallery.png",
     activeIcon: "/images/QuickLinks/hover/Gallery.png",
+    
   },
+  //   {
+  //   name: "Islamic Books",
+  //   jp: "イスラム教の本",
+  //   targetId: "books",
+  //    link: "/",
+  //   icon: "/images/QuickLinks/books.png",
+  //   // icon: "/images/QuickLinks/normal/Gallery.png",
+  //   activeIcon: "/images/QuickLinks/hover/Gallery.png",
+  // },
 ];
 export default function QuickLinksMobile() {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -134,7 +118,7 @@ export default function QuickLinksMobile() {
 
   return (
     <section className="bg-[#E5F5DE] py-8">
-      <Container className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-4">
+      <Container className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 2xl:grid-cols-8 gap-4">
         {quickLinks.map((link, i) => {
           const isHovered = hoveredCard === i;
 

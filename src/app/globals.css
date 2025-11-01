@@ -181,6 +181,7 @@ body {
   width: 200px;
   position: relative;
   border-radius: 30px;
+  margin: 4px;
 }
 
 .quicklinks:hover {
@@ -198,7 +199,8 @@ body {
   bottom: 0;
   margin: -1px;
   z-index: -1;
-  border-radius: 30px;
+  
+  border-radius: 31px;
 
 }
 

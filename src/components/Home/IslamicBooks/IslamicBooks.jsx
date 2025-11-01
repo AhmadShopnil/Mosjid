@@ -12,7 +12,8 @@ const books=await getIslamicBooks()
 
 
   return (
-    <div>
+    <div
+    id='books'>
       <IslamicBooksSlider books={books} />
     </div>
   )
