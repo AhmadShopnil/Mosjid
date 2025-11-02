@@ -27,7 +27,7 @@ const merriweather = Merriweather({
 });
 
 export const metadata = {
-  title: "Oska Masjid",
+  title: "Osaka Masjid",
   description: "Masjid",
 };
 

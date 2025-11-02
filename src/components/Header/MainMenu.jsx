@@ -55,7 +55,7 @@ const menuItems = [
   {
     name: "Services",
     link: "services",
-    icon: "/images/QuickLinks/hover/donation.png",
+    icon: "/images/QuickLinks/hover/Directory.png",
     activeIcon: "/images/QuickLinks/normal2/5.png",
     submenu: [
       {
@@ -91,7 +91,7 @@ const menuItems = [
   {
     name: "Directory",
     link: "directory/19",
-    icon: "/images/QuickLinks/hover/prayer times.png",
+    icon: "/images/QuickLinks/hover/Directory.png",
     activeIcon: "/images/QuickLinks/normal2/7.png",
       submenu: [
       {

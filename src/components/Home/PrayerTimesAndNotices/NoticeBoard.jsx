@@ -44,7 +44,7 @@ export default function NoticeBoard({ settings, notices, homePage }) {
         backgroundImage: "url('/images/home/noticeBg.png')",
       }}
     >
-<div
+      <div
         className="absolute right-0 top-2/5"
       >
         <Image
