@@ -44,6 +44,18 @@ export default function NoticeBoard({ settings, notices, homePage }) {
         backgroundImage: "url('/images/home/noticeBg.png')",
       }}
     >
+<div
+        className="absolute right-0 top-2/5"
+      >
+        <Image
+          src="/images/notice/bg.png"
+          alt='img'
+          width={60}
+          height={160}
+          className="object-contain transition-all duration-300"
+        />
+      </div>
+
       {/* heading */}
       <p className="text-sm mb-2 text-center sm:text-start ">{notice_Extra_data?.short_description}</p>
 
@@ -83,7 +95,7 @@ export default function NoticeBoard({ settings, notices, homePage }) {
 
       {/* Notices List */}
       <ul className="space-y-3">
-        {notices?.slice(0, 6).map((notice, i) => (
+        {notices?.slice(0, 7).map((notice, i) => (
           <NoticeCardHome key={i} notice={notice} settings={settings} handleOpenModal={handleOpenModal} />
         ))}
       </ul>
