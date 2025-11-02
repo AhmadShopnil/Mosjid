@@ -21,10 +21,11 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             cd /www/wwwroot/osakamasjid.org
+            export PATH=$PATH:/www/server/nvm/versions/node/v20.17.0/bin
             git pull origin main
-            /www/server/nvm/versions/node/v20.17.0/bin/npm install
-            /www/server/nvm/versions/node/v20.17.0/bin/pm2 stop osaka-mosque || true
-            /www/server/nvm/versions/node/v20.17.0/bin/pm2 delete osaka-mosque || true
-            /www/server/nvm/versions/node/v20.17.0/bin/npm run build
-            /www/server/nvm/versions/node/v20.17.0/bin/npm run pm2:start
-            /www/server/nvm/versions/node/v20.17.0/bin/pm2 save
+            npm install
+            pm2 stop osaka-mosque || true
+            pm2 delete osaka-mosque || true
+            npm run build
+            npm run pm2:start
+            pm2 save
