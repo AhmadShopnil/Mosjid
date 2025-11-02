@@ -1,40 +1,47 @@
-// components/NoticeBoard.tsx
+"use client"
+
 import Link from "next/link";
-import React from "react";
-import { PageSearchPrayerTimesIcon } from "@/components/Icons/Dictionary";
+import React, { useState } from "react";
+
 import Image from "next/image";
-import { getNotices, getPage, getSettings } from "@/helper/actions";
-import { getDay_Month_Year } from "@/helper/formateDate";
+
+
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import { splitBySpace } from "@/helper/splitBySpace";
 import { getImageUrl } from "@/helper/getImageUrl";
+import NoticeCardHome from "./NoticeCardHome";
+import NoticeDetailsModal from "@/components/Notice/NoticeModal";
 
 
 
-export default async function NoticeBoard() {
-  const notices = await getNotices();
-  const settings = await getSettings()
+export default function NoticeBoard({ settings, notices, homePage }) {
+
+  const [selectedNotice, setSelectedNotice] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const view_more = getMetaValueByMetaName(settings, "view_more") || "";
   const read_more = getMetaValueByMetaName(settings, "read_more") || "";
 
   // get notice extra data from home page section management
-  const homePage = await getPage("home-sections-heading-management")
   const sections = homePage?.sections_on_api;
   const notice_Extra_data = sections.find((s) => s.title_slug === "notice-board");
   const heading_part_1 = splitBySpace(notice_Extra_data?.sub_title)[0]
   const heading_part_2 = splitBySpace(notice_Extra_data?.sub_title)[1]
-   const image = getImageUrl(notice_Extra_data?.image_media)
-
+  const image = getImageUrl(notice_Extra_data?.image_media)
   const notice_board_title_2 = notice_Extra_data?.custom_information.find((item) => item.label === "notice_board_title_2")
 
 
-  // console.log("string",string)
+  const handleOpenModal = (notice) => {
+    setSelectedNotice(notice);
+    setIsModalOpen(true);
+  };
+
 
   return (
     <div
       className=" p-5 sm:p-8 bg-cover bg-center h-full gradient-border"
       style={{
-          backgroundImage: "url('/images/home/noticeBg.png')",     
+        backgroundImage: "url('/images/home/noticeBg.png')",
       }}
     >
       {/* heading */}
@@ -64,7 +71,7 @@ export default async function NoticeBoard() {
 
           <Link
             href="/notices"
-          className="border border-[#00401A] text-[#001609] hover:bg-[#00401A] hover:text-white transition-colors duration-400
+            className="border border-[#00401A] text-[#001609] hover:bg-[#00401A] hover:text-white transition-colors duration-400
                font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer">
             {view_more}
           </Link>
@@ -77,45 +84,15 @@ export default async function NoticeBoard() {
       {/* Notices List */}
       <ul className="space-y-3">
         {notices?.slice(0, 6).map((notice, i) => (
-
-
-          <li
-            key={i}
-            className="flex space-x-3 bg-white/90 backdrop-blur-sm border border-gray-300 p-2 rounded-md shadow-sm"
-          >
-
-            {/* Date Section */}
-            <div className="w-[100px]  md:w-[130px]  text-center bg-gray-100 rounded-md pt-3 sm:pt-3 leading-5">
-              <p className="text-3xl font-bold text-[#00401A] leading-6">
-
-                {getDay_Month_Year(notice?.created_at, "day")}
-              </p>
-              <p className="text-sm text-[#00401A] leading-5"> {getDay_Month_Year(notice?.created_at, "month")}</p>
-              <p className="text-sm text-[#00401A]"> {getDay_Month_Year(notice?.created_at, "year")}</p>
-            </div>
-
-
-            {/* Notice Text */}
-            <div className="flex flex-col justify-between  ">
-              <p className="sm:hidden text-[#00401A] text-sm">{notice?.sub_title.slice(0, 40)}</p>
-              <p className="hidden sm:block text-[#00401A] text-sm">{notice?.sub_title.slice(0,120)}</p>
-              <Link
-                href={`/notice/`}
-                className="text-sm font-bold text-[#001609] flex gap-2 items-center"
-              >
-                <span> {read_more}</span>
-
-                <Image
-                  src="/images/others/arrowR.png"
-                  alt='a1'
-                  width={19}
-                  height={19}
-                />
-              </Link>
-            </div>
-          </li>
+          <NoticeCardHome key={i} notice={notice} settings={settings} handleOpenModal={handleOpenModal} />
         ))}
       </ul>
+
+      <NoticeDetailsModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        notice={selectedNotice}
+      />
     </div>
   );
 }

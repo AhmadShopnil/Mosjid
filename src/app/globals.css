@@ -191,7 +191,7 @@ body {
 
 .quicklinks::before {
   content: '';
-  background: linear-gradient(to right, #3096A3, #53FF00);
+  background: linear-gradient(to right, #309caa, #53FF00);
   position: absolute;
   top: 0;
   left: 0;

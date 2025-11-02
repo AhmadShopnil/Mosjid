@@ -1,5 +1,6 @@
 
 
+import BooksPage from '@/components/Books/BooksPage';
 import EventsPage from '@/components/Events/EventsPage';
 import { getCategories, getPage, getSettings } from '@/helper/actions'
 
@@ -21,7 +22,7 @@ export default async function page() {
   return (
     <div>
 
-      <EventsPage
+      <BooksPage
         settings={settings}
         homePage={homePage}
         formattedCategories={formattedCategories}

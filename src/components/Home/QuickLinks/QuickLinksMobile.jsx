@@ -127,20 +127,20 @@ export default function QuickLinksMobile() {
               key={i}
               href={`${link?.link}`}
               className={`flex flex-col items-center justify-center  transition-all duration-200 
-                rounded-[50px] py-3.5 cursor-pointer text-center gradient-border
+                rounded-[50px] py-3.5 px-2 cursor-pointer text-center gradient-border
               bg-white text-[#00401A] shadow`}
               // onMouseEnter={() => setHoveredCard(i)}
               // onMouseLeave={() => setHoveredCard(null)}
               // onClick={() => handleOnclick(link)}
             >
               {/* Icon Section */}
-              <div className=" flex items-center justify-center">
+              <div className=" flex items-center justify-center ">
 
                 <Image
                   src={link.icon}
                   alt={link.name}
-                  width={35}
-                  height={40}
+                  width={30}
+                  height={33}
                   className={`object-contain transition-all duration-100 "}`}
                 // className={`object-contain transition-all duration-100 group-hover:brightness-0 
                 //   group-hover:invert  ${isHovered && "brightness-0 invert"}`}
@@ -148,7 +148,7 @@ export default function QuickLinksMobile() {
               </div>
 
               {/* Title */}
-              <p className="mt-2 text-xs sm:text-base font-bold">{link.name}</p>
+              <p className="mt-2 text-xs sm:text-sm font-semibold">{link.name}</p>
             </Link>
           );
         })}
