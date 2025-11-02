@@ -53,7 +53,7 @@ export default function HeroSectionMobileSlider({ sliders }) {
                      
                             <Link
                                 href="/"
-                                className="inline-block bg-[#F7BA2A] px-5 py-3 rounded-xl text-white text-md font-medium transition hover:bg-[#d9a11f]"
+                                className="inline-block bg-[#F7BA2A] px-5 py-2 sm:py-2.5 rounded-xl text-white text-sm sm:text-base font-medium transition hover:bg-[#d9a11f]"
                             >
                                  Read more
                             </Link>

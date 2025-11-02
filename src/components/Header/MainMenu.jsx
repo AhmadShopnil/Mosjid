@@ -187,8 +187,8 @@ export default function MainMenu({ settings }) {
           <div className="hidden lg:flex bg-white shadow-xl rounded-xl w-[120px] h-[110px] items-center justify-center">
             <Image src={logo_url} alt="Logo" width={80} height={100} className="object-cover" />
           </div>
-          <div className="lg:hidden bg-white shadow-xl rounded-xl w-[100px] h-[100px] flex items-center justify-center">
-            <Image src={logo_url} alt="Logo" width={80} height={80} className="object-cover" />
+          <div className="lg:hidden bg-white shadow-xl rounded-xl w-[90px] h-[100px] flex items-center justify-center">
+            <Image src={logo_url} alt="Logo" width={65} height={70} className="object-cover" />
           </div>
         </div>
 

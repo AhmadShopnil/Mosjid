@@ -26,11 +26,12 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
           "start_time_2"
         );
         const waktEndTime = getMetaValueFromExtraFields(prayer, "end_time");
+        const waktEndTime2 = getMetaValueFromExtraFields(prayer, "end_time_mislewal")
 
         return (
           <div
             key={index}
-            className="rounded-2xl border border-gray-100 bg-gradient-to-tr from-[#F9FFF5] to-[#FFFFFF] p-5 shadow-md transition hover:shadow-lg"
+            className="rounded-2xl border border-gray-100 bg-gradient-to-tr from-[#F9FFF5] to-[#FFFFFF] p-3 shadow-md transition hover:shadow-lg"
           >
             {/* Header */}
             <div className="mb-4 flex items-center justify-between border-b-2 border-[#E5F5DE] pb-2">
@@ -63,26 +64,31 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
              
               <div className="flex flex-col items-center">
                 <span className="text-xs text-gray-500">{wakt_start?.value}</span>
-                <span className="mt-1 text-base font-medium text-[#3E8B18]  ">
+                <span className="mt-1 text-sm font-medium text-[#3E8B18]  ">
                   {waktStartTime}
                 </span>
                 {waktStartTime_2 && (
-                  <span className="text-sm font-medium text-[#3E8B18] border-t-1 border-gray-300">
+                  <span className="text-xs font-medium text-[#3E8B18] border-t-1 border-gray-300">
                     {waktStartTime_2}
                   </span>
                 )}
               </div>
                <div className="flex flex-col items-center">
                 <span className="text-xs text-gray-500">{jamat_start?.value}</span>
-                <span className="mt-1 text-base font-medium text-[#56410F]">
+                <span className="mt-1 text-sm font-medium text-[#56410F]">
                   {prayerTime}
                 </span>
               </div>
               <div className="flex flex-col items-center">
                 <span className="text-xs text-gray-500">{wakt_end?.value}</span>
-                <span className="mt-1 text-base font-medium text-[#FF0000]">
+                <span className="mt-1 text-sm font-medium text-[#FF0000]">
                   {waktEndTime}
                 </span>
+                  {waktEndTime2 && (
+                  <span className="text-xs font-medium text-[#FF0000] border-t-1 border-gray-300">
+                    {waktEndTime2}
+                  </span>
+                )}
               </div>
             </div>
           </div>
