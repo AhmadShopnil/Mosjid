@@ -1,5 +1,6 @@
 "use client";
 import { getMetaValueFromExtraFields } from "@/helper/metaHelpers";
+import Image from "next/image";
 import React from "react";
 
 const DuaCardNew = ({ dua }) => {
@@ -17,7 +18,19 @@ const DuaCardNew = ({ dua }) => {
 
 
   return (
-    <div className="max-w-[520px] mx-auto bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+    <div className="max-w-[520px] mx-auto bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 relative">
+
+
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <Image
+          src="/images/directory/bg2.png"
+          alt="img"
+          width={440}
+          height={525}
+          className="object-contain transition-all duration-300"
+        />
+      </div>
+
       {/* Header */}
       <div className="flex justify-between items-center bg-gradient-to-b from-[#EEF8E9] to-[#BAFF98] px-4 py-4 gradient-border-bottom">
         <span className="text-[#00401A] font-bold text-xl sm:text-2xl">
