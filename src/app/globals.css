@@ -28,7 +28,7 @@ body {
 .gradient-border {
   position: relative;
   border-radius: 20px;
-  /* Match Tailwind rounded-lg */
+ 
   overflow: hidden;
 }
 
@@ -37,7 +37,7 @@ body {
   position: absolute;
   inset: 0;
   padding: 1px;
-  /* Border thickness */
+ 
   border-radius: inherit;
   background: linear-gradient(to right, rgba(0, 244, 175, 1), rgba(0, 255, 30, 1));
   -webkit-mask:

@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Download } from "lucide-react";
 import BooksCarHome from "./BooksCarHome";
+import Link from "next/link";
 
 export default function IslamicBooksSlider({ books }) {
   const scrollRef = useRef(null);
@@ -68,13 +69,14 @@ export default function IslamicBooksSlider({ books }) {
                 height={40}
                 className="object-contain sm:hidden"
               />
-              <button
+              <Link
+              href="/books"
                 className="border border-[#00401A] text-[#00401A]
                 font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer
                 hover:bg-[#00401A] hover:text-white transition-colors duration-400"
               >
                 Find More Books
-              </button>
+              </Link>
             </div>
           </div>
 

@@ -79,7 +79,7 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
 
         {/* main content */}
         <div className=' w-full space-y-6'>
-            <InnerHeader title={"掲示板"} image={"/images/fatwah/fatwaharbic_white.png"} />
+            <InnerHeader title={"イスラム教の書籍"} image={"/images/isamicBooks/arabic-white.png"} />
 
           <div>
             <BookList
