@@ -2,6 +2,8 @@ import React from 'react'
 import { DictionaryIcon, DonationIcon, GalleryIcon, PrayerTimesIcon } from '../../../Icons/QuickLinks';
 import Image from 'next/image';
 import SearchSection from './SearchSection';
+import { getCategories } from '@/helper/actions';
+import Link from 'next/link';
 
 const quickLinks = [
   { name: "Find People", icon: "/images/directory/1.png" },
@@ -13,7 +15,13 @@ const quickLinks = [
 ];
 
 
-export default function Directory() {
+export default async function Directory() {
+
+ 
+const directory_categories = await getCategories("directory_categories")
+
+// console.log("directory_categories",directory_categories)
+
   return (
     <div className='gradient-border h-full  px-5 sm:px-8 pt-5 sm:pt-8 pb-20 rounded-2xl bg-white relative'>
       <div
@@ -78,25 +86,29 @@ export default function Directory() {
       <div className="mt-8 md:mt-11 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-4 2xl:grid-cols-5 gap-2.5 ">
 
 
-        {quickLinks.map((link, i) => (
-          <div
+        {directory_categories?.map((item, i) => (
+          <Link
             key={i}
-            className="border border-gray-200 flex flex-col items-center justify-center
+            href={`/directory/${item?.id}`}
+            className="gradient-borderDirectory h-[140px] flex flex-col items-center justify-center
              bg-white  rounded-[20px] px-3 py-3  hover:bg-teal-50
               transition cursor-pointer text-center"
+            // className="gradient-border2 h-[140px] flex flex-col items-center justify-center
+            //  bg-white  rounded-[20px] px-3 py-3  hover:bg-teal-50
+            //   transition cursor-pointer text-center"
           >
 
             <div className=' '>
 
               <Image
-                src={link?.icon}
+                src={item?.image}
                 alt='a1'
                 width={55}
                 height={55}
               />
             </div>
-            <p className="mt-2 text-base font-bold text-gray-700">{link.name}</p>
-          </div>
+            <p className="mt-2 text-base font-bold text-gray-700">{item?.name}</p>
+          </Link>
         ))}
       </div>
 

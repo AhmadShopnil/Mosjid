@@ -1,7 +1,6 @@
 
 import DirectoryPage from '@/components/Directory/Directorypage'
-import SubmitRequest from '@/components/Fatwah/SubmitRequest'
-import SearchSection from '@/components/Home/Directory_Donation/Directory/SearchSection'
+import DirectorySearchInnerPage from '@/components/Directory/DirectorySearchInnerPage'
 import BannerInnerPage from '@/components/Shared/BannerInnerPage'
 import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
@@ -101,7 +100,7 @@ export default async function page({ params }) {
           <InnerHeader title={"掲示板"} image={"/images/fatwah/fatwaharbic_white.png"} />
           <div className='w-full'>
             <div className='w-[80%] py-3'>
-              <SearchSection />
+              <DirectorySearchInnerPage />
             </div>
           </div>
           <DirectoryPage directories={directories} />

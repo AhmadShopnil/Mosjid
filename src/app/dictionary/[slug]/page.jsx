@@ -1,6 +1,6 @@
 
 import DictionaryPage from '@/components/Dictionary/DictionaryPage'
-import DictionarySearchSection from '@/components/Directory/DictionarySearchSection'
+import DictionarySearchSection from '@/components/Directory/DirectorySearchInnerPage'
 import DirectoryPage from '@/components/Directory/Directorypage'
 import SubmitRequest from '@/components/Fatwah/SubmitRequest'
 import SearchSection from '@/components/Home/Directory_Donation/Directory/SearchSection'
