@@ -98,50 +98,7 @@ export default function ImageGalleryInnerPage({ gallery }) {
                 {images[selectedIndex]?.description || "This is a sample description for the image."}
               </p>
               <div className="mt-4 flex justify-center">
-                <div className="  flex items-center gap-4 text-[#D9E2DD]">
-                  <div className="border-r-2 border-gray-300 pr-3">
-                    <Image
-                      src="/images/notice/twiter.png"
-                      alt='a1'
-                      width={20}
-                      height={20}
-                    />
-                  </div>
-                  <div className="border-r-2 border-gray-300 pr-3">
-                    <Image
-                      src="/images/notice/fb.png"
-                      alt='a1'
-                      width={12}
-                      height={12}
-                    />
-                  </div>
-                  <div className="border-r-2 border-gray-300 pr-3">
-                    <Image
-                      src="/images/notice/whatsapp.png"
-                      alt='a1'
-                      width={17}
-                      height={17}
-                    />
-                  </div>
-                  <div className="border-r-2 border-gray-300 pr-3">
-                    <Image
-                      src="/images/notice/printer.png"
-                      alt='a1'
-                      width={19}
-                      height={19}
-                    />
-                  </div>
-                  <div>
-                    <Image
-                      src="/images/notice/download.png"
-                      alt='a1'
-                      width={19}
-                      height={19}
-                    />
-                  </div>
-
-
-                </div>
+                <SocialShare/>
               </div>
             </div>
           </div>

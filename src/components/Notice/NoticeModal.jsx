@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { X } from "lucide-react";
 import { getDay_Month_Year } from "@/helper/formateDate";
+import SocialShare from "../Shared/SocialShare";
 
 
 export default function NoticeDetailsModal({
@@ -60,46 +61,7 @@ export default function NoticeDetailsModal({
 
         {/* Divider + Icons */}
         <div className="border-t pt-4 flex items-center gap-3 text-[#D9E2DD]">
-          <div className="border-r-2 border-gray-300 pr-3">
-            <Image
-              src="/images/notice/twiter.png"
-              alt="twitter"
-              width={23}
-              height={23}
-            />
-          </div>
-          <div className="border-r-2 border-gray-300 pr-3">
-            <Image
-              src="/images/notice/fb.png"
-              alt="facebook"
-              width={15}
-              height={15}
-            />
-          </div>
-          <div className="border-r-2 border-gray-300 pr-3">
-            <Image
-              src="/images/notice/whatsapp.png"
-              alt="whatsapp"
-              width={20}
-              height={20}
-            />
-          </div>
-          <div className="border-r-2 border-gray-300 pr-3">
-            <Image
-              src="/images/notice/printer.png"
-              alt="print"
-              width={22}
-              height={22}
-            />
-          </div>
-          <div>
-            <Image
-              src="/images/notice/download.png"
-              alt="download"
-              width={22}
-              height={22}
-            />
-          </div>
+        <SocialShare/>
         </div>
       </div>
     </div>

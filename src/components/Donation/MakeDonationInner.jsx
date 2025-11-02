@@ -13,7 +13,7 @@ import DonationInputSection from './DonationInputSection';
 function MakeDonationInner({ donations, settings, homePage, loading, currentPage, setCurrentPage, totalPages }) {
   const [activeTab, setActiveTab] = useState(donations[0]);
 
-  console.log("donations", donations)
+  // console.log("donations", donations)
 
   const sections = homePage.sections_on_api;
   const make_your_donation = sections.find((s) => s.title_slug === "make-your-doantion");

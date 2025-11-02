@@ -4,6 +4,7 @@ import Image from "next/image";
 import DirectoryRow from "./DirectoryRow";
 import { useState } from "react";
 import DirectoryDetailsSection from "./DirectoryDetailsSection";
+import SocialShare from "../Shared/SocialShare";
 
 export default function DirectoryPage({ directories }) {
   const [selectedDirectory, setSelectedDirectory] = useState(null);
@@ -65,24 +66,7 @@ export default function DirectoryPage({ directories }) {
 
       {/* Social Icons */}
       <div className="py-4 flex justify-center sm:justify-end items-center">
-        <div className="flex items-center gap-4 text-[#D9E2DD]">
-          {[
-            { src: "/images/notice/twiter.png", w: 23, h: 23 },
-            { src: "/images/notice/fb.png", w: 15, h: 15 },
-            { src: "/images/notice/whatsapp.png", w: 20, h: 20 },
-            { src: "/images/notice/printer.png", w: 22, h: 22 },
-            { src: "/images/notice/download.png", w: 22, h: 22 },
-          ].map((icon, i) => (
-            <div
-              key={i}
-              className={`${
-                i < 4 ? "border-r-2 border-gray-300 pr-3" : ""
-              } flex items-center`}
-            >
-              <Image src={icon.src} alt="icon" width={icon.w} height={icon.h} />
-            </div>
-          ))}
-        </div>
+      <SocialShare/>
       </div>
 
       {selectedDirectory && (
