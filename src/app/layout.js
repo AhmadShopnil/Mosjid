@@ -4,6 +4,7 @@ import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import ScrollToTopButton from "@/components/Shared/ScrollToTopButton";
 import { Toaster } from "react-hot-toast";
+import DevelopmentBanner from "@/components/Header/DevelopmentBanner";
 
 // Geist Sans
 const geistSans = Geist({
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} antialiased`}
       >
+        <DevelopmentBanner/>
         <Header/>
         {children}
         <Footer />
