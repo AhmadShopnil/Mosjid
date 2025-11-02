@@ -2,8 +2,14 @@ import Container from '@/components/Shared/Container'
 import React from 'react'
 import PrayerTimes from './PrayerTimes'
 import NoticeBoard from './NoticeBoard'
+import { getNotices, getPage, getSettings } from '@/helper/actions';
 
-export default function PrayerTimesAndNotices() {
+export default async function PrayerTimesAndNotices() {
+
+  const notices = await getNotices();
+  const settings = await getSettings()
+const homePage = await getPage("home-sections-heading-management")
+
   return (
     
     <div
@@ -16,7 +22,7 @@ export default function PrayerTimesAndNotices() {
               <PrayerTimes />
             </div>
           <div className="w-full xl:w-[38%]">
-              <NoticeBoard />
+              <NoticeBoard notices={notices} settings={settings} homePage={homePage} />
           </div>
           </Container>
     </div>

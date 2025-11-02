@@ -131,7 +131,7 @@ export default async function FatwahBox() {
 
               <div className=' my-auto'>
                 <Link 
-                 href="/fatwa"
+                 href="/fatwah"
                 className="px-5 sm:px-6 py-3  text-sm sm:text-base
                 font-bold text-white border border-[#00401A] rounded-full bg-[#00401A]
                   hover:bg-[#00401A] hover:text-white transition-colors duration-400 cursor-pointer">
@@ -191,7 +191,7 @@ export default async function FatwahBox() {
                 <button className="flex items-center gap-2 px-4 md:px-5 py-3 cursor-pointer gradient-border3 
                   rounded-[100px] text-[#00401A] font-bold text-xs sm:text-sm md:text-lg ">
                   {download}
-                  <Download className="w-4 h-4" />
+                  <Download className="w-5 h-5" />
                 </button>
               </li>
             ))}
