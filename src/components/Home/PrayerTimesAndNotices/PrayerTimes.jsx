@@ -41,7 +41,7 @@ export default async function PrayerTimes() {
 
 
   return (
-    <div className="   px-5 sm:px-8 pt-5 sm:pt-8  pb-24 h-full gradient-bordernew relative overflow-hidden">
+    <div className="px-3 sm:px-8 pt-5 sm:pt-8  pb-24 h-full gradient-bordernew relative overflow-hidden">
       <div className="absolute top-0 right-0">
         <Image
           src="/images/prayertimes/1.png"
@@ -149,10 +149,6 @@ export default async function PrayerTimes() {
                 </span>
                   <span className=""> 名前</span>
                 </th>
-                {/* <th className="p-3 "><span>
-                  {jamat_start?.value}</span> <br />
-                  <span className=" text-gray-300">ジャマットスタート</span>
-                  </th> */}
                 <th className="p-3">Prohibited Time Start
                   <br />
                   <span className=" ">禁止時間開始</span>
@@ -192,7 +188,7 @@ export default async function PrayerTimes() {
         <br />
         <span className=" ">禁止時間開始</span>
       </h4>
-      <ProhibitedTimeMobile prayerTimes={prayerTimes.slice(0, 4)} prayer_time={prayer_time} />
+      <ProhibitedTimeMobile prayerTimes={ProhibitedTime.slice(0, 4)} prayer_time={prayer_time} />
       {/* bottom note */}
       <p className="mt-4 text-sm  text-[#FF0000]">
         {prayer_time?.description}
