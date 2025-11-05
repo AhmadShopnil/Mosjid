@@ -38,21 +38,18 @@ export default function BookList({ books, settings, homePage, loading, currentPa
           {
             books?.length > 0 ?
               <div className="mt-6 grid grid-cols-1  gap-5">
-                {books?.slice(0, 1).map((book, i) => (
+                {books?.map((book, i) => (
                   <BookCardInnerPage key={i} book={book} index={i} settings={settings} />
                 ))}
               </div>
               :
               <div className='flex justify-center items-center'>
-                <p className='Text-base font-bold'>No Bookd Found</p>
+                <p className='Text-base font-bold'>No Books Found</p>
               </div>
 
           }
 
-
-
         </>
-
       }
 
 

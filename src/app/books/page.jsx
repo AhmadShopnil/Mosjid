@@ -13,7 +13,7 @@ import React from 'react'
 export default async function page() {
   const settings = await getSettings();
   const homePage = await getPage("home-sections-heading-management")
-  const cat = await getCategories("events_categories")
+  const cat = await getCategories("books_categories")
 
   const formattedCategories = transformNoticeCategories(cat);
 

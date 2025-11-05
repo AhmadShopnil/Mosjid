@@ -199,7 +199,7 @@ body {
 
 
 .quicklinks {
-  background: white;
+  background: #F5FFF8;
   height: 200px;
   width: 200px;
   position: relative;
@@ -209,7 +209,7 @@ body {
 
 .quicklinks:hover {
   background: #51FA06;
-  background: linear-gradient(147deg, rgba(48, 150, 163, 1) 0%, rgba(83, 255, 0, 1) 100%);
+  background: linear-gradient(147deg, rgba(81, 250, 6, 1) 0%, rgba(0, 119, 36, 1) 100%);
 }
 
 .quicklinks::before {
@@ -222,10 +222,14 @@ body {
   bottom: 0;
   margin: -1px;
   z-index: -1;
-
   border-radius: 31px;
-
 }
+
+
+
+
+
+
 
 
 

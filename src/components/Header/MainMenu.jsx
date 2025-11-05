@@ -38,7 +38,7 @@ const menuItems = [
     name: "Fatwah",
     link: "fatwah",
     icon: "/images/QuickLinks/white/fatwa.png",
-    icon: "/images/QuickLinks/white/fatwa.png",
+    activeIcon: "/images/QuickLinks/normal2/fatwa.png",
     // submenu: [
     //   {
     //     name: "Ask Fatwah",
@@ -172,7 +172,7 @@ const menuItems = [
     name: "Contact",
     link: "contact",
     icon: "/images/QuickLinks/white/phone.png",
-    activeIcon: "/images/QuickLinks/white/phone.png",
+    activeIcon: "/images/QuickLinks/normal2/phone.png",
   },
 ];
 export default function MainMenu({ settings }) {
@@ -232,8 +232,8 @@ export default function MainMenu({ settings }) {
                 >
                   <div className="w-5 h-5 flex items-center justify-center mr-1">
                     <Image
-                      src={item.icon}
-                      alt={item.name}
+                      src={item?.icon}
+                      alt={item?.name}
                       width={20}
                       height={20}
                       className="object-contain w-full h-full brightness-0 invert"

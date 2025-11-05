@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { quickLinksAll } from "@/data/quickLinksData";
 
 const quickLinks = [
   {
@@ -145,7 +146,7 @@ export default function QuickLinks() {
           }}
           className="px-10"
         >
-          {quickLinks.map((link, i) => {
+          {quickLinksAll.map((link, i) => {
             const isHovered = hoveredCard === i;
             return (
               <SwiperSlide key={i} className="flex justify-center">

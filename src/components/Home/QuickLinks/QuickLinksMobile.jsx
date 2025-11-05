@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Container from "@/components/Shared/Container";
 import Link from "next/link";
+import { quickLinksAll } from "@/data/quickLinksData";
 
 
 const quickLinks = [
@@ -101,6 +102,9 @@ const quickLinks = [
   //   activeIcon: "/images/QuickLinks/hover/Gallery.png",
   // },
 ];
+
+
+
 export default function QuickLinksMobile() {
   const [hoveredCard, setHoveredCard] = useState(null);
 
@@ -119,7 +123,7 @@ export default function QuickLinksMobile() {
   return (
     <section className="bg-[#E5F5DE] py-8">
       <Container className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 2xl:grid-cols-8 gap-4">
-        {quickLinks.map((link, i) => {
+        {quickLinksAll.map((link, i) => {
           const isHovered = hoveredCard === i;
 
           return (
@@ -128,7 +132,7 @@ export default function QuickLinksMobile() {
               href={`${link?.link}`}
               className={`flex flex-col items-center justify-center  transition-all duration-200 
                 rounded-[50px] py-3.5 px-2 cursor-pointer text-center gradient-border
-              bg-white text-[#00401A] shadow`}
+              bg-[#F5FFF8] text-[#00401A] shadow`}
               // onMouseEnter={() => setHoveredCard(i)}
               // onMouseLeave={() => setHoveredCard(null)}
               // onClick={() => handleOnclick(link)}
@@ -148,7 +152,8 @@ export default function QuickLinksMobile() {
               </div>
 
               {/* Title */}
-              <p className="mt-2 text-xs sm:text-sm font-semibold">{link.name}</p>
+              <p className="mt-2 text-xs sm:text-sm font-semibold">{link?.name}</p>
+              <p className="mt-2 text-xs sm:text-sm font-semibold">{link?.jp}</p>
             </Link>
           );
         })}

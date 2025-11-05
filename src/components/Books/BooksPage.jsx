@@ -30,7 +30,7 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
 
   // fetching data
   useEffect(() => {
-    const fetchEvents = async () => {
+    const fetchBooks = async () => {
 
       setLoading(true)
 
@@ -55,11 +55,11 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
       }
     }
 
-    fetchEvents()
+    fetchBooks()
   }, [selectedCat, currentPage])
 
 
-  // console.log("blogs", blogs)
+  console.log("books", books)
 
 
 

@@ -19,7 +19,7 @@ export default async function Blogs({ blogs, blogsSectionTitle }) {
           {blogsSectionTitle}
         </h4>
         <Link
-          href=''
+          href='/blogs'
           className='text-[#00401A] font-bold text-sm flex gap-2 items-center '
         >
           {view_more_button_text}
