@@ -44,15 +44,12 @@ export default function BookList({ books, settings, homePage, loading, currentPa
               </div>
               :
               <div className='flex justify-center items-center'>
-                <p className='Text-base font-bold'>No Bookd Found</p>
+                <p className='Text-base font-bold'>No Books Found</p>
               </div>
 
           }
 
-
-
         </>
-
       }
 
 

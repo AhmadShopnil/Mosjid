@@ -77,7 +77,7 @@ export default function GalleryPage({ homePage, settings, formattedCategories })
           <div
           >
 
-            <ImageGalleryInnerPage gallery={galleryDatas} img_gallery_heading={img_gallery_heading} view_more_button_text={view_more_button_text} />
+            <ImageGalleryInnerPage loading={loading} gallery={galleryDatas}  />
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}

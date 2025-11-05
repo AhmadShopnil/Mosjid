@@ -4,8 +4,9 @@ import Container from "@/components/Shared/Container";
 import { useState, useEffect } from "react";
 import SocialShare from "../Shared/SocialShare";
 import Image from "next/image";
+import GalleryGridSkeleton from "../Shared/Skeleton/GalleryGridSkeleton";
 
-export default function ImageGalleryInnerPage({ gallery }) {
+export default function ImageGalleryInnerPage({ gallery ,loading}) {
   const images = transformGalleryData(gallery);
   const [selectedIndex, setSelectedIndex] = useState(null);
 
@@ -31,22 +32,46 @@ export default function ImageGalleryInnerPage({ gallery }) {
   return (
     <div className="overflow-hidden mt-6">
       {/* Simple 3-column grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-hidden  w-full">
-        {images.map((image, index) => (
-          <div
-            key={image.id}
-            className="relative group cursor-pointer overflow-hidden rounded-[10px] aspect-4/3"
-            onClick={() => openModal(index)}
-          >
-            <img
-              src={image.src}
-              alt={image.alt}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            <ImageOverlay />
-          </div>
-        ))}
-      </div>
+
+
+
+
+      {loading ?
+        <GalleryGridSkeleton />
+        :
+        <>
+          {
+            images?.length > 0 ?
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-hidden  w-full">
+                {images.map((image, index) => (
+                  <div
+                    key={image.id}
+                    className="relative group cursor-pointer overflow-hidden rounded-[10px] aspect-4/3"
+                    onClick={() => openModal(index)}
+                  >
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <ImageOverlay />
+                  </div>
+                ))}
+              </div>
+              :
+              <div className='flex justify-center items-center'>
+                <p className='Text-base font-bold'>No Image Found</p>
+              </div>
+
+          }
+
+        </>
+      }
+
+
+
+
 
       {/* Modal with navigation */}
       {selectedIndex !== null && (
@@ -98,7 +123,7 @@ export default function ImageGalleryInnerPage({ gallery }) {
                 {images[selectedIndex]?.description || "This is a sample description for the image."}
               </p>
               <div className="mt-4 flex justify-center">
-                <SocialShare/>
+                <SocialShare />
               </div>
             </div>
           </div>

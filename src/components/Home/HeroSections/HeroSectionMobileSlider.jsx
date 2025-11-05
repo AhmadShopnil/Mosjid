@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { getMetaValueFromExtra_Fields, getMetaValueFromExtraFields } from "@/helper/metaHelpers";
 
-export default function HeroSectionMobileSlider({ sliders }) {
+export default function HeroSectionMobileSlider({ sliders ,read_more_button}) {
     if (!sliders || sliders.length === 0) {
         return <p className="text-center text-gray-500">No slides available</p>;
     }
@@ -52,10 +52,10 @@ export default function HeroSectionMobileSlider({ sliders }) {
                         {/* Button */}
                      
                             <Link
-                                href="/"
+                                href="/about"
                                 className="inline-block bg-[#F7BA2A] px-5 py-2 sm:py-2.5 rounded-xl text-white text-sm sm:text-base font-medium transition hover:bg-[#d9a11f]"
                             >
-                                 Read more
+                                 {read_more_button}
                             </Link>
                    
                     </div>

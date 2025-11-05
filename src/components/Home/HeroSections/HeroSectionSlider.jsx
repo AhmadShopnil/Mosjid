@@ -17,7 +17,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
 
-export default function HeroSectionSlider({ sliders }) {
+export default function HeroSectionSlider({ sliders,read_more_button }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
@@ -68,11 +68,11 @@ export default function HeroSectionSlider({ sliders }) {
                   </p>
                 </div>
                   <Link
-                    href="/"
+                    href="/about"
                     className="bg-[#F7BA2A] px-5 py-4 rounded-[10px] text-[#00401A] text-xl font-semibold w-[148px]
                     h-[60px]"
                   >
-                    Read more
+                    {read_more_button}
                   </Link>
                 </div>
               </Container>
