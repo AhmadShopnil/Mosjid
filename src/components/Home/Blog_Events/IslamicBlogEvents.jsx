@@ -23,6 +23,7 @@ export default async function IslamicBlogEvents() {
 
   return (
     <div
+    id='blogs-events'
       className="  w-full"
       style={{
         backgroundImage: "url('/images/blogEvents/bg.png')",

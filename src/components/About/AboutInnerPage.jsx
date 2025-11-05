@@ -27,9 +27,9 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
         const fetchAboutData = async () => {
             setLoading(true)
             let url = `/posts?term_type=about_info&page=${currentPage}&per_page=${perPage}`
-            // if (selectedCat) {
-            //     url = `/posts?term_type=about_info&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`
-            // }
+            if (selectedCat) {
+                url = `/posts?term_type=about_info&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`
+            }
 
             try {
                 const response = await axiosInstance.get(url)

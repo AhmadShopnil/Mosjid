@@ -11,7 +11,7 @@ export const quickLinksAll = [
   {
     name: "Notice Board",
     jp: "掲示板",
-    targetId: "notice-board",
+    targetId: "notices",
     link: "/notices",
     icon: "/images/QuickLinks/notice.png",
     // icon: "/images/QuickLinks/normal/notice board.png",

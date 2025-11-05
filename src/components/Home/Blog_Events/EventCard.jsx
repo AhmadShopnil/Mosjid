@@ -55,7 +55,7 @@ export default async function EventCard({ event, index = 0 }) {
             <div className='flex flex-col justify-between my-1'>
                 <p className="text-[#00401A] text-sm">{event?.sub_title.slice(0,50)}</p>
                 <Link
-                    href={`/notice`}
+                     href={`/events/${event?.slug}`}
                     className="mt-2 text-xs font-semibold text-[#001609]
                  cursor-pointer hover:text-[#F7BA2A] flex gap-2 items-center "
                 >

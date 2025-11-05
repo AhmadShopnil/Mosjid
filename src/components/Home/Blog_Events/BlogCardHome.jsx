@@ -45,7 +45,7 @@ export default async function BlogCardHome({ blog }) {
             {blog?.sub_title.slice(0, 30)}
           </p>
         </div>
-        <Link href="/" className="sm:mt-2 text-[#001609] font-semibold md:font-bold 
+        <Link href={`/blogs/${blog?.slug}`} className="sm:mt-2 text-[#001609] font-semibold md:font-bold 
         flex gap-2 items-center text-xs sm:text-sm hover:text-[#F7BA2A] ">
           {read_more_button_text}
           <BsArrowUpRightCircle className="text-[16px] text-[#00401A] font-bold" />
