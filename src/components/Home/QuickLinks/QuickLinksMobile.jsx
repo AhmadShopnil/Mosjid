@@ -122,7 +122,7 @@ export default function QuickLinksMobile() {
 
   return (
     <section className="bg-[#E5F5DE] py-8">
-      <Container className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 2xl:grid-cols-8 gap-4">
+      <Container className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 2xl:grid-cols-8 gap-2">
         {quickLinksAll.map((link, i) => {
           const isHovered = hoveredCard === i;
 
@@ -153,7 +153,7 @@ export default function QuickLinksMobile() {
 
               {/* Title */}
               <p className="mt-2 text-xs sm:text-sm font-semibold">{link?.name}</p>
-              <p className="mt-2 text-xs sm:text-sm font-semibold">{link?.jp}</p>
+              <p className="mt-1 text-xs sm:text-sm font-semibold">{link?.jp}</p>
             </Link>
           );
         })}
