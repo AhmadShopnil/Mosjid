@@ -93,51 +93,51 @@ const menuItems = [
     link: "dictionary/arabic",
     icon: "/images/QuickLinks/white/dictionary.png",
     activeIcon: "/images/QuickLinks/normal2/6.png",
-    submenu: [
-      {
-        name: "Arabic-English",
-        link: "/dictionary/arabic",
-        icon: "/images/QuickLinks/normal2/2.png",
-      },
-      {
-        name: "Islamic Terms",
-        link: "/dictionary/islamic",
-        icon: "/images/QuickLinks/normal2/5.png",
-      },
-    ],
+    // submenu: [
+    //   {
+    //     name: "Arabic-English",
+    //     link: "/dictionary/arabic",
+    //     icon: "/images/QuickLinks/normal2/2.png",
+    //   },
+    //   {
+    //     name: "Islamic Terms",
+    //     link: "/dictionary/islamic",
+    //     icon: "/images/QuickLinks/normal2/5.png",
+    //   },
+    // ],
   },
   {
     name: "Directory",
     link: "directory/19",
     icon: "/images/QuickLinks/white/directory.png",
     activeIcon: "/images/QuickLinks/normal2/7.png",
-    submenu: [
-      {
-        name: "Masjid",
-        link: "/directory/19",
-        icon: "/images/QuickLinks/normal2/2.png",
-      },
-      {
-        name: "Madrasha",
-        link: "/directory/19",
-        icon: "/images/QuickLinks/normal2/5.png",
-      },
-      {
-        name: "Quranic Center",
-        link: "/directory/19",
-        icon: "/images/QuickLinks/normal2/5.png",
-      },
-      {
-        name: "Islamic Center",
-        link: "/directory/19",
-        icon: "/images/QuickLinks/normal2/5.png",
-      },
-      {
-        name: "Others",
-        link: "/directory/19",
-        icon: "/images/QuickLinks/normal2/5.png",
-      },
-    ],
+    // submenu: [
+    //   {
+    //     name: "Masjid",
+    //     link: "/directory/19",
+    //     icon: "/images/QuickLinks/normal2/2.png",
+    //   },
+    //   {
+    //     name: "Madrasha",
+    //     link: "/directory/19",
+    //     icon: "/images/QuickLinks/normal2/5.png",
+    //   },
+    //   {
+    //     name: "Quranic Center",
+    //     link: "/directory/19",
+    //     icon: "/images/QuickLinks/normal2/5.png",
+    //   },
+    //   {
+    //     name: "Islamic Center",
+    //     link: "/directory/19",
+    //     icon: "/images/QuickLinks/normal2/5.png",
+    //   },
+    //   {
+    //     name: "Others",
+    //     link: "/directory/19",
+    //     icon: "/images/QuickLinks/normal2/5.png",
+    //   },
+    // ],
   },
   {
     name: "Donation",

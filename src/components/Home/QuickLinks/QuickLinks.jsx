@@ -8,6 +8,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { quickLinksAll } from "@/data/quickLinksData";
+import { BASE_URL } from "@/helper/baseUrl";
 
 const quickLinks = [
   {
@@ -85,7 +86,7 @@ const quickLinks = [
 ];
 
 
-export default function QuickLinks() {
+export default function QuickLinks({quickLinks}) {
   const [hoveredCard, setHoveredCard] = useState(null);
 
   const handleScroll = (id) => {
@@ -146,7 +147,7 @@ export default function QuickLinks() {
           }}
           className="px-10"
         >
-          {quickLinksAll.map((link, i) => {
+          {quickLinks?.items?.map((link, i) => {
             const isHovered = hoveredCard === i;
             return (
               <SwiperSlide key={i} className="flex justify-center">
@@ -157,14 +158,15 @@ export default function QuickLinks() {
                   //   }`}
                   onMouseEnter={() => setHoveredCard(i)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  onClick={() => handleScroll(link.targetId)}
+                  onClick={() => handleScroll(link?.link)}
                 >
                   {/* Icon */}
                   <div className="w-[116px] h-[90px] flex items-center justify-center">
 
                     <Image
-                      src={link.icon}
-                      alt={link.name}
+                    src={`${BASE_URL}${link?.menu_icon_url}`}
+                      // src={link?.menu_icon_url}
+                      alt={link?.label}
                       width={60}
                       height={60}
                       // className="object-contain transition-all duration-300"
@@ -174,8 +176,8 @@ export default function QuickLinks() {
                   </div>
 
                   {/* Title */}
-                  <p className="text-lg font-bold">{link.name}</p>
-                  <p className="text-lg font-bold">{link.jp}</p>
+                  <p className="text-lg font-bold">{link?.label}</p>
+                  {/* <p className="text-lg font-bold">{link.jp}</p> */}
                 </div>
               </SwiperSlide>
             );
