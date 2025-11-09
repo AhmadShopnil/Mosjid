@@ -5,6 +5,7 @@ import Blogs from './Blogs'
 import Events from './Events'
 import { getBlogs, getEvents, getPage } from '@/helper/actions'
 import { getImageUrl } from '@/helper/getImageUrl'
+import { splitBySlash } from '@/helper/splitBySpace'
 
 export default async function IslamicBlogEvents() {
 
@@ -13,12 +14,21 @@ export default async function IslamicBlogEvents() {
   const homePage = await getPage("home-sections-heading-management")
   const sections = homePage?.sections_on_api;
   const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
-  const image = getImageUrl(blog_events_ExtraData?.image_media)
+
+  
+ const heading_part_1 = splitBySlash(blog_events_ExtraData?.title)[0]
+  const heading_part_2 = splitBySlash(blog_events_ExtraData?.title)[1]
+
+  const image_arabic = getImageUrl(blog_events_ExtraData?.image_media);
+  const icon = getImageUrl(blog_events_ExtraData?.background_media);
+
+
 
   const blogsSectionTitle = blog_events_ExtraData?.custom_information.find((item) => item.label === "top_blogs")
   const eventsSectionTitle = blog_events_ExtraData?.custom_information.find((item) => item.label === "upcoming_events")
-  const blog_events_title_2 = blog_events_ExtraData?.custom_information.find((item) => item.label === "blog_events_title_2")
-  // console.log("title", blogsSectionTitle)
+  // const blog_events_title_2 = blog_events_ExtraData?.custom_information.find((item) => item.label === "blog_events_title_2")
+  
+
 
 
   return (
@@ -41,18 +51,19 @@ export default async function IslamicBlogEvents() {
 
               <div className="flex justify-between items-center gap-2.5 gradient-border_b mb-4 sm:mb-0 pb-3  ">
                 <Image
-                  src="/images/blogEvents/icon2.png"
+                  // src="/images/blogEvents/icon2.png"
+                  src={icon}
                   alt='blogEvents'
-                  width={57}
-                  height={57}
+                  width={60}
+                  height={60}
                   className=""
                 />
 
 
                 <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
-                  <p><span className="text-[#F7BA2A]">Islamic Blogs</span>  & Events </p>
+                  <p><span className="text-[#F7BA2A]">{heading_part_1}</span>  {heading_part_2} </p>
                   {/* <p>{blog_events_ExtraData?.sub_title} </p> */}
-                  <p>{blog_events_title_2?.value}</p>
+                  <p>{blog_events_ExtraData?.sub_title}</p>
 
                 </div>
               </div>      
@@ -60,7 +71,7 @@ export default async function IslamicBlogEvents() {
             {/* arabic text */}
             <div>
               <Image
-                src={image}
+                src={image_arabic}
                 alt='a1'
                 width={211}
                 height={50}

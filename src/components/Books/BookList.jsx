@@ -10,7 +10,7 @@ import SkeletonBookCardInnerPage from './SkeletonBookCardInnerPage';
 
 
 
-export default function BookList({ books, settings, homePage, loading, currentPage, setCurrentPage, totalPages }) {
+export default function BookList({ books, settings, homePage, loading, currentPage, setCurrentPage, totalPages,download_books_button }) {
 
 
   // extra data extract using utils function
@@ -39,7 +39,7 @@ export default function BookList({ books, settings, homePage, loading, currentPa
             books?.length > 0 ?
               <div className="mt-6 grid grid-cols-1  gap-5">
                 {books?.map((book, i) => (
-                  <BookCardInnerPage key={i} book={book} index={i} settings={settings} />
+                  <BookCardInnerPage key={i} book={book} index={i} settings={settings} download_books_button={download_books_button} />
                 ))}
               </div>
               :

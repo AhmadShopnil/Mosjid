@@ -26,6 +26,11 @@ export default function SingleEventPage({ homePage, settings, event, formattedCa
     const arabic = getImageUrl(events_ExtraData?.image_media)
 
 
+
+
+
+
+
     // fetching data
     useEffect(() => {
         const fetchEvents = async () => {
@@ -52,8 +57,13 @@ export default function SingleEventPage({ homePage, settings, event, formattedCa
         fetchEvents()
     }, [])
 
-console.log("cat releted",event?.categories[0]?.id)
-console.log("releted events",events)
+// console.log("cat releted",event?.categories[0]?.id)
+// console.log("releted events",events)
+
+
+
+
+
 
 
     return (
@@ -73,13 +83,13 @@ console.log("releted events",events)
 
                 {/* main content */}
                 <div className=' w-full space-y-6'>
-                    <InnerHeader title={"ブログとイベント"} image={arabic} />
+                   <InnerHeader title={events_ExtraData?.sub_title} image={arabic} />
 
                     <SingleEventDetailsCard event={event} />
 
                 </div>
             </Container>
-            <RelatedItemsSection datas={events}/>
+            <RelatedItemsSection datas={events} events_ExtraData={events_ExtraData} />
 
         </div>
     )

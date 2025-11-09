@@ -9,6 +9,8 @@ import React, { useEffect, useState } from 'react'
 import axiosInstance from '@/helper/axiosInstance'
 import SidebarMainDrawer from '../Shared/SidebarMainDrawer'
 import BookList from './BookList'
+import { splitBySlash } from '@/helper/splitBySpace'
+import { getImageUrl } from '@/helper/getImageUrl'
 
 
 
@@ -25,7 +27,6 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(10)
   const perPage = 5
-
 
 
   // fetching data
@@ -59,7 +60,22 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
   }, [selectedCat, currentPage])
 
 
-  console.log("books", books)
+  const sections = homePage?.sections_on_api;
+  const islamic_books_ExtraData = sections.find((s) => s.title_slug === "islamic-books");
+  const heading_part_1 = splitBySlash(islamic_books_ExtraData?.title)[0]
+  const heading_part_2 = splitBySlash(islamic_books_ExtraData?.title)[1]
+
+  const image_arabic = getImageUrl(islamic_books_ExtraData?.image_media);
+  const icon = getImageUrl(islamic_books_ExtraData?.background_media);
+
+  const download_books_button = islamic_books_ExtraData?.custom_information?.find((item) => item.label === "download_books_button")
+
+
+
+
+
+
+  // console.log("books", books)
 
 
 
@@ -68,7 +84,7 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
 
       <div>
         <BannerInnerPage />
-        <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Events" />
+        <Breadcrumb homeLabel="Home" homeLink="/" currentPage="islamic Books" />
 
       </div>
 
@@ -79,7 +95,7 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
 
         {/* main content */}
         <div className=' w-full space-y-6'>
-            <InnerHeader title={"イスラム教の書籍"} image={"/images/isamicBooks/arabic-white.png"} />
+          <InnerHeader title={islamic_books_ExtraData?.sub_title} image={image_arabic} />
 
           <div>
             <BookList
@@ -90,6 +106,7 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
               currentPage={currentPage}
               totalPages={totalPages}
               setCurrentPage={setCurrentPage}
+              download_books_button={download_books_button}
             />
           </div>
 

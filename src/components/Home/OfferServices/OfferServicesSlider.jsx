@@ -2,20 +2,19 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { splitBySpace } from "@/helper/splitBySpace";
+import { splitBySlash, splitBySpace } from "@/helper/splitBySpace";
 import { getImageUrl } from "@/helper/getImageUrl";
 
 export default function OfferServicesSlider({ services, offered_services_ExtraData }) {
   const [hoveredCard, setHoveredCard] = useState(null);
   const scrollRef = useRef(null);
 
-  const heading_part_1 = splitBySpace(offered_services_ExtraData?.sub_title)[0];
-  const heading_part_2 = splitBySpace(offered_services_ExtraData?.sub_title)[1];
+  const heading_part_1 = splitBySlash(offered_services_ExtraData?.title)[0];
+  const heading_part_2 = splitBySlash(offered_services_ExtraData?.title)[1];
   const image = getImageUrl(offered_services_ExtraData?.image_media);
-  const offered_services_title_2 = offered_services_ExtraData?.custom_information.find(
-    (item) => item.label === "offered_services_title_2"
-  );
-
+   const icon = getImageUrl(offered_services_ExtraData?.background_media);
+  
+ 
   const scroll = (direction) => {
     if (!scrollRef.current) return;
     const { scrollLeft, clientWidth } = scrollRef.current;
@@ -33,7 +32,8 @@ export default function OfferServicesSlider({ services, offered_services_ExtraDa
         <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
           <div className="flex justify-between gap-2.5 gradient-border_b mb-4 sm:mb-0 pb-3 items-center">
             <Image
-              src="/images/offerServices/icon.png"
+              // src="/images/offerServices/icon.png"
+              src={icon}
               alt="Book Icon"
               width={60}
               height={63}
@@ -42,7 +42,7 @@ export default function OfferServicesSlider({ services, offered_services_ExtraDa
               <p>
                 <span className="text-[#F7BA2A]">{heading_part_1}</span> {heading_part_2}
               </p>
-              <p>{offered_services_title_2?.value}</p>
+              <p>{offered_services_ExtraData?.sub_title}</p>
             </div>
           </div>
 

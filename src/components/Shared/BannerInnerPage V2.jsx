@@ -29,7 +29,7 @@ export default function BannerInnerPage() {
     fetchBanner();
   }, []);
 
-  if (loading) return null;
+  if (loading) return <SkeletonBanner />;
   if (error || !banner?.featured_image) return null;
 
   const left_logo = getImageFromExtraFields(banner, "left_logo");
@@ -44,69 +44,62 @@ export default function BannerInnerPage() {
         backgroundImage: `url(${banner?.featured_image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        height: "270px", // default for xl
       }}
     >
-      <div className="items-center justify-center">
-        <Container className="h-[270px] md:h-[300px] sm:h-[200px] relative">
-          {/* Main Wrapper */}
-          <div className="relative h-full w-full">
-            
-            {/* Left Logo */}
-            {left_logo && (
-              <div className="absolute left-0 bottom-0">
-                <Image
-                  src={left_logo}
-                  alt="Left Logo"
-                  width={358}
-                  height={240}
-                  priority={false}
-                  loading="lazy"
-                  className=" h-auto w-[180px] sm:w-[150px] md:w-[250px] lg:w-[320px] xl:w-[358px]"
-                />
-                
-              </div>
-            )}
+      <div className=" items-center justify-center">
 
-            {/* Center Images */}
+        <Container className="  h-[270px]">
+          {/* Optional: you can position images/logos here */}
+          <div className="relative  h-full">
+
+            {left_logo && <div
+              className="absolute left-0 bottom-0 "
+            ><Image
+                src={left_logo}
+                alt="Inner Page Banner"
+                width={358}
+                height={240}
+                priority={false}
+                loading="lazy"
+                className="h-full"
+              /></div>}
             {center_top_image && (
-              <div className="absolute top-6 sm:top-8 md:top-10 left-1/2 -translate-x-1/2 flex flex-col items-center">
+              <div className=" absolute top-10 left-2/5 flex flex-col items-center">
                 <Image
                   src={center_top_image}
-                  alt="Center Top"
+                  alt="Inner Page Banner"
                   width={340}
                   height={100}
                   priority={false}
                   loading="lazy"
-                  className="h-auto w-[150px] sm:w-[220px] md:w-[280px] lg:w-[320px] xl:w-[340px]"
+                  className=""
                 />
                 {center_bottom_image && (
                   <Image
                     src={center_bottom_image}
-                    alt="Center Bottom"
-                    width={360}
+                    alt="Inner Page Banner"
+                    width={348}
                     height={72}
                     priority={false}
                     loading="lazy"
-                    className="h-auto w-[150px] sm:w-[200px] md:w-[260px] lg:w-[300px] xl:w-[348px]"
+                    className=""
                   />
                 )}
               </div>
             )}
-
-            {/* Right Logo */}
-            {right_logo && (
-              <div className="absolute right-0 bottom-0">
-                <Image
-                  src={right_logo}
-                  alt="Right Logo"
-                  width={204}
-                  height={305}
-                  priority={false}
-                  loading="lazy"
-                  className="h-auto w-[120px] sm:w-[150px] md:w-[180px] lg:w-[200px] xl:w-[204px]"
-                />
-              </div>
-            )}
+            {right_logo && <div className="absolute right-0 top-1/2 -translate-y-1/2">
+              <Image
+                src={right_logo}
+                alt="Inner Page Banner"
+                width={204}
+                height={305}
+                priority={false}
+                loading="lazy"
+                className=""
+              />
+            </div>
+            }
           </div>
         </Container>
       </div>

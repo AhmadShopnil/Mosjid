@@ -3,21 +3,12 @@
 
 import { getDay_Month_Year } from '@/helper/formateDate'
 import { getMetaValueByMetaName } from '@/helper/metaHelpers';
-import Image from 'next/image'
-import Link from 'next/link'
 import React, { useState } from 'react'
 import { FaLongArrowAltRight } from 'react-icons/fa';
 
 export default function NoticeCardHome({ notice, settings, handleOpenModal }) {
-    // const [selectedNotice, setSelectedNotice] = useState(null);
-    // const [isModalOpen, setIsModalOpen] = useState(false);
     const view_more = getMetaValueByMetaName(settings, "view_more") || "";
     const read_more = getMetaValueByMetaName(settings, "read_more") || "";
-
-    // const handleOpenModal = (notice) => {
-    //     setSelectedNotice(notice);
-    //     setIsModalOpen(true);
-    // };
 
 
     return (
@@ -49,19 +40,7 @@ export default function NoticeCardHome({ notice, settings, handleOpenModal }) {
                     {read_more}
                     <span className='mt-0.5'><FaLongArrowAltRight /></span>
                 </button>
-                {/* <button
-                    onClick={() => handleOpenModal(notice)}
-                    className="text-sm font-bold text-[#001609] flex gap-2 items-center"
-                >
-                    <span> {read_more}</span>
-
-                    <Image
-                        src="/images/others/arrowR.png"
-                        alt='a1'
-                        width={19}
-                        height={19}
-                    />
-                </button> */}
+              
             </div>
 
         </li>

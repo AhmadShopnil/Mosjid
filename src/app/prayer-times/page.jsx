@@ -10,7 +10,7 @@ import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 import { sideBarCategories } from '@/data/sidebar'
 import { getPage } from '@/helper/actions'
 import { getImageUrl } from '@/helper/getImageUrl'
-import { splitBySpace } from '@/helper/splitBySpace'
+import { splitBySlash, splitBySpace } from '@/helper/splitBySpace'
 
 import Image from 'next/image'
 import React from 'react'
@@ -19,9 +19,11 @@ export default async function page() {
   const homePage = await getPage("home-sections-heading-management")
   const sections = homePage?.sections_on_api;
   const prayer_time = sections.find((s) => s.title_slug === "prayer_time");
-  const heading_part_1 = splitBySpace(prayer_time?.sub_title)[0]
-  const heading_part_2 = splitBySpace(prayer_time?.sub_title)[1]
+  const heading_part_1 = splitBySlash(prayer_time?.title)[0]
+  const heading_part_2 = splitBySlash(prayer_time?.title)[1]
+
   const arabic = getImageUrl(prayer_time?.image_media)
+  const icon = getImageUrl(prayer_time?.background_media)
 
 
   return (
@@ -40,7 +42,7 @@ export default async function page() {
 
         {/* main content */}
         <div className=' w-full space-y-6'>
-          <InnerHeader title={"祈りの時間"} image={arabic} />
+          <InnerHeader title={prayer_time?.sub_title} image={arabic} />
 
           <div>
 

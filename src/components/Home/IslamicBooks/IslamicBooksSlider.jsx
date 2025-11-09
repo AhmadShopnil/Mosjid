@@ -4,9 +4,27 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, Download } from "lucide-react";
 import BooksCarHome from "./BooksCarHome";
 import Link from "next/link";
+import { getImageUrl } from "@/helper/getImageUrl";
+import { splitBySlash } from "@/helper/splitBySpace";
 
-export default function IslamicBooksSlider({ books }) {
+export default function IslamicBooksSlider({ books, islamic_books_ExtraData }) {
   const scrollRef = useRef(null);
+
+
+
+
+  const heading_part_1 = splitBySlash(islamic_books_ExtraData?.title)[0]
+  const heading_part_2 = splitBySlash(islamic_books_ExtraData?.title)[1]
+
+  const image_arabic = getImageUrl(islamic_books_ExtraData?.image_media);
+  const icon = getImageUrl(islamic_books_ExtraData?.background_media);
+
+  const find_more_books_button = islamic_books_ExtraData?.custom_information?.find((item) => item.label === "find_more_books_button")
+
+
+
+// console.log('find_more_books_button',find_more_books_button)
+
 
   const scroll = (direction) => {
     if (!scrollRef.current) return;
@@ -17,6 +35,14 @@ export default function IslamicBooksSlider({ books }) {
       behavior: "smooth",
     });
   };
+
+
+
+
+
+
+
+
 
   return (
     <div className="w-full max-w-[1780px] mx-auto py-12 bg-white relative">
@@ -39,7 +65,8 @@ export default function IslamicBooksSlider({ books }) {
             <div>
               <div className="flex justify-between items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3">
                 <Image
-                  src="/images/isamicBooks/bookIcon.png"
+                  // src="/images/isamicBooks/bookIcon.png"
+                  src={icon}
                   alt="Book Icon"
                   width={60}
                   height={64}
@@ -47,16 +74,17 @@ export default function IslamicBooksSlider({ books }) {
 
                 <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
                   <p>
-                    <span className="text-[#F7BA2A]">Islamic</span> Books
+                    <span className="text-[#F7BA2A]">{heading_part_1}</span> {heading_part_2}
                   </p>
-                  <p>イスラム教の書籍</p>
+                  <p>{islamic_books_ExtraData?.sub_title}</p>
                 </div>
               </div>
             </div>
 
             <div className="flex items-center gap-3 sm:gap-4">
               <Image
-                src="/images/isamicBooks/arabic-islamicbooks.png"
+                // src="/images/isamicBooks/arabic-islamicbooks.png"
+                src={image_arabic}
                 alt="Arabic text"
                 width={171}
                 height={50}
@@ -70,12 +98,12 @@ export default function IslamicBooksSlider({ books }) {
                 className="object-contain sm:hidden"
               />
               <Link
-              href="/books"
+                href="/books"
                 className="border border-[#00401A] text-[#00401A]
                 font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer
                 hover:bg-[#00401A] hover:text-white transition-colors duration-400"
               >
-                Find More Books
+                {find_more_books_button?.value}
               </Link>
             </div>
           </div>
@@ -88,7 +116,7 @@ export default function IslamicBooksSlider({ books }) {
               className="flex justify-start gap-5 overflow-x-auto scroll-smooth scrollbar-hide snap-x snap-mandatory pb-6"
             >
               {books.map((book) => (
-             <BooksCarHome   key={book.id} book={book} />
+                <BooksCarHome key={book.id} book={book} />
               ))}
             </div>
 

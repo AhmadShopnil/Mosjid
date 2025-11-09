@@ -1,13 +1,15 @@
 "use client";
 
 import Container from "@/components/Shared/Container";
+import { getImageUrl } from "@/helper/getImageUrl";
+import { splitBySlash } from "@/helper/splitBySpace";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
 export default function ImageGallery({
   gallery,
-  img_gallery_heading,
+  img_gallery_Extradata,
   view_more_button_text,
 }) {
   const images = transformGalleryData(gallery);
@@ -46,6 +48,14 @@ export default function ImageGallery({
     return () => window.removeEventListener("keydown", handleKey);
   }, [selectedIndex]);
 
+
+ const heading_part_1 = splitBySlash(img_gallery_Extradata?.title)[0];
+  const heading_part_2 = splitBySlash(img_gallery_Extradata?.title)[1];
+  const image = getImageUrl(img_gallery_Extradata?.image_media);
+   const icon = getImageUrl(img_gallery_Extradata?.background_media);
+
+
+
   return (
     <Container className="p-6 mt-6 0">
       {/* Header */}
@@ -53,7 +63,8 @@ export default function ImageGallery({
 
         <div className="flex justify-between items-center  gap-2.5 gradient-border_b mb-4 sm:mb-0 pb-3  ">
           <Image
-            src="/images/gallery/icon2.png"
+            // src="/images/gallery/icon2.png"
+            src={icon}
             alt="Book Icon"
             width={60}
             height={60}
@@ -61,9 +72,10 @@ export default function ImageGallery({
           />
 
           <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
-            {img_gallery_heading?.title}
-            {/* <p>{donation_title_2?.value}</p> */}
-            <p>ギャラリー</p>
+           <p><span >{heading_part_1} </span>
+              <span className="text-[#F7BA2A]">{heading_part_2}</span>
+            </p>
+            <p>{img_gallery_Extradata?.sub_title}</p>
 
           </div>
         </div>

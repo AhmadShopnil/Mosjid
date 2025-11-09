@@ -7,7 +7,7 @@ import Image from "next/image";
 
 
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
-import { splitBySpace } from "@/helper/splitBySpace";
+import { splitBySlash, splitBySpace } from "@/helper/splitBySpace";
 import { getImageUrl } from "@/helper/getImageUrl";
 import NoticeCardHome from "./NoticeCardHome";
 import NoticeDetailsModal from "@/components/Notice/NoticeModal";
@@ -25,10 +25,12 @@ export default function NoticeBoard({ settings, notices, homePage }) {
   // get notice extra data from home page section management
   const sections = homePage?.sections_on_api;
   const notice_Extra_data = sections.find((s) => s.title_slug === "notice-board");
-  const heading_part_1 = splitBySpace(notice_Extra_data?.sub_title)[0]
-  const heading_part_2 = splitBySpace(notice_Extra_data?.sub_title)[1]
-  const image = getImageUrl(notice_Extra_data?.image_media)
-  const notice_board_title_2 = notice_Extra_data?.custom_information.find((item) => item.label === "notice_board_title_2")
+  const heading_part_1 = splitBySlash(notice_Extra_data?.title)[0]
+  const heading_part_2 = splitBySlash(notice_Extra_data?.title)[1]
+
+   const icon = getImageUrl(notice_Extra_data?.background_media)
+   
+  // const notice_board_title_2 = notice_Extra_data?.custom_information.find((item) => item.label === "notice_board_title_2")
 
 
   const handleOpenModal = (notice) => {
@@ -65,7 +67,8 @@ export default function NoticeBoard({ settings, notices, homePage }) {
         <div className="flex items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3 ">
 
           <Image
-            src="/images/prayertimes/noticeicon2.png"
+            // src="/images/prayertimes/noticeicon2.png"
+            src={icon}
             alt="Book Icon"
             width={55}
             height={73}
@@ -75,7 +78,7 @@ export default function NoticeBoard({ settings, notices, homePage }) {
             <p><span >{heading_part_1} </span>
               <span className="text-[#F7BA2A]">{heading_part_2}</span>
             </p>
-            <p>{notice_board_title_2?.value}</p>
+            <p>{notice_Extra_data?.sub_title}</p>
 
           </div>
         </div>

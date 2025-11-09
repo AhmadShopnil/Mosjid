@@ -99,8 +99,17 @@ export async function getSingleDirectory(slug) {
   return json?.data || {};
 }
 
-export async function getDirectory(slug) {
+export async function getDirectoryByCat(slug) {
   const API_URL = `${BASE_URL}/api/v1/posts?term_type=directory&category_id=${slug}`;
+
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+  return json?.data || [];
+}
+export async function getDirectory(slug) {
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=directory`;
 
   const res = await fetch(API_URL, {
     next: { revalidate: 30 },

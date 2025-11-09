@@ -2,8 +2,10 @@ import React from 'react'
 import { DictionaryIcon, DonationIcon, GalleryIcon, PrayerTimesIcon } from '../../../Icons/QuickLinks';
 import Image from 'next/image';
 import SearchSection from './SearchSection';
-import { getCategories } from '@/helper/actions';
+import { getCategories, getPage } from '@/helper/actions';
 import Link from 'next/link';
+import { splitBySlash } from '@/helper/splitBySpace';
+import { getImageUrl } from '@/helper/getImageUrl';
 
 const quickLinks = [
   { name: "Find People", icon: "/images/directory/1.png" },
@@ -19,6 +21,16 @@ export default async function Directory() {
 
  
 const directory_categories = await getCategories("directory_categories")
+
+
+ const homePage = await getPage("home-sections-heading-management")
+  const sections = homePage?.sections_on_api;
+  const directory_extradata = sections.find((s) => s.title_slug === "directory");
+  const heading_part_1 = splitBySlash(directory_extradata?.title)[0]
+  const heading_part_2 = splitBySlash(directory_extradata?.title)[1]
+  const arabic_image = getImageUrl(directory_extradata?.image_media)
+  const icon = getImageUrl(directory_extradata?.background_media)
+
 
 // console.log("directory_categories",directory_categories)
 
@@ -43,7 +55,8 @@ const directory_categories = await getCategories("directory_categories")
 
         <div className="flex justify-between items-center  gap-1 gradient-border_b mb-4 sm:mb-0 pb-3  ">
           <Image
-            src="/images/directory/icon.png"
+            // src="/images/directory/icon.png"
+            src={icon}
             alt="Book Icon"
             width={60}
             height={60}
@@ -51,9 +64,10 @@ const directory_categories = await getCategories("directory_categories")
           />
 
           <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
-            <p> Directory</p>
-            {/* <p>{donation_title_2?.value}</p> */}
-            <p>ディレクトリ</p>
+            <p><span >{heading_part_1} </span>
+              <span className="text-[#F7BA2A]">{heading_part_2}</span>
+            </p>
+            <p>{directory_extradata?.sub_title}</p>
 
           </div>
         </div>
@@ -61,15 +75,16 @@ const directory_categories = await getCategories("directory_categories")
         {/* arabic text */}
         <div className='flex '>
           <Image
-            src="/images/directory/a2.png"
+            // src="/images/directory/a2.png"
+            src={arabic_image}
             alt='a1'
-            width={300}
+            width={331}
             height={60}
             className="object-contain hidden sm:flex"
           />
 
           <Image
-            src="/images/directory/a2.png"
+            src={arabic_image}
             alt="Arabic text"
             width={150}
             height={40}
@@ -77,7 +92,7 @@ const directory_categories = await getCategories("directory_categories")
           />
         </div>
       </div>
-      <p className='text-sm '>Where Worship, Knowledge, and Remembrance Unite</p>
+      <p className='text-sm '>{directory_extradata?.short_description}</p>
       {/* inputs */}
       <div className='mt-6'>
         <SearchSection />

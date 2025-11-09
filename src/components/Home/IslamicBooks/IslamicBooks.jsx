@@ -8,13 +8,13 @@ const books=await getIslamicBooks()
 
  const homePage = await getPage("home-sections-heading-management")
   const sections = homePage?.sections_on_api;
-  // const islamic_books_ExtraData = sections.find((s) => s.title_slug === "offered-services");
+  const islamic_books_ExtraData = sections.find((s) => s.title_slug === "islamic-books");
 
 
   return (
     <div
     id='books'>
-      <IslamicBooksSlider books={books} />
+      <IslamicBooksSlider books={books} islamic_books_ExtraData={islamic_books_ExtraData} />
     </div>
   )
 }

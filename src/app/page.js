@@ -35,7 +35,7 @@ export default async function Home() {
          <QuickLinks quickLinks={quickLinks} />
        </div>
        <div className="lg:hidden">
-        <QuickLinksMobile/>
+        <QuickLinksMobile quickLinks={quickLinks}/>
        </div>
      </div>
 

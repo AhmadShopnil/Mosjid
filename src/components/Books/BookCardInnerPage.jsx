@@ -18,7 +18,7 @@ const colorClasses = [
   "bg-amber-100",
 ];
 
-export default function BookCardInnerPage({ book, index = 0, settings }) {
+export default function BookCardInnerPage({ book, index = 0, settings,download_books_button }) {
   const read_more_button_text = getMetaValueByMetaName(settings, "read_more") || "";
   const colorClass = colorClasses[index % colorClasses.length];
 
@@ -67,7 +67,7 @@ export default function BookCardInnerPage({ book, index = 0, settings }) {
               border border-[#00401A] text-[#00401A] font-semibold text-sm sm:text-base 
               hover:bg-[#00401A] hover:text-white transition-colors duration-200"
           >
-            Download Book
+            {download_books_button?.value}
             <Download className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </div>

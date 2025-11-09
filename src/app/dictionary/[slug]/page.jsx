@@ -77,7 +77,7 @@ export default async function page() {
 
             <div>
                 <BannerInnerPage />
-                <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Directory" />
+                <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Dictionary" />
             </div>
 
 

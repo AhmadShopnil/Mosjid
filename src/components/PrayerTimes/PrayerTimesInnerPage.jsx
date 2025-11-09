@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { getPage, getProhibitedTime, getPryerTime, getSettings } from "@/helper/actions";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
-import { splitBySpace } from "@/helper/splitBySpace";
+import { splitBySlash, splitBySpace } from "@/helper/splitBySpace";
 import { getImageUrl } from "@/helper/getImageUrl";
 import PrayerTimeTableRow from "../Home/PrayerTimesAndNotices/PrayerTimeTableRow";
 import PrayerTimesMobile from "../Home/PrayerTimesAndNotices/PrayerTimesMobile";
@@ -15,16 +15,17 @@ export default async function PrayerTimesInnerPage() {
   const settings = await getSettings()
   const view_more = getMetaValueByMetaName(settings, "view_more") || "";
   const prayerTimes = await getPryerTime();
-   const ProhibitedTime = await getProhibitedTime();
+  const ProhibitedTime = await getProhibitedTime();
 
   // get notice extra data from home page section management
   const homePage = await getPage("home-sections-heading-management")
   const sections = homePage?.sections_on_api;
   const prayer_time = sections.find((s) => s.title_slug === "prayer_time");
-  const heading_part_1 = splitBySpace(prayer_time?.sub_title)[0]
-  const heading_part_2 = splitBySpace(prayer_time?.sub_title)[1]
-  const image = getImageUrl(prayer_time?.image_media)
+  const heading_part_1 = splitBySlash(prayer_time?.title)[0]
+  const heading_part_2 = splitBySlash(prayer_time?.title)[1]
 
+  const arabic = getImageUrl(prayer_time?.image_media)
+  const icon = getImageUrl(prayer_time?.background_media)
 
 
 
@@ -32,7 +33,7 @@ export default async function PrayerTimesInnerPage() {
   const name_of_salat = prayer_time?.custom_information.find((item) => item.label === "name_of_salat")
   const wakt_start = prayer_time?.custom_information.find((item) => item.label === "wakt_start")
   const wakt_end = prayer_time?.custom_information.find((item) => item.label === "wakt_end")
-  const prayer_times_title_2 = prayer_time?.custom_information.find((item) => item.label === "prayer_times_title_2")
+
 
   // console.log("prayer_times_title_2",prayer_time?.custom_information)
   // console.log("prayer times",prayer_times_title_2)
@@ -65,24 +66,20 @@ export default async function PrayerTimesInnerPage() {
 
         <div className="flex justify-between items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
           <Image
-            src="/images/prayertimes/icon2.png"
-            alt="Book Icon"
+            // src="/images/prayertimes/icon2.png"
+            src={icon}
+            alt="Icon"
             width={55}
             height={55}
             className=""
           />
 
 
-          {/* <div
-            className=""
-            dangerouslySetInnerHTML={{
-              __html: prayer_time?.sub_title,
-            }}
-          /> */}
+         
 
           <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
             <p><span className="text-[#F7BA2A]">{heading_part_1}</span> {heading_part_2} </p>
-            <p>{prayer_times_title_2?.value}</p>
+            <p>{prayer_time?.sub_title}</p>
 
           </div>
         </div>
@@ -90,14 +87,14 @@ export default async function PrayerTimesInnerPage() {
 
         <div className="flex items-center gap-3 sm:gap-4">
           <Image
-            src={image}
+            src={arabic}
             alt="Arabic text"
-            width={240}
-            height={70}
+            width={274}
+            height={90}
             className="object-contain hidden sm:flex"
           />
           <Image
-            src={image}
+            src={arabic}
             alt="Arabic text"
             width={135}
             height={40}
@@ -167,7 +164,7 @@ export default async function PrayerTimesInnerPage() {
             <tbody>
               {ProhibitedTime.map((prayer, index) => (
 
-                 <ProhibitedTimeTableRow
+                <ProhibitedTimeTableRow
                   key={index}
                   prayer={prayer} />
 
@@ -176,7 +173,7 @@ export default async function PrayerTimesInnerPage() {
           </table>
         </div>
 
-    
+
       </div>
 
 

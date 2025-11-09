@@ -9,6 +9,7 @@ import React, { useEffect, useState } from 'react'
 import axiosInstance from '@/helper/axiosInstance'
 import SidebarMainDrawer from '../Shared/SidebarMainDrawer'
 import Events from './Events'
+import { getImageUrl } from '@/helper/getImageUrl'
 
 
 
@@ -182,6 +183,9 @@ export default function EventsPage({ homePage, settings, formattedCategories }) 
 
 
   // console.log("blogs", blogs)
+    const sections = homePage?.sections_on_api;
+    const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
+    const arabic = getImageUrl(blog_events_ExtraData?.image_media)
 
 
 
@@ -201,7 +205,7 @@ export default function EventsPage({ homePage, settings, formattedCategories }) 
 
         {/* main content */}
         <div className=' w-full space-y-6'>
-            <InnerHeader title={"掲示板"} image={"/images/fatwah/fatwaharbic_white.png"} />
+            <InnerHeader title={blog_events_ExtraData?.sub_title} image={arabic} />
 
           <div>
             <Events
