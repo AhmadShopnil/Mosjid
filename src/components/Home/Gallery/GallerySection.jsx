@@ -12,9 +12,9 @@ export default async function GallerySection() {
   const view_more_button_text = getMetaValueByMetaName(settings, "view_more") || "";
 
   
-  const img_gallery_heading = sections.find((s) => s.title_slug === "gallery");
+  const img_gallery_Extradata = sections.find((s) => s.title_slug === "gallery");
 
-
+ 
 
   // console.log("img_gallery_heading", img_gallery_heading)
 
@@ -22,7 +22,7 @@ export default async function GallerySection() {
     <div
     id='gallery'
     >
-      <ImageGallery gallery={gallery} img_gallery_heading={img_gallery_heading} view_more_button_text={view_more_button_text} />
+      <ImageGallery gallery={gallery} img_gallery_Extradata={img_gallery_Extradata} view_more_button_text={view_more_button_text} />
     </div>
   )
 }

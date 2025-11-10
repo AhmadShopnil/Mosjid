@@ -29,6 +29,9 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
 
 
 
+
+
+
     // fetching data
     useEffect(() => {
         const fetchBlogs = async () => {
@@ -57,8 +60,8 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
     }, [])
 
 
-// console.log("cat releted",blog?.categories[0]?.id)
-// console.log("releted blogs",blogs)
+    // console.log("cat releted",blog?.categories[0]?.id)
+    // console.log("releted blogs",blogs)
 
 
 
@@ -81,11 +84,11 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
 
                     {/* main content */}
                     <div className=' w-full space-y-6'>
-                        <InnerHeader title={"ブログとイベント"} image={arabic} />
+                        <InnerHeader title={blog_events_ExtraData?.sub_title} image={arabic} />
 
                         <SingleBlogDetailsCard blog={blog} />
                         <div className='flex justify-end'>
-                            <SocialShare/>
+                            <SocialShare />
                         </div>
 
                     </div>
@@ -93,7 +96,7 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
 
             </Container>
 
-            <RelatedItemsSection datas={blogs} title={"Related Blogs/ 関連ブログ"} />
+            <RelatedItemsSection datas={blogs}  blog_events_ExtraData={blog_events_ExtraData} />
 
         </div>
     )

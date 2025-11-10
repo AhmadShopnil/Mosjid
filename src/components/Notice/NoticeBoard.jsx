@@ -5,17 +5,18 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { getDay_Month_Year } from "@/helper/formateDate";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
-import { splitBySpace } from "@/helper/splitBySpace";
+import { splitBySlash, splitBySpace } from "@/helper/splitBySpace";
 import Pagination from "../Shared/Pagination";
 import { Download } from "lucide-react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import SkeletonNoticeItem from "../Shared/Skeleton/SkeletonNoticeItem";
 import NoticeModal from "./NoticeModal";
+import { getImageUrl } from "@/helper/getImageUrl";
 
 
 
 export default function NoticeBoard({ notices, settings, homePage, loading, currentPage, setCurrentPage, totalPages }) {
-    const [selectedNotice, setSelectedNotice] = useState (null);
+    const [selectedNotice, setSelectedNotice] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const view_more = getMetaValueByMetaName(settings, "view_more") || "";
@@ -25,16 +26,18 @@ export default function NoticeBoard({ notices, settings, homePage, loading, curr
 
     // get notice extra data from home page section management
     const sections = homePage?.sections_on_api;
-    const notice_heading = sections.find((s) => s.title_slug === "notice-board");
-    const heading_part_1 = splitBySpace(notice_heading?.sub_title)[0]
-    const heading_part_2 = splitBySpace(notice_heading?.sub_title)[1]
-    const notice_board_title_2 = notice_heading?.custom_information.find((item) => item.label === "notice_board_title_2")
+    const notice_Extra_data = sections.find((s) => s.title_slug === "notice-board");
+    const heading_part_1 = splitBySlash(notice_Extra_data?.title)[0]
+    const heading_part_2 = splitBySlash(notice_Extra_data?.title)[1]
 
+    const notice_board_title_InnerPage = notice_Extra_data?.custom_information.find((item) => item.label === "notice_board_title_InnerPage")
 
-  const handleOpenModal = (notice) => {
-    setSelectedNotice(notice);
-    setIsModalOpen(true);
-  };
+    const icon = getImageUrl(notice_Extra_data?.background_media)
+
+    const handleOpenModal = (notice) => {
+        setSelectedNotice(notice);
+        setIsModalOpen(true);
+    };
 
 
     return (
@@ -50,15 +53,16 @@ export default function NoticeBoard({ notices, settings, homePage, loading, curr
                 <div className="flex items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3 ">
 
                     <Image
-                        src="/images/prayertimes/noticeicon2.png"
-                        alt="Book Icon"
+                        // src="/images/prayertimes/noticeicon2.png"
+                        src={icon}
+                        alt="Icon"
                         width={30}
                         height={35}
                     />
 
                     <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
                         <p>
-                            {notice_heading?.sub_title}
+                            {notice_board_title_InnerPage?.value}
                         </p>
                     </div>
                 </div>
@@ -97,14 +101,14 @@ export default function NoticeBoard({ notices, settings, homePage, loading, curr
                                     p-1.5 md:p-2 flex justify-center items-center "
                                 >
                                     <Image
-                                        src="/images/prayertimes/noticeicon2.png"
+                                        src={icon}
                                         alt="icon"
                                         width={30}
                                         height={38}
                                         className='hidden sm:flex'
                                     />
                                     <Image
-                                        src="/images/prayertimes/noticeicon2.png"
+                                        src={icon}
                                         alt="icon"
                                         width={24}
                                         height={34}

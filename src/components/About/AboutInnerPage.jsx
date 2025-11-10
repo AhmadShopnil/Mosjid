@@ -9,6 +9,8 @@ import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 import axiosInstance from "@/helper/axiosInstance"
 import Image from "next/image"
 import SocialShare from "../Shared/SocialShare"
+import { splitBySlash } from "@/helper/splitBySpace"
+import { getImageUrl } from "@/helper/getImageUrl"
 
 
 export default function AboutInnerPage({ homePage, settings, formattedCategories }) {
@@ -50,6 +52,14 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
     }, [selectedCat, currentPage])
 
 
+ const sections = homePage?.sections_on_api;
+  const about_ExtraData = sections.find((s) => s.title_slug === "about-data");
+
+  
+  const image_arabic = getImageUrl(about_ExtraData?.image_media);
+//   const icon = getImageUrl(about_ExtraData?.background_media);
+
+
 
     return (
         <div>
@@ -64,7 +74,7 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
 
                 {/* main content */}
                 <div className="w-full space-y-6">
-                    <InnerHeader title={"私たちについて"} image={"/images/about/arabic.png"} />
+                    <InnerHeader title={about_ExtraData?.sub_title} image={image_arabic} />
 
                     <div>
                         <div>
@@ -72,7 +82,7 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
 
                          
                             <div
-                                className="text-[#333333]  text-xs sm:text-base mt-4 "
+                                className="text-[#333333]  text-sm sm:text-base mt-4 "
                                 dangerouslySetInnerHTML={{ __html: abouDatas[0]?.description }}
                             />
 

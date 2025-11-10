@@ -4,7 +4,7 @@ import { Sun, Moon, Star } from "lucide-react";
 import Image from "next/image";
 import { getPage, getProhibitedTime, getPryerTime, getSettings } from "@/helper/actions";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
-import { splitBySpace } from "@/helper/splitBySpace";
+import { splitBySlash, splitBySpace } from "@/helper/splitBySpace";
 import { getImageUrl } from "@/helper/getImageUrl";
 import PrayerTimeTableRow from "./PrayerTimeTableRow";
 import PrayerTimesMobile from "./PrayerTimesMobile";
@@ -23,10 +23,10 @@ export default async function PrayerTimes() {
   const homePage = await getPage("home-sections-heading-management")
   const sections = homePage?.sections_on_api;
   const prayer_time = sections.find((s) => s.title_slug === "prayer_time");
-  const heading_part_1 = splitBySpace(prayer_time?.sub_title)[0]
-  const heading_part_2 = splitBySpace(prayer_time?.sub_title)[1]
+  const heading_part_1 = splitBySlash(prayer_time?.title)[0]
+  const heading_part_2 = splitBySlash(prayer_time?.title)[1]
   const image = getImageUrl(prayer_time?.image_media)
-
+const icon = getImageUrl(prayer_time?.background_media)
 
 
 
@@ -34,10 +34,10 @@ export default async function PrayerTimes() {
   const name_of_salat = prayer_time?.custom_information.find((item) => item.label === "name_of_salat")
   const wakt_start = prayer_time?.custom_information.find((item) => item.label === "wakt_start")
   const wakt_end = prayer_time?.custom_information.find((item) => item.label === "wakt_end")
-  const prayer_times_title_2 = prayer_time?.custom_information.find((item) => item.label === "prayer_times_title_2")
+  // const prayer_times_title_2 = prayer_time?.custom_information.find((item) => item.label === "prayer_times_title_2")
 
-  // console.log("prayer_times_title_2",prayer_time?.custom_information)
-  // console.log("prayer times",prayer_times_title_2)
+  // console.log("custom_information prayer time",prayer_time?.custom_information)
+  // console.log("prayer times",heading_part_2)
 
 
   return (
@@ -67,7 +67,8 @@ export default async function PrayerTimes() {
 
         <div className="flex justify-between items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
           <Image
-            src="/images/prayertimes/icon2.png"
+            // src="/images/prayertimes/icon2.png"
+            src={icon}
             alt="Book Icon"
             width={55}
             height={55}
@@ -84,7 +85,7 @@ export default async function PrayerTimes() {
 
           <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
             <p><span className="text-[#F7BA2A]">{heading_part_1}</span> {heading_part_2} </p>
-            <p>{prayer_times_title_2?.value}</p>
+            <p>{prayer_time?.sub_title}</p>
 
           </div>
         </div>
@@ -92,8 +93,8 @@ export default async function PrayerTimes() {
           <Image
             src={image}
             alt="Arabic text"
-            width={160}
-            height={50}
+            width={278}
+            height={90}
             className="object-contain hidden sm:flex"
           />
           <Image

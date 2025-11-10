@@ -9,6 +9,8 @@ import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 import axiosInstance from "@/helper/axiosInstance"
+import { splitBySlash } from "@/helper/splitBySpace"
+import { getImageUrl } from "@/helper/getImageUrl"
 
 export default function NoticePage({ homePage, settings, formattedCategories }) {
     
@@ -49,6 +51,17 @@ export default function NoticePage({ homePage, settings, formattedCategories }) 
 
 
 
+  // get notice extra data from home page section management
+  const sections = homePage?.sections_on_api;
+  const notice_Extra_data = sections.find((s) => s.title_slug === "notice-board");
+  const heading_part_1 = splitBySlash(notice_Extra_data?.title)[0]
+  const heading_part_2 = splitBySlash(notice_Extra_data?.title)[1]
+
+   const arabic = getImageUrl(notice_Extra_data?.image_media)
+    const icon = getImageUrl(notice_Extra_data?.background_media)
+
+    
+
     return (
         <div>
             <div>
@@ -62,7 +75,7 @@ export default function NoticePage({ homePage, settings, formattedCategories }) 
 
                 {/* main content */}
                 <div className="w-full space-y-6">
-                    <InnerHeader title={"掲示板"} image={"/images/fatwah/fatwaharbic_white.png"} />
+                    <InnerHeader title={notice_Extra_data?.sub_title} image={arabic} />
 
                     {/* Notice board */}
                     <NoticeBoard
@@ -75,7 +88,7 @@ export default function NoticePage({ homePage, settings, formattedCategories }) 
                         setCurrentPage={setCurrentPage}
                     />
 
-                    <ArchiveNotice />
+                    <ArchiveNotice   homePage={homePage} />
                 </div>
             </Container>
         </div>

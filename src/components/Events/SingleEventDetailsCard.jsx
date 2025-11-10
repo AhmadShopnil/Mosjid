@@ -48,7 +48,7 @@ export default function SingleEventDetailsCard({ event }) {
                             className="text-[#333333]  text-xs sm:text-sm "
                             dangerouslySetInnerHTML={{ __html: event?.description }}
                         />
-                        <div className='flex items-center justify-start mt-6 gap-2'>
+                        {/* <div className='flex items-center justify-start mt-6 gap-2'>
                             <span className='text-[#001609] font-semibold text-sm'>Join This Event </span>
                             <Image
                                 src="/images/others/arrow-r.png"
@@ -57,7 +57,7 @@ export default function SingleEventDetailsCard({ event }) {
                                 height={10}
                                 className='w-[15px] h-[10px]'
                             />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 

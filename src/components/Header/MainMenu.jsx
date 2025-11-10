@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import Container from "../Shared/Container";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import TopbarMobile from "./TopBarMobile";
 import Link from "next/link";
 import { getMediaLinkByMetaName } from "@/helper/metaHelpers";
@@ -93,51 +93,51 @@ const menuItems = [
     link: "dictionary/arabic",
     icon: "/images/QuickLinks/white/dictionary.png",
     activeIcon: "/images/QuickLinks/normal2/6.png",
-    submenu: [
-      {
-        name: "Arabic-English",
-        link: "/dictionary/arabic",
-        icon: "/images/QuickLinks/normal2/2.png",
-      },
-      {
-        name: "Islamic Terms",
-        link: "/dictionary/islamic",
-        icon: "/images/QuickLinks/normal2/5.png",
-      },
-    ],
+    // submenu: [
+    //   {
+    //     name: "Arabic-English",
+    //     link: "/dictionary/arabic",
+    //     icon: "/images/QuickLinks/normal2/2.png",
+    //   },
+    //   {
+    //     name: "Islamic Terms",
+    //     link: "/dictionary/islamic",
+    //     icon: "/images/QuickLinks/normal2/5.png",
+    //   },
+    // ],
   },
   {
     name: "Directory",
     link: "directory/19",
     icon: "/images/QuickLinks/white/directory.png",
     activeIcon: "/images/QuickLinks/normal2/7.png",
-    submenu: [
-      {
-        name: "Masjid",
-        link: "/directory/19",
-        icon: "/images/QuickLinks/normal2/2.png",
-      },
-      {
-        name: "Madrasha",
-        link: "/directory/19",
-        icon: "/images/QuickLinks/normal2/5.png",
-      },
-      {
-        name: "Quranic Center",
-        link: "/directory/19",
-        icon: "/images/QuickLinks/normal2/5.png",
-      },
-      {
-        name: "Islamic Center",
-        link: "/directory/19",
-        icon: "/images/QuickLinks/normal2/5.png",
-      },
-      {
-        name: "Others",
-        link: "/directory/19",
-        icon: "/images/QuickLinks/normal2/5.png",
-      },
-    ],
+    // submenu: [
+    //   {
+    //     name: "Masjid",
+    //     link: "/directory/19",
+    //     icon: "/images/QuickLinks/normal2/2.png",
+    //   },
+    //   {
+    //     name: "Madrasha",
+    //     link: "/directory/19",
+    //     icon: "/images/QuickLinks/normal2/5.png",
+    //   },
+    //   {
+    //     name: "Quranic Center",
+    //     link: "/directory/19",
+    //     icon: "/images/QuickLinks/normal2/5.png",
+    //   },
+    //   {
+    //     name: "Islamic Center",
+    //     link: "/directory/19",
+    //     icon: "/images/QuickLinks/normal2/5.png",
+    //   },
+    //   {
+    //     name: "Others",
+    //     link: "/directory/19",
+    //     icon: "/images/QuickLinks/normal2/5.png",
+    //   },
+    // ],
   },
   {
     name: "Donation",
@@ -329,7 +329,7 @@ export default function MainMenu({ settings }) {
                       {item.name}
                     </span>
                   </div>
-                  <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-green-500 transition-transform duration-200" />
+                  <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-green-500 transition-transform duration-200" />
                 </Link>
               </div>
             ))}

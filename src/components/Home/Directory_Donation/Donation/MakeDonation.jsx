@@ -4,22 +4,24 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import BankInfo from './BankInfo'
 import { getImageUrl } from '@/helper/getImageUrl';
-import { splitBySpace } from '@/helper/splitBySpace';
+import { splitBySlash, splitBySpace } from '@/helper/splitBySpace';
 import Link from 'next/link';
 
 function MakeDonation({ donationMethods, make_your_donation }) {
   const [activeTab, setActiveTab] = useState(donationMethods[0]);
 
-  const heading_part_1 = splitBySpace(make_your_donation?.sub_title)[0]
-  const heading_part_2 = splitBySpace(make_your_donation?.sub_title)[1]
+  const heading_part_1 = splitBySlash(make_your_donation?.title)[0]
+  const heading_part_2 = splitBySlash(make_your_donation?.title)[1]
+
   const image_arabic = getImageUrl(make_your_donation?.image_media);
+    const icon = getImageUrl(make_your_donation?.background_media);
 
-  const donation_title_2 = make_your_donation?.custom_information.find((item) => item.label === "donation_title_2")
-  const donate_now_button = make_your_donation?.custom_information.find((item) => item.label === "donate_button") || " Donate Now"
-  const info_2 = make_your_donation?.custom_information.find((item) => item.label === "info_2")  || "Religious Corporation Osaka Masjid"
+  
+  const donate_now_button = make_your_donation?.custom_information?.find((item) => item.label === "donate_button") || " Donate Now"
+  const info_2 = make_your_donation?.custom_information?.find((item) => item.label === "info_2")  || "Religious Corporation Osaka Masjid"
 
 
-  // console.log("make_your_donation",make_your_donation)
+  // console.log("donate_now_button",donate_now_button)
 
   return (
     <div className='gradient-border bg-white  px-5 sm:px-8 pt-5 sm:pt-8 pb-20p-4 rounded-2xl'>
@@ -41,7 +43,8 @@ function MakeDonation({ donationMethods, make_your_donation }) {
       <div className='flex justify-between mb-3 '>
         <div className="flex justify-between items-center  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
           <Image
-            src="/images/donation/icon.png"
+            // src="/images/donation/icon.png"
+            src={icon}
             alt="Book Icon"
             width={60}
             height={70}
@@ -50,7 +53,7 @@ function MakeDonation({ donationMethods, make_your_donation }) {
 
           <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
             <p><span className="text-[#F7BA2A]">{heading_part_1}</span> {heading_part_2} </p>
-            <p>{donation_title_2?.value}</p>
+            <p>{make_your_donation?.sub_title}</p>
 
           </div>
         </div>
@@ -61,7 +64,7 @@ function MakeDonation({ donationMethods, make_your_donation }) {
           <Image
             src={image_arabic}
             alt='a1'
-            width={60}
+            width={74}
             height={60}
             className="object-contain hidden sm:flex"
           />

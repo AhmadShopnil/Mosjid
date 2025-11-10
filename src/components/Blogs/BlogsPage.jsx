@@ -9,6 +9,8 @@ import React, { useEffect, useState } from 'react'
 import Blogs from './Blogs'
 import axiosInstance from '@/helper/axiosInstance'
 import SidebarMainDrawer from '../Shared/SidebarMainDrawer'
+import { splitBySlash } from '@/helper/splitBySpace'
+import { getImageUrl } from '@/helper/getImageUrl'
 
 
 
@@ -57,6 +59,21 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
   // console.log("blogs", blogs)
 
 
+
+  const sections = homePage?.sections_on_api;
+  const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
+
+  
+ const heading_part_1 = splitBySlash(blog_events_ExtraData?.title)[0]
+  const heading_part_2 = splitBySlash(blog_events_ExtraData?.title)[1]
+
+  const image_arabic = getImageUrl(blog_events_ExtraData?.image_media);
+  const icon = getImageUrl(blog_events_ExtraData?.background_media);
+
+
+
+
+
   return (
     <div>
 
@@ -74,7 +91,7 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
        
         {/* main content */}
         <div className=' w-full space-y-6'>
-          <InnerHeader title={"ブログとイベント"} image={"/images/fatwah/fatwaharbic_white.png"} />
+          <InnerHeader title={blog_events_ExtraData?.sub_title} image={image_arabic} />
 
           <div>
             <Blogs

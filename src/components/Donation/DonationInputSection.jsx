@@ -3,7 +3,7 @@
 
 import CustomSelectRoundedWhite from "../UI/CustomSelectRoundedWhite";
 
-export default function DonationInputSection() {
+export default function DonationInputSection({donate_now_button}) {
   return (
     <div className="flex items-center gap-3">
       <div className="relative flex-1 max-w-xs">
@@ -44,7 +44,7 @@ export default function DonationInputSection() {
       {/* Find Button */}
       <button className="cursor-pointer bg-[#F7BA2A] hover:bg-[#F7BA2A] text-[#00401A] h-[56px] font-bold px-9 py-3 rounded-full 
       shadow-md transition text-lg">
-        Donate Now
+        {donate_now_button?.value}
       </button>
     </div>
   );

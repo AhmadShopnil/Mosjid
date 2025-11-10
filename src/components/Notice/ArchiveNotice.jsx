@@ -8,7 +8,7 @@ import { getDay_Month_Year } from "@/helper/formateDate";
 import axiosInstance from "@/helper/axiosInstance";
 import SocialShare from "../Shared/SocialShare";
 
-export default function ArchiveNotice() {
+export default function ArchiveNotice({homePage}) {
     const [notices, setNotices] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
@@ -46,11 +46,20 @@ export default function ArchiveNotice() {
 
 
 
+    // get notice extra data from home page section management
+    const sections = homePage?.sections_on_api;
+    const notice_Extra_data = sections.find((s) => s.title_slug === "notice-board");
+ 
+    const archive_notice_title = notice_Extra_data?.custom_information.find((item) => item.label === "archive_notice_title")
+
+
+
+
     return (
         <div className="">
             <div className="bg-[#c9e9ba28] border border-[#C9E9BA] rounded-md p-4">
                 <h2 className="text-3xl font-semibold text-[#00401A] mb-6 ">
-                    <span className="gradient-border_b pb-1">Archive Notice</span>
+                    <span className="gradient-border_b pb-1">{archive_notice_title?.value}</span>
 
                 </h2>
 

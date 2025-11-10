@@ -28,6 +28,7 @@ export default function FooterSections({ settings }) {
   const location = getMetaValueByMetaName(settings, "office_location") || "";
   const looter_logo_path = getMediaLinkByMetaName(settings, "footer_logo");
   const footer_logo_url = `${BASE_URL}${looter_logo_path}`;
+    const website_title_footer = getMetaValueByMetaName(settings, "website_title") || "OSAKA MASJID";
 
   const footer_content =
     getMetaValueByMetaName(settings, "site_description") || "";
@@ -70,13 +71,13 @@ export default function FooterSections({ settings }) {
 
 
   const usefulLinks = [
-    { id: 1, label: "Home", url: "#" },
-    { id: 2, label: "Fatwa", url: "#" },
-    { id: 3, label: "Prayer Time", url: "#" },
-    { id: 4, label: "Notice Board", url: "#" },
-    { id: 5, label: "Blog & Event", url: "#" },
-    { id: 6, label: "Dictionary", url: "#" },
-    { id: 7, label: "Contact Us", url: "#" },
+    { id: 1, label: "Home", url: "/" },
+    { id: 2, label: "Fatwa", url: "/fatwah" },
+    { id: 3, label: "Prayer Time", url: "/prayer-titmes" },
+    { id: 4, label: "Notice Board", url: "/notices" },
+    { id: 5, label: "Blog & Event", url: "/blogs" },
+    { id: 6, label: "Dictionary", url: "/dictionary" },
+    { id: 7, label: "Contact Us", url: "/contact" },
   ];
 
 
@@ -103,7 +104,7 @@ export default function FooterSections({ settings }) {
               height={75}
               className="w-[61px] h-[76px]"
             />
-            <span className="text-[#F7BA2A] font-bold text-3xl">OSAKA MASJID</span>
+            <span className="text-[#F7BA2A] font-bold text-3xl">{website_title_footer}</span>
           </div>
           <p className="text-[#333333] text-base">
             {footer_content}
@@ -140,7 +141,7 @@ export default function FooterSections({ settings }) {
 
 
                 </span>
-                <span className="text-[#333333] text-base mt-0.5 ">{info.text}</span>
+                <span className="text-[#333333] text-base mt-0.5 ">{info?.text}</span>
               </li>
             ))}
           </ul>

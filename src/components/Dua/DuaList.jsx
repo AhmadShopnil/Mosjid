@@ -24,12 +24,12 @@ export default function DuaList({ duas, settings, homePage, loading, currentPage
     // get notice extra data from home page section management
 
     const sections = homePage?.sections_on_api;
-    // const dua_extraData = sections.find((s) => s.title_slug === "notice-board");
+    const dua_extraData = sections.find((s) => s.title_slug === "dua");
     // const heading_part_1 = splitBySpace(dua_extraData?.sub_title)[0]
     // const heading_part_2 = splitBySpace(dua_extraData?.sub_title)[1]
-    // const notice_board_title_2 = dua_extraData?.custom_information.find((item) => item.label === "notice_board_title_2")
+    const Inner_page_title = dua_extraData?.custom_information.find((item) => item.label === "Inner_page_title")
 
-// console.log("selectedDua", selectedDua)
+    // console.log("selectedDua", selectedDua)
 
     return (
         <div>
@@ -41,7 +41,7 @@ export default function DuaList({ duas, settings, homePage, loading, currentPage
             >
                 {/* heading */}
                 <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
-                    <h4 className="text-2xl lg:text-3xl text-[#00401A] font-bold mb-4 gradient-border_b pb-3">New Dua / ニューデュア
+                    <h4 className="text-2xl lg:text-3xl text-[#00401A] font-bold mb-4 gradient-border_b pb-3">{Inner_page_title?.value}
                     </h4>
                 </div>
 
@@ -84,7 +84,7 @@ export default function DuaList({ duas, settings, homePage, loading, currentPage
                                         <p className="sm:hidden text-[#00401A] font-semibold text-[12px] ">{item?.sub_title.slice(0, 18)}</p>
                                         <p className="hidden sm:block text-[#00401A] font-semibold text-[15px]">{item?.sub_title.slice(0, 130)}</p>
                                         <button
-                                            onClick={()=>setSelectedDua(item)}
+                                            onClick={() => setSelectedDua(item)}
                                             className="text-[#001609] font-semibold sm:font-bold text-xs md:text-sm
                                              hover:text-[#F7BA2A] flex gap-1 items-center mt-1 "
                                         >
@@ -94,7 +94,7 @@ export default function DuaList({ duas, settings, homePage, loading, currentPage
                                     </div>
                                 </div>
 
-                              
+
                             </li>
 
 

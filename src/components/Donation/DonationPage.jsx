@@ -30,6 +30,18 @@ export default function DonationPage({ homePage, settings, formattedCategories }
   const make_your_donation = sections.find((s) => s.title_slug === "make-your-doantion");
   const image_arabic = getImageUrl(make_your_donation?.image_media);
 
+
+
+
+    const icon = getImageUrl(make_your_donation?.background_media);
+
+  
+  const donate_now_button = make_your_donation?.custom_information?.find((item) => item.label === "donate_button") || " Donate Now"
+
+
+
+
+
   // fetching data
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -81,7 +93,7 @@ export default function DonationPage({ homePage, settings, formattedCategories }
 
         {/* main content */}
         <div className=' w-full space-y-6'>
-          <InnerHeader title={"掲示板"} image={"/images/donation/arabic_white.png"} />
+          <InnerHeader title={make_your_donation?.sub_title} image={image_arabic} />
 
           <div>
             <MakeDonationInner

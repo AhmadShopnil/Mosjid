@@ -6,3 +6,7 @@ export function splitBySpace(text) {
 export function splitByComma(text) {
   return text?.trim()?.split(/\s*,\s*/);
 }
+
+export function splitBySlash(text) {
+  return text?.trim()?.split(/\s*\/\s*/);
+}
