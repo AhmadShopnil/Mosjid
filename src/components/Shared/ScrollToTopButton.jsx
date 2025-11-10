@@ -46,8 +46,16 @@ export default function ScrollToTopButton() {
                 <Image
                     src="/images/others/top_up_button.png"
                     alt="Up "
+                    width={70}
+                    height={80}
+                    className="flex sm:hidden"
+                />
+                  <Image
+                    src="/images/others/top_up_button.png"
+                    alt="Up "
                     width={80}
                     height={100}
+                    className="hidden sm:flex"
                 />
                 {/* <ArrowUp className="w-5 h-5" /> */}
             </button>

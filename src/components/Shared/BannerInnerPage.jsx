@@ -39,7 +39,7 @@ export default function BannerInnerPage() {
 
   return (
     <div
-      className="w-full overflow-hidden rounded-2xl"
+      className="w-full overflow-hidden "
       style={{
         backgroundImage: `url(${banner?.featured_image})`,
         backgroundSize: "cover",
@@ -47,7 +47,7 @@ export default function BannerInnerPage() {
       }}
     >
       <div className="items-center justify-center">
-        <Container className="h-[270px] md:h-[300px] sm:h-[200px] relative">
+        <Container className="h-[160px] sm:h-[180px] md:h-[300px]  relative">
           {/* Main Wrapper */}
           <div className="relative h-full w-full">
             
@@ -69,7 +69,7 @@ export default function BannerInnerPage() {
 
             {/* Center Images */}
             {center_top_image && (
-              <div className="absolute top-6 sm:top-8 md:top-10 left-1/2 -translate-x-1/2 flex flex-col items-center">
+              <div className="hidden md:flex flex-col items-center absolute top-6 sm:top-8 md:top-10 left-1/2 -translate-x-1/2 ">
                 <Image
                   src={center_top_image}
                   alt="Center Top"

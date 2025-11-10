@@ -9,6 +9,8 @@ import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 import axiosInstance from "@/helper/axiosInstance"
 import DuaList from "./DuaList"
 import { DuaCardInnerPage } from "./DuaCardInnerPage"
+import { splitBySlash } from "@/helper/splitBySpace"
+import { getImageUrl } from "@/helper/getImageUrl"
 
 export default function DuaPageInner({ homePage, settings, formattedCategories }) {
 
@@ -50,6 +52,16 @@ export default function DuaPageInner({ homePage, settings, formattedCategories }
 
 
 
+
+ const sections = homePage?.sections_on_api;
+    const dua_extraData = sections.find((s) => s.title_slug === "notice-board");
+    const heading_part_1 = splitBySlash(dua_extraData?.sub_title)[0]
+    const heading_part_2 = splitBySlash(dua_extraData?.sub_title)[1]
+      const image_arabic = getImageUrl(dua_extraData?.image_media);
+    // const notice_board_title_2 = dua_extraData?.custom_information.find((item) => item.label === "notice_board_title_2")
+
+
+
     return (
         <div>
             <div>
@@ -63,7 +75,7 @@ export default function DuaPageInner({ homePage, settings, formattedCategories }
 
                 {/* main content */}
                 <div className="w-full space-y-6">
-                    <InnerHeader title={"デュアス"} image={"/images/fatwah/fatwaharbic_white.png"} />
+                    <InnerHeader title={dua_extraData?.sub_title} image={image_arabic} />
 
                     {/* Notice board */}
                     <DuaList

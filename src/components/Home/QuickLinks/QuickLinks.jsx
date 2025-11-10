@@ -158,7 +158,7 @@ export default function QuickLinks({quickLinks}) {
                   //   }`}
                   onMouseEnter={() => setHoveredCard(i)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  onClick={() => handleScroll(link?.link)}
+                  onClick={() => handleScroll(link?.css_id)}
                 >
                   {/* Icon */}
                   <div className="w-[116px] h-[90px] flex items-center justify-center">
@@ -177,7 +177,7 @@ export default function QuickLinks({quickLinks}) {
 
                   {/* Title */}
                   <p className="text-lg font-bold">{link?.label}</p>
-                  {/* <p className="text-lg font-bold">{link.jp}</p> */}
+                  <p className="text-lg font-bold">{link?.other_info_one}</p>
                 </div>
               </SwiperSlide>
             );

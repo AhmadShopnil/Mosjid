@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import Container from "../Shared/Container";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import TopbarMobile from "./TopBarMobile";
 import Link from "next/link";
 import { getMediaLinkByMetaName } from "@/helper/metaHelpers";
@@ -329,7 +329,7 @@ export default function MainMenu({ settings }) {
                       {item.name}
                     </span>
                   </div>
-                  <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-green-500 transition-transform duration-200" />
+                  <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-green-500 transition-transform duration-200" />
                 </Link>
               </div>
             ))}

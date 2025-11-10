@@ -9,6 +9,7 @@ import Sidebar from '@/components/Shared/Sidebar'
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 import { sideBarCategories } from '@/data/sidebar'
 import { getCategories, getDirectory, getDirectoryByCat, getPage, getSettings } from '@/helper/actions'
+import { getImageUrl } from '@/helper/getImageUrl'
 import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
 
 import React from 'react'

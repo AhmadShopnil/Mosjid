@@ -70,6 +70,7 @@ export default async function DuaSection() {
     // style={{
     //   background: "linear-gradient(to bottom, rgba(245, 255, 250, 1), rgba(206, 255, 227, 1))",
     // }}
+    id="dua"
     >
       <Container className=" px-4">
         {/* heading */}

@@ -63,9 +63,10 @@ export default function BookCardInnerPage({ book, index = 0, settings,download_b
           </div>
 
           <button
+
             className="flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full 
               border border-[#00401A] text-[#00401A] font-semibold text-sm sm:text-base 
-              hover:bg-[#00401A] hover:text-white transition-colors duration-200"
+              hover:bg-[#00401A] hover:text-white transition-colors duration-200 cursor-not-allowed"
           >
             {download_books_button?.value}
             <Download className="w-4 h-4 sm:w-5 sm:h-5" />

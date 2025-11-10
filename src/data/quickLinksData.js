@@ -103,7 +103,7 @@ export const quickLinksAll = [
     {
     name: "About",
     jp: "について",
-    targetId: "books",
+    targetId: "about",
      link: "/about",
    icon: "/images/QuickLinks/directory.png",
     // icon: "/images/QuickLinks/normal/Gallery.png",
