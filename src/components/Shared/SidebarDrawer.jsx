@@ -20,7 +20,7 @@ export default function SidebarDrawer({ categories }) {
     <>
       {/* ======= Mobile Toggle Button ======= */}
       <div className="lg:hidden flex items-center justify-between p-4 bg-white border-b border-[#C9E9BA]">
-        <h3 className="text-lg font-bold text-[#00401A]">Category</h3>
+        <h3 className="text-lg font-bold text-[#00401A]">Menu</h3>
         <button
           onClick={() => setIsOpen(true)}
           className="p-2 rounded-md bg-[#EEF8E9] text-[#00401A]"
@@ -46,7 +46,7 @@ export default function SidebarDrawer({ categories }) {
       >
         {/* Drawer Header (mobile only) */}
         <div className="lg:hidden flex items-center justify-between p-4 border-b border-[#C9E9BA]">
-          <h3 className="text-lg font-bold text-[#00401A]">Category</h3>
+          <h3 className="text-lg font-bold text-[#00401A]">Menu</h3>
           <button
             onClick={() => setIsOpen(false)}
             className="p-2 rounded-md bg-[#EEF8E9] text-[#00401A]"

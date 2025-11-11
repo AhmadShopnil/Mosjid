@@ -1,94 +1,132 @@
-import { getDay_Month_Year } from '@/helper/formateDate'
-import { getMetaValueFromExtra_Fields } from '@/helper/metaHelpers';
-import Image from 'next/image'
-import React from 'react'
-import SocialShare from '../Shared/SocialShare';
+"use client";
+
+import { getMetaValueFromExtra_Fields } from "@/helper/metaHelpers";
+import Image from "next/image";
+import React, { useMemo, useState } from "react";
+import SocialShare from "../Shared/SocialShare";
 
 export default function SingleEventDetailsCard({ event }) {
+  const [page, setPage] = useState(0);
+  const charsPerPage = 300; // Adjust number of characters per "page"
 
-    // console.log("from even card", event)
+  const day = getMetaValueFromExtra_Fields(event, "day");
+  const month = getMetaValueFromExtra_Fields(event, "month");
+  const time = getMetaValueFromExtra_Fields(event, "time");
+  const year = getMetaValueFromExtra_Fields(event, "year");
+  const location = getMetaValueFromExtra_Fields(event, "location");
 
-    const day = getMetaValueFromExtra_Fields(event, "day");
-    const month = getMetaValueFromExtra_Fields(event, "month");
-    const time = getMetaValueFromExtra_Fields(event, "time");
-    const year = getMetaValueFromExtra_Fields(event, "year");
-    const location = getMetaValueFromExtra_Fields(event, "location");
-    // console.log("day",day)
+  // Split long description into chunks
+  const descriptionParts = useMemo(() => {
+    if (!event?.description) return [];
+    const cleanText = event.description.replace(/<\/?[^>]+(>|$)/g, ""); // remove tags for better split
+    const chunks = [];
+    for (let i = 0; i < cleanText.length; i += charsPerPage) {
+      chunks.push(cleanText.slice(i, i + charsPerPage));
+    }
+    return chunks;
+  }, [event?.description]);
 
+  const currentPart = descriptionParts[page] || "";
 
-    return (
+  return (
+    <div>
+      {/* Event Card */}
+      <div className="grid grid-cols-1 lg:grid-cols-6 gap-3 p-5 sm:p-7 bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
+        {/* Left Column — Event Time */}
+        <div className="col-span-1 flex flex-col items-start">
+          <h4 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#000000]">
+            Event Time <br />
+            イベント時間
+          </h4>
 
-        <div>
-            <div className="grid grid-cols-1 lg:grid-cols-6 gap-3 p-7 bg-white rounded-xl shadow-sm overflow-hidden
-             border border-gray-200">
-
-                <div className="col-span-1 flex flex-col ">
-                    <h4 className='text-xl md:text-2xl font-semibold text-[#000000]'>
-                        Event Time <br />
-                        イベント時間
-                    </h4>
-
-                    <div className='bg-[#F2F2F2] rounded-md text-[#000000] w-[150px] h-[100px] p-4 mt-7 space-y-2'>
-                        <div className='space-x-1'>
-                            <span className='text-[#00401A] font-semibold text-2xl md:text-3xl'>{day}</span>
-                            <span className='text-[#00401A] text-sm'>{month}</span>
-                        </div>
-                        <p className='text-[#00401A] text-sm'>{time}</p>
-
-                    </div>
-                </div>
-
-
-                <div className="lg:col-span-3 flex flex-col ">
-                    <h4 className='text-xl md:text-2xl font-semibold text-[#000000]'>Event Name <br />
-                        イベント名</h4>
-                    <div className='mt-7'>
-                        <h4 className='text-xl text-[#52B920] font-semibold gradient-border_b pb-2 mb-3'>{event?.name}</h4>
-                        <div
-                            className="text-[#333333]  text-xs sm:text-sm "
-                            dangerouslySetInnerHTML={{ __html: event?.description }}
-                        />
-                        {/* <div className='flex items-center justify-start mt-6 gap-2'>
-                            <span className='text-[#001609] font-semibold text-sm'>Join This Event </span>
-                            <Image
-                                src="/images/others/arrow-r.png"
-                                alt='a1'
-                                width={16}
-                                height={10}
-                                className='w-[15px] h-[10px]'
-                            />
-                        </div> */}
-                    </div>
-                </div>
-
-                <div className="lg:col-span-2  rounded-[20px] flex flex-col gap-2  min-h-[300px]">
-                    <div className='h-[20%]'>
-
-                    </div>
-                    {/* Image Container */}
-                    <div className=" rounded-[10px] w-full lg:w-[400px] h-[80%] overflow-hidden">
-                        <Image
-                            src={event?.featured_image}
-                            alt="a1"
-                            width={400}
-                            height={400}
-                            className=" rounded-xl h-[full]"
-                        />
-
-                    </div>
-
-
-                </div>
-
-
-
+          <div className="bg-[#F2F2F2] rounded-md text-[#000000] w-[140px] sm:w-[170px] h-[90px] sm:h-[100px] p-3 mt-5 space-y-2 flex flex-col justify-center items-start">
+            <div className="space-x-1">
+              <span className="text-[#00401A] font-semibold text-2xl md:text-3xl">
+                {day}
+              </span>
+              <span className="text-[#00401A] text-sm">{month}</span>
             </div>
-
-
-           <div className='mt-5'>
-             <SocialShare />
-           </div>
+            <p className="text-[#00401A] text-xs sm:text-sm">{time}</p>
+          </div>
         </div>
 
-    )
+        {/* Middle Column — Event Name + Description */}
+        <div className="lg:col-span-3 flex flex-col justify-start">
+          <h4 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#000000]">
+            Event Name <br />
+            イベント名
+          </h4>
+
+          <div className="mt-5 sm:mt-7">
+            <h4 className="text-lg sm:text-xl text-[#52B920] font-semibold border-b border-gray-300 pb-2 mb-3">
+              {event?.name}
+            </h4>
+
+            {/* Description */}
+            <div
+              className="text-[#333333] text-sm sm:text-base leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: currentPart }}
+            />
+
+            {/* Pagination Controls */}
+            {descriptionParts.length > 1 && (
+              <div className="flex flex-col sm:flex-row justify-between items-center mt-6 gap-3">
+                <button
+                  onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
+                  disabled={page === 0}
+                  className={`w-full sm:w-auto px-4 py-2 rounded-md border text-sm sm:text-base transition ${
+                    page === 0
+                      ? "text-gray-400 border-gray-200 cursor-not-allowed"
+                      : "text-[#00401A] border-[#00401A] hover:bg-[#00401A] hover:text-white"
+                  }`}
+                >
+                  ← Previous
+                </button>
+
+                <span className="text-xs sm:text-sm text-gray-600">
+                  Page {page + 1} of {descriptionParts.length}
+                </span>
+
+                <button
+                  onClick={() =>
+                    setPage((prev) =>
+                      Math.min(prev + 1, descriptionParts.length - 1)
+                    )
+                  }
+                  disabled={page === descriptionParts.length - 1}
+                  className={`w-full sm:w-auto px-4 py-2 rounded-md border text-sm sm:text-base transition ${
+                    page === descriptionParts.length - 1
+                      ? "text-gray-400 border-gray-200 cursor-not-allowed"
+                      : "text-[#00401A] border-[#00401A] hover:bg-[#00401A] hover:text-white"
+                  }`}
+                >
+                  Next →
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Right Column — Event Image */}
+        <div className="lg:col-span-2 flex flex-col justify-between">
+          <div className="hidden sm:block h-[20%]"></div>
+
+          <div className="w-full rounded-[10px] overflow-hidden h-[240px] sm:h-[300px] lg:h-[400px]">
+            <Image
+              src={event?.featured_image}
+              alt="event-image"
+              width={400}
+              height={400}
+              className="w-full h-full object-cover rounded-xl"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Footer (Social Share) */}
+      <div className="mt-5">
+        <SocialShare />
+      </div>
+    </div>
+  );
 }

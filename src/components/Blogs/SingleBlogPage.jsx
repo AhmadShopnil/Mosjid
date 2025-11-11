@@ -79,14 +79,14 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
             <Container className=''>
                 <div className='flex gap-6 my-6'>
                     {/* sidebar */}
-                    <SidebarMainDrawer categories={formattedCategories} isNavigate={"blogs"} setSelectedCat={setSelectedCat} />
+                    <SidebarMainDrawer categories={formattedCategories} isNavigate={"blogs"} setSelectedCat={setSelectedCat} dataForContact={blog} />
 
 
                     {/* main content */}
                     <div className=' w-full space-y-6'>
                         <InnerHeader title={blog_events_ExtraData?.sub_title} image={arabic} />
 
-                        <SingleBlogDetailsCard blog={blog} />
+                        <SingleBlogDetailsCard blog={blog} settings={settings} />
                         <div className='flex justify-end'>
                             <SocialShare />
                         </div>
