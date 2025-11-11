@@ -92,7 +92,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
       {/* Header */}
       <div className="bg-white p-5">
         <h3 className="text-2xl font-bold text-[#00401A] gradient-border_b pb-2">
-          Category/カテゴリ
+          Menu/メニュー
         </h3>
       </div>
 

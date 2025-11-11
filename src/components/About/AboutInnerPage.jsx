@@ -70,7 +70,7 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
 
             <Container className="flex gap-6 my-6">
                 {/* sidebar */}
-                <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} />
+                <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={abouDatas[0]}/>
 
                 {/* main content */}
                 <div className="w-full space-y-6">

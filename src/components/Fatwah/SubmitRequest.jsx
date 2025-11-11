@@ -2,7 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-export default function SubmitRequest() {
+export default function SubmitRequest({ dataForContact }) {
+
+    console.log("dataForContact", dataForContact)
+
+
     return (
         <div className='bg-white rounded-[10px] border border-[#C9E9BA] overflow-hidden shadow-sm p-4'>
             {/* header */}
@@ -12,9 +16,14 @@ export default function SubmitRequest() {
                 <h4 className='text-[#00401A] text-2xl font-bold'>リクエストを送信</h4>
             </div>
             <div className='min-h-[150px] mt-5 flex flex-col justify-between '>
-                <p className='text-sm text-[#00401A]'>If you have any Query, Please Submit Your Request</p>
+                <p className='text-sm text-[#00401A]'>If you have any Query , Please Submit Your Request</p>
+                <p className='text-sm text-[#00401A]'>{dataForContact?.name}</p>
                 <Link
-                    href="/contact"
+                    // href="/contact"
+                    href={{
+                        pathname: "/contact",
+                        query: { name: dataForContact?.name },
+                    }}
                     className="gradient-bg-fatwah-finder text-sm font-bold text-white  h-[36px] px-6 py-2 rounded-[10px] 
                      shadow-md transition-all duration-300 hover:opacity-90
                       flex items-center justify-center gap-2"

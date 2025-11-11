@@ -13,7 +13,8 @@ export default function SidebarMainDrawer({
   isSubmitRequest = true,
   setSelectedCat = null,
   isNavigate = false,
-  directoryNavigate=false
+  directoryNavigate=false,
+  dataForContact={}
 }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -76,7 +77,7 @@ export default function SidebarMainDrawer({
 
           {/* Shown below sidebar content */}
           {isAskQuestion && <AskQuestionSidebar />}
-          {isSubmitRequest && <SubmitRequest />}
+          {isSubmitRequest && <SubmitRequest dataForContact={dataForContact} />}
         </div>
       </div>
     </>

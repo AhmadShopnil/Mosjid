@@ -78,7 +78,7 @@ export default function SingleEventPage({ homePage, settings, event, formattedCa
 
             <Container className='flex gap-6 my-6'>
                 {/* sidebar */}
-                <SidebarMainDrawer categories={formattedCategories} isNavigate={"events"} setSelectedCat={setSelectedCat} />
+                <SidebarMainDrawer categories={formattedCategories} isNavigate={"events"} setSelectedCat={setSelectedCat} dataForContact={event} />
 
 
                 {/* main content */}
