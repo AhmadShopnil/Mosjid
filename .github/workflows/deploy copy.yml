@@ -22,22 +22,10 @@ jobs:
           script: |
             cd /www/wwwroot/osakamasjid.org
             export PATH=$PATH:/www/server/nvm/versions/node/v20.17.0/bin
-
-            # Stop and remove existing PM2 process
-            pm2 stop osaka-mosque || true
-            pm2 delete osaka-mosque || true
-            pm2 save
-
-            # Clean old build and dependencies
-            rm -rf node_modules/ .next/
-
-            # Pull latest code and install dependencies
             git pull origin main
             npm install
-
-            # Build and restart app
+            pm2 stop osaka-mosque || true
+            pm2 delete osaka-mosque || true
             npm run build
             npm run pm2:start
-
-            # Save PM2 state
             pm2 save
