@@ -6,7 +6,7 @@ import { convertDirectoryData } from "@/helper/convertDirectoryData";
 import { useState } from "react";
 import CustomSelectForDirectory from "../UI/CustomSelectRoundedWhite";
 
-export default function DirectorySearchInnerPage({ filterData, setSelected, selected }) {
+export default function DirectorySearchInnerPage({ filterData, setSelected, selected,getData }) {
   const [selectedPrefecture, setSelectedPrefecture] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
@@ -83,8 +83,9 @@ export default function DirectorySearchInnerPage({ filterData, setSelected, sele
 
       {/* Find Button */}
       <button
+      onClick={getData}
         className="h-[56px] bg-[#F7BA2A] hover:bg-[#f8c645] text-[#00401A] font-semibold px-10 py-3 rounded-full 
-      shadow-md transition text-lg w-full sm:w-auto"
+      shadow-md transition text-lg w-full sm:w-auto cursor-pointer"
       >
         Find
       </button>
