@@ -84,15 +84,14 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
 
   };
 
-
-
+  
 
   return (
     <div className="bg-white rounded-[10px] border border-[#C9E9BA] overflow-hidden shadow-sm ">
       {/* Header */}
       <div className="bg-white p-5">
         <h3 className="text-2xl font-bold text-[#00401A] gradient-border_b pb-2">
-          Menu/メニュー
+          Menu / メニュー
         </h3>
       </div>
 

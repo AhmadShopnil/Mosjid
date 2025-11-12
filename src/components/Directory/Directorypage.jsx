@@ -6,9 +6,12 @@ import { useState } from "react";
 import DirectoryDetailsSection from "./DirectoryDetailsSection";
 import SocialShare from "../Shared/SocialShare";
 
-export default function DirectoryPage({ directories }) {
+export default function DirectoryPage({ directories, setSelected }) {
   const [selectedDirectory, setSelectedDirectory] = useState(null);
 
+
+
+  
   return (
     <div className="space-y-4">
       {/* First Section - Table */}

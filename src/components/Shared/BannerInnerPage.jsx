@@ -47,7 +47,7 @@ export default function BannerInnerPage() {
       }}
     >
       <div className="items-center justify-center">
-        <Container className="h-[160px] sm:h-[180px] md:h-[300px]  relative">
+        <Container className="h-[160px] sm:h-[180px] md:h-[286px]  relative">
           {/* Main Wrapper */}
           <div className="relative h-full w-full">
             
@@ -69,7 +69,7 @@ export default function BannerInnerPage() {
 
             {/* Center Images */}
             {center_top_image && (
-              <div className="hidden md:flex flex-col items-center absolute top-6 sm:top-8 md:top-10 left-1/2 -translate-x-1/2 ">
+              <div className="hidden  md:flex flex-col items-center absolute bottom-10 left-1/2 -translate-x-1/2 ">
                 <Image
                   src={center_top_image}
                   alt="Center Top"
@@ -95,7 +95,7 @@ export default function BannerInnerPage() {
 
             {/* Right Logo */}
             {right_logo && (
-              <div className="absolute right-0 bottom-0">
+              <div className="absolute right-0 bottom-0 md:bottom-4">
                 <Image
                   src={right_logo}
                   alt="Right Logo"
