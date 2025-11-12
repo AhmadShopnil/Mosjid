@@ -6,10 +6,14 @@ import Container from "@/components/Shared/Container";
 import InnerHeader from "@/components/Shared/InnerHeader";
 import SidebarMainDrawer from "@/components/Shared/SidebarMainDrawer";
 import { sideBarCategories } from "@/data/sidebar";
+import { getPage } from "@/helper/actions";
 import { Suspense } from "react";
 
 
-export default function Page() {
+export default async function Page() {
+
+const contactPage = await getPage("contact-us")
+
   return (
     <div>
       <BannerInnerPage />
@@ -21,7 +25,7 @@ export default function Page() {
 
         {/* Main content */}
         <div className="w-full space-y-6">
-          <InnerHeader title={"お問い合わせ"} image={"/images/contact/title.png"} />
+          <InnerHeader title={contactPage?.sub_title} image={contactPage?.featured_image} />
           <Suspense fallback={<div>Loading...</div>}>
             <ContactClient /> 
           </Suspense>

@@ -161,8 +161,8 @@ export default function Topbar({ settings }) {
               <Image
               src="/images/social/fb.png"
               alt="LinkedIn"
-              width={28}
-              height={28}
+              width={26}
+              height={26}
               className="hidden sm:flex"
             />
           </Link>
@@ -170,8 +170,8 @@ export default function Topbar({ settings }) {
             <Image
               src="/images/social/instagram.png"
               alt="Instagram"
-              width={30}
-              height={30}
+              width={29}
+              height={29}
               className="hidden sm:flex"
             />
           </Link>
@@ -179,8 +179,8 @@ export default function Topbar({ settings }) {
             <Image
               src="/images/social/linkdin.png"
               alt="LinkedIn"
-              width={28}
-              height={28}
+              width={26}
+              height={26}
               className="hidden sm:flex"
             />
           </Link>
