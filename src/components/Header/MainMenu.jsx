@@ -175,6 +175,7 @@ const menuItems = [
     activeIcon: "/images/QuickLinks/normal2/phone.png",
   },
 ];
+
 export default function MainMenu({ settings }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);

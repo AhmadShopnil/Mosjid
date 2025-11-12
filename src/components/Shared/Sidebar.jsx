@@ -84,8 +84,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
 
   };
 
-
-
+  
 
   return (
     <div className="bg-white rounded-[10px] border border-[#C9E9BA] overflow-hidden shadow-sm ">

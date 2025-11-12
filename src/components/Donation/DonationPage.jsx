@@ -89,8 +89,6 @@ export default function DonationPage({ homePage, settings, formattedCategories }
         {/* sidebar */}
         <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} />
 
-      
-
         {/* main content */}
         <div className=' w-full space-y-6'>
           <InnerHeader title={make_your_donation?.sub_title} image={image_arabic} />

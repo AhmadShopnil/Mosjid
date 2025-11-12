@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import { createPortal } from "react-dom";
 
-export default function CustomSelectForDirectory({ options,lvl,selected, setSelected }) {
+export default function CustomSelectRoundedWhite({ options,lvl,selected, setSelected }) {
   const [isOpen, setIsOpen] = useState(false);
   // const [selected, setSelected] = useState(null);
   const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0, width: 0 });
