@@ -26,13 +26,15 @@ export default function DirectoryPageClient({ params, settings, homePage, slug, 
     const directory_extradata = sections.find((s) => s.title_slug === "directory");
     const arabic_image = getImageUrl(directory_extradata?.image_media);
 
-    //   console.log({slug})
+    // console.log("intial slug", slug)
+
+    // console.log("selected id ", selected)
 
     useEffect(() => {
 
-        // setSelected(slug);
-        // console.log({ selected })
-
+        if (!selectedDirectoryLocation) {
+            setSelected(slug);
+        }
 
     }, [])
 
@@ -41,8 +43,7 @@ export default function DirectoryPageClient({ params, settings, homePage, slug, 
     // fetching data
     useEffect(() => {
 
-        // setSelected(slug);
-        // console.log({ selected })
+
 
 
         const fetchData = async () => {
@@ -50,9 +51,14 @@ export default function DirectoryPageClient({ params, settings, homePage, slug, 
             setLoading(true)
 
             let url = `/posts?term_type=directory`
+          
+            if (slug) {
+                url = `/posts?term_type=directory&category_id=${slug}`
+            }
             if (selected) {
                 url = `/posts?term_type=directory&category_id=${selected}`
             }
+
             try {
                 const response = await axiosInstance.get(url)
                 const data = response?.data?.data || []
@@ -69,7 +75,7 @@ export default function DirectoryPageClient({ params, settings, homePage, slug, 
         }
 
         fetchData()
-    }, [selected])
+    }, [selectedDirectoryLocation, slug])
 
 
     const handleSetSelectByLocations = (data) => {
