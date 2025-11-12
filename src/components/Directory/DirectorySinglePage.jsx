@@ -41,11 +41,9 @@ export default function DirectoryPageClient({ params, settings, homePage, slug, 
 
 
     // fetching data
+
+
     useEffect(() => {
-
-
-
-
         const fetchData = async () => {
 
             setLoading(true)
@@ -73,9 +71,41 @@ export default function DirectoryPageClient({ params, settings, homePage, slug, 
                 setLoading(false)
             }
         }
-
         fetchData()
-    }, [selectedDirectoryLocation, slug])
+
+    }, [ slug])
+
+
+    const fetchData = async () => {
+
+            setLoading(true)
+
+            let url = `/posts?term_type=directory`
+          
+            if (slug) {
+                url = `/posts?term_type=directory&category_id=${slug}`
+            }
+            if (selected) {
+                url = `/posts?term_type=directory&category_id=${selected}`
+            }
+
+            try {
+                const response = await axiosInstance.get(url)
+                const data = response?.data?.data || []
+                const meta = response?.data?.meta || {}
+
+                setDirectories(data)
+
+            } catch (err) {
+                console.error("Error fetching donations:", err)
+                setError(err.message || "Failed to fetch donations")
+            } finally {
+                setLoading(false)
+            }
+        }
+        
+
+
 
 
     const handleSetSelectByLocations = (data) => {
@@ -83,6 +113,12 @@ export default function DirectoryPageClient({ params, settings, homePage, slug, 
         setSelected(data?.id);
     }
 
+
+    const getData=()=>{
+        //  console.log("from get data skug",selected)
+        // console.log("from get data selected",selected)
+       fetchData() ;
+    }
 
     return (
         <div>
@@ -106,10 +142,13 @@ export default function DirectoryPageClient({ params, settings, homePage, slug, 
                             <DirectorySearchInnerPage
                                 filterData={filterData}
                                 setSelected={handleSetSelectByLocations}
-                                selected={selectedDirectoryLocation} />
+                                selected={selectedDirectoryLocation} 
+                                getData={getData}
+                                
+                                />
                         </div>
                     </div>
-                    <DirectoryPage directories={directories} />
+                    <DirectoryPage directories={directories} loading={loading} />
                 </div>
             </Container>
 
