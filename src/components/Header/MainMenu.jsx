@@ -9,180 +9,19 @@ import Link from "next/link";
 import { getMediaLinkByMetaName } from "@/helper/metaHelpers";
 import { BASE_URL } from "@/helper/baseUrl";
 
-const menuItems = [
-  {
-    name: "Home",
-    link: "/",
-    icon: "/images/QuickLinks/white/home.png",
-    activeIcon: "/images/QuickLinks/hover/home-05.png",
-  },
-  {
-    name: "About",
-    link: "about",
-    icon: "/images/QuickLinks/white/about.png",
-    activeIcon: "/images/QuickLinks/normal2/7.png",
-  },
-  {
-    name: "Prayer Times",
-    link: "prayer-times",
-    icon: "/images/QuickLinks/white/prayerTime.png",
-    activeIcon: "/images/QuickLinks/normal2/2.png",
-  },
-  {
-    name: "Notice Board",
-    link: "notices",
-    icon: "/images/QuickLinks/white/notice2.png",
-    activeIcon: "/images/QuickLinks/normal2/3.png",
-  },
-  {
-    name: "Fatwah",
-    link: "fatwah",
-    icon: "/images/QuickLinks/white/fatwa.png",
-    activeIcon: "/images/QuickLinks/normal2/fatwa.png",
-    // submenu: [
-    //   {
-    //     name: "Ask Fatwah",
-    //     link: "/fatwah/ask-question",
-    //     icon: "/images/QuickLinks/white/fatwa.png",
-    //   },
-    //   {
-    //     name: "View Fatwahs",
-    //     link: "/fatwah",
-    //     icon: "/images/QuickLinks/white/fatwa.png",
-    //   },
-    // ],
-  },
-  {
-    name: "Services",
-    link: "services",
-    icon: "/images/QuickLinks/white/service2.png",
-    activeIcon: "/images/QuickLinks/normal2/5.png",
-    submenu: [
-      {
-        name: "Offered Services",
-        link: "/",
-        icon: "/images/QuickLinks/offer-service.png",
-        activeIcon: "/images/QuickLinks/white/service2.png",
-        submenu: [
-          {
-            name: "Marriage",
-            link: "services",
-            icon: "/images/QuickLinks/normal2/marriage.png",
-            activeIcon: "/images/QuickLinks/normal2/marriage.png",
-          }
-
-        ],
-      },
-      {
-        name: "Dua",
-        link: "dua",
-        icon: "/images/QuickLinks/dua.png",
-        activeIcon: "/images/QuickLinks/dua.png",
-      },
-      {
-        name: "Gallery",
-        link: "gallery",
-        icon: "/images/QuickLinks/gallery.png",
-        activeIcon: "/images/QuickLinks/gallery.png",
-      },
-
-    ],
-  },
-  {
-    name: "Dictionary",
-    link: "dictionary/arabic",
-    icon: "/images/QuickLinks/white/dictionary.png",
-    activeIcon: "/images/QuickLinks/normal2/6.png",
-    // submenu: [
-    //   {
-    //     name: "Arabic-English",
-    //     link: "/dictionary/arabic",
-    //     icon: "/images/QuickLinks/normal2/2.png",
-    //   },
-    //   {
-    //     name: "Islamic Terms",
-    //     link: "/dictionary/islamic",
-    //     icon: "/images/QuickLinks/normal2/5.png",
-    //   },
-    // ],
-  },
-  {
-    name: "Directory",
-    link: "directory/19",
-    icon: "/images/QuickLinks/white/directory.png",
-    activeIcon: "/images/QuickLinks/normal2/7.png",
-    // submenu: [
-    //   {
-    //     name: "Masjid",
-    //     link: "/directory/19",
-    //     icon: "/images/QuickLinks/normal2/2.png",
-    //   },
-    //   {
-    //     name: "Madrasha",
-    //     link: "/directory/19",
-    //     icon: "/images/QuickLinks/normal2/5.png",
-    //   },
-    //   {
-    //     name: "Quranic Center",
-    //     link: "/directory/19",
-    //     icon: "/images/QuickLinks/normal2/5.png",
-    //   },
-    //   {
-    //     name: "Islamic Center",
-    //     link: "/directory/19",
-    //     icon: "/images/QuickLinks/normal2/5.png",
-    //   },
-    //   {
-    //     name: "Others",
-    //     link: "/directory/19",
-    //     icon: "/images/QuickLinks/normal2/5.png",
-    //   },
-    // ],
-  },
-  {
-    name: "Donation",
-    link: "donation",
-    icon: "/images/QuickLinks/white/donation.png",
-    activeIcon: "/images/QuickLinks/normal2/2.png",
-  },
 
 
-  {
-    name: "Books",
-    link: "books",
-    icon: "/images/QuickLinks/white/book.png",
-    activeIcon: "/images/QuickLinks/normal2/5.png",
-  },
-  {
-    name: "Blogs",
-    link: "blogs",
-    icon: "/images/QuickLinks/white/blog.png",
-    activeIcon: "/images/QuickLinks/normal2/6.png",
+export default function MainMenu({ settings, menuItems }) {
 
-  },
-
-  {
-    name: "Events",
-    link: "events",
-    icon: "/images/QuickLinks/white/events.png",
-    activeIcon: "/images/QuickLinks/normal2/6.png",
-
-  },
-  {
-    name: "Contact",
-    link: "contact",
-    icon: "/images/QuickLinks/white/phone.png",
-    activeIcon: "/images/QuickLinks/normal2/phone.png",
-  },
-];
-
-export default function MainMenu({ settings }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [activeSubDropdown, setActiveSubDropdown] = useState(null);
+
 
   const toggleDrawer = () => setIsOpen(!isOpen);
   const logo_path = getMediaLinkByMetaName(settings, "footer_logo");
   const logo_url = `${BASE_URL}${logo_path}`;
+
 
   return (
     <div className="relative bg-[#00401A] text-white py-2 xl:py-0">
@@ -200,7 +39,7 @@ export default function MainMenu({ settings }) {
         {/* Desktop Navigation */}
         <div className="hidden w-full xl:flex justify-center ">
           <nav className="flex flex-wrap justify-center gap-2 py-3 text-sm sm:text-base relative">
-            {menuItems.map((item, i) => (
+            {menuItems?.map((item, i) => (
               <div
                 key={i}
                 className="relative"
@@ -228,48 +67,67 @@ export default function MainMenu({ settings }) {
                 </Link> */}
 
                 <Link
-                  href={`/${item.link}`}
-                  className="hover:text-yellow-400 px-1 py-1 transition-colors duration-200 flex justify-center items-center"
+                  href={`${item?.link}`}
+                  className={`hover:text-yellow-400 px-1 py-1  flex justify-center
+                     items-center ${activeDropdown === i && "text-yellow-400"}`}
                 >
                   <div className="w-5 h-5 flex items-center justify-center mr-1">
                     <Image
-                      src={item?.icon}
-                      alt={item?.name}
+                      // src={item?.icon}
+                      //  src={`${BASE_URL}${item?.menu_icon_url}` }
+                      src={
+                        activeDropdown === i
+                          ? `${BASE_URL}${item?.menu_icon_hover_url}`
+                          : `${BASE_URL}${item?.menu_icon_url}`
+                      }
+                      alt={item?.label}
                       width={20}
                       height={20}
-                      className="object-contain w-full h-full brightness-0 invert"
+                      className="object-contain w-full h-full "
                     />
                   </div>
                   <span className="text-sm font-semibold flex items-center gap-1">
-                    {item.name}
-                    {item.submenu && <ChevronDown className="w-3 h-3 mt-0.5" />}
+                    {item?.label}
+                    {item?.child && <ChevronDown className="w-3 h-3 mt-0.5" />}
                   </span>
                 </Link>
 
 
                 {/* Dropdown */}
-                {item.submenu && (
+                {item?.child && (
                   <div
                     className={`absolute left-0 top-full bg-[#EEF8E9] text-[#00401A] shadow-xl rounded-md mt-3 min-w-[200px] 
-                      z-50 transition-all duration-200 ease-in-out transform ${activeDropdown === i
+                      z-50 transition-all  ease-in-out transform ${activeDropdown === i
                         ? "opacity-100 visible translate-y-0"
                         : "opacity-0 invisible -translate-y-2"
-                      }`}
+                      }`
+
+                    }
+
+
                   >
-                    {item?.submenu?.map((sub, j) => (
+                    {item?.child?.map((sub, j) => (
                       <Link
                         key={j}
-                        href={sub.link}
+                        href={sub?.link}
                         className="flex items-center gap-2 px-4 py-2.5 font-bold  hover:text-[#F7BA2A] text-xs"
+                        onMouseEnter={() => setActiveSubDropdown(j)}
+                        onMouseLeave={() => setActiveSubDropdown(null)}
                       >
                         <Image
-                          src={sub.icon}
-                          alt={sub.name}
+                          // src={sub.icon}
+                          // src={`${BASE_URL}${sub?.menu_icon_url}`}
+                          src={
+                            activeSubDropdown === j
+                              ? `${BASE_URL}${sub?.menu_icon_hover_url}`
+                              : `${BASE_URL}${sub?.menu_icon_url}`
+                          }
+                          alt={sub?.label}
                           width={18}
                           height={18}
                           className="object-contain"
                         />
-                        {sub.name}
+                        {sub?.label}
                       </Link>
                     ))}
                   </div>
@@ -311,7 +169,7 @@ export default function MainMenu({ settings }) {
             {menuItems.map((item, i) => (
               <div key={i} className="relative group border-b border-gray-200 last:border-none">
                 <Link
-                  href={`/${item.link}`}
+                  href={`/${item?.link}`}
                   onClick={() => setIsOpen(false)}
                   className="group flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r
                    hover:from-green-50 hover:to-green-100 transition-all duration-200 "
@@ -319,15 +177,15 @@ export default function MainMenu({ settings }) {
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 flex items-center justify-center rounded-lg bg-white shadow-sm border border-gray-100">
                       <Image
-                        src={item?.activeIcon}
-                        alt={item.name}
+                        src={`${BASE_URL}${item?.menu_icon_hover_url}`}
+                        alt={item?.label}
                         width={24}
                         height={24}
                         className="object-contain w-5 h-5"
                       />
                     </div>
                     <span className="font-medium text-gray-800 text-[15px] group-hover:text-green-600 transition-colors duration-200">
-                      {item.name}
+                      {item?.label}
                     </span>
                   </div>
                   <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-green-500 transition-transform duration-200" />
