@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import MainMenu from "./MainMenu";
 import Topbar from "./Topbar";
-import { getSettings } from "@/helper/actions";
+import { getMenus, getSettings } from "@/helper/actions";
 
 const menuItems = [
   "Home",
@@ -22,13 +22,20 @@ const menuItems = [
 export default async function Header() {
 
   const settings = await getSettings();
+  const menuItems = await getMenus(1);
+
+
+  // console.log("menuItems", menuItems);
+
+
+
 
   return (
     <div className="">
       <div className=" bg-white">
         <Topbar settings={settings} />
       </div>
-      <MainMenu settings={settings} />
+      <MainMenu settings={settings} menuItems={menuItems?.items}  />
     </div>
   );
 }

@@ -38,7 +38,7 @@ export default function QuickLinksMobile({quickLinks}) {
                 <Image
                   src={`${BASE_URL}${link?.menu_icon_url}`}
                 alt={link?.label}
-                  width={30}
+                  width={33}
                   height={33}
                   className={`object-contain transition-all duration-100 "}`}
                 // className={`object-contain transition-all duration-100 group-hover:brightness-0 
@@ -48,7 +48,7 @@ export default function QuickLinksMobile({quickLinks}) {
 
               {/* Title */}
               <p className="mt-2 text-xs sm:text-sm font-semibold">{link?.label}</p>
-              {/* <p className="mt-1 text-xs sm:text-sm font-semibold">{link?.jp}</p> */}
+              <p className="mt-1 text-xs sm:text-sm font-semibold">{link?.other_info_one}</p>
             </Link>
           );
         })}

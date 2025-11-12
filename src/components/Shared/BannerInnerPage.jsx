@@ -50,7 +50,7 @@ export default function BannerInnerPage() {
         <Container className="h-[160px] sm:h-[180px] md:h-[286px]  relative">
           {/* Main Wrapper */}
           <div className="relative h-full w-full">
-            
+
             {/* Left Logo */}
             {left_logo && (
               <div className="absolute left-0 bottom-0">
@@ -63,7 +63,7 @@ export default function BannerInnerPage() {
                   loading="lazy"
                   className=" h-auto w-[180px] sm:w-[150px] md:w-[250px] lg:w-[320px] xl:w-[358px]"
                 />
-                
+
               </div>
             )}
 
@@ -80,6 +80,9 @@ export default function BannerInnerPage() {
                   className="h-auto w-[150px] sm:w-[220px] md:w-[280px] lg:w-[320px] xl:w-[340px]"
                 />
                 {center_bottom_image && (
+                  // <p className="text-[60px] text-[#013F1D] font-normal">
+                  //   大阪モスク
+                  // </p>
                   <Image
                     src={center_bottom_image}
                     alt="Center Bottom"

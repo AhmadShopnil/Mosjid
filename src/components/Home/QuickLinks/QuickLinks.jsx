@@ -167,8 +167,8 @@ export default function QuickLinks({quickLinks}) {
                     src={`${BASE_URL}${link?.menu_icon_url}`}
                       // src={link?.menu_icon_url}
                       alt={link?.label}
-                      width={60}
-                      height={60}
+                      width={70}
+                      height={70}
                       // className="object-contain transition-all duration-300"
                       className={`object-contain transition-all duration-100 group-hover:brightness-0 group-hover:invert 
                          ${isHovered && "brightness-0 invert"}`}
