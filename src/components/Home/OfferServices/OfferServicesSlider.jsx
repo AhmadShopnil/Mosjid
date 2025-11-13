@@ -34,7 +34,7 @@ export default function OfferServicesSlider({ services, offered_services_ExtraDa
             <Image
               // src="/images/offerServices/icon.png"
               src={icon}
-              alt="Book Icon"
+              alt="Icon"
               width={60}
               height={63}
             />

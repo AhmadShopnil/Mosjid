@@ -51,7 +51,7 @@ export default function NoticeBoard({ settings, notices, homePage }) {
         className="absolute right-0 top-2/5"
       >
         <Image
-          src="/images/notice/bg.png"
+          src="/images/notice/noticeBg.png"
           alt='img'
           width={60}
           height={160}
