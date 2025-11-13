@@ -230,6 +230,14 @@ body {
 
 
 
+.quicklinksMobile {
+  position: relative;
+  border-radius: 20px;
+  background: linear-gradient(#F5FFF8, #F5FFF8) padding-box,
+              linear-gradient(to right, #309caa, #53FF00) border-box;
+  border: 1px solid transparent;
+  margin: 4px;
+}
 
 
 
