@@ -11,9 +11,11 @@ import DuaList from "./DuaList"
 import { DuaCardInnerPage } from "./DuaCardInnerPage"
 import { splitBySlash } from "@/helper/splitBySpace"
 import { getImageUrl } from "@/helper/getImageUrl"
+import { useSelected } from "@/context/SelectedContext"
+import BreadcrumbForNested from "../Shared/BreadcrumbForNested"
 
 export default function DuaPageInner({ homePage, settings, formattedCategories }) {
-
+ const { selected, setSelected, clearSelected } = useSelected();
     const [duas, setDuas] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
@@ -66,7 +68,8 @@ export default function DuaPageInner({ homePage, settings, formattedCategories }
         <div>
             <div>
                 <BannerInnerPage />
-                <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Duas" />
+                 <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Duas" middleLink="/dua" currentPage={selected?.name} />
+                {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Duas" /> */}
             </div>
 
             <Container className="flex gap-6 my-6">

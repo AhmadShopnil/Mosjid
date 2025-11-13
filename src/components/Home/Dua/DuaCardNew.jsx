@@ -57,10 +57,14 @@ const DuaCardNew = ({ dua }) => {
           </p>
         </div>
 
-        {/* Arabic Text */}
+      
         <p className="text-[#333333] leading-8 text-base ">
           {dua_main?.slice(0, 580)}
         </p>
+        {/* <div
+          className="text-[#333333]  text-base sm:text-base"
+          dangerouslySetInnerHTML={{ __html: dua?.description }}
+        /> */}
 
         {/* Japanese Pronunciation Section */}
         <div className="space-y-10">

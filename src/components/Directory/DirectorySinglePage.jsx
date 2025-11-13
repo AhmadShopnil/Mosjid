@@ -131,7 +131,7 @@ export default function DirectoryPageClient({ params, settings, homePage, slug, 
             <Container className='flex gap-6 my-6'>
                 {/* sidebar */}
 
-                <SidebarMainDrawer categories={formattedCategories} setSelectedCat={null} directoryNavigate={true} />
+                <SidebarMainDrawer categories={formattedCategories} setSelectedCat={null} directoryNavigate={true} dataForContact={`Directories`} />
 
                 {/* main content */}
                 <div className=' w-full space-y-6'>

@@ -38,7 +38,7 @@ export default async function page() {
 
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
-        <SidebarMainDrawer categories={sideBarCategories} isNavigate={false} />
+        <SidebarMainDrawer categories={sideBarCategories} isNavigate={false} dataForContact={`Prayer Times`} />
 
         {/* main content */}
         <div className=' w-full space-y-6'>

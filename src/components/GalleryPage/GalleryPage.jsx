@@ -12,10 +12,12 @@ import SocialShare from "../Shared/SocialShare"
 import Pagination from "../Shared/Pagination"
 import ImageGalleryInnerPage from "./ImageGalleryInnerPage"
 import { getMetaValueByMetaName } from "@/helper/metaHelpers"
+import { useSelected } from "@/context/SelectedContext"
+import BreadcrumbForNested from "../Shared/BreadcrumbForNested"
 
 
 export default function GalleryPage({ homePage, settings, formattedCategories }) {
-
+const { selected, setSelected, clearSelected } = useSelected();
   const [galleryDatas, setGallerydatas] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -25,6 +27,14 @@ export default function GalleryPage({ homePage, settings, formattedCategories })
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(10)
   const perPage = 6
+
+
+
+  useEffect(() => {    
+         clearSelected();
+    }, [])
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,7 +74,8 @@ export default function GalleryPage({ homePage, settings, formattedCategories })
     <div>
       <div>
         <BannerInnerPage />
-        <Breadcrumb homeLabel="Home" homeLink="/" currentPage="About Us" />
+         <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Gallery" middleLink="/gallery" currentPage={selected?.name} />
+        {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="About Us" /> */}
       </div>
 
       <Container className="flex gap-6 my-6">

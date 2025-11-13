@@ -15,7 +15,7 @@ export const transformNoticeCategories = (data = []) => {
       icon: category?.image,
     //   icon: "/images/fatwah/pen.png",
       activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
-      title: category?.name ,
+      name: category?.name ,
       subtitle: category?.description , 
       hasSubItems,
       ...(hasSubItems ? { subItems } : { isArrow: true }),

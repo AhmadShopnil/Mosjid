@@ -11,11 +11,14 @@ import axiosInstance from '@/helper/axiosInstance'
 import SidebarMainDrawer from '../Shared/SidebarMainDrawer'
 import { splitBySlash } from '@/helper/splitBySpace'
 import { getImageUrl } from '@/helper/getImageUrl'
+import { useSelected } from '@/context/SelectedContext'
+import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
 
 
 
 
 export default function BlogsPage({ homePage, settings, formattedCategories }) {
+  const { selected, setSelected, clearSelected } = useSelected();
   const [blogs, setBlogs] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -23,18 +26,26 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
   // pagination states
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(10)
-  const perPage = 6
+  const perPage = 10
+
+
+  useEffect(() => {    
+         clearSelected();
+    }, [])
+
 
 
   // fetching data
   useEffect(() => {
+   
+
     const fetchBlogs = async () => {
 
       setLoading(true)
 
       let url = `/posts?term_type=post&page=${currentPage}&per_page=${perPage}`
-      if (selectedCat) {
-        url = `/posts?term_type=post&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`
+      if (selected?.id) {
+        url = `/posts?term_type=post&category_id=${selected?.id}&page=${currentPage}&per_page=${perPage}`
       }
 
 
@@ -63,8 +74,8 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
   const sections = homePage?.sections_on_api;
   const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
 
-  
- const heading_part_1 = splitBySlash(blog_events_ExtraData?.title)[0]
+
+  const heading_part_1 = splitBySlash(blog_events_ExtraData?.title)[0]
   const heading_part_2 = splitBySlash(blog_events_ExtraData?.title)[1]
 
   const image_arabic = getImageUrl(blog_events_ExtraData?.image_media);
@@ -79,16 +90,17 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
 
       <div>
         <BannerInnerPage />
-        <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Blogs" />
+        {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Blogs" /> */}
+        <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Blogs" middleLink="/blogs" currentPage={selected?.name} />
 
       </div>
 
 
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
-        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} />
+        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={`blogs`} />
 
-       
+
         {/* main content */}
         <div className=' w-full space-y-6'>
           <InnerHeader title={blog_events_ExtraData?.sub_title} image={image_arabic} />
