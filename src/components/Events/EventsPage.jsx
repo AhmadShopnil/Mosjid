@@ -10,6 +10,8 @@ import axiosInstance from '@/helper/axiosInstance'
 import SidebarMainDrawer from '../Shared/SidebarMainDrawer'
 import Events from './Events'
 import { getImageUrl } from '@/helper/getImageUrl'
+import { useSelected } from '@/context/SelectedContext'
+import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
 
 
 
@@ -140,6 +142,7 @@ const categories2 = [
 
 
 export default function EventsPage({ homePage, settings, formattedCategories }) {
+   const { selected, setSelected, clearSelected } = useSelected();
   const [events, setEvents] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -149,6 +152,9 @@ export default function EventsPage({ homePage, settings, formattedCategories }) 
   const [totalPages, setTotalPages] = useState(10)
   const perPage = 16
 
+  useEffect(() => {
+         clearSelected();
+    }, [])
 
 
   // fetching data
@@ -158,8 +164,8 @@ export default function EventsPage({ homePage, settings, formattedCategories }) 
       setLoading(true)
 
       let url = `/posts?term_type=events&page=${currentPage}&per_page=${perPage}`
-      if (selectedCat) {
-        url = `/posts?term_type=events&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`
+      if (selected?.id) {
+        url = `/posts?term_type=events&category_id=${selected?.id}&page=${currentPage}&per_page=${perPage}`
       }
 
 
@@ -194,14 +200,15 @@ export default function EventsPage({ homePage, settings, formattedCategories }) 
 
       <div>
         <BannerInnerPage />
-        <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Events" />
+        <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Events" middleLink="/events" currentPage={selected?.name} />
+        {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Events" /> */}
 
       </div>
 
 
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
-        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} />
+        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={`events`} />
 
         {/* main content */}
         <div className=' w-full space-y-6'>

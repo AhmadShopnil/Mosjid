@@ -5,7 +5,7 @@ import axiosInstance from "@/helper/axiosInstance";
 import toast from "react-hot-toast";
 import { useSearchParams } from "next/navigation";
 
-// 🔹 Reusable function for posting contact form
+
 const postForm = async (endpoint, formData) => {
   try {
     const res = await axiosInstance.post(endpoint, formData);
@@ -21,21 +21,24 @@ const postForm = async (endpoint, formData) => {
 
 export default function Contact() {
   const searchParams = useSearchParams();
-  const nameFromQuery = searchParams.get("name") || ""; // get name from query (if available)
+  const nameFromQuery = searchParams.get("name") || "";
 
   const [formData, setFormData] = useState({
+
     name: "",
     phone: "",
     email: "",
+    subject: "",
     message: "",
+
   });
 
-  // When query name exists → set it as subject in the message field
+ 
   useEffect(() => {
     if (nameFromQuery) {
       setFormData((prev) => ({
         ...prev,
-        message: `Subject: ${nameFromQuery}\n`, // subject line prefilled
+        subject: `Subject: ${nameFromQuery}\n`,
       }));
     }
   }, [nameFromQuery]);
@@ -48,13 +51,14 @@ export default function Contact() {
     e.preventDefault();
 
     const payload = {
-      subject: nameFromQuery || "No Subject",
-      product_id: "",
-      product_name: "",
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      comment: formData.message,
+      // subject: nameFromQuery || "No Subject",
+      // product_id: "",
+      // product_name: "",
+      name: formData?.name,
+      email: formData?.email,
+      phone: formData?.phone,
+      subject: formData?.subject || "No Subject",
+      comment: formData?.message,
     };
 
     const result = await postForm("/contacts/create", payload);
@@ -96,11 +100,20 @@ export default function Contact() {
             onChange={handleChange}
             className="w-full bg-white h-[66px] placeholder:text-base p-3 rounded-[10px] outline-none focus:ring-2 focus:ring-green-500 text-gray-700 placeholder-gray-400"
           />
+          <input
+            type="text"
+            name="subject"
+
+            placeholder="Subject"
+            value={formData?.subject}
+            onChange={handleChange}
+            className="w-full bg-white h-[66px] placeholder:text-base p-3 rounded-[10px] outline-none focus:ring-2 focus:ring-green-500 text-gray-700 placeholder-gray-400"
+          />
           <textarea
             name="message"
             rows={4}
             placeholder="Message"
-            value={formData.message}
+            value={formData?.message}
             onChange={handleChange}
             className="w-full bg-white placeholder:text-base p-3 rounded-[10px] outline-none focus:ring-2 focus:ring-green-500 text-gray-700 placeholder-gray-400"
           />
@@ -126,7 +139,7 @@ export default function Contact() {
         ></iframe>
       </div>
 
-{/* 
+      {/* 
       <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] rounded-[10px] overflow-hidden shadow-lg">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13145.46284914788!2d135.4796146!3d34.6937249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6f0c80d5c53%3A0xfaa4b4a98ffb08e7!2sOsaka%2C%20Japan!5e0!3m2!1sen!2sjp!4v1731323560000!5m2!1sen!2sjp"

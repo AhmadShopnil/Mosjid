@@ -11,9 +11,12 @@ import Image from "next/image"
 import SocialShare from "../Shared/SocialShare"
 import { splitBySlash } from "@/helper/splitBySpace"
 import { getImageUrl } from "@/helper/getImageUrl"
+import BreadcrumbForNested from "../Shared/BreadcrumbForNested"
+import { useSelected } from "@/context/SelectedContext"
 
 
 export default function AboutInnerPage({ homePage, settings, formattedCategories }) {
+    const { selected, setSelected, clearSelected } = useSelected();
 
     const [abouDatas, setAboutdatas] = useState([])
     const [loading, setLoading] = useState(true)
@@ -25,7 +28,18 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
     const [totalPages, setTotalPages] = useState(10)
     const perPage = 6
 
+   
     useEffect(() => {
+        // setSelected(null)
+         clearSelected();
+
+    }, [])
+
+
+
+
+    useEffect(() => {
+        // setSelected(null)
         const fetchAboutData = async () => {
             setLoading(true)
             let url = `/posts?term_type=about_info&page=${currentPage}&per_page=${perPage}`
@@ -52,25 +66,33 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
     }, [selectedCat, currentPage])
 
 
- const sections = homePage?.sections_on_api;
-  const about_ExtraData = sections.find((s) => s.title_slug === "about-data");
-
-  
-  const image_arabic = getImageUrl(about_ExtraData?.image_media);
-//   const icon = getImageUrl(about_ExtraData?.background_media);
+    const sections = homePage?.sections_on_api;
+    const about_ExtraData = sections.find((s) => s.title_slug === "about-data");
 
 
+    const image_arabic = getImageUrl(about_ExtraData?.image_media);
+    //   const icon = getImageUrl(about_ExtraData?.background_media);
+
+
+
+    console.log("about selected", selected)
 
     return (
         <div>
             <div>
                 <BannerInnerPage />
-                <Breadcrumb homeLabel="Home" homeLink="/" currentPage="About Us" />
+                <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="About" middleLink="/about" currentPage={selected?.name} />
+                {/* <Breadcrumb
+                    paths={[
+                        { label: "About Us", link: "/about" },
+                        { label: abouDatas[0]?.name }, 
+                    ]}
+                /> */}
             </div>
 
             <Container className="flex gap-6 my-6">
                 {/* sidebar */}
-                <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={abouDatas[0]}/>
+                <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={abouDatas[0]?.name} />
 
                 {/* main content */}
                 <div className="w-full space-y-6">
@@ -80,7 +102,7 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
                         <div>
                             <h4 className='text-[#333333] font-bold text-2xl'>{abouDatas[0]?.name} </h4>
 
-                         
+
                             <div
                                 className="text-[#333333]  text-sm sm:text-base mt-4 "
                                 dangerouslySetInnerHTML={{ __html: abouDatas[0]?.description }}
@@ -88,7 +110,7 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
 
                         </div>
                         <div className="border-t mt-8 pt-3 flex items-center gap-4 text-[#D9E2DD]">
-                          <SocialShare/>
+                            <SocialShare />
 
 
                         </div>

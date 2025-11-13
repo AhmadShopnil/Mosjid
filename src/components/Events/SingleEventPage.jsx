@@ -11,6 +11,7 @@ import { getImageUrl } from '@/helper/getImageUrl'
 import SingleEventDetailsCard from './SingleEventDetailsCard'
 import RelatedItemsSection from './RelatedEventsSections'
 import axiosInstance from '@/helper/axiosInstance'
+import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
 
 
 
@@ -45,7 +46,7 @@ export default function SingleEventPage({ homePage, settings, event, formattedCa
                 const meta = response?.data?.meta || {}
 
                 setEvents(data)
-              
+
             } catch (err) {
                 console.error("Error fetching events:", err)
                 setError(err.message || "Failed to fetch events")
@@ -57,8 +58,8 @@ export default function SingleEventPage({ homePage, settings, event, formattedCa
         fetchEvents()
     }, [])
 
-// console.log("cat releted",event?.categories[0]?.id)
-// console.log("releted events",events)
+    // console.log("cat releted",event?.categories[0]?.id)
+    // console.log("releted events",events)
 
 
 
@@ -71,19 +72,25 @@ export default function SingleEventPage({ homePage, settings, event, formattedCa
 
             <div>
                 <BannerInnerPage />
-                <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Events" />
+                <BreadcrumbForNested
+                    homeLabel="Home"
+                    homeLink="/"
+                    middle="Events"
+                    middleLink="/events"
+                    currentPage={`${event?.name.slice(0, 12)}...`} />
+                {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Events" /> */}
 
             </div>
 
 
             <Container className='flex gap-6 my-6'>
                 {/* sidebar */}
-                <SidebarMainDrawer categories={formattedCategories} isNavigate={"events"} setSelectedCat={setSelectedCat} dataForContact={event} />
+                <SidebarMainDrawer categories={formattedCategories} isNavigate={"events"} setSelectedCat={setSelectedCat} dataForContact={`${event?.name} event`} />
 
 
                 {/* main content */}
                 <div className=' w-full space-y-6'>
-                   <InnerHeader title={events_ExtraData?.sub_title} image={arabic} />
+                    <InnerHeader title={events_ExtraData?.sub_title} image={arabic} />
 
                     <SingleEventDetailsCard event={event} />
 

@@ -25,9 +25,9 @@ export default function QuickLinksMobile({quickLinks}) {
             <Link
               key={i}
               href={`${link?.link}`}
-              className={`flex flex-col items-center justify-center  transition-all duration-200 
-                rounded-[50px] py-3.5 px-2 cursor-pointer text-center gradient-border
-              bg-[#F5FFF8] text-[#00401A] shadow`}
+              className={`quicklinksMobile flex flex-col items-center justify-center  transition-all duration-200 
+                 py-3.5 px-1.5 cursor-pointer text-center 
+               text-[#00401A] shadow`}
               // onMouseEnter={() => setHoveredCard(i)}
               // onMouseLeave={() => setHoveredCard(null)}
               // onClick={() => handleOnclick(link)}

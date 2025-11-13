@@ -11,6 +11,8 @@ import SidebarMainDrawer from '../Shared/SidebarMainDrawer'
 import BookList from './BookList'
 import { splitBySlash } from '@/helper/splitBySpace'
 import { getImageUrl } from '@/helper/getImageUrl'
+import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
+import { useSelected } from '@/context/SelectedContext'
 
 
 
@@ -19,6 +21,7 @@ import { getImageUrl } from '@/helper/getImageUrl'
 
 
 export default function BooksPage({ homePage, settings, formattedCategories }) {
+    const { selected, setSelected, clearSelected } = useSelected();
   const [books, setBooks] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -73,7 +76,9 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
 
 
 
-
+  useEffect(() => {
+         clearSelected();
+    }, [])
 
   // console.log("books", books)
 
@@ -84,14 +89,15 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
 
       <div>
         <BannerInnerPage />
-        <Breadcrumb homeLabel="Home" homeLink="/" currentPage="islamic Books" />
+        <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Books" middleLink="/books" currentPage={selected?.name} />
+        {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="islamic Books" /> */}
 
       </div>
 
 
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
-        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} />
+        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={`Books`} />
 
         {/* main content */}
         <div className=' w-full space-y-6'>

@@ -12,12 +12,15 @@ import { getImageUrl } from '@/helper/getImageUrl'
 import RelatedItemsSection from '../Shared/RelatedItemsSection'
 import axiosInstance from '@/helper/axiosInstance'
 import SocialShare from '../Shared/SocialShare'
+import { useSelected } from '@/context/SelectedContext'
+import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
 
 
 
 
 
 export default function SingleBlogsPage({ homePage, settings, blog, formattedCategories }) {
+    const { selected, setSelected, clearSelected } = useSelected();
     const [blogs, setBlogs] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
@@ -29,6 +32,9 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
 
 
 
+    // useEffect(() => {
+    //     clearSelected();
+    // }, [])
 
 
 
@@ -71,7 +77,13 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
 
             <div>
                 <BannerInnerPage />
-                <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Blogs" />
+                <BreadcrumbForNested
+                    homeLabel="Home"
+                    homeLink="/"
+                    middle="Blogs"
+                    middleLink="/blogs"
+                    currentPage={`${blog?.name.slice(0, 12)}...`} />
+                {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Blogs" /> */}
 
             </div>
 
@@ -79,7 +91,7 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
             <Container className=''>
                 <div className='flex gap-6 my-6'>
                     {/* sidebar */}
-                    <SidebarMainDrawer categories={formattedCategories} isNavigate={"blogs"} setSelectedCat={setSelectedCat} dataForContact={blog} />
+                    <SidebarMainDrawer categories={formattedCategories} isNavigate={"blogs"} setSelectedCat={setSelectedCat} dataForContact={`${blog?.name} blog`} />
 
 
                     {/* main content */}
@@ -96,7 +108,7 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
 
             </Container>
 
-            <RelatedItemsSection datas={blogs}  blog_events_ExtraData={blog_events_ExtraData} />
+            <RelatedItemsSection datas={blogs} blog_events_ExtraData={blog_events_ExtraData} />
 
         </div>
     )

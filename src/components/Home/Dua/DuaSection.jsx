@@ -3,10 +3,12 @@ import Container from "@/components/Shared/Container";
 import Image from "next/image";
 import DuaCard from "./DuaCard";
 import Link from "next/link";
-import { getDua, getPage } from "@/helper/actions";
+import { getDua, getPage, getSettings } from "@/helper/actions";
 import DuaCardNew from "./DuaCardNew";
 import { getImageUrl } from "@/helper/getImageUrl";
 import { splitBySlash } from "@/helper/splitBySpace";
+import { getMetaValueByMetaName } from "@/helper/metaHelpers";
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 const duas = [
   {
@@ -47,6 +49,7 @@ const duas = [
 
 export default async function DuaSection() {
   const homePage = await getPage("home-sections-heading-management")
+  const settings = await getSettings()
   const sections = homePage?.sections_on_api;
 
   const duas = await getDua()
@@ -60,17 +63,17 @@ export default async function DuaSection() {
   const image_icon = getImageUrl(dua_extraData?.background_media)
 
   const find_more_dua_button = dua_extraData?.custom_information.find((item) => item.label === "find_more_dua_button")
-
+  const read_more = getMetaValueByMetaName(settings, "read_more") || "";
   // console.log("dua_extraData", heading_part_1)
 
 
 
   return (
-    <div className="pt-18 pb-2 "
-    // style={{
-    //   background: "linear-gradient(to bottom, rgba(245, 255, 250, 1), rgba(206, 255, 227, 1))",
-    // }}
-    id="dua"
+    <div className="pt-18 pb-10 "
+      // style={{
+      //   background: "linear-gradient(to bottom, rgba(245, 255, 250, 1), rgba(206, 255, 227, 1))",
+      // }}
+      id="dua"
     >
       <Container className=" px-4">
         {/* heading */}
@@ -113,13 +116,52 @@ export default async function DuaSection() {
           </div>
         </div>
         {/* Dua list */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 justify-center items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-4 justify-center items-center">
           {/* Dua Card  */}
-          {duas.map((dua) => (
-            <DuaCardNew
-              key={dua.id}
-              dua={dua}
-            />
+          {duas.map((dua, i) => (
+            <div
+              key={i}
+              className="flex justify-between items-center border  border-[#D9E2DD] p-1.5  rounded-[10px]
+                                      relative z-10 bg-white"
+            >
+              {/* Left Content */}
+              <div className="flex items-center gap-2 sm:gap-2">
+                {/* icon */}
+                <div
+                  className="bg-[#F2F2F2] border border-[#E6ECE8] w-[50px] h-[50px] md:w-[60px] md:h-[60px] rounded-[10px] 
+                                              p-1.5 md:p-2 flex justify-center items-center "
+                >
+                  <Image
+                    src="/images/dua/icon.png"
+                    alt="icon"
+                    width={40}
+                    height={38}
+                    className='hidden sm:flex'
+                  />
+                  <Image
+                    src="/images/dua/icon.png"
+                    alt="icon"
+                    width={24}
+                    height={34}
+                    className='flex sm:hidden'
+                  />
+                </div>
+                <div>
+                  <p className="sm:hidden text-[#00401A] font-semibold text-[12px] ">{dua?.sub_title.slice(0, 18)}</p>
+                  <p className="hidden sm:block text-[#00401A] font-semibold text-[15px]">{dua?.sub_title.slice(0, 130)}</p>
+                  <Link
+                   href={`/dua`}
+                    className="text-[#001609] font-semibold sm:font-bold text-xs md:text-sm
+                                                       hover:text-[#F7BA2A] flex gap-1 items-center mt-1 "
+                  >
+                    {read_more}
+                    <span className='mt-0.5'><FaLongArrowAltRight /></span>
+                  </Link>
+                </div>
+              </div>
+
+
+            </div>
 
           ))}
         </div>

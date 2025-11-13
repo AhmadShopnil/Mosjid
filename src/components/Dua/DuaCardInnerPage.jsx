@@ -45,9 +45,13 @@ export const DuaCardInnerPage = ({ dua }) => {
         </div>
 
         {/* Arabic Text */}
-        <p className="text-[#333333] leading-8 text-base ">
+        {/* <p className="text-[#333333] leading-8 text-base ">
           {dua_main}
-        </p>
+        </p> */}
+          <div
+          className="text-[#333333] leading-8 text-base"
+          dangerouslySetInnerHTML={{ __html: dua?.description }}
+        />
 
         {/* Japanese Pronunciation Section */}
         <div className="space-y-10">

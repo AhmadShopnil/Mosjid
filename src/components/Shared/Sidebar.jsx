@@ -4,22 +4,16 @@ import { useState } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useSelected } from "@/context/SelectedContext";
 
 
 
 
 export default function Sidebar({ categories, setSelectedCat, isNavigate, directoryNavigate }) {
+  const { selected, setSelected, clearSelected } = useSelected();
   const router = useRouter();
   const [hovered, setHovered] = useState("")
   const [expandedItems, setExpandedItems] = useState({
-    // worship: false,
-    // lifeMatters: false,
-    // prohibition: false,
-    // quran: false,
-    // purity: false,
-    // social: false,
-    // beliefs: false,
-    // decency: false,
   });
 
   const toggleExpand = (item) => {
@@ -31,10 +25,14 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
   };
 
 
-// handle different useCase in same sidebar
+  // handle different useCase in same sidebar
   const handleOnClickItem = (category) => {
 
+
+
     if (!category?.hasSubItems) {
+
+      setSelected(category);
 
       if (directoryNavigate) {
         router.push(`/directory/${category?.id}`);
@@ -63,6 +61,8 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
 
   const handleOnClickSubItem = (subItem) => {
 
+    setSelected(subItem);
+
     if (directoryNavigate) {
       router.push(`/directory/${subItem?.id}`);
     }
@@ -73,8 +73,6 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
     }
     else if (subItem?.link) {
 
-
-
       router.push(`${subItem?.link}`);
     }
     else {
@@ -84,7 +82,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
 
   };
 
-  
+
 
   return (
     <div className="bg-white rounded-[10px] border border-[#C9E9BA] overflow-hidden shadow-sm ">
@@ -112,7 +110,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
                 }
                 className={`group w-full h-[60px] px-4 py-3 flex items-center gap-3  transition-all
                    
-                  ${isExpanded || category.id == hovered
+                  ${isExpanded || category.id == hovered || category?.id==selected?.id
                     ? "gradient-bg-sidebar-item text-white rounded-t-[10px]"
                     : "bg-[#EEF8E9] rounded-[10px]"
                   }
@@ -125,9 +123,9 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
 
                   <img
                     src={category?.icon}
-                    alt={category?.title + " icon"}
+                    alt={category?.name + " icon"}
                     className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-200
-                      group-hover:brightness-0 group-hover:invert  ${isExpanded && "brightness-0 invert"}`}
+                      group-hover:brightness-0 group-hover:invert  ${(isExpanded || category.id == hovered || category?.id==selected?.id) && "brightness-0 invert"}`}
 
                   />
 
@@ -154,16 +152,16 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
                 {/* Text Content */}
                 <div className="flex-1 text-left">
                   <p
-                    className={`font-bold text-sm transition-colors ${isExpanded
+                    className={`font-bold text-sm transition-colors ${(isExpanded || category.id == hovered || category?.id==selected?.id)
                       ? "text-white"
                       : "text-[#B98C20] group-hover:text-white"
                       }`}
                   >
-                    {category.title}
+                    {category?.name}
                   </p>
                   {category?.subtitle && (
                     <p
-                      className={`text-sm font-bold transition-colors ${isExpanded
+                      className={`text-sm font-bold transition-colors ${(isExpanded || category.id == hovered || category?.id==selected?.id)
                         ? "text-white"
                         : "text-[#00401A] group-hover:text-white"
                         }`}
@@ -177,7 +175,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
                 {category?.hasSubItems ? (
                   <ChevronDown
                     size={24}
-                    className={`flex-shrink-0 transition-transform ${isExpanded
+                    className={`flex-shrink-0 transition-transform ${(isExpanded || category.id == hovered || category?.id==selected?.id)
                       ? "rotate-180 text-white"
                       : "text-[#141B34] group-hover:text-white"
                       }`}
@@ -185,7 +183,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
                 ) : category?.isArrow ? (
                   <ChevronRight
                     size={24}
-                    className="flex-shrink-0 text-[#141B34] group-hover:text-white"
+                    className={`flex-shrink-0 text-[#141B34] group-hover:text-white ${(isExpanded || category.id == hovered || category?.id==selected?.id) && "text-white"}`}
                   />
                 ) : null}
               </button>

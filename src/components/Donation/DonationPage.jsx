@@ -10,6 +10,8 @@ import axiosInstance from '@/helper/axiosInstance'
 import SidebarMainDrawer from '../Shared/SidebarMainDrawer'
 import MakeDonationInner from './MakeDonationInner'
 import { getImageUrl } from '@/helper/getImageUrl'
+import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
+import { useSelected } from '@/context/SelectedContext'
 
 
 
@@ -17,6 +19,7 @@ import { getImageUrl } from '@/helper/getImageUrl'
 
 
 export default function DonationPage({ homePage, settings, formattedCategories }) {
+  const { selected, setSelected, clearSelected } = useSelected();
   const [donations, setDonations] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -26,20 +29,18 @@ export default function DonationPage({ homePage, settings, formattedCategories }
   const [totalPages, setTotalPages] = useState(10)
   const perPage = 6
 
- const sections = homePage.sections_on_api;
+  const sections = homePage.sections_on_api;
   const make_your_donation = sections.find((s) => s.title_slug === "make-your-doantion");
   const image_arabic = getImageUrl(make_your_donation?.image_media);
 
 
-
-
-    const icon = getImageUrl(make_your_donation?.background_media);
-
-  
+  const icon = getImageUrl(make_your_donation?.background_media);
   const donate_now_button = make_your_donation?.custom_information?.find((item) => item.label === "donate_button") || " Donate Now"
 
 
-
+ useEffect(() => {    
+         clearSelected();
+    }, [])
 
 
   // fetching data
@@ -80,14 +81,15 @@ export default function DonationPage({ homePage, settings, formattedCategories }
 
       <div>
         <BannerInnerPage />
-        <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Donations" />
+        <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Donation" middleLink="/donation" currentPage={selected?.name} />
+        {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Donations" /> */}
 
       </div>
 
 
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
-        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} />
+        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={"donations"} />
 
         {/* main content */}
         <div className=' w-full space-y-6'>

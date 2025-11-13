@@ -50,7 +50,7 @@ export default async function page({ params }) {
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
 
-        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={null} directoryNavigate={true} />
+        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={null} directoryNavigate={true} dataForContact={`directories`} />
       
         {/* main content */}
         <div className=' w-full space-y-6'>

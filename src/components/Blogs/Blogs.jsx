@@ -7,6 +7,7 @@ import BlogCard from './BlogCard'
 import Pagination from '../Shared/Pagination';
 import { getImageUrl } from '@/helper/getImageUrl';
 import BlogCardSkeletonList from '../Shared/Skeleton/BlogCardSkeletonList';
+import { useSelected } from '@/context/SelectedContext';
 
 export default function Blogs({ blogs, settings, homePage, loading, currentPage, setCurrentPage, totalPages }) {
 
@@ -14,9 +15,7 @@ export default function Blogs({ blogs, settings, homePage, loading, currentPage,
   const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
   const image = getImageUrl(blog_events_ExtraData?.image_media)
   const blogsSectionTitle = blog_events_ExtraData?.custom_information.find((item) => item.label === "top_blogs")
-  const eventsSectionTitle = blog_events_ExtraData?.custom_information.find((item) => item.label === "upcoming_events")
-  const blog_events_title_2 = blog_events_ExtraData?.custom_information.find((item) => item.label === "blog_events_title_2")
-
+ 
   const view_more_button_text = getMetaValueByMetaName(settings, "view_more") || "";
 
   return (

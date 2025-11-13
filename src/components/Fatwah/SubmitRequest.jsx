@@ -16,13 +16,14 @@ export default function SubmitRequest({ dataForContact }) {
                 <h4 className='text-[#00401A] text-2xl font-bold'>リクエストを送信</h4>
             </div>
             <div className='min-h-[150px] mt-5 flex flex-col justify-between '>
-                <p className='text-sm text-[#00401A]'>If you have any Query , Please Submit Your Request</p>
-                <p className='text-sm text-[#00401A]'>{dataForContact?.name}</p>
+                <p className='text-sm text-[#00401A]'>{`If you have any Questions about ${dataForContact} , Please Submit Your Request`}</p>
+                {/* <p className='text-sm text-[#00401A]'>{dataForContact?.name}</p> */}
                 <Link
                     // href="/contact"
                     href={{
                         pathname: "/contact",
-                        query: { name: dataForContact?.name },
+                        query: { name: dataForContact },
+                        // query: { name: dataForContact?.name },
                     }}
                     className="gradient-bg-fatwah-finder text-sm font-bold text-white  h-[36px] px-6 py-2 rounded-[10px] 
                      shadow-md transition-all duration-300 hover:opacity-90
