@@ -7,6 +7,7 @@ import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import Sidebar from '@/components/Shared/Sidebar'
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
+import { sideBarCategories } from '@/data/sidebar'
 import { getFatwa, getPage, getSettings } from '@/helper/actions'
 import React from 'react'
 
@@ -124,7 +125,7 @@ export default async function page() {
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
 
-        <SidebarMainDrawer categories={categories} isAskQuestion={true}/>
+        <SidebarMainDrawer categories={sideBarCategories} isAskQuestion={true}/>
 
         {/* <div className='w-[400px] space-y-6'>
                      <Sidebar categories={categories} />

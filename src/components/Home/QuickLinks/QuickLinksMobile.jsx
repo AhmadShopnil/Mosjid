@@ -11,7 +11,7 @@ import { BASE_URL } from "@/helper/baseUrl";
 
 
 
-export default function QuickLinksMobile({quickLinks}) {
+export default function QuickLinksMobile({ quickLinks }) {
   const [hoveredCard, setHoveredCard] = useState(null);
 
 
@@ -28,16 +28,16 @@ export default function QuickLinksMobile({quickLinks}) {
               className={`quicklinksMobile flex flex-col items-center justify-center  transition-all duration-200 
                  py-3.5 px-1.5 cursor-pointer text-center 
                text-[#00401A] shadow`}
-              // onMouseEnter={() => setHoveredCard(i)}
-              // onMouseLeave={() => setHoveredCard(null)}
-              // onClick={() => handleOnclick(link)}
+            // onMouseEnter={() => setHoveredCard(i)}
+            // onMouseLeave={() => setHoveredCard(null)}
+            // onClick={() => handleOnclick(link)}
             >
               {/* Icon Section */}
               <div className=" flex items-center justify-center ">
 
                 <Image
                   src={`${BASE_URL}${link?.menu_icon_url}`}
-                alt={link?.label}
+                  alt={link?.label}
                   width={33}
                   height={33}
                   className={`object-contain transition-all duration-100 "}`}
@@ -48,7 +48,7 @@ export default function QuickLinksMobile({quickLinks}) {
 
               {/* Title */}
               <p className="mt-2 text-xs sm:text-sm font-semibold">{link?.label}</p>
-              <p className="mt-1 text-xs sm:text-sm font-semibold">{link?.other_info_one}</p>
+              <p className="mt-1 text-xs sm:text-sm font-bold">{link?.other_info_one}</p>
             </Link>
           );
         })}
