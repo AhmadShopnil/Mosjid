@@ -22,6 +22,13 @@ import React from 'react'
 export default async function page({ params }) {
   const { slug } = await params;
 
+
+  
+ 
+    const prefecture = await getCategories("prefecture")
+    const city = await getCategories("city")
+    const district = await getCategories("district")
+
   const cat = await getCategories("directory_categories")
   const settings = await getSettings()
   const homePage = await getPage("home-sections-heading-management")
@@ -35,7 +42,7 @@ export default async function page({ params }) {
   const arabic_image = getImageUrl(directory_extradata?.image_media)
   
 
-
+ const filterData = { city, prefecture, district,cat }
   // console.log("directory",{slug,directories})
 
   return (
@@ -57,8 +64,8 @@ export default async function page({ params }) {
           {/* Header */}
           <InnerHeader title={directory_extradata?.sub_title} image={arabic_image} />
           <div className='w-full'>
-            <div className='w-[80%] py-3'>
-              <DirectorySearchInnerPage />
+            <div className='w-full lg:w-[80%] py-3'>
+              <DirectorySearchInnerPage  filterData={filterData}/>
             </div>
           </div>
           <DirectoryPage directories={directories} />

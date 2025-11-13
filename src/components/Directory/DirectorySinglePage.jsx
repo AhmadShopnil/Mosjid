@@ -97,8 +97,8 @@ export default function DirectoryPageClient({ params, settings, homePage, slug, 
                 setDirectories(data)
 
             } catch (err) {
-                console.error("Error fetching donations:", err)
-                setError(err.message || "Failed to fetch donations")
+                console.error("Error fetching directory:", err)
+                setError(err.message || "Failed to fetch directory")
             } finally {
                 setLoading(false)
             }

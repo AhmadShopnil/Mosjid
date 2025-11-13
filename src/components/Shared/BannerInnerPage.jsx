@@ -3,7 +3,7 @@
 import axiosInstance from "@/helper/axiosInstance";
 import React, { useEffect, useState } from "react";
 import SkeletonBanner from "./Skeleton/SkeletonBanner";
-import { getImageFromExtraFields } from "@/helper/metaHelpers";
+import { getImageFromExtraFields, getMetaValueFromExtraFields } from "@/helper/metaHelpers";
 import Container from "./Container";
 import Image from "next/image";
 
@@ -36,6 +36,7 @@ export default function BannerInnerPage() {
   const right_logo = getImageFromExtraFields(banner, "right_logo");
   const center_top_image = getImageFromExtraFields(banner, "center_top_image");
   const center_bottom_image = getImageFromExtraFields(banner, "center_bottom_image");
+   const center_bottom_title = getMetaValueFromExtraFields(banner, "center_bottom_title");
 
   return (
     <div
@@ -69,7 +70,7 @@ export default function BannerInnerPage() {
 
             {/* Center Images */}
             {center_top_image && (
-              <div className="hidden  md:flex flex-col items-center absolute bottom-10 left-1/2 -translate-x-1/2 ">
+              <div className="hidden  md:flex flex-col items-center absolute bottom-4 left-1/2 -translate-x-1/2 ">
                 <Image
                   src={center_top_image}
                   alt="Center Top"
@@ -79,19 +80,20 @@ export default function BannerInnerPage() {
                   loading="lazy"
                   className="h-auto w-[150px] sm:w-[220px] md:w-[280px] lg:w-[320px] xl:w-[340px]"
                 />
-                {center_bottom_image && (
-                  // <p className="text-[60px] text-[#013F1D] font-normal">
-                  //   大阪モスク
-                  // </p>
-                  <Image
-                    src={center_bottom_image}
-                    alt="Center Bottom"
-                    width={360}
-                    height={72}
-                    priority={false}
-                    loading="lazy"
-                    className="h-auto w-[150px] sm:w-[200px] md:w-[260px] lg:w-[300px] xl:w-[348px]"
-                  />
+                {center_bottom_title && (
+                  <p className=" text-[50px] md:text-[60px] lg:text-[72px] text-[#00401A] font-medium ">
+                    {center_bottom_title}
+                    {/* 大阪モスク */}
+                  </p>
+                  // <Image
+                  //   src={center_bottom_image}
+                  //   alt="Center Bottom"
+                  //   width={360}
+                  //   height={72}
+                  //   priority={false}
+                  //   loading="lazy"
+                  //   className="h-auto w-[150px] sm:w-[200px] md:w-[260px] lg:w-[300px] xl:w-[348px]"
+                  // />
                 )}
               </div>
             )}

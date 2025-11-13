@@ -169,7 +169,7 @@ export default function MainMenu({ settings, menuItems }) {
             {menuItems.map((item, i) => (
               <div key={i} className="relative group border-b border-gray-200 last:border-none">
                 <Link
-                  href={`/${item?.link}`}
+                  href={`${item?.link}`}
                   onClick={() => setIsOpen(false)}
                   className="group flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r
                    hover:from-green-50 hover:to-green-100 transition-all duration-200 "

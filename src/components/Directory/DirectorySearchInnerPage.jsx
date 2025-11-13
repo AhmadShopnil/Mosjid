@@ -48,7 +48,7 @@ export default function DirectorySearchInnerPage({ filterData, setSelected, sele
 
 
   return (
-    <div className="w-full flex flex-col md:flex-row items-center justify-center  lg:justify-start gap-4 flex-wrap">
+    <div className="w-full  flex flex-col md:flex-row items-center justify-center  lg:justify-start gap-4 flex-wrap">
       {/* Prefecture */}
       <div className="relative flex-1  w-full">
         <CustomSelectForDirectory
