@@ -70,8 +70,8 @@ export default function NoticeBoard({ settings, notices, homePage }) {
             // src="/images/prayertimes/noticeicon2.png"
             src={icon}
             alt="Book Icon"
-            width={55}
-            height={73}
+            width={56}
+            height={72}
           />
 
           <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">

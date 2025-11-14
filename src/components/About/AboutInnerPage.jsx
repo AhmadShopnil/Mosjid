@@ -13,10 +13,17 @@ import { splitBySlash } from "@/helper/splitBySpace"
 import { getImageUrl } from "@/helper/getImageUrl"
 import BreadcrumbForNested from "../Shared/BreadcrumbForNested"
 import { useSelected } from "@/context/SelectedContext"
+import { useSelectedParrent } from "@/context/SelectedContextParrent"
+
+import SkeletonDescription from "../Shared/Skeleton/SkeletonDescription"
+import BannerInnerPageServerSide from "../Shared/BannerInnerPageServerSide"
+
 
 
 export default function AboutInnerPage({ homePage, settings, formattedCategories }) {
     const { selected, setSelected, clearSelected } = useSelected();
+    const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
+
 
     const [abouDatas, setAboutdatas] = useState([])
     const [loading, setLoading] = useState(true)
@@ -28,10 +35,11 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
     const [totalPages, setTotalPages] = useState(10)
     const perPage = 6
 
-   
+
     useEffect(() => {
         // setSelected(null)
-         clearSelected();
+        clearSelected();
+        clearSelectedParrent();
 
     }, [])
 
@@ -75,13 +83,23 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
 
 
 
-    console.log("about selected", selected)
+    // console.log("about selected", selected)
 
     return (
         <div>
             <div>
-                <BannerInnerPage />
-                <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="About" middleLink="/about" currentPage={selected?.name} />
+                {/* <BannerInnerPage /> */}
+                {/* <BannerInnerPageServerSide /> */}
+                <BreadcrumbForNested
+                    items={[
+                        { label: "Home", link: "/" },
+                        { label: "About", link: "/about" },
+                        { label: selectedParrent?.name, link: "/about" },
+                        { label: selected?.name, link: null },
+
+                    ]}
+                />
+
                 {/* <Breadcrumb
                     paths={[
                         { label: "About Us", link: "/about" },
@@ -98,25 +116,36 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
                 <div className="w-full space-y-6">
                     <InnerHeader title={about_ExtraData?.sub_title} image={image_arabic} />
 
-                    <div>
+                    {loading ? (
+                        <SkeletonDescription />
+                    ) : abouDatas?.length > 0 ? (
                         <div>
-                            <h4 className='text-[#333333] font-bold text-2xl'>{abouDatas[0]?.name} </h4>
+                            <div>
+                                <h4 className='text-[#333333] font-bold text-2xl'>{abouDatas[0]?.name} </h4>
 
+                                <div
+                                    className="text-[#333333] text-sm sm:text-base mt-4"
+                                    dangerouslySetInnerHTML={{ __html: abouDatas[0]?.description }}
+                                />
+                            </div>
 
-                            <div
-                                className="text-[#333333]  text-sm sm:text-base mt-4 "
-                                dangerouslySetInnerHTML={{ __html: abouDatas[0]?.description }}
-                            />
-
+                            <div className="border-t mt-8 pt-3 flex items-center gap-4 text-[#D9E2DD]">
+                                <SocialShare />
+                            </div>
                         </div>
-                        <div className="border-t mt-8 pt-3 flex items-center gap-4 text-[#D9E2DD]">
-                            <SocialShare />
+                    ) : (
+                        <>
+                            <p className="text-sm md:text-base lg:text-lg text-center">{`No Information Found for `}
+                                <span>{selected?.name}</span>
+                            </p>
 
-
-                        </div>
-                    </div>
-
+                            <p className="text-sm md:text-base lg:text-lg text-center">{`墓地に関する情報は見つかりませんでした `}
+                                <span>{selected?.description}</span>
+                            </p>
+                        </>
+                    )}
                 </div>
+
             </Container>
         </div>
     )

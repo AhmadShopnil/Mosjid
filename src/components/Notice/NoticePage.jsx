@@ -11,9 +11,13 @@ import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 import axiosInstance from "@/helper/axiosInstance"
 import { splitBySlash } from "@/helper/splitBySpace"
 import { getImageUrl } from "@/helper/getImageUrl"
+import BreadcrumbForNested from "../Shared/BreadcrumbForNested"
+import { useSelected } from "@/context/SelectedContext"
+import { useSelectedParrent } from "@/context/SelectedContextParrent"
 
 export default function NoticePage({ homePage, settings, formattedCategories }) {
-    
+    const { selected, setSelected, clearSelected } = useSelected();
+    const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
     const [notices, setNotices] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
@@ -21,7 +25,15 @@ export default function NoticePage({ homePage, settings, formattedCategories }) 
     // pagination states
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(10)
-    const perPage=6
+    const perPage = 6
+
+
+    useEffect(() => {
+        clearSelected();
+        clearSelectedParrent();
+    }, [])
+
+
 
     useEffect(() => {
         const fetchNotices = async () => {
@@ -51,22 +63,31 @@ export default function NoticePage({ homePage, settings, formattedCategories }) 
 
 
 
-  // get notice extra data from home page section management
-  const sections = homePage?.sections_on_api;
-  const notice_Extra_data = sections.find((s) => s.title_slug === "notice-board");
-  const heading_part_1 = splitBySlash(notice_Extra_data?.title)[0]
-  const heading_part_2 = splitBySlash(notice_Extra_data?.title)[1]
+    // get notice extra data from home page section management
+    const sections = homePage?.sections_on_api;
+    const notice_Extra_data = sections.find((s) => s.title_slug === "notice-board");
+    const heading_part_1 = splitBySlash(notice_Extra_data?.title)[0]
+    const heading_part_2 = splitBySlash(notice_Extra_data?.title)[1]
 
-   const arabic = getImageUrl(notice_Extra_data?.image_media)
+    const arabic = getImageUrl(notice_Extra_data?.image_media)
     const icon = getImageUrl(notice_Extra_data?.background_media)
 
-    
+
 
     return (
         <div>
             <div>
                 <BannerInnerPage />
-                <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Notices Board" />
+                <BreadcrumbForNested
+                    items={[
+                        { label: "Home", link: "/" },
+                        { label: "Notices", link: "/notices" },
+                        { label: selectedParrent?.name, link: "/notices" },
+                        { label: selected?.name, link: null },
+
+                    ]}
+                />
+                {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Notices Board" /> */}
             </div>
 
             <Container className="flex gap-6 my-6">
@@ -88,7 +109,7 @@ export default function NoticePage({ homePage, settings, formattedCategories }) 
                         setCurrentPage={setCurrentPage}
                     />
 
-                    <ArchiveNotice   homePage={homePage} />
+                    <ArchiveNotice homePage={homePage} />
                 </div>
             </Container>
         </div>

@@ -36,7 +36,7 @@ export default function OfferServicesSlider({ services, offered_services_ExtraDa
               src={icon}
               alt="Icon"
               width={60}
-              height={63}
+              height={64}
             />
             <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
               <p>

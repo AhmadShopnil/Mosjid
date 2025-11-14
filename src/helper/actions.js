@@ -307,6 +307,7 @@ export async function getFatwa() {
   return json?.data || [];
 }
 
+
 export async function getSingleFatwa(slug) {
   const API_URL = `${BASE_URL}/api/v1/post?slug=${slug}`;
   // console.log("from action slug", slug)

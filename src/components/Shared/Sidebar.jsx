@@ -4,13 +4,19 @@ import { useState } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useSelected } from "@/context/SelectedContext";
+import { useSelected } from "@/context/SelectedContext"
+import { useSelectedParrent } from "@/context/SelectedContextParrent";
+
 
 
 
 
 export default function Sidebar({ categories, setSelectedCat, isNavigate, directoryNavigate }) {
-  const { selected, setSelected, clearSelected } = useSelected();
+    const { selected, setSelected, clearSelected } = useSelected();
+   
+  const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
+
+
   const router = useRouter();
   const [hovered, setHovered] = useState("")
   const [expandedItems, setExpandedItems] = useState({
@@ -28,11 +34,12 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
   // handle different useCase in same sidebar
   const handleOnClickItem = (category) => {
 
-
+    setSelected(category);
+    setSelectedParrent(null)
 
     if (!category?.hasSubItems) {
 
-      setSelected(category);
+
 
       if (directoryNavigate) {
         router.push(`/directory/${category?.id}`);
@@ -59,9 +66,10 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
     }
   };
 
-  const handleOnClickSubItem = (subItem) => {
+  const handleOnClickSubItem = (subItem, category) => {
 
     setSelected(subItem);
+    setSelectedParrent(category)
 
     if (directoryNavigate) {
       router.push(`/directory/${subItem?.id}`);
@@ -110,7 +118,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
                 }
                 className={`group w-full h-[60px] px-4 py-3 flex items-center gap-3  transition-all
                    
-                  ${isExpanded || category.id == hovered || category?.id==selected?.id
+                  ${isExpanded || category.id == hovered || category?.id == selected?.id
                     ? "gradient-bg-sidebar-item text-white rounded-t-[10px]"
                     : "bg-[#EEF8E9] rounded-[10px]"
                   }
@@ -125,7 +133,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
                     src={category?.icon}
                     alt={category?.name + " icon"}
                     className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-200
-                      group-hover:brightness-0 group-hover:invert  ${(isExpanded || category.id == hovered || category?.id==selected?.id) && "brightness-0 invert"}`}
+                      group-hover:brightness-0 group-hover:invert  ${(isExpanded || category.id == hovered || category?.id == selected?.id) && "brightness-0 invert"}`}
 
                   />
 
@@ -152,7 +160,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
                 {/* Text Content */}
                 <div className="flex-1 text-left">
                   <p
-                    className={`font-bold text-sm transition-colors ${(isExpanded || category.id == hovered || category?.id==selected?.id)
+                    className={`font-bold text-sm transition-colors ${(isExpanded || category.id == hovered || category?.id == selected?.id)
                       ? "text-white"
                       : "text-[#B98C20] group-hover:text-white"
                       }`}
@@ -161,7 +169,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
                   </p>
                   {category?.subtitle && (
                     <p
-                      className={`text-sm font-bold transition-colors ${(isExpanded || category.id == hovered || category?.id==selected?.id)
+                      className={`text-sm font-bold transition-colors ${(isExpanded || category.id == hovered || category?.id == selected?.id)
                         ? "text-white"
                         : "text-[#00401A] group-hover:text-white"
                         }`}
@@ -175,7 +183,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
                 {category?.hasSubItems ? (
                   <ChevronDown
                     size={24}
-                    className={`flex-shrink-0 transition-transform ${(isExpanded || category.id == hovered || category?.id==selected?.id)
+                    className={`flex-shrink-0 transition-transform ${(isExpanded || category.id == hovered || category?.id == selected?.id)
                       ? "rotate-180 text-white"
                       : "text-[#141B34] group-hover:text-white"
                       }`}
@@ -183,7 +191,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
                 ) : category?.isArrow ? (
                   <ChevronRight
                     size={24}
-                    className={`flex-shrink-0 text-[#141B34] group-hover:text-white ${(isExpanded || category.id == hovered || category?.id==selected?.id) && "text-white"}`}
+                    className={`flex-shrink-0 text-[#141B34] group-hover:text-white ${(isExpanded || category.id == hovered || category?.id == selected?.id) && "text-white"}`}
                   />
                 ) : null}
               </button>
@@ -194,10 +202,10 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
                 <div className="bg-[#EEF8E9] border-t border-gray-200 p-2 space-y-2">
                   {category?.childs?.map((subItem, index) => (
                     <button
-                      onClick={() => handleOnClickSubItem(subItem)}
+                      onClick={() => handleOnClickSubItem(subItem, category)}
                       key={index}
                       className="w-full px-3 py-2 h-[54px] flex items-center justify-between text-left text-sm text-[#00401A]
-         bg-white hover:bg-[#C9E9BA] transition-colors rounded-[10px]"
+                      bg-white hover:bg-[#C9E9BA] transition-colors rounded-[10px]"
                     >
                       <div className="flex flex-col leading-tight font-semibold">
                         <span>{subItem?.name}</span>

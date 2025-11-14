@@ -4,86 +4,88 @@ import React from "react";
 import Container from "../Shared/Container";
 import Link from "next/link";
 
+export default function BreadcrumbForNested({ items = [] }) {
+  // Filter out empty or null breadcrumb entries
+  const filteredItems = items.filter((i) => i?.label);
 
+  // If nothing selected, return empty (no shapes)
+  // if (filteredItems.length === 0) {
+  //   return (
+  //     <div className="w-full h-[40px] flex items-center gradient-bredcumb">
+  //       <Container>
+  //         <p className="text-xs md:text-sm text-gray-700">No selection</p>
+  //       </Container>
+  //     </div>
+  //   );
+  // }
 
-export default function BreadcrumbForNested({
-  homeLabel = "Home",
-  currentPage,
-  homeLink = "/",
-  middle,
-  middleLink,
-  middle_second
-}) {
   return (
-    <div className="w-full h-[50px] md:h-[60px] flex items-center gradient-bredcumb text-sm md:text-lg">
+    <div className="w-full h-[40px] md:h-[60px] flex items-center gradient-bredcumb text-xs md:text-lg">
       <Container className="w-full h-full">
-        <div className="flex h-full">
-          {/* Home Section */}
-          <Link
-            href={homeLink}
-            className="gradient-bredcumb-a  font-medium px-6 flex items-center justify-center  h-full w-[106px] text-[#00401A]"
-            style={{
-              backgroundColor: "#3198A0",
-              clipPath:
-                "polygon(98.41% 50%, 75% 99.05%, 0.71% 99.05%, 17.77% 50%, 0% 0.95%, 75% 0.95%)",
-            }}
-          >
-            <span>  {homeLabel}</span>
-          </Link>
-          {
-            currentPage ?
+        <div className="flex h-full overflow-x-auto no-scrollbar gap-2">
+          {filteredItems.map((item, index) => {
+            const isLast = index === filteredItems.length - 1;
+
+            const bg = isLast ? "#ffffff" : "#3198A0";
+            const textColor = isLast ? "#52B920" : "#00401A";
+
+
+            const clipPath =
+              index === 0
+                ? "polygon(92% 50%, 75% 100%, 0% 100%, 0% 0%, 75% 0%)"
+                : "polygon(92% 50%, 75% 100%, 0% 100%, 15% 50%, 0% 0%, 75% 0%)";
+            // const clipPath =
+            //   index === 0
+            //     ? "polygon(85% 50%, 60% 100%, 0% 100%, 0% 0%, 60% 0%)"
+            //     : "polygon(92% 50%, 75% 100%, 0% 100%, 15% 50%, 0% 0%, 75% 0%)";
+
+
+
+
+
+
+
+            const marginLeft = index === 0 ? "" : "-ml-6 md:-ml-9";
+
+            const baseClasses =
+              `flex items-center justify-center h-full overflow-hidden whitespace-nowrap ` +
+              `text-[10px] sm:text-xs md:text-base px-3 sm:px-4 md:px-6 ` +
+              `truncate ${marginLeft}`;
+
+            // Last item or no link → plain white box
+            if (isLast || !item.link) {
+              return (
+                <div
+                  key={index}
+                  className={baseClasses}
+                  style={{
+                    backgroundColor: bg,
+                    color: textColor,
+                    clipPath,
+                    width: "180px",
+                  }}
+                >
+                  <span className="truncate px-1">{item.label}</span>
+                </div>
+              );
+            }
+
+            return (
               <Link
-                href={middleLink}
-                className="gradient-bredcumb-a  -ml-4 font-medium px-6 flex items-center justify-center  h-full w-[140px] text-[#00401A]"
+                key={index}
+                href={item.link}
+                className={`${baseClasses} gradient-bredcumb-a font-medium`}
                 style={{
-                  backgroundColor: "#3198A0",
-                  clipPath:
-                    "polygon(98.41% 50%, 75% 99.05%, 0.71% 99.05%, 17.77% 50%, 0% 0.95%, 75% 0.95%)",
+                  backgroundColor: bg,
+                  color: textColor,
+                  clipPath,
+                  width: "170px",
                 }}
               >
-                <span>  {middle}</span>
+                <span className="truncate">{item.label}</span>
               </Link>
-              :
-              <div
-                className="text-[#52B920] flex items-center justify-center h-full w-[200px] -ml-5 overflow-hidden pr-4"
-                style={{
-                  clipPath:
-                    "polygon(85.35% 50%, 75% 99.05%, 0.71% 99.05%, 12.71% 50%, 0% 0.95%, 75% 0.95%)",
-                  backgroundColor: "#ffffff",
-                }}
-              >
-                <span>{middle}</span>
-              </div>
-
-          }
-
-          {/* {middle_second && <Link
-            href={middleLink}
-            className="gradient-bredcumb-a  -ml-4 font-medium px-6 flex items-center justify-center  h-full w-[200px] text-[#00401A]"
-            style={{
-              backgroundColor: "#3198A0",
-              clipPath:
-                "polygon(98.41% 50%, 75% 99.05%, 0.71% 99.05%, 17.77% 50%, 0% 0.95%, 75% 0.95%)",
-            }}
-          >
-            <span>  {middle_second}</span>
-          </Link>} */}
-
-
-          {/* Dynamic Section */}
-          {
-            currentPage && <div
-              className="text-[#52B920] flex items-center justify-center h-full w-[255px] -ml-5 overflow-hidden pr-4"
-              style={{
-                clipPath:
-                  "polygon(85.35% 50%, 75% 99.05%, 0.71% 99.05%, 12.71% 50%, 0% 0.95%, 75% 0.95%)",
-                backgroundColor: "#ffffff",
-              }}
-            >
-              <span>{currentPage}</span>
-            </div>
-          }
-
+            );
+          })}
         </div>
       </Container>
     </div>

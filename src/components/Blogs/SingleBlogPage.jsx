@@ -14,6 +14,7 @@ import axiosInstance from '@/helper/axiosInstance'
 import SocialShare from '../Shared/SocialShare'
 import { useSelected } from '@/context/SelectedContext'
 import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
+import { useSelectedParrent } from '@/context/SelectedContextParrent'
 
 
 
@@ -21,6 +22,7 @@ import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
 
 export default function SingleBlogsPage({ homePage, settings, blog, formattedCategories }) {
     const { selected, setSelected, clearSelected } = useSelected();
+    const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
     const [blogs, setBlogs] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
@@ -76,13 +78,16 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
         <div>
 
             <div>
-                <BannerInnerPage />
+                {/* <BannerInnerPage /> */}
                 <BreadcrumbForNested
-                    homeLabel="Home"
-                    homeLink="/"
-                    middle="Blogs"
-                    middleLink="/blogs"
-                    currentPage={`${blog?.name.slice(0, 12)}...`} />
+                    items={[
+                        { label: "Home", link: "/" },
+                        { label: "Blogs", link: "/blogs" },
+                        { label: selectedParrent?.name, link: "/blogs" },
+                        { label: selected?.name, link: null },
+
+                    ]}
+                />
                 {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Blogs" /> */}
 
             </div>

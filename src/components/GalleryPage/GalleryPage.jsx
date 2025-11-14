@@ -13,11 +13,13 @@ import Pagination from "../Shared/Pagination"
 import ImageGalleryInnerPage from "./ImageGalleryInnerPage"
 import { getMetaValueByMetaName } from "@/helper/metaHelpers"
 import { useSelected } from "@/context/SelectedContext"
+import { useSelectedParrent } from "@/context/SelectedContextParrent"
 import BreadcrumbForNested from "../Shared/BreadcrumbForNested"
 
 
 export default function GalleryPage({ homePage, settings, formattedCategories }) {
-const { selected, setSelected, clearSelected } = useSelected();
+  const { selected, setSelected, clearSelected } = useSelected();
+  const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
   const [galleryDatas, setGallerydatas] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -30,9 +32,10 @@ const { selected, setSelected, clearSelected } = useSelected();
 
 
 
-  useEffect(() => {    
-         clearSelected();
-    }, [])
+  useEffect(() => {
+    clearSelected();
+    clearSelectedParrent();
+  }, [])
 
 
 
@@ -74,8 +77,16 @@ const { selected, setSelected, clearSelected } = useSelected();
     <div>
       <div>
         <BannerInnerPage />
-         <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Gallery" middleLink="/gallery" currentPage={selected?.name} />
-        {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="About Us" /> */}
+        {/* <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Gallery" middleLink="/gallery" currentPage={selected?.name} /> */}
+        <BreadcrumbForNested
+          items={[
+            { label: "Home", link: "/" },
+            { label: "Gallery", link: "/gallery" },
+            { label: selectedParrent?.name, link: "/gallery" },
+            { label: selected?.name, link: null },
+
+          ]}
+        />
       </div>
 
       <Container className="flex gap-6 my-6">
@@ -88,7 +99,7 @@ const { selected, setSelected, clearSelected } = useSelected();
           <div
           >
 
-            <ImageGalleryInnerPage loading={loading} gallery={galleryDatas}  />
+            <ImageGalleryInnerPage loading={loading} gallery={galleryDatas} />
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}

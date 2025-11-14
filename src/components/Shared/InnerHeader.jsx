@@ -3,8 +3,8 @@ import React from 'react'
 
 export default function InnerHeader({ title, image }) {
   return (
-    <div className="bg-[#52B920] h-[65px] md:h-[85px] text-white px-4 py-4 rounded-lg flex justify-between items-center shadow-md">
-      <h1 className="text-3xl  md:text-4xl">{title}</h1>
+    <div className="bg-[#52B920] h-auto sm:h-[65px] md:h-[85px] text-white px-4 py-4 rounded-lg flex justify-between items-center shadow-md">
+      <h1 className="text-2xl sm:text-3xl  md:text-4xl">{title}</h1>
       <div className="hidden sm:flex justify-end items-center">
         <Image
           src={image}

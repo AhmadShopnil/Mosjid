@@ -59,7 +59,7 @@ const directory_categories = await getCategories("directory_categories")
             src={icon}
             alt="Book Icon"
             width={60}
-            height={60}
+            height={59}
             className=""
           />
 

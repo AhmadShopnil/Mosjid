@@ -8,6 +8,7 @@ import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
 import Sidebar from '@/components/Shared/Sidebar'
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
+import { useSelectedParrent } from '@/context/SelectedContextParrent'
 import { sideBarCategories } from '@/data/sidebar'
 import { getCategories, getDirectory, getDirectoryByCat, getPage, getSettings } from '@/helper/actions'
 import { getImageUrl } from '@/helper/getImageUrl'
@@ -20,6 +21,8 @@ import React from 'react'
 
 export default async function page({ params }) {
   const { slug } = await params;
+  //  const { selected, setSelected, clearSelected } = useSelected();
+    // const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
 
   const cat = await getCategories("directory_categories")
   const prefecture = await getCategories("prefecture")

@@ -12,6 +12,7 @@ import MakeDonationInner from './MakeDonationInner'
 import { getImageUrl } from '@/helper/getImageUrl'
 import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
 import { useSelected } from '@/context/SelectedContext'
+import { useSelectedParrent } from '@/context/SelectedContextParrent'
 
 
 
@@ -19,7 +20,8 @@ import { useSelected } from '@/context/SelectedContext'
 
 
 export default function DonationPage({ homePage, settings, formattedCategories }) {
-  const { selected, setSelected, clearSelected } = useSelected();
+    const { selected, setSelected, clearSelected } = useSelected();
+    const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
   const [donations, setDonations] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -40,6 +42,7 @@ export default function DonationPage({ homePage, settings, formattedCategories }
 
  useEffect(() => {    
          clearSelected();
+         clearSelectedParrent();
     }, [])
 
 
@@ -81,8 +84,16 @@ export default function DonationPage({ homePage, settings, formattedCategories }
 
       <div>
         <BannerInnerPage />
-        <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Donation" middleLink="/donation" currentPage={selected?.name} />
-        {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Donations" /> */}
+        {/* <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Donation" middleLink="/donation" currentPage={selected?.name} /> */}
+         <BreadcrumbForNested
+                  items={[
+                    { label: "Home", link: "/" },
+                    { label: "Donation", link: "/donation" },
+                    { label: selectedParrent?.name, link: "/donation"  },
+                    { label: selected?.name, link: null },
+        
+                  ]}
+                />
 
       </div>
 

@@ -1,6 +1,7 @@
 
 
 import EventsPage from '@/components/Events/EventsPage';
+import BannerInnerPageServerSide from '@/components/Shared/BannerInnerPageServerSide';
 import { getCategories, getPage, getSettings } from '@/helper/actions'
 
 import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
@@ -20,7 +21,7 @@ export default async function page() {
 
   return (
     <div>
-
+<BannerInnerPageServerSide />
       <EventsPage
         settings={settings}
         homePage={homePage}

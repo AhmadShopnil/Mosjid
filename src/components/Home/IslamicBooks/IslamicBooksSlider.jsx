@@ -68,7 +68,7 @@ export default function IslamicBooksSlider({ books, islamic_books_ExtraData }) {
                   // src="/images/isamicBooks/bookIcon.png"
                   src={icon}
                   alt="Book Icon"
-                  width={60}
+                  width={62}
                   height={64}
                 />
 

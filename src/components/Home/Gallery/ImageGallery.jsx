@@ -66,8 +66,8 @@ export default function ImageGallery({
             // src="/images/gallery/icon2.png"
             src={icon}
             alt="Book Icon"
-            width={60}
-            height={60}
+            width={70}
+            height={64}
             className=""
           />
 

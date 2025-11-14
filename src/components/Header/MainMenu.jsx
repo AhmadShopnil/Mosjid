@@ -20,7 +20,8 @@ export default function MainMenu({ settings, menuItems }) {
 
   const toggleDrawer = () => setIsOpen(!isOpen);
   const logo_path = getMediaLinkByMetaName(settings, "footer_logo");
-  const logo_url = `${BASE_URL}${logo_path}`;
+  const masjid_image = getMediaLinkByMetaName(settings, "masjid_image");
+  const logo_url = `${BASE_URL}${masjid_image}`;
 
 
   return (

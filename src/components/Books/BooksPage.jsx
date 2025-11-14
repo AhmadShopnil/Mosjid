@@ -13,6 +13,7 @@ import { splitBySlash } from '@/helper/splitBySpace'
 import { getImageUrl } from '@/helper/getImageUrl'
 import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
 import { useSelected } from '@/context/SelectedContext'
+import { useSelectedParrent } from '@/context/SelectedContextParrent'
 
 
 
@@ -21,7 +22,8 @@ import { useSelected } from '@/context/SelectedContext'
 
 
 export default function BooksPage({ homePage, settings, formattedCategories }) {
-    const { selected, setSelected, clearSelected } = useSelected();
+      const { selected, setSelected, clearSelected } = useSelected();
+    const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
   const [books, setBooks] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -78,6 +80,7 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
 
   useEffect(() => {
          clearSelected();
+         clearSelectedParrent();
     }, [])
 
   // console.log("books", books)
@@ -89,8 +92,16 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
 
       <div>
         <BannerInnerPage />
-        <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Books" middleLink="/books" currentPage={selected?.name} />
-        {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="islamic Books" /> */}
+        {/* <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Books" middleLink="/books" currentPage={selected?.name} /> */}
+         <BreadcrumbForNested
+                          items={[
+                              { label: "Home", link: "/" },
+                              { label: "Books", link: "/books" },
+                              { label: selectedParrent?.name, link:  "/books" },
+                              { label: selected?.name, link: null },
+      
+                          ]}
+                      />
 
       </div>
 
