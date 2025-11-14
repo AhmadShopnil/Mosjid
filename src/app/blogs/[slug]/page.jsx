@@ -9,6 +9,7 @@ import { getBlogs, getCategories, getPage, getSettings, getSingleBlog } from '@/
 
 import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
 import SingleBlogsPage from '@/components/Blogs/SingleBlogPage'
+import BannerInnerPageServerSide from '@/components/Shared/BannerInnerPageServerSide'
 
 
 
@@ -30,7 +31,7 @@ export default async function BlogsPage({ params }) {
 
   return (
     <div>
-
+<BannerInnerPageServerSide />
       <SingleBlogsPage
         settings={settings}
         homePage={homePage}

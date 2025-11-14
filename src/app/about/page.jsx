@@ -1,6 +1,7 @@
 
 
 import AboutInnerPage from '@/components/About/AboutInnerPage';
+import BannerInnerPageServerSide from '@/components/Shared/BannerInnerPageServerSide';
 import { getCategories, getPage, getSettings } from '@/helper/actions'
 import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
 import React from 'react'
@@ -14,12 +15,12 @@ export default async function page() {
 
   const formattedCategories = transformNoticeCategories(cat);
 
- 
+
 
 
   return (
     <div>
-
+      <BannerInnerPageServerSide />
       <AboutInnerPage
         settings={settings}
         homePage={homePage}

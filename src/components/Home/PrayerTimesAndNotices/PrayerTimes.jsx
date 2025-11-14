@@ -70,8 +70,8 @@ const icon = getImageUrl(prayer_time?.background_media)
             // src="/images/prayertimes/icon2.png"
             src={icon}
             alt="Book Icon"
-            width={55}
-            height={55}
+            width={60}
+            height={73}
             className=""
           />
 

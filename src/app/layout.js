@@ -6,6 +6,7 @@ import ScrollToTopButton from "@/components/Shared/ScrollToTopButton";
 import { Toaster } from "react-hot-toast";
 import DevelopmentBanner from "@/components/Header/DevelopmentBanner";
 import { SelectedProvider } from "@/context/SelectedContext";
+import { SelectedParrentProvider } from "@/context/SelectedContextParrent";
 
 // Geist Sans
 const geistSans = Geist({
@@ -38,13 +39,17 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} antialiased`}
       >
-         <SelectedProvider> 
+        <SelectedParrentProvider>
+       <SelectedProvider> 
         <DevelopmentBanner/>
         <Header/>
         {children}
         <Footer />
         <ScrollToTopButton />
-        <Toaster position="top-right" /></SelectedProvider>
+        <Toaster position="top-right" />
+        </SelectedProvider>
+        </SelectedParrentProvider>
+  
        
       </body>
     </html>

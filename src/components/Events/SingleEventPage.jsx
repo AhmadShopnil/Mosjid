@@ -12,12 +12,16 @@ import SingleEventDetailsCard from './SingleEventDetailsCard'
 import RelatedItemsSection from './RelatedEventsSections'
 import axiosInstance from '@/helper/axiosInstance'
 import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
+import { useSelectedParrent } from '@/context/SelectedContextParrent'
+import { useSelected } from '@/context/SelectedContext'
 
 
 
 
 
 export default function SingleEventPage({ homePage, settings, event, formattedCategories }) {
+    const { selected, setSelected, clearSelected } = useSelected();
+    const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
     const [events, setEvents] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
@@ -71,13 +75,16 @@ export default function SingleEventPage({ homePage, settings, event, formattedCa
         <div>
 
             <div>
-                <BannerInnerPage />
+                {/* <BannerInnerPage /> */}
                 <BreadcrumbForNested
-                    homeLabel="Home"
-                    homeLink="/"
-                    middle="Events"
-                    middleLink="/events"
-                    currentPage={`${event?.name.slice(0, 12)}...`} />
+                    items={[
+                        { label: "Home", link: "/" },
+                        { label: "Events", link: "/events" },
+                        { label: selectedParrent?.name, link: "/events" },
+                        { label: selected?.name, link: null },
+
+                    ]}
+                />
                 {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Events" /> */}
 
             </div>

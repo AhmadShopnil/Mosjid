@@ -11,9 +11,11 @@ import { getImageUrl } from "@/helper/getImageUrl";
 import { transformNoticeCategories } from "@/helper/transformNoticeCategories";
 import DirectoryPage from "./Directorypage";
 import axiosInstance from "@/helper/axiosInstance";
+import BreadcrumbForNested from "../Shared/BreadcrumbForNested";
 
 
 export default function DirectoryPageClient({ params, settings, homePage, slug, filterData }) {
+
     const [selectedDirectoryLocation, setSelectedDirectoryLocation] = useState(null);
     const [selected, setSelected] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -49,7 +51,7 @@ export default function DirectoryPageClient({ params, settings, homePage, slug, 
             setLoading(true)
 
             let url = `/posts?term_type=directory`
-          
+
             if (slug) {
                 url = `/posts?term_type=directory&category_id=${slug}`
             }
@@ -73,37 +75,37 @@ export default function DirectoryPageClient({ params, settings, homePage, slug, 
         }
         fetchData()
 
-    }, [ slug])
+    }, [slug])
 
 
     const fetchData = async () => {
 
-            setLoading(true)
+        setLoading(true)
 
-            let url = `/posts?term_type=directory`
-          
-            if (slug) {
-                url = `/posts?term_type=directory&category_id=${slug}`
-            }
-            if (selected) {
-                url = `/posts?term_type=directory&category_id=${selected}`
-            }
+        let url = `/posts?term_type=directory`
 
-            try {
-                const response = await axiosInstance.get(url)
-                const data = response?.data?.data || []
-                const meta = response?.data?.meta || {}
-
-                setDirectories(data)
-
-            } catch (err) {
-                console.error("Error fetching directory:", err)
-                setError(err.message || "Failed to fetch directory")
-            } finally {
-                setLoading(false)
-            }
+        if (slug) {
+            url = `/posts?term_type=directory&category_id=${slug}`
         }
-        
+        if (selected) {
+            url = `/posts?term_type=directory&category_id=${selected}`
+        }
+
+        try {
+            const response = await axiosInstance.get(url)
+            const data = response?.data?.data || []
+            const meta = response?.data?.meta || {}
+
+            setDirectories(data)
+
+        } catch (err) {
+            console.error("Error fetching directory:", err)
+            setError(err.message || "Failed to fetch directory")
+        } finally {
+            setLoading(false)
+        }
+    }
+
 
 
 
@@ -114,17 +116,26 @@ export default function DirectoryPageClient({ params, settings, homePage, slug, 
     }
 
 
-    const getData=()=>{
+    const getData = () => {
         //  console.log("from get data skug",selected)
         // console.log("from get data selected",selected)
-       fetchData() ;
+        fetchData();
     }
 
     return (
         <div>
             <div>
                 <BannerInnerPage />
-                <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Directory" />
+                {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Directory" /> */}
+                <BreadcrumbForNested
+                    items={[
+                        { label: "Home", link: "/" },
+                        { label: "Directory", link: "/directory/19" },
+                        // { label: selectedParrent?.name, link: null },
+                        // { label: selected?.name, link: null },
+
+                    ]}
+                />
             </div>
 
 
@@ -142,10 +153,10 @@ export default function DirectoryPageClient({ params, settings, homePage, slug, 
                             <DirectorySearchInnerPage
                                 filterData={filterData}
                                 setSelected={handleSetSelectByLocations}
-                                selected={selectedDirectoryLocation} 
+                                selected={selectedDirectoryLocation}
                                 getData={getData}
-                                
-                                />
+
+                            />
                         </div>
                     </div>
                     <DirectoryPage directories={directories} loading={loading} />

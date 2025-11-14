@@ -1,42 +1,24 @@
-"use client";
 
-import axiosInstance from "@/helper/axiosInstance";
-import React, { useEffect, useState } from "react";
-import SkeletonBanner from "./Skeleton/SkeletonBanner";
+
+
+
 import { getImageFromExtraFields, getMetaValueFromExtraFields } from "@/helper/metaHelpers";
 import Container from "./Container";
 import Image from "next/image";
+import { getBannerInnerPage } from "@/helper/actions";
 
-export default function BannerInnerPage() {
-  const [banner, setBanner] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export default async function BannerInnerPageServerSide() {
 
-  useEffect(() => {
-    const fetchBanner = async () => {
-      try {
-        const response = await axiosInstance.get("/posts?term_type=banner_inner_page");
-        const data = response?.data?.data?.[0];
-        setBanner(data || null);
-      } catch (err) {
-        console.error("Error fetching banner:", err);
-        setError("Failed to load banner");
-      } finally {
-        setLoading(false);
-      }
-    };
+  const banners = await getBannerInnerPage()
 
-    fetchBanner();
-  }, []);
-
-  if (loading) return null;
-  if (error || !banner?.featured_image) return null;
-
+  const banner = banners[0] || {};
   const left_logo = getImageFromExtraFields(banner, "left_logo");
   const right_logo = getImageFromExtraFields(banner, "right_logo");
   const center_top_image = getImageFromExtraFields(banner, "center_top_image");
   const center_bottom_image = getImageFromExtraFields(banner, "center_bottom_image");
-   const center_bottom_title = getMetaValueFromExtraFields(banner, "center_bottom_title");
+  const center_bottom_title = getMetaValueFromExtraFields(banner, "center_bottom_title");
+
+  console.log("inner banner", banner?.featured_image)
 
   return (
     <div

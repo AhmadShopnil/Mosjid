@@ -2,15 +2,17 @@
 import DirectoryPage from '@/components/Directory/Directorypage'
 import DirectorySearchInnerPage from '@/components/Directory/DirectorySearchInnerPage'
 import BannerInnerPage from '@/components/Shared/BannerInnerPage'
-import Breadcrumb from '@/components/Shared/Breadcrumb'
+import BreadcrumbForNested from '@/components/Shared/BreadcrumbForNested'
+
 import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
-import Sidebar from '@/components/Shared/Sidebar'
+
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
-import { sideBarCategories } from '@/data/sidebar'
+
+
 import { getCategories, getDirectory, getPage, getSettings } from '@/helper/actions'
 import { getImageUrl } from '@/helper/getImageUrl'
-import { splitBySlash } from '@/helper/splitBySpace'
+
 import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
 
 import React from 'react'
@@ -21,13 +23,13 @@ import React from 'react'
 
 export default async function page({ params }) {
   const { slug } = await params;
-
-
-  
  
-    const prefecture = await getCategories("prefecture")
-    const city = await getCategories("city")
-    const district = await getCategories("district")
+
+
+
+  const prefecture = await getCategories("prefecture")
+  const city = await getCategories("city")
+  const district = await getCategories("district")
 
   const cat = await getCategories("directory_categories")
   const settings = await getSettings()
@@ -40,9 +42,9 @@ export default async function page({ params }) {
   const sections = homePage?.sections_on_api;
   const directory_extradata = sections.find((s) => s.title_slug === "directory");
   const arabic_image = getImageUrl(directory_extradata?.image_media)
-  
 
- const filterData = { city, prefecture, district,cat }
+
+  const filterData = { city, prefecture, district, cat }
   // console.log("directory",{slug,directories})
 
   return (
@@ -50,7 +52,16 @@ export default async function page({ params }) {
 
       <div>
         <BannerInnerPage />
-        <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Directory" />
+        {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Directory" /> */}
+        <BreadcrumbForNested
+          items={[
+            { label: "Home", link: "/" },
+            { label: "Directory", link: "/directory/19" },
+            // { label: selectedParrent?.name, link: null` },
+            // { label: selected?.name, link: null },
+
+          ]}
+        />
       </div>
 
 
@@ -58,14 +69,14 @@ export default async function page({ params }) {
         {/* sidebar */}
 
         <SidebarMainDrawer categories={formattedCategories} setSelectedCat={null} directoryNavigate={true} dataForContact={`directories`} />
-      
+
         {/* main content */}
         <div className=' w-full space-y-6'>
           {/* Header */}
           <InnerHeader title={directory_extradata?.sub_title} image={arabic_image} />
           <div className='w-full'>
             <div className='w-full lg:w-[80%] py-3'>
-              <DirectorySearchInnerPage  filterData={filterData}/>
+              <DirectorySearchInnerPage filterData={filterData} />
             </div>
           </div>
           <DirectoryPage directories={directories} />

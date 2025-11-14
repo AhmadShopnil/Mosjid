@@ -48,7 +48,7 @@ export default function DictionaryPage() {
 
             {/* Social Icons */}
             <div className="py-4 flex justify-end items-center">
-                  <SocialShare/>
+                <SocialShare />
             </div>
 
             {/* Second Section - Details Form */}
@@ -126,7 +126,7 @@ export default function DictionaryPage() {
                             </div>
                         </div>
 
-                    
+
 
                     </div>
                 </div>

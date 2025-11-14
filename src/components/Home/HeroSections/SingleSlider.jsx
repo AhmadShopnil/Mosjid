@@ -16,7 +16,8 @@ export default function SingleSlider({ slide, read_more_button }) {
             {/* Full-width Banner Image */}
             <div className="absolute inset-0 w-full h-full">
                 <Image
-                    src={"/images/bannerNew/bannerblank.png"}
+                    // src={"/images/bannerNew/bannerblank.png"}
+                    src={slide?.featured_image}
                     alt={slide?.name || "Hero Banner"}
                     fill
                     priority
@@ -32,8 +33,8 @@ export default function SingleSlider({ slide, read_more_button }) {
                         src={logo}
                         // src="/images/bannerNew/logo2.png"
                         alt='img'
-                        width={450}
-                        height={450}
+                        width={350}
+                        height={400}
                         className="object-contain transition-all duration-300"
                     />
                 </div>

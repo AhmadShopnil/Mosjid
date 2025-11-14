@@ -12,6 +12,7 @@ import Events from './Events'
 import { getImageUrl } from '@/helper/getImageUrl'
 import { useSelected } from '@/context/SelectedContext'
 import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
+import { useSelectedParrent } from '@/context/SelectedContextParrent'
 
 
 
@@ -142,7 +143,8 @@ const categories2 = [
 
 
 export default function EventsPage({ homePage, settings, formattedCategories }) {
-   const { selected, setSelected, clearSelected } = useSelected();
+  const { selected, setSelected, clearSelected } = useSelected();
+  const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
   const [events, setEvents] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -153,8 +155,9 @@ export default function EventsPage({ homePage, settings, formattedCategories }) 
   const perPage = 16
 
   useEffect(() => {
-         clearSelected();
-    }, [])
+    clearSelected();
+    clearSelectedParrent();
+  }, [])
 
 
   // fetching data
@@ -189,9 +192,9 @@ export default function EventsPage({ homePage, settings, formattedCategories }) 
 
 
   // console.log("blogs", blogs)
-    const sections = homePage?.sections_on_api;
-    const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
-    const arabic = getImageUrl(blog_events_ExtraData?.image_media)
+  const sections = homePage?.sections_on_api;
+  const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
+  const arabic = getImageUrl(blog_events_ExtraData?.image_media)
 
 
 
@@ -199,8 +202,16 @@ export default function EventsPage({ homePage, settings, formattedCategories }) 
     <div>
 
       <div>
-        <BannerInnerPage />
-        <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Events" middleLink="/events" currentPage={selected?.name} />
+        {/* <BannerInnerPage /> */}
+        <BreadcrumbForNested
+          items={[
+            { label: "Home", link: "/" },
+            { label: "Events", link: "/events" },
+            { label: selectedParrent?.name, link: "/events" },
+            { label: selected?.name, link: null },
+
+          ]}
+        />
         {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Events" /> */}
 
       </div>
@@ -212,7 +223,7 @@ export default function EventsPage({ homePage, settings, formattedCategories }) 
 
         {/* main content */}
         <div className=' w-full space-y-6'>
-            <InnerHeader title={blog_events_ExtraData?.sub_title} image={arabic} />
+          <InnerHeader title={blog_events_ExtraData?.sub_title} image={arabic} />
 
           <div>
             <Events

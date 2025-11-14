@@ -12,10 +12,12 @@ import { DuaCardInnerPage } from "./DuaCardInnerPage"
 import { splitBySlash } from "@/helper/splitBySpace"
 import { getImageUrl } from "@/helper/getImageUrl"
 import { useSelected } from "@/context/SelectedContext"
+import { useSelectedParrent } from "@/context/SelectedContextParrent"
 import BreadcrumbForNested from "../Shared/BreadcrumbForNested"
 
 export default function DuaPageInner({ homePage, settings, formattedCategories }) {
- const { selected, setSelected, clearSelected } = useSelected();
+   const { selected, setSelected, clearSelected } = useSelected();
+    const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
     const [duas, setDuas] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
@@ -68,8 +70,16 @@ export default function DuaPageInner({ homePage, settings, formattedCategories }
         <div>
             <div>
                 <BannerInnerPage />
-                 <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Duas" middleLink="/dua" currentPage={selected?.name} />
-                {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Duas" /> */}
+                 {/* <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Duas" middleLink="/dua" currentPage={selected?.name} /> */}
+                <BreadcrumbForNested
+                         items={[
+                           { label: "Home", link: "/" },
+                           { label: "Duas", link: "/dua" },
+                           { label: selectedParrent?.name, link: null },
+                           { label: selected?.name, link: null },
+               
+                         ]}
+                       />
             </div>
 
             <Container className="flex gap-6 my-6">
