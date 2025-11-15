@@ -31,7 +31,8 @@ export default function PrayerTimesAndNoticesClient({
             />
           </div>
 
-          {/* Fade Left Animation */}
+          {/* Fade  Animation */}
+
           <div
             data-aos="fade-up"
             className="w-full xl:w-[38%]"
