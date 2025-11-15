@@ -25,9 +25,9 @@ export default function SingleSlider({ slide, read_more_button }) {
                 />
             </div>
 
-            <Container className="relative bg-green-400">
+            <Container className="relative ">
                 <div
-                    className="absolute right-0 top-8   "
+                    className="absolute right-0 top-14   "
                 >
                     <Image
                         src={logo}

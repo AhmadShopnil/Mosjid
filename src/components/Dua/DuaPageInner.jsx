@@ -84,7 +84,7 @@ export default function DuaPageInner({ homePage, settings, formattedCategories }
 
             <Container className="flex gap-6 my-6">
                 {/* sidebar */}
-                <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} />
+                <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={"Duas"} />
 
                 {/* main content */}
                 <div className="w-full space-y-6">

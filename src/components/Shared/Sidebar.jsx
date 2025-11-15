@@ -183,7 +183,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
                 {category?.hasSubItems ? (
                   <ChevronDown
                     size={24}
-                    className={`flex-shrink-0 transition-transform ${(isExpanded || category.id == hovered || category?.id == selected?.id)
+                    className={`flex-shrink-0 transition-transform ${(isExpanded )
                       ? "rotate-180 text-white"
                       : "text-[#141B34] group-hover:text-white"
                       }`}

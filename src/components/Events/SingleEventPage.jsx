@@ -81,7 +81,8 @@ export default function SingleEventPage({ homePage, settings, event, formattedCa
                         { label: "Home", link: "/" },
                         { label: "Events", link: "/events" },
                         { label: selectedParrent?.name, link: "/events" },
-                        { label: selected?.name, link: null },
+                        { label: selected?.name, link:" /events" },
+                        { label: event?.name, link: null },
 
                     ]}
                 />

@@ -20,7 +20,7 @@ export default async function page() {
 
   return (
     <div>
-<BannerInnerPageServerSide />
+      <BannerInnerPageServerSide />
       <BlogsPage
         settings={settings}
         homePage={homePage}

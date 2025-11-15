@@ -31,13 +31,13 @@ export default async function BlogsPage({ params }) {
 
   return (
     <div>
-<BannerInnerPageServerSide />
+      <BannerInnerPageServerSide />
       <SingleBlogsPage
         settings={settings}
         homePage={homePage}
         formattedCategories={formattedCategories}
         blog={blog} />
-        
+
     </div>
   )
 }

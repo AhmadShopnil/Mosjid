@@ -22,9 +22,10 @@ export default function BreadcrumbForNested({ items = [] }) {
   return (
     <div className="w-full h-[40px] md:h-[60px] flex items-center gradient-bredcumb text-xs md:text-lg">
       <Container className="w-full h-full">
-        <div className="flex h-full overflow-x-auto no-scrollbar gap-2">
+        <div className="flex h-full overflow-x-auto no-scrollbar gap-1.5">
           {filteredItems.map((item, index) => {
             const isLast = index === filteredItems.length - 1;
+            const isFast = index === 0;
 
             const bg = isLast ? "#ffffff" : "#3198A0";
             const textColor = isLast ? "#52B920" : "#00401A";
@@ -40,12 +41,7 @@ export default function BreadcrumbForNested({ items = [] }) {
             //     : "polygon(92% 50%, 75% 100%, 0% 100%, 15% 50%, 0% 0%, 75% 0%)";
 
 
-
-
-
-
-
-            const marginLeft = index === 0 ? "" : "-ml-6 md:-ml-9";
+            const marginLeft = index === 0 ? "" : "-ml-6 md:-ml-10";
 
             const baseClasses =
               `flex items-center justify-center h-full overflow-hidden whitespace-nowrap ` +
@@ -62,11 +58,28 @@ export default function BreadcrumbForNested({ items = [] }) {
                     backgroundColor: bg,
                     color: textColor,
                     clipPath,
-                    width: "180px",
+                    width: "230px",
                   }}
                 >
-                  <span className="truncate px-1">{item.label}</span>
+                  <span className="truncate px-3">{item.label}</span>
                 </div>
+              );
+            }
+             if (isFast ) {
+              return (
+                 <Link
+                key={index}
+                href={item.link}
+                className={`${baseClasses} gradient-bredcumb-a font-medium mr-1`}
+                style={{
+                  backgroundColor: bg,
+                  color: textColor,
+                  clipPath,
+                  width: "160px",
+                }}
+              >
+                <span className="truncate px-3">{item.label}</span>
+              </Link>
               );
             }
 
@@ -79,10 +92,10 @@ export default function BreadcrumbForNested({ items = [] }) {
                   backgroundColor: bg,
                   color: textColor,
                   clipPath,
-                  width: "170px",
+                  width: "190px",
                 }}
               >
-                <span className="truncate">{item.label}</span>
+                <span className="truncate px-3">{item.label}</span>
               </Link>
             );
           })}
