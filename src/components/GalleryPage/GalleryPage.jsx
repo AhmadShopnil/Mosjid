@@ -71,7 +71,7 @@ export default function GalleryPage({ homePage, settings, formattedCategories })
   const img_gallery_heading = sections.find((s) => s.title_slug === "gallery");
 
 
-
+const requestData= selected?.name  ? `Gallery of ${selected?.name} ` :"Gallery" 
 
   return (
     <div>
@@ -91,7 +91,7 @@ export default function GalleryPage({ homePage, settings, formattedCategories })
 
       <Container className="flex gap-6 my-6">
         {/* sidebar */}
-        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} />
+        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat}  dataForContact={requestData}/>
 
         {/* main content */}
         <div className="w-full space-y-6">

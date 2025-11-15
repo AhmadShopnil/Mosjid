@@ -84,7 +84,8 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
                         { label: "Home", link: "/" },
                         { label: "Blogs", link: "/blogs" },
                         { label: selectedParrent?.name, link: "/blogs" },
-                        { label: selected?.name, link: null },
+                        { label: selected?.name, link: "/" },
+                        { label: blog?.name, link: null },
 
                     ]}
                 />

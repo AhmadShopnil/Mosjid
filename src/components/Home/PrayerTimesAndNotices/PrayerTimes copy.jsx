@@ -1,6 +1,3 @@
-"use client"
-
-
 import React from "react";
 import { PrayerTimesIcon } from "../../Icons/QuickLinks";
 import { Sun, Moon, Star } from "lucide-react";
@@ -16,20 +13,20 @@ import ProhibitedTimeMobile from "./ProhibitedTimeMobile";
 
 
 
-export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, homePage }) {
+export default async function PrayerTimes({ settings, prayerTimes,ProhibitedTime, homePage }) {
   // const settings = await getSettings()
   const view_more = getMetaValueByMetaName(settings, "view_more") || "";
-  // const prayerTimes = await getPryerTime();
-  // const ProhibitedTime = await getProhibitedTime();
+  const prayerTimes = await getPryerTime();
+  const ProhibitedTime = await getProhibitedTime();
 
   // get notice extra data from home page section management
-  // const homePage = await getPage("home-sections-heading-management")
+  const homePage = await getPage("home-sections-heading-management")
   const sections = homePage?.sections_on_api;
   const prayer_time = sections.find((s) => s.title_slug === "prayer_time");
   const heading_part_1 = splitBySlash(prayer_time?.title)[0]
   const heading_part_2 = splitBySlash(prayer_time?.title)[1]
   const image = getImageUrl(prayer_time?.image_media)
-  const icon = getImageUrl(prayer_time?.background_media)
+const icon = getImageUrl(prayer_time?.background_media)
 
 
 
@@ -37,7 +34,7 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
   const name_of_salat = prayer_time?.custom_information.find((item) => item.label === "name_of_salat")
   const wakt_start = prayer_time?.custom_information.find((item) => item.label === "wakt_start")
   const wakt_end = prayer_time?.custom_information.find((item) => item.label === "wakt_end")
-
+  // const prayer_times_title_2 = prayer_time?.custom_information.find((item) => item.label === "prayer_times_title_2")
 
   // console.log("custom_information prayer time",prayer_time?.custom_information)
   // console.log("prayer times",heading_part_2)
