@@ -72,7 +72,8 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
     // console.log("releted blogs",blogs)
 
 
-
+    // const requesData={blog?.name} blog 
+    const requestData = blog?.name ? `blog of ${blog?.name} ` : "Blog"
 
     return (
         <div>
@@ -97,7 +98,7 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
             <Container className=''>
                 <div className='flex gap-6 my-6'>
                     {/* sidebar */}
-                    <SidebarMainDrawer categories={formattedCategories} isNavigate={"blogs"} setSelectedCat={setSelectedCat} dataForContact={`${blog?.name} blog`} />
+                    <SidebarMainDrawer categories={formattedCategories} isNavigate={"blogs"} setSelectedCat={setSelectedCat} dataForContact={requestData} />
 
 
                     {/* main content */}

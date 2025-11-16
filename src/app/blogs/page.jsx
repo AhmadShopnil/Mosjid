@@ -2,7 +2,6 @@
 import BlogsPage from '@/components/Blogs/BlogsPage';
 import BannerInnerPageServerSide from '@/components/Shared/BannerInnerPageServerSide';
 import { getCategories, getPage, getSettings } from '@/helper/actions'
-
 import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
 import React from 'react'
 

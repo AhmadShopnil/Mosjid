@@ -1,7 +1,6 @@
 
 
 import PrayerTimesInnerPage from '@/components/PrayerTimes/PrayerTimesInnerPage'
-import PrayerTimes from '@/components/PrayerTimes/PrayerTimesInnerPage'
 import BannerInnerPage from '@/components/Shared/BannerInnerPage'
 import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'

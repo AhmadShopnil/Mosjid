@@ -1,8 +1,4 @@
 
-import BannerInnerPage from '@/components/Shared/BannerInnerPage'
-import Breadcrumb from '@/components/Shared/Breadcrumb'
-import Container from '@/components/Shared/Container'
-import InnerHeader from '@/components/Shared/InnerHeader'
 import React from 'react'
 
 import { getBlogs, getCategories, getPage, getSettings, getSingleBlog } from '@/helper/actions'
