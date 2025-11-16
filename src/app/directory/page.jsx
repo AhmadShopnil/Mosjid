@@ -3,37 +3,27 @@ import DirectoryPage from '@/components/Directory/Directorypage'
 import DirectorySearchInnerPage from '@/components/Directory/DirectorySearchInnerPage'
 import BannerInnerPage from '@/components/Shared/BannerInnerPage'
 import BreadcrumbForNested from '@/components/Shared/BreadcrumbForNested'
-
 import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
-
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
-
-
 import { getCategories, getDirectory, getPage, getSettings } from '@/helper/actions'
 import { getImageUrl } from '@/helper/getImageUrl'
-
 import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
-
 import React from 'react'
 
 
 
 
 
-export default async function page({ params }) {
-  const { slug } = await params;
- 
-
-
+export default async function page() {
 
   const prefecture = await getCategories("prefecture")
   const city = await getCategories("city")
   const district = await getCategories("district")
-
   const cat = await getCategories("directory_categories")
   const settings = await getSettings()
   const homePage = await getPage("home-sections-heading-management")
+
   const formattedCategories = transformNoticeCategories(cat);
   const directories = await getDirectory()
 

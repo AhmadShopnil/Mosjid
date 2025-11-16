@@ -14,7 +14,7 @@ import axiosInstance from "@/helper/axiosInstance";
 import BreadcrumbForNested from "../Shared/BreadcrumbForNested";
 
 
-export default function DirectoryPageClient({ params, settings, homePage, slug, filterData }) {
+export default function DirectoryPageClient({  settings, homePage, slug, filterData }) {
 
     const [selectedDirectoryLocation, setSelectedDirectoryLocation] = useState(null);
     const [selected, setSelected] = useState(null);
