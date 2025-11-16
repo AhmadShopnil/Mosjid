@@ -79,13 +79,6 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
           />
 
 
-          {/* <div
-            className=""
-            dangerouslySetInnerHTML={{
-              __html: prayer_time?.sub_title,
-            }}
-          /> */}
-
           <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
             <p><span className="text-[#F7BA2A]">{heading_part_1}</span> {heading_part_2} </p>
             <p>{prayer_time?.sub_title}</p>
