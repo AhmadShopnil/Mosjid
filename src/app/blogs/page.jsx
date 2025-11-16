@@ -16,7 +16,7 @@ export default async function page() {
   const formattedCategories = transformNoticeCategories(cat);
 
 
-
+// test
   return (
     <div>
       <BannerInnerPageServerSide />
