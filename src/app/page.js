@@ -42,7 +42,7 @@ export default async function Home() {
 
      
 
-   {/* <PrayerTimesAndNotices/> */}
+   <PrayerTimesAndNotices/>
 
 
 
@@ -54,7 +54,7 @@ export default async function Home() {
       <OfferServices/>
        <DictionarySection/>
       <DirecToryDonation/>
-      <DuaSection/>
+      {/* <DuaSection/> */}
       <GallerySection/>
       <IslamicBooks/>
      </div>
