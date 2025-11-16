@@ -20,7 +20,7 @@ import GallerySection from "@/components/Home/Gallery/GallerySection";
 export default async function Home() {
 
   const fatwahs = await getFatwa();
-
+// test
   const quickLinks=await getMenus(6)
   // console.log({quickLinks})
 
@@ -39,12 +39,7 @@ export default async function Home() {
        </div>
      </div>
 
-
-     
-
    <PrayerTimesAndNotices/>
-
-
 
 
      <div
@@ -54,7 +49,7 @@ export default async function Home() {
       <OfferServices/>
        <DictionarySection/>
       <DirecToryDonation/>
-      {/* <DuaSection/> */}
+      <DuaSection/>
       <GallerySection/>
       <IslamicBooks/>
      </div>
