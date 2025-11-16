@@ -2,13 +2,11 @@
 
 import React, { useEffect, useState } from "react"
 import BannerInnerPage from '@/components/Shared/BannerInnerPage'
-import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 import axiosInstance from "@/helper/axiosInstance"
-import Image from "next/image"
-import SocialShare from "../Shared/SocialShare"
+
 import Pagination from "../Shared/Pagination"
 import ImageGalleryInnerPage from "./ImageGalleryInnerPage"
 import { getMetaValueByMetaName } from "@/helper/metaHelpers"

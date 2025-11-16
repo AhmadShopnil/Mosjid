@@ -1,7 +1,6 @@
 
 
 import BooksPage from '@/components/Books/BooksPage';
-import EventsPage from '@/components/Events/EventsPage';
 import { getCategories, getPage, getSettings } from '@/helper/actions'
 
 import { transformNoticeCategories } from '@/helper/transformNoticeCategories'

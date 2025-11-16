@@ -1,7 +1,4 @@
 
-
-
-
 import { getImageFromExtraFields, getMetaValueFromExtraFields } from "@/helper/metaHelpers";
 import Container from "./Container";
 import Image from "next/image";
@@ -18,7 +15,7 @@ export default async function BannerInnerPageServerSide() {
   const center_bottom_image = getImageFromExtraFields(banner, "center_bottom_image");
   const center_bottom_title = getMetaValueFromExtraFields(banner, "center_bottom_title");
 
-  console.log("inner banner", banner?.featured_image)
+  // console.log("inner banner", banner?.featured_image)
 
   return (
     <div

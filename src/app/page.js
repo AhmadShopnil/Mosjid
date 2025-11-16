@@ -9,7 +9,7 @@ import DirecToryDonation from "@/components/Home/Directory_Donation/DirecToryDon
 
 import IslamicBooks from "@/components/Home/IslamicBooks/IslamicBooks";
 import Fatwah from "@/components/Home/Fatwah/Fatwah";
-import PrayerTimesAndNotices from "@/components/Home/PrayerTimesAndNotices/PrayerTimesAndNotices";
+
 import OfferServices from "@/components/Home/OfferServices/OfferServices";
 import { getFatwa, getMenus } from "@/helper/actions";
 import HeroMain from "@/components/Home/HeroSections/HeroMain";
@@ -42,7 +42,7 @@ export default async function Home() {
 
      
 
-   <PrayerTimesAndNotices/>
+   {/* <PrayerTimesAndNotices/> */}
 
 
 
@@ -63,12 +63,7 @@ export default async function Home() {
       </div>
       
       <IslamicBlogEvents/>
-{/* 
-    <div>
-      <button>
-        Up
-      </button>
-    </div> */}
+
     </main>
   );
 }

@@ -21,7 +21,7 @@ export default async function page() {
 
   return (
     <div>
-<BannerInnerPageServerSide />
+      <BannerInnerPageServerSide />
       <EventsPage
         settings={settings}
         homePage={homePage}
