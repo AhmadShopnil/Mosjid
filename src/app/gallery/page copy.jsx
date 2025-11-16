@@ -1,15 +1,10 @@
 
-
-import SubmitRequest from '@/components/Fatwah/SubmitRequest'
 import GalleryPage from '@/components/GalleryPage/GalleryPage'
-
 import BannerInnerPage from '@/components/Shared/BannerInnerPage'
 import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
-import Sidebar from '@/components/Shared/Sidebar'
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
-import { sideBarCategories } from '@/data/sidebar'
 import { getCategories, getImageGallery, getPage, getSettings } from '@/helper/actions'
 import { getMetaValueByMetaName } from '@/helper/metaHelpers'
 import { transformNoticeCategories } from '@/helper/transformNoticeCategories'

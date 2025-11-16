@@ -1,8 +1,6 @@
 
 import DirectoryPageClient from '@/components/Directory/DirectorySinglePage'
 import { getCategories,  getDirectoryByCat, getPage, getSettings } from '@/helper/actions'
-import { getImageUrl } from '@/helper/getImageUrl'
-import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
 import React from 'react'
 
 

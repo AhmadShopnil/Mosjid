@@ -1,11 +1,9 @@
 
-
+import React from 'react'
 import DonationPage from '@/components/Donation/DonationPage';
 import { getCategories, getPage, getSettings } from '@/helper/actions'
-
-
 import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
-import React from 'react'
+
 
 
 

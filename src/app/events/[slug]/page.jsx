@@ -32,7 +32,7 @@ export default async function BlogsPage({ params }) {
 
   return (
     <div>
-<BannerInnerPageServerSide />
+      <BannerInnerPageServerSide />
       <SingleEventPage
         settings={settings}
         homePage={homePage}
