@@ -120,7 +120,7 @@ export async function getDirectory(slug) {
 
 
 export async function getSliders() {
-  const API_URL = `${BASE_URL}/api/v1/posts?term_type=slider`;
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=slider&order_by=order_column:asc`;
 
   const res = await fetch(API_URL, {
     next: { revalidate: 30 },

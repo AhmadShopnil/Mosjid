@@ -84,7 +84,7 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
   const image_arabic = getImageUrl(blog_events_ExtraData?.image_media);
   const icon = getImageUrl(blog_events_ExtraData?.background_media);
 
-
+ const requestData = selected?.name ? `Blogs of ${selected?.name} ` : "Blogs"
 
 
 
@@ -109,7 +109,7 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
 
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
-        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={`blogs`} />
+        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={requestData} />
 
 
         {/* main content */}

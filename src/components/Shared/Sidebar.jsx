@@ -11,9 +11,9 @@ import { useSelectedParrent } from "@/context/SelectedContextParrent";
 
 
 
-export default function Sidebar({ categories, setSelectedCat, isNavigate, directoryNavigate }) {
-    const { selected, setSelected, clearSelected } = useSelected();
-   
+export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, isNavigate, directoryNavigate }) {
+  const { selected, setSelected, clearSelected } = useSelected();
+
   const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
 
 
@@ -39,7 +39,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
 
     if (!category?.hasSubItems) {
 
-
+      setIsDrawerOpen(false)
 
       if (directoryNavigate) {
         router.push(`/directory/${category?.id}`);
@@ -70,6 +70,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
 
     setSelected(subItem);
     setSelectedParrent(category)
+    setIsDrawerOpen(false)
 
     if (directoryNavigate) {
       router.push(`/directory/${subItem?.id}`);
@@ -183,7 +184,7 @@ export default function Sidebar({ categories, setSelectedCat, isNavigate, direct
                 {category?.hasSubItems ? (
                   <ChevronDown
                     size={24}
-                    className={`flex-shrink-0 transition-transform ${(isExpanded )
+                    className={`flex-shrink-0 transition-transform ${(isExpanded)
                       ? "rotate-180 text-white"
                       : "text-[#141B34] group-hover:text-white"
                       }`}

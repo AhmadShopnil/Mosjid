@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function SubmitRequest({ dataForContact }) {
 
-    // console.log("dataForContact", dataForContact)
+    console.log("dataForContact", dataForContact)
 
 
     return (
@@ -16,7 +16,9 @@ export default function SubmitRequest({ dataForContact }) {
                 <h4 className='text-[#00401A] text-2xl font-bold'>リクエストを送信</h4>
             </div>
             <div className='min-h-[150px] mt-5 flex flex-col justify-between '>
-                <p className='text-sm text-[#00401A]'>{`If you have any Questions about ${dataForContact} , Please Submit Your Request`}</p>
+                <p className='text-sm text-[#00401A]'>If you have any Questions releted 
+               <span className='text-[#B98C20] font-semibold'> {dataForContact}</span>    ,
+                     Please Submit Your Request</p>
                 {/* <p className='text-sm text-[#00401A]'>{dataForContact?.name}</p> */}
                 <Link
                     // href="/contact"

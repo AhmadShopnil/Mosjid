@@ -196,7 +196,7 @@ export default function EventsPage({ homePage, settings, formattedCategories }) 
   const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
   const arabic = getImageUrl(blog_events_ExtraData?.image_media)
 
-
+ const requestData = selected?.name ? `Events of ${selected?.name} ` : "Events"
 
   return (
     <div>
@@ -219,7 +219,7 @@ export default function EventsPage({ homePage, settings, formattedCategories }) 
 
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
-        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={`events`} />
+        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={requestData} />
 
         {/* main content */}
         <div className=' w-full space-y-6'>
