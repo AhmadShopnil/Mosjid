@@ -18,7 +18,7 @@ export default function NoticeCardHome({ notice, settings, handleOpenModal }) {
         >
 
             {/* Date Section */}
-            <div className="w-[20%] text-center bg-gray-100 rounded-md pt-3 sm:pt-3 leading-5">
+            <div className="w-[30%] sm:w-[18%] text-center bg-gray-100 rounded-md pt-3 sm:pt-3 leading-5">
                 <p className="text-3xl font-bold text-[#00401A] leading-6">
 
                     {getDay_Month_Year(notice?.created_at, "day")}
@@ -29,7 +29,7 @@ export default function NoticeCardHome({ notice, settings, handleOpenModal }) {
 
 
             {/* Notice Text */}
-            <div className="w-[80%] flex flex-col justify-between  ">
+            <div className="w-[70%] sm:w-[82%] flex flex-col justify-between  ">
                 <p className="sm:hidden text-[#00401A] text-sm">{notice?.sub_title.slice(0, 40)}</p>
                 <p className="hidden sm:block text-[#00401A] text-sm">{notice?.sub_title.slice(0, 120)}</p>
                 <button

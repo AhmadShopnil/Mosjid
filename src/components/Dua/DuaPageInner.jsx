@@ -65,7 +65,7 @@ export default function DuaPageInner({ homePage, settings, formattedCategories }
     // const notice_board_title_2 = dua_extraData?.custom_information.find((item) => item.label === "notice_board_title_2")
 
 
-
+ const requestData = selected?.name ? ` ${selected?.name} ` : "Duas"
     return (
         <div>
             <div>
@@ -84,7 +84,7 @@ export default function DuaPageInner({ homePage, settings, formattedCategories }
 
             <Container className="flex gap-6 my-6">
                 {/* sidebar */}
-                <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={"Duas"} />
+                <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={requestData} />
 
                 {/* main content */}
                 <div className="w-full space-y-6">
