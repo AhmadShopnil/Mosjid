@@ -14,7 +14,7 @@ export default function SidebarMainDrawer({
   setSelectedCat = null,
   isNavigate = false,
   directoryNavigate=false,
-  dataForContact={}
+  dataForContact=""
 }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 

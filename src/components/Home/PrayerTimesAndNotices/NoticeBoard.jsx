@@ -98,11 +98,11 @@ export default function NoticeBoard({ settings, notices, homePage }) {
 
 
       {/* Notices List */}
-      <ul className="space-y-3">
+      <div className="space-y-3">
         {notices?.slice(0, 7).map((notice, i) => (
           <NoticeCardHome key={i} notice={notice} settings={settings} handleOpenModal={handleOpenModal} />
         ))}
-      </ul>
+      </div>
 
       <NoticeDetailsModal
         isOpen={isModalOpen}
