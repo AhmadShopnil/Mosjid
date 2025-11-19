@@ -4,7 +4,7 @@ import FatwaHeadline from "@/components/Home/FatwaHeadline/FatwaHeadline";
 import QuickLinks from "@/components/Home/QuickLinks/QuickLinks";
 import IslamicBlogEvents from "@/components/Home/Blog_Events/IslamicBlogEvents";
 import DictionarySection from "@/components/Home/Dictionary/DictionarySection";
-import DuaSection from "@/components/Home/Dua/DuaSection";
+
 import DirecToryDonation from "@/components/Home/Directory_Donation/DirecToryDonation";
 
 import IslamicBooks from "@/components/Home/IslamicBooks/IslamicBooks";
@@ -54,7 +54,7 @@ export default async function Home() {
        <DictionarySection/>
       <DirecToryDonation/>
       {/* <DuaSection/> */}
-      <DuaBox homePage={homePage} settings={settings} duas={duas}/>
+      {/* <DuaBox homePage={homePage} settings={settings} duas={duas}/> */}
       <GallerySection/>
       <IslamicBooks/>
      </div>
