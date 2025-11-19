@@ -11,16 +11,20 @@ import IslamicBooks from "@/components/Home/IslamicBooks/IslamicBooks";
 import Fatwah from "@/components/Home/Fatwah/Fatwah";
 import PrayerTimesAndNotices from "@/components/Home/PrayerTimesAndNotices/PrayerTimesAndNotices";
 import OfferServices from "@/components/Home/OfferServices/OfferServices";
-import { getFatwa, getMenus } from "@/helper/actions";
+import { getDua, getFatwa, getMenus, getPage, getSettings } from "@/helper/actions";
 import HeroMain from "@/components/Home/HeroSections/HeroMain";
 import QuickLinksMobile from "@/components/Home/QuickLinks/QuickLinksMobile";
 
 import GallerySection from "@/components/Home/Gallery/GallerySection";
+import DuaBox from "@/components/Home/Dua/DuaBox";
 
 export default async function Home() {
 
   const fatwahs = await getFatwa();
-// test
+    const homePage = await getPage("home-sections-heading-management");
+  const settings = await getSettings();
+    const duas = await getDua();
+
   const quickLinks=await getMenus(6)
   // console.log({quickLinks})
 
@@ -50,6 +54,7 @@ export default async function Home() {
        <DictionarySection/>
       <DirecToryDonation/>
       {/* <DuaSection/> */}
+      <DuaBox homePage={homePage} settings={settings} duas={duas}/>
       <GallerySection/>
       <IslamicBooks/>
      </div>
