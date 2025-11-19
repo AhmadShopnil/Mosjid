@@ -83,7 +83,7 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
 
 
 
-    // console.log("about selected", selected)
+    console.log("about selected", selected)
 
     return (
         <div>
@@ -110,7 +110,7 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
 
             <Container className="flex gap-6 my-6">
                 {/* sidebar */}
-                <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={abouDatas[0]?.name} />
+                <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={selected?.name || "about"} />
 
                 {/* main content */}
                 <div className="w-full space-y-6">
@@ -135,12 +135,13 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
                         </div>
                     ) : (
                         <>
-                            <p className="text-sm md:text-base lg:text-lg text-center">{`No Information Found for `}
+                            <p className="text-sm md:text-base lg:text-lg text-center">{`No data Found  `}
                                 <span>{selected?.name}</span>
                             </p>
 
-                            <p className="text-sm md:text-base lg:text-lg text-center">{`墓地に関する情報は見つかりませんでした `}
-                                <span>{selected?.description}</span>
+                            <p className="text-sm md:text-base lg:text-lg text-center">
+                                {`データが見つかりませんでした`}
+                                {/* <span>{selected?.description}</span> */}
                             </p>
                         </>
                     )}

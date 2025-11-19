@@ -76,7 +76,7 @@ export default function DonationPage({ homePage, settings, formattedCategories }
 
 
   // console.log("donations", donations)
-
+ const requestData = selected?.name ? `Dontion of ${selected?.name} ` : "Donations"
 
 
   return (
@@ -100,7 +100,7 @@ export default function DonationPage({ homePage, settings, formattedCategories }
 
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
-        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={"donations"} />
+        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={requestData} />
 
         {/* main content */}
         <div className=' w-full space-y-6'>

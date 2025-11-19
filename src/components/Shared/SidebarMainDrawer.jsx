@@ -73,6 +73,7 @@ export default function SidebarMainDrawer({
             setSelectedCat={setSelectedCat}
             isNavigate={isNavigate}
             directoryNavigate={directoryNavigate}
+            setIsDrawerOpen={setIsDrawerOpen}
           />
 
           {/* Shown below sidebar content */}
