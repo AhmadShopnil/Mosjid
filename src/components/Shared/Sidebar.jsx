@@ -6,15 +6,32 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useSelected } from "@/context/SelectedContext"
 import { useSelectedParrent } from "@/context/SelectedContextParrent";
+import { useFatwaFilters } from "@/context/FatwaFilterContext";
 
 
 
 
 
-export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, isNavigate, directoryNavigate }) {
+export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, isNavigate, directoryNavigate, isFatwahFilter }) {
   const { selected, setSelected, clearSelected } = useSelected();
 
   const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
+  const {
+    selectedMajhabs,
+    setSelectedMajhabs,
+
+    selectedBooks,
+    setSelectedBooks,
+
+    selectedChapter,
+    setSelectedChapter,
+
+    selectedSection,
+    setSelectedSection,
+
+    selectedSearchTerm,
+    setSelectedSearchTerm,
+  } = useFatwaFilters();
 
 
   const router = useRouter();
@@ -37,9 +54,30 @@ export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, i
     setSelected(category);
     setSelectedParrent(null)
 
+
+
+    // for filter fatwah by sidbar books list
+
+
+
+
+
     if (!category?.hasSubItems) {
 
       setIsDrawerOpen(false)
+
+
+      if (isFatwahFilter) {
+
+        // console.log("isFatwahFilter inside", isFatwahFilter)
+        // console.log("isFatwahFilter category", category?.originalData)
+
+        setSelectedBooks(category?.originalData)
+
+        router.push(`/fatwah/fatwah-filtered`);
+      }
+
+
 
       if (directoryNavigate) {
         router.push(`/directory/${category?.id}`);

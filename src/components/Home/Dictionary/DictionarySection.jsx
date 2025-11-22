@@ -5,7 +5,21 @@ import { Search, ChevronDown, MoreVertical, X } from "lucide-react"
 import Image from "next/image"
 import CustomSelectRounded from "@/components/UI/CustomSelectRounded"
 
+
+const languageRegex = {
+  English: /^[A-Za-z\s]*$/,
+  Japanese: /^[\u3040-\u30FF\u4E00-\u9FFF\s]*$/,
+  Arabic: /^[\u0600-\u06FF\s]*$/,
+};
+
+
+
+
+
+
 export default function DictionarySection() {
+  const [warning, setWarning] = useState("");
+
   const [selectedLanguage, setSelectedLanguage] = useState("English")
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedBook, setSelectedBook] = useState("Book")
@@ -15,7 +29,8 @@ export default function DictionarySection() {
   const languages = [
     {
       title: "English",
-      icon: "/images/others/English.png"
+      icon: "/images/others/English.png",
+
     },
     {
       title: "Japanese",
@@ -26,6 +41,10 @@ export default function DictionarySection() {
       icon: "/images/others/Arabic.png"
     },
   ]
+
+
+
+
   const books = ["Book", "Quran", "Hadith", "Tafsir"]
   const chapters = ["Chapter", "Al-Fatiha", "Al-Baqarah", "Al-Imran"]
   const sections = ["Section", "Verse 1-10", "Verse 11-20", "Verse 21-30"]
@@ -123,9 +142,26 @@ export default function DictionarySection() {
               type="text"
               placeholder="Search Word..."
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                const allowed = languageRegex[selectedLanguage];
+
+                if (allowed.test(value)) {
+                  setSearchTerm(value);
+                  setWarning("");
+                } else {
+                  setWarning(`Only ${selectedLanguage} characters are allowed`);
+                  setTimeout(() => setWarning(""), 3500);
+                }
+              }}
               className="flex-1 bg-transparent text-white text-sm placeholder-[#B0C4B8] px-4 py-2 outline-none"
             />
+
+            {warning && (
+              <p className="text-[#F7BA2A] text-sm mt-1 mr-10">{warning}</p>
+            )}
+
+
 
             {/* Clear button */}
             {searchTerm && (
@@ -158,6 +194,7 @@ export default function DictionarySection() {
             </button>
           </div>
         </div>
+
         {/* drop down selection */}
         <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 w-full xs:w-[50%]">
           {/* Book dropdown */}
@@ -175,7 +212,7 @@ export default function DictionarySection() {
 
           {/* Chapter dropdown */}
 
-         <div className=" flex-1 min-w-[150px]">
+          <div className=" flex-1 min-w-[150px]">
 
             <CustomSelectRounded lvl="Chapter" options={[
               { labelEn: "Al-Fatiha", labelJp: "マドラサ" },
@@ -196,7 +233,7 @@ export default function DictionarySection() {
               { labelEn: "Verse 11-20", labelJp: "モスク" },
               { labelEn: "Cemetery", labelJp: "墓地" },
               { labelEn: "Converted Muslim", labelJp: "改宗したイスラム教徒" },
-            ] } lvl="Sections" />
+            ]} lvl="Sections" />
 
 
           </div>
