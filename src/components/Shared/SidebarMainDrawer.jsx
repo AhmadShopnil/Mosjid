@@ -10,6 +10,7 @@ import AskQuestionSidebar from "../Fatwah/AskQuestionSidebar";
 export default function SidebarMainDrawer({
   categories,
   isFatwahFilter=false,
+  isFatwahNavigate=false,
   isAskQuestion = false,
   isSubmitRequest = true,
   setSelectedCat = null,
@@ -73,6 +74,7 @@ export default function SidebarMainDrawer({
             categories={categories}
             setSelectedCat={setSelectedCat}
             isFatwahFilter={isFatwahFilter}
+            isFatwahNavigate={isFatwahNavigate}
             isNavigate={isNavigate}
             directoryNavigate={directoryNavigate}
             setIsDrawerOpen={setIsDrawerOpen}

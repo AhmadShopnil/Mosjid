@@ -1,5 +1,6 @@
 import AskQuestionSidebar from '@/components/Fatwah/AskQuestionSidebar'
 import FatwaFinder from '@/components/Fatwah/FatwahFinder'
+import FatwahSlected from '@/components/Fatwah/FatwahSlected'
 import FatwaListInner from '@/components/Fatwah/FatwaListInner'
 import SubmitRequest from '@/components/Fatwah/SubmitRequest'
 import BannerInnerPage from '@/components/Shared/BannerInnerPage'
@@ -22,6 +23,8 @@ export default async function page() {
 
   const formatFatwaBooksForSidebarData = formatFatwaBooksForSidebar(books)
 
+//  const requestData = selected?.name ? `Blogs of ${selected?.name} ` : "Blogs"
+ const requestData =  "Fatwah"
   // console.log("fatwah", fatwahs?.data)
   return (
     <div>
@@ -37,7 +40,12 @@ export default async function page() {
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
 
-        <SidebarMainDrawer categories={formatFatwaBooksForSidebarData} isAskQuestion={true} isFatwahFilter={true} />
+        <SidebarMainDrawer
+         categories={formatFatwaBooksForSidebarData} 
+         isAskQuestion={true} 
+         isFatwahFilter={true} 
+      
+         dataForContact={requestData} />
 
         {/* <div className='w-[400px] space-y-6'>
           <Sidebar categories={categories} />
@@ -49,8 +57,9 @@ export default async function page() {
         <div className=' w-full'>
           <FatwaListInner title="New Fatawa" titleWidth="w-[420px]" fatwahs={fatwahs?.data} settings={settings} homePage={homePage} />
           <div className='grid grid-cols-1 xl:grid-cols-2 gap-3 lxl:gap-6  mt-6'>
-            <FatwaListInner title="Selected Fatawa " titleWidth="w-[220px]" fatwahs={fatwahs?.data} settings={settings} homePage={homePage} />
-            <FatwaListInner title="Top Rated Fatawa" titleWidth="w-[220px]" fatwahs={fatwahs?.data} settings={settings} homePage={homePage} />
+            <FatwahSlected settings={settings} homePage={homePage} />
+            {/* <FatwaListInner title="Selected Fatwah " titleWidth="w-[220px]" fatwahs={fatwahs?.data} settings={settings} homePage={homePage} /> */}
+            <FatwaListInner title="Top Rated Fatwah" titleWidth="w-[220px]" fatwahs={fatwahs?.data} settings={settings} homePage={homePage} />
           </div>
         </div>
       </Container>

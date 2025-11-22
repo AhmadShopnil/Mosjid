@@ -38,7 +38,7 @@ export default async function page() {
 
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
-        <SidebarMainDrawer categories={formatFatwaBooksForSidebarData} isAskQuestion={true} isFatwahFilter={true} />
+        <SidebarMainDrawer categories={formatFatwaBooksForSidebarData} isAskQuestion={true} isFatwahFilter={true}     />
 
 
         {/* <div className='w-[400px] space-y-6'>
@@ -49,7 +49,7 @@ export default async function page() {
 
         {/* main content */}
         <div className=' w-full'>
-          <FatwahSearchResult title="Fatwa Finder Results" titleWidth="w-[420px]" fatwahs={fatwahs?.data} settings={settings} homePage={homePage} />
+          <FatwahSearchResult title="Fatwa Finder Results" titleWidth="w-[420px]"  settings={settings} homePage={homePage} />
 
         </div>
       </Container>
