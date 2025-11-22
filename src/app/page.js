@@ -11,7 +11,7 @@ import IslamicBooks from "@/components/Home/IslamicBooks/IslamicBooks";
 import Fatwah from "@/components/Home/Fatwah/Fatwah";
 import PrayerTimesAndNotices from "@/components/Home/PrayerTimesAndNotices/PrayerTimesAndNotices";
 import OfferServices from "@/components/Home/OfferServices/OfferServices";
-import { getDua, getFatwa, getMenus, getPage, getSettings } from "@/helper/actions";
+import { getDua, getFatwa, getFatwahFiltersData, getMenus, getPage, getSettings } from "@/helper/actions";
 import HeroMain from "@/components/Home/HeroSections/HeroMain";
 import QuickLinksMobile from "@/components/Home/QuickLinks/QuickLinksMobile";
 
@@ -22,8 +22,17 @@ export default async function Home() {
 
   const fatwahs = await getFatwa();
     const homePage = await getPage("home-sections-heading-management");
-  const settings = await getSettings();
+   const settings = await getSettings();
     const duas = await getDua();
+    const books = await getFatwahFiltersData("books")
+      const chapter = await getFatwahFiltersData("bookchapters")
+      const section = await getFatwahFiltersData("booksections")
+    
+    
+    
+    
+      const data_for_filter = { books, chapter, section }
+     
 
   const quickLinks=await getMenus(6)
   // console.log({quickLinks})
@@ -51,10 +60,10 @@ export default async function Home() {
      >
        <Fatwah/>
       <OfferServices/>
-       <DictionarySection/>
+       <DictionarySection data_for_filter={data_for_filter}/>
       <DirecToryDonation/>
       {/* <DuaSection/> */}
-      {/* <DuaBox homePage={homePage} settings={settings} duas={duas}/> */}
+      <DuaBox homePage={homePage} settings={settings} duas={duas}/>
       <GallerySection/>
       <IslamicBooks/>
      </div>

@@ -1,49 +1,139 @@
+"use client";
+
 import Image from "next/image";
 import SocialShare from "../Shared/SocialShare";
+import { useFatwaFilters } from "@/context/FatwaFilterContext";
+import axiosInstance from "@/helper/axiosInstance";
+import { useEffect, useState } from "react";
+import SelectedWordDetails from "./SelectedWordDetails";
+
 
 export default function DictionaryPage() {
+    const { selectedBooks, selectedChapter, selectedSection, selectedSearchTerm } = useFatwaFilters();
+
+    const [dictionaries, setDictionaries] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
+
+    /* -------------------- Fetch Filtered Dictionaries -------------------- */
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            async function fetchFilteredDictionaries() {
+                setLoading(true);
+
+                try {
+                    const params = new URLSearchParams();
+
+                    if (selectedBooks?.name) params.append("book", selectedBooks.name);
+                    if (selectedChapter?.name) params.append("chapter", selectedChapter.name);
+                    if (selectedSection?.name) params.append("section", selectedSection.name);
+                    if (selectedSearchTerm) params.append("s", selectedSearchTerm);
+
+                    const apiUrl = `/dictionary?${params.toString()}`;
+
+                    const response = await axiosInstance.get(apiUrl);
+                    const data = response?.data?.data?.data || [];
+
+                    setDictionaries(data);
+                } catch (error) {
+                    console.error("Error fetching filtered dictionary:", error);
+                } finally {
+                    setLoading(false);
+                }
+            }
+
+            fetchFilteredDictionaries();
+        }, 400);
+
+        return () => clearTimeout(timeout);
+    }, [selectedBooks, selectedChapter, selectedSection,selectedSearchTerm]);
+
     return (
-        <div className=" bg-gray-50 space-y-4">
-            {/* First Section - Table */}
-            <div className="  gradient-border rounded-2xl p-8 bg-white">
+        <div className="bg-gray-50 space-y-4">
+            {/* Table Section */}
+            <div className="gradient-border rounded-2xl p-8 bg-white shadow-sm">
+
                 {/* Table Header */}
-                <div className="bg-[#52B920] h-[50px] text-[#FFFFFF]  flex items-center justify-center rounded-t-[10px] ">
-                    <h2 className=" text-center text-xl font-bold">Table for selected category</h2>
+                <div className="bg-[#52B920] h-[50px] text-white flex items-center justify-center rounded-t-[10px]">
+                    <h2 className="text-center text-xl font-bold">
+                        Table for Selected Category
+                    </h2>
                 </div>
 
-                {/* Table */}
-                <table className="w-full border-collapse table-fixed font-normal">
-                    <thead>
-                        <tr className="bg-[#D9E2DD] h-[28px] font-normal">
-                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">SL.No</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">Arabic</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">English</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">Japanese</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">Japanese</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">Pronunciation in Roman</th>
-                            <th className="border border-[#B0C4B8] py-1 text-base text-center text-[#000000] font-normal w-[14.28%]">View in Card</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {[...Array(4)].map((_, i) => (
-                            <tr
-                                key={i}
-                                className={`${i % 2 === 0 ? "bg-white" : "bg-[#E5F5DE]"} h-[28px]`}
-                            >
-                                {[...Array(7)].map((_, j) => (
-                                    <td
-                                        key={j}
-                                        className="border border-gray-300 p-3 text-center"
-                                    ></td>
+                {/* Scrollable Table */}
+                <div className="w-full overflow-x-auto">
+                    <table className="w-full min-w-[900px] border-collapse table-fixed font-normal">
+                        <thead>
+                            <tr className="bg-[#D9E2DD] h-[28px]">
+                                {[
+                                    "SL.No",
+                                    "Arabic",
+                                    "English",
+                                    "Japanese",
+                                    "Japanese Pron",
+                                    "Arabic Pron",
+                                    "View"
+                                ].map((th, i) => (
+                                    <th
+                                        key={i}
+                                        className="border border-[#B0C4B8] py-2 text-sm text-center"
+                                    >
+                                        {th}
+                                    </th>
                                 ))}
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
 
+                        {/* Skeleton */}
+                        {loading && <TableSkeleton />}
 
-                {/* Website URL */}
-                <div className="text-center mt-6 text-[#000000] text-2xl">www.osakamasjid.com</div>
+                        {/* Show Data */}
+                        {!loading && dictionaries?.length > 0 && (
+                            <tbody>
+                                {dictionaries.map((item, i) => (
+                                    <tr
+                                        key={item.id}
+                                        className={`${i % 2 === 0 ? "bg-white" : "bg-[#E5F5DE]"} h-[32px`}
+                                    >
+                                        <td className="border border-gray-300 p-2 text-center">{i + 1}</td>
+                                        <td className="border border-gray-300 p-2 text-center">{item.word_ar}</td>
+                                        <td className="border border-gray-300 p-2 text-center">{item.word_en}</td>
+                                        <td className="border border-gray-300 p-2 text-center">{item.word_ja}</td>
+                                        <td className="border border-gray-300 p-2 text-center">{item.description_ja}</td>
+                                        <td className="border border-gray-300 p-2 text-center">{item.description_ar}</td>
+
+                                        <td className="border border-gray-300 p-2 text-center">
+                                            <button
+                                                onClick={() => setSelectedItem(item)}
+                                                className="text-green-600 cursor-pointer hover:text-green-800 transition"
+                                            >
+                                                View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        )}
+
+                        {/* No Data Found */}
+                        {!loading && dictionaries?.length === 0 && (
+                            <tbody>
+                                <tr>
+                                    <td
+                                        colSpan={7}
+                                        className="py-6 text-center font-medium text-gray-500"
+                                    >
+                                        ❌ No Data Found
+                                    </td>
+                                </tr>
+                            </tbody>
+                        )}
+                    </table>
+                </div>
+
+                <div className="text-center mt-6 text-black text-xl md:text-2xl">
+                    www.osakamasjid.com
+                </div>
             </div>
 
             {/* Social Icons */}
@@ -51,138 +141,29 @@ export default function DictionaryPage() {
                 <SocialShare />
             </div>
 
-            {/* Second Section - Details Form */}
-            <div className="gradient-border rounded-2xl p-8 bg-white">
-                {/* Form Header */}
-                <div className="bg-[#E5F5DE] h-[50px] flex items-center justify-center rounded-[8px] mb-6">
-                    <h2 className="text-center text-xl font-semibold text-[#00401A]">Heading</h2>
-                </div>
-
-                {/* Form Grid */}
-                <div className="grid grid-cols-2 gap-6">
-                    {/* Left Column */}
-                    <div className="space-y-4">
-                        <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
-                            <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
-                          text-base text-[#000000]">
-                                <span className=" ">Japanese</span>
-                                <span className="">:</span>
-                            </div>
-                        </div>
-                        <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
-                            <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
-                          text-base text-[#000000]">
-                                <span className=" ">Pron in Japanese</span>
-                                <span className="">:</span>
-                            </div>
-                        </div>
-                        <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
-                            <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
-                          text-base text-[#000000]">
-                                <span className=" ">Pron in Roman</span>
-                                <span className="">:</span>
-                            </div>
-                        </div>
-                        <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
-                            <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
-                          text-base text-[#000000]">
-                                <span className=" ">Explanation</span>
-                                <span className="">:</span>
-                            </div>
-                        </div>
-                        <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
-                            <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
-                          text-base text-[#000000]">
-                                <span className=" ">Usage</span>
-                                <span className="">:</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right Column */}
-                    <div className="space-y-4">
-                        <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
-                            <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
-                          text-base text-[#000000]">
-                                <span className=" ">Arabic</span>
-                                <span className="">:</span>
-                            </div>
-                        </div>
-                        <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
-                            <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
-                          text-base text-[#000000]">
-                                <span className=" ">English</span>
-                                <span className="">:</span>
-                            </div>
-                        </div>
-
-
-
-                        <div className="border border-[#E0E0E0] rounded-[10px] h-[50px]">
-                            <div className="w-[30%] h-full px-3 bg-[#e0e0e06d] flex  items-center justify-between 
-                          text-base text-[#000000]">
-                                <span className=" ">Usage</span>
-                                <span className="">:</span>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                </div>
-
-                {/* Website URL */}
-                <div className="text-center mt-8 text-[#000000] text-2xl ">www.osakamasjid.com</div>
-            </div>
-
-
-            {/* Social Icons */}
-            <div className="py-4 flex justify-end items-center">
-                <div className="  flex items-center gap-4 text-[#D9E2DD]">
-                    <div className="border-r-2 border-gray-300 pr-3">
-                        <Image
-                            src="/images/notice/twiter.png"
-                            alt='a1'
-                            width={23}
-                            height={23}
-                        />
-                    </div>
-                    <div className="border-r-2 border-gray-300 pr-3">
-                        <Image
-                            src="/images/notice/fb.png"
-                            alt='a1'
-                            width={15}
-                            height={15}
-                        />
-                    </div>
-                    <div className="border-r-2 border-gray-300 pr-3">
-                        <Image
-                            src="/images/notice/whatsapp.png"
-                            alt='a1'
-                            width={20}
-                            height={20}
-                        />
-                    </div>
-                    <div className="border-r-2 border-gray-300 pr-3">
-                        <Image
-                            src="/images/notice/printer.png"
-                            alt='a1'
-                            width={22}
-                            height={22}
-                        />
-                    </div>
-                    <div>
-                        <Image
-                            src="/images/notice/download.png"
-                            alt='a1'
-                            width={22}
-                            height={22}
-                        />
-                    </div>
-
-
-                </div>
-            </div>
+            {/* Selected Card Modal */}
+            {selectedItem && <SelectedWordDetails selectedItem={selectedItem} />}
         </div>
-    )
+    );
+}
+
+/* Skeleton Loader  */
+function TableSkeleton() {
+    const rows = Array.from({ length: 3 });
+    return (
+        <tbody>
+            {rows.map((_, i) => (
+                <tr key={i} className="animate-pulse">
+                    {Array.from({ length: 7 }).map((__, j) => (
+                        <td
+                            key={j}
+                            className="border border-gray-300 h-[32px]"
+                        >
+                            <div className="bg-gray-300 h-4 mx-auto rounded w-3/4"></div>
+                        </td>
+                    ))}
+                </tr>
+            ))}
+        </tbody>
+    );
 }

@@ -12,7 +12,7 @@ import { useFatwaFilters } from "@/context/FatwaFilterContext";
 
 
 
-export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, isNavigate, directoryNavigate, isFatwahFilter, isFatwahNavigate }) {
+export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, isNavigate, directoryNavigate, isFatwah_Dictionary_Filter, isFatwahNavigate }) {
   const { selected, setSelected, clearSelected } = useSelected();
 
   const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
@@ -55,10 +55,10 @@ export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, i
       setIsDrawerOpen(false)
 
 
-      if (isFatwahFilter) {
+      if (isFatwah_Dictionary_Filter) {
 
-        // console.log("isFatwahFilter inside", isFatwahFilter)
-        // console.log("isFatwahFilter category", category?.originalData)
+        // console.log("isFatwah_Dictionary_Filter inside", isFatwah_Dictionary_Filter)
+        // console.log("isFatwah_Dictionary_Filter category", category?.originalData)
 
         setSelectedBooks(category?.originalData)
 
