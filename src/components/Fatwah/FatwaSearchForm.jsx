@@ -2,112 +2,107 @@
 
 import React, { useState } from "react";
 import { Search } from "lucide-react";
-import CustomSelect from "../UI/CustomSelect";
+import Link from "next/link";
+import CustomSelectForFatwaFinder from "../UI/CustomSelectForFatwaFinder";
+import { useFatwaFilters } from "@/context/FatwaFilterContext";
 
-const madhhabs = [
-  { name: "Maliki", arabic: "المالكي", jp: "マリキ" },
-  { name: "Hanafi", arabic: "الحنفي", jp: "ハナフィー派" },
-  { name: "Shafi'i", arabic: "الشافعي", jp: "シャーフィイー派" },
-  { name: "Hanbali", arabic: "الحنبلي", jp: "ハンバリ" },
-];
+export default function FatwaSearchForm({ data_for_filter }) {
+  const [searchText, setSearchText] = useState()
+  const {
+    selectedMajhabs,
+    setSelectedMajhabs,
 
-export default function FatwaSearchForm() {
-  const [selected, setSelected] = useState("Hanafi");
+    selectedBooks,
+    setSelectedBooks,
+
+    selectedChapter,
+    setSelectedChapter,
+
+    selectedSection,
+    setSelectedSection,
+
+    selectedSearchTerm,
+    setSelectedSearchTerm,
+  } = useFatwaFilters();
+
+  const { majhabs, books, chapter, section } = data_for_filter;
+
+
+
+
+  const handleSearchTerm = () => {
+    setSelectedSearchTerm(searchText)
+  }
+
+
 
   return (
-    <div className="w-full bg-[#F6FFF8] rounded-md p-4 md:p-6 flex flex-col md:flex-row gap-4">
-      {/* Left Section */}
-      <div className="w-full md:w-[530px] flex flex-col gap-3">
-        {madhhabs.map((m) => (
-          <button
-            key={m.name}
-            onClick={() => setSelected(m.name)}
+    <div className="w-full bg-[#F6FFF8] rounded-md p-4 md:p-6">
+      <div className="flex flex-col md:flex-row gap-4">
 
-            className={`flex flex-col justify-center h-[56px] items-center py-3 rounded-md text-sm font-semibold transition-all duration-300
-              ${selected === m.name
-                ? "gradient-bg-fatwah-finder text-white shadow"
-                : "bg-[#D7EFD8] hover:bg-[#C9E8CA]"
-              }`}
+        {/* LEFT SECTION */}
+        <div className="w-full md:w-[50%] flex flex-col gap-3">
+          {majhabs.map((m) => (
+            <button
+              key={m.name}
+              onClick={() => setSelectedMajhabs(m.name)}
+              className={`h-[56px] flex flex-col justify-center items-center py-3 rounded-md text-sm font-semibold transition-all duration-300
+                ${selectedMajhabs === m.name
+                  ? "gradient-bg-fatwah-finder text-white shadow"
+                  : "bg-[#D7EFD8] hover:bg-[#C9E8CA]"
+                }`}
+            >
+              <span>{m.name}</span>
+              <span>{m.name_jp}</span>
+            </button>
+          ))}
+        </div>
 
-          // className={`flex flex-col justify-center h-[56px] items-center py-3 rounded-md text-sm font-semibold transition-all duration-300
-          //   ${
-          //     selected === m.name
-          //       ? "bg-gradient-to-r from-[#0EBD65] via-[#4DDE5E] to-[#8AE52E] text-white shadow"
-          //       : "bg-[#D7EFD8] hover:bg-[#C9E8CA]"
-          //   }`}
+        {/* RIGHT SECTION */}
+        <div className="md:w-[50%] flex flex-col gap-3 w-full">
 
-          >
-            <span className="text-sm font-bold">{m.arabic}</span>
-            <span className="text-sm font-bold">{m.jp}</span>
-          </button>
-        ))}
+          <CustomSelectForFatwaFinder
+            lvl="Books"
+            selected={selectedBooks}
+            setSelected={setSelectedBooks}
+            options={books}
+          />
+
+          <CustomSelectForFatwaFinder
+            lvl="Chapters"
+            selected={selectedChapter}
+            setSelected={setSelectedChapter}
+            options={chapter}
+          />
+
+          <CustomSelectForFatwaFinder
+            lvl="Sections"
+            selected={selectedSection}
+            setSelected={setSelectedSection}
+            options={section}
+          />
+
+          <input
+
+            type="text"
+            placeholder="Search By Word Or Fatwa No..."
+            value={selectedSearchTerm || ""}
+            onChange={(e) => setSelectedSearchTerm(e.target.value)}
+            className="w-full h-[56px] border border-gray-200 rounded-md px-3 py-2 focus:ring-green-400"
+          />
+        </div>
       </div>
 
-      {/* Right Section */}
-      <form className=" flex flex-col gap-3  w-full">
-        {/* Row 1 */}
-        <div className="flex gap-2 h-[56px]">
-          <div className="w-1/2">
-            <CustomSelect options={ [
-              { labelEn: "Madrassa", labelJp: "マドラサ" },
-              { labelEn: "Mosque", labelJp: "モスク" },
-              { labelEn: "Cemetery", labelJp: "墓地" },
-              { labelEn: "Converted Muslim", labelJp: "改宗したイスラム教徒" },
-            ]} />
-          </div>
-          <input
-            type="text"
-            placeholder="By Word..."
-            className="w-1/2 border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-          />
-        </div>
-
-
-        {/* Row 2 */}
-        <div className="flex gap-2 h-[56px]">
-          <div className="w-1/2">
-            <CustomSelect options={ [
-              { labelEn: "Chapter", labelJp: "マドラサ" },
-              { labelEn: "Mosque", labelJp: "モスク" },
-              { labelEn: "Cemetery", labelJp: "墓地" },
-              { labelEn: "Converted Muslim", labelJp: "改宗したイスラム教徒" },
-            ]} />
-          </div>
-          <input
-            type="text"
-            placeholder="By Word..."
-            className="w-1/2 border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-          />
-        </div>
-
-        {/* Row 3 */}
-       <div className="flex gap-2 h-[56px]">
-          <div className="w-1/2">
-            <CustomSelect options={ [
-              { labelEn: "Madrassa", labelJp: "マドラサ" },
-              { labelEn: "Mosque", labelJp: "モスク" },
-              { labelEn: "Cemetery", labelJp: "墓地" },
-              { labelEn: "Converted Muslim", labelJp: "改宗したイスラム教徒" },
-            ]} />
-          </div>
-          <input
-            type="text"
-            placeholder="By Word..."
-            className="w-1/2 border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-          />
-        </div>
-
-        {/* Search Button */}
-        <div className="sm:col-span-2 lg:col-span-3 flex justify-center  h-[56px]">
-          <button
-            type="submit"
-            className="w-full text-lg  flex items-center justify-center gap-2 bg-[#F7BA2A] hover:bg-[#f0aa00] text-[#00401A]  py-2 rounded-md transition"
-          >
-            <Search size={18} />
-            Search
-          </button>
-        </div>
-      </form>
+      <div className="flex justify-center h-[56px] mt-4">
+        <Link
+          href="/fatwah/fatwah-filtered"
+          onClick={handleSearchTerm}
+          className="w-full text-lg flex items-center justify-center gap-2 bg-[#F7BA2A] hover:bg-[#f0aa00] text-[#00401A] py-2 rounded-md"
+        >
+          <Search size={18} />
+          Search
+        </Link>
+      </div>
     </div>
   );
 }

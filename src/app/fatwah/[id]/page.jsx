@@ -7,7 +7,9 @@ import BannerInnerPage from '@/components/Shared/BannerInnerPage'
 import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import Sidebar from '@/components/Shared/Sidebar'
-import { getFatwa, getPage, getSettings } from '@/helper/actions'
+import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
+import { getFatwa, getFatwahFiltersData, getPage, getSettings } from '@/helper/actions'
+import { formatFatwaBooksForSidebar } from '@/helper/formatFatwaBooksForSidebar'
 import React from 'react'
 
 
@@ -114,6 +116,11 @@ export default async function page() {
     const fatwahs = await getFatwa();
     const settings = await getSettings()
     const homePage = await getPage("home-sections-heading-management")
+
+    const books = await getFatwahFiltersData("books")
+
+    const formatFatwaBooksForSidebarData = formatFatwaBooksForSidebar(books)
+
     return (
         <div>
 
@@ -126,12 +133,14 @@ export default async function page() {
             </Container>
 
             <Container className='flex gap-6 my-6'>
+
+                <SidebarMainDrawer categories={formatFatwaBooksForSidebarData} isAskQuestion={true} isFatwahFilter={true} />
                 {/* sidebar */}
-                <div className='w-[400px] space-y-6'>
+                {/* <div className='w-[400px] space-y-6'>
                     <Sidebar categories={categories} />
                     <AskQuestionSidebar />
                     <SubmitRequest />
-                </div>
+                </div> */}
                 {/* main content */}
                 <div className=' w-full'>
                     <div>

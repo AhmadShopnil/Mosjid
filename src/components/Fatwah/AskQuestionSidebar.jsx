@@ -13,7 +13,7 @@ export default function AskQuestionSidebar() {
                 </div>
 
                 <Image
-                    src="/images/fatwah/q.png"
+                    src="/images/fatwah/qq.svg"
                     alt="Logo"
                     width={60}
                     height={60}

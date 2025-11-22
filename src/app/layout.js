@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import DevelopmentBanner from "@/components/Header/DevelopmentBanner";
 import { SelectedProvider } from "@/context/SelectedContext";
 import { SelectedParrentProvider } from "@/context/SelectedContextParrent";
+import { FatwaFilterProvider } from "@/context/FatwaFilterContext";
 
 
 
@@ -41,6 +42,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} antialiased`}
       >
+         <FatwaFilterProvider>
         <SelectedParrentProvider>
        <SelectedProvider> 
         <DevelopmentBanner/>
@@ -51,6 +53,8 @@ export default function RootLayout({ children }) {
         <Toaster position="top-right" />
         </SelectedProvider>
         </SelectedParrentProvider>
+         </FatwaFilterProvider>
+      
   
        
       </body>
