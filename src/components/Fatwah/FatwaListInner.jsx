@@ -70,7 +70,7 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
                         <ul className="space-y-4 mt-6">
                             {fatwahs?.map((item) => (
                                 <li
-                                    key={item.id}
+                                    key={item?.id}
                                     className="flex justify-between items-center border 
                    border-[#D9E2DD] p-1.5  rounded-full relative z-10"
                                 >
@@ -98,7 +98,7 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
                                         <div>
                                             <p className={`text-[#00401A] truncate w-[110px] sm:w-[250px]  
                      text-sm md:text-lg font-bold md:${titleWidth}`}>
-                                                {item.description_ja}
+                                                {item?.description_ja}
                                             </p>
                                             {/* <div
                                         className={`text-[#00401A] truncate w-[110px] sm:w-[250px]  
@@ -106,7 +106,7 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
                                         dangerouslySetInnerHTML={{ __html: item?.description_ja }}
                                     /> */}
                                             <Link
-                                                href="/fatwah/1"
+                                                href={`/fatwah/${item?.id}`}
                                                 className="text-[#00401A] font-bold text-xs md:text-sm hover:text-[#F7BA2A] 
                       flex gap-1 items-center "
                                             >

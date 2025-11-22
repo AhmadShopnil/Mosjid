@@ -12,25 +12,13 @@ import { useFatwaFilters } from "@/context/FatwaFilterContext";
 
 
 
-export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, isNavigate, directoryNavigate, isFatwahFilter }) {
+export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, isNavigate, directoryNavigate, isFatwahFilter, isFatwahNavigate }) {
   const { selected, setSelected, clearSelected } = useSelected();
 
   const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
   const {
-    selectedMajhabs,
-    setSelectedMajhabs,
-
-    selectedBooks,
     setSelectedBooks,
 
-    selectedChapter,
-    setSelectedChapter,
-
-    selectedSection,
-    setSelectedSection,
-
-    selectedSearchTerm,
-    setSelectedSearchTerm,
   } = useFatwaFilters();
 
 
@@ -74,7 +62,11 @@ export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, i
 
         setSelectedBooks(category?.originalData)
 
-        router.push(`/fatwah/fatwah-filtered`);
+        if (isFatwahNavigate) {
+          router.push(`/fatwah/fatwah-filtered`);
+        }
+
+
       }
 
 
