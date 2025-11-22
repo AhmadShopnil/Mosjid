@@ -43,7 +43,7 @@ export default async function page() {
         <SidebarMainDrawer
          categories={formatFatwaBooksForSidebarData} 
          isAskQuestion={true} 
-         isFatwahFilter={true} 
+         isFatwah_Dictionary_Filter={true} 
       
          dataForContact={requestData} />
 

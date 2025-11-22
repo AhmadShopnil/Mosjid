@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from "next/image";
 import { Download } from "lucide-react";
-import { getFatwa, getPage, getSettings } from '@/helper/actions';
+import { getFatwa, getFatwah, getPage, getSettings } from '@/helper/actions';
 import { getMetaValueByMetaName } from '@/helper/metaHelpers';
 import Link from 'next/link';
 import { getImageUrl } from '@/helper/getImageUrl';
@@ -10,7 +10,8 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 
 export default async function FatwahBox() {
 
-  const fatwahs = await getFatwa();
+ const fatwahs = await getFatwah();
+  // const fatwahs = await getFatwa();
   const settings = await getSettings()
   const view_more = getMetaValueByMetaName(settings, "view_more") || "";
   const read_more = getMetaValueByMetaName(settings, "read_more") || "";
@@ -144,7 +145,7 @@ export default async function FatwahBox() {
           </div>
           {/* List */}
           <ul className="space-y-4">
-            {fatwahs.slice(0, 6).map((item) => (
+            {fatwahs?.data?.slice(0, 6).map((item) => (
               <li
                 key={item.id}
                 className="flex justify-between items-center border bg-white
@@ -174,7 +175,7 @@ export default async function FatwahBox() {
                   <div>
                     <p className="text-[#00401A] truncate w-[110px] sm:w-[250px] md:w-[420px] 
                      text-sm md:text-lg font-bold">
-                      {item.name}
+                       {item?.description_en}
                     </p>
                     <Link
                       href="/"

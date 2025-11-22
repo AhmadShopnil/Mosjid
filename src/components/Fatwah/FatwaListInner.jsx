@@ -63,7 +63,7 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
                 {
                     fatwahs?.length == 0 ?
                         <>
-                            <h4 className='text-center text-gray-500 text-sm md:text-lg font-semibold py-8'>Not Data Found</h4>
+                            <h4 className='text-center text-gray-500 text-sm md:text-lg font-semibold py-8'>❌ Not Data Found</h4>
                         </>
                         :
 
@@ -98,7 +98,7 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
                                         <div>
                                             <p className={`text-[#00401A] truncate w-[110px] sm:w-[250px]  
                      text-sm md:text-lg font-bold md:${titleWidth}`}>
-                                                {item?.description_ja}
+                                                {item?.description_en}
                                             </p>
                                             {/* <div
                                         className={`text-[#00401A] truncate w-[110px] sm:w-[250px]  

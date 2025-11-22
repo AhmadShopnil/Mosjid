@@ -23,7 +23,7 @@ export default async function page() {
 
   const formatFatwaBooksForSidebarData = formatFatwaBooksForSidebar(books)
 
-
+  const requestData = "Fatwah"
   // console.log("fatwah", fatwahs?.data)
   return (
     <div>
@@ -38,7 +38,12 @@ export default async function page() {
 
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
-        <SidebarMainDrawer categories={formatFatwaBooksForSidebarData} isAskQuestion={true} isFatwahFilter={true}     />
+        <SidebarMainDrawer
+          categories={formatFatwaBooksForSidebarData}
+          isAskQuestion={true}
+          isFatwah_Dictionary_Filter={true}
+          dataForContact={requestData}
+        />
 
 
         {/* <div className='w-[400px] space-y-6'>
@@ -49,7 +54,7 @@ export default async function page() {
 
         {/* main content */}
         <div className=' w-full'>
-          <FatwahSearchResult title="Fatwa Finder Results" titleWidth="w-[420px]"  settings={settings} homePage={homePage} />
+          <FatwahSearchResult title="Fatwa Finder Results" titleWidth="w-[420px]" settings={settings} homePage={homePage} />
 
         </div>
       </Container>

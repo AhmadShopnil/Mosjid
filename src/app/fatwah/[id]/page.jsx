@@ -46,7 +46,7 @@ export default async function page({ params }) {
                 <SidebarMainDrawer
                  categories={formatFatwaBooksForSidebarData} 
                  isAskQuestion={true} 
-                 isFatwahFilter={true}
+                 isFatwah_Dictionary_Filter={true}
                  isFatwahNavigate={true}
                  dataForContact={requestData} />
                 {/* sidebar */}

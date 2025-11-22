@@ -1,13 +1,15 @@
 
 import DictionaryPage from '@/components/Dictionary/DictionaryPage'
-import DictionarySearchSection from '@/components/Directory/DirectorySearchInnerPage'
+import DictionarySearchSection from '@/components/Dictionary/DictionarySearchSection'
+
 import BannerInnerPage from '@/components/Shared/BannerInnerPage'
 import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 import { sideBarCategories } from '@/data/sidebar'
-import {  getPage, getSettings } from '@/helper/actions'
+import { getFatwahFiltersData, getPage, getSettings } from '@/helper/actions'
+import { formatFatwaBooksForSidebar } from '@/helper/formatFatwaBooksForSidebar'
 import React from 'react'
 
 
@@ -16,39 +18,53 @@ import React from 'react'
 export default async function page() {
 
 
-    const settings = await getSettings()
-    const homePage = await getPage("home-sections-heading-management")
+  const settings = await getSettings()
+  const homePage = await getPage("home-sections-heading-management")
+
+  const books = await getFatwahFiltersData("books")
+  const chapter = await getFatwahFiltersData("bookchapters")
+  const section = await getFatwahFiltersData("booksections")
 
 
-    return (
-        <div>
+  const formatFatwaBooksForSidebarData = formatFatwaBooksForSidebar(books)
 
-            <div>
-                <BannerInnerPage />
-                <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Dictionary" />
+  const data_for_filter = { books, chapter, section }
+   const requestData =  "Dictionary"
+
+  return (
+    <div>
+
+      <div>
+        <BannerInnerPage />
+        <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Dictionary" />
+      </div>
+
+
+      <Container className='flex gap-6 my-6'>
+        {/* sidebar */}
+        <SidebarMainDrawer
+
+          isSubmitRequest={true}
+          categories={formatFatwaBooksForSidebarData}
+      
+          isFatwah_Dictionary_Filter={true}
+
+          dataForContact={requestData}
+        />
+
+        {/* main content */}
+        <div className=' w-full space-y-6'>
+          {/* Header */}
+          <InnerHeader title={"掲示板"} image={"/images/dictionary/arabic.svg"} />
+          <div className=''>
+            <div className='w-full py-2'>
+              <DictionarySearchSection data_for_filter={data_for_filter} />
             </div>
-
-
-            <Container className='flex gap-6 my-6'>
-                {/* sidebar */}
-                <SidebarMainDrawer isSubmitRequest={false} categories={sideBarCategories} />
-                {/* <div className='w-[400px] space-y-6'>
-                     <Sidebar categories={categories} />
-                    <SubmitRequest />
-                </div> */}
-                {/* main content */}
-                <div className=' w-full space-y-6'>
-                    {/* Header */}
-                    <InnerHeader title={"掲示板"} image={"/images/fatwah/fatwaharbic_white.png"} />
-                   <div className=''>
-                     <div className='w-full py-2'>
-                        <DictionarySearchSection/>
-                     </div>
-                   </div>
-                   <DictionaryPage/>
-                </div>
-            </Container>
-
+          </div>
+          <DictionaryPage />
         </div>
-    )
+      </Container>
+
+    </div>
+  )
 }
