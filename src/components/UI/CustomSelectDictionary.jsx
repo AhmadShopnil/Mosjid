@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import { createPortal } from "react-dom";
 
-export default function CustomSelectDictionary({ options,lvl,selected,setSelected }) {
+export default function CustomSelectDictionary({ options, lvl, selected, setSelected, parrent_lvl, selectedParrent }) {
   const [isOpen, setIsOpen] = useState(false);
   // const [selected, setSelected] = useState(null);
   const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0, width: 0 });
@@ -37,7 +37,7 @@ export default function CustomSelectDictionary({ options,lvl,selected,setSelecte
         flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-green-400"
       >
         <span className="text-gray-700">
-          {selected ? selected?.name : lvl}
+          {selected ? selected?.name_en : lvl}
         </span>
         <ChevronDown
           size={18}
@@ -59,22 +59,40 @@ export default function CustomSelectDictionary({ options,lvl,selected,setSelecte
             className="p-2 space-y-2 bg-[#EEF8E9] border border-gray-200 rounded-md 
             shadow-md max-h-80 overflow-auto"
           >
-            {options.map((option, index) => (
-              <button
-                key={index}
-                onClick={() => handleSelect(option)}
-                className={`w-full text-left px-4 py-2 rounded-md transition ${
-                  selected?.name === option.name
-                    ? "bg-[#C9E9BA] text-green-900"
-                    : "bg-white hover:bg-[#C9E9BA]"
-                }`}
-              >
-                <p className="font-medium text-sm text-gray-800">
-                  {option?.name}
-                </p>
-                <p className="text-xs text-gray-500">{option.name_jp}</p>
-              </button>
-            ))}
+
+
+            {selectedParrent == null ? (
+              <p className="font-medium text-sm text-gray-800">
+                Please select {parrent_lvl} at first
+              </p>
+            ) : (
+              <>
+                {options?.length > 0 ? (
+                  options.map((option, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleSelect(option)}
+                      className={`w-full text-left px-4 py-2 rounded-md transition ${selected?.name_en === option.name_en
+                          ? "bg-[#C9E9BA] text-green-900"
+                          : "bg-white hover:bg-[#C9E9BA]"
+                        }`}
+                    >
+                      <p className="font-medium text-sm text-gray-800">
+                        {option?.name_en}
+                      </p>
+                      <p className="text-xs text-gray-500">{option?.name_jp}</p>
+                    </button>
+                  ))
+                ) : (
+                  <p className="font-medium text-sm text-gray-800">No {lvl} Found</p>
+                )}
+              </>
+            )}
+
+
+
+
+          
           </div>,
           document.body
         )}

@@ -21,13 +21,13 @@ export default function FatwahSlected({ settings, homePage }) {
 
 
 
-//  console.log( {
-//         selectedMajhabs,
-//         selectedBooks,
-//         selectedChapter,
-//         selectedSection,
-//         selectedSearchTerm,
-//       })
+    console.log({
+        selectedMajhabs,
+        selectedBooks,
+        selectedChapter,
+        selectedSection,
+        selectedSearchTerm,
+    })
 
 
 
@@ -40,9 +40,9 @@ export default function FatwahSlected({ settings, homePage }) {
                     const params = new URLSearchParams();
 
                     if (selectedMajhabs) params.append("majhab", selectedMajhabs);
-                    if (selectedBooks?.name) params.append("book", selectedBooks.name);
-                    if (selectedChapter?.name) params.append("chapter", selectedChapter.name);
-                    if (selectedSection?.name) params.append("section", selectedSection.name);
+                    if (selectedBooks?.name_en) params.append("book", selectedBooks.name_en);
+                    if (selectedChapter?.name_en) params.append("chapter", selectedChapter.name_en);
+                    if (selectedSection?.name_en) params.append("section", selectedSection.name_en);
                     if (selectedSearchTerm) params.append("s", selectedSearchTerm);
 
 
@@ -78,12 +78,12 @@ export default function FatwahSlected({ settings, homePage }) {
         selectedSearchTerm,
     ]);
 
-   
+
 
     return (
         <div>
             {loading ? (
-                 <FatwaListSkeleton />
+                <FatwaListSkeleton />
             ) : (
                 <FatwaListInner
                     title="Selected Fatwah "

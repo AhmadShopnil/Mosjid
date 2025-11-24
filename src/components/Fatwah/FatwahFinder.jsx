@@ -1,20 +1,17 @@
-
+"use client"
 
 import { Search } from "lucide-react"
 import Image from "next/image"
 import FatwaSearchForm from "./FatwaSearchForm"
 import { getFatwahFiltersData } from "@/helper/actions"
 
-export default async function FatwaFinder() {
+export default  function FatwaFinder({data_for_filter}) {
 
-const majhabs=await getFatwahFiltersData("majhabs")
-const books=await getFatwahFiltersData("books")
-const chapter=await getFatwahFiltersData("bookchapters")
-const section=await getFatwahFiltersData("booksections")
 
-const data_for_filter={majhabs,books,chapter,section}
 
-// console.log({majhabs,books,chapter,section})
+
+
+// console.log({books})
 
 
   return (
