@@ -27,7 +27,7 @@ export default function FatwaSearchForm({ data_for_filter }) {
 
   const { majhabs, books, chapter, section } = data_for_filter;
 
-
+  //  const { majhabs, books  } = data_for_filter;
 
 
   const handleSearchTerm = () => {
@@ -42,17 +42,17 @@ export default function FatwaSearchForm({ data_for_filter }) {
 
         {/* LEFT SECTION */}
         <div className="w-full md:w-[50%] flex flex-col gap-3">
-          {majhabs.map((m) => (
+          {majhabs?.data?.map((m, i) => (
             <button
-              key={m.name}
-              onClick={() => setSelectedMajhabs(m.name)}
+              key={i}
+              onClick={() => setSelectedMajhabs(m.name_en)}
               className={`h-[56px] flex flex-col justify-center items-center py-3 rounded-md text-sm font-semibold transition-all duration-300
-                ${selectedMajhabs === m.name
+                ${selectedMajhabs === m.name_en
                   ? "gradient-bg-fatwah-finder text-white shadow"
                   : "bg-[#D7EFD8] hover:bg-[#C9E8CA]"
                 }`}
             >
-              <span>{m.name}</span>
+              <span>{m.name_en}</span>
               <span>{m.name_jp}</span>
             </button>
           ))}
@@ -63,23 +63,29 @@ export default function FatwaSearchForm({ data_for_filter }) {
 
           <CustomSelectForFatwaFinder
             lvl="Books"
+            parrent_lvl={"Majhabs"}
+            selectedParrent={selectedMajhabs}
             selected={selectedBooks}
             setSelected={setSelectedBooks}
-            options={books}
+            options={books?.data}
           />
 
           <CustomSelectForFatwaFinder
             lvl="Chapters"
+            parrent_lvl={"Books"}
+            selectedParrent={selectedBooks}
             selected={selectedChapter}
             setSelected={setSelectedChapter}
-            options={chapter}
+            options={selectedBooks?.chapters}
           />
 
           <CustomSelectForFatwaFinder
             lvl="Sections"
+            parrent_lvl={"Chapters"}
+            selectedParrent={selectedChapter}
             selected={selectedSection}
             setSelected={setSelectedSection}
-            options={section}
+            options={selectedChapter?.sections}
           />
 
           <input

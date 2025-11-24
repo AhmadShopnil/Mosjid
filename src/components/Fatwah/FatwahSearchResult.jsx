@@ -39,9 +39,9 @@ export default function FatwahSearchResult({ settings, homePage }) {
                     const params = new URLSearchParams();
 
                     if (selectedMajhabs) params.append("majhab", selectedMajhabs);
-                    if (selectedBooks?.name) params.append("book", selectedBooks.name);
-                    if (selectedChapter?.name) params.append("chapter", selectedChapter.name);
-                    if (selectedSection?.name) params.append("section", selectedSection.name);
+                    if (selectedBooks?.name_en) params.append("book", selectedBooks.name_en);
+                    if (selectedChapter?.name_en) params.append("chapter", selectedChapter.name_en);
+                    if (selectedSection?.name_en) params.append("section", selectedSection.name_en);
                     if (selectedSearchTerm) params.append("s", selectedSearchTerm);
 
 

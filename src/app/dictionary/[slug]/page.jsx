@@ -6,6 +6,7 @@ import BannerInnerPage from '@/components/Shared/BannerInnerPage'
 import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
+import SidebarDrawerForBooks from '@/components/Shared/SidebarDrawerForBooks'
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 import { sideBarCategories } from '@/data/sidebar'
 import { getFatwahFiltersData, getPage, getSettings } from '@/helper/actions'
@@ -42,10 +43,10 @@ export default async function page() {
 
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
-        <SidebarMainDrawer
+        <SidebarDrawerForBooks
 
           isSubmitRequest={true}
-          categories={formatFatwaBooksForSidebarData}
+           books={books?.data}
       
           isFatwah_Dictionary_Filter={true}
 

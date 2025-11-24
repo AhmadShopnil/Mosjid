@@ -1,5 +1,5 @@
 export function formatFatwaBooksForSidebar(apiData) {
-  return apiData.map((item) => {
+  return apiData?.data?.map((item) => {
     return {
       id: item.id,
       icon: item?.icon ||"/images/QuickLinks/fatwa.png", 
@@ -7,13 +7,14 @@ export function formatFatwaBooksForSidebar(apiData) {
    
       name: item.name_en || item.name,
       subtitle: item.name_jp || "",
-      hasSubItems: (item.items && item.items.length > 0) ? true : false,
+      hasSubItems: (item.chapters && item.chapters.length > 0) ? true : false,
       isArrow: true,
 
-      subItems: item.items?.length
-        ? item.items.map((sub) => sub.name_en || sub.name)
+      subItems: item.chapters?.length
+        ? item?.chapters?.map((sub) => sub.name_en || sub.name)
         : [],
-      originalData:item
+      originalData:item,
+      childs:item?.chapters
       // childs: [
       //   {
       //     name: "Ask Fatwa",

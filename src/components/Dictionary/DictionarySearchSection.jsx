@@ -19,16 +19,16 @@ const languageRegex = {
 
 
 
-export default function DictionarySearchSection({data_for_filter}) {
+export default function DictionarySearchSection({ data_for_filter }) {
   const [warning, setWarning] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("English")
   const [searchTerm, setSearchTerm] = useState("")
-//   const [selectedBook, setSelectedBook] = useState("Book")
-//   const [selectedChapter, setSelectedChapter] = useState("Chapter")
-//   const [selectedSection, setSelectedSection] = useState("Section")
+  //   const [selectedBook, setSelectedBook] = useState("Book")
+  //   const [selectedChapter, setSelectedChapter] = useState("Chapter")
+  //   const [selectedSection, setSelectedSection] = useState("Section")
 
 
- const [searchText, setSearchText] = useState()
+  const [searchText, setSearchText] = useState()
   const {
     selectedMajhabs,
     setSelectedMajhabs,
@@ -49,7 +49,7 @@ export default function DictionarySearchSection({data_for_filter}) {
 
 
 
-const {  books, chapter, section } = data_for_filter;
+  const { books, chapter, section } = data_for_filter;
 
 
   const languages = [
@@ -80,9 +80,9 @@ const {  books, chapter, section } = data_for_filter;
       <div className="bg-white rounded-[20px] gradient-border
       px-4 py-16  sm:p-10 relative">
 
-    
 
-   
+
+
 
         {/* Language selection */}
         <div className="flex gap-2 mb-6">
@@ -176,11 +176,13 @@ const {  books, chapter, section } = data_for_filter;
           <div className=" flex-1 min-w-[150px]">
 
             <CustomSelectDictionary
-            
-            lvl="Books" 
-            options={books}
-            selected={selectedBooks}
-            setSelected={setSelectedBooks}
+
+              lvl="Books"
+              parrent_lvl={"Books"}
+              selectedParrent={"Books"}
+              options={books?.data}
+              selected={selectedBooks}
+              setSelected={setSelectedBooks}
             />
 
 
@@ -190,11 +192,13 @@ const {  books, chapter, section } = data_for_filter;
 
           <div className=" flex-1 min-w-[150px]">
 
-            <CustomSelectDictionary 
-            lvl="Chapter" 
-            options={chapter} 
-            selected={selectedChapter}
-            setSelected={setSelectedChapter}
+            <CustomSelectDictionary
+              lvl="Chapter"
+              parrent_lvl={"Books"}
+              selectedParrent={selectedBooks}
+              options={selectedBooks?.chapters}
+              selected={selectedChapter}
+              setSelected={setSelectedChapter}
             />
 
 
@@ -204,11 +208,13 @@ const {  books, chapter, section } = data_for_filter;
           {/* Section dropdown */}
           <div className=" flex-1 min-w-[150px]">
 
-            <CustomSelectDictionary 
-            options={section} 
-            lvl="Sections" 
-             selected={selectedSection}
-            setSelected={setSelectedSection}
+            <CustomSelectDictionary
+              options={selectedChapter?.sections}
+              lvl="Sections"
+              parrent_lvl={"Chapters"}
+              selectedParrent={selectedChapter}
+              selected={selectedSection}
+              setSelected={setSelectedSection}
             />
 
 
