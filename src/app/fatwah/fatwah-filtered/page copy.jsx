@@ -23,7 +23,7 @@
 //    const data_for_filter = { majhabs, books, chapter, section }
 
 
-//   const requestData = "Fatwah"
+//   const requestData = "Fatwa"
 //   // console.log("fatwah", fatwahs?.data)
 //   return (
 //     <div>

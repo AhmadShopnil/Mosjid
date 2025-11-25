@@ -28,7 +28,7 @@
 
 
 //   //  const requestData = selected?.name ? `Blogs of ${selected?.name} ` : "Blogs"
-//   const requestData = "Fatwah"
+//   const requestData = "Fatwa"
 
 //   return (
 //     <div>

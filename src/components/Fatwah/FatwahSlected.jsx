@@ -21,13 +21,13 @@ export default function FatwahSlected({ settings, homePage }) {
 
 
 
-    console.log({
-        selectedMajhabs,
-        selectedBooks,
-        selectedChapter,
-        selectedSection,
-        selectedSearchTerm,
-    })
+    // console.log({
+    //     selectedMajhabs,
+    //     selectedBooks,
+    //     selectedChapter,
+    //     selectedSection,
+    //     selectedSearchTerm,
+    // })
 
 
 
@@ -86,7 +86,7 @@ export default function FatwahSlected({ settings, homePage }) {
                 <FatwaListSkeleton />
             ) : (
                 <FatwaListInner
-                    title="Selected Fatwah "
+                    title="Selected Fatwa "
                     titleWidth="w-[220px]"
                     fatwahs={fatwahs}
                     settings={settings}

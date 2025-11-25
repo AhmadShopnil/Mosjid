@@ -52,7 +52,7 @@ export async function getFatwahFiltersData(slug) {
 
 
 export async function getServices() {
-  const API_URL = `${BASE_URL}/api/v1/posts?term_type=services`;
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=services&order_by=order_column:asc`;
 
   const res = await fetch(API_URL, {
     next: { revalidate: 30 },
@@ -61,7 +61,7 @@ export async function getServices() {
   return json?.data || [];
 }
 export async function getIslamicBooks() {
-  const API_URL = `${BASE_URL}/api/v1/posts?term_type=islamic_books`;
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=islamic_books&order_by=order_column:asc`;
 
   const res = await fetch(API_URL, {
     next: { revalidate: 30 },
@@ -71,7 +71,7 @@ export async function getIslamicBooks() {
 }
 
 export async function getDua() {
-  const API_URL = `${BASE_URL}/api/v1/posts?term_type=dua`;
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=dua&order_by=order_column:asc`;
 
   const res = await fetch(API_URL, {
     next: { revalidate: 30 },
@@ -94,7 +94,7 @@ export async function getSingleService(slug) {
 }
 
 export async function getEvents() {
-  const API_URL = `${BASE_URL}/api/v1/posts?term_type=events`;
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=events&order_by=order_column:asc`;
 
   const res = await fetch(API_URL, {
     next: { revalidate: 30 },
@@ -182,18 +182,9 @@ export async function getSingleSlider(slug) {
   return json?.data || {};
 }
 
-export async function getScholars() {
-  const API_URL = `${BASE_URL}/api/v1/posts?term_type=scholars`;
-
-  const res = await fetch(API_URL, {
-    next: { revalidate: 30 },
-  });
-  const json = await res.json();
-  return json?.data || [];
-}
 
 export async function getBlogs() {
-  const API_URL = `${BASE_URL}/api/v1/posts?term_type=post`;
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=post&order_by=order_column:asc`;
 
   const res = await fetch(API_URL, {
     next: { revalidate: 30 },
@@ -304,7 +295,7 @@ export async function getQuran_Hadith() {
 
 
 export async function getNotices() {
-  const API_URL = `${BASE_URL}/api/v1/posts?term_type=notices`;
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=notices&order_by=order_column:asc`;
 
   const res = await fetch(API_URL, {
     next: { revalidate: 30 },
@@ -341,7 +332,7 @@ export async function getFatwa() {
 
 
 export async function getCategories(type) {
-  const API_URL = `${BASE_URL}/api/v1/categories?taxonomy_type=${type}&order_direction=desc`;
+  const API_URL = `${BASE_URL}/api/v1/categories?taxonomy_type=${type}`;
   // console.log("from action slug", slug)
   const res = await fetch(API_URL, {
     next: { revalidate: 30 },

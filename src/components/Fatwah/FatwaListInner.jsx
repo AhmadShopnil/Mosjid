@@ -71,8 +71,8 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
                             {fatwahs?.map((item) => (
                                 <li
                                     key={item?.id}
-                                    className="flex justify-between items-center border 
-                   border-[#D9E2DD] p-1.5  rounded-full relative z-10"
+                                    className="flex justify-between items-center border border-[#D9E2DD] p-1.5  rounded-full 
+                                    relative z-10 bg-white"
                                 >
                                     {/* Left Content */}
                                     <div className="flex items-center gap-2 sm:gap-4">

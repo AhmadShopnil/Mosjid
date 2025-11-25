@@ -31,7 +31,10 @@ const {
     setSelectedSearchTerm,
   } = useFatwaFilters();
 
- const requestData = "Fatwah"
+
+
+
+ const requestData = "Fatwa"
   return (
     <div>
     
@@ -66,11 +69,12 @@ const {
     
             {/* main content */}
             <div className=' w-full'>
-              <FatwaListInner title="New Fatawa" titleWidth="w-[420px]" fatwahs={fatwahs?.data} settings={settings} homePage={homePage} />
-              <div className='grid grid-cols-1 xl:grid-cols-2 gap-3 lxl:gap-6  mt-6'>
                 <FatwahSlected settings={settings} homePage={homePage} />
+             
+              <div className='grid grid-cols-1 xl:grid-cols-2 gap-3 lxl:gap-6  mt-6'>
+               <FatwaListInner title="New Fatwa" titleWidth="w-[220px]" fatwahs={fatwahs?.data} settings={settings} homePage={homePage} />
                 {/* <FatwaListInner title="Selected Fatwah " titleWidth="w-[220px]" fatwahs={fatwahs?.data} settings={settings} homePage={homePage} /> */}
-                <FatwaListInner title="Top Rated Fatwah" titleWidth="w-[220px]" fatwahs={fatwahs?.data} settings={settings} homePage={homePage} />
+                <FatwaListInner title="Top Rated Fatwa" titleWidth="w-[220px]" fatwahs={fatwahs?.data} settings={settings} homePage={homePage} />
               </div>
             </div>
           </Container>

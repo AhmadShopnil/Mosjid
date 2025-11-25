@@ -23,7 +23,12 @@ export default async function page({ params }) {
     const settings = await getSettings()
     const homePage = await getPage("home-sections-heading-management")
 
-    const books = await getFatwahFiltersData("books")
+   
+      const majhabs = await getFatwahFiltersData("majhabs")
+      const books = await getFatwahFiltersData("books")
+      const chapter = await getFatwahFiltersData("bookchapters")
+      const section = await getFatwahFiltersData("booksections")
+      const data_for_filter = { majhabs, books, chapter, section }
 
     const formatFatwaBooksForSidebarData = formatFatwaBooksForSidebar(books)
 
@@ -38,7 +43,7 @@ export default async function page({ params }) {
                 <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Fatwah" />
             </div>
             <Container className='mt-10'>
-                <FatwaFinder />
+                <FatwaFinder data_for_filter={data_for_filter}/>
             </Container>
 
             <Container className='flex gap-6 my-6'>
