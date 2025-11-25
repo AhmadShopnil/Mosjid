@@ -38,9 +38,9 @@ export default function NoticePage({ homePage, settings, formattedCategories }) 
     useEffect(() => {
         const fetchNotices = async () => {
             setLoading(true)
-            let url = `/posts?term_type=notices&page=${currentPage}&per_page=${perPage}`
+            let url = `/posts?term_type=notices&page=${currentPage}&per_page=${perPage}&order_by=order_column:asc`
             if (selectedCat) {
-                url = `/posts?term_type=notices&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`
+                url = `/posts?term_type=notices&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}&order_by=order_column:asc`
             }
 
             try {
@@ -72,7 +72,7 @@ export default function NoticePage({ homePage, settings, formattedCategories }) 
     const arabic = getImageUrl(notice_Extra_data?.image_media)
     const icon = getImageUrl(notice_Extra_data?.background_media)
 
-
+    const section_title = selected?.name || selectedParrent?.name
 
     return (
         <div>
@@ -100,6 +100,7 @@ export default function NoticePage({ homePage, settings, formattedCategories }) 
 
                     {/* Notice board */}
                     <NoticeBoard
+                        section_title={section_title}
                         homePage={homePage}
                         notices={notices}
                         settings={settings}

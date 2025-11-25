@@ -15,7 +15,7 @@ import { getImageUrl } from "@/helper/getImageUrl";
 
 
 
-export default function NoticeBoard({ notices, settings, homePage, loading, currentPage, setCurrentPage, totalPages }) {
+export default function NoticeBoard({ notices, settings, homePage, loading, currentPage, setCurrentPage, totalPages, section_title }) {
     const [selectedNotice, setSelectedNotice] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -56,13 +56,14 @@ export default function NoticeBoard({ notices, settings, homePage, loading, curr
                         // src="/images/prayertimes/noticeicon2.png"
                         src={icon}
                         alt="Icon"
-                        width={30}
-                        height={35}
+                        width={31}
+                        height={38}
                     />
 
                     <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
                         <p>
-                            {notice_board_title_InnerPage?.value}
+                            {/* {notice_board_title_InnerPage?.value} */}
+                            {section_title || notice_board_title_InnerPage?.value}
                         </p>
                     </div>
                 </div>
@@ -81,66 +82,74 @@ export default function NoticeBoard({ notices, settings, homePage, loading, curr
 
             {/* Notices List */}
 
-            {loading ?
+            {loading ? (
                 <SkeletonNoticeItem />
-                :
-
+            ) : notices?.length === 0 ? (
+                <div className="text-center py-10 text-[#00401A] font-semibold border border-[#D9E2DD] rounded-xl bg-white">
+                    No notices found
+                </div>
+            ) : (
                 <ul className="space-y-3">
-                    {notices?.map((item, i) => (
-
+                    {notices.map((item, i) => (
                         <li
                             key={i}
-                            className="flex justify-between items-center border  border-[#D9E2DD] p-1.5  rounded-full 
-                            relative z-10 bg-white"
+                            className="flex justify-between items-center border border-[#D9E2DD] p-1.5 rounded-full
+                relative z-10 bg-white"
                         >
                             {/* Left Content */}
                             <div className="flex items-center gap-2 sm:gap-4">
-                                {/* icon */}
+                                {/* Icon */}
                                 <div
-                                    className=" border border-[#E6ECE8] w-[50px] h-[50px] md:w-[60px] md:h-[60px] rounded-full 
-                                    p-1.5 md:p-2 flex justify-center items-center "
+                                    className="border border-[#E6ECE8] w-[50px] h-[50px] md:w-[60px] md:h-[60px] rounded-full
+                        p-1.5 md:p-2 flex justify-center items-center"
                                 >
                                     <Image
                                         src={icon}
                                         alt="icon"
                                         width={30}
                                         height={38}
-                                        className='hidden sm:flex'
+                                        className="hidden sm:flex"
                                     />
                                     <Image
                                         src={icon}
                                         alt="icon"
                                         width={24}
                                         height={34}
-                                        className='flex sm:hidden'
+                                        className="flex sm:hidden"
                                     />
                                 </div>
+
                                 <div>
-                                    <p className="sm:hidden text-[#00401A] font-semibold text-[12px] ">{item?.sub_title.slice(0, 18)}</p>
-                                    <p className="hidden sm:block text-[#00401A] font-semibold text-[15px]">{item?.sub_title.slice(0, 120)}</p>
+                                    <p className="sm:hidden text-[#00401A] font-semibold text-[12px] ">
+                                        {item?.sub_title?.slice(0, 18)}
+                                    </p>
+                                    <p className="hidden sm:block text-[#00401A] font-semibold text-[15px]">
+                                        {item?.sub_title?.slice(0, 120)}
+                                    </p>
+
                                     <button
                                         onClick={() => handleOpenModal(item)}
-                                        className="text-[#00401A] font-semibold sm:font-bold text-xs md:text-sm
-                                         hover:text-[#F7BA2A]  flex gap-1 items-center  cursor-pointer"
+                                        className="text-[#00401A] font-semibold sm:font-bold text-xs md:text-sm 
+                            hover:text-[#F7BA2A] flex gap-1 items-center cursor-pointer"
                                     >
                                         {read_more}
-                                        <span className='mt-0.5'><FaLongArrowAltRight /></span>
+                                        <span className="mt-0.5"><FaLongArrowAltRight /></span>
                                     </button>
                                 </div>
                             </div>
 
                             {/* Download Button */}
-                            <button className="flex items-center gap-2 px-3 sm:px-4 md:px-5 py-2 sm:py-3 cursor-pointer gradient-border3 
-                  rounded-[100px] text-[#00401A] font-bold text-xs sm:text-sm md:text-lg ">
+                            <button
+                                className="flex items-center gap-2 px-3 sm:px-4 md:px-5 py-2 sm:py-3 cursor-pointer gradient-border3 
+                    rounded-[100px] text-[#00401A] font-bold text-xs sm:text-sm md:text-lg"
+                            >
                                 {download}
                                 <Download className="w-4 h-4" />
                             </button>
                         </li>
-
-
                     ))}
                 </ul>
-            }
+            )}
 
             <NoticeModal
                 isOpen={isModalOpen}

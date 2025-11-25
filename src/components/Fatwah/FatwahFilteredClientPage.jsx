@@ -28,7 +28,7 @@ export default function FatwahFilteredClientPage({ fatwahs, settings, homePage, 
     } = useFatwaFilters();
 
 
-    const requestData = "Fatwah"
+    const requestData = "Fatwa"
 
 
     return (
