@@ -16,7 +16,7 @@ export default async function Events({ events,eventsSectionTitle }) {
   // console.log("event ness",eventsSectionTitle)
 
   return (
-    <div className='gradient-border rounded-3xl p-5 bg-white h-full'>
+    <div className='gradient-border rounded-3xl p-5 bg-white h-full shadow-lg'>
       {/* heading */}
       <div className='gradient-border_b pb-2 flex justify-between'>
         <h4 className='text-[#00401A] font-bold text-base  ' >

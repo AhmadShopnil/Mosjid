@@ -48,7 +48,7 @@ export default function AskQuestionPage() {
     };
 
     return (
-        <div className="bg-white border border-[#DDEEDC] rounded-[10px]  shadow-sm">
+        <div className="bg-white border border-[#DDEEDC] rounded-[10px]  shadow-lg">
             {/* Header */}
             <div className="bg-[#E5F5DE] h-[76px] flex items-center justify-center ">
                 <h2 className="text-center text-xl md:text-2xl font-bold text-[#00401A] my-auto">

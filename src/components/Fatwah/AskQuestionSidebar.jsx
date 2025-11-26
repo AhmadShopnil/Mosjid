@@ -40,9 +40,13 @@ export default function AskQuestionSidebar() {
         ask_a_question_feature?.toLowerCase?.().trim() === "no";
 
     return (
-        <div className='bg-white rounded-[10px] border border-[#C9E9BA] overflow-hidden shadow-sm p-4'>
-            
-            {/* header */}
+        <div
+            className={`
+                bg-white rounded-[10px] border border-[#C9E9BA] overflow-hidden shadow-sm p-4 
+                ${isDisabled ? "opacity-50 pointer-events-none select-none " : ""}
+            `}
+        >
+            {/* Header */}
             <div className='flex justify-between'>
                 <div className='gradient-border_b pb-2'>
                     <h4 className='text-[#00401A] text-2xl font-bold'>Ask A Question</h4>
@@ -58,31 +62,20 @@ export default function AskQuestionSidebar() {
                 />
             </div>
 
-            <div className='min-h-[150px] mt-5 flex flex-col justify-between '>
+            <div className='min-h-[150px] mt-5 flex flex-col justify-between'>
                 <p className='text-sm text-[#00401A]'>
-                    If you dont have the question you want, Click below to ask your question
+                    If you don’t have the question you want, click below to ask your question
                 </p>
 
-                {/* Button Wrapper (for tooltip) */}
                 <div className="relative group w-full mt-2">
-
-                    {/* Tooltip */}
-                    {/* {isDisabled && (
-                        <div className="absolute -top-10 left-1/2 -translate-x-1/2 
-                                        bg-black text-white text-xs px-3 py-1 rounded-md 
-                                        opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none ">
-                            This feature is currently not active
-                        </div>
-                    )} */}
-
-                    {/* Disabled Link */}
+                    
                     {isDisabled ? (
                         <div
                             className="
                                 gradient-bg-fatwah-finder text-sm font-bold text-white
                                 h-[36px] px-6 py-2 rounded-[10px]
-                                shadow-md transition-all duration-300 hover:opacity-90
-                                flex items-center justify-center gap-2 cursor-not-allowed
+                                shadow-md flex items-center justify-center gap-2
+                                cursor-not-allowed opacity-80
                             "
                         >
                             <span>Ask a Question</span>
@@ -103,7 +96,6 @@ export default function AskQuestionSidebar() {
                         </Link>
                     )}
                 </div>
-
             </div>
         </div>
     )

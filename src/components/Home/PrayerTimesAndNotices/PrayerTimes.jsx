@@ -61,7 +61,7 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
   const wakt_end = prayer_time?.custom_information.find((i) => i.label === "wakt_end");
 
   return (
-    <div className="px-3 sm:px-8 pt-5 sm:pt-8 pb-24 h-full gradient-bordernew relative overflow-hidden">
+    <div className="px-3 sm:px-8 pt-5 sm:pt-8 pb-24 h-full gradient-bordernew relative overflow-hidden shadow-lg">
 
       {/* Top Images */}
       <div className="absolute top-0 right-0">

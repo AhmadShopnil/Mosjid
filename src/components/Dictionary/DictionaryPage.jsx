@@ -15,7 +15,7 @@ export default function DictionaryPage() {
     const [loading, setLoading] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
 
-    /* -------------------- Fetch Filtered Dictionaries -------------------- */
+    /* Fetch Filtered Dictionaries  */
     useEffect(() => {
         const timeout = setTimeout(() => {
             async function fetchFilteredDictionaries() {
@@ -49,9 +49,9 @@ export default function DictionaryPage() {
     }, [selectedBooks, selectedChapter, selectedSection,selectedSearchTerm]);
 
     return (
-        <div className="bg-gray-50 space-y-4">
+        <div className="bg-gray-50 space-y-4 ">
             {/* Table Section */}
-            <div className="gradient-border rounded-2xl p-8 bg-white shadow-sm">
+            <div className="gradient-border rounded-2xl p-8 bg-white shadow-md">
 
                 {/* Table Header */}
                 <div className="bg-[#52B920] h-[50px] text-white flex items-center justify-center rounded-t-[10px]">

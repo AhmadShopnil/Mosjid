@@ -6,6 +6,7 @@ import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
+import SocialShare from '@/components/Shared/SocialShare'
 import { sideBarCategories } from '@/data/sidebar'
 import { getPage } from '@/helper/actions'
 import { getImageUrl } from '@/helper/getImageUrl'
@@ -45,7 +46,11 @@ export default async function page() {
 
           <div>
 
-            <PrayerTimesInnerPage />
+            <PrayerTimesInnerPage /> 
+
+            <div className='mt-8'>
+              <SocialShare/>
+            </div>
           </div>
 
         </div>

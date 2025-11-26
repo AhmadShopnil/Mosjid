@@ -26,8 +26,8 @@ export default function FatwaHeadline({ fatwahs }) {
       <Container>
         <div className="h-12.5 flex items-center gap-4 overflow-hidden">
           {/* Left fixed label */}
-          <div className=" bg-[#E5F5DE] text-base sm:text-lg md:text-xl text-[#00401A] h-12.5 w-45 flex items-center justify-center font-bold">
-            Latest updates
+          <div className=" bg-[#E5F5DE] text-base sm:text-lg md:text-xl text-[#00401A] h-12.5 px-4 flex items-center justify-center font-bold">
+            Updates
           </div>
 
           {/* Fatwa text with smooth fade animation */}

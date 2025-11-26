@@ -24,7 +24,7 @@ function MakeDonation({ donationMethods, make_your_donation }) {
   // console.log("donate_now_button",donate_now_button)
 
   return (
-    <div className='gradient-border bg-white  px-5 sm:px-8 pt-5 sm:pt-8 pb-20p-4 rounded-2xl'>
+    <div className='borderDonationHome shadow-lg bg-white  px-5 sm:px-8 pt-5 sm:pt-8 pb-20p-4 rounded-2xl'>
 
 
    <div

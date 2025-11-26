@@ -178,7 +178,7 @@ export default async function FatwahBox() {
                        {item?.description_en}
                     </p>
                     <Link
-                      href="/"
+                       href={`/fatwah/${item?.id}`}
                       className="text-[#00401A] font-bold text-xs md:text-sm hover:text-[#F7BA2A] 
                       flex gap-1 items-center "
                     >

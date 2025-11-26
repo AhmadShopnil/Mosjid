@@ -82,8 +82,9 @@ export default function SidebarDrawerForBooks({
           />
 
           {/* Shown below sidebar content */}
-          {isAskQuestion && <AskQuestionSidebar />}
+          
           {isSubmitRequest && <SubmitRequest dataForContact={dataForContact} />}
+          {isAskQuestion && <AskQuestionSidebar />}
         </div>
       </div>
     </>
