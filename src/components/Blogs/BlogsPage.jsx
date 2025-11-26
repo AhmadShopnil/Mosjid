@@ -86,7 +86,7 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
 
  const requestData = selected?.name ? `Blogs of ${selected?.name} ` : "Blogs"
 
-
+const section_title = selected?.name || selectedParrent?.name
 
   return (
     <div>
@@ -118,6 +118,7 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
 
           <div>
             <Blogs
+             section_title={section_title}
               blogs={blogs}
               settings={settings}
               homePage={homePage}

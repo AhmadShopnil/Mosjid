@@ -65,7 +65,7 @@ export default async function page({ params }) {
                     <div>
                         <FatwaDetailSection singleFatwah={singleFatwah} />
                     </div>
-                    <div className='grid grid-cols-2 gap-6  mt-6'>
+                    <div className='grid grid-cols-1  xl:grid-cols-2 gap-6  mt-6'>
                         <FatwaListInner title="Related Fatwah " titleWidth="w-[220px]" fatwahs={fatwahs?.data} settings={settings} homePage={homePage} />
                         <FatwaListInner title="Related Topics" titleWidth="w-[220px]" fatwahs={fatwahs?.data} settings={settings} homePage={homePage} />
                     </div>

@@ -94,7 +94,7 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
       <div className="overflow-hidden space-y-6">
         
         {/* PRAYER TIMES TABLE */}
-        <div className="overflow-hidden rounded-[20px] border-b border-gray-200">
+        <div className="overflow-hidden hidden sm:block rounded-[20px] border-b border-gray-200">
           <table className="w-full text-sm hidden sm:table">
             <thead>
               <tr className="bg-[#52B920] text-white text-bold text-lg">

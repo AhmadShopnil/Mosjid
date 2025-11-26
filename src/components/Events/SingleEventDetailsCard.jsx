@@ -31,15 +31,17 @@ export default function SingleEventDetailsCard({ event }) {
   return (
     <div>
       {/* Event Card */}
-      <div className="grid grid-cols-1 lg:grid-cols-6 gap-3 p-5 sm:p-7 bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
+      <div className="grid grid-cols-1 xl:grid-cols-6 gap-3 p-5 sm:p-7 bg-white rounded-xl
+       shadow-md overflow-hidden  gradient-border">
         {/* Left Column — Event Time */}
-        <div className="col-span-1 flex flex-col items-start">
+        <div className="col-span-1 flex  xl:flex-col  xl:items-start gap-4">
           <h4 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#000000]">
             Event Time <br />
             イベント時間
           </h4>
 
-          <div className="bg-[#F2F2F2] rounded-md text-[#000000] w-[140px] sm:w-[170px] h-[90px] sm:h-[100px] p-3 mt-5 space-y-2 flex flex-col justify-center items-start">
+          <div className="bg-[#F2F2F2] rounded-md text-[#000000] w-[140px] 
+          sm:w-[170px] h-[90px] sm:h-[100px] p-3 xl:mt-5 space-y-2 flex flex-col justify-center items-start">
             <div className="space-x-1">
               <span className="text-[#00401A] font-semibold text-2xl md:text-3xl">
                 {day}

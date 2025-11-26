@@ -33,7 +33,7 @@ export default function SingleBlogDetailsCard({ blog,settings }) {
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-gradient-to-b from-[#EEF8E9] to-[#BAFF98] px-4 py-4 gap-2 sm:gap-0">
+      <div className="flex  justify-between items-start sm:items-center bg-gradient-to-b from-[#EEF8E9] to-[#BAFF98] px-4 py-4 gap-2 sm:gap-0">
         <h4 className="text-lg sm:text-2xl font-semibold text-[#333333] leading-snug">
           {blog?.name}
         </h4>
@@ -57,7 +57,7 @@ export default function SingleBlogDetailsCard({ blog,settings }) {
 
         {/* Content */}
         <div className="flex flex-col justify-between w-full">
-          <div>
+          <div className="px-1 overflow-hidden">
             <p className="text-[#333333] text-xs sm:text-sm mb-3 border-b pb-2 border-gray-200">
               {month} {day}th, {year}
             </p>

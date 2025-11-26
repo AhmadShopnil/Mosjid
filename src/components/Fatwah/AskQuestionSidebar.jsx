@@ -42,7 +42,7 @@ export default function AskQuestionSidebar() {
     return (
         <div
             className={`
-                bg-white rounded-[10px] border border-[#C9E9BA] overflow-hidden shadow-sm p-4 
+                bg-white rounded-[20px] border border-[#C9E9BA] overflow-hidden shadow-sm p-4 
                 ${isDisabled ? "opacity-50 pointer-events-none select-none " : ""}
             `}
         >

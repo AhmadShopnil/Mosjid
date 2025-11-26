@@ -251,6 +251,16 @@ body {
 
 
 
+
+.up_navigation_button {
+  position: relative;
+  border-radius: 100px;
+  background: linear-gradient(#ffff, #ffff) padding-box,
+              linear-gradient(to bottom, #3198A0, #51F909) border-box;
+  border: 2px solid transparent;
+  
+}
+
 .borderDonationHome {
   position: relative;
   border-radius: 20px;

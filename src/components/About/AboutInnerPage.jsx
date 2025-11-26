@@ -45,7 +45,6 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
 
 
 
-
     useEffect(() => {
         // setSelected(null)
         const fetchAboutData = async () => {
@@ -83,7 +82,7 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
 
 
 
-    console.log("about selected", selected)
+    // console.log("about selected", selected)
 
     return (
         <div>

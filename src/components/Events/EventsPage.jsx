@@ -196,8 +196,8 @@ export default function EventsPage({ homePage, settings, formattedCategories }) 
   const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
   const arabic = getImageUrl(blog_events_ExtraData?.image_media)
 
- const requestData = selected?.name ? `Events of ${selected?.name} ` : "Events"
-
+  const requestData = selected?.name ? `Events of ${selected?.name} ` : "Events"
+  const section_title = selected?.name || selectedParrent?.name
   return (
     <div>
 
@@ -227,6 +227,7 @@ export default function EventsPage({ homePage, settings, formattedCategories }) 
 
           <div>
             <Events
+              section_title={section_title}
               events={events}
               settings={settings}
               homePage={homePage}

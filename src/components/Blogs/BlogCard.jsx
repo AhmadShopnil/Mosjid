@@ -16,7 +16,7 @@ export default  function BlogCard({ blog ,settings}) {
   const year = getDay_Month_Year(blog?.created_at, "year")
 
 
-  const description = "Lorem ipsum dolor sit amet, consectet ur Pellentesque, Lorem ipsum dolor sit amet, consectet ur Pellentesque"
+  
   return (
     <div className="bg-[#EEF8E9] rounded-[20px] flex gap-3 sm:gap-4 md:gap-5 p-3">
       {/* Image Container */}
