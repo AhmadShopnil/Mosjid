@@ -240,6 +240,74 @@ body {
   margin: 4px;
 }
 
+.borderFatwaInner {
+  position: relative;
+  border-radius: 10px;
+  background: linear-gradient(#F5FFF8, #F5FFF8) padding-box,
+              linear-gradient(to bottom, #309caa, #53FF00) border-box;
+  border: 1px solid transparent;
+  
+}
+
+
+
+
+.up_navigation_button {
+  position: relative;
+  border-radius: 100px;
+  background: linear-gradient(#ffff, #ffff) padding-box,
+              linear-gradient(to bottom, #3198A0, #51F909) border-box;
+  border: 2px solid transparent;
+  
+}
+
+.borderDonationHome {
+  position: relative;
+  border-radius: 20px;
+  background: linear-gradient(#ffff, #ffff) padding-box,
+              linear-gradient(to bottom, #309caa, #53FF00) border-box;
+  border: 1px solid transparent;
+  
+}
+.islamicBookHome {
+  position: relative;
+  border-radius:200px;
+  background: white;
+  /* background: linear-gradient(#F5FFF8, #F5FFF8) padding-box,
+              linear-gradient(to bottom, #00FF1E, #00F4AF) border-box;
+  border: 1px solid transparent; */
+  
+}
+.islamicBookHome:hover {
+  position: relative;
+  border-radius:200px;
+  background: linear-gradient(#ffff, #ffff) padding-box,
+              linear-gradient(to bottom, #00FF1E, #00F4AF) border-box;
+  border: 1px solid transparent;
+  
+}
+
+.NoticePrayerTimeBorderHome {
+  position: relative;
+  border-radius: 20px;
+  background: linear-gradient(#F5FFF8, #F5FFF8) padding-box,
+              linear-gradient(to right, #00F4AF, #00FF1E) border-box;
+  border: 1px solid transparent;
+  
+}
+/* .NoticePrayerTimeBorderHome {
+  position: relative;
+  border-radius: 20px;
+  background: 
+    linear-gradient(#F5FFF8, #F5FFF8) padding-box,
+    linear-gradient(
+      to right, 
+      rgba(0, 255, 30, 1), 
+      rgba(0, 244, 175, 1)
+    ) border-box;
+  border: 1px solid transparent;
+} */
+
 
 
 

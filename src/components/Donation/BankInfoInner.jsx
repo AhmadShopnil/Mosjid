@@ -5,31 +5,34 @@ import { splitByComma, splitBySpace } from "@/helper/splitBySpace";
 
 export default function BankInfoInner({ selectedDonation }) {
 
-const note = getMetaValueFromExtraFields(selectedDonation, "note_donation")
-  const from = getMetaValueFromExtraFields(selectedDonation, "from")|| " , "
-  const from_part_1 = splitByComma(from)[0]
-  const from_part_2 = splitByComma(from)[1]
-
-  const bank_name = getMetaValueFromExtraFields(selectedDonation, "bank_name") || " , "
-  const bank_name_1 = splitByComma(bank_name)[0]
-  const bank_name_2 = splitByComma(bank_name)[1]
-
-  const account_name = getMetaValueFromExtraFields(selectedDonation, "account_name") || " , "
-  const account_name_1 = splitByComma(account_name)[0]
-  const account_name_2 = splitByComma(account_name)[1]
+  const note = getMetaValueFromExtraFields(selectedDonation, "note_donation")
+  const from_part_1 = getMetaValueFromExtraFields(selectedDonation, "from") || "  "
+    const from_part_2 = getMetaValueFromExtraFields(selectedDonation, "from_2") || "  "
 
 
-  const symbol = getMetaValueFromExtraFields(selectedDonation, "symbol") || " , "
-  const symbol_1 = splitByComma(symbol)[0]
-  const symbol_2 = splitByComma(symbol)[1]
+  const bank_name_1 = getMetaValueFromExtraFields(selectedDonation, "bank_name") || "  "
+    const bank_name_2 = getMetaValueFromExtraFields(selectedDonation, "bank_name_2") || "  "
 
-  const account_number = getMetaValueFromExtraFields(selectedDonation, "account_number") || " , "
-  const account_number_1 = splitByComma(account_number)[0]
-  const account_number_2 = splitByComma(account_number)[1]
+
+  const branch_name_1 = getMetaValueFromExtraFields(selectedDonation, "branch_name") || "  "
+  const branch_name_2 = getMetaValueFromExtraFields(selectedDonation, "branch_name_2") || "  "
+
+  const account_name_1 = getMetaValueFromExtraFields(selectedDonation, "account_name") || "  "
+   const account_name_2 = getMetaValueFromExtraFields(selectedDonation, "account_name_2") || "  "
+
+
+
+  const symbol_1 = getMetaValueFromExtraFields(selectedDonation, "symbol") || "  "
+    const symbol_2 = getMetaValueFromExtraFields(selectedDonation, "symbol_2") || "  "
+ 
+
+  const account_number_1 = getMetaValueFromExtraFields(selectedDonation, "account_number") || "  "
+    const account_number_2 = getMetaValueFromExtraFields(selectedDonation, "account_number_2") || "  "
+
 
 
   return (
-    <section className="w-full  py-6">
+    <section className="w-full  py-6 ">
       {/* Wrapper with two columns */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
         {/* Left Column */}
@@ -48,10 +51,17 @@ const note = getMetaValueFromExtraFields(selectedDonation, "note_donation")
           </div>
 
           <div className="flex">
+            <span className="w-32 text-[#333333] text-sm ">Branch name</span>
+            <span className="mx-2">:</span>
+            <span className="w-32 md:w-auto text-[#333333] font-bold text-sm">{branch_name_1}</span>
+          </div>
+
+          <div className="flex">
             <span className="w-32 text-[#333333] text-sm ">Account name</span>
             <span className="mx-2">:</span>
             <span className="w-32 md:w-auto text-[#333333] font-bold text-sm">{account_name_1}</span>
           </div>
+
 
           <div className="flex">
             <span className="w-32 text-[#333333] text-sm ">Symbol</span>
@@ -84,6 +94,12 @@ const note = getMetaValueFromExtraFields(selectedDonation, "note_donation")
           </div>
 
           <div className="flex">
+            <span className="w-32 text-[#333333] text-sm ">Branch name</span>
+            <span className="mx-2">:</span>
+            <span className="w-32 md:w-auto text-[#333333] font-bold text-sm">{branch_name_2}</span>
+          </div>
+
+          <div className="flex">
             <span className="w-32 text-[#333333] text-sm ">Account name</span>
             <span className="mx-2">:</span>
             <span className="w-32 md:w-auto text-[#333333] font-bold text-sm">{account_name_2}</span>
@@ -104,7 +120,7 @@ const note = getMetaValueFromExtraFields(selectedDonation, "note_donation")
       </div>
 
       {/* Note Section */}
-      <p className="mt-6 text-red-600 text-xs">
+      <p className="mt-6 text-red-600 text-sm">
         {note}
         {/* <span className="font-semibold">Note :</span> Please refrain from paying Zakat ( obligatory charity )
         or Wajib Sadaqat ( obligatory charity ).

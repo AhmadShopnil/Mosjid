@@ -21,14 +21,14 @@ const languageRegex = {
 
 
 
-export default function DictionarySection({data_for_filter}) {
+export default function DictionarySection({ data_for_filter }) {
   const [warning, setWarning] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("English")
   const [searchTerm, setSearchTerm] = useState("")
 
 
 
- const [searchText, setSearchText] = useState()
+  const [searchText, setSearchText] = useState()
   const {
     selectedMajhabs,
     setSelectedMajhabs,
@@ -49,7 +49,7 @@ export default function DictionarySection({data_for_filter}) {
 
 
 
-const {  books, chapter, section } = data_for_filter;
+  const { books, chapter, section } = data_for_filter;
 
 
   const languages = [
@@ -78,62 +78,62 @@ const {  books, chapter, section } = data_for_filter;
       id="dictionary"
       className=" max-w-7xl mx-auto px-4 pt-12  ">
       <div className="bg-white rounded-[20px] gradient-border
-      px-4 py-16  sm:p-14 relative">
+      px-4 py-16  sm:p-14 relative shadow-lg">
 
-     <div className="absolute top-[1px] right-[0px]">
-              <Image
-                src="/images/dictionary/topImage.png"
-                alt="Decorative floral pattern"
-                width={60}
-                height={60}
-                className="opacity-80"
-              />
-            </div>
-    
-            {/* heading */}
-            <div className='flex justify-between mb-2  items-center'>
-    
-              <div className="flex justify-between  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
-    
-                <Image
-                  src="/images/dictionary/icon2.png"
-                  alt="Book Icon"
-                  width={60}
-                  height={50}
-                  className=""
-                />
-    
-    
-    
-    
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
-                  <p> Dictionary </p>
-                  <p>辞書</p>
-    
-                </div>
-              </div>
-    
-    
-              {/* arabic text */}
-              <div>
-                <Image
-                  src="/images/dictionary/arabic.svg"
-                  alt='a1'
-                  width={500}
-                  height={70}
-                  className="hidden sm:flex"
-                />
-                <Image
-                  src="/images/dictionary/arabic.svg"
-                  alt='a1'
-                  width={200}
-                  height={40}
-                  className="flex sm:hidden"
-                />
-              </div>
-            </div>
+        <div className="absolute top-[1px] right-[0px]">
+          <Image
+            src="/images/dictionary/topImage.png"
+            alt="Decorative floral pattern"
+            width={60}
+            height={60}
+            className="opacity-80"
+          />
+        </div>
 
-   
+        {/* heading */}
+        <div className='flex justify-between mb-2  items-center'>
+
+          <div className="flex justify-between  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
+
+            <Image
+              src="/images/dictionary/icon2.png"
+              alt="Book Icon"
+              width={60}
+              height={50}
+              className=""
+            />
+
+
+
+
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
+              <p> Dictionary </p>
+              <p>辞書</p>
+
+            </div>
+          </div>
+
+
+          {/* arabic text */}
+          <div>
+            <Image
+              src="/images/dictionary/arabic.svg"
+              alt='a1'
+              width={500}
+              height={70}
+              className="hidden sm:flex"
+            />
+            <Image
+              src="/images/dictionary/arabic.svg"
+              alt='a1'
+              width={200}
+              height={40}
+              className="flex sm:hidden"
+            />
+          </div>
+        </div>
+
+
 
         {/* Language selection */}
         <div className="flex gap-2 mb-6">
@@ -208,12 +208,12 @@ const {  books, chapter, section } = data_for_filter;
           </div>
           <div className="my-auto w-[100%] sm:w-[5%]">
             {/* Search button */}
-          <Link
-          href="/dictionary"
-          >
-            <button className="hidden sm:flex bg-[#00401A] cursor-pointer rounded-full p-4 transition-colors">
-              <Search className="w-5 h-5 text-[#F7BA2A]" />
-            </button></Link>
+            <Link
+              href="/dictionary"
+            >
+              <button className="hidden sm:flex bg-[#00401A] cursor-pointer rounded-full p-4 transition-colors">
+                <Search className="w-5 h-5 text-[#F7BA2A]" />
+              </button></Link>
             {/* <button className="sm:hidden flex gap-2 bg-[#00401A] w-full cursor-pointer
              rounded-xl p-3 items-center justify-center font-bold transition-colors">
               <Search className="w-5 h-5 text-[#F7BA2A]" /> 
@@ -230,11 +230,16 @@ const {  books, chapter, section } = data_for_filter;
           <div className=" flex-1 min-w-[150px]">
 
             <CustomSelectDictionary
+
+              lvl="Books"
+              parrent_lvl={"Books"}
+              selectedParrent={"Books"}
+              options={books?.data}
+              selected={selectedBooks}
+              setSelected={setSelectedBooks}
+
+
             
-            lvl="Books" 
-            options={books}
-            selected={selectedBooks}
-            setSelected={setSelectedBooks}
             />
 
 
@@ -244,11 +249,13 @@ const {  books, chapter, section } = data_for_filter;
 
           <div className=" flex-1 min-w-[150px]">
 
-            <CustomSelectDictionary 
-            lvl="Chapter" 
-            options={chapter} 
-            selected={selectedChapter}
-            setSelected={setSelectedChapter}
+            <CustomSelectDictionary
+             lvl="Chapter"
+              parrent_lvl={"Books"}
+              selectedParrent={selectedBooks}
+              options={selectedBooks?.chapters}
+              selected={selectedChapter}
+              setSelected={setSelectedChapter}
             />
 
 
@@ -258,11 +265,13 @@ const {  books, chapter, section } = data_for_filter;
           {/* Section dropdown */}
           <div className=" flex-1 min-w-[150px]">
 
-            <CustomSelectDictionary 
-            options={section} 
-            lvl="Sections" 
-             selected={selectedSection}
-            setSelected={setSelectedSection}
+            <CustomSelectDictionary
+               options={selectedChapter?.sections}
+              lvl="Sections"
+              parrent_lvl={"Chapters"}
+              selectedParrent={selectedChapter}
+              selected={selectedSection}
+              setSelected={setSelectedSection}
             />
 
 

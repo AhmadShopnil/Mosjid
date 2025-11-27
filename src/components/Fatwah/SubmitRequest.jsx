@@ -43,7 +43,7 @@ export default function SubmitRequest({ dataForContact }) {
 
 
     return (
-        <div className='bg-white rounded-[10px] border border-[#C9E9BA] overflow-hidden shadow-sm p-4'>
+        <div className='bg-white rounded-[20px] border border-[#C9E9BA] overflow-hidden shadow-sm p-4'>
             {/* header */}
 
             <div className='gradient-border_b pb-2'>

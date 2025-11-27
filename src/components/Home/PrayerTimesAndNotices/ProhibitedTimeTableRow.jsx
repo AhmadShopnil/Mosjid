@@ -33,7 +33,7 @@ export default function ProhibitedTimeTableRow({ prayer, index }) {
                 <span className="font-bold text-base text-[#00401A]">
                     {prayer?.name}
                     <br />
-                    <span className="text-[#00401a5d]">ファジル</span>
+                    <span className="text-[#00401a5d]">{prayer?.sub_title}</span>
                 </span>
             </td>
 

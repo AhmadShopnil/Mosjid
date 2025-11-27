@@ -21,9 +21,6 @@ export default async function page() {
 
 
 
-  // console.log("formatFatwaBooksForSidebarData", formatFatwaBooksForSidebarData);
-
-
 
   //  const requestData = selected?.name ? `Blogs of ${selected?.name} ` : "Blogs"
   const requestData = "Fatwa"

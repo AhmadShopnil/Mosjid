@@ -32,7 +32,7 @@ export default function NoticeBoard({ settings, notices, homePage }) {
   return (
     <div
       id="notices"
-      className="p-5 sm:p-8 bg-cover bg-center h-full gradient-border"
+      className="p-5 sm:p-8 bg-cover bg-center h-full gradient-border shadow-lg"
       style={{ backgroundImage: "url('/images/home/noticeBg.png')" }}
     >
       {/* heading */}

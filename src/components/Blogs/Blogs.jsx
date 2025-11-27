@@ -9,7 +9,7 @@ import { getImageUrl } from '@/helper/getImageUrl';
 import BlogCardSkeletonList from '../Shared/Skeleton/BlogCardSkeletonList';
 import { useSelected } from '@/context/SelectedContext';
 
-export default function Blogs({ blogs, settings, homePage, loading, currentPage, setCurrentPage, totalPages }) {
+export default function Blogs({ blogs, settings, homePage, loading, currentPage, setCurrentPage, totalPages,section_title }) {
 
   const sections = homePage?.sections_on_api;
   const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
@@ -23,7 +23,7 @@ export default function Blogs({ blogs, settings, homePage, loading, currentPage,
       {/* heading */}
       <div className=' flex justify-between'>
         <h4 className='text-[#00401A] font-bold text-xl sm:text-2xl lg:text-3xl  gradient-border_b  pb-2 ' >
-          {blogsSectionTitle?.value}
+          {section_title || blogsSectionTitle?.value}
           {/* Latest Blogs */}
         </h4>
 

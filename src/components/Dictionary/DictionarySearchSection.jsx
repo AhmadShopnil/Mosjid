@@ -78,7 +78,7 @@ export default function DictionarySearchSection({ data_for_filter }) {
       id="dictionary"
       className="  ">
       <div className="bg-white rounded-[20px] gradient-border
-      px-4 py-16  sm:p-10 relative">
+      px-4 py-16  sm:p-10 relative shadow-md">
 
 
 

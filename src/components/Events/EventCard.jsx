@@ -24,7 +24,7 @@ export default function EventCard({ event, index = 0, settings }) {
 
     const read_more_button_text = getMetaValueByMetaName(settings, "read_more") || "";
 
-    // 🎨 Pick color based on index (for variety)
+    //  Pick color based on index (for variety)
     const colorClass = colorClasses[index % colorClasses.length];
 
 
@@ -52,7 +52,7 @@ export default function EventCard({ event, index = 0, settings }) {
 
 
             {/* Notice Text */}
-            <div className='flex flex-col justify-between my-1'>
+            <div className='flex flex-col justify-between'>
                 <p className="text-[#00401A] text-sm">{event?.sub_title}</p>
                 <Link
                     href={`/events/${event?.slug}`}

@@ -23,17 +23,21 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
     const image = getImageUrl(fatwah_ExtraData?.image_media)
     const fatwah_title_2 = fatwah_ExtraData?.custom_information.find((item) => item.label === "fatwah_title_2")
 
+// console.log("from fatwa list ",fatwahs)
+
+
+
     return (
 
         <div
-            className="gradient-borderFatwah p-[2px] rounded-[10px]"
-        //    className="gradient-bg-fatwah 
-        //         rounded-2xl shadow-lg overflow-hidden p-4 md:p-12"
-
+        className="borderFatwaInner  rounded-[10px]"     
         >
 
             {/* Content Area */}
-            <div className=" w-full bg-[#e9f3e536] rounded-[10px] p-4 md:p-12">
+            <div
+            //  className=" w-full bg-[#e9f3e536] rounded-[10px] p-4 md:p-12"
+             className=" w-full bg-[#F9FFF6] rounded-[10px] p-4 sm:p-8"
+             >
                 <div className='flex justify-between'>
                     <div className="flex items-center  gap-2 gradient-border_b  sm:mb-0 pb-2    ">
                         <Image
@@ -72,7 +76,7 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
                                 <li
                                     key={item?.id}
                                     className="flex justify-between items-center border border-[#D9E2DD] p-1.5  rounded-full 
-                                    relative z-10 bg-white"
+                                    relative z-10 bg-[#FFFFFF]"
                                 >
                                     {/* Left Content */}
                                     <div className="flex items-center gap-2 sm:gap-4">

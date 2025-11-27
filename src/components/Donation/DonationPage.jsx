@@ -115,6 +115,7 @@ export default function DonationPage({ homePage, settings, formattedCategories }
               currentPage={currentPage}
               totalPages={totalPages}
               setCurrentPage={setCurrentPage}
+              donationTitle={requestData}
             />
           </div>
 

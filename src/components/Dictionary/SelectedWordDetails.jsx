@@ -20,7 +20,7 @@ function LabelBox({ label, value }) {
 export default function SelectedWordDetails({selectedItem}) {
   return (
     <div>   {/* Selected Item Details Section */}
-      <div className="gradient-border rounded-2xl p-8 bg-white">
+      <div className="gradient-border rounded-2xl p-8 bg-white shadow-md">
         <div className="bg-[#E5F5DE] h-[50px] flex items-center justify-center rounded-[8px] mb-6">
           <h2 className="text-center text-xl font-semibold text-[#00401A]">
             {selectedItem ? selectedItem?.word_en  : "Details"}

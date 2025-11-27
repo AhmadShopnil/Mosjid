@@ -8,16 +8,7 @@ export default function BreadcrumbForNested({ items = [] }) {
   // Filter out empty or null breadcrumb entries
   const filteredItems = items.filter((i) => i?.label);
 
-  // If nothing selected, return empty (no shapes)
-  // if (filteredItems.length === 0) {
-  //   return (
-  //     <div className="w-full h-[40px] flex items-center gradient-bredcumb">
-  //       <Container>
-  //         <p className="text-xs md:text-sm text-gray-700">No selection</p>
-  //       </Container>
-  //     </div>
-  //   );
-  // }
+
 
   return (
     <div className="w-full h-[40px] md:h-[60px] flex items-center gradient-bredcumb text-xs md:text-lg">

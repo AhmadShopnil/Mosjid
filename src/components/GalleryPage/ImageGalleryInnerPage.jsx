@@ -6,7 +6,7 @@ import SocialShare from "../Shared/SocialShare";
 import Image from "next/image";
 import GalleryGridSkeleton from "../Shared/Skeleton/GalleryGridSkeleton";
 
-export default function ImageGalleryInnerPage({ gallery ,loading}) {
+export default function ImageGalleryInnerPage({ gallery, loading }) {
   const images = transformGalleryData(gallery);
   const [selectedIndex, setSelectedIndex] = useState(null);
 
@@ -76,7 +76,7 @@ export default function ImageGalleryInnerPage({ gallery ,loading}) {
       {/* Modal with navigation */}
       {selectedIndex !== null && (
         <div
-          className="fixed inset-0 backdrop-blur-md bg-black/60 flex flex-col items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 p-4"
           onClick={closeModal}
         >
           <div
@@ -84,17 +84,18 @@ export default function ImageGalleryInnerPage({ gallery ,loading}) {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Image Section */}
-            <div className="relative flex items-center justify-center">
+            <div className="relative flex items-center justify-center bg-white rounded-t-[20px]">
               <img
                 src={images[selectedIndex].src}
                 alt={images[selectedIndex].alt}
-                className="max-w-full max-h-[80vh] object-contain rounded-t-2xl shadow-2xl"
+                className="max-w-full max-h-[80vh] object-contain rounded-t-2xl "
               />
 
               {/* Close Button */}
               <button
                 onClick={closeModal}
-                className="absolute top-4 right-4 text-white bg-gray-800 bg-opacity-70 hover:bg-opacity-90 rounded-full p-2 transition-all duration-200 backdrop-blur-sm"
+                className="absolute top-4 right-4 text-white bg-gray-800 bg-opacity-70 hover:bg-opacity-90 rounded-full 
+                px-3 py-1.5  transition-all duration-200 backdrop-blur-sm font-semibold"
               >
                 ✕
               </button>
@@ -102,73 +103,101 @@ export default function ImageGalleryInnerPage({ gallery ,loading}) {
               {/* Prev Button */}
               <button
                 onClick={showPrev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
+                className="absolute -left-24 top-1/2 -translate-y-1/2 cursor-pointer "
               >
-                ◀
+                
+                  <Image
+                  src="/images/others/arr_left.png"
+                  alt='a1'
+                  width={54}
+                  height={54}
+                  className=""
+                />
               </button>
 
               {/* Next Button */}
               <button
                 onClick={showNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
+                className="absolute -right-24 top-1/2 -translate-y-1/2 cursor-pointer"
               >
-                ▶
+                  <Image
+                  src="/images/others/arr_right.png"
+                  alt='a1'
+                  width={54}
+                  height={54}
+                  className=""
+                />
               </button>
             </div>
 
             {/* Description Section */}
-            <div className="bg-white w-full  p-4 rounded-b-xl shadow-lg text-gray-800 text-center">
+            <div className="bg-[#FFFFFF] w-full  p-4 rounded-b-[20px] shadow-lg text-gray-800 text-center">
 
               <p className="text-sm leading-relaxed text-[#00401A]">
                 {images[selectedIndex]?.description || "This is a sample description for the image."}
               </p>
-              <div className="mt-4 flex justify-center">
-                <SocialShare />
+              
+            </div>
+          
+             {/* social share */}
+
+          <div className="mt-4 flex justify-end w-full  ">
+            <div className="  flex items-center gap-6 text-[#D9E2DD]">
+              <div className="border-r-2 border-gray-300 pr-3">
+                <Image
+                  src="/images/others/twiter.png"
+                  alt='a1'
+                  width={24}
+                  height={24}
+                  className=""
+                />
               </div>
+              <div className="border-r-2 border-gray-300 pr-3">
+                <Image
+                  src="/images/others/fb.png"
+                  alt='a1'
+                  width={16}
+                  height={16}
+                />
+              </div>
+              <div className="border-r-2 border-gray-300 pr-3">
+                <Image
+                  src="/images/others/whatsapp.png"
+                  alt='a1'
+                  width={21}
+                  height={21}
+                />
+              </div>
+              <div className="border-r-2 border-gray-300 pr-3">
+                <Image
+                  src="/images/others/printer_white.png"
+                  alt='a1'
+                  width={23}
+                  height={23}
+                />
+              </div>
+              <div>
+                <Image
+                  src="/images/others/download_white.png"
+                  alt='a1'
+                  width={23}
+                  height={23}
+                />
+              </div>
+
+
             </div>
           </div>
+
+
+
+          </div>
+
+
+       
         </div>
 
-        // <div
-        //   className="fixed inset-0 backdrop-blur-md bg-black/60 flex flex-col items-center justify-center z-50 p-4"
-        //   onClick={closeModal}
-        // >
-        //   <div
-        //     className="relative max-w-4xl max-h-full flex items-center justify-center"
-        //     onClick={(e) => e.stopPropagation()}
-        //   >
-        //     <img
-        //       src={images[selectedIndex].src}
-        //       alt={images[selectedIndex].alt}
-        //       className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl"
-        //     />
 
-        //     {/* Close Button */}
-        //     <button
-        //       onClick={closeModal}
-        //       className="absolute top-4 right-4 text-white bg-gray-800 bg-opacity-70 hover:bg-opacity-90 rounded-full p-2 transition-all duration-200 backdrop-blur-sm"
-        //     >
-        //       ✕
-        //     </button>
-
-        //     {/* Prev Button */}
-        //     <button
-        //       onClick={showPrev}
-        //       className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
-        //     >
-        //       ◀
-        //     </button>
-
-        //     {/* Next Button */}
-        //     <button
-        //       onClick={showNext}
-        //       className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
-        //     >
-        //       ▶
-        //     </button>
-        //   </div>
-
-        // </div>
       )}
     </div>
   );

@@ -40,7 +40,7 @@ export default async function PrayerTimesInnerPage() {
 
 
   return (
-    <div className="   px-5 sm:px-8 pt-5 sm:pt-8  pb-24  gradient-bordernew relative overflow-hidden">
+    <div className="   px-5 sm:px-8 pt-5 sm:pt-8  pb-24  gradient-bordernew shadow-lg relative overflow-hidden">
       <div className="absolute top-0 right-0">
         <Image
           src="/images/prayertimes/1.png"

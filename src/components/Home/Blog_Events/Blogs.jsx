@@ -12,7 +12,7 @@ export default async function Blogs({ blogs, blogsSectionTitle }) {
   const view_more_button_text = getMetaValueByMetaName(settings, "view_more") || "";
 
   return (
-    <div className='gradient-border rounded-3xl p-5 bg-white'>
+    <div className='gradient-border rounded-3xl p-5 bg-white shadow-lg'>
       {/* heading */}
       <div className='gradient-border_b pb-2 flex justify-between'>
         <h4 className='text-[#00401A] font-bold text-base  ' >

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-export default function RelatedItemCard({ data, link }) {
+export default function RelatedEventCard({ data, link }) {
 
 
     const day = getDay_Month_Year(data?.created_at, "day")
@@ -12,11 +12,11 @@ export default function RelatedItemCard({ data, link }) {
 
 
     return (
-        <div className='border border-[#F7BA2A] w-[370px] h-[400px] flex flex-col  rounded-[20px]
-             bg-white hover:shadow-xl/30 cursor-pointer' >
+        <div className='border border-[#F7BA2A] w-[370px] h-[625px] flex flex-col  rounded-[20px]
+             bg-white hover:shadow-xl/30 cursor-pointer overflow-hidden' >
 
-            <div className='flex justify-center '>
-                <div className=' -mt-20 mx-auto rounded-full  w-[254px] h-[254px]'>
+            <div className='flex justify-center mt-6 '>
+                <div className='  mx-auto rounded-full  w-[254px] h-[254px]'>
                     <Image
                         src={data?.featured_image}
                         alt='a1'
@@ -27,19 +27,21 @@ export default function RelatedItemCard({ data, link }) {
                 </div>
 
             </div>
-            <div className='p-6 flex flex-col justify-between  min-h-[210px]  '>
-               <div>
-                 <span className="text-[#00401A] text-xs sm:text-sm  md:text-base px-3 py-1.5 bg-[#4B6BFB0D] rounded-[6px] ">{month} {day}th, {year}</span>
-               </div>
-                {/* <p className="text-[#F7BA2A] mb-1 text-xs sm:text-sm  md:text-base font-bold mt-2 ">{data?.name}</p> */}
-                <div
+            <div className='p-6 flex flex-col justify-between  h-full overflow-hidden'>
+             <div className='my-2.5 space-y-2'>
+                   <p className="text-[#00401A] text-xs sm:text-sm  md:text-base  bg-gray-50 rounded-[10px] ">{month} {day}th, {year}</p>
+                <p className="text-[#F7BA2A] mb-1 text-xs sm:text-sm  md:text-base font-bold ">{data?.name}</p>
+             </div>
+             <div className=' h-full flex flex-col justify-between overflow-hidden '>
+
+                   <div
                     className="text-[#181A2A] text-xs sm:text-sm md:text-base overflow-hidden"
                     dangerouslySetInnerHTML={{ __html: data?.description?.slice(0,300) }}
                 />
                 <Link
                     href={link}
                     className='flex items-center justify-start  mt-6 gap-2'>
-                    <span className='text-[#003014] font-semibold text-sm'>Read More </span>
+                    <span className='text-[#003014] font-semibold text-sm'>Join this event</span>
                     <Image
                         src="/images/others/arrow-r.png"
                         alt='a1'
@@ -48,6 +50,7 @@ export default function RelatedItemCard({ data, link }) {
                         className='w-[15px] h-[10px]'
                     />
                 </Link>
+             </div>
             </div>
         </div>
     )

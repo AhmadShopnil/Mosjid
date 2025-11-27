@@ -74,9 +74,14 @@ export default function OfferServicesSlider({ services, offered_services_ExtraDa
             {services.map((service) => (
               <div
                 key={service.id}
-                className="snap-start flex-shrink-0 w-[150px] h-[250px] sm:w-[180px] sm:h-[300px] md:w-[195px] md:h-[360px] 
+ className="snap-start flex-shrink-0 w-[150px] h-[250px] sm:w-[180px] sm:h-[300px] md:w-[195px] md:h-[360px] 
                   flex flex-col items-center justify-between text-center rounded-full shadow-xl bg-white mx-auto cursor-pointer
-                  group hover:border hover:border-[#00FF1E] p-2 sm:p-3 "
+                  group islamicBookHome p-2 sm:p-3 "
+
+
+                // className="snap-start flex-shrink-0 w-[150px] h-[250px] sm:w-[180px] sm:h-[300px] md:w-[195px] md:h-[360px] 
+                //   flex flex-col items-center justify-between text-center rounded-full shadow-xl bg-white mx-auto cursor-pointer
+                //   group hover:border hover:border-[#00FF1E] p-2 sm:p-3 "
                 onMouseEnter={() => setHoveredCard(service.id)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
