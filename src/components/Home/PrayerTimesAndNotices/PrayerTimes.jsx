@@ -13,6 +13,7 @@ import ProhibitedTimeMobile from "./ProhibitedTimeMobile";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import { splitBySlash } from "@/helper/splitBySpace";
 import { getImageUrl } from "@/helper/getImageUrl";
+import { getLatestUpdatedFormatted, getLatestUpdatedTime } from "@/helper/getLatestUpdatedTime";
 
 
 
@@ -55,6 +56,11 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
   const wakt_start = prayer_time?.custom_information.find((i) => i.label === "wakt_start");
   const wakt_end = prayer_time?.custom_information.find((i) => i.label === "wakt_end");
 
+
+
+const updated_time=getLatestUpdatedFormatted(prayerTimes)
+
+
   return (
     <div className="px-3 sm:px-8 pt-5 sm:pt-8 pb-24 h-full gradient-bordernew relative overflow-hidden shadow-lg">
 
@@ -68,7 +74,8 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
       </div>
 
       {/* Heading */}
-      <p className="text-sm mb-2.5 text-center sm:text-start ml-1">{prayer_time?.short_description}</p>
+      <p className="text-sm mb-2.5 text-center sm:text-start ml-1">Last Update:{updated_time}</p>
+      {/* <p className="text-sm mb-2.5 text-center sm:text-start ml-1">{prayer_time?.short_description}</p> */}
 
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
         <div className="flex justify-between items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3">
