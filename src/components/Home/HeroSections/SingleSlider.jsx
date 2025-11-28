@@ -27,14 +27,14 @@ export default function SingleSlider({ slide, read_more_button }) {
 
             <Container className="relative ">
                 <div
-                    className="absolute right-0 top-18   "
+                    className="absolute right-0 top-8   "
                 >
                     <Image
                         src={logo}
                         // src="/images/bannerNew/logo2.png"
                         alt='img'
-                        width={350}
-                        height={300}
+                        width={550}
+                        height={550}
                         className="object-contain transition-all duration-300"
                     />
                 </div>

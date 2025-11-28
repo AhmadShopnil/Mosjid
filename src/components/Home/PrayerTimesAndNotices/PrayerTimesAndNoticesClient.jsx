@@ -4,6 +4,7 @@ import Container from "@/components/Shared/Container";
 import PrayerTimes from "./PrayerTimes";
 import NoticeBoard from "./NoticeBoard";
 
+
 export default function PrayerTimesAndNoticesClient({
   notices,
   settings,
@@ -11,6 +12,11 @@ export default function PrayerTimesAndNoticesClient({
   prayerTimes,
   ProhibitedTime,
 }) {
+
+
+
+
+
   return (
 
     <div id="prayer-times">

@@ -5,6 +5,7 @@ import NoticeBoard from './NoticeBoard'
 import { getNotices, getPage, getProhibitedTime, getPryerTime, getSettings } from '@/helper/actions';
 import PrayerTimesAndNoticesClient from './PrayerTimesAndNoticesClient';
 
+
 export default async function PrayerTimesAndNotices() {
 
   const notices = await getNotices();
@@ -12,6 +13,9 @@ export default async function PrayerTimesAndNotices() {
   const homePage = await getPage("home-sections-heading-management")
   const prayerTimes = await getPryerTime();
   const ProhibitedTime = await getProhibitedTime();
+
+
+
 
   return (
 
