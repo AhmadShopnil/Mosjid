@@ -21,9 +21,9 @@ export default function BookSuggetionsList({ datas }) {
                     {/* <h4 className='text-xl md:text-2xl lg:text-3xl text-[#000000] font-bold '>{title}</h4> */}
                 </div>
 
-                <div className='flex flex-wrap   justify-center gap-24 xl:gap-8  '>
+                <div className='flex flex-wrap   justify-center gap-2 md:gap-24 xl:gap-8  '>
                     {
-                        datas?.map((book, i) => (
+                        datas?.slice(0,4).map((book, i) => (
                             <BooksCardSuggetion  key={book.id} book={book} />
                         ))
                     }
