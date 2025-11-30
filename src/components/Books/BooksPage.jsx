@@ -14,6 +14,7 @@ import { getImageUrl } from '@/helper/getImageUrl'
 import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
 import { useSelected } from '@/context/SelectedContext'
 import { useSelectedParrent } from '@/context/SelectedContextParrent'
+import BookSuggetionsList from './BookSuggetionsList'
 
 
 
@@ -129,6 +130,7 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
 
         </div>
       </Container>
+        <BookSuggetionsList datas={books}  />
 
     </div>
   )
