@@ -2,28 +2,26 @@ import React from 'react'
 import { DictionaryIcon, DonationIcon, GalleryIcon, PrayerTimesIcon } from '../../../Icons/QuickLinks';
 import Image from 'next/image';
 import SearchSection from './SearchSection';
-import { getCategories, getPage } from '@/helper/actions';
+import { getCategories, getPage, getSettings } from '@/helper/actions';
 import Link from 'next/link';
 import { splitBySlash } from '@/helper/splitBySpace';
 import { getImageUrl } from '@/helper/getImageUrl';
+import DirectorySearchHome from './DirectorySearchHome';
 
-const quickLinks = [
-  { name: "Find People", icon: "/images/directory/1.png" },
-  //   { name: "Fatwa", icon: <FatwaIcon/> },
-  { name: "Mosque", icon: "/images/directory/5.png" },
-  { name: "Madrasha", icon: "/images/directory/3.png" },
-  { name: "Islamic Center", icon: "/images/directory/2.png" },
-  { name: "Quranic Center", icon: "/images/directory/6.png" },
-];
 
 
 export default async function Directory() {
 
- 
-const directory_categories = await getCategories("directory_categories")
+  const directory_categories = await getCategories("directory_categories")
+  const prefecture = await getCategories("prefecture")
+  const city = await getCategories("city")
+  const district = await getCategories("district")
+  const filterData = { city, prefecture, district, cat:directory_categories }
 
 
- const homePage = await getPage("home-sections-heading-management")
+
+
+  const homePage = await getPage("home-sections-heading-management")
   const sections = homePage?.sections_on_api;
   const directory_extradata = sections.find((s) => s.title_slug === "directory");
   const heading_part_1 = splitBySlash(directory_extradata?.title)[0]
@@ -32,12 +30,12 @@ const directory_categories = await getCategories("directory_categories")
   const icon = getImageUrl(directory_extradata?.background_media)
 
 
-// console.log("directory_categories",directory_categories)
+  // console.log("directory_categories",directory_categories)
 
   return (
-    <div 
-    id='directory'
-    className='gradient-border h-full  px-5 sm:px-8 pt-5 sm:pt-8 pb-20 rounded-[20px] bg-white relative shadow-lg'>
+    <div
+      id='directory'
+      className='gradient-border h-full  px-5 sm:px-8 pt-5 sm:pt-8 pb-20 rounded-[20px] bg-white relative shadow-lg'>
       <div
         className="absolute right-0 top-0"
       >
@@ -95,7 +93,14 @@ const directory_categories = await getCategories("directory_categories")
       <p className='text-sm '>{directory_extradata?.short_description}</p>
       {/* inputs */}
       <div className='mt-6'>
-        <SearchSection />
+
+        <DirectorySearchHome
+          filterData={filterData}
+          // setSelected={handleSetSelectByLocations}
+          // selected={selectedDirectoryLocation}
+       
+        />
+
       </div>
 
       {/* Links with icons */}
@@ -110,9 +115,9 @@ const directory_categories = await getCategories("directory_categories")
             className="gradient-borderDirectory h-[140px] flex flex-col items-center justify-center
              bg-white  rounded-[20px] px-3 py-3  hover:bg-teal-50
               transition cursor-pointer text-center"
-            // className="gradient-border2 h-[140px] flex flex-col items-center justify-center
-            //  bg-white  rounded-[20px] px-3 py-3  hover:bg-teal-50
-            //   transition cursor-pointer text-center"
+          // className="gradient-border2 h-[140px] flex flex-col items-center justify-center
+          //  bg-white  rounded-[20px] px-3 py-3  hover:bg-teal-50
+          //   transition cursor-pointer text-center"
           >
 
             <div className=' '>

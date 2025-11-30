@@ -1,8 +1,8 @@
 "use client";
 
-
 import { getMetaValueFromExtraFields } from "@/helper/metaHelpers";
 import { X } from "lucide-react";
+
 
 
 
@@ -13,9 +13,12 @@ export default function DuaModal({
 }) {
 
 
-  if (!isOpen || !dua) return null;
 
- const header_left = getMetaValueFromExtraFields(dua, "header_left")
+  
+
+if (!isOpen || !dua) return null;
+
+  const header_left = getMetaValueFromExtraFields(dua, "header_left")
   const header_right = getMetaValueFromExtraFields(dua, "header_right")
   const dua_no = getMetaValueFromExtraFields(dua, "dua_no")
   const dua_main = getMetaValueFromExtraFields(dua, "info_1")

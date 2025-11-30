@@ -33,11 +33,9 @@ export default function DirectoryPageClient({  settings, homePage, slug, filterD
     // console.log("selected id ", selected)
 
     useEffect(() => {
-
         if (!selectedDirectoryLocation) {
             setSelected(slug);
         }
-
     }, [])
 
 

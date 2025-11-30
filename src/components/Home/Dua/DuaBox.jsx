@@ -53,15 +53,16 @@ export default  function DuaBox({homePage,settings,duas}) {
         shadow-lg overflow-hidden p-4 md:p-12"
       >
         {/* Background Mosque Image (bottom-right like Fatwah) */}
-        {/* <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[380px] opacity-90">
+        <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[380px] opacity-90 p-3">
           <Image
-              src="/images/fatwah/fatwahbg.png"
+          src="/images/dua/Dua.svg"
+              // src="/images/fatwah/fatwahbg.png"
             alt="Mosque"
             width={400}
             height={400}
             className="object-contain pointer-events-none select-none"
           />
-        </div> */}
+        </div>
 
         {/* CONTENT AREA */}
         <div className="relative w-full lg:w-[70%] z-10">
