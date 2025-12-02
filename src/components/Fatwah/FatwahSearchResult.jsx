@@ -20,13 +20,7 @@ export default function FatwahSearchResult({ settings, homePage }) {
 
 
 
-//  console.log( {
-//         selectedMajhabs,
-//         selectedBooks,
-//         selectedChapter,
-//         selectedSection,
-//         selectedSearchTerm,
-//       })
+
 
 
 

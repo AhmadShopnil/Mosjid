@@ -13,15 +13,16 @@ import { getImageUrl } from '@/helper/getImageUrl'
 import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
 import { useSelected } from '@/context/SelectedContext'
 import { useSelectedParrent } from '@/context/SelectedContextParrent'
+import DonationCardList from './DonationCardList'
 
 
 
 
 
 
-export default function DonationPage({ homePage, settings, formattedCategories }) {
-    const { selected, setSelected, clearSelected } = useSelected();
-    const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
+export default function DonationPage({ homePage, settings, formattedCategories,allDonationsList }) {
+  const { selected, setSelected, clearSelected } = useSelected();
+  const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
   const [donations, setDonations] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -40,10 +41,10 @@ export default function DonationPage({ homePage, settings, formattedCategories }
   const donate_now_button = make_your_donation?.custom_information?.find((item) => item.label === "donate_button") || " Donate Now"
 
 
- useEffect(() => {    
-         clearSelected();
-         clearSelectedParrent();
-    }, [])
+  useEffect(() => {
+    clearSelected();
+    clearSelectedParrent();
+  }, [])
 
 
   // fetching data
@@ -76,7 +77,7 @@ export default function DonationPage({ homePage, settings, formattedCategories }
 
 
   // console.log("donations", donations)
- const requestData = selected?.name ? `Dontion of ${selected?.name} ` : "Donations"
+  const requestData = selected?.name ? `Dontion of ${selected?.name} ` : "Donations"
 
 
   return (
@@ -85,15 +86,15 @@ export default function DonationPage({ homePage, settings, formattedCategories }
       <div>
         <BannerInnerPage />
         {/* <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Donation" middleLink="/donation" currentPage={selected?.name} /> */}
-         <BreadcrumbForNested
-                  items={[
-                    { label: "Home", link: "/" },
-                    { label: "Donation", link: "/donation" },
-                    { label: selectedParrent?.name, link: "/donation"  },
-                    { label: selected?.name, link: null },
-        
-                  ]}
-                />
+        <BreadcrumbForNested
+          items={[
+            { label: "Home", link: "/" },
+            { label: "Donation", link: "/donation" },
+            { label: selectedParrent?.name, link: "/donation" },
+            { label: selected?.name, link: null },
+
+          ]}
+        />
 
       </div>
 
@@ -116,11 +117,16 @@ export default function DonationPage({ homePage, settings, formattedCategories }
               totalPages={totalPages}
               setCurrentPage={setCurrentPage}
               donationTitle={requestData}
+              
+              
             />
           </div>
 
         </div>
       </Container>
+      <div>
+        <DonationCardList allDonationsList={allDonationsList}/>
+      </div>
 
     </div>
   )

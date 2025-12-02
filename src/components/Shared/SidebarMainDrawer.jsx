@@ -57,7 +57,7 @@ export default function SidebarMainDrawer({
         `}
       >
         {/* Header */}
-        <div className="lg:hidden flex justify-between items-center p-4 border-b border-[#C9E9BA]">
+        <div className="lg:hidden flex justify-between items-center p-4 border-b border-[#C9E9BA] ">
           <h3 className="text-lg font-semibold text-[#00401A]">Menu</h3>
           <button
             onClick={() => setIsDrawerOpen(false)}

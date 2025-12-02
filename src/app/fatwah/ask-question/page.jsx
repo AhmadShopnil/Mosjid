@@ -112,9 +112,13 @@ export default async function page() {
   const fatwahs = await getFatwah();
   const settings = await getSettings()
   const homePage = await getPage("home-sections-heading-management")
+
+
+ const majhabs = await getFatwahFiltersData("majhabs")
   const books = await getFatwahFiltersData("books")
-
-
+  const chapter = await getFatwahFiltersData("bookchapters")
+  const section = await getFatwahFiltersData("booksections")
+  const data_for_filter = { majhabs, books, chapter, section }
 
   const requestData = "ask question form"
 
@@ -146,7 +150,9 @@ export default async function page() {
           isAskQuestion={true}
           isFatwah_Dictionary_Filter={true}
           isNavigate={true}
-          dataForContact={requestData} />
+          dataForContact={requestData} 
+          data_for_filter={data_for_filter}
+          />
         {/* main content */}
         <div className=' w-full'>
           <div>

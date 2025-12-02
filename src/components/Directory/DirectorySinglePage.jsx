@@ -14,7 +14,7 @@ import axiosInstance from "@/helper/axiosInstance";
 import BreadcrumbForNested from "../Shared/BreadcrumbForNested";
 
 
-export default function DirectoryPageClient({  settings, homePage, slug, filterData }) {
+export default function DirectoryPageClient({  settings, homePage, slug, filterData,locations }) {
 
     const [selectedDirectoryLocation, setSelectedDirectoryLocation] = useState(null);
     const [selected, setSelected] = useState(null);
@@ -42,6 +42,8 @@ export default function DirectoryPageClient({  settings, homePage, slug, filterD
 
     // fetching data
 
+
+    // /posts?term_type=directory&category_id=19&region=""&prefecture=""&city=""&district=""
 
     useEffect(() => {
         const fetchData = async () => {
@@ -153,6 +155,7 @@ export default function DirectoryPageClient({  settings, homePage, slug, filterD
                                 setSelected={handleSetSelectByLocations}
                                 selected={selectedDirectoryLocation}
                                 getData={getData}
+                                locations={locations}
 
                             />
                         </div>

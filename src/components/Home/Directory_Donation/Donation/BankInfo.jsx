@@ -6,26 +6,50 @@ import { splitByComma, splitBySpace } from "@/helper/splitBySpace";
 export default function BankInfo({ selectedDonation }) {
 
 const note = getMetaValueFromExtraFields(selectedDonation, "note_donation")
-  const from = getMetaValueFromExtraFields(selectedDonation, "from")|| " , "
-  const from_part_1 = splitByComma(from)[0]
-  const from_part_2 = splitByComma(from)[1]
 
-  const bank_name = getMetaValueFromExtraFields(selectedDonation, "bank_name") || " , "
-  const bank_name_1 = splitByComma(bank_name)[0]
-  const bank_name_2 = splitByComma(bank_name)[1]
-
-  const account_name = getMetaValueFromExtraFields(selectedDonation, "account_name") || " , "
-  const account_name_1 = splitByComma(account_name)[0]
-  const account_name_2 = splitByComma(account_name)[1]
+  const from_part_1 = getMetaValueFromExtraFields(selectedDonation, "from") || "  "
+    const from_part_2 = getMetaValueFromExtraFields(selectedDonation, "from_2") || "  "
 
 
-  const symbol = getMetaValueFromExtraFields(selectedDonation, "symbol") || " , "
-  const symbol_1 = splitByComma(symbol)[0]
-  const symbol_2 = splitByComma(symbol)[1]
+  const bank_name_1 = getMetaValueFromExtraFields(selectedDonation, "bank_name") || "  "
+    const bank_name_2 = getMetaValueFromExtraFields(selectedDonation, "bank_name_2") || "  "
 
-  const account_number = getMetaValueFromExtraFields(selectedDonation, "account_number") || " , "
-  const account_number_1 = splitByComma(account_number)[0]
-  const account_number_2 = splitByComma(account_number)[1]
+
+  const branch_name_1 = getMetaValueFromExtraFields(selectedDonation, "branch_name") || "  "
+  const branch_name_2 = getMetaValueFromExtraFields(selectedDonation, "branch_name_2") || "  "
+
+  const account_name_1 = getMetaValueFromExtraFields(selectedDonation, "account_name") || "  "
+   const account_name_2 = getMetaValueFromExtraFields(selectedDonation, "account_name_2") || "  "
+
+
+
+  const symbol_1 = getMetaValueFromExtraFields(selectedDonation, "symbol") || "  "
+    const symbol_2 = getMetaValueFromExtraFields(selectedDonation, "symbol_2") || "  "
+ 
+
+  const account_number_1 = getMetaValueFromExtraFields(selectedDonation, "account_number") || "  "
+    const account_number_2 = getMetaValueFromExtraFields(selectedDonation, "account_number_2") || "  "
+
+  // const from = getMetaValueFromExtraFields(selectedDonation, "from")|| " , "
+  // const from_part_1 = splitByComma(from)[0]
+  // const from_part_2 = splitByComma(from)[1]
+
+  // const bank_name = getMetaValueFromExtraFields(selectedDonation, "bank_name") || " , "
+  // const bank_name_1 = splitByComma(bank_name)[0]
+  // const bank_name_2 = splitByComma(bank_name)[1]
+
+  // const account_name = getMetaValueFromExtraFields(selectedDonation, "account_name") || " , "
+  // const account_name_1 = splitByComma(account_name)[0]
+  // const account_name_2 = splitByComma(account_name)[1]
+
+
+  // const symbol = getMetaValueFromExtraFields(selectedDonation, "symbol") || " , "
+  // const symbol_1 = splitByComma(symbol)[0]
+  // const symbol_2 = splitByComma(symbol)[1]
+
+  // const account_number = getMetaValueFromExtraFields(selectedDonation, "account_number") || " , "
+  // const account_number_1 = splitByComma(account_number)[0]
+  // const account_number_2 = splitByComma(account_number)[1]
 
 
   return (

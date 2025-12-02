@@ -175,7 +175,7 @@ export default async function FatwahBox() {
                   <div>
                     <p className="text-[#00401A] truncate w-[110px] sm:w-[250px] md:w-[420px] 
                      text-sm md:text-lg font-bold">
-                       {item?.description_en}
+                      {item?.word_ja}
                     </p>
                     <Link
                        href={`/fatwah/${item?.id}`}

@@ -10,7 +10,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { useState } from "react";
 import DuaModal from "./DuaModal";
 
-export default  function DuaBox({homePage,settings,duas}) {
+export default function DuaBox({ homePage, settings, duas }) {
 
   const [selectedDua, setSelectedDua] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,7 +36,7 @@ export default  function DuaBox({homePage,settings,duas}) {
   const handleOpenModal = (dua) => {
     setSelectedDua(dua);
     setIsModalOpen(true);
-    console.log("from dua  modal",dua)
+    console.log("from dua  modal", dua)
   };
 
 
@@ -44,19 +44,23 @@ export default  function DuaBox({homePage,settings,duas}) {
 
   return (
     <div id="dua" className="px-4 py-12 relative">
-      
-     
+
+
 
       {/* MAIN BOX – matches Fatwah container */}
       <div
         className="max-w-7xl mx-auto relative gradient-bg-fatwah rounded-2xl 
         shadow-lg overflow-hidden p-4 md:p-12"
       >
-        {/* Background Mosque Image (bottom-right like Fatwah) */}
+        
+        {/* Background dua Image  */}
         <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[380px] opacity-90 p-3">
+
+          {/* <div className="absolute inset-0 bg-black/5 rounded-xl z-10"></div> */}
+          
           <Image
-          src="/images/dua/Dua.svg"
-              // src="/images/fatwah/fatwahbg.png"
+            src="/images/dua/Dua.svg"
+            // src="/images/fatwah/fatwahbg.png"
             alt="Mosque"
             width={400}
             height={400}
@@ -69,7 +73,7 @@ export default  function DuaBox({homePage,settings,duas}) {
 
           {/* heading */}
           <div className="flex justify-between mb-6">
-            
+
             {/* Left side heading */}
             <div className="flex gap-2 gradient-border_b pb-3">
               <Image
@@ -118,7 +122,7 @@ export default  function DuaBox({homePage,settings,duas}) {
               >
                 {/* Left side */}
                 <div className="flex items-center gap-2 sm:gap-4">
-                  
+
                   {/* Icon */}
                   <div className="border border-[#E6ECE8] bg-[#F2F2F2] 
                     rounded-full p-1.5 md:p-2">
@@ -147,11 +151,11 @@ export default  function DuaBox({homePage,settings,duas}) {
 
                     <button
                       // href={`/dua/${dua.id}`}
-                       onClick={() => handleOpenModal(dua)}
+                      onClick={() => handleOpenModal(dua)}
                       className="text-[#00401A] font-bold text-xs md:text-sm hover:text-[#F7BA2A] 
                       flex gap-1 items-center cursor-pointer"
                     >
-                      {read_more} 
+                      {read_more}
                       <span className="mt-0.5">
                         <FaLongArrowAltRight />
                       </span>
@@ -164,11 +168,11 @@ export default  function DuaBox({homePage,settings,duas}) {
 
         </div>
       </div>
-        <DuaModal
-              isOpen={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
-              dua={selectedDua}
-            />
+      <DuaModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        dua={selectedDua}
+      />
     </div>
   );
 }

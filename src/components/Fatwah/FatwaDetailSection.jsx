@@ -64,29 +64,30 @@ export default function FatwaDetailSection({ singleFatwah }) {
 
         {/* Title */}
         <h2 className="text-[#00401A] text-lg md:text-2xl  mt-4 mb-6 ">
-          {singleFatwah?.word_en}
+          {singleFatwah?.word_ja}
         </h2>
 
         {/* Fatwa Body */}
         <div className=" text-sm md:text-base leading-relaxed text-[#595959]">
           <p>
-            {singleFatwah?.description_en}
+               {singleFatwah?.description_ja}
+            {/* {singleFatwah?.description_en} */}
           </p>
         </div>
 
         {/* Footer Section */}
         <div className="flex justify-between items-center flex-wrap mt-4  gap-4 ">
           {/* Social & Reactions */}
-         
+
           <div className="flex flex-col sm:flex-row sm:items-center justify-start gap-4 text-green-600 text-lg">
-           <SocialShare/>
+            <SocialShare />
             <div className="flex gap-4 sm:items-center justify-start  ">
               <div className="sm:ml-4 flex items-center gap-1 text-[#00401A] text-xl ">
-              <FaRegThumbsUp className="text-green-600" /> 10
-            </div>
-            <div className="flex items-center gap-1 text-[#00401A] text-xl">
-              <FaRegEye className="text-green-600" /> 10
-            </div>
+                <FaRegThumbsUp className="text-green-600" /> 10
+              </div>
+              <div className="flex items-center gap-1 text-[#00401A] text-xl">
+                <FaRegEye className="text-green-600" /> 10
+              </div>
             </div>
           </div>
 

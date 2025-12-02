@@ -5,6 +5,7 @@ import FatwaListInner from '@/components/Fatwah/FatwaListInner'
 import BannerInnerPage from '@/components/Shared/BannerInnerPage'
 import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
+import SidebarDrawerForBooks from '@/components/Shared/SidebarDrawerForBooks'
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 import { getFatwa, getFatwah, getFatwahFiltersData, getPage, getSettings, getSingleFatwah } from '@/helper/actions'
 import { formatFatwaBooksForSidebar } from '@/helper/formatFatwaBooksForSidebar'
@@ -23,12 +24,12 @@ export default async function page({ params }) {
     const settings = await getSettings()
     const homePage = await getPage("home-sections-heading-management")
 
-   
-      const majhabs = await getFatwahFiltersData("majhabs")
-      const books = await getFatwahFiltersData("books")
-      const chapter = await getFatwahFiltersData("bookchapters")
-      const section = await getFatwahFiltersData("booksections")
-      const data_for_filter = { majhabs, books, chapter, section }
+
+    const majhabs = await getFatwahFiltersData("majhabs")
+    const books = await getFatwahFiltersData("books")
+    const chapter = await getFatwahFiltersData("bookchapters")
+    const section = await getFatwahFiltersData("booksections")
+    const data_for_filter = { majhabs, books, chapter, section }
 
     const formatFatwaBooksForSidebarData = formatFatwaBooksForSidebar(books)
 
@@ -43,23 +44,29 @@ export default async function page({ params }) {
                 <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Fatwah" />
             </div>
             <Container className='mt-10'>
-                <FatwaFinder data_for_filter={data_for_filter}/>
+                <FatwaFinder data_for_filter={data_for_filter} />
             </Container>
 
             <Container className='flex gap-6 my-6'>
-
+{/* 
                 <SidebarMainDrawer
-                 categories={formatFatwaBooksForSidebarData} 
-                 isAskQuestion={true} 
-                 isFatwah_Dictionary_Filter={true}
-                 isFatwahNavigate={true}
-                 dataForContact={requestData} />
-                {/* sidebar */}
-                {/* <div className='w-[400px] space-y-6'>
-                    <Sidebar categories={categories} />
-                    <AskQuestionSidebar />
-                    <SubmitRequest />
-                </div> */}
+                    categories={formatFatwaBooksForSidebarData}
+                    isAskQuestion={true}
+                    isFatwah_Dictionary_Filter={true}
+                    isFatwahNavigate={true}
+                    dataForContact={requestData}
+                /> */}
+
+                <SidebarDrawerForBooks
+                    books={books?.data}
+                    isAskQuestion={true}
+                    isFatwah_Dictionary_Filter={true}
+                    data_for_filter={data_for_filter}
+                    dataForContact={requestData} />
+
+
+
+
                 {/* main content */}
                 <div className=' w-full'>
                     <div>

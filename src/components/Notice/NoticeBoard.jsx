@@ -42,7 +42,7 @@ export default function NoticeBoard({ notices, settings, homePage, loading, curr
 
     return (
         <div
-            className=" p-4 sm:p-6 borderFatwaInner rounded-[10px] bg-[#c9e9ba28] "
+            className=" p-4 sm:p-6 borderFatwaInner rounded-[10px] bg-[#c9e9ba28] shadow-sm "
             style={{
 
 

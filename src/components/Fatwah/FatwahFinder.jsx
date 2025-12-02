@@ -31,7 +31,7 @@ export default  function FatwaFinder({data_for_filter}) {
      
 
       {/* Main Content */}
-      <div className="bg-white  mt-4 rounded-lg shadow-xl">
+      <div className="bg-white  mt-4 rounded-lg shadow-lg">
          {/* Title Section */}
       <div className="bg-[#E5F5DE] text-center py-4  ">
         <h2 className="text-3xl font-bold text-[#00401A]">Fatwa Finder</h2>

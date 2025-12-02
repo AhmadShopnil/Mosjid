@@ -12,9 +12,9 @@ export default function OfferServicesSlider({ services, offered_services_ExtraDa
   const heading_part_1 = splitBySlash(offered_services_ExtraData?.title)[0];
   const heading_part_2 = splitBySlash(offered_services_ExtraData?.title)[1];
   const image = getImageUrl(offered_services_ExtraData?.image_media);
-   const icon = getImageUrl(offered_services_ExtraData?.background_media);
-  
- 
+  const icon = getImageUrl(offered_services_ExtraData?.background_media);
+
+
   const scroll = (direction) => {
     if (!scrollRef.current) return;
     const { scrollLeft, clientWidth } = scrollRef.current;
@@ -74,7 +74,7 @@ export default function OfferServicesSlider({ services, offered_services_ExtraDa
             {services.map((service) => (
               <div
                 key={service.id}
- className="snap-start flex-shrink-0 w-[150px] h-[250px] sm:w-[180px] sm:h-[300px] md:w-[195px] md:h-[360px] 
+                className="snap-start flex-shrink-0 w-[150px] h-[250px] sm:w-[180px] sm:h-[300px] md:w-[195px] md:h-[360px] 
                   flex flex-col items-center justify-between text-center rounded-full shadow-xl bg-white mx-auto cursor-pointer
                   group islamicBookHome p-2 sm:p-3 "
 
@@ -85,13 +85,20 @@ export default function OfferServicesSlider({ services, offered_services_ExtraDa
                 onMouseEnter={() => setHoveredCard(service.id)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                <div className="p-1.5 sm:p-3 rounded-full mt-2 sm:mt-4 bg-[#F8F8F8]">
+                <div className="p-4 sm:p-5 rounded-full mt-2 sm:mt-4 bg-[#F8F8F8] w-[100px] h-[100px] flex justify-center items-center">
                   <Image
                     src={service?.featured_image}
                     alt={service?.name}
-                    width={100}
-                    height={100}
-                    className="object-contain"
+                    width={65}
+                    height={65}
+                    className="object-contain hidden sm:flex"
+                  />
+                  <Image
+                    src={service?.featured_image}
+                    alt={service?.name}
+                    width={50}
+                    height={50}
+                    className="object-contain flex sm:hidden"
                   />
                 </div>
 

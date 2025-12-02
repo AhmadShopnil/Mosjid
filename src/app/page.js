@@ -60,7 +60,7 @@ export default async function Home() {
      >
        <Fatwah/>
       <OfferServices/>
-       <DictionarySection data_for_filter={data_for_filter}/>
+       <DictionarySection data_for_filter={data_for_filter} homePage={homePage}/>
       <DirecToryDonation/>
       {/* <DuaSection/> */}
       <DuaBox homePage={homePage} settings={settings} duas={duas}/>
