@@ -1,17 +1,14 @@
 "use client";
 
-import { getMetaValueFromExtraFields } from '@/helper/metaHelpers'
 import Image from 'next/image'
 import { motion } from "framer-motion"
 import React from 'react'
 
+import { formatTo12Hour } from '@/helper/formatTo12Hour';
+
 export default function PrayerTimeTableRow({ prayer, index }) {
 
-    const prayerTime = getMetaValueFromExtraFields(prayer, "time")
-    const waktStartTime = getMetaValueFromExtraFields(prayer, "start_time")
-    const waktStartTime_2 = getMetaValueFromExtraFields(prayer, "start_time_2")
-    const waktEndTime = getMetaValueFromExtraFields(prayer, "end_time")
-    const waktEndTime2 = getMetaValueFromExtraFields(prayer, "end_time_mislewal")
+
 
     return (
         <motion.tr
@@ -41,26 +38,38 @@ export default function PrayerTimeTableRow({ prayer, index }) {
                     </span>
                 </span>
             </td>
-
-            <td className="p-3 text-[#56410F] text-base text-center">{prayerTime}</td>
+            <td className="p-3 text-[#56410F] text-base text-center">
+                {prayer?.time}
+            </td>
 
             <td className="px-3 text-[#3E8B18] text-base text-center">
-                <span>{waktStartTime}</span>
-                <br />
-                <span>{waktStartTime_2}</span>
+                {prayer?.wakt_start_hanfi !== prayer?.wakt_start_safi ? (
+                    <>
+                        <span>{formatTo12Hour(prayer?.wakt_start_hanfi)} (Mislesunny)</span>
+                        <br />
+                        <span>{formatTo12Hour(prayer?.wakt_start_safi)} (Mislewal)</span>
+                    </>
+                ) : (
+                    <span>{formatTo12Hour(prayer?.wakt_start_hanfi)}</span>
+                )}
             </td>
 
             <td className="px-3 text-[#FF0000] text-base text-center">
-                {waktEndTime2 ? (
+                {prayer?.wakt_end_safi !== prayer?.wakt_end_hanfi ? (
                     <>
-                        <span className="text-[#EB5757]">{waktEndTime}</span>
+                        <span className="text-[#EB5757]">
+                            {formatTo12Hour(prayer?.wakt_end_hanfi) } (Mislesunny)
+                        </span>
                         <br />
-                        <span className="text-[#EB5757]">{waktEndTime2}</span>
+                        <span className="text-[#EB5757]">
+                            {formatTo12Hour(prayer?.wakt_end_safi)} (Mislewal)
+                        </span>
                     </>
                 ) : (
-                    <span>{waktEndTime}</span>
+                    <span>{formatTo12Hour(prayer?.wakt_end_hanfi)}</span>
                 )}
             </td>
+
         </motion.tr>
     )
 }

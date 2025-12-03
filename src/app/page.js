@@ -11,7 +11,7 @@ import IslamicBooks from "@/components/Home/IslamicBooks/IslamicBooks";
 import Fatwah from "@/components/Home/Fatwah/Fatwah";
 import PrayerTimesAndNotices from "@/components/Home/PrayerTimesAndNotices/PrayerTimesAndNotices";
 import OfferServices from "@/components/Home/OfferServices/OfferServices";
-import { getDua, getFatwa, getFatwahFiltersData, getMenus, getPage, getSettings } from "@/helper/actions";
+import { getDua, getFatwa, getFatwahFiltersData, getMenus, getPage, getSettings, getUpdatesHeadline } from "@/helper/actions";
 import HeroMain from "@/components/Home/HeroSections/HeroMain";
 import QuickLinksMobile from "@/components/Home/QuickLinks/QuickLinksMobile";
 
@@ -20,7 +20,7 @@ import DuaBox from "@/components/Home/Dua/DuaBox";
 
 export default async function Home() {
 
-  const fatwahs = await getFatwa();
+  const updateHealines = await getUpdatesHeadline();
     const homePage = await getPage("home-sections-heading-management");
    const settings = await getSettings();
     const duas = await getDua();
@@ -42,7 +42,7 @@ export default async function Home() {
   
       <HeroMain/>
      <div className="">
-      <FatwaHeadline fatwahs={fatwahs}/>
+      <FatwaHeadline updateHealines={updateHealines}/>
       
         <div className="hidden lg:block">
          <QuickLinks quickLinks={quickLinks} />

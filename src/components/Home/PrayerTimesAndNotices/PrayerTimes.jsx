@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -14,6 +14,9 @@ import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import { splitBySlash } from "@/helper/splitBySpace";
 import { getImageUrl } from "@/helper/getImageUrl";
 import { getLatestUpdatedFormatted, getLatestUpdatedTime } from "@/helper/getLatestUpdatedTime";
+import axiosInstance from "@/helper/axiosInstance";
+import axios from "axios";
+import { formatPrayerData, mergePrayerTimes } from "@/helper/formatPrayerData";
 
 
 
@@ -40,8 +43,16 @@ export const rowVariant = {
 
 
 export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, homePage }) {
-  const view_more = getMetaValueByMetaName(settings, "view_more") || "";
 
+  const [prayerTimesFromOutsideApi_Shafi, setPrayerTimesFromOusideApi_Shafi] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [prayerTimesFromOutsideApi_Hanafi, setPrayerTimesFromOusideApi_Shafi_Hanafi] = useState([]);
+
+
+
+
+  const view_more = getMetaValueByMetaName(settings, "view_more") || "";
   const sections = homePage?.sections_on_api;
   const prayer_time = sections.find((s) => s.title_slug === "prayer_time");
 
@@ -56,9 +67,89 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
   const wakt_start = prayer_time?.custom_information.find((i) => i.label === "wakt_start");
   const wakt_end = prayer_time?.custom_information.find((i) => i.label === "wakt_end");
 
+  const updated_time = getLatestUpdatedFormatted(prayerTimes)
 
 
-const updated_time=getLatestUpdatedFormatted(prayerTimes)
+
+
+  useEffect(() => {
+    const city = "Osaka";
+    const country = "Japan";
+    const method = 3;
+
+    const fetchPrayerTimes = async (school) => {
+      const url = `https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(
+        city
+      )}&country=${encodeURIComponent(country)}&method=${method}&school=${school}`;
+
+      try {
+        const response = await axios.get(url);
+        return response.data.data.timings;
+      } catch (err) {
+        console.error(`Error fetching ${school === 1 ? "Hanafi" : "Safi"} times:`, err);
+        return null;
+      }
+    };
+
+    const loadTimes = async () => {
+      const safiTimes = await fetchPrayerTimes(1);   // Shafi → school=1
+      const hanafiTimes = await fetchPrayerTimes(0); // Hanafi → school=0
+
+      if (safiTimes) setPrayerTimesFromOusideApi_Shafi(safiTimes);
+      if (hanafiTimes) setPrayerTimesFromOusideApi_Shafi_Hanafi(hanafiTimes);
+    };
+
+    loadTimes();
+  }, []);
+
+
+  const prayerTimesDataFromOusideApi = [
+    {
+      prayer_name: "fajr",
+      wakt_start_hanfi: prayerTimesFromOutsideApi_Hanafi.Fajr,
+      wakt_end_hanfi: prayerTimesFromOutsideApi_Hanafi.Sunrise,
+      wakt_start_safi: prayerTimesFromOutsideApi_Shafi.Fajr,
+      wakt_end_safi: prayerTimesFromOutsideApi_Shafi.Sunrise,
+    },
+    {
+      prayer_name: "dhuhr",
+      wakt_start_hanfi: prayerTimesFromOutsideApi_Hanafi.Dhuhr,
+      wakt_end_hanfi: prayerTimesFromOutsideApi_Hanafi.Asr,
+      wakt_start_safi: prayerTimesFromOutsideApi_Shafi.Dhuhr,
+      wakt_end_safi: prayerTimesFromOutsideApi_Shafi.Asr,
+    },
+    {
+      prayer_name: "asr",
+      wakt_start_hanfi: prayerTimesFromOutsideApi_Hanafi.Asr,
+      wakt_end_hanfi: prayerTimesFromOutsideApi_Hanafi.Maghrib,
+      wakt_start_safi: prayerTimesFromOutsideApi_Shafi.Asr,
+      wakt_end_safi: prayerTimesFromOutsideApi_Shafi.Maghrib,
+    },
+    {
+      prayer_name: "maghrib",
+      wakt_start_hanfi: prayerTimesFromOutsideApi_Hanafi.Maghrib,
+      wakt_end_hanfi: prayerTimesFromOutsideApi_Hanafi.Isha,
+      wakt_start_safi: prayerTimesFromOutsideApi_Shafi.Maghrib,
+      wakt_end_safi: prayerTimesFromOutsideApi_Shafi.Isha,
+    },
+    {
+      prayer_name: "isha",
+      wakt_start_hanfi: prayerTimesFromOutsideApi_Hanafi.Isha,
+      wakt_end_hanfi: prayerTimesFromOutsideApi_Hanafi.Fajr,
+      wakt_start_safi: prayerTimesFromOutsideApi_Shafi.Isha,
+      wakt_end_safi: prayerTimesFromOutsideApi_Shafi.Fajr,
+    },
+  ];
+  const formattedPrayerTimes = formatPrayerData(prayerTimes);
+  const finalPrayerTimes = mergePrayerTimes(formattedPrayerTimes, prayerTimesDataFromOusideApi);
+
+  // console.log(finalPrayerTimes);
+
+
+
+  // console.log("outside api prayer times", prayerTimesData)
+
+  // console.log("prayer time our api", newPrayerTimes)
 
 
   return (
@@ -93,7 +184,7 @@ const updated_time=getLatestUpdatedFormatted(prayerTimes)
         </div>
       </div>
 
-      <div className="overflow-hidden space-y-6">       
+      <div className="overflow-hidden space-y-6">
         {/* PRAYER TIMES TABLE */}
         <div className="overflow-hidden hidden sm:block rounded-[20px] border-b border-gray-200">
           <table className="w-full text-sm hidden sm:table">
@@ -123,7 +214,7 @@ const updated_time=getLatestUpdatedFormatted(prayerTimes)
 
             {/* ⭐ ANIMATED TBODY ⭐ */}
             <motion.tbody variants={parentVariant} initial="hidden" animate="show">
-              {prayerTimes.map((prayer, index) => (
+              {finalPrayerTimes?.map((prayer, index) => (
                 <PrayerTimeTableRow key={index} prayer={prayer} index={index} />
               ))}
             </motion.tbody>
@@ -155,7 +246,7 @@ const updated_time=getLatestUpdatedFormatted(prayerTimes)
             {/* ⭐ ANIMATED TBODY ⭐ */}
             <motion.tbody variants={parentVariant} initial="hidden" animate="show">
               {ProhibitedTime.map((prayer, index) => (
-                <ProhibitedTimeTableRow key={index} prayer={prayer} index={index}/>
+                <ProhibitedTimeTableRow key={index} prayer={prayer} index={index} />
               ))}
             </motion.tbody>
           </table>
@@ -163,7 +254,7 @@ const updated_time=getLatestUpdatedFormatted(prayerTimes)
       </div>
 
       {/* Mobile Components */}
-      <PrayerTimesMobile prayerTimes={prayerTimes} prayer_time={prayer_time} />
+      <PrayerTimesMobile prayerTimes={finalPrayerTimes} prayer_time={prayer_time} />
 
       <h4 className="block sm:hidden text-2xl text-center mt-5">
         <span className="text-[#F7BA2A]">Prohibited </span>

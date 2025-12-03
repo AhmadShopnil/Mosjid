@@ -1,24 +1,25 @@
-import React from "react";
+"use client"
+
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { getPage, getProhibitedTime, getPryerTime, getSettings } from "@/helper/actions";
-import { getMetaValueByMetaName } from "@/helper/metaHelpers";
-import { splitBySlash, splitBySpace } from "@/helper/splitBySpace";
+import { splitBySlash } from "@/helper/splitBySpace";
 import { getImageUrl } from "@/helper/getImageUrl";
 import PrayerTimeTableRow from "../Home/PrayerTimesAndNotices/PrayerTimeTableRow";
 import PrayerTimesMobile from "../Home/PrayerTimesAndNotices/PrayerTimesMobile";
 import ProhibitedTimeTableRow from "../Home/PrayerTimesAndNotices/ProhibitedTimeTableRow";
 import ProhibitedTimeMobile from "../Home/PrayerTimesAndNotices/ProhibitedTimeMobile";
+import { formatPrayerData, mergePrayerTimes } from "@/helper/formatPrayerData";
+import axios from "axios";
 
 
 
-export default async function PrayerTimesInnerPage() {
-  const settings = await getSettings()
-  const view_more = getMetaValueByMetaName(settings, "view_more") || "";
-  const prayerTimes = await getPryerTime();
-  const ProhibitedTime = await getProhibitedTime();
+export default  function PrayerTimesInnerPage({settings,homePage,prayerTimes,ProhibitedTime}) {
+  const [prayerTimesFromOutsideApi_Shafi, setPrayerTimesFromOusideApi_Shafi] = useState({});
+  const [prayerTimesFromOutsideApi_Hanafi, setPrayerTimesFromOusideApi_Shafi_Hanafi] = useState([]);
+ 
+ 
 
-  // get notice extra data from home page section management
-  const homePage = await getPage("home-sections-heading-management")
   const sections = homePage?.sections_on_api;
   const prayer_time = sections.find((s) => s.title_slug === "prayer_time");
   const heading_part_1 = splitBySlash(prayer_time?.title)[0]
@@ -35,8 +36,84 @@ export default async function PrayerTimesInnerPage() {
   const wakt_end = prayer_time?.custom_information.find((item) => item.label === "wakt_end")
 
 
-  // console.log("prayer_times_title_2",prayer_time?.custom_information)
-  // console.log("prayer times",prayer_times_title_2)
+
+  useEffect(() => {
+    const city = "Osaka";
+    const country = "Japan";
+    const method = 3;
+
+    const fetchPrayerTimes = async (school) => {
+      const url = `https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(
+        city
+      )}&country=${encodeURIComponent(country)}&method=${method}&school=${school}`;
+
+      try {
+        const response = await axios.get(url);
+        return response.data.data.timings;
+      } catch (err) {
+        console.error(`Error fetching ${school === 1 ? "Hanafi" : "Safi"} times:`, err);
+        return null;
+      }
+    };
+
+    const loadTimes = async () => {
+      const safiTimes = await fetchPrayerTimes(0);   // Shafi → school=1
+      const hanafiTimes = await fetchPrayerTimes(1); // Hanafi → school=0
+
+      if (safiTimes) setPrayerTimesFromOusideApi_Shafi(safiTimes);
+      if (hanafiTimes) setPrayerTimesFromOusideApi_Shafi_Hanafi(hanafiTimes);
+    };
+
+    loadTimes();
+  }, []);
+
+
+  const prayerTimesDataFromOusideApi = [
+    {
+      prayer_name: "fajr",
+      wakt_start_hanfi: prayerTimesFromOutsideApi_Hanafi.Fajr,
+      wakt_end_hanfi: prayerTimesFromOutsideApi_Hanafi.Sunrise,
+      wakt_start_safi: prayerTimesFromOutsideApi_Shafi.Fajr,
+      wakt_end_safi: prayerTimesFromOutsideApi_Shafi.Sunrise,
+    },
+    {
+      prayer_name: "dhuhr",
+      wakt_start_hanfi: prayerTimesFromOutsideApi_Hanafi.Dhuhr,
+      wakt_end_hanfi: prayerTimesFromOutsideApi_Hanafi.Asr,
+      wakt_start_safi: prayerTimesFromOutsideApi_Shafi.Dhuhr,
+      wakt_end_safi: prayerTimesFromOutsideApi_Shafi.Asr,
+    },
+    {
+      prayer_name: "asr",
+      wakt_start_hanfi: prayerTimesFromOutsideApi_Hanafi.Asr,
+      wakt_end_hanfi: prayerTimesFromOutsideApi_Hanafi.Maghrib,
+      wakt_start_safi: prayerTimesFromOutsideApi_Shafi.Asr,
+      wakt_end_safi: prayerTimesFromOutsideApi_Shafi.Maghrib,
+    },
+    {
+      prayer_name: "maghrib",
+      wakt_start_hanfi: prayerTimesFromOutsideApi_Hanafi.Maghrib,
+      wakt_end_hanfi: prayerTimesFromOutsideApi_Hanafi.Isha,
+      wakt_start_safi: prayerTimesFromOutsideApi_Shafi.Maghrib,
+      wakt_end_safi: prayerTimesFromOutsideApi_Shafi.Isha,
+    },
+    {
+      prayer_name: "isha",
+      wakt_start_hanfi: prayerTimesFromOutsideApi_Hanafi.Isha,
+      wakt_end_hanfi: prayerTimesFromOutsideApi_Hanafi.Fajr,
+      wakt_start_safi: prayerTimesFromOutsideApi_Shafi.Isha,
+      wakt_end_safi: prayerTimesFromOutsideApi_Shafi.Fajr,
+    },
+  ];
+  const formattedPrayerTimes = formatPrayerData(prayerTimes);
+  const finalPrayerTimes = mergePrayerTimes(formattedPrayerTimes, prayerTimesDataFromOusideApi);
+
+
+
+
+
+
+
 
 
   return (
@@ -75,7 +152,7 @@ export default async function PrayerTimesInnerPage() {
           />
 
 
-         
+
 
           <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
             <p><span className="text-[#F7BA2A]">{heading_part_1}</span> {heading_part_2} </p>
@@ -128,7 +205,7 @@ export default async function PrayerTimesInnerPage() {
               </tr>
             </thead>
             <tbody>
-              {prayerTimes.map((prayer, index) => (
+              {finalPrayerTimes?.map((prayer, index) => (
                 <PrayerTimeTableRow key={index} prayer={prayer} />
               ))}
             </tbody>
@@ -179,7 +256,7 @@ export default async function PrayerTimesInnerPage() {
 
 
       {/* Mobile Cards */}
-      <PrayerTimesMobile prayerTimes={prayerTimes} prayer_time={prayer_time} />
+      <PrayerTimesMobile prayerTimes={finalPrayerTimes} prayer_time={prayer_time} />
 
       <h4 className=" block sm:hidden text-2xl text-center mt-5">
         <span className="text-[#F7BA2A]">Prohibited </span>

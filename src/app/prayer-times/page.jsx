@@ -8,19 +8,20 @@ import InnerHeader from '@/components/Shared/InnerHeader'
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 import SocialShare from '@/components/Shared/SocialShare'
 import { sideBarCategories } from '@/data/sidebar'
-import { getPage } from '@/helper/actions'
+import { getPage, getProhibitedTime, getPryerTime, getSettings } from '@/helper/actions'
 import { getImageUrl } from '@/helper/getImageUrl'
-import { splitBySlash, splitBySpace } from '@/helper/splitBySpace'
 
-import Image from 'next/image'
 import React from 'react'
 
 export default async function page() {
+
+   const prayerTimes = await getPryerTime();
+  const ProhibitedTime = await getProhibitedTime();
   const homePage = await getPage("home-sections-heading-management")
+  const settings = await getSettings()
   const sections = homePage?.sections_on_api;
   const prayer_time = sections.find((s) => s.title_slug === "prayer_time");
-  const heading_part_1 = splitBySlash(prayer_time?.title)[0]
-  const heading_part_2 = splitBySlash(prayer_time?.title)[1]
+
 
   const arabic = getImageUrl(prayer_time?.image_media)
   const icon = getImageUrl(prayer_time?.background_media)
@@ -46,10 +47,10 @@ export default async function page() {
 
           <div>
 
-            <PrayerTimesInnerPage /> 
+            <PrayerTimesInnerPage homePage={homePage} settings={settings} prayerTimes={prayerTimes} ProhibitedTime={ProhibitedTime} />
 
             <div className='mt-8'>
-              <SocialShare/>
+              <SocialShare />
             </div>
           </div>
 
