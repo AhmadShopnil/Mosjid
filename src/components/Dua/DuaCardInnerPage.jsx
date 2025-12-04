@@ -1,5 +1,6 @@
 "use client";
 import { getMetaValueFromExtraFields } from "@/helper/metaHelpers";
+import Image from "next/image";
 import React from "react";
 
 export const DuaCardInnerPage = ({ dua }) => {
@@ -34,7 +35,17 @@ export const DuaCardInnerPage = ({ dua }) => {
       </div>
 
       {/* Inner Section */}
-      <div className="px-4 py-6 space-y-5 text-center">
+      <div className="px-4 py-6 space-y-5 text-center relative">
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
+          <Image
+            src="/images/directory/bg2.png"
+            alt="img"
+            width={350}
+            height={425}
+            className="object-contain transition-all duration-300"
+          />
+        </div>
+
         {/* Dua Title */}
         <div className="space-y-2">
           <p className="text-[#333333] font-semibold text-2xl mb-4">
@@ -48,7 +59,7 @@ export const DuaCardInnerPage = ({ dua }) => {
         {/* <p className="text-[#333333] leading-8 text-base ">
           {dua_main}
         </p> */}
-          <div
+        <div
           className="text-[#333333] leading-8 text-base"
           dangerouslySetInnerHTML={{ __html: dua?.description }}
         />

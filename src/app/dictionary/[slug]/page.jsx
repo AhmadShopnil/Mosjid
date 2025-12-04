@@ -43,7 +43,6 @@ export default async function page() {
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
         <SidebarDrawerForBooks
-
           isSubmitRequest={true}
           books={books?.data}
           isMajhabShow={false}

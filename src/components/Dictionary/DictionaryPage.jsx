@@ -51,7 +51,7 @@ export default function DictionaryPage() {
     return (
         <div className="bg-gray-50 space-y-4 ">
             {/* Table Section */}
-            <div className="gradient-border rounded-2xl p-8 bg-white shadow-md">
+            <div className="gradient-border rounded-2xl p-2 sm:p-4 md:p-8 bg-white shadow-md">
 
                 {/* Table Header */}
                 <div className="bg-[#52B920] h-[50px] text-white flex items-center justify-center rounded-t-[10px]">

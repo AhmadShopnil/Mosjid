@@ -5,12 +5,30 @@
 import { convertDirectoryData } from "@/helper/convertDirectoryData";
 import { useState } from "react";
 import CustomSelectForDirectory from "../UI/CustomSelectRoundedWhite";
+import { useRegionFilters } from "@/context/RegionFilterContext ";
 
 export default function DirectorySearchInnerPage({ filterData, setSelected, selected, getData, locations }) {
-  const [selectedRegion, setSelectedRegion] = useState(null);
-  const [selectedPrefecture, setSelectedPrefecture] = useState(null);
-  const [selectedCity, setSelectedCity] = useState(null);
-  const [selectedDistrict, setSelectedDistrict] = useState(null);
+  // const [selectedRegion, setSelectedRegion] = useState(null);
+  // const [selectedPrefecture, setSelectedPrefecture] = useState(null);
+  // const [selectedCity, setSelectedCity] = useState(null);
+  // const [selectedDistrict, setSelectedDistrict] = useState(null);
+
+  
+//  /posts?term_type=directory&category_id=selectedRegion?.id,selectedPrefecture?.id,selectedCity?.id,selectedDistrict?.id
+
+  const {
+    selectedRegion,
+    setSelectedRegion,
+
+    selectedPrefecture,
+    setSelectedPrefecture,
+
+    selectedCity,
+    setSelectedCity,
+
+    selectedDistrict,
+    setSelectedDistrict,
+  } = useRegionFilters();
 
 
   const [regionList, setRegionList] = useState([])
@@ -18,7 +36,7 @@ export default function DirectorySearchInnerPage({ filterData, setSelected, sele
   const [cityList, setCityList] = useState([])
   const [districtList, setDistrictList] = useState([])
 
-  // console.log("selected", selected)
+  // console.log("selectedRegion", selectedRegion)
 
 
 
@@ -78,7 +96,7 @@ export default function DirectorySearchInnerPage({ filterData, setSelected, sele
 
   return (
     <div className="w-full  flex flex-col md:flex-row items-center justify-center  lg:justify-start gap-4 flex-wrap">
-      {/* Prefecture */}
+      {/* region */}
       <div className="relative flex-1  w-full">
 
         <CustomSelectForDirectory
@@ -91,6 +109,7 @@ export default function DirectorySearchInnerPage({ filterData, setSelected, sele
         />
 
       </div>
+      
       <div className="relative flex-1  w-full">
 
         <CustomSelectForDirectory

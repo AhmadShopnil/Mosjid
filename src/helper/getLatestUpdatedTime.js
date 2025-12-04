@@ -37,3 +37,13 @@ export function getLatestUpdatedFormatted(data) {
   // Final format
   return `${day} ${month} ${year} at ${hour}:${minute}${ampm}`;
 }
+
+
+
+// utils/getUpdatedAtArray.js
+
+export function getUpdatedAtArray(items) {
+  if (!Array.isArray(items)) return [];
+
+  return items.map(item => item?.updated_at ?? null);
+}

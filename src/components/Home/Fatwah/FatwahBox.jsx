@@ -19,8 +19,17 @@ export default async function FatwahBox() {
   const homePage = await getPage("home-sections-heading-management")
   const sections = homePage?.sections_on_api;
   const fatwah_ExtraData = sections.find((s) => s.title_slug === "fatwah");
+  const fatwah_Top_header_ExtraData = sections.find((s) => s.title_slug === "fatwa-section-header");
+
   const image = getImageUrl(fatwah_ExtraData?.image_media)
+   const Arabic_header_image = getImageUrl(fatwah_Top_header_ExtraData?.image_media)
+
+   const header_image = getImageUrl(fatwah_Top_header_ExtraData?.background_media);
+
  const fatwah_title_2 = fatwah_ExtraData?.custom_information.find((item) => item.label === "fatwah_title_2")
+
+
+
   return (
 
     <div className="  px-4 py-10 relative">
@@ -31,16 +40,18 @@ export default async function FatwahBox() {
         {/* Logo */}
         <div>
           <Image
-            src="/images/fatwah/fatwahHeader.png"
+          src={header_image}
+            // src="/images/fatwah/fatwahHeader.png"
             alt="Logo"
-            width={160}
+            width={200}
             height={181}
             className='hidden sm:flex'
           />
           <Image
-            src="/images/fatwah/fatwahHeader.png"
+          src={header_image}
+            // src="/images/fatwah/fatwahHeader.png"
             alt="Logo"
-            width={110}
+            width={150}
             height={80}
             className='flex sm:hidden'
           />
@@ -51,32 +62,38 @@ export default async function FatwahBox() {
           {/* for big screen */}
           <div className="hidden sm:flex  flex-col justify-end items-end gap-3 ">
             <Image
-              src="/images/fatwah/fatwahArabicheader.png"
+            src={Arabic_header_image}
+              // src="/images/fatwah/fatwahArabicheader.png"
               alt="Logo"
               width={515}
               height={70}
             />
-            <Image
+              <p className='text-[#F7BA2A] font-semibold text-[20px]  '>{fatwah_Top_header_ExtraData?.sub_title}</p>
+            {/* <Image
+           
               src="/images/fatwah/arabic3.png"
               alt="Logo"
               width={157}
               height={36}
-            />
+            /> */}
           </div>
           {/* for small screen */}
           <div className=" flex sm:hidden flex-col justify-end items-end gap-3 ">
+          
             <Image
-              src="/images/fatwah/fatwahArabicheader.png"
+              src={Arabic_header_image}
+              // src="/images/fatwah/fatwahArabicheader.png"
               alt="Logo"
               width={210}
               height={50}
             />
-            <Image
+              <p className='text-[#F7BA2A] font-semibold text-[16px]  '>{fatwah_Top_header_ExtraData?.sub_title}</p>
+            {/* <Image
               src="/images/fatwah/arabic3.png"
               alt="Logo"
               width={120}
               height={30}
-            />
+            /> */}
           </div>
         </div>
 
@@ -89,7 +106,7 @@ export default async function FatwahBox() {
 
       >
         {/* Mosque Image Positioned at Bottom Right */}
-        <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[400px]">
+        <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[400px] opacity-90">
           <Image
             src="/images/fatwah/fatwahbg.png"
             alt="Mosque"
@@ -99,7 +116,7 @@ export default async function FatwahBox() {
           />
         </div>
 
-        {/* Content Area */}
+        {/* Content Area*/}
         <div className="relative  w-full lg:w-[70%] z-10 items-center">
           {/* heading */}
           <div className='flex justify-between mb-6 '>
@@ -190,7 +207,7 @@ export default async function FatwahBox() {
 
                 {/* Download Button */}
                 <button className="flex items-center gap-2 px-4 md:px-5 py-3 cursor-pointer gradient-border3 
-                  rounded-[100px] text-[#00401A] font-bold text-xs sm:text-sm md:text-lg ">
+                  rounded-[100px] text-[#00401A] font-bold text-xs sm:text-sm md:text-lg  ">
                   {download}
                   <Download className="w-5 h-5" />
                 </button>

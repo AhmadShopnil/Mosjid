@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useSelected } from "@/context/SelectedContext"
 import { useSelectedParrent } from "@/context/SelectedContextParrent";
 import { useFatwaFilters } from "@/context/FatwaFilterContext";
+import { useRegionFilters } from "@/context/RegionFilterContext ";
 
 
 
@@ -15,7 +16,10 @@ import { useFatwaFilters } from "@/context/FatwaFilterContext";
 export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, isNavigate, directoryNavigate, isFatwah_Dictionary_Filter, isFatwahNavigate }) {
   const { selected, setSelected, clearSelected } = useSelected();
 
-  const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
+  const { selectedParrent, setSelectedParrent, clearSelectedParrent,selectedSlug, setSelectedSlug } = useSelectedParrent();
+
+
+
   const {
     setSelectedBooks,
 
@@ -149,7 +153,7 @@ export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, i
                 }
                 className={`group w-full h-[60px] px-4 py-3 flex items-center gap-3  transition-all
                    
-                  ${isExpanded || category.id == hovered || category?.id == selected?.id
+                  ${isExpanded || category.id == hovered || category?.id == selected?.id || category?.id==selectedSlug
                     ? "gradient-bg-sidebar-item text-white rounded-t-[10px]"
                     : "bg-[#EEF8E9] rounded-[10px]"
                   }
@@ -164,7 +168,7 @@ export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, i
                     src={category?.icon}
                     alt={category?.name + " icon"}
                     className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-200
-                      group-hover:brightness-0 group-hover:invert  ${(isExpanded || category.id == hovered || category?.id == selected?.id) && "brightness-0 invert"}`}
+                      group-hover:brightness-0 group-hover:invert  ${(isExpanded || category.id == hovered || category?.id == selected?.id || category?.id==selectedSlug ) && "brightness-0 invert"}`}
 
                   />
 
@@ -191,7 +195,7 @@ export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, i
                 {/* Text Content */}
                 <div className="flex-1 text-left">
                   <p
-                    className={`font-bold text-sm transition-colors ${(isExpanded || category.id == hovered || category?.id == selected?.id)
+                    className={`font-bold text-sm transition-colors ${(isExpanded || category.id == hovered || category?.id == selected?.id || category?.id==selectedSlug)
                       ? "text-white"
                       : "text-[#B98C20] group-hover:text-white"
                       }`}
@@ -200,7 +204,7 @@ export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, i
                   </p>
                   {category?.subtitle && (
                     <p
-                      className={`text-sm font-bold transition-colors ${(isExpanded || category.id == hovered || category?.id == selected?.id)
+                      className={`text-sm font-bold transition-colors ${(isExpanded || category.id == hovered || category?.id == selected?.id || category?.id==selectedSlug)
                         ? "text-white"
                         : "text-[#00401A] group-hover:text-white"
                         }`}

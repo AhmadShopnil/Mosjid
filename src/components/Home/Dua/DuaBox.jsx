@@ -54,7 +54,7 @@ export default function DuaBox({ homePage, settings, duas }) {
       >
         
         {/* Background dua Image  */}
-        <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[380px] opacity-90 p-3">
+        <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[380px]  p-3 opacity-5">
 
           {/* <div className="absolute inset-0 bg-black/5 rounded-xl z-10"></div> */}
           

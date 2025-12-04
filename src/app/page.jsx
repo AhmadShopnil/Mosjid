@@ -21,57 +21,57 @@ import DuaBox from "@/components/Home/Dua/DuaBox";
 export default async function Home() {
 
   const updateHealines = await getUpdatesHeadline();
-    const homePage = await getPage("home-sections-heading-management");
-   const settings = await getSettings();
-    const duas = await getDua();
-    const books = await getFatwahFiltersData("books")
-      const chapter = await getFatwahFiltersData("bookchapters")
-      const section = await getFatwahFiltersData("booksections")
-    
-    
-    
-    
-      const data_for_filter = { books, chapter, section }
-     
+  const homePage = await getPage("home-sections-heading-management");
+  const settings = await getSettings();
+  const duas = await getDua();
+  const books = await getFatwahFiltersData("books")
+  const chapter = await getFatwahFiltersData("bookchapters")
+  const section = await getFatwahFiltersData("booksections")
 
-  const quickLinks=await getMenus(6)
+
+
+
+  const data_for_filter = { books, chapter, section }
+
+
+  const quickLinks = await getMenus(6)
   // console.log({quickLinks})
 
   return (
-   <main className=" mb-10 ">
-  
-      <HeroMain/>
-     <div className="">
-      <FatwaHeadline updateHealines={updateHealines}/>
-      
+    <main className=" mb-10 ">
+
+      <HeroMain />
+      <div className="">
+        <FatwaHeadline updateHealines={updateHealines} />
+
         <div className="hidden lg:block">
-         <QuickLinks quickLinks={quickLinks} />
-       </div>
-       <div className="lg:hidden">
-        <QuickLinksMobile quickLinks={quickLinks}/>
-       </div>
-     </div>
-
-   <PrayerTimesAndNotices/>
-
-
-     <div
-     className="hidden lg:block"
-     >
-       <Fatwah/>
-      <OfferServices/>
-       <DictionarySection data_for_filter={data_for_filter} homePage={homePage}/>
-      <DirecToryDonation/>
-      {/* <DuaSection/> */}
-      <DuaBox homePage={homePage} settings={settings} duas={duas}/>
-      <GallerySection/>
-      <IslamicBooks/>
-     </div>
-      <div className=" lg:hidden">
-        <OfferServices/>
+          <QuickLinks quickLinks={quickLinks} />
+        </div>
+        <div className="lg:hidden">
+          <QuickLinksMobile quickLinks={quickLinks} />
+        </div>
       </div>
-      
-      <IslamicBlogEvents/>
+
+      <PrayerTimesAndNotices />
+
+
+      <div
+        className="hidden lg:block"
+      >
+        <Fatwah />
+        <OfferServices />
+        <DictionarySection data_for_filter={data_for_filter} homePage={homePage} />
+        <DirecToryDonation />
+        {/* <DuaSection/> */}
+        <DuaBox homePage={homePage} settings={settings} duas={duas} />
+        <GallerySection />
+        <IslamicBooks />
+      </div>
+      <div className=" lg:hidden">
+        <OfferServices />
+      </div>
+
+      <IslamicBlogEvents />
 
     </main>
   );

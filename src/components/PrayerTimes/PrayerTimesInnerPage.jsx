@@ -11,6 +11,7 @@ import ProhibitedTimeTableRow from "../Home/PrayerTimesAndNotices/ProhibitedTime
 import ProhibitedTimeMobile from "../Home/PrayerTimesAndNotices/ProhibitedTimeMobile";
 import { formatPrayerData, mergePrayerTimes } from "@/helper/formatPrayerData";
 import axios from "axios";
+import { extractTimeUpdatedAt, getMostRecentTime } from "@/helper/extractTimeUpdatedAt";
 
 
 
@@ -110,7 +111,9 @@ export default  function PrayerTimesInnerPage({settings,homePage,prayerTimes,Pro
 
 
 
+  const updatedAtArray = extractTimeUpdatedAt(prayerTimes);
 
+  const updated_time = getMostRecentTime(updatedAtArray)
 
 
 
@@ -137,7 +140,7 @@ export default  function PrayerTimesInnerPage({settings,homePage,prayerTimes,Pro
         />
       </div>
       {/* heading */}
-      <p className="text-sm mb-2.5 text-center sm:text-start ml-1">{prayer_time?.short_description}</p>
+      <p className="text-sm mb-2.5 text-center sm:text-start ml-1">Last Update: {updated_time}</p>
 
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
 

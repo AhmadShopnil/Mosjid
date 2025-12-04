@@ -1,5 +1,6 @@
 "use client";
 
+import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import CustomSelectRoundedWhite from "../UI/CustomSelectRoundedWhite";
 
 export default function DonationInputSection({
@@ -7,14 +8,26 @@ export default function DonationInputSection({
   isActive = "No",
   heading_part_1,
   heading_part_2,
-  make_your_donation
+  make_your_donation,
+  settings
 }) {
 
-  const disabled = isActive === "No";
+  // const disabled = isActive === "No";
+
+
+
+    let submit_a_question_feature = "";
+    if (settings) {
+        submit_a_question_feature = getMetaValueByMetaName(settings, "donation_feature") || "";
+    }
+
+    const isDisabled =
+        submit_a_question_feature?.toLowerCase?.().trim() === "no";
+
 
   return (
     <div
-      className={`${disabled ? "opacity-50 pointer-events-none select-none" : ""}`}
+      className={`${isDisabled ? "opacity-50 pointer-events-none select-none" : ""}`}
     >
       {/* Heading */}
       <div
@@ -42,7 +55,7 @@ export default function DonationInputSection({
               { labelEn: "Madrasha", labelJp: "マドラシャ" },
               { labelEn: "Zakat", labelJp: "ザカート" },
             ]}
-            disabled={disabled}
+            disabled={isDisabled}
           />
         </div>
 
@@ -51,10 +64,10 @@ export default function DonationInputSection({
           <input
             type="text"
             placeholder="Mobile or Email"
-            disabled={disabled}
+            disabled={isDisabled}
             className={`h-[54px] w-full pl-10 pr-4 py-3 border border-green-900 rounded-full
               placeholder-gray-400 placeholder:text-sm
-              ${disabled ? "cursor-not-allowed bg-gray-100" : "focus:outline-none"}`}
+              ${isDisabled ? "cursor-not-allowed bg-gray-100" : "focus:outline-none"}`}
           />
         </div>
 
@@ -63,19 +76,19 @@ export default function DonationInputSection({
           <input
             type="text"
             placeholder="Write Amount"
-            disabled={disabled}
+            disabled={isDisabled}
             className={`h-[54px] w-full pl-10 pr-4 py-3 border border-green-900 rounded-full
               placeholder-gray-400 placeholder:text-sm
-              ${disabled ? "cursor-not-allowed bg-gray-100" : "focus:outline-none"}`}
+              ${isDisabled ? "cursor-not-allowed bg-gray-100" : "focus:outline-none"}`}
           />
         </div>
 
         {/* Button */}
         <button
-          disabled={disabled}
+          disabled={isDisabled}
           className={`w-full lg:w-auto bg-[#F7BA2A] text-[#00401A] h-[56px] font-bold px-9 py-3 rounded-full 
             shadow-md transition text-lg
-            ${disabled ? "cursor-not-allowed opacity-70" : "hover:bg-[#e0a520] cursor-pointer"}`}
+            ${isDisabled ? "cursor-not-allowed opacity-70" : "hover:bg-[#e0a520] cursor-pointer"}`}
         >
           {donate_now_button?.value}
         </button>

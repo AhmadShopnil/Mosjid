@@ -6,11 +6,12 @@ const SelectedContextParrent = createContext();
 
 export const SelectedParrentProvider = ({ children }) => {
   const [selectedParrent, setSelectedParrent] = useState(null);
+   const [selectedSlug, setSelectedSlug] = useState(null);
 
   const clearSelectedParrent = () => setSelectedParrent(null);
 
   return (
-    <SelectedContextParrent.Provider value={{ selectedParrent, setSelectedParrent, clearSelectedParrent }}>
+    <SelectedContextParrent.Provider value={{ selectedParrent, setSelectedParrent, clearSelectedParrent,selectedSlug, setSelectedSlug }}>
       {children}
     </SelectedContextParrent.Provider>
   );

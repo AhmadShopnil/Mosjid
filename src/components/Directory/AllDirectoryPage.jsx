@@ -16,7 +16,7 @@ import { useRegionFilters } from "@/context/RegionFilterContext ";
 import { useSelectedParrent } from "@/context/SelectedContextParrent";
 
 
-export default function DirectoryPageClient({ settings, homePage, slug, filterData, locations }) {
+export default function AllDirectoryPage({ settings, homePage, slug, filterData, locations }) {
 
     const {
         selectedRegion,
@@ -43,19 +43,17 @@ export default function DirectoryPageClient({ settings, homePage, slug, filterDa
 
 
 
-    useEffect(() => {
-        setSelectedSlug(slug)
-        if (!selectedDirectoryLocation) {
-            setSelected(slug);
-        }
-    }, [])
+    // useEffect(() => {
+    //     setSelectedSlug(slug)
+       
+    // }, [])
 
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
 
-            let url = `/category?id=${slug}`;
+            let url = `/category`;
 
             try {
                 const response = await axiosInstance.get(url);
@@ -70,7 +68,7 @@ export default function DirectoryPageClient({ settings, homePage, slug, filterDa
         };
 
         fetchData();
-    }, [slug]);
+    }, []);
 
 
 
@@ -83,7 +81,7 @@ export default function DirectoryPageClient({ settings, homePage, slug, filterDa
             selectedPrefecture?.id,
             selectedCity?.id,
             selectedDistrict?.id,
-            slug,
+         
         ].filter(Boolean);
 
         return ids.join(",");

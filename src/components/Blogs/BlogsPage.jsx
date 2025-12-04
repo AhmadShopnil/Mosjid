@@ -14,11 +14,14 @@ import { getImageUrl } from '@/helper/getImageUrl'
 import { useSelected } from '@/context/SelectedContext'
 import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
 import { useSelectedParrent } from '@/context/SelectedContextParrent'
+import FindBySearch from '../Shared/FindBySearch'
 
 
 
 
 export default function BlogsPage({ homePage, settings, formattedCategories }) {
+  const [searchValue, setSearchValue] = useState("");
+
   const { selected, setSelected, clearSelected } = useSelected();
   const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
   const [blogs, setBlogs] = useState([])
@@ -38,37 +41,50 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
 
 
 
+  const handleSearch = ({ name, number }) => {
+    const q = name || number || "";
+    setSearchValue(q);
+    setCurrentPage(1); // new search → reset pagination
+  };
+
+
+
+
+
   // fetching data
   useEffect(() => {
-
-
     const fetchBlogs = async () => {
+      setLoading(true);
 
-      setLoading(true)
+      let url = `/posts?term_type=post&page=${currentPage}&per_page=${perPage}`;
 
-      let url = `/posts?term_type=post&page=${currentPage}&per_page=${perPage}`
-      if (selected?.id) {
-        url = `/posts?term_type=post&category_id=${selected?.id}&page=${currentPage}&per_page=${perPage}`
+      if (selectedCat) {
+        url = `/posts?term_type=post&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`;
       }
 
+      // Add search query
+      if (searchValue) {
+        url += `&s=${searchValue}`;
+      }
 
       try {
-        const response = await axiosInstance.get(url)
-        const data = response?.data?.data || []
-        const meta = response?.data?.meta || {}
+        const response = await axiosInstance.get(url);
+        const data = response?.data?.data || [];
+        const meta = response?.data?.meta || {};
 
-        setBlogs(data)
-        setTotalPages(meta.last_page || 1)
+        setBlogs(data);
+        setTotalPages(meta.last_page || 1);
       } catch (err) {
-        console.error("Error fetching blogs:", err)
-        setError(err.message || "Failed to fetch blogs")
+        console.error("Error fetching blogs:", err);
+        setError(err.message || "Failed to fetch blogs");
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchBlogs()
-  }, [selectedCat, currentPage])
+    fetchBlogs();
+  }, [selectedCat, currentPage, searchValue]); // ⬅️ searchValue dependency
+
 
   // console.log("blogs", blogs)
 
@@ -78,15 +94,13 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
   const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
 
 
-  const heading_part_1 = splitBySlash(blog_events_ExtraData?.title)[0]
-  const heading_part_2 = splitBySlash(blog_events_ExtraData?.title)[1]
 
   const image_arabic = getImageUrl(blog_events_ExtraData?.image_media);
   const icon = getImageUrl(blog_events_ExtraData?.background_media);
 
- const requestData = selected?.name ? `Blogs of ${selected?.name} ` : "Blogs"
+  const requestData = selected?.name ? `Blogs of ${selected?.name} ` : "Blogs"
 
-const section_title = selected?.name || selectedParrent?.name
+  const section_title = selected?.name || selectedParrent?.name
 
   return (
     <div>
@@ -115,10 +129,10 @@ const section_title = selected?.name || selectedParrent?.name
         {/* main content */}
         <div className=' w-full space-y-6'>
           <InnerHeader title={blog_events_ExtraData?.sub_title} image={image_arabic} />
-
+          <FindBySearch onSearch={(values) => handleSearch(values)} button_text="Find Blogs" />
           <div>
             <Blogs
-             section_title={section_title}
+              section_title={section_title}
               blogs={blogs}
               settings={settings}
               homePage={homePage}

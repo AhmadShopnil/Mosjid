@@ -13,10 +13,10 @@ import ProhibitedTimeMobile from "./ProhibitedTimeMobile";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import { splitBySlash } from "@/helper/splitBySpace";
 import { getImageUrl } from "@/helper/getImageUrl";
-import { getLatestUpdatedFormatted, getLatestUpdatedTime } from "@/helper/getLatestUpdatedTime";
-import axiosInstance from "@/helper/axiosInstance";
+
 import axios from "axios";
 import { formatPrayerData, mergePrayerTimes } from "@/helper/formatPrayerData";
+import { extractTimeUpdatedAt, getMostRecentTime } from "@/helper/extractTimeUpdatedAt";
 
 
 
@@ -44,15 +44,12 @@ export const rowVariant = {
 
 export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, homePage }) {
 
-  const [prayerTimesFromOutsideApi_Shafi, setPrayerTimesFromOusideApi_Shafi] = useState({});
+  const [prayerTimesFromOutsideApi_Shafi, setPrayerTimesFromOusideApi_Shafi] = useState([]);
+  const [prayerTimesFromOutsideApi_Hanafi, setPrayerTimesFromOusideApi_Shafi_Hanafi] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [prayerTimesFromOutsideApi_Hanafi, setPrayerTimesFromOusideApi_Shafi_Hanafi] = useState([]);
 
 
-
-
-  const view_more = getMetaValueByMetaName(settings, "view_more") || "";
   const sections = homePage?.sections_on_api;
   const prayer_time = sections.find((s) => s.title_slug === "prayer_time");
 
@@ -67,9 +64,11 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
   const wakt_start = prayer_time?.custom_information.find((i) => i.label === "wakt_start");
   const wakt_end = prayer_time?.custom_information.find((i) => i.label === "wakt_end");
 
-  const updated_time = getLatestUpdatedFormatted(prayerTimes)
 
 
+
+
+  // console.log({ updatedAtArray })
 
 
   useEffect(() => {
@@ -83,7 +82,9 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
       )}&country=${encodeURIComponent(country)}&method=${method}&school=${school}`;
 
       try {
+
         const response = await axios.get(url);
+
         return response.data.data.timings;
       } catch (err) {
         console.error(`Error fetching ${school === 1 ? "Hanafi" : "Safi"} times:`, err);
@@ -140,12 +141,16 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
       wakt_end_safi: prayerTimesFromOutsideApi_Shafi.Fajr,
     },
   ];
+
   const formattedPrayerTimes = formatPrayerData(prayerTimes);
   const finalPrayerTimes = mergePrayerTimes(formattedPrayerTimes, prayerTimesDataFromOusideApi);
 
-  // console.log(finalPrayerTimes);
+  // console.log({prayerTimesFromOutsideApi_Hanafi});
 
 
+  const updatedAtArray = extractTimeUpdatedAt(prayerTimes);
+
+  const updated_time = getMostRecentTime(updatedAtArray)
 
   // console.log("outside api prayer times", prayerTimesData)
 
@@ -165,7 +170,7 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
       </div>
 
       {/* Heading */}
-      <p className="text-sm mb-2.5 text-center sm:text-start ml-1">Last Update:{updated_time}</p>
+      <p className="text-sm mb-2.5 text-center sm:text-start ml-1">Last Update: {updated_time}</p>
       {/* <p className="text-sm mb-2.5 text-center sm:text-start ml-1">{prayer_time?.short_description}</p> */}
 
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6">

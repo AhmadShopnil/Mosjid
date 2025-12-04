@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 import { FaLongArrowAltRight } from 'react-icons/fa';
 
 export default function NoticeCardHome({ notice, settings, handleOpenModal }) {
-    const view_more = getMetaValueByMetaName(settings, "view_more") || "";
+  
     const read_more = getMetaValueByMetaName(settings, "read_more") || "";
 
 
