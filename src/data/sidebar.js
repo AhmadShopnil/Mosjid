@@ -7,14 +7,8 @@
       name: "Prayer Times",
       subtitle: "祈りの時間",
       hasSubItems: false,
-       isArrow: true,
-      // subItems: ["Prayer", "Fasting", "Hajj"],
-      // childs: [
-      //   {
-      //     name: "Sub Item",
-      //     description: "Japanese"
-      //   }
-      // ]
+      isArrow: true,
+    
     },
     {
       id: "notice-board",
@@ -23,15 +17,9 @@
       activeIcon: "/images/QuickLinks/hover/Blog & event-1.png",
       name: "Notice Board",
       subtitle: "掲示板",
-       isArrow: true,
+      isArrow: true,
       hasSubItems: false,
-      // subItems: ["Family", "Work", "Health"],
-      // childs: [
-      //   {
-      //     name: "Sub Item",
-      //     description: "Japanese"
-      //   }
-      // ]
+    
     },
     {
       id: "Fatwa",
@@ -51,16 +39,7 @@
         }
       ]
     },
-    // {
-    //   id: "Donation",
-    //   icon: "/images/QuickLinks/donation.png",
-    //   link: "/donation",
-    //   activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
-    //   name: "Donation",
-    //   subtitle: "寄付",
-    //   hasSubItems: false,
-    //   isArrow: true,
-    // },
+ 
       {
       id: "Offered Services",
     name: "Offered Services",

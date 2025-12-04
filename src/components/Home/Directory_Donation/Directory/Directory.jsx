@@ -17,7 +17,7 @@ export default async function Directory() {
   const city = await getCategories("city")
   const district = await getCategories("district")
   const filterData = { city, prefecture, district, cat:directory_categories }
-
+ const locations = await getCategories("location_management")
 
 
 
@@ -96,6 +96,7 @@ export default async function Directory() {
 
         <DirectorySearchHome
           filterData={filterData}
+          locations={locations}
           // setSelected={handleSetSelectByLocations}
           // selected={selectedDirectoryLocation}
        

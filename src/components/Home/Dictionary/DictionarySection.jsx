@@ -8,6 +8,7 @@ import CustomSelectRounded from "@/components/UI/CustomSelectRounded"
 import { useFatwaFilters } from "@/context/FatwaFilterContext"
 import CustomSelectDictionary from "@/components/UI/CustomSelectDictionary"
 import Link from "next/link"
+import { getImageUrl } from "@/helper/getImageUrl"
 
 
 const languageRegex = {
@@ -21,11 +22,10 @@ const languageRegex = {
 
 
 
-export default function DictionarySection({ data_for_filter }) {
+export default function DictionarySection({ data_for_filter, homePage }) {
   const [warning, setWarning] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("English")
   const [searchTerm, setSearchTerm] = useState("")
-
 
 
   const [searchText, setSearchText] = useState()
@@ -45,12 +45,7 @@ export default function DictionarySection({ data_for_filter }) {
     selectedSearchTerm,
     setSelectedSearchTerm,
   } = useFatwaFilters();
-
-
-
-
   const { books, chapter, section } = data_for_filter;
-
 
   const languages = [
     {
@@ -70,6 +65,14 @@ export default function DictionarySection({ data_for_filter }) {
 
 
 
+
+
+
+  const sections = homePage?.sections_on_api;
+  const dictionaryExtraData = sections.find((s) => s.title_slug === "dictionary");
+
+  const image_arabic = getImageUrl(dictionaryExtraData?.image_media);
+  const icon = getImageUrl(dictionaryExtraData?.background_media);
 
 
 
@@ -96,7 +99,8 @@ export default function DictionarySection({ data_for_filter }) {
           <div className="flex justify-between  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3  ">
 
             <Image
-              src="/images/dictionary/icon2.png"
+              src={icon}
+              // src="/images/dictionary/icon2.png"
               alt="Book Icon"
               width={60}
               height={50}
@@ -107,8 +111,8 @@ export default function DictionarySection({ data_for_filter }) {
 
 
             <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
-              <p> Dictionary </p>
-              <p>辞書</p>
+              <p>{dictionaryExtraData?.title}</p>
+             <p>{dictionaryExtraData?.sub_title}</p>
 
             </div>
           </div>
@@ -117,14 +121,16 @@ export default function DictionarySection({ data_for_filter }) {
           {/* arabic text */}
           <div>
             <Image
-              src="/images/dictionary/arabic.svg"
+              // src="/images/dictionary/arabic.svg"
+              src={image_arabic}
               alt='a1'
               width={500}
               height={70}
               className="hidden sm:flex"
             />
             <Image
-              src="/images/dictionary/arabic.svg"
+              src={image_arabic}
+              // src="/images/dictionary/arabic.svg"
               alt='a1'
               width={200}
               height={40}
@@ -239,7 +245,7 @@ export default function DictionarySection({ data_for_filter }) {
               setSelected={setSelectedBooks}
 
 
-            
+
             />
 
 
@@ -250,7 +256,7 @@ export default function DictionarySection({ data_for_filter }) {
           <div className=" flex-1 min-w-[150px]">
 
             <CustomSelectDictionary
-             lvl="Chapter"
+              lvl="Chapter"
               parrent_lvl={"Books"}
               selectedParrent={selectedBooks}
               options={selectedBooks?.chapters}
@@ -266,7 +272,7 @@ export default function DictionarySection({ data_for_filter }) {
           <div className=" flex-1 min-w-[150px]">
 
             <CustomSelectDictionary
-               options={selectedChapter?.sections}
+              options={selectedChapter?.sections}
               lvl="Sections"
               parrent_lvl={"Chapters"}
               selectedParrent={selectedChapter}

@@ -7,17 +7,20 @@ import SubmitRequest from "../Fatwah/SubmitRequest";
 import { MdArrowForwardIos } from "react-icons/md";
 import AskQuestionSidebar from "../Fatwah/AskQuestionSidebar";
 import SidebarForBooks from "./SidebarForBooks";
+import MajhabSelection from "../Fatwah/MajhabSelection";
 
 export default function SidebarDrawerForBooks({
+  isMajhabShow = true,
   books,
-  isFatwah_Dictionary_Filter=false,
-  isFatwahNavigate=false,
+  isFatwah_Dictionary_Filter = false,
+  isFatwahNavigate = false,
   isAskQuestion = false,
   isSubmitRequest = true,
   setSelectedCat = null,
   isNavigate = false,
-  directoryNavigate=false,
-  dataForContact=""
+  directoryNavigate = false,
+  dataForContact = "",
+  data_for_filter
 }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -70,6 +73,11 @@ export default function SidebarDrawerForBooks({
 
         {/* Entire content scrollable */}
         <div className="flex-1 overflow-y-auto p-4 xl:p-0 space-y-6">
+          {isMajhabShow && <div className="w-full bg-white rounded-[20px] border border-[#C9E9BA] overflow-hidden shadow-sm p-4">
+            <MajhabSelection data_for_filter={data_for_filter} />
+          </div>}
+
+
           {/* Category list */}
           <SidebarForBooks
             books={books}
@@ -82,7 +90,7 @@ export default function SidebarDrawerForBooks({
           />
 
           {/* Shown below sidebar content */}
-          
+
           {isSubmitRequest && <SubmitRequest dataForContact={dataForContact} />}
           {isAskQuestion && <AskQuestionSidebar />}
         </div>

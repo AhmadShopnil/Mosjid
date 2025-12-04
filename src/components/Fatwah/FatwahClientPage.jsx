@@ -41,11 +41,8 @@ export default function FatwahClientPage({ settings, homePage, books, data_for_f
 
 
   useEffect(() => {
-
     const filteredData = fatwahs?.filter((item) => item?.is_featured == "Yes")
-
     setTopRated(filteredData)
-
   }, [fatwahs]);
 
 
@@ -122,7 +119,7 @@ export default function FatwahClientPage({ settings, homePage, books, data_for_f
           books={books?.data}
           isAskQuestion={true}
           isFatwah_Dictionary_Filter={true}
-
+          data_for_filter={data_for_filter}
           dataForContact={requestData} />
 
 

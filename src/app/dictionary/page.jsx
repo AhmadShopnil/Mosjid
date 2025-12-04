@@ -22,6 +22,7 @@ export default async function page() {
   const settings = await getSettings()
   const homePage = await getPage("home-sections-heading-management")
 
+  const majhabs = await getFatwahFiltersData("majhabs")
   const books = await getFatwahFiltersData("books")
   const chapter = await getFatwahFiltersData("bookchapters")
   const section = await getFatwahFiltersData("booksections")
@@ -29,8 +30,8 @@ export default async function page() {
 
   const formatFatwaBooksForSidebarData = formatFatwaBooksForSidebar(books)
 
-  const data_for_filter = { books, chapter, section }
-   const requestData =  "Dictionary"
+  const data_for_filter = { majhabs, books, chapter, section }
+  const requestData = "Dictionary"
 
   return (
     <div>
@@ -44,10 +45,10 @@ export default async function page() {
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
         <SidebarDrawerForBooks
-
+          isMajhabShow={false}
           isSubmitRequest={true}
           books={books?.data}
-      
+          data_for_filter={data_for_filter}
           isFatwah_Dictionary_Filter={true}
 
           dataForContact={requestData}

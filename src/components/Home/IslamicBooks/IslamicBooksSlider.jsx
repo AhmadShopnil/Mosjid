@@ -91,7 +91,7 @@ export default function IslamicBooksSlider({ books, islamic_books_ExtraData }) {
                 className="object-contain hidden sm:flex"
               />
               <Image
-                src="/images/isamicBooks/arabic-islamicbooks.png"
+                src={image_arabic}
                 alt="Arabic text"
                 width={135}
                 height={40}

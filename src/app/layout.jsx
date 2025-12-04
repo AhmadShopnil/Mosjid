@@ -8,6 +8,7 @@ import DevelopmentBanner from "@/components/Header/DevelopmentBanner";
 import { SelectedProvider } from "@/context/SelectedContext";
 import { SelectedParrentProvider } from "@/context/SelectedContextParrent";
 import { FatwaFilterProvider } from "@/context/FatwaFilterContext";
+import { RegionFilterProvider } from "@/context/RegionFilterContext ";
 
 
 
@@ -42,21 +43,23 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} antialiased`}
       >
-         <FatwaFilterProvider>
-        <SelectedParrentProvider>
-       <SelectedProvider> 
-        <DevelopmentBanner/>
-        <Header/>
-        {children}
-        <Footer />
-        <ScrollToTopButton />
-        <Toaster position="top-right" />
-        </SelectedProvider>
-        </SelectedParrentProvider>
-         </FatwaFilterProvider>
-      
-  
-       
+        <FatwaFilterProvider>
+          <RegionFilterProvider>
+            <SelectedParrentProvider>
+              <SelectedProvider>
+                <DevelopmentBanner />
+                <Header />
+                {children}
+                <Footer />
+                <ScrollToTopButton />
+                <Toaster position="top-right" />
+              </SelectedProvider>
+            </SelectedParrentProvider>
+          </RegionFilterProvider>
+        </FatwaFilterProvider>
+
+
+
       </body>
     </html>
   );

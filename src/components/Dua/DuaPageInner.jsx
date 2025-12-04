@@ -14,72 +14,89 @@ import { getImageUrl } from "@/helper/getImageUrl"
 import { useSelected } from "@/context/SelectedContext"
 import { useSelectedParrent } from "@/context/SelectedContextParrent"
 import BreadcrumbForNested from "../Shared/BreadcrumbForNested"
+import FindBySearch from "../Shared/FindBySearch"
 
 export default function DuaPageInner({ homePage, settings, formattedCategories }) {
-   const { selected, setSelected, clearSelected } = useSelected();
+    const [searchValue, setSearchValue] = useState("");
+
+    const { selected, setSelected, clearSelected } = useSelected();
     const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
     const [duas, setDuas] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-   
+
     const [selectedCat, setSelectedCat] = useState(null)
     // pagination states
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(10)
     const perPage = 6
 
-    useEffect(() => {
-        const fetchDuas = async () => {
-            setLoading(true)
-            let url = `/posts?term_type=dua&page=${currentPage}&per_page=${perPage}`
-            if (selectedCat) {
-                url = `/posts?term_type=dua&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`
-            }
 
-            try {
-                const response = await axiosInstance.get(url)
-                const data = response?.data?.data || []
-                const meta = response?.data?.meta || {}
+    const handleSearch = ({ name, number }) => {
+        const q = name || number || "";
+        setSearchValue(q);
+        setCurrentPage(1); // new search → reset page
+    };
 
-                setDuas(data)
-                setTotalPages(meta.last_page || 1)
-            } catch (err) {
-                console.error("Error fetching Duas:", err)
-                setError(err.message || "Failed to fetch duas")
-            } finally {
-                setLoading(false)
-            }
+
+   useEffect(() => {
+    const fetchDuas = async () => {
+        setLoading(true);
+
+        let url = `/posts?term_type=dua&page=${currentPage}&per_page=${perPage}`;
+
+        if (selectedCat) {
+            url = `/posts?term_type=dua&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`;
         }
 
-        fetchDuas()
-    }, [selectedCat, currentPage])
+        // ⬅️ NEW: add search query
+        if (searchValue) {
+            url += `&s=${searchValue}`;
+        }
+
+        try {
+            const response = await axiosInstance.get(url);
+            const data = response?.data?.data || [];
+            const meta = response?.data?.meta || {};
+
+            setDuas(data);
+            setTotalPages(meta.last_page || 1);
+        } catch (err) {
+            console.error("Error fetching Duas:", err);
+            setError(err.message || "Failed to fetch duas");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    fetchDuas();
+}, [selectedCat, currentPage, searchValue]);   // ⬅️ searchValue dependency যোগ হলো
 
 
 
 
- const sections = homePage?.sections_on_api;
+
+    const sections = homePage?.sections_on_api;
     const dua_extraData = sections.find((s) => s.title_slug === "notice-board");
-    const heading_part_1 = splitBySlash(dua_extraData?.sub_title)[0]
-    const heading_part_2 = splitBySlash(dua_extraData?.sub_title)[1]
-      const image_arabic = getImageUrl(dua_extraData?.image_media);
+    const image_arabic = getImageUrl(dua_extraData?.image_media);
     // const notice_board_title_2 = dua_extraData?.custom_information.find((item) => item.label === "notice_board_title_2")
 
 
- const requestData = selected?.name ? ` ${selected?.name} ` : "Duas"
+    const requestData = selected?.name ? ` ${selected?.name} ` : "Duas"
     return (
         <div>
             <div>
                 <BannerInnerPage />
-                 {/* <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Duas" middleLink="/dua" currentPage={selected?.name} /> */}
+                {/* <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Duas" middleLink="/dua" currentPage={selected?.name} /> */}
                 <BreadcrumbForNested
-                         items={[
-                           { label: "Home", link: "/" },
-                           { label: "Duas", link: "/dua" },
-                           { label: selectedParrent?.name, link: null },
-                           { label: selected?.name, link: null },
-               
-                         ]}
-                       />
+                    items={[
+                        { label: "Home", link: "/" },
+                        { label: "Duas", link: "/dua" },
+                        { label: selectedParrent?.name, link: null },
+                        { label: selected?.name, link: null },
+
+                    ]}
+                />
             </div>
 
             <Container className="flex gap-6 my-6">
@@ -89,6 +106,8 @@ export default function DuaPageInner({ homePage, settings, formattedCategories }
                 {/* main content */}
                 <div className="w-full space-y-6">
                     <InnerHeader title={dua_extraData?.sub_title} image={image_arabic} />
+                    <FindBySearch onSearch={(values) => handleSearch(values)} button_text="Find Dua" />
+
 
                     {/* Notice board */}
                     <DuaList
@@ -99,9 +118,9 @@ export default function DuaPageInner({ homePage, settings, formattedCategories }
                         currentPage={currentPage}
                         totalPages={totalPages}
                         setCurrentPage={setCurrentPage}
-                       
+
                     />
-                    
+
 
                 </div>
             </Container>

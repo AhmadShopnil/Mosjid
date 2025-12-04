@@ -1,22 +1,43 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 
+export default function CustomSelectForFatwaFinder({
+  options,
+  selected,
+  setSelected,
+  lvl,
+  parrent_lvl,
+  selectedParrent
+}) {
 
-
-
-export default function CustomSelectForFatwaFinder({ options, selected, setSelected, lvl, parrent_lvl,selectedParrent }) {
   const [isOpen, setIsOpen] = useState(false);
-  // const [selected, setSelected] = useState(null);
+  const containerRef = useRef(null);
 
   const handleSelect = (option) => {
     setSelected(option);
     setIsOpen(false);
   };
 
+  // ------- Close on outside click -------
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // যদি ক্লিক container এর বাইরে হয় → close dropdown
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="relative w-full">
+    <div ref={containerRef} className="relative w-full">
+
       {/* Selected Box */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -32,7 +53,7 @@ export default function CustomSelectForFatwaFinder({ options, selected, setSelec
         />
       </button>
 
-      {/* Dropdown List */}
+      {/* Dropdown */}
       {isOpen && (
         <div className="absolute z-20 w-full mt-1 p-2 space-y-2 bg-[#EEF8E9] border border-gray-200 rounded-md shadow-md max-h-80 overflow-auto">
 
@@ -47,10 +68,11 @@ export default function CustomSelectForFatwaFinder({ options, selected, setSelec
                   <button
                     key={index}
                     onClick={() => handleSelect(option)}
-                    className={`w-full text-left px-4 py-2 rounded-md transition ${selected?.id === option?.id
+                    className={`w-full text-left px-4 py-2 rounded-md transition ${
+                      selected?.id === option?.id
                         ? "bg-[#C9E9BA] text-green-900"
                         : "bg-white hover:bg-[#C9E9BA]"
-                      }`}
+                    }`}
                   >
                     <p className="font-medium text-sm text-gray-800">
                       {option?.name_en}
@@ -59,15 +81,15 @@ export default function CustomSelectForFatwaFinder({ options, selected, setSelec
                   </button>
                 ))
               ) : (
-                <p className="font-medium text-sm text-gray-800">No {lvl} Found</p>
+                <p className="font-medium text-sm text-gray-800">
+                  No {lvl} Found
+                </p>
               )}
             </>
           )}
 
         </div>
-
-      )
-      }
-    </div >
+      )}
+    </div>
   );
 }

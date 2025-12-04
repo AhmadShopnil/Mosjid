@@ -10,6 +10,8 @@ import { splitBySlash } from "@/helper/splitBySpace";
 import { getImageUrl } from "@/helper/getImageUrl";
 import NoticeCardHome from "./NoticeCardHome";
 import NoticeDetailsModal from "@/components/Notice/NoticeModal";
+import { getUpdatedAtArray } from "@/helper/getLatestUpdatedTime";
+import { getMostRecentTime } from "@/helper/extractTimeUpdatedAt";
 
 export default function NoticeBoard({ settings, notices, homePage }) {
   const [selectedNotice, setSelectedNotice] = useState(null);
@@ -29,6 +31,13 @@ export default function NoticeBoard({ settings, notices, homePage }) {
     setIsModalOpen(true);
   };
 
+
+const updatedAtArray = getUpdatedAtArray(notices);
+const updated_time =getMostRecentTime(updatedAtArray)
+// console.log({dates})
+
+
+
   return (
     <div
       id="notices"
@@ -37,7 +46,8 @@ export default function NoticeBoard({ settings, notices, homePage }) {
     >
       {/* heading */}
       <p className="text-sm mb-2 text-center sm:text-start">
-        {notice_Extra_data?.short_description}
+        Last Update: {updated_time}
+        {/* {notice_Extra_data?.short_description} */}
       </p>
 
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6">

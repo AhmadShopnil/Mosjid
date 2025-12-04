@@ -15,6 +15,7 @@ import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
 import { useSelected } from '@/context/SelectedContext'
 import { useSelectedParrent } from '@/context/SelectedContextParrent'
 import BookSuggetionsList from './BookSuggetionsList'
+import FindBySearch from '../Shared/FindBySearch'
 
 
 
@@ -23,8 +24,10 @@ import BookSuggetionsList from './BookSuggetionsList'
 
 
 export default function BooksPage({ homePage, settings, formattedCategories }) {
-      const { selected, setSelected, clearSelected } = useSelected();
-    const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
+  const [searchValue, setSearchValue] = useState("");
+
+  const { selected, setSelected, clearSelected } = useSelected();
+  const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
   const [books, setBooks] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -35,35 +38,48 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
   const perPage = 5
 
 
-  // fetching data
+
+  const handleSearch = ({ name, number }) => {
+    const q = name || number || "";
+    setSearchValue(q);
+    setCurrentPage(1); // new search → reset pagination
+  };
+
+
+
   useEffect(() => {
     const fetchBooks = async () => {
+      setLoading(true);
 
-      setLoading(true)
+      let url = `/posts?term_type=islamic_books&page=${currentPage}&per_page=${perPage}`;
 
-      let url = `/posts?term_type=islamic_books&page=${currentPage}&per_page=${perPage}`
       if (selectedCat) {
-        url = `/posts?term_type=islamic_books&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`
+        url = `/posts?term_type=islamic_books&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`;
       }
 
+      // Add search query
+      if (searchValue) {
+        url += `&s=${searchValue}`;
+      }
 
       try {
-        const response = await axiosInstance.get(url)
-        const data = response?.data?.data || []
-        const meta = response?.data?.meta || {}
+        const response = await axiosInstance.get(url);
+        const data = response?.data?.data || [];
+        const meta = response?.data?.meta || {};
 
-        setBooks(data)
-        setTotalPages(meta.last_page || 1)
+        setBooks(data);
+        setTotalPages(meta.last_page || 1);
       } catch (err) {
-        console.error("Error fetching events:", err)
-        setError(err.message || "Failed to fetch events")
+        console.error("Error fetching books:", err);
+        setError(err.message || "Failed to fetch books");
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchBooks()
-  }, [selectedCat, currentPage])
+    fetchBooks();
+  }, [selectedCat, currentPage, searchValue]); // ⬅️ searchValue dependency
+
 
 
   const sections = homePage?.sections_on_api;
@@ -80,9 +96,9 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
 
 
   useEffect(() => {
-         clearSelected();
-         clearSelectedParrent();
-    }, [])
+    clearSelected();
+    clearSelectedParrent();
+  }, [])
 
   // console.log("books", books)
 
@@ -94,15 +110,15 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
       <div>
         <BannerInnerPage />
         {/* <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Books" middleLink="/books" currentPage={selected?.name} /> */}
-         <BreadcrumbForNested
-                          items={[
-                              { label: "Home", link: "/" },
-                              { label: "Books", link: "/books" },
-                              { label: selectedParrent?.name, link:  "/books" },
-                              { label: selected?.name, link: null },
-      
-                          ]}
-                      />
+        <BreadcrumbForNested
+          items={[
+            { label: "Home", link: "/" },
+            { label: "Books", link: "/books" },
+            { label: selectedParrent?.name, link: "/books" },
+            { label: selected?.name, link: null },
+
+          ]}
+        />
 
       </div>
 
@@ -114,7 +130,7 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
         {/* main content */}
         <div className=' w-full space-y-6'>
           <InnerHeader title={islamic_books_ExtraData?.sub_title} image={image_arabic} />
-
+          <FindBySearch onSearch={(values) => handleSearch(values)} button_text="Find Books" />
           <div>
             <BookList
               books={books}
@@ -130,7 +146,7 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
 
         </div>
       </Container>
-        <BookSuggetionsList datas={books}  />
+      <BookSuggetionsList datas={books} />
 
     </div>
   )

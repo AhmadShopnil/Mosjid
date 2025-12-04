@@ -1,7 +1,7 @@
 
 import React from 'react'
 import DonationPage from '@/components/Donation/DonationPage';
-import { getCategories, getPage, getSettings } from '@/helper/actions'
+import { getCategories, getDonationsMethods, getPage, getSettings } from '@/helper/actions'
 import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
 
 
@@ -13,7 +13,7 @@ export default async function page() {
   const cat = await getCategories("donation_categories")
 
   const formattedCategories = transformNoticeCategories(cat);
-
+ const allDonationsList = await getDonationsMethods()
  
 
 
@@ -24,6 +24,7 @@ export default async function page() {
         settings={settings}
         homePage={homePage}
         formattedCategories={formattedCategories}
+        allDonationsList={allDonationsList}
       />
 
     </div>

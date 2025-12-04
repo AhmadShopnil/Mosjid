@@ -23,21 +23,21 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
     const image = getImageUrl(fatwah_ExtraData?.image_media)
     const fatwah_title_2 = fatwah_ExtraData?.custom_information.find((item) => item.label === "fatwah_title_2")
 
-// console.log("from fatwa list ",fatwahs)
+    // console.log("from fatwa list ",fatwahs)
 
 
 
     return (
 
         <div
-        className="borderFatwaInner  rounded-[10px]"     
+            className="borderFatwaInner  rounded-[10px] shadow-sm"
         >
 
             {/* Content Area */}
             <div
-            //  className=" w-full bg-[#e9f3e536] rounded-[10px] p-4 md:p-12"
-             className=" w-full bg-[#F9FFF6] rounded-[10px] p-4 sm:p-8"
-             >
+                //  className=" w-full bg-[#e9f3e536] rounded-[10px] p-4 md:p-12"
+                className=" w-full bg-[#F9FFF6] rounded-[10px] p-4 sm:p-8"
+            >
                 <div className='flex justify-between'>
                     <div className="flex items-center  gap-2 gradient-border_b  sm:mb-0 pb-2    ">
                         <Image
@@ -55,10 +55,12 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
 
                     <div className="flex items-center gap-3 sm:gap-4">
 
-                        <button className="border border-[#00401A] text-[#001609] hover:bg-[#00401A] hover:text-white transition-colors duration-400
+                        <Link
+                        href="/fatwah/fatwah-filtered"
+                        className="border border-[#00401A] text-[#001609] hover:bg-[#00401A] hover:text-white transition-colors duration-400
                font-bold rounded-full px-5 py-2.5 text-xs sm:text-base cursor-pointer">
                             {view_more}
-                        </button>
+                        </Link>
                     </div>
                 </div>
                 {/* List */}
@@ -102,7 +104,10 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
                                         <div>
                                             <p className={`text-[#00401A] truncate w-[110px] sm:w-[250px]  
                      text-sm md:text-lg font-bold md:${titleWidth}`}>
-                                                {item?.description_en}
+
+                                                {item?.word_ja}
+                                                {/* {item?.description_ja} */}
+                                                {/* {item?.description_en} */}
                                             </p>
                                             {/* <div
                                         className={`text-[#00401A] truncate w-[110px] sm:w-[250px]  

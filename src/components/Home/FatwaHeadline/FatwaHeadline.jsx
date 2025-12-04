@@ -3,17 +3,17 @@ import Container from "@/components/Shared/Container";
 import React, { useEffect, useState } from "react";
 
 
-export default function FatwaHeadline({ fatwahs }) {
+export default function FatwaHeadline({ updateHealines }) {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % fatwahs?.length);
+      setCurrentIndex((prev) => (prev + 1) % updateHealines?.length);
     }, 5000); // Change every 5 seconds
 
     return () => clearInterval(interval);
-  }, [fatwahs?.length]);
+  }, [updateHealines?.length]);
 
   return (
     <div
@@ -37,7 +37,7 @@ export default function FatwaHeadline({ fatwahs }) {
               className="absolute w-full pl-2 text-white text-sm  md:text-base font-semibold flex items-center justify-start animate-fadeSlide"
               style={{ height: "2.5rem" }}
             >
-              {fatwahs[currentIndex]?.name.slice(0,30)}
+              {updateHealines[currentIndex]?.name}
             </div>
           </div>
         </div>

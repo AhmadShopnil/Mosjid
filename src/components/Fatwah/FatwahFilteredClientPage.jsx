@@ -57,6 +57,7 @@ export default function FatwahFilteredClientPage({ fatwahs, settings, homePage, 
                     isAskQuestion={true}
                     isFatwah_Dictionary_Filter={true}
                     dataForContact={requestData}
+                    data_for_filter={data_for_filter}
                 />
 
 

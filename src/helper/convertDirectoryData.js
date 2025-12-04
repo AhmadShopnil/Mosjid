@@ -6,6 +6,7 @@ export const convertDirectoryData = (datas) => {
   return datas.map((data) => ({
     labelEn: data?.name || "",
     labelJp: data?.description || "",
-    id:data?.id
+    id:data?.id,
+    mainData:data
   }));
 };

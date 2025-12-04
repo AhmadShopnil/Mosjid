@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import SocialShare from "../Shared/SocialShare";
 import { useFatwaFilters } from "@/context/FatwaFilterContext";
 import axiosInstance from "@/helper/axiosInstance";
@@ -10,7 +9,6 @@ import SelectedWordDetails from "./SelectedWordDetails";
 
 export default function DictionaryPage() {
     const { selectedBooks, selectedChapter, selectedSection, selectedSearchTerm } = useFatwaFilters();
-
     const [dictionaries, setDictionaries] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
@@ -48,10 +46,12 @@ export default function DictionaryPage() {
         return () => clearTimeout(timeout);
     }, [selectedBooks, selectedChapter, selectedSection,selectedSearchTerm]);
 
+
+
     return (
         <div className="bg-gray-50 space-y-4 ">
             {/* Table Section */}
-            <div className="gradient-border rounded-2xl p-8 bg-white shadow-md">
+            <div className="gradient-border rounded-2xl p-2 sm:p-4 md:p-8 bg-white shadow-md">
 
                 {/* Table Header */}
                 <div className="bg-[#52B920] h-[50px] text-white flex items-center justify-center rounded-t-[10px]">
@@ -96,11 +96,11 @@ export default function DictionaryPage() {
                                         className={`${i % 2 === 0 ? "bg-white" : "bg-[#E5F5DE]"} h-[32px`}
                                     >
                                         <td className="border border-gray-300 p-2 text-center">{i + 1}</td>
-                                        <td className="border border-gray-300 p-2 text-center">{item.word_ar}</td>
-                                        <td className="border border-gray-300 p-2 text-center">{item.word_en}</td>
-                                        <td className="border border-gray-300 p-2 text-center">{item.word_ja}</td>
-                                        <td className="border border-gray-300 p-2 text-center">{item.description_ja}</td>
-                                        <td className="border border-gray-300 p-2 text-center">{item.description_ar}</td>
+                                        <td className="border border-gray-300 p-2 text-center">{item?.word_ar}</td>
+                                        <td className="border border-gray-300 p-2 text-center">{item?.word_en}</td>
+                                        <td className="border border-gray-300 p-2 text-center">{item?.word_ja}</td>
+                                        <td className="border border-gray-300 p-2 text-center">{item?.pronunciation_ja}</td>
+                                        <td className="border border-gray-300 p-2 text-center">{item?.pronunciation_ar}</td>
 
                                         <td className="border border-gray-300 p-2 text-center">
                                             <button
@@ -132,7 +132,7 @@ export default function DictionaryPage() {
                 </div>
 
                 <div className="text-center mt-6 text-black text-xl md:text-2xl">
-                    www.osakamasjid.com
+                    www.osakamasjid.org
                 </div>
             </div>
 

@@ -30,18 +30,19 @@ export default function Blogs({ blogs, settings, homePage, loading, currentPage,
       </div>
       {/* Blogs */}
 
-      {loading ?
-        <BlogCardSkeletonList />
-        :
-        <div className='mt-6 grid grid-cols-1 lg:grid-cols-2 gap-5'>
-
-          {blogs?.map((blog, i) => (
-            <BlogCard key={i} blog={blog} settings={settings} />
-          ))}
-
-        </div>
-
-      }
+ {loading ? (
+  <BlogCardSkeletonList />
+) : blogs && blogs.length > 0 ? (
+  <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-5">
+    {blogs.map((blog, i) => (
+      <BlogCard key={i} blog={blog} settings={settings} />
+    ))}
+  </div>
+) : (
+  <div className="mt-6 text-center text-gray-500 text-lg">
+    No blogs found.
+  </div>
+)}
 
 
 

@@ -27,8 +27,7 @@ export default function NoticeBoard({ notices, settings, homePage, loading, curr
     // get notice extra data from home page section management
     const sections = homePage?.sections_on_api;
     const notice_Extra_data = sections.find((s) => s.title_slug === "notice-board");
-    const heading_part_1 = splitBySlash(notice_Extra_data?.title)[0]
-    const heading_part_2 = splitBySlash(notice_Extra_data?.title)[1]
+
 
     const notice_board_title_InnerPage = notice_Extra_data?.custom_information.find((item) => item.label === "notice_board_title_InnerPage")
 
@@ -42,7 +41,7 @@ export default function NoticeBoard({ notices, settings, homePage, loading, curr
 
     return (
         <div
-            className=" p-4 sm:p-6 borderFatwaInner rounded-[10px] bg-[#c9e9ba28] "
+            className=" p-4 sm:p-6 borderFatwaInner rounded-[10px] bg-[#c9e9ba28] shadow-sm "
             style={{
 
 
@@ -104,7 +103,8 @@ export default function NoticeBoard({ notices, settings, homePage, loading, curr
                         p-1.5 md:p-2 flex justify-center items-center"
                                 >
                                     <Image
-                                        src={icon}
+                                        src={item?.featured_image || icon}
+                                        // src={icon}
                                         alt="icon"
                                         width={30}
                                         height={38}

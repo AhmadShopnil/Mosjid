@@ -327,7 +327,15 @@ export async function getFatwa() {
   const json = await res.json();
   return json?.data || [];
 }
+export async function getUpdatesHeadline() {
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=updates_headline&order_by=order_column:asc`;
 
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+  return json?.data || [];
+}
 
 
 

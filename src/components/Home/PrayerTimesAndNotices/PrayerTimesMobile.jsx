@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { getMetaValueFromExtraFields } from "@/helper/metaHelpers";
+import { formatTo12Hour } from "@/helper/formatTo12Hour";
 
 export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
   const jamat_start = prayer_time?.custom_information.find(
@@ -19,14 +20,11 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
   return (
     <div className="mt-6 grid gap-5 sm:hidden">
       {prayerTimes?.map((prayer, index) => {
-        const prayerTime = getMetaValueFromExtraFields(prayer, "time");
-        const waktStartTime = getMetaValueFromExtraFields(prayer, "start_time");
-        const waktStartTime_2 = getMetaValueFromExtraFields(
-          prayer,
-          "start_time_2"
-        );
-        const waktEndTime = getMetaValueFromExtraFields(prayer, "end_time");
-        const waktEndTime2 = getMetaValueFromExtraFields(prayer, "end_time_mislewal")
+        const prayerTime =  prayer?.time;
+        const waktStartTime =formatTo12Hour(prayer?.wakt_start_hanfi);
+        const waktStartTime_2 =formatTo12Hour(prayer?.wakt_start_safi);
+        const waktEndTime = formatTo12Hour(prayer?.wakt_end_hanfi);
+        const waktEndTime2 = formatTo12Hour(prayer?.wakt_end_safi);
 
         return (
           <div
@@ -55,7 +53,7 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
               
               </div>
               <span className="rounded-md bg-[#E6F3FF] px-3 py-1 text-md font-medium text-[#1D6FD6]">
-                {prayerTime}
+               {prayer?.time}
               </span>
             </div>
 
@@ -67,7 +65,7 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
                 <span className="mt-1 text-sm font-medium text-[#3E8B18]  ">
                   {waktStartTime}
                 </span>
-                {waktStartTime_2 && (
+                {waktStartTime != waktStartTime_2 && (
                   <span className="text-xs font-medium text-[#3E8B18] border-t-1 border-gray-300">
                     {waktStartTime_2}
                   </span>
@@ -84,7 +82,7 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
                 <span className="mt-1 text-sm font-medium text-[#FF0000]">
                   {waktEndTime}
                 </span>
-                  {waktEndTime2 && (
+                  {waktEndTime != waktEndTime2 && (
                   <span className="text-xs font-medium text-[#FF0000] border-t-1 border-gray-300">
                     {waktEndTime2}
                   </span>

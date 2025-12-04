@@ -5,7 +5,7 @@ import SocialShare from '../Shared/SocialShare';
 function LabelBox({ label, value }) {
   return (
     <div className="border border-[#E0E0E0] rounded-[10px] h-auto  md:h-[50px] flex">
-      <div className="w-[30%] h-full px-3 py-2 md:py-0 bg-[#e0e0e06d] flex items-center justify-between text-base text-[#000000]">
+      <div className=" w-[40%] sm:w-[30%] h-full px-3 py-2 md:py-0 bg-[#e0e0e06d] flex items-center justify-between text-base text-[#000000]">
         <span>{label}</span>
         <span>:</span>
       </div>
@@ -17,13 +17,25 @@ function LabelBox({ label, value }) {
   );
 }
 
-export default function SelectedWordDetails({selectedItem}) {
+export default function SelectedWordDetails({ selectedItem }) {
   return (
     <div>   {/* Selected Item Details Section */}
-      <div className="gradient-border rounded-2xl p-8 bg-white shadow-md">
+      <div className="gradient-border rounded-2xl p-4 sm:p-6 md:p-8 bg-white shadow-md relative">
+
+
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 py-4">
+          <Image
+            src="/images/directory/bg2.png"
+            alt="img"
+            width={330}
+            height={410}
+            className="object-contain transition-all duration-300"
+          />
+        </div>
+
         <div className="bg-[#E5F5DE] h-[50px] flex items-center justify-center rounded-[8px] mb-6">
           <h2 className="text-center text-xl font-semibold text-[#00401A]">
-            {selectedItem ? selectedItem?.word_en  : "Details"}
+            {selectedItem ? selectedItem?.word_en : "Details"}
           </h2>
         </div>
 
@@ -32,11 +44,11 @@ export default function SelectedWordDetails({selectedItem}) {
           {/* Left Side */}
           <div className="space-y-4">
             <LabelBox label="Japanese" value={selectedItem?.word_ja} />
-            <LabelBox label="Pron in English" value={selectedItem?.description_en} />
-            <LabelBox label="Pron in Japanese" value={selectedItem?.description_ja} />
-            <LabelBox label="Pron in Roman" value={selectedItem?.description_ar} />
-            
-            
+            <LabelBox label="Pron in English" value={selectedItem?.pronunciation_en} />
+            <LabelBox label="Pron in Japanese" value={selectedItem?.pronunciation_ja} />
+            <LabelBox label="Pron in Arabic" value={selectedItem?.pronunciation_ar} />
+
+
             {/* <LabelBox label="Usage" value={selectedItem?.usage} /> */}
           </div>
 
@@ -44,20 +56,20 @@ export default function SelectedWordDetails({selectedItem}) {
           <div className="space-y-4">
             <LabelBox label="Arabic" value={selectedItem?.word_ar} />
             <LabelBox label="English" value={selectedItem?.word_en} />
-            <LabelBox label="Usage" value={selectedItem?.usage} />
-            <LabelBox label="Explanation" value={selectedItem?.explanation} />
+            <LabelBox label="Usage" value={selectedItem?.usage_ja} />
+            <LabelBox label="Explanation" value={selectedItem?.explanation_ja} />
           </div>
         </div>
 
         <div className="text-center mt-6 text-[#000000] text-xl md:text-2xl">
-          www.osakamasjid.com
+          www.osakamasjid.org
         </div>
       </div>
 
       {/* Social icons bottom */}
       <div className="py-4 flex justify-end items-center">
-             <SocialShare />
-           </div>
+        <SocialShare />
       </div>
+    </div>
   )
 }
