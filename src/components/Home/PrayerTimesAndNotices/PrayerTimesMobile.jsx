@@ -22,8 +22,10 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
       {prayerTimes?.map((prayer, index) => {
         const prayerTime =  prayer?.time;
         const waktStartTime =formatTo12Hour(prayer?.wakt_start_hanfi);
+         const waktEndTime = formatTo12Hour(prayer?.wakt_end_hanfi);
+         
         const waktStartTime_2 =formatTo12Hour(prayer?.wakt_start_safi);
-        const waktEndTime = formatTo12Hour(prayer?.wakt_end_hanfi);
+       
         const waktEndTime2 = formatTo12Hour(prayer?.wakt_end_safi);
 
         return (
@@ -58,8 +60,7 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
             </div>
 
             {/* Times */}
-            <div className="grid grid-cols-3 gap-3 text-center">
-             
+            <div className="grid grid-cols-3 gap-3 text-center"> 
               <div className="flex flex-col items-center">
                 <span className="text-xs text-gray-500">{wakt_start?.value}</span>
                 <span className="mt-1 text-sm font-medium text-[#3E8B18]  ">
