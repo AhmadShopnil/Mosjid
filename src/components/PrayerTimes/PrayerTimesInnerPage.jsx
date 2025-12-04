@@ -267,7 +267,8 @@ export default  function PrayerTimesInnerPage({settings,homePage,prayerTimes,Pro
         <br />
         <span className=" ">禁止時間開始</span>
       </h4>
-      <ProhibitedTimeMobile prayerTimes={prayerTimes.slice(0, 4)} prayer_time={prayer_time} />
+   
+      <ProhibitedTimeMobile prayerTimes={ProhibitedTime.slice(0, 4)} prayer_time={prayer_time} />
       {/* bottom note */}
       <p className="mt-4 text-sm  text-[#FF0000]">
         {prayer_time?.description}
