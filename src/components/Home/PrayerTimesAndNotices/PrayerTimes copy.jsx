@@ -68,64 +68,40 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
 
 
 
-  
+  // console.log({ updatedAtArray })
+
 
   useEffect(() => {
-    async function load() {
+    const city = "Osaka";
+    const country = "Japan";
+    const method = 3;
+
+    const fetchPrayerTimes = async (school) => {
+      const url = `https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(
+        city
+      )}&country=${encodeURIComponent(country)}&method=${method}&school=${school}`;
+
       try {
-        const res = await fetch("/api/prayer-times");
-        const data = await res.json();
 
-        if (data?.shafi?.data?.timings) {
-          setPrayerTimesFromOusideApi_Shafi(data.shafi.data.timings);
-        }
+        const response = await axios.get(url);
 
-        if (data?.hanafi?.data?.timings) {
-          setPrayerTimesFromOusideApi_Shafi_Hanafi(data.hanafi.data.timings);
-        }
-
-        setLoading(false);
+        return response.data.data.timings;
       } catch (err) {
-        console.error("Error fetching prayer times:", err);
-        setError("Failed to load prayer times");
-        setLoading(false);
+        console.error(`Error fetching ${school === 1 ? "Hanafi" : "Safi"} times:`, err);
+        return null;
       }
-    }
+    };
 
-    load();
+    const loadTimes = async () => {
+      const safiTimes = await fetchPrayerTimes(1);   // Shafi → school=1
+      const hanafiTimes = await fetchPrayerTimes(0); // Hanafi → school=0
+
+      if (safiTimes) setPrayerTimesFromOusideApi_Shafi(safiTimes);
+      if (hanafiTimes) setPrayerTimesFromOusideApi_Shafi_Hanafi(hanafiTimes);
+    };
+
+    loadTimes();
   }, []);
-
-  // useEffect(() => {
-  //   const city = "Osaka";
-  //   const country = "Japan";
-  //   const method = 3;
-
-  //   const fetchPrayerTimes = async (school) => {
-  //     const url = `https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(
-  //       city
-  //     )}&country=${encodeURIComponent(country)}&method=${method}&school=${school}`;
-
-  //     try {
-
-  //       const response = await axios.get(url);
-
-  //       return response.data.data.timings;
-  //     } catch (err) {
-  //       console.error(`Error fetching ${school === 1 ? "Hanafi" : "Safi"} times:`, err);
-  //       return null;
-  //     }
-  //   };
-
-  //   const loadTimes = async () => {
-  //     const safiTimes = await fetchPrayerTimes(1);   // Shafi → school=1
-  //     const hanafiTimes = await fetchPrayerTimes(0); // Hanafi → school=0
-
-  //     if (safiTimes) setPrayerTimesFromOusideApi_Shafi(safiTimes);
-  //     if (hanafiTimes) setPrayerTimesFromOusideApi_Shafi_Hanafi(hanafiTimes);
-  //   };
-
-  //   loadTimes();
-  // }, []);
 
 
   const prayerTimesDataFromOusideApi = [

@@ -20,13 +20,21 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
   return (
     <div className="mt-6 grid gap-5 sm:hidden">
       {prayerTimes?.map((prayer, index) => {
-        const prayerTime =  prayer?.time;
-        const waktStartTime =formatTo12Hour(prayer?.wakt_start_hanfi);
-         const waktEndTime = formatTo12Hour(prayer?.wakt_end_hanfi);
-         
-        const waktStartTime_2 =formatTo12Hour(prayer?.wakt_start_safi);
-       
-        const waktEndTime2 = formatTo12Hour(prayer?.wakt_end_safi);
+        const prayerTime = prayer?.time;
+
+        const waktStartTime = prayer?.wakt_start_hanfi;
+        const waktEndTime = prayer?.wakt_end_hanfi;
+
+        const waktStartTime_2 = prayer?.wakt_start_safi;
+
+        const waktEndTime2 = prayer?.wakt_end_safi;
+
+        // const waktStartTime =formatTo12Hour(prayer?.wakt_start_hanfi);
+        //  const waktEndTime = formatTo12Hour(prayer?.wakt_end_hanfi);
+
+        // const waktStartTime_2 =formatTo12Hour(prayer?.wakt_start_safi);
+
+        // const waktEndTime2 = formatTo12Hour(prayer?.wakt_end_safi);
 
         return (
           <div
@@ -43,24 +51,24 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
                   height={42}
                   className="rounded-full bg-[#E8F9E4] p-2"
                 />
-               <div className="flex flex-col">
-                 <span className="text-lg font-semibold text-[#00401A]">
-                  {prayer?.name}
-                </span>
-                 <span className="text-lg font-semibold text-[#00401a86]">
-                  ファジル
-                </span>
-               </div>
+                <div className="flex flex-col">
+                  <span className="text-lg font-semibold text-[#00401A]">
+                    {prayer?.name}
+                  </span>
+                  <span className="text-lg font-semibold text-[#00401a86]">
+                    ファジル
+                  </span>
+                </div>
 
-              
+
               </div>
               <span className="rounded-md bg-[#E6F3FF] px-3 py-1 text-md font-medium text-[#1D6FD6]">
-               {prayer?.time}
+                {prayer?.time}
               </span>
             </div>
 
             {/* Times */}
-            <div className="grid grid-cols-3 gap-3 text-center"> 
+            <div className="grid grid-cols-3 gap-3 text-center">
               <div className="flex flex-col items-center">
                 <span className="text-xs text-gray-500">{wakt_start?.value}</span>
                 <span className="mt-1 text-sm font-medium text-[#3E8B18]  ">
@@ -72,7 +80,7 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
                   </span>
                 )}
               </div>
-               <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center">
                 <span className="text-xs text-gray-500">{jamat_start?.value}</span>
                 <span className="mt-1 text-sm font-medium text-[#56410F]">
                   {prayerTime}
@@ -83,7 +91,7 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
                 <span className="mt-1 text-sm font-medium text-[#FF0000]">
                   {waktEndTime}
                 </span>
-                  {waktEndTime != waktEndTime2 && (
+                {waktEndTime != waktEndTime2 && (
                   <span className="text-xs font-medium text-[#FF0000] border-t-1 border-gray-300">
                     {waktEndTime2}
                   </span>
