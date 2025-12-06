@@ -5,14 +5,21 @@ import Breadcrumb from "@/components/Shared/Breadcrumb";
 import Container from "@/components/Shared/Container";
 import InnerHeader from "@/components/Shared/InnerHeader";
 import SidebarMainDrawer from "@/components/Shared/SidebarMainDrawer";
-import { sideBarCategories } from "@/data/sidebar";
-import { getPage } from "@/helper/actions";
+import { getMenus, getPage } from "@/helper/actions";
+import { convertMenuToSidebar } from "@/helper/convertMenuToSidebar";
 import { Suspense } from "react";
 
 
 export default async function Page() {
 
 const contactPage = await getPage("contact-us")
+
+
+  const menus = await getMenus(6)
+  const sideBarCategories = convertMenuToSidebar(menus?.items);
+
+
+
 
   return (
     <div>

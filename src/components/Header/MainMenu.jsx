@@ -8,6 +8,7 @@ import TopbarMobile from "./TopBarMobile";
 import Link from "next/link";
 import { getMediaLinkByMetaName } from "@/helper/metaHelpers";
 import { BASE_URL } from "@/helper/baseUrl";
+import { flattenMenu } from "@/helper/flattenMenu";
 
 
 
@@ -23,6 +24,8 @@ export default function MainMenu({ settings, menuItems }) {
   const masjid_image = getMediaLinkByMetaName(settings, "masjid_image");
   const logo_url = `${BASE_URL}${masjid_image}`;
 
+  // format menu items in flat array for mobile version
+  const mobileMenuItems = flattenMenu(menuItems);
 
   return (
     <div className="relative bg-[#00401A] text-white py-2 xl:py-0">
@@ -47,25 +50,7 @@ export default function MainMenu({ settings, menuItems }) {
                 onMouseEnter={() => setActiveDropdown(i)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                {/* <Link
-                  href={`/${item.link}`}
-                  className="hover:text-yellow-400 px-1 py-1 transition-colors duration-200 flex items-center"
-                >
-                  <div className="w-5 h-5 flex items-center justify-center mr-2 overflow-hidden">
-                    <Image
-                      src={item.icon}
-                      alt={item.name}
-                      width={20}
-                      height={20}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  <span className="text-sm font-semibold flex items-center gap-1">
-                    {item.name}
-                    {item.submenu && <ChevronDown className="w-3 h-3 mt-0.5" />}
-                  </span>
-                </Link> */}
+             
 
                 <Link
                   href={`${item?.link}`}
@@ -167,7 +152,7 @@ export default function MainMenu({ settings, menuItems }) {
         {/* Scrollable Menu Items */}
         <div className="flex-1 overflow-y-auto py-6 ">
           <nav className="space-y-1">
-            {menuItems.map((item, i) => (
+            {mobileMenuItems?.map((item, i) => (
               <div key={i} className="relative group border-b border-gray-200 last:border-none">
                 <Link
                   href={`${item?.link}`}

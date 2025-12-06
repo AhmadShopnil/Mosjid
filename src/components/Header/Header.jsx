@@ -5,18 +5,18 @@ import MainMenu from "./MainMenu";
 import Topbar from "./Topbar";
 import { getMenus, getSettings } from "@/helper/actions";
 
-const menuItems = [
-  "Home",
-  "About Us",
-  "Prayer Time",
-  "Notice Board",
-  "Fatwa",
-  "Dictionary",
-  "Directory",
-  "Gallery",
-  "Blog & Event",
-  "Contact Us",
-]
+// const menuItems = [
+//   "Home",
+//   "About Us",
+//   "Prayer Time",
+//   "Notice Board",
+//   "Fatwa",
+//   "Dictionary",
+//   "Directory",
+//   "Gallery",
+//   "Blog & Event",
+//   "Contact Us",
+// ]
 
 
 export default async function Header() {

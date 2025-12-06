@@ -6,7 +6,9 @@
       activeIcon: "/images/QuickLinks/hover/1.png",
       name: "Prayer Times",
       subtitle: "祈りの時間",
+      hasSubItems: false,
       isArrow: true,
+    
     },
     {
       id: "notice-board",
@@ -16,7 +18,7 @@
       name: "Notice Board",
       subtitle: "掲示板",
       isArrow: true,
-   
+      hasSubItems: false,
     
     },
     {
@@ -26,9 +28,16 @@
       activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
       name: "Fatwa",
       subtitle: "ファトワ",
-   
+      hasSubItems: true,
       isArrow: true,
-     
+      subItems: ["Halal", "Haram", "Makruh"],
+      childs: [
+        {
+          name: "Ask Fatwa",
+          link:"/fatwah/ask-question",
+          description: "Japanese"
+        }
+      ]
     },
  
       {
