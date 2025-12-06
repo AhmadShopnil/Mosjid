@@ -2,6 +2,7 @@
 
 import { getMetaValueFromExtraFields } from "@/helper/metaHelpers";
 import { X } from "lucide-react";
+import Image from "next/image";
 
 
 
@@ -33,11 +34,11 @@ export default function DuaModal({
 
   return (
     <div
-      className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4 "
       onClick={onClose}
     >
       <div
-        className="relative bg-white rounded-2xl shadow-lg max-w-3xl w-full p-6 md:p-8 overflow-y-auto max-h-[90vh]"
+        className="relative bg-white rounded-2xl shadow-lg max-w-3xl w-full p-6 md:p-10 overflow-y-auto max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -49,7 +50,8 @@ export default function DuaModal({
         </button>
 
         <div>
-          <div className=" bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+          <div className=" bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 ">
+
             {/* Header */}
             <div className="flex justify-between items-center bg-gradient-to-b from-[#EEF8E9] to-[#BAFF98] px-4 py-4 gradient-border-bottom">
               <span className="text-[#00401A] font-bold text-xl sm:text-2xl">
@@ -66,7 +68,17 @@ export default function DuaModal({
             </div>
 
             {/* Inner Section */}
-            <div className="px-4 py-6 space-y-5 text-center">
+            <div className="px-4 py-6 space-y-5 text-center relative">
+
+              <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2">
+                <Image
+                  src="/images/directory/bg2.png"
+                  alt="img"
+                  width={350}
+                  height={425}
+                  className="object-contain transition-all duration-300"
+                />
+              </div>
               {/* Dua Title */}
               <div className="space-y-2">
                 <p className="text-[#333333] font-semibold text-2xl mb-4">

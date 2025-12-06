@@ -12,24 +12,16 @@ export default function BooksCarHome({ book }) {
     return (
         <div
 
-   className={`snap-start flex-shrink-0 w-[150px] h-[250px] sm:w-[240px] sm:h-[390px]
-        flex flex-col items-center justify-between text-center rounded-full
-        shadow-md bg-white cursor-pointer
-        group islamicBookHome`
-
-        //     className={`snap-start flex-shrink-0 w-[150px] h-[250px] sm:w-[240px] sm:h-[380px]
-        // flex flex-col items-center justify-between text-center rounded-full
-        // shadow-md bg-white cursor-pointer
-        // group hover:border hover:border-green-500`
-    
-    }
+            className={`snap-start flex-shrink-0 w-[150px] h-[250px] sm:w-[240px] sm:h-[390px] flex flex-col items-center
+                 justify-between text-center rounded-full shadow-md bg-white cursor-pointer group islamicBookHome border border-gray-100`}
         >
-            <div className="p-4 sm:p-9 rounded-full mt-2 sm:mt-4 bg-[#F8F8F8]">
+            <div className="p-4 sm:p-9 rounded-full mt-2 sm:mt-4  bg-[#F8F8F8] w-[120px] h-[120px] 
+            sm:w-[190px] sm:h-[190px] flex justify-center items-center  ">
                 <Image
                     src={book?.featured_image || "/images/isamicBooks/bookIcon.png"}
                     alt={book?.name}
-                    width={90}
-                    height={90}
+                    width={95}
+                    height={95}
                     className="object-contain"
                 />
             </div>

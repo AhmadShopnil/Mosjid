@@ -39,10 +39,8 @@ export default async function EventCard({ event, index = 0 }) {
         <div
             className="flex space-x-3 bg-white/90 backdrop-blur-sm border border-gray-300 p-2 rounded-md shadow-sm"
         >
-
-
-
-            <div className={`w-28 lg:w-26 h-20 text-center bg-gray-100 rounded-md  leading-6 flex flex-col items-center justify-center  ${colorClass}`}>
+            <div className={`w-28 lg:w-26  py-2 text-center bg-gray-100 rounded-md  leading-6 flex flex-col items-center justify-center 
+                 ${colorClass}`}>
                 <p className="text-3xl font-bold text-green-900 leading-7">
                     {day}
                 </p>
@@ -52,24 +50,26 @@ export default async function EventCard({ event, index = 0 }) {
 
 
             {/* Notice Text */}
-            <div className='flex flex-col justify-between my-1'>
-                <p className="text-[#00401A] text-sm">{event?.sub_title.slice(0,50)}</p>
-                <Link
-                     href={`/events/${event?.slug}`}
-                    className="mt-2 text-xs font-semibold text-[#001609]
+         
+                <div className='flex flex-col justify-between my-1 w-full'>
+                    <p className="text-[#00401A] text-sm">{event?.sub_title.slice(0, 50)}</p>
+                    <Link
+                        href={`/events/${event?.slug}`}
+                        className="mt-2 text-xs font-semibold text-[#001609]
                  cursor-pointer hover:text-[#F7BA2A] flex gap-2 items-center "
-                >
-                    <span
-                        className='mt-0.5'
-                    >{read_more_button_text} </span>
-                    <Image
-                        src="/images/blogEvents/arrow.png"
-                        alt='a1'
-                        width={18}
-                        height={18}
-                    />
-                </Link>
-            </div>
+                    >
+                        <span
+                            className='mt-0.5'
+                        >{read_more_button_text} </span>
+                        <Image
+                            src="/images/blogEvents/arrow.png"
+                            alt='a1'
+                            width={18}
+                            height={18}
+                        />
+                    </Link>
+                </div>
+        
         </div>
     )
 }
