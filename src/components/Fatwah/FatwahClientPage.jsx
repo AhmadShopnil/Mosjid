@@ -4,15 +4,13 @@
 import FatwaFinder from '@/components/Fatwah/FatwahFinder'
 import FatwahSlected from '@/components/Fatwah/FatwahSlected'
 import FatwaListInner from '@/components/Fatwah/FatwaListInner'
-
-import BannerInnerPage from '@/components/Shared/BannerInnerPage'
-import Breadcrumb from '@/components/Shared/Breadcrumb'
 import BreadcrumbForNested from '@/components/Shared/BreadcrumbForNested'
 import Container from '@/components/Shared/Container'
 import SidebarDrawerForBooks from '@/components/Shared/SidebarDrawerForBooks'
 import { useFatwaFilters } from '@/context/FatwaFilterContext'
 import axiosInstance from '@/helper/axiosInstance'
 import { useEffect, useState } from 'react'
+import BannerInnerFatwa from './BannerInnerFatwa'
 
 export default function FatwahClientPage({ settings, homePage, books, data_for_filter }) {
 
@@ -96,7 +94,7 @@ export default function FatwahClientPage({ settings, homePage, books, data_for_f
     <div>
 
       <div>
-        <BannerInnerPage />
+        <BannerInnerFatwa  />
         {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Fatwah" /> */}
         <BreadcrumbForNested
           items={[

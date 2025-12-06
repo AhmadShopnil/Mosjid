@@ -28,7 +28,7 @@ export default function BookCardInnerPage({ book, index = 0, settings,download_b
   return (
     <div
       className={`borderDonationHome  flex flex-col md:flex-row md:space-x-4 bg-white/90 backdrop-blur-sm  p-4 sm:p-6
-         rounded-[20px] shadow-sm ${colorClass} `}
+         rounded-[20px] shadow-md ${colorClass} `}
     >
       {/* Image Section */}
       <div className="flex justify-center md:justify-start mb-4 md:mb-0">

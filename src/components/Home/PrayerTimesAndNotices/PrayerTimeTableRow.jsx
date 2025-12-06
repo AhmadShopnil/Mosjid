@@ -45,12 +45,12 @@ export default function PrayerTimeTableRow({ prayer, index }) {
             <td className="px-3 text-[#3E8B18] text-base text-center">
                 {prayer?.wakt_start_hanfi !== prayer?.wakt_start_safi ? (
                     <>
-                        <span>{prayer?.wakt_start_hanfi} (Mislesunny)</span>
+                        <span>{formatTo12Hour(prayer?.wakt_start_hanfi)} (Mislesunny)</span>
                         <br />
-                        <span>{prayer?.wakt_start_safi} (Mislewal)</span>
+                        <span>{formatTo12Hour(prayer?.wakt_start_safi)} (Mislewal)</span>
                     </>
                 ) : (
-                    <span>{prayer?.wakt_start_hanfi}</span>
+                    <span>{formatTo12Hour(prayer?.wakt_start_hanfi)}</span>
                 )}
             </td>
 
@@ -58,15 +58,15 @@ export default function PrayerTimeTableRow({ prayer, index }) {
                 {prayer?.wakt_end_safi !== prayer?.wakt_end_hanfi ? (
                     <>
                         <span className="text-[#EB5757]">
-                            {prayer?.wakt_end_hanfi } (Mislesunny)
+                            {formatTo12Hour(prayer?.wakt_end_hanfi) } (Mislesunny)
                         </span>
                         <br />
                         <span className="text-[#EB5757]">
-                            {prayer?.wakt_end_safi} (Mislewal)
+                            {formatTo12Hour(prayer?.wakt_end_safi)} (Mislewal)
                         </span>
                     </>
                 ) : (
-                    <span>{prayer?.wakt_end_hanfi}</span>
+                    <span>{formatTo12Hour(prayer?.wakt_end_hanfi)}</span>
                 )}
             </td>
 
