@@ -48,10 +48,10 @@ export default function SingleSlider({ slide, read_more_button }) {
                         <h3 className="text-2xl 2xl:text-4xl text-[#00401A] font-bold leading-12">
                             {slide?.name}
                         </h3>
-                        <p className="text-lg 2xl:text-2xl text-[#00401A] font-bold leading-10 my-2">
+                        <p className="text-lg 2xl:text-2xl text-[#F7BA2A] font-bold leading-10 my-2">
                             {slide?.sub_title}
                         </p>
-                        <p className="text-base text-[#001609] mb-10">
+                        <p className="text-base font-semibold text-[#001609] mb-10">
                             {getMetaValueFromExtraFields(slide, "short_description")}
                         </p>
                     </div>

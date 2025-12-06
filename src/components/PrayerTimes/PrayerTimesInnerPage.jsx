@@ -15,11 +15,13 @@ import { extractTimeUpdatedAt, getMostRecentTime } from "@/helper/extractTimeUpd
 
 
 
-export default  function PrayerTimesInnerPage({settings,homePage,prayerTimes,ProhibitedTime}) {
+export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, ProhibitedTime }) {
+  const [loading, setLoading] = useState();
+
   const [prayerTimesFromOutsideApi_Shafi, setPrayerTimesFromOusideApi_Shafi] = useState({});
   const [prayerTimesFromOutsideApi_Hanafi, setPrayerTimesFromOusideApi_Shafi_Hanafi] = useState([]);
- 
- 
+
+
 
   const sections = homePage?.sections_on_api;
   const prayer_time = sections.find((s) => s.title_slug === "prayer_time");
@@ -129,13 +131,12 @@ export default  function PrayerTimesInnerPage({settings,homePage,prayerTimes,Pro
       wakt_end_safi: prayerTimesFromOutsideApi_Shafi.Fajr,
     },
   ];
+  
   const formattedPrayerTimes = formatPrayerData(prayerTimes);
   const finalPrayerTimes = mergePrayerTimes(formattedPrayerTimes, prayerTimesDataFromOusideApi);
 
 
-
   const updatedAtArray = extractTimeUpdatedAt(prayerTimes);
-
   const updated_time = getMostRecentTime(updatedAtArray)
 
 
@@ -290,7 +291,7 @@ export default  function PrayerTimesInnerPage({settings,homePage,prayerTimes,Pro
         <br />
         <span className=" ">禁止時間開始</span>
       </h4>
-   
+
       <ProhibitedTimeMobile prayerTimes={ProhibitedTime.slice(0, 4)} prayer_time={prayer_time} />
       {/* bottom note */}
       <p className="mt-4 text-sm  text-[#FF0000]">

@@ -10,7 +10,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 
 export default async function FatwahBox() {
 
- const fatwahs = await getFatwah();
+  const fatwahs = await getFatwah();
   // const fatwahs = await getFatwa();
   const settings = await getSettings()
   const view_more = getMetaValueByMetaName(settings, "view_more") || "";
@@ -22,11 +22,14 @@ export default async function FatwahBox() {
   const fatwah_Top_header_ExtraData = sections.find((s) => s.title_slug === "fatwa-section-header");
 
   const image = getImageUrl(fatwah_ExtraData?.image_media)
-   const Arabic_header_image = getImageUrl(fatwah_Top_header_ExtraData?.image_media)
+  const penIcon = getImageUrl(fatwah_ExtraData?.background_media);
 
-   const header_image = getImageUrl(fatwah_Top_header_ExtraData?.background_media);
 
- const fatwah_title_2 = fatwah_ExtraData?.custom_information.find((item) => item.label === "fatwah_title_2")
+  const Arabic_header_image = getImageUrl(fatwah_Top_header_ExtraData?.image_media)
+
+  const header_image = getImageUrl(fatwah_Top_header_ExtraData?.background_media);
+
+  const fatwah_title_2 = fatwah_ExtraData?.custom_information.find((item) => item.label === "fatwah_title_2")
 
 
 
@@ -40,7 +43,7 @@ export default async function FatwahBox() {
         {/* Logo */}
         <div>
           <Image
-          src={header_image}
+            src={header_image}
             // src="/images/fatwah/fatwahHeader.png"
             alt="Logo"
             width={200}
@@ -48,7 +51,7 @@ export default async function FatwahBox() {
             className='hidden sm:flex'
           />
           <Image
-          src={header_image}
+            src={header_image}
             // src="/images/fatwah/fatwahHeader.png"
             alt="Logo"
             width={150}
@@ -62,13 +65,13 @@ export default async function FatwahBox() {
           {/* for big screen */}
           <div className="hidden sm:flex  flex-col justify-end items-end gap-3 ">
             <Image
-            src={Arabic_header_image}
+              src={Arabic_header_image}
               // src="/images/fatwah/fatwahArabicheader.png"
               alt="Logo"
               width={515}
               height={70}
             />
-              <p className='text-[#F7BA2A] font-semibold text-[20px]  '>{fatwah_Top_header_ExtraData?.sub_title}</p>
+            <p className='text-[#F7BA2A] font-semibold text-[20px]  '>{fatwah_Top_header_ExtraData?.sub_title}</p>
             {/* <Image
            
               src="/images/fatwah/arabic3.png"
@@ -79,7 +82,7 @@ export default async function FatwahBox() {
           </div>
           {/* for small screen */}
           <div className=" flex sm:hidden flex-col justify-end items-end gap-3 ">
-          
+
             <Image
               src={Arabic_header_image}
               // src="/images/fatwah/fatwahArabicheader.png"
@@ -87,7 +90,7 @@ export default async function FatwahBox() {
               width={210}
               height={50}
             />
-              <p className='text-[#F7BA2A] font-semibold text-[16px]  '>{fatwah_Top_header_ExtraData?.sub_title}</p>
+            <p className='text-[#F7BA2A] font-semibold text-[16px]  '>{fatwah_Top_header_ExtraData?.sub_title}</p>
             {/* <Image
               src="/images/fatwah/arabic3.png"
               alt="Logo"
@@ -124,10 +127,11 @@ export default async function FatwahBox() {
             <div className="flex justify-between  gap-2 gradient-border_b mb-4 sm:mb-0 pb-3   ">
 
               <Image
-                src="/images/fatwah/pen2.png"
+                src={penIcon}
+                // src="/images/fatwah/pen2.png"
                 alt="Book Icon"
                 width={65}
-                height={53}
+                height={60}
                 className="mb-2"
               />
               <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
@@ -136,7 +140,7 @@ export default async function FatwahBox() {
 
               </div>
             </div>
-       
+
             {/* arabic text */}
             <div className="flex gap-4 items-center">
               <Image
@@ -148,9 +152,9 @@ export default async function FatwahBox() {
               />
 
               <div className=' my-auto'>
-                <Link 
-                 href="/fatwah"
-                className="px-5 sm:px-6 py-3  text-sm sm:text-base
+                <Link
+                  href="/fatwah"
+                  className="px-5 sm:px-6 py-3  text-sm sm:text-base
                 font-bold text-white border border-[#00401A] rounded-full bg-[#00401A]
                   hover:bg-[#00401A] hover:text-white transition-colors duration-400 cursor-pointer">
                   {view_more}
@@ -172,17 +176,17 @@ export default async function FatwahBox() {
                 <div className="flex items-center gap-2 sm:gap-4">
                   {/* icon */}
                   <div
-                    className=" border border-[#E6ECE8] rounded-full p-1.5 md:p-2 "
+                    className=" border border-[#E6ECE8] rounded-full p-1.5 md:p-2 w-[60px] h-[60px] "
                   >
                     <Image
-                      src="/images/fatwah/pen.png"
+                        src={penIcon}
                       alt="icon"
                       width={45}
                       height={45}
                       className='hidden sm:flex'
                     />
                     <Image
-                      src="/images/fatwah/pen.png"
+                       src={penIcon}
                       alt="icon"
                       width={40}
                       height={40}
@@ -195,12 +199,12 @@ export default async function FatwahBox() {
                       {item?.word_ja}
                     </p>
                     <Link
-                       href={`/fatwah/${item?.id}`}
+                      href={`/fatwah/${item?.id}`}
                       className="text-[#00401A] font-bold text-xs md:text-sm hover:text-[#F7BA2A] 
                       flex gap-1 items-center "
                     >
-                      {read_more} 
-                     <span className='mt-0.5'><FaLongArrowAltRight /></span>
+                      {read_more}
+                      <span className='mt-0.5'><FaLongArrowAltRight /></span>
                     </Link>
                   </div>
                 </div>

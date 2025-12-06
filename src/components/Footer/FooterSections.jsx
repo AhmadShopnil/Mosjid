@@ -51,19 +51,19 @@ export default function FooterSections({ settings }) {
     {
       id: 1,
       icon: <FaLocationDot className="text-[#00401A] min-w-[20px]" />,
-      iconImage: "/images/footer/location.png",
+      iconImage: "/images/footer/location.svg",
       text: location,
     },
     {
       id: 2,
       icon: <FaPhoneVolume className="text-[#00401A] min-w-[20px]" />,
-      iconImage: "/images/footer/phone.png",
+      iconImage: "/images/footer/calling.svg",
       text: phone,
     },
     {
       id: 3,
       icon: <FaEnvelope className="text-[#00401A] min-w-[20px]" />,
-      iconImage: "/images/footer/mail.png",
+      iconImage: "/images/footer/mail2.svg",
       text: company_email,
     },
   ];
@@ -119,7 +119,7 @@ export default function FooterSections({ settings }) {
           <ul className="space-y-4 text-sm text-gray-700">
             {contactInfo.map((info) => (
               <li key={info.id} className="flex items-start   gap-2.5">
-                <span className=" text-lg bg-[#D9E2DD] p-2 rounded-full ">
+                <span className=" text-lg bg-[#D9E2DD] p-2 rounded-full w-[36px] h-[36px] ">
 
                   {
 
@@ -129,9 +129,9 @@ export default function FooterSections({ settings }) {
                         src={info?.iconImage}
 
                         alt="Osaka Masjid Logo"
-                        width={24}
-                        height={24}
-                        className="w-[19px] h-[19px] "
+                        width={22}
+                        height={22}
+                        className="w-[22px] h-[22px] "
                       />
 
 
@@ -151,10 +151,10 @@ export default function FooterSections({ settings }) {
               className=''>
               {/* <ImFacebook2 /> */}
               <Image
-                src="/images/footer/fb.png"
+                src="/images/footer/facebook.svg"
                 alt='a1'
                 width={26}
-                height={24}
+                height={26}
                 className='hidden sm:flex'
               />
             </Link>
@@ -162,10 +162,10 @@ export default function FooterSections({ settings }) {
               href={instagramLink}
               className=''>
               <Image
-                src="/images/footer/insta.png"
+                src="/images/footer/ins.svg"
                 alt='a1'
-                width={38}
-                height={38}
+                width={26}
+                height={26}
                 className='hidden sm:flex'
               />
             </Link>
@@ -173,7 +173,7 @@ export default function FooterSections({ settings }) {
               href={linkedinLink}
               className='text-blue-500'>
               <Image
-                src="/images/footer/linkdin.png"
+                src="/images/footer/link.svg"
                 alt='a1'
                 width={26}
                 height={26}

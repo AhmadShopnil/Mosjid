@@ -31,7 +31,7 @@ export default function NoticeCardHome({ notice, settings, handleOpenModal }) {
             {/* Notice Text */}
             <div className="w-[70%] sm:w-[82%] flex flex-col justify-between  ">
                 <p className="sm:hidden text-[#00401A] text-sm">{notice?.sub_title.slice(0, 40)}</p>
-                <p className="hidden sm:block text-[#00401A] text-sm">{notice?.sub_title.slice(0, 120)}</p>
+                <p className="hidden sm:block text-[#00401A] font-semibold text-base">{notice?.sub_title.slice(0, 120)}</p>
                 <button
                     onClick={() => handleOpenModal(notice)}
                     className="text-[#001609] font-semibold sm:font-bold text-xs md:text-sm hover:text-[#F7BA2A]
