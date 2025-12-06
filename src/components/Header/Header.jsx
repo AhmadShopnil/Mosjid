@@ -10,7 +10,7 @@ export default async function Header() {
   const menuItems = await getMenus(1);
 
   return (
-    <div className="sticky top-0 z-[99999] bg-white shadow-md">
+    <div className="sticky top-0 z-[500] bg-white shadow-md">
       {/* Topbar */}
       <div className="bg-white">
         <Topbar settings={settings} />
