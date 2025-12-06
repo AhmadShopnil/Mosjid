@@ -33,10 +33,23 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
 
 
 
-  const jamat_start = prayer_time?.custom_information.find((item) => item.label === "jamat_start")
+
   const name_of_salat = prayer_time?.custom_information.find((item) => item.label === "name_of_salat")
+  const jamat_start = prayer_time?.custom_information.find((item) => item.label === "jamat_start")
   const wakt_start = prayer_time?.custom_information.find((item) => item.label === "wakt_start")
   const wakt_end = prayer_time?.custom_information.find((item) => item.label === "wakt_end")
+
+  const name_of_salat_jp = prayer_time?.custom_information.find((item) => item.label === "name_of_salat_jp")
+  const jamat_start_jp = prayer_time?.custom_information.find((item) => item.label === "jamat_start_jp")
+  const wakt_start_jp = prayer_time?.custom_information.find((item) => item.label === "wakt_start_jp")
+  const wakt_end_jp = prayer_time?.custom_information.find((item) => item.label === "wakt_end_jp")
+
+
+
+  const prohibited_time_start = prayer_time?.custom_information.find((item) => item.label === "prohibited_time_start")
+  const prohibited_time_end = prayer_time?.custom_information.find((item) => item.label === "prohibited_time_end")
+  const prohibited_time_start_jp = prayer_time?.custom_information.find((item) => item.label === "prohibited_time_start_jp")
+  const prohibited_time_end_jp = prayer_time?.custom_information.find((item) => item.label === "wakt_end_jp")
 
 
   useEffect(() => {
@@ -131,7 +144,7 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
       wakt_end_safi: prayerTimesFromOutsideApi_Shafi.Fajr,
     },
   ];
-  
+
   const formattedPrayerTimes = formatPrayerData(prayerTimes);
   const finalPrayerTimes = mergePrayerTimes(formattedPrayerTimes, prayerTimesDataFromOusideApi);
 
@@ -219,15 +232,15 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
                 <th className="p-3 text-left flex flex-col "><span>
                   {name_of_salat?.value}
                 </span>
-                  <span className="text-[#C9E9BA]"> 名前</span>
+                  <span className="text-[#C9E9BA]"> {name_of_salat_jp?.value}</span>
                 </th>
                 <th className="p-3 "><span>
                   {jamat_start?.value}</span> <br />
-                  <span className=" text-[#C9E9BA]">ジャマットスタート</span>
+                  <span className=" text-[#C9E9BA]"> {jamat_start_jp?.value}</span>
                 </th>
-                <th className="p-3">{wakt_start?.value} <br /> <span className="text-[#C9E9BA]">ワクトスタート </span></th>
+                <th className="p-3">{wakt_start?.value} <br /> <span className="text-[#C9E9BA]">{wakt_start_jp?.value} </span></th>
                 <th className="p-3">{wakt_end?.value} <br />
-                  <span className="text-[#C9E9BA]" >ワクトエンド</span>
+                  <span className="text-[#C9E9BA]" >{wakt_end_jp?.value}</span>
                 </th>
               </tr>
             </thead>
@@ -246,22 +259,20 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
           <table className="w-full text-sm hidden sm:table ">
             <thead>
               <tr className="bg-[#FED6D6] text-[#00401A]  text-bold text-lg">
-                <th className="p-3 text-left flex flex-col "><span>
-                  {name_of_salat?.value}
-                </span>
-                  <span className=""> 名前</span>
+                <th className="p-3 text-left flex flex-col ">
+                <span>{name_of_salat?.value}</span>
+                  <span>{name_of_salat_jp?.value}</span>
                 </th>
-                {/* <th className="p-3 "><span>
-                  {jamat_start?.value}</span> <br />
-                  <span className=" text-gray-300">ジャマットスタート</span>
-                  </th> */}
-                <th className="p-3">Prohibited Time Start
+              
+                <th className="p-3">
+                <span> {prohibited_time_start?.value}</span>
                   <br />
-                  <span className=" ">禁止時間開始</span>
+                  <span>{prohibited_time_start_jp?.value}</span>
                 </th>
-                <th className="p-3">Prohibited Time End
+                <th className="p-3">
+                <span> {prohibited_time_end?.value}</span>
                   <br />
-                  <span className=" ">禁止時間終了</span>
+                  <span>   {prohibited_time_end_jp?.value}</span>
                 </th>
               </tr>
             </thead>

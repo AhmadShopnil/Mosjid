@@ -9,6 +9,7 @@ import SidebarDrawerForBooks from '@/components/Shared/SidebarDrawerForBooks'
 import { useFatwaFilters } from '@/context/FatwaFilterContext';
 import React from 'react'
 import BreadcrumbForNested from '../Shared/BreadcrumbForNested';
+import BannerInnerFatwa from './BannerInnerFatwa'
 
 export default function FatwahFilteredClientPage({ fatwahs, settings, homePage, books, data_for_filter }) {
     const {
@@ -35,7 +36,7 @@ export default function FatwahFilteredClientPage({ fatwahs, settings, homePage, 
         <div>
 
             <div>
-                <BannerInnerPage />
+                <BannerInnerFatwa  />
                 <BreadcrumbForNested
                     items={[
                         { label: "Home", link: "/" },

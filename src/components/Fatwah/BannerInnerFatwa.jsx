@@ -1,21 +1,46 @@
+"use client";
 
+import axiosInstance from "@/helper/axiosInstance";
+import React, { useEffect, useState } from "react";
 import { getImageFromExtraFields, getMetaValueFromExtraFields } from "@/helper/metaHelpers";
-import Container from "./Container";
 import Image from "next/image";
-import { getBannerInnerPage } from "@/helper/actions";
+import Container from "../Shared/Container";
 
-export default async function BannerInnerPageServerSide() {
+export default function BannerInnerFatwa({ ban = 0 }) {
+  const [banners, setBanners] = useState(null);
+  const [banner, setBanner] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const banners = await getBannerInnerPage()
+  useEffect(() => {
+    const fetchBanner = async () => {
+      try {
+        const response = await axiosInstance.get("/posts?term_type=banner_inner_page");
+        const data = response?.data?.data?.[ban];
+        setBanners(response?.data?.data)
+        setBanner(data || null);
+      } catch (err) {
+        console.error("Error fetching banner:", err);
+        setError("Failed to load banner");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const banner = banners[1] || {};
+    fetchBanner();
+  }, []);
+
+  if (loading) return null;
+  if (error || !banner?.featured_image) return null;
+
   const left_logo = getImageFromExtraFields(banner, "left_logo");
   const right_logo = getImageFromExtraFields(banner, "right_logo");
   const center_top_image = getImageFromExtraFields(banner, "center_top_image");
   const center_bottom_image = getImageFromExtraFields(banner, "center_bottom_image");
   const center_bottom_title = getMetaValueFromExtraFields(banner, "center_bottom_title");
 
-  // console.log("inner banner", banner?.featured_image)
+
+//   console.log({banners})
 
   return (
     <div
@@ -37,11 +62,11 @@ export default async function BannerInnerPageServerSide() {
                 <Image
                   src={left_logo}
                   alt="Left Logo"
-                  width={358}
-                  height={240}
+                  width={188}
+                  height={205}
                   priority={false}
                   loading="lazy"
-                  className=" h-auto w-[170px] sm:w-[180px] md:w-[250px] lg:w-[320px] xl:w-[358px]"
+                  className=" h-auto w-[170px] sm:w-[180px] md:w-[250px] lg:w-[320px] xl:w-[288px]"
                 />
 
               </div>

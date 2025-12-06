@@ -7,7 +7,8 @@ import { getImageFromExtraFields, getMetaValueFromExtraFields } from "@/helper/m
 import Container from "./Container";
 import Image from "next/image";
 
-export default function BannerInnerPage() {
+export default function BannerInnerPage({ ban = 1 }) {
+  const [banners, setBanners] = useState(null);
   const [banner, setBanner] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -16,7 +17,8 @@ export default function BannerInnerPage() {
     const fetchBanner = async () => {
       try {
         const response = await axiosInstance.get("/posts?term_type=banner_inner_page");
-        const data = response?.data?.data?.[0];
+        const data = response?.data?.data?.[ban];
+        setBanners(response?.data?.data)
         setBanner(data || null);
       } catch (err) {
         console.error("Error fetching banner:", err);
@@ -36,7 +38,10 @@ export default function BannerInnerPage() {
   const right_logo = getImageFromExtraFields(banner, "right_logo");
   const center_top_image = getImageFromExtraFields(banner, "center_top_image");
   const center_bottom_image = getImageFromExtraFields(banner, "center_bottom_image");
-   const center_bottom_title = getMetaValueFromExtraFields(banner, "center_bottom_title");
+  const center_bottom_title = getMetaValueFromExtraFields(banner, "center_bottom_title");
+
+
+  // console.log({banners})
 
   return (
     <div
