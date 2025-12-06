@@ -19,7 +19,7 @@ export default function Blogs({ blogs, settings, homePage, loading, currentPage,
   const view_more_button_text = getMetaValueByMetaName(settings, "view_more") || "";
 
   return (
-    <div className='border border-[#C9E9BA] rounded-[20px] p-5 bg-[#c9e9ba20]'>
+    <div className='border border-[#C9E9BA] rounded-[20px] p-5 bg-[#c9e9ba20] shadow-md'>
       {/* heading */}
       <div className=' flex justify-between'>
         <h4 className='text-[#00401A] font-bold text-xl sm:text-2xl lg:text-3xl  gradient-border_b  pb-2 ' >

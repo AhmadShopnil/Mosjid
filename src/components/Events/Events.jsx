@@ -24,7 +24,7 @@ export default function Events({ events, settings, homePage, loading, currentPag
   // console.log("event ness",eventsSectionTitle)
 
   return (
-    <div className='gradient-border rounded-3xl p-6 bg-[#F9FFF6] h-full'>
+    <div className='gradient-border rounded-3xl p-6 bg-[#F9FFF6] h-full shadow-md'>
       {/* heading */}
       <div className=' flex justify-between'>
         <h4 className='text-[#00401A] font-bold text-xl sm:text-2xl md:text-3xl gradient-border_b pb-3 ' >

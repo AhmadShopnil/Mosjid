@@ -41,13 +41,15 @@ export default function NoticeBoard({ notices, settings, homePage, loading, curr
 
     return (
         <div
-            className=" p-4 sm:p-6 borderFatwaInner rounded-[10px] bg-[#c9e9ba28] shadow-sm "
+            className=" borderFatwaInner rounded-[10px]  shadow-sm "
             style={{
 
 
             }}
         >
-            {/* heading */}
+         <div className="bg-[#F9FFF6]  p-4 sm:p-6 rounded-[10px]">
+
+               {/* heading */}
             <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
                 <div className="flex items-center gap-2 gradient-border_b mb-4 sm:mb-0 pb-3 ">
 
@@ -161,6 +163,7 @@ export default function NoticeBoard({ notices, settings, homePage, loading, curr
                 totalPages={totalPages}
                 onPageChange={setCurrentPage}
             />
+         </div>
         </div>
     );
 }

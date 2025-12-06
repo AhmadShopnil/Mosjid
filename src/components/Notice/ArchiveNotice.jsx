@@ -57,7 +57,7 @@ export default function ArchiveNotice({homePage}) {
 
     return (
         <div className="">
-            <div className="bg-[#c9e9ba28] border border-[#C9E9BA] rounded-[10px] p-4 sm:p-6 shadow-sm">
+            <div className="bg-[#F9FFF6] border border-[#C9E9BA] rounded-[10px] p-4 sm:p-6 shadow-sm">
                 <h2 className="text-3xl font-semibold text-[#00401A] mb-6 ">
                     <span className="gradient-border_b pb-1">{archive_notice_title?.value}</span>
 

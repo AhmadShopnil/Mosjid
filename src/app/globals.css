@@ -248,6 +248,13 @@ body {
   border: 1px solid transparent;
   
 }
+.borderNoticeInner {
+  position: relative;
+  border-radius: 10px;
+
+  border: 1px solid transparent;
+  
+}
 
 
 

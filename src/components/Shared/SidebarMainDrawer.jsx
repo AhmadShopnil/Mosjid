@@ -49,7 +49,7 @@ export default function SidebarMainDrawer({
       {/* Drawer itself */}
       <div
         className={`
-          fixed top-0 left-0 z-50 h-full w-[85%] max-w-[380px] bg-white shadow-lg
+          fixed top-0 left-0 z-[1000] lg:z-[50] h-full w-[85%] max-w-[380px] bg-white shadow-lg
           transform transition-transform duration-300
           ${isDrawerOpen ? "translate-x-0" : "-translate-x-full"}
           lg:translate-x-0 lg:static lg:w-[400px] lg:shadow-none
