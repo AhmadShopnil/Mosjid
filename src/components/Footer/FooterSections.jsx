@@ -32,9 +32,7 @@ export default function FooterSections({ settings }) {
 
   const footer_content =
     getMetaValueByMetaName(settings, "site_description") || "";
-  const copyright_content =
-    getMetaValueByMetaName(settings, "bottom_footer_content") ||
-    "OSAKA MASJID© 2025 | ALL RIGHTS RESERVED";
+  
 
   // sectionTittles
   const section_1_title = getMetaValueByMetaName(settings, "section_1_title") || "";

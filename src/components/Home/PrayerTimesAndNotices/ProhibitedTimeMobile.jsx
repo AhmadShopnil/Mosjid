@@ -16,13 +16,23 @@ export default function ProhibitedTimeMobile({ prayerTimes, prayer_time }) {
     (item) => item.label === "wakt_end"
   );
 
+
+
+  const prohibited_time_start_title = prayer_time?.custom_information.find((item) => item.label === "prohibited_time_start")
+  const prohibited_time_start_title_jp = prayer_time?.custom_information.find((item) => item.label === "prohibited_time_start_jp")
+  const prohibited_time_end_title = prayer_time?.custom_information.find((item) => item.label === "prohibited_time_end")
+
+  const prohibited_time_end_title_jp = prayer_time?.custom_information.find((item) => item.label === "wakt_end_jp")
+
+
+
   return (
     <div className="mt-6 grid gap-5 sm:hidden">
       {prayerTimes?.map((prayer, index) => {
 
-  const prohibited_time_start = getMetaValueFromExtraFields(prayer, "prohibited-time-start")
-    const prohibited_time_end = getMetaValueFromExtraFields(prayer, "prohibited-time-end")
-   
+        const prohibited_time_start = getMetaValueFromExtraFields(prayer, "prohibited-time-start")
+        const prohibited_time_end = getMetaValueFromExtraFields(prayer, "prohibited-time-end")
+
 
         // const prayerTime = getMetaValueFromExtraFields(prayer, "time");
         // const waktStartTime = getMetaValueFromExtraFields(prayer, "start_time");
@@ -41,22 +51,22 @@ export default function ProhibitedTimeMobile({ prayerTimes, prayer_time }) {
             <div className="mb-4 flex items-center justify-between border-b-2 border-[#E5F5DE] pb-2">
               <div className="flex items-center gap-3">
                 <Image
-                  src="/images/prayertimes/eid.png"
+                  src={prayer?.featured_image}
                   alt="prayer-icon"
                   width={42}
                   height={42}
                   className="rounded-full bg-[#E8F9E4] p-2"
                 />
-               <div className="flex flex-col">
-                 <span className="text-lg font-semibold text-[#00401A]">
-                  {prayer?.name}
-                </span>
-                 <span className="text-lg font-semibold text-[#00401a86]">
-                  ファジル
-                </span>
-               </div>
+                <div className="flex flex-col">
+                  <span className="text-lg font-semibold text-[#00401A]">
+                    {prayer?.name}
+                  </span>
+                  <span className="text-lg font-semibold text-[#00401a86]">
+                    {prayer?.sub_title}
+                  </span>
+                </div>
 
-              
+
               </div>
               {/* <span className="rounded-md bg-[#E6F3FF] px-3 py-1 text-md font-medium text-[#1D6FD6]">
                 {prayerTime}
@@ -65,9 +75,10 @@ export default function ProhibitedTimeMobile({ prayerTimes, prayer_time }) {
 
             {/* Times */}
             <div className="grid grid-cols-2 gap-3 text-center">
-             
+
               <div className="flex flex-col items-center">
-                <span className="text-xs text-gray-500">Prohibited Time Start</span>
+                <span className="text-xs text-[#00401A]">{prohibited_time_start_title?.value}</span>
+                <span className="text-xs text-gray-500">{prohibited_time_start_title_jp?.value}</span>
                 <span className="mt-1 text-base font-medium text-[#3E8B18]  ">
                   {prohibited_time_start}
                 </span>
@@ -77,14 +88,15 @@ export default function ProhibitedTimeMobile({ prayerTimes, prayer_time }) {
                   </span>
                 )} */}
               </div>
-               {/* <div className="flex flex-col items-center">
+              {/* <div className="flex flex-col items-center">
                 <span className="text-xs text-gray-500">{jamat_start?.value}</span>
                 <span className="mt-1 text-base font-medium text-[#56410F]">
                   {prayerTime}
                 </span>
               </div> */}
               <div className="flex flex-col items-center">
-                <span className="text-xs text-gray-500">Prohibited Time End</span>
+                <span className="text-xs text-[#00401A]">{prohibited_time_end_title?.value}</span>
+                <span className="text-xs text-gray-500">{prohibited_time_end_title_jp?.value}</span>
                 <span className="mt-1 text-base font-medium text-[#FF0000]">
                   {prohibited_time_end}
                 </span>
