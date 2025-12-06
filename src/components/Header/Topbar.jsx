@@ -10,9 +10,9 @@ import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import Link from "next/link";
 
 const languages = [
-  { title: "English", icon: "/images/others/English.png", code: "en" },
-  { title: "Japanese", icon: "/images/others/Japan.png", code: "ja" },
-  { title: "Arabic", icon: "/images/others/Arabic.png", code: "ar" },
+  { title: "English", icon: "/images/others/eng.svg", code: "en" },
+  { title: "Japanese", icon: "/images/others/jp.svg", code: "ja" },
+  { title: "Arabic", icon: "/images/others/ar.svg", code: "ar" },
 ];
 
 export default function Topbar({ settings }) {
@@ -132,7 +132,7 @@ export default function Topbar({ settings }) {
               }`}
             >
               <div className="my-auto">
-                <Image src={language.icon} alt={language.title} width={20} height={10} />
+                <Image src={language.icon} alt={language.title} width={19} height={13} />
               </div>
               <div className="text-sm font-bold my-auto">{language.title}</div>
             </button>
@@ -159,7 +159,7 @@ export default function Topbar({ settings }) {
         <div className="flex gap-2 justify-center items-center">
           <Link href={facebookLink} className="text-blue-500">
               <Image
-              src="/images/social/fb.png"
+              src="/images/others/facebook.svg"
               alt="LinkedIn"
               width={26}
               height={26}
@@ -168,16 +168,16 @@ export default function Topbar({ settings }) {
           </Link>
           <Link href={instagramLink}>
             <Image
-              src="/images/social/instagram.png"
+             src="/images/others/ins.svg"
               alt="Instagram"
-              width={29}
-              height={29}
+              width={26}
+              height={26}
               className="hidden sm:flex"
             />
           </Link>
           <Link href={linkedinLink}>
             <Image
-              src="/images/social/linkdin.png"
+              src="/images/others/link.svg"
               alt="LinkedIn"
               width={26}
               height={26}

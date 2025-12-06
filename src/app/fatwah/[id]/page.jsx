@@ -48,7 +48,7 @@ export default async function page({ params }) {
             </Container>
 
             <Container className='flex gap-6 my-6'>
-{/* 
+                {/* 
                 <SidebarMainDrawer
                     categories={formatFatwaBooksForSidebarData}
                     isAskQuestion={true}
@@ -62,7 +62,11 @@ export default async function page({ params }) {
                     isAskQuestion={true}
                     isFatwah_Dictionary_Filter={true}
                     data_for_filter={data_for_filter}
-                    dataForContact={requestData} />
+                    dataForContact={requestData}
+                    isNavigate={true}
+
+                />
+
 
 
 

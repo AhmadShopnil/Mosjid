@@ -21,6 +21,7 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
     const sections = homePage?.sections_on_api;
     const fatwah_ExtraData = sections.find((s) => s.title_slug === "fatwah");
     const image = getImageUrl(fatwah_ExtraData?.image_media)
+      const penIcon = getImageUrl(fatwah_ExtraData?.background_media);
     const fatwah_title_2 = fatwah_ExtraData?.custom_information.find((item) => item.label === "fatwah_title_2")
 
     // console.log("from fatwa list ",fatwahs)
@@ -41,7 +42,7 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
                 <div className='flex justify-between'>
                     <div className="flex items-center  gap-2 gradient-border_b  sm:mb-0 pb-2    ">
                         <Image
-                            src="/images/fatwah/pen.png"
+                            src={penIcon}
                             alt="Book Icon"
                             width={45}
                             height={45}
@@ -84,17 +85,17 @@ export default function FatwaListInner({ fatwahs, settings, homePage, title, tit
                                     <div className="flex items-center gap-2 sm:gap-4">
                                         {/* icon */}
                                         <div
-                                            className=" border border-[#E6ECE8] rounded-full p-1.5 md:p-2 "
+                                            className=" border border-[#E6ECE8] rounded-full p-1.5 md:p-2 w-[60px] h-[60px] "
                                         >
                                             <Image
-                                                src="/images/fatwah/pen.png"
+                                               src={penIcon}
                                                 alt="icon"
                                                 width={45}
                                                 height={45}
                                                 className='hidden sm:flex'
                                             />
                                             <Image
-                                                src="/images/fatwah/pen.png"
+                                                src={penIcon}
                                                 alt="icon"
                                                 width={40}
                                                 height={40}

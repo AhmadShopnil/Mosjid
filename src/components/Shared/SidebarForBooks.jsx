@@ -58,12 +58,7 @@ export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate }) 
     }
 
 
-
-
-
     if (isNavigate) {
-
-
       if (book?.chapters?.length == 0) {
         router.push(
           `/fatwah/fatwah-filtered`
