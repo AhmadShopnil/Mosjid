@@ -1,26 +1,22 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import BannerInnerPage from '@/components/Shared/BannerInnerPage'
-import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 import axiosInstance from "@/helper/axiosInstance"
-import Image from "next/image"
 import SocialShare from "../Shared/SocialShare"
-import { splitBySlash } from "@/helper/splitBySpace"
 import { getImageUrl } from "@/helper/getImageUrl"
 import BreadcrumbForNested from "../Shared/BreadcrumbForNested"
 import { useSelected } from "@/context/SelectedContext"
 import { useSelectedParrent } from "@/context/SelectedContextParrent"
 
 import SkeletonDescription from "../Shared/Skeleton/SkeletonDescription"
-import BannerInnerPageServerSide from "../Shared/BannerInnerPageServerSide"
 
 
 
-export default function AboutInnerPage({ homePage, settings, formattedCategories }) {
+
+export default function AboutInnerPage({ homePage, settings, formattedCategories, slug }) {
     const { selected, setSelected, clearSelected } = useSelected();
     const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
 
@@ -33,7 +29,7 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
     // pagination states
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(10)
-    const perPage = 6
+    const perPage = 1
 
 
     useEffect(() => {
@@ -49,10 +45,10 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
         // setSelected(null)
         const fetchAboutData = async () => {
             setLoading(true)
-            let url = `/posts?term_type=about_info&page=${currentPage}&per_page=${perPage}`
-            if (selectedCat) {
-                url = `/posts?term_type=about_info&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`
-            }
+            let url = `/posts?term_type=about_info&category_slug=${slug}&page=${currentPage}&per_page=${perPage}`
+            // if (selectedCat) {
+            //     url = `/posts?term_type=about_info&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`
+            // }
 
             try {
                 const response = await axiosInstance.get(url)
@@ -70,7 +66,7 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
         }
 
         fetchAboutData()
-    }, [selectedCat, currentPage])
+    }, [slug])
 
 
     const sections = homePage?.sections_on_api;
@@ -109,7 +105,11 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
 
             <Container className="flex gap-6 my-6">
                 {/* sidebar */}
-                <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={selected?.name || "about"} />
+                <SidebarMainDrawer
+                    categories={formattedCategories}
+                    setSelectedCat={setSelectedCat}
+                    dataForContact={selected?.name || "about"}
+                    isAboutNavigate={true} />
 
                 {/* main content */}
                 <div className="w-full space-y-6">
@@ -139,7 +139,7 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
                             </p>
 
                             <p className="text-sm md:text-base lg:text-lg text-center">
-                                {`データが見つかりませんでした`}
+                                No data found
                                 {/* <span>{selected?.description}</span> */}
                             </p>
                         </>

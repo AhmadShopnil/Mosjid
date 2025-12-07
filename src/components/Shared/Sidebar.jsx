@@ -2,97 +2,75 @@
 
 import { useState } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
-import Image from "next/image";
+
 import { useRouter } from "next/navigation";
-import { useSelected } from "@/context/SelectedContext"
+import { useSelected } from "@/context/SelectedContext";
 import { useSelectedParrent } from "@/context/SelectedContextParrent";
 import { useFatwaFilters } from "@/context/FatwaFilterContext";
-import { useRegionFilters } from "@/context/RegionFilterContext ";
 
 
-
-
-
-export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, isNavigate, directoryNavigate, isFatwah_Dictionary_Filter, isFatwahNavigate }) {
+export default function Sidebar({
+  setIsDrawerOpen,
+  categories,
+  setSelectedCat,
+  isNavigate,
+  directoryNavigate,
+  isFatwah_Dictionary_Filter,
+  isFatwahNavigate,
+  isAboutNavigate = false,
+}) {
   const { selected, setSelected, clearSelected } = useSelected();
 
-  const { selectedParrent, setSelectedParrent, clearSelectedParrent,selectedSlug, setSelectedSlug } = useSelectedParrent();
-
-
-
   const {
-    setSelectedBooks,
+    selectedParrent,
+    setSelectedParrent,
+    clearSelectedParrent,
+    selectedSlug,
+    setSelectedSlug,
+  } = useSelectedParrent();
 
-  } = useFatwaFilters();
-
+  const { setSelectedBooks } = useFatwaFilters();
 
   const router = useRouter();
-  const [hovered, setHovered] = useState("")
-  const [expandedItems, setExpandedItems] = useState({
-  });
+  const [hovered, setHovered] = useState("");
+  const [expandedItems, setExpandedItems] = useState({});
 
   const toggleExpand = (item) => {
-
     setExpandedItems((prev) => ({
       ...prev,
       [item]: !prev[item],
     }));
   };
 
-
   // handle different useCase in same sidebar
   const handleOnClickItem = (category) => {
-
     setSelected(category);
-    setSelectedParrent(null)
-
-
-
-    // for filter fatwah by sidbar books list
-
-
-
-
+    setSelectedParrent(null);
 
     if (!category?.hasSubItems) {
-
-      setIsDrawerOpen(false)
-
+      setIsDrawerOpen(false);
 
       if (isFatwah_Dictionary_Filter) {
-
-        // console.log("isFatwah_Dictionary_Filter inside", isFatwah_Dictionary_Filter)
-        // console.log("isFatwah_Dictionary_Filter category", category?.originalData)
-
-        setSelectedBooks(category?.originalData)
+        setSelectedBooks(category?.originalData);
 
         if (isFatwahNavigate) {
           router.push(`/fatwah/fatwah-filtered`);
         }
-
-
       }
-
-
 
       if (directoryNavigate) {
         router.push(`/directory/${category?.id}`);
-      }
-
-      else if (isNavigate) {
+      } else if (isNavigate) {
         router.push(`/${isNavigate}`);
-      }
-      else if (category?.link) {
+      } else if (isAboutNavigate) {
+        router.push(`/about/${subItem?.slug}`);
+      } else if (category?.link) {
         router.push(`${category?.link}`);
-      }
-      else {
-
+      } else {
         if (setSelectedCat != null) {
           setSelectedCat(category.id);
         }
-
       }
-
     }
 
     if (category?.hasSubItems) {
@@ -101,31 +79,24 @@ export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, i
   };
 
   const handleOnClickSubItem = (subItem, category) => {
+    // console.log('fromsidebar', subItem)
 
     setSelected(subItem);
-    setSelectedParrent(category)
-    setIsDrawerOpen(false)
+    setSelectedParrent(category);
+    setIsDrawerOpen(false);
 
     if (directoryNavigate) {
       router.push(`/directory/${subItem?.id}`);
-    }
-
-    else if (isNavigate) {
+    } else if (isNavigate) {
       router.push(`/${isNavigate}`);
-
-    }
-    else if (subItem?.link) {
-
+    } else if (isAboutNavigate) {
+      router.push(`/about/${subItem?.slug}`);
+    } else if (subItem?.link) {
       router.push(`${subItem?.link}`);
-    }
-    else {
+    } else {
       setSelectedCat(subItem.id);
     }
-
-
   };
-
-
 
   return (
     <div className="bg-white rounded-[20px] border border-[#C9E9BA] overflow-hidden shadow-sm ">
@@ -147,31 +118,27 @@ export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, i
               <button
                 onMouseEnter={() => setHovered(category.id)}
                 onMouseLeave={() => setHovered("")}
-                onClick={() =>
-                  handleOnClickItem(category)
-
-                }
+                onClick={() => handleOnClickItem(category)}
                 className={`group w-full h-[60px] px-4 py-3 flex items-center gap-3  transition-all
                    
-                  ${isExpanded || category.id == hovered || category?.id == selected?.id || category?.id==selectedSlug
-                    ? "gradient-bg-sidebar-item text-white rounded-t-[10px]"
-                    : "bg-[#EEF8E9] rounded-[10px]"
+                  ${
+                    isExpanded ||
+                    category.id == hovered ||
+                    category?.id == selected?.id ||
+                    category?.id == selectedSlug
+                      ? "gradient-bg-sidebar-item text-white rounded-t-[10px]"
+                      : "bg-[#EEF8E9] rounded-[10px]"
                   }
-                  `
-                }
-
+                  `}
               >
                 {/* Icon with hover/active change */}
                 <span className="relative flex-shrink-0 w-[42px] h-[42px]">
-
                   <img
                     src={category?.icon}
                     alt={category?.name + " icon"}
                     className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-200
-                      group-hover:brightness-0 group-hover:invert  ${(isExpanded || category.id == hovered || category?.id == selected?.id || category?.id==selectedSlug ) && "brightness-0 invert"}`}
-
+                      group-hover:brightness-0 group-hover:invert  ${(isExpanded || category.id == hovered || category?.id == selected?.id || category?.id == selectedSlug) && "brightness-0 invert"}`}
                   />
-
                 </span>
 
                 {/* <span className="relative flex-shrink-0 w-[42px] h-[42px]">
@@ -195,19 +162,27 @@ export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, i
                 {/* Text Content */}
                 <div className="flex-1 text-left">
                   <p
-                    className={`font-bold text-sm transition-colors ${(isExpanded || category.id == hovered || category?.id == selected?.id || category?.id==selectedSlug)
-                      ? "text-white"
-                      : "text-[#B98C20] group-hover:text-white"
-                      }`}
+                    className={`font-bold text-sm transition-colors ${
+                      isExpanded ||
+                      category.id == hovered ||
+                      category?.id == selected?.id ||
+                      category?.id == selectedSlug
+                        ? "text-white"
+                        : "text-[#B98C20] group-hover:text-white"
+                    }`}
                   >
                     {category?.name}
                   </p>
                   {category?.subtitle && (
                     <p
-                      className={`text-sm font-bold transition-colors ${(isExpanded || category.id == hovered || category?.id == selected?.id || category?.id==selectedSlug)
-                        ? "text-white"
-                        : "text-[#00401A] group-hover:text-white"
-                        }`}
+                      className={`text-sm font-bold transition-colors ${
+                        isExpanded ||
+                        category.id == hovered ||
+                        category?.id == selected?.id ||
+                        category?.id == selectedSlug
+                          ? "text-white"
+                          : "text-[#00401A] group-hover:text-white"
+                      }`}
                     >
                       {category?.subtitle}
                     </p>
@@ -218,10 +193,11 @@ export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, i
                 {category?.hasSubItems ? (
                   <ChevronDown
                     size={24}
-                    className={`flex-shrink-0 transition-transform ${(isExpanded)
-                      ? "rotate-180 text-white"
-                      : "text-[#141B34] group-hover:text-white"
-                      }`}
+                    className={`flex-shrink-0 transition-transform ${
+                      isExpanded
+                        ? "rotate-180 text-white"
+                        : "text-[#141B34] group-hover:text-white"
+                    }`}
                   />
                 ) : category?.isArrow ? (
                   <ChevronRight
@@ -244,14 +220,18 @@ export default function Sidebar({ setIsDrawerOpen, categories, setSelectedCat, i
                     >
                       <div className="flex flex-col leading-tight font-semibold">
                         <span>{subItem?.name}</span>
-                        <span className="text-sm text-gray-600">{subItem?.description}</span>
+                        <span className="text-sm text-gray-600">
+                          {subItem?.description}
+                        </span>
                       </div>
-                      <ChevronRight size={20} className="text-[#141B34] flex-shrink-0" />
+                      <ChevronRight
+                        size={20}
+                        className="text-[#141B34] flex-shrink-0"
+                      />
                     </button>
                   ))}
                 </div>
               )}
-
             </div>
           );
         })}

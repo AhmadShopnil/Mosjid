@@ -1,6 +1,19 @@
 import { BASE_URL } from "./baseUrl";
 
 
+
+export async function getAboutCat(slug, perPage=1) {
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=about_info&category_slug=${slug}&per_page=${perPage}`;
+
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+  return json?.data || [];
+}
+
+
+
 export async function getSettings() {
   const API_URL = `${BASE_URL}/api/v1/frontend/settings`;
 

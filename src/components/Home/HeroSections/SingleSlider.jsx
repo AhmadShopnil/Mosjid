@@ -10,6 +10,7 @@ import React from 'react'
 export default function SingleSlider({ slide, read_more_button }) {
 
     const logo = getImageFromExtraFields(slide, "slider_logo") || "";
+    const button_link=getMetaValueFromExtraFields(slide, "button_link_slider")
 
     return (
         <div className="relative h-full w-full">
@@ -56,7 +57,7 @@ export default function SingleSlider({ slide, read_more_button }) {
                         </p>
                     </div>
                     <Link
-                        href="/about"
+                        href={`/${button_link}`}
                         className="bg-[#F7BA2A] px-5 py-4 rounded-[10px] text-[#00401A] text-xl font-semibold w-[148px]
                     h-[60px]"
                     >
