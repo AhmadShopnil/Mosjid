@@ -177,7 +177,7 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
         />
       </div>
       {/* heading */}
-      <p className="text-sm mb-2.5 text-center sm:text-start ml-1">Last Update: {updated_time}</p>
+      <p className="text-sm mb-2.5 text-center sm:text-start ml-1" suppressHydrationWarning>Last Update: {updated_time}</p>
 
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
 
@@ -260,17 +260,17 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
             <thead>
               <tr className="bg-[#FED6D6] text-[#00401A]  text-bold text-lg">
                 <th className="p-3 text-left flex flex-col ">
-                <span>{name_of_salat?.value}</span>
+                  <span>{name_of_salat?.value}</span>
                   <span>{name_of_salat_jp?.value}</span>
                 </th>
-              
+
                 <th className="p-3">
-                <span> {prohibited_time_start?.value}</span>
+                  <span> {prohibited_time_start?.value}</span>
                   <br />
                   <span>{prohibited_time_start_jp?.value}</span>
                 </th>
                 <th className="p-3">
-                <span> {prohibited_time_end?.value}</span>
+                  <span> {prohibited_time_end?.value}</span>
                   <br />
                   <span>   {prohibited_time_end_jp?.value}</span>
                 </th>

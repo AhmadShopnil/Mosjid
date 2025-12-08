@@ -33,7 +33,6 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
 
 
     useEffect(() => {
-       
         clearSelected();
         clearSelectedParrent();
 
@@ -47,7 +46,6 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
             setLoading(true)
             let url = `/posts?term_type=about_info&category_slug=${slug}&page=${currentPage}&per_page=${perPage}`
           
-
             try {
                 const response = await axiosInstance.get(url)
                 const data = response?.data?.data || []
@@ -88,7 +86,6 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
                         { label: "About", link: "/about" },
                         { label: selectedParrent?.name, link: "/about" },
                         { label: selected?.name, link: null },
-
                     ]}
                 />
 
@@ -127,13 +124,8 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
                         <>
                             <p className="text-sm md:text-base lg:text-lg text-center">
                                 No data Found
-                                {/* <span>{selected?.name}</span> */}
                             </p>
 
-                            {/* <p className="text-sm md:text-base lg:text-lg text-center">
-                                No data found
-                                <span>{selected?.description}</span>
-                            </p> */}
                         </>
                     )}
                 </div>

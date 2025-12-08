@@ -199,7 +199,7 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
       </div>
 
       {/* Heading */}
-      <p className="text-sm mb-2.5 text-center sm:text-start ml-1">Last Update: {updated_time}</p>
+      <p className="text-sm mb-2.5 text-center sm:text-start ml-1" suppressHydrationWarning>Last Update: {updated_time}</p>
       {/* <p className="text-sm mb-2.5 text-center sm:text-start ml-1">{prayer_time?.short_description}</p> */}
 
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6">

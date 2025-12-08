@@ -32,9 +32,9 @@ export default function NoticeBoard({ settings, notices, homePage }) {
   };
 
 
-const updatedAtArray = getUpdatedAtArray(notices);
-const updated_time =getMostRecentTime(updatedAtArray)
-// console.log({dates})
+  const updatedAtArray = getUpdatedAtArray(notices);
+  const updated_time = getMostRecentTime(updatedAtArray)
+  // console.log({dates})
 
 
 
@@ -45,7 +45,7 @@ const updated_time =getMostRecentTime(updatedAtArray)
       style={{ backgroundImage: "url('/images/home/noticeBg.png')" }}
     >
       {/* heading */}
-      <p className="text-sm mb-2 text-center sm:text-start">
+      <p className="text-sm mb-2 text-center sm:text-start" suppressHydrationWarning>
         Last Update: {updated_time}
         {/* {notice_Extra_data?.short_description} */}
       </p>

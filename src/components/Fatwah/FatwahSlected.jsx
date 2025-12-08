@@ -19,7 +19,7 @@ export default function FatwahSlected({ settings, homePage }) {
     const [fatwahs, setFatwahs] = useState([]);
     const [loading, setLoading] = useState(false);
 
-//   console.log("Test 2")
+    //   console.log("Test 2")
 
 
     useEffect(() => {
@@ -36,20 +36,12 @@ export default function FatwahSlected({ settings, homePage }) {
                     if (selectedSection?.name_en) params.append("section", selectedSection.name_en);
                     if (selectedSearchTerm) params.append("s", selectedSearchTerm);
 
-
-
-                    // const apiUrl = `https://admin.osakamasjid.org/api/v1/fatwa?${params.toString()}`;
                     const apiUrl = `/fatwa?${params.toString()}`;
-
-                    // console.log("apiUrl", apiUrl)
                     const response = await axiosInstance.get(apiUrl)
-                    const data = response?.data?.data || []
-                    const meta = response?.data?.meta || {}
-                    // const res = await fetch(apiUrl);
-                    // const data = await res.json();
-                    // console.log("res data", data)
+                    const data = response?.data?.data?.data || []
 
-                    setFatwahs(data?.data || []);
+                    setFatwahs(data || []);
+
                 } catch (error) {
                     console.error("Error fetching filtered fatwa:", error);
                 } finally {
