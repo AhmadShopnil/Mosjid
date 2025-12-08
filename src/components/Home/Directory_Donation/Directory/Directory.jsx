@@ -126,8 +126,8 @@ export default async function Directory() {
               <Image
                 src={item?.image}
                 alt='a1'
-                width={55}
-                height={55}
+                width={60}
+                height={60}
               />
             </div>
             <p className="mt-2 text-base font-bold text-gray-700">{item?.name}</p>

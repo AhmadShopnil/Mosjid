@@ -7,6 +7,7 @@ import axiosInstance from "@/helper/axiosInstance";
 import FatwaListSkeleton from "../Shared/Skeleton/FatwaListSkeleton";
 
 export default function FatwahSearchResult({ settings, homePage }) {
+
     const {
         selectedMajhabs,
         selectedBooks,
@@ -43,13 +44,13 @@ export default function FatwahSearchResult({ settings, homePage }) {
                     // const apiUrl = `https://admin.osakamasjid.org/api/v1/fatwa?${params.toString()}`;
                     const apiUrl = `/fatwa?${params.toString()}`;
 
-                    console.log("apiUrl", apiUrl)
+                    // console.log("apiUrl", apiUrl)
                     const response = await axiosInstance.get(apiUrl)
                     const data = response?.data?.data || []
                     const meta = response?.data?.meta || {}
                     // const res = await fetch(apiUrl);
                     // const data = await res.json();
-                    console.log("res data", data)
+                    // console.log("res data", data)
 
                     setFatwahs(data?.data || []);
                 } catch (error) {
@@ -71,12 +72,12 @@ export default function FatwahSearchResult({ settings, homePage }) {
         selectedSearchTerm,
     ]);
 
-   
+
 
     return (
         <div>
             {loading ? (
-                 <FatwaListSkeleton />
+                <FatwaListSkeleton />
             ) : (
                 <FatwaListInner
                     title="Fatwa Finder Results"

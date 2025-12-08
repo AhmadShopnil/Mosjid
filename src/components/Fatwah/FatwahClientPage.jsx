@@ -54,15 +54,13 @@ export default function FatwahClientPage({ settings, homePage, books, data_for_f
       try {
 
 
-        const apiUrl = `/fatwa?is_featured=Yes`;
+        // const apiUrl = `/fatwa?is_featured=Yes`;
+          const apiUrl = `/fatwa`;
 
-        // console.log("apiUrl", apiUrl)
         const response = await axiosInstance.get(apiUrl)
         const data = response?.data?.data || []
         const meta = response?.data?.meta || {}
-        // const res = await fetch(apiUrl);
-        // const data = await res.json();
-        // console.log("res data featured", data)
+     
 
         setFatwahs(data?.data || []);
 
