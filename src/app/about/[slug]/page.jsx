@@ -16,7 +16,7 @@ export default async function page({ params }) {
 
     const formattedCategories = transformNoticeCategories(cat);
 
-    // console.log("formattedCategories", formattedCategories);
+
 
 
     return (

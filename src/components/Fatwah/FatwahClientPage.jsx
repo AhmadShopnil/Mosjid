@@ -34,7 +34,7 @@ export default function FatwahClientPage({ settings, homePage, books, data_for_f
 
   const [fatwahs, setFatwahs] = useState([]);
   const [topRatedFatwahs, setTopRated] = useState([]);
-  const [loading, setLoading] = useState(false);
+
 
 
 
@@ -47,43 +47,33 @@ export default function FatwahClientPage({ settings, homePage, books, data_for_f
 
 
   useEffect(() => {
-
     async function fetchFilteredFatwa() {
-      setLoading(true);
 
       try {
-
-
         // const apiUrl = `/fatwa?is_featured=Yes`;
-          const apiUrl = `/fatwa`;
+        const apiUrl = `/fatwa`;
 
         const response = await axiosInstance.get(apiUrl)
-        const data = response?.data?.data || []
-        const meta = response?.data?.meta || {}
-     
+        const data = response?.data?.data?.data || []
 
-        setFatwahs(data?.data || []);
+
+        setFatwahs(data || []);
+
+   
 
       } catch (error) {
         console.error("Error fetching filtered fatwa:", error);
       } finally {
-        setLoading(false);
+ 
       }
     }
 
     fetchFilteredFatwa();
+  }, []);
 
 
 
-  }, [
-
-  ]);
-
-
-
-
-
-
+  // console.log("Test")
 
 
   const requestData = "Fatwa"
@@ -92,7 +82,7 @@ export default function FatwahClientPage({ settings, homePage, books, data_for_f
     <div>
 
       <div>
-        <BannerInnerFatwa  />
+        <BannerInnerFatwa />
         {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Fatwah" /> */}
         <BreadcrumbForNested
           items={[
