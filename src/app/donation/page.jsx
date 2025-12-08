@@ -10,11 +10,16 @@ import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
 export default async function page() {
   const settings = await getSettings();
   const homePage = await getPage("home-sections-heading-management")
-  const cat = await getCategories("donation_categories")
+  const categories = await getCategories("donation_categories")
 
-  const formattedCategories = transformNoticeCategories(cat);
+
+const activeCategories=categories?.filter((cat)=>cat?.is_status !="draft")
+
+  const formattedCategories = transformNoticeCategories(activeCategories);
  const allDonationsList = await getDonationsMethods()
- 
+
+
+//  console.log({formattedCategories})
 
 
   return (

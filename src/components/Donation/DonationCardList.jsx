@@ -29,7 +29,7 @@ export default function DonationCardList({ allDonationsList }) {
 
             <Container>
                 <div className=' flex justify-center border-b-2 border-b-[#53b92089] pb-6'>
-                    <h4 className='text-xl md:text-2xl lg:text-3xl text-[#000000] font-bold '>
+                    <h4 className='text-xl md:text-2xl lg:text-3xl text-[#00401A] font-bold '>
                         Select Your <span className='text-[#F7BA2A]'>Donation</span>
                     </h4>
                     {/* <h4 className='text-xl md:text-2xl lg:text-3xl text-[#000000] font-bold '>

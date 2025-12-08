@@ -69,10 +69,15 @@ export default function FatwaDetailSection({ singleFatwah }) {
 
         {/* Fatwa Body */}
         <div className=" text-sm md:text-base leading-relaxed text-[#595959]">
-          <p>
-               {singleFatwah?.description_ja}
-            {/* {singleFatwah?.description_en} */}
-          </p>
+          {/* <p>
+            {singleFatwah?.description_ja}
+           
+          </p> */}
+
+          <div
+            className="text-sm md:text-base leading-relaxed text-[#595959]"
+            dangerouslySetInnerHTML={{ __html:singleFatwah?.description_ja }}
+          />
         </div>
 
         {/* Footer Section */}

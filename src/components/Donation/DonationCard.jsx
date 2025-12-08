@@ -16,15 +16,17 @@ export default function DonationCard({ data, handleOpenModal }) {
 
 
             <div className='absolute flex justify-center'>
-                <div className='right-3 top-0 mx-auto rounded-full  w-[374px] h-[364px] bg-white'>
-                    <Image
+                <div className='right-3 top-0 mx-auto rounded-full  w-[374px] h-[364px] bg-white border-[#C9E9BA] border-1'>
+                 <div className='border-6 border-[#f3b82ea9] rounded-full '>
+                       <Image
                         src={data?.featured_image}
                         // src={data?.featured_image || "/images/donation/Donation.svg"}
                         alt='a1'
-                        width={254}
-                        height={254}
-                        className='rounded-full w-[374px] h-[364px] border-5 border-[#FFDA82]'
+                        width={374}
+                        height={364}
+                        className='rounded-full w-[374px] h-[364px] ' 
                     />
+                 </div>
                 </div>
 
             </div>
