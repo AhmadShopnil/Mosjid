@@ -17,8 +17,8 @@ import SkeletonDescription from "../Shared/Skeleton/SkeletonDescription"
 
 
 export default function AboutInnerPage({ homePage, settings, formattedCategories, slug }) {
-    const { selected, setSelected, clearSelected } = useSelected();
-    const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
+    const { selected,  clearSelected } = useSelected();
+    const { selectedParrent, clearSelectedParrent } = useSelectedParrent();
 
 
     const [abouDatas, setAboutdatas] = useState([])
@@ -33,7 +33,7 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
 
 
     useEffect(() => {
-        // setSelected(null)
+       
         clearSelected();
         clearSelectedParrent();
 
@@ -46,9 +46,7 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
         const fetchAboutData = async () => {
             setLoading(true)
             let url = `/posts?term_type=about_info&category_slug=${slug}&page=${currentPage}&per_page=${perPage}`
-            // if (selectedCat) {
-            //     url = `/posts?term_type=about_info&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`
-            // }
+          
 
             try {
                 const response = await axiosInstance.get(url)
@@ -83,8 +81,7 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
     return (
         <div>
             <div>
-                {/* <BannerInnerPage /> */}
-                {/* <BannerInnerPageServerSide /> */}
+
                 <BreadcrumbForNested
                     items={[
                         { label: "Home", link: "/" },
@@ -95,12 +92,6 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
                     ]}
                 />
 
-                {/* <Breadcrumb
-                    paths={[
-                        { label: "About Us", link: "/about" },
-                        { label: abouDatas[0]?.name }, 
-                    ]}
-                /> */}
             </div>
 
             <Container className="flex gap-6 my-6">
@@ -134,14 +125,15 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
                         </div>
                     ) : (
                         <>
-                            <p className="text-sm md:text-base lg:text-lg text-center">{`No data Found  `}
-                                <span>{selected?.name}</span>
+                            <p className="text-sm md:text-base lg:text-lg text-center">
+                                No data Found
+                                {/* <span>{selected?.name}</span> */}
                             </p>
 
-                            <p className="text-sm md:text-base lg:text-lg text-center">
+                            {/* <p className="text-sm md:text-base lg:text-lg text-center">
                                 No data found
-                                {/* <span>{selected?.description}</span> */}
-                            </p>
+                                <span>{selected?.description}</span>
+                            </p> */}
                         </>
                     )}
                 </div>

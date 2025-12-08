@@ -19,7 +19,7 @@ export default function FatwahSlected({ settings, homePage }) {
     const [fatwahs, setFatwahs] = useState([]);
     const [loading, setLoading] = useState(false);
 
-
+//   console.log("Test 2")
 
 
     useEffect(() => {
