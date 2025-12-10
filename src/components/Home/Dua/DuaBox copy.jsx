@@ -1,4 +1,5 @@
-"use client";
+
+"use client"
 
 import Image from "next/image";
 import Link from "next/link";
@@ -7,14 +8,15 @@ import { splitBySlash } from "@/helper/splitBySpace";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { useState } from "react";
-import { motion } from "framer-motion";
 import DuaModal from "./DuaModal";
 
 export default function DuaBox({ homePage, settings, duas }) {
+
   const [selectedDua, setSelectedDua] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const sections = homePage?.sections_on_api;
+
 
   const dua_extraData = sections.find((s) => s.title_slug === "dua");
 
@@ -30,40 +32,35 @@ export default function DuaBox({ homePage, settings, duas }) {
 
   const read_more = getMetaValueByMetaName(settings, "read_more") || "";
 
+
   const handleOpenModal = (dua) => {
     setSelectedDua(dua);
     setIsModalOpen(true);
+    console.log("from dua  modal", dua)
   };
 
-  // Animation Variants
-  const itemVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.15,
-        duration: 0.55,
-        ease: "easeOut",
-      },
-    }),
-  };
+
+
 
   return (
     <div id="dua" className="px-4 py-12 relative">
-      {/* MAIN BOX */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="max-w-7xl mx-auto relative gradient-bg-fatwah
-        rounded-2xl shadow-lg overflow-hidden p-4 md:p-12"
+
+
+
+      {/* MAIN BOX – matches Fatwah container */}
+      <div
+        className="max-w-7xl mx-auto relative gradient-bg-fatwah rounded-2xl 
+        shadow-lg overflow-hidden p-4 md:p-12"
       >
-        {/* Background dua Image */}
-        <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[380px] p-3 opacity-5">
+        
+        {/* Background dua Image  */}
+        <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[380px]  p-3 opacity-5">
+
+          {/* <div className="absolute inset-0 bg-black/5 rounded-xl z-10"></div> */}
+          
           <Image
             src="/images/dua/Dua.svg"
+            // src="/images/fatwah/fatwahbg.png"
             alt="Mosque"
             width={400}
             height={400}
@@ -73,17 +70,18 @@ export default function DuaBox({ homePage, settings, duas }) {
 
         {/* CONTENT AREA */}
         <div className="relative w-full lg:w-[70%] z-10">
-          {/* Heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="flex justify-between mb-6"
-          >
-            {/* Left heading */}
+
+          {/* heading */}
+          <div className="flex justify-between mb-6">
+
+            {/* Left side heading */}
             <div className="flex gap-2 gradient-border_b pb-3">
-              <Image src={image_icon} alt="Book Icon" width={65} height={65} />
+              <Image
+                src={image_icon}
+                alt="Book Icon"
+                width={65}
+                height={65}
+              />
               <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
                 <p>
                   <span className="text-[#F7BA2A]">{heading_part_1}</span>{" "}
@@ -93,7 +91,7 @@ export default function DuaBox({ homePage, settings, duas }) {
               </div>
             </div>
 
-            {/* Right side */}
+            {/* Right side – Arabic + Button */}
             <div className="flex gap-4 items-center">
               <Image
                 src={arabic_image}
@@ -105,34 +103,29 @@ export default function DuaBox({ homePage, settings, duas }) {
 
               <Link
                 href="/dua"
-                className="px-5 sm:px-6 py-3 text-sm sm:text-base font-bold text-white 
-                border border-[#00401A] rounded-full bg-[#00401A]
-                hover:bg-[#00401A]/90 transition duration-300"
+                className="px-5 sm:px-6 py-3 text-sm sm:text-base
+                font-bold text-white border border-[#00401A] rounded-full bg-[#00401A]
+                hover:bg-[#00401A]/90 hover:text-white transition-colors duration-400 cursor-pointer"
               >
                 {find_more_dua_button?.value}
               </Link>
             </div>
-          </motion.div>
+          </div>
 
-          {/* DUA LIST */}
-          <ul className="grid grid-cols-1 gap-4">
-            {duas.map((dua, i) => (
-              <motion.li
+          {/* DUA LIST – matches Fatwah list style */}
+          <ul className="grid grid-cols-1  gap-4">
+            {duas.map((dua) => (
+              <li
                 key={dua.id}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                variants={itemVariants}
                 className="flex justify-between items-center border bg-white
-                border-[#D9E2DD] p-1.5 rounded-full"
+                border-[#D9E2DD] p-1.5 rounded-full relative z-10"
               >
                 {/* Left side */}
                 <div className="flex items-center gap-2 sm:gap-4">
-                  <div
-                    className="border border-[#E6ECE8] bg-[#F2F2F2] 
-                      rounded-full p-1.5 md:p-2"
-                  >
+
+                  {/* Icon */}
+                  <div className="border border-[#E6ECE8] bg-[#F2F2F2] 
+                    rounded-full p-1.5 md:p-2">
                     <Image
                       src="/images/dua/icon.png"
                       alt="icon"
@@ -149,17 +142,18 @@ export default function DuaBox({ homePage, settings, duas }) {
                     />
                   </div>
 
+                  {/* Title + Read More */}
                   <div>
                     <p className="text-[#00401A] truncate w-[110px] sm:w-[250px] md:w-[420px] 
-                      text-sm md:text-lg font-bold"
-                    >
+                      text-sm md:text-lg font-bold">
                       {dua?.sub_title}
                     </p>
 
                     <button
+                      // href={`/dua/${dua.id}`}
                       onClick={() => handleOpenModal(dua)}
                       className="text-[#00401A] font-bold text-xs md:text-sm hover:text-[#F7BA2A] 
-                      flex gap-1 items-center"
+                      flex gap-1 items-center cursor-pointer"
                     >
                       {read_more}
                       <span className="mt-0.5">
@@ -168,12 +162,12 @@ export default function DuaBox({ homePage, settings, duas }) {
                     </button>
                   </div>
                 </div>
-              </motion.li>
+              </li>
             ))}
           </ul>
-        </div>
-      </motion.div>
 
+        </div>
+      </div>
       <DuaModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

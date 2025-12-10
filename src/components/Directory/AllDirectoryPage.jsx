@@ -156,8 +156,8 @@ export default function AllDirectoryPage({ settings, homePage, slug, filterData,
                 <div className=' w-full space-y-6'>
                     {/* Header */}
                     <InnerHeader title={directory_extradata?.sub_title} image={arabic_image} />
-                    <div className='w-full'>
-                        <div className='w-full lg:w-[80%] py-3'>
+                    <div className='w-full '>
+                        <div className='w-full py-3'>
                             <DirectorySearchInnerPage
                                 filterData={filterData}
                                 setSelected={handleSetSelectByLocations}

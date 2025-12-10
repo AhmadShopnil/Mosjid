@@ -1,4 +1,4 @@
-import { getSettings } from '@/helper/actions';
+"use client"
 import { getMetaValueByMetaName, getMetaValueFromExtraFields } from '@/helper/metaHelpers';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,8 +18,8 @@ const colorClasses = [
     'bg-amber-100 ',
 ];
 
-export default async function EventCard({ event, index = 0 }) {
-    const settings = await getSettings();
+export default  function EventCard({ event, index = 0, settings }) {
+
 
     const read_more_button_text = getMetaValueByMetaName(settings, "read_more") || "";
 
@@ -50,26 +50,26 @@ export default async function EventCard({ event, index = 0 }) {
 
 
             {/* Notice Text */}
-         
-                <div className='flex flex-col justify-between my-1 w-full'>
-                    <p className="text-[#00401A] text-sm">{event?.sub_title.slice(0, 50)}</p>
-                    <Link
-                        href={`/events/${event?.slug}`}
-                        className="mt-2 text-xs font-semibold text-[#001609]
+
+            <div className='flex flex-col justify-between my-1 w-full'>
+                <p className="text-[#00401A] text-sm">{event?.sub_title.slice(0, 50)}</p>
+                <Link
+                    href={`/events/${event?.slug}`}
+                    className="mt-2 text-xs font-semibold text-[#001609]
                  cursor-pointer hover:text-[#F7BA2A] flex gap-2 items-center "
-                    >
-                        <span
-                            className='mt-0.5'
-                        >{read_more_button_text} </span>
-                        <Image
-                            src="/images/blogEvents/arrow.png"
-                            alt='a1'
-                            width={18}
-                            height={18}
-                        />
-                    </Link>
-                </div>
-        
+                >
+                    <span
+                        className='mt-0.5'
+                    >{read_more_button_text} </span>
+                    <Image
+                        src="/images/blogEvents/arrow.png"
+                        alt='a1'
+                        width={18}
+                        height={18}
+                    />
+                </Link>
+            </div>
+
         </div>
     )
 }

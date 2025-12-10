@@ -1,4 +1,5 @@
-import { getSettings } from "@/helper/actions";
+"use client"
+
 import { getDay_Month_Year } from "@/helper/formateDate";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import Image from "next/image";
@@ -7,8 +8,8 @@ import React from "react";
 import { BsArrowUpRightCircle } from "react-icons/bs";
 
 
-export default async function BlogCardHome({ blog }) {
-  const settings = await getSettings();
+export default  function BlogCardHome({ blog,settings }) {
+
 
   const read_more_button_text = getMetaValueByMetaName(settings, "read_more") || "";
   const day = getDay_Month_Year(blog?.created_at, "day")

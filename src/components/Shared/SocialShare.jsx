@@ -7,42 +7,42 @@ export default function SocialShare() {
         <div className="  flex items-center gap-4 text-[#D9E2DD]">
             <div className="border-r-2 border-gray-300 pr-3">
                 <Image
-                    src="/images/others/twiter.png"
+                    src="/images/social/twiter.svg"
                     alt='a1'
-                    width={23}
-                    height={23}
+                    width={24}
+                    height={24}
                 />
             </div>
             <div className="border-r-2 border-gray-300 pr-3">
                 <Image
-                    src="/images/others/fb.png"
+                    src="/images/social/facebook.svg"
                     alt='a1'
-                    width={15}
-                    height={15}
+                    width={24}
+                    height={24}
                 />
             </div>
             <div className="border-r-2 border-gray-300 pr-3">
                 <Image
-                    src="/images/others/whatsapp.png"
+                    src="/images/social/whatsapp.svg"
                     alt='a1'
-                    width={20}
-                    height={20}
+                    width={24}
+                    height={24}
                 />
             </div>
             <div className="border-r-2 border-gray-300 pr-3">
                 <Image
-                    src="/images/others/printer2.png"
+                    src="/images/social/printer.svg"
                     alt='a1'
-                    width={22}
-                    height={22}
+                    width={24}
+                    height={24}
                 />
             </div>
             <div>
                 <Image
-                    src="/images/others/download2.png"
+                    src="/images/social/download.svg"
                     alt='a1'
-                    width={22}
-                    height={22}
+                    width={24}
+                    height={24}
                 />
             </div>
 

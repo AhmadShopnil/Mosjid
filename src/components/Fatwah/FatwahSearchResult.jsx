@@ -61,7 +61,7 @@ export default function FatwahSearchResult({ settings, homePage }) {
             }
 
             fetchFilteredFatwa();
-        }, 500); //  debounce 
+        }, 1500); //  debounce 
 
         return () => clearTimeout(timeout); // cleanup for every key press
     }, [
