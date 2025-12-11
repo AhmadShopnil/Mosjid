@@ -267,7 +267,7 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
         {/* Table 2 */}
         <div
           className={`overflow-hidden rounded-[20px] border-b border-gray-200 
-    ${isDisabled ? "opacity-40 pointer-events-none grayscale" : ""}`}
+          ${isDisabled ? "opacity-40 pointer-events-none grayscale" : ""}`}
         >
           <table className="w-full text-sm hidden sm:table ">
             <thead>
@@ -293,7 +293,7 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
 
             <tbody>
               {ProhibitedTime.map((prayer, index) => (
-                <ProhibitedTimeTableRow key={index} prayer={prayer} />
+                <ProhibitedTimeTableRow key={index} prayer={prayer} settings={settings} />
               ))}
             </tbody>
           </table>
@@ -348,7 +348,7 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
         <span className=" ">禁止時間開始</span>
       </h4>
 
-      <ProhibitedTimeMobile prayerTimes={ProhibitedTime.slice(0, 4)} prayer_time={prayer_time} />
+      <ProhibitedTimeMobile prayerTimes={ProhibitedTime.slice(0, 4)} prayer_time={prayer_time} isDisabled={isDisabled}/>
       {/* bottom note */}
       <p className="mt-4 text-sm  text-[#FF0000]">
         {prayer_time?.description}
