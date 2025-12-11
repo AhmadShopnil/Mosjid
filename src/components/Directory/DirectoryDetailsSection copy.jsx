@@ -19,11 +19,11 @@ export default function DirectoryDetailsSection({ directory }) {
 
     // Helper function for cleaner UI blocks
     const InfoRow = ({ label, value }) => (
-        <div className="flex flex-col items-start  border border-[#E0E0E0] rounded-[10px] min-h-[50px]
+        <div className="flex flex-col sm:flex-row items-start sm:items-center border border-[#E0E0E0] rounded-[10px] min-h-[50px]
      overflow-hidden">
-            <div className="w-full  min-h-[50px] px-3 py-2 bg-[#e0e0e06d] flex items-center justify-between text-base text-[#000000]">
+            <div className="w-full sm:w-[35%] min-h-[50px] px-3 py-2 bg-[#e0e0e06d] flex items-center justify-between text-base text-[#000000]">
                 <span>{label}</span>
-                {/* <span className="hidden sm:inline">:</span> */}
+                <span className="hidden sm:inline">:</span>
             </div>
             <div className="flex-1 w-full px-3 py-2 text-[#333] break-words">{value || "-"}</div>
         </div>
@@ -34,7 +34,7 @@ export default function DirectoryDetailsSection({ directory }) {
             {/* Details Section */}
             <div className="gradient-border rounded-2xl p-4 sm:p-8 bg-white shadow-md">
 
-                <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
                     <Image
                         src="/images/directory/bg2.png"
                         alt="img"
@@ -43,7 +43,6 @@ export default function DirectoryDetailsSection({ directory }) {
                         className="object-contain transition-all duration-300"
                     />
                 </div>
-
 
 
 

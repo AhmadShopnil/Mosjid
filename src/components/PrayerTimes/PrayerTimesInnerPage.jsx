@@ -12,11 +12,22 @@ import ProhibitedTimeMobile from "../Home/PrayerTimesAndNotices/ProhibitedTimeMo
 import { formatPrayerData, mergePrayerTimes } from "@/helper/formatPrayerData";
 import axios from "axios";
 import { extractTimeUpdatedAt, getMostRecentTime } from "@/helper/extractTimeUpdatedAt";
+import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 
 
 
 export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, ProhibitedTime }) {
   const [loading, setLoading] = useState();
+
+
+  let isProhabitedActive = "";
+  if (settings) {
+    isProhabitedActive =
+      getMetaValueByMetaName(settings, "prohibited_time_active") || "";
+  }
+
+  const isDisabled = isProhabitedActive?.toLowerCase?.().trim() === "no";
+
 
   const [prayerTimesFromOutsideApi_Shafi, setPrayerTimesFromOusideApi_Shafi] = useState({});
   const [prayerTimesFromOutsideApi_Hanafi, setPrayerTimesFromOusideApi_Shafi_Hanafi] = useState([]);
@@ -254,8 +265,42 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
 
 
         {/* Table 2 */}
+        <div
+          className={`overflow-hidden rounded-[20px] border-b border-gray-200 
+    ${isDisabled ? "opacity-40 pointer-events-none grayscale" : ""}`}
+        >
+          <table className="w-full text-sm hidden sm:table ">
+            <thead>
+              <tr className="bg-[#FED6D6] text-[#00401A] text-bold text-lg">
+                <th className="p-3 text-left flex flex-col">
+                  <span>{name_of_salat?.value}</span>
+                  <span>{name_of_salat_jp?.value}</span>
+                </th>
 
-        <div className="overflow-hidden rounded-[20px] border-b border-gray-200 ">
+                <th className="p-3">
+                  <span>{prohibited_time_start?.value}</span>
+                  <br />
+                  <span>{prohibited_time_start_jp?.value}</span>
+                </th>
+
+                <th className="p-3">
+                  <span>{prohibited_time_end?.value}</span>
+                  <br />
+                  <span>{prohibited_time_end_jp?.value}</span>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {ProhibitedTime.map((prayer, index) => (
+                <ProhibitedTimeTableRow key={index} prayer={prayer} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+
+        {/* <div className="overflow-hidden rounded-[20px] border-b border-gray-200 ">
           <table className="w-full text-sm hidden sm:table ">
             <thead>
               <tr className="bg-[#FED6D6] text-[#00401A]  text-bold text-lg">
@@ -286,7 +331,7 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
               ))}
             </tbody>
           </table>
-        </div>
+        </div> */}
 
 
       </div>

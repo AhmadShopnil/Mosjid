@@ -19,11 +19,10 @@ export default function DuaModal({
   const header_left = getMetaValueFromExtraFields(dua, "header_left")
   const header_right = getMetaValueFromExtraFields(dua, "header_right")
   const dua_no = getMetaValueFromExtraFields(dua, "dua_no")
-  const dua_main = getMetaValueFromExtraFields(dua, "info_1")
   const pronunciation = getMetaValueFromExtraFields(dua, "info_2")
   const meaning = getMetaValueFromExtraFields(dua, "info_3")
-  const info_4 = getMetaValueFromExtraFields(dua, "info_4")
-  const info_5 = getMetaValueFromExtraFields(dua, "info_5")
+  const pronunciation_title = getMetaValueFromExtraFields(dua, "info_4")
+    const meaning_title = getMetaValueFromExtraFields(dua, "info_5")
   const note = getMetaValueFromExtraFields(dua, "note")
   const footer_info = getMetaValueFromExtraFields(dua, "footer_info")
 
@@ -38,7 +37,7 @@ export default function DuaModal({
       onClick={onClose}
     >
       <div
-        className="relative bg-white rounded-2xl shadow-lg max-w-3xl w-full p-6 md:p-10 overflow-y-auto max-h-[90vh]"
+        className="relative bg-white rounded-2xl shadow-lg max-w-3xl w-full p-6 md:p-10 overflow-y-auto max-h-[90vh] mt-20"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -100,14 +99,14 @@ export default function DuaModal({
               {/* Japanese Pronunciation Section */}
               <div className="space-y-10">
                 <div className="flex ">
-                  <span className="w-30 text-[#333333] text-base">{info_4} ：</span>
+                  <span className="w-30 text-[#333333] text-base">{pronunciation_title} ：</span>
                   <p className="text-[#333333] text-left">
                     {pronunciation}
                   </p>
                 </div>
 
                 <div className="flex  ">
-                  <span className="w-30 text-[#333333] text-base">{info_5} ：</span>
+                  <span className="w-30 text-[#333333] text-base">{meaning_title} ：</span>
                   <p className="text-[#333333] text-left">
                     {meaning}
                   </p>

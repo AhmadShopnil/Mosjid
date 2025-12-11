@@ -60,9 +60,9 @@ export default function NoticeDetailsModal({
         />
 
         {/* Divider + Icons */}
-        {/* <div className="border-t pt-4 flex items-center gap-3 text-[#D9E2DD]">
-        <SocialShare/>
-        </div> */}
+        <div className="border-t pt-4 flex items-center gap-3 text-[#D9E2DD]">
+          <SocialShare />
+        </div>
       </div>
     </div>
   );

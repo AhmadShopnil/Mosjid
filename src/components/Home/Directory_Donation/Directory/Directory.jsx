@@ -91,7 +91,7 @@ export default function Directory({ allDataFOrDirectory }) {
       </div>
 
       {/* Animated Directory Cards */}
-      <div className="mt-8 md:mt-11 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-4 2xl:grid-cols-5 gap-2.5">
+      <div className="mt-8 md:mt-11 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-4 2xl:grid-cols-5 gap-2">
         {directory_categories?.map((item, index) => (
           <motion.div
             key={item.id}
@@ -103,12 +103,12 @@ export default function Directory({ allDataFOrDirectory }) {
           >
             <Link
               href={`/directory/${item?.id}`}
-              className="gradient-borderDirectory h-[140px] flex flex-col items-center justify-center
-             bg-white rounded-[20px] px-3 py-3 transition cursor-pointer text-center 
+              className="gradient-borderDirectory h-[145px] flex flex-col items-center justify-center
+             bg-white rounded-[20px] px-2.5 py-3 transition cursor-pointer text-center 
              hover:bg-teal-50 hover:scale-[1.04] duration-300"
             >
-              <Image src={item?.image} alt="icon" width={60} height={60} />
-              <p className="mt-2 text-base font-bold text-gray-700">{item?.name}</p>
+              <Image src={item?.image} alt="icon" width={60} height={60} className="w-[60px] h-[60px]" />
+              <p className="mt-2 text-base font-bold text-[#00401A]">{item?.name}</p>
             </Link>
           </motion.div>
         ))}

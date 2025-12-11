@@ -8,6 +8,7 @@ export default function DirectoryRow({ directory, i, setSelectedDirectory }) {
     const directory_phone = getMetaValueFromExtraFields(directory, "directory_phone")
     const diretory_juma_time = getMetaValueFromExtraFields(directory, "diretory_juma_time")
     const directory_address = getMetaValueFromExtraFields(directory, "directory_address")
+    const directory_short_address = getMetaValueFromExtraFields(directory, "short_address")
     const directory_email = getMetaValueFromExtraFields(directory, "directory_email")
     const directory_website = getMetaValueFromExtraFields(directory, "directory_website")
     const directory_established = getMetaValueFromExtraFields(directory, "directory_established")
@@ -48,7 +49,7 @@ export default function DirectoryRow({ directory, i, setSelectedDirectory }) {
             <td
                 className="border border-gray-300 p-3 text-center"
             >
-                {directory_address}
+                {directory_short_address}
 
             </td>
 

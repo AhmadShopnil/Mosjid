@@ -47,7 +47,7 @@ export default function ImageGalleryInnerPage({ gallery, loading }) {
                 {images.map((image, index) => (
                   <div
                     key={image.id}
-                    className="relative group cursor-pointer overflow-hidden rounded-[10px] aspect-4/3"
+                    className="relative group cursor-pointer overflow-hidden rounded-[10px] aspect-4/3 shadow-md"
                     onClick={() => openModal(index)}
                   >
                     <img
@@ -206,7 +206,9 @@ export default function ImageGalleryInnerPage({ gallery, loading }) {
 /** Overlay icon on hover */
 function ImageOverlay() {
   return (
-    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center
+
+    ">
       <svg
         className="w-6 h-6 text-[#F7BA2A] opacity-0 group-hover:opacity-100 transition-opacity duration-200"
         fill="none"

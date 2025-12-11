@@ -9,6 +9,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import DuaModal from "./DuaModal";
+import { Download } from "lucide-react";
 
 export default function DuaBox({ homePage, settings, duas }) {
   const [selectedDua, setSelectedDua] = useState(null);
@@ -29,6 +30,7 @@ export default function DuaBox({ homePage, settings, duas }) {
   );
 
   const read_more = getMetaValueByMetaName(settings, "read_more") || "";
+  const download = getMetaValueByMetaName(settings, "download") || "";
 
   const handleOpenModal = (dua) => {
     setSelectedDua(dua);
@@ -61,7 +63,7 @@ export default function DuaBox({ homePage, settings, duas }) {
         rounded-2xl shadow-lg overflow-hidden p-4 md:p-12"
       >
         {/* Background dua Image */}
-        <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[380px] p-3 opacity-5">
+        <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[380px] p-3 opacity-15">
           <Image
             src="/images/dua/Dua.svg"
             alt="Mosque"
@@ -128,8 +130,9 @@ export default function DuaBox({ homePage, settings, duas }) {
                 border-[#D9E2DD] p-1.5 rounded-full"
               >
                 {/* Left side */}
+                <div className="flex  justify-between  items-center w-full gap-2 sm:gap-4">
                 <div className="flex items-center gap-2 sm:gap-4">
-                  <div
+                    <div
                     className="border border-[#E6ECE8] bg-[#F2F2F2] 
                       rounded-full p-1.5 md:p-2"
                   >
@@ -166,7 +169,18 @@ export default function DuaBox({ homePage, settings, duas }) {
                         <FaLongArrowAltRight />
                       </span>
                     </button>
+
                   </div>
+                </div>
+
+                  <button
+                    className="flex items-center gap-2 px-4 md:px-5 py-3 cursor-pointer gradient-border3 
+                      rounded-[100px] text-[#00401A] font-bold text-xs sm:text-sm md:text-lg"
+                  >
+                    {download}
+                    <Download className="w-5 h-5" />
+                  </button>
+
                 </div>
               </motion.li>
             ))}

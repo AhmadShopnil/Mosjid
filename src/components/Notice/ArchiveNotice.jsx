@@ -67,20 +67,20 @@ export default function ArchiveNotice({homePage}) {
                     {notices.map((notice, index) => (
                         <div
                             key={index}
-                            className="border border-[#D9E2DD] rounded-[10px] bg-white p-4 "
+                            className="border border-[#D9E2DD] rounded-[10px] bg-white p-4 flex flex-col justify-between "
                         >
                             {/* Top section with date + title + desc */}
                             <div className="flex gap-3">
                                 <div>
                                     {/* Date box */}
-                                    <div className=" rounded-md w-[70px] h-[70px] flex flex-col items-center justify-center py-1 bg-[#F2F2F2] text-[#00401A]">
+                                    <div className=" rounded-md w-[80px] h-[80px] flex flex-col items-center justify-center py-1 bg-[#F2F2F2] text-[#00401A]">
                                         <span className="text-3xl font-bold leading-tight ">
                                             {getDay_Month_Year(notice?.created_at, "day")}
                                         </span>
-                                        <span className="text-sm text-gray-600 leading-none">
+                                        <span className="text-[13px] text-gray-600 leading-none">
                                             {getDay_Month_Year(notice?.created_at, "month")}
                                         </span>
-                                        <span className="text-sm font-medium text-gray-500 leading-none">
+                                        <span className="text-[13px] font-medium text-gray-500 leading-none">
                                             {getDay_Month_Year(notice?.created_at, "year")}
                                         </span>
                                     </div>
