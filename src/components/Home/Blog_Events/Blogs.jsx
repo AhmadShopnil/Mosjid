@@ -18,7 +18,7 @@ export default function Blogs({ blogsAllData }) {
   //   getMetaValueByMetaName(settings, "view_more") ;
 
   // console.log("settings  from blogs home", settings)
-  console.log("view_more_button_text  from blogs home", view_more_button_text)
+  // console.log("view_more_button_text  from blogs home", view_more_button_text)
 
 
 
