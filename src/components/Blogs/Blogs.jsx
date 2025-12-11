@@ -9,13 +9,13 @@ import { getImageUrl } from '@/helper/getImageUrl';
 import BlogCardSkeletonList from '../Shared/Skeleton/BlogCardSkeletonList';
 import { useSelected } from '@/context/SelectedContext';
 
-export default function Blogs({ blogs, settings, homePage, loading, currentPage, setCurrentPage, totalPages,section_title }) {
+export default function Blogs({ blogs, settings, homePage, loading, currentPage, setCurrentPage, totalPages, section_title }) {
 
   const sections = homePage?.sections_on_api;
   const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
   const image = getImageUrl(blog_events_ExtraData?.image_media)
   const blogsSectionTitle = blog_events_ExtraData?.custom_information.find((item) => item.label === "top_blogs")
- 
+
   const view_more_button_text = getMetaValueByMetaName(settings, "view_more") || "";
 
   return (
@@ -30,19 +30,19 @@ export default function Blogs({ blogs, settings, homePage, loading, currentPage,
       </div>
       {/* Blogs */}
 
- {loading ? (
-  <BlogCardSkeletonList />
-) : blogs && blogs.length > 0 ? (
-  <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-5">
-    {blogs.map((blog, i) => (
-      <BlogCard key={i} blog={blog} settings={settings} />
-    ))}
-  </div>
-) : (
-  <div className="mt-6 text-center text-gray-500 text-lg">
-    No blogs found.
-  </div>
-)}
+      {loading ? (
+        <BlogCardSkeletonList />
+      ) : blogs && blogs.length > 0 ? (
+        <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-5">
+          {blogs.map((blog, i) => (
+            <BlogCard key={i} blog={blog} settings={settings} />
+          ))}
+        </div>
+      ) : (
+        <div className="mt-6 text-center text-gray-500 text-lg">
+          No blogs found.
+        </div>
+      )}
 
 
 

@@ -127,8 +127,6 @@ export default function DirectoryPageClient({ settings, homePage, slug, filterDa
 
 
     const getData = () => {
-        //  console.log("from get data skug",selected)
-        // console.log("from get data selected",selected)
         fetchData();
     }
 
@@ -159,7 +157,7 @@ export default function DirectoryPageClient({ settings, homePage, slug, filterDa
                     {/* Header */}
                     <InnerHeader title={directory_extradata?.sub_title} image={arabic_image} />
                     <div className='w-full'>
-                        <div className='w-full lg:w-[80%] py-3'>
+                        <div className='w-full  py-3'>
                             <DirectorySearchInnerPage
                                 filterData={filterData}
                                 setSelected={handleSetSelectByLocations}

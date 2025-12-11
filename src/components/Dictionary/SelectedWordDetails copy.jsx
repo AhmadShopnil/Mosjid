@@ -2,33 +2,20 @@ import Image from 'next/image';
 import React from 'react'
 import SocialShare from '../Shared/SocialShare';
 // Reusable Component
-// function LabelBox({ label, value }) {
-//   return (
-//     <div className="border border-[#E0E0E0] rounded-[10px] h-auto  md:h-[50px] flex">
-//       <div className=" w-[40%] sm:w-[30%] h-full px-3 py-2 md:py-0 bg-[#e0e0e06d] flex items-center justify-between text-base text-[#000000]">
-//         <span>{label}</span>
-//         <span>:</span>
-//       </div>
+function LabelBox({ label, value }) {
+  return (
+    <div className="border border-[#E0E0E0] rounded-[10px] h-auto  md:h-[50px] flex">
+      <div className=" w-[40%] sm:w-[30%] h-full px-3 py-2 md:py-0 bg-[#e0e0e06d] flex items-center justify-between text-base text-[#000000]">
+        <span>{label}</span>
+        <span>:</span>
+      </div>
 
-//       <div className="w-[70%] h-full px-3 flex items-center text-base text-black">
-//         {value || "—"}
-//       </div>
-//     </div>
-//   );
-// }
-
-
-const LabelBox = ({ label, value }) => (
-  <div className="flex flex-col items-start  border border-[#E0E0E0] rounded-[10px] min-h-[50px]
-     overflow-hidden">
-    <div className="w-full  min-h-[50px] px-3 py-2 bg-[#e0e0e06d] flex items-center justify-between text-base text-[#000000]">
-      <span>{label}</span>
-      {/* <span className="hidden sm:inline">:</span> */}
+      <div className="w-[70%] h-full px-3 flex items-center text-base text-black">
+        {value || "—"}
+      </div>
     </div>
-    <div className="flex-1 w-full px-3 py-2 text-[#333] break-words">{value || "-"}</div>
-  </div>
-);
-
+  );
+}
 
 export default function SelectedWordDetails({ selectedItem }) {
   return (
@@ -36,19 +23,15 @@ export default function SelectedWordDetails({ selectedItem }) {
       <div className="gradient-border rounded-2xl p-4 sm:p-6 md:p-8 bg-white shadow-md relative">
 
 
-
-        <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 py-4">
           <Image
             src="/images/directory/bg2.png"
             alt="img"
-            width={340}
-            height={425}
+            width={330}
+            height={410}
             className="object-contain transition-all duration-300"
           />
         </div>
-
-
-
 
         <div className="bg-[#E5F5DE] h-[50px] flex items-center justify-center rounded-[8px] mb-6">
           <h2 className="text-center text-xl font-semibold text-[#00401A]">

@@ -6,6 +6,7 @@ import BankInfo from './BankInfo'
 import { getImageUrl } from '@/helper/getImageUrl';
 import { splitBySlash, splitBySpace } from '@/helper/splitBySpace';
 import Link from 'next/link';
+import { getMetaValueFromExtraFields } from '@/helper/metaHelpers';
 
 function MakeDonation({ donationMethods, make_your_donation }) {
   const [activeTab, setActiveTab] = useState(donationMethods[0]);
@@ -14,20 +15,20 @@ function MakeDonation({ donationMethods, make_your_donation }) {
   const heading_part_2 = splitBySlash(make_your_donation?.title)[1]
 
   const image_arabic = getImageUrl(make_your_donation?.image_media);
-    const icon = getImageUrl(make_your_donation?.background_media);
+  const icon = getImageUrl(make_your_donation?.background_media);
 
-  
+  const corporation_title = getMetaValueFromExtraFields(activeTab, "corporation_title")
   const donate_now_button = make_your_donation?.custom_information?.find((item) => item.label === "donate_button") || " Donate Now"
-  const info_2 = make_your_donation?.custom_information?.find((item) => item.label === "info_2")  || "Religious Corporation Osaka Masjid"
 
 
-  // console.log("donate_now_button",donate_now_button)
+
+  // console.log("filteredDonations", donationMethods)
 
   return (
-    <div className='borderDonationHome shadow-lg bg-white  px-5 sm:px-8 pt-5 sm:pt-8 pb-20p-4 rounded-2xl'>
+    <div className='h-full borderDonationHome shadow-lg bg-white  px-5 sm:px-8 pt-5 sm:pt-8 pb-20p-4 rounded-2xl'>
 
 
-   <div
+      <div
         className="absolute right-0 top-1/5"
       >
         <Image
@@ -70,9 +71,9 @@ function MakeDonation({ donationMethods, make_your_donation }) {
           />
           <div className="flex items-center gap-3 sm:gap-4">
 
-            <Link 
-            href="/donation"
-            className="border border-[#00401A] text-[#001609] hover:bg-[#00401A] hover:text-white transition-colors duration-400
+            <Link
+              href="/donation"
+              className="border border-[#00401A] text-[#001609] hover:bg-[#00401A] hover:text-white transition-colors duration-400
                font-bold rounded-full px-5 py-2.5 text-sm sm:text-base cursor-pointer">
               {donate_now_button?.value}
             </Link>
@@ -102,8 +103,8 @@ function MakeDonation({ donationMethods, make_your_donation }) {
 
       <div className='pt-4'>
         <h3 className='text-base text-[#333333] mb-2'>{make_your_donation?.description} </h3>
-        <h2 className='text-xl font-bold text-[#00401A] gradient-border_b pb-2'>{info_2.value}</h2>
-        <BankInfo selectedDonation={activeTab}/>
+        <h2 className='text-xl font-bold text-[#00401A] gradient-border_b pb-2'>{corporation_title}</h2>
+        <BankInfo selectedDonation={activeTab} />
       </div>
 
 

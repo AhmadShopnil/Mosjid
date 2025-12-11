@@ -11,7 +11,11 @@ import DonationInputSection from './DonationInputSection';
 import { getMetaValueFromExtraFields } from '@/helper/metaHelpers';
 
 
-function MakeDonationInner({ donations, settings, homePage, loading, currentPage, setCurrentPage, totalPages, donationTitle }) {
+function MakeDonationInner({ donations,
+  settings,
+  homePage,
+
+  donationTitle }) {
   const [activeTab, setActiveTab] = useState(donations[0]);
 
   // console.log("donations", donations)
@@ -36,9 +40,9 @@ function MakeDonationInner({ donations, settings, homePage, loading, currentPage
           donate_now_button={donate_now_button}
           make_your_donation={make_your_donation}
           heading_part_1={heading_part_1}
-          heading_part_2={heading_part_2} 
+          heading_part_2={heading_part_2}
           settings={settings}
-          />
+        />
       </div>
 
       <div className='borderDonationHome shadow-md bg-white  px-5 sm:px-8 pt-5 sm:pt-8 pb-20p-4 rounded-2xl mt-6'>

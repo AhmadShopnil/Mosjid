@@ -286,6 +286,16 @@ export async function getPryerTime() {
 }
 
 export async function getDonationsMethods() {
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=donations&is_featured=Yes`;
+
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+  return json?.data || [];
+}
+
+export async function getAllDonationsMethods() {
   const API_URL = `${BASE_URL}/api/v1/posts?term_type=donations`;
 
   const res = await fetch(API_URL, {
@@ -354,6 +364,17 @@ export async function getUpdatesHeadline() {
 
 export async function getCategories(type) {
   const API_URL = `${BASE_URL}/api/v1/categories?taxonomy_type=${type}`;
+  // console.log("from action slug", slug)
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+  // console.log("from action", json)
+
+  return json?.data || {};
+}
+export async function getFeaturedCategories(type) {
+  const API_URL = `${BASE_URL}/api/v1/categories?taxonomy_type=${type}&order_direction=desc&is_featured=Yes`;
   // console.log("from action slug", slug)
   const res = await fetch(API_URL, {
     next: { revalidate: 30 },

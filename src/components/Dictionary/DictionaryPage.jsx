@@ -49,7 +49,7 @@ export default function DictionaryPage() {
 
 
     return (
-        <div className="bg-gray-50 space-y-4 ">
+        <div className=" space-y-4 ">
             {/* Table Section */}
             <div className="gradient-border rounded-2xl p-2 sm:p-4 md:p-8 bg-white shadow-md">
 

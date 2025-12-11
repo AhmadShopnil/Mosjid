@@ -71,9 +71,6 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
 
     const image_arabic = getImageUrl(about_ExtraData?.image_media);
     //   const icon = getImageUrl(about_ExtraData?.background_media);
-
-
-
     // console.log("about selected", selected)
 
     return (

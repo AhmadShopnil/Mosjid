@@ -12,7 +12,7 @@ export default function DirectoryPage({ directories, loading }) {
   return (
     <div className="space-y-4">
       {/* First Section - Table */}
-      <div className="gradient-border rounded-2xl p-4 sm:p-8 bg-white">
+      <div className="gradient-border rounded-2xl p-4 sm:p-8 bg-white shadow-md">
         {/* Table Header */}
         <div className="bg-[#52B920] h-[50px] text-white flex items-center justify-center rounded-t-[10px]">
           <h2 className="text-center text-lg sm:text-xl font-bold">

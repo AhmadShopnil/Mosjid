@@ -3,20 +3,26 @@ import Image from 'next/image'
 import React from 'react'
 import Blogs from './Blogs'
 import Events from './Events'
-import { getBlogs, getEvents, getPage } from '@/helper/actions'
+import { getBlogs, getEvents, getPage, getSettings } from '@/helper/actions'
 import { getImageUrl } from '@/helper/getImageUrl'
 import { splitBySlash } from '@/helper/splitBySpace'
+import { getMetaValueByMetaName } from '@/helper/metaHelpers'
 
 export default async function IslamicBlogEvents() {
-
+  const settings = await getSettings();
   const blogs = await getBlogs();
   const events = await getEvents();
   const homePage = await getPage("home-sections-heading-management")
+
+
+  const view_more_button_text =
+    getMetaValueByMetaName(settings, "view_more");
+
   const sections = homePage?.sections_on_api;
   const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
 
-  
- const heading_part_1 = splitBySlash(blog_events_ExtraData?.title)[0]
+
+  const heading_part_1 = splitBySlash(blog_events_ExtraData?.title)[0]
   const heading_part_2 = splitBySlash(blog_events_ExtraData?.title)[1]
 
   const image_arabic = getImageUrl(blog_events_ExtraData?.image_media);
@@ -27,13 +33,13 @@ export default async function IslamicBlogEvents() {
   const blogsSectionTitle = blog_events_ExtraData?.custom_information.find((item) => item.label === "top_blogs")
   const eventsSectionTitle = blog_events_ExtraData?.custom_information.find((item) => item.label === "upcoming_events")
   // const blog_events_title_2 = blog_events_ExtraData?.custom_information.find((item) => item.label === "blog_events_title_2")
-  
 
+  const blogsAllData = { view_more_button_text, blogsSectionTitle: blogsSectionTitle?.value, settings, blogs }
 
 
   return (
     <div
-    id='blogs-events'
+      id='blogs-events'
       className="  w-full"
       style={{
         backgroundImage: "url('/images/blogEvents/bg.png')",
@@ -51,7 +57,6 @@ export default async function IslamicBlogEvents() {
 
               <div className="flex justify-between items-center gap-2.5 gradient-border_b mb-4 sm:mb-0 pb-3  ">
                 <Image
-                  // src="/images/blogEvents/icon2.png"
                   src={icon}
                   alt='blogEvents'
                   width={60}
@@ -66,7 +71,7 @@ export default async function IslamicBlogEvents() {
                   <p>{blog_events_ExtraData?.sub_title}</p>
 
                 </div>
-              </div>      
+              </div>
             </div>
             {/* arabic text */}
             <div>
@@ -82,10 +87,10 @@ export default async function IslamicBlogEvents() {
           <div className='flex flex-col md:flex-row gap-4 mt-6'>
 
             <div className='w-full md:w-[60%] '>
-              <Blogs blogs={blogs} blogsSectionTitle={blogsSectionTitle?.value} />
+              <Blogs blogs={blogs} blogsSectionTitle={blogsSectionTitle?.value} settings={settings} blogsAllData={blogsAllData} />
             </div>
             <div className='w-full md:w-[40%] '>
-              <Events events={events} eventsSectionTitle={eventsSectionTitle?.value} />
+              <Events events={events} eventsSectionTitle={eventsSectionTitle?.value} settings={settings} />
             </div>
 
           </div>

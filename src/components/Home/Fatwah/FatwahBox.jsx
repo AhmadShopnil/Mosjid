@@ -6,16 +6,16 @@ import { getMetaValueByMetaName } from '@/helper/metaHelpers';
 import Link from 'next/link';
 import { getImageUrl } from '@/helper/getImageUrl';
 import { FaLongArrowAltRight } from "react-icons/fa";
+import FatwaListClient from './FatwaListClient';
+
 
 
 export default async function FatwahBox() {
 
   const fatwahs = await getFatwah();
-  // const fatwahs = await getFatwa();
   const settings = await getSettings()
   const view_more = getMetaValueByMetaName(settings, "view_more") || "";
-  const read_more = getMetaValueByMetaName(settings, "read_more") || "";
-  const download = getMetaValueByMetaName(settings, "download") || "";
+ 
   const homePage = await getPage("home-sections-heading-management")
   const sections = homePage?.sections_on_api;
   const fatwah_ExtraData = sections.find((s) => s.title_slug === "fatwah");
@@ -44,7 +44,6 @@ export default async function FatwahBox() {
         <div>
           <Image
             src={header_image}
-            // src="/images/fatwah/fatwahHeader.png"
             alt="Logo"
             width={200}
             height={181}
@@ -52,7 +51,6 @@ export default async function FatwahBox() {
           />
           <Image
             src={header_image}
-            // src="/images/fatwah/fatwahHeader.png"
             alt="Logo"
             width={150}
             height={80}
@@ -66,14 +64,13 @@ export default async function FatwahBox() {
           <div className="hidden sm:flex  flex-col justify-end items-end gap-3 ">
             <Image
               src={Arabic_header_image}
-              // src="/images/fatwah/fatwahArabicheader.png"
+              
               alt="Logo"
               width={515}
               height={70}
             />
             <p className='text-[#F7BA2A] font-semibold text-[20px]  '>{fatwah_Top_header_ExtraData?.sub_title}</p>
             {/* <Image
-           
               src="/images/fatwah/arabic3.png"
               alt="Logo"
               width={157}
@@ -85,7 +82,6 @@ export default async function FatwahBox() {
 
             <Image
               src={Arabic_header_image}
-              // src="/images/fatwah/fatwahArabicheader.png"
               alt="Logo"
               width={210}
               height={50}
@@ -128,7 +124,6 @@ export default async function FatwahBox() {
 
               <Image
                 src={penIcon}
-                // src="/images/fatwah/pen2.png"
                 alt="Book Icon"
                 width={65}
                 height={60}
@@ -165,59 +160,9 @@ export default async function FatwahBox() {
 
           </div>
           {/* List */}
-          <ul className="space-y-4">
-            {fatwahs?.data?.slice(0, 6).map((item) => (
-              <li
-                key={item.id}
-                className="flex justify-between items-center border bg-white
-                   border-[#D9E2DD] p-1.5  rounded-full relative z-10"
-              >
-                {/* Left Content */}
-                <div className="flex items-center gap-2 sm:gap-4">
-                  {/* icon */}
-                  <div
-                    className=" border border-[#E6ECE8] rounded-full p-1.5 md:p-2 w-[60px] h-[60px] "
-                  >
-                    <Image
-                        src={penIcon}
-                      alt="icon"
-                      width={45}
-                      height={45}
-                      className='hidden sm:flex'
-                    />
-                    <Image
-                       src={penIcon}
-                      alt="icon"
-                      width={40}
-                      height={40}
-                      className='flex sm:hidden'
-                    />
-                  </div>
-                  <div>
-                    <p className="text-[#00401A] truncate w-[110px] sm:w-[250px] md:w-[420px] 
-                     text-sm md:text-lg font-bold">
-                      {item?.word_ja}
-                    </p>
-                    <Link
-                      href={`/fatwah/${item?.id}`}
-                      className="text-[#00401A] font-bold text-xs md:text-sm hover:text-[#F7BA2A] 
-                      flex gap-1 items-center "
-                    >
-                      {read_more}
-                      <span className='mt-0.5'><FaLongArrowAltRight /></span>
-                    </Link>
-                  </div>
-                </div>
+          <FatwaListClient fatwahs={fatwahs} penIcon={penIcon} settings={settings}/>
+       
 
-                {/* Download Button */}
-                <button className="flex items-center gap-2 px-4 md:px-5 py-3 cursor-pointer gradient-border3 
-                  rounded-[100px] text-[#00401A] font-bold text-xs sm:text-sm md:text-lg  ">
-                  {download}
-                  <Download className="w-5 h-5" />
-                </button>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </div>

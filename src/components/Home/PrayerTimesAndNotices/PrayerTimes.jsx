@@ -43,11 +43,22 @@ export const rowVariant = {
 
 
 export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, homePage }) {
-
   const [prayerTimesFromOutsideApi_Shafi, setPrayerTimesFromOusideApi_Shafi] = useState([]);
   const [prayerTimesFromOutsideApi_Hanafi, setPrayerTimesFromOusideApi_Shafi_Hanafi] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+
+
+
+  let isProhabitedActive = "";
+  if (settings) {
+    isProhabitedActive =
+      getMetaValueByMetaName(settings, "prohibited_time_active") || "";
+  }
+  const isDisabled = isProhabitedActive?.toLowerCase?.().trim() === "no";
+
+
 
 
   const sections = homePage?.sections_on_api;
@@ -176,11 +187,7 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
   const formattedPrayerTimes = formatPrayerData(prayerTimes);
   const finalPrayerTimes = mergePrayerTimes(formattedPrayerTimes, prayerTimesDataFromOusideApi);
 
-
-
-
   const updatedAtArray = extractTimeUpdatedAt(prayerTimes);
-
   const updated_time = getMostRecentTime(updatedAtArray)
 
 
@@ -246,7 +253,7 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
               </tr>
             </thead>
 
-            {/* ⭐ ANIMATED TBODY ⭐ */}
+
             <motion.tbody variants={parentVariant} initial="hidden" animate="show">
               {finalPrayerTimes?.map((prayer, index) => (
                 <PrayerTimeTableRow key={index} prayer={prayer} index={index} />
@@ -256,7 +263,7 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
         </div>
 
         {/* PROHIBITED TIME TABLE */}
-        <div className="overflow-hidden rounded-[20px] border-b border-gray-200">
+        {/* <div className="overflow-hidden rounded-[20px] border-b border-gray-200">
           <table className="w-full text-sm hidden sm:table">
             <thead>
               <tr className="bg-[#FED6D6] text-[#00401A] text-bold text-lg">
@@ -277,6 +284,39 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
               </tr>
             </thead>
 
+            <motion.tbody variants={parentVariant} initial="hidden" animate="show">
+              {ProhibitedTime.map((prayer, index) => (
+                <ProhibitedTimeTableRow key={index} prayer={prayer} index={index} />
+              ))}
+            </motion.tbody>
+          </table>
+        </div> */}
+        <div
+          className={`overflow-hidden rounded-[20px] border-b border-gray-200
+          ${isDisabled ? "opacity-40 pointer-events-none grayscale" : ""}`}
+        >
+          <table className="w-full text-sm hidden sm:table">
+            <thead>
+              <tr className="bg-[#FED6D6] text-[#00401A] text-bold text-lg">
+                <th className="p-3 text-left flex flex-col">
+                  <span>{name_of_salat?.value}</span>
+                  <span>{name_of_salat_jp?.value}</span>
+                </th>
+
+                <th className="p-3">
+                  <span>{prohibited_time_start?.value}</span>
+                  <br />
+                  <span>{prohibited_time_start_jp?.value}</span>
+                </th>
+
+                <th className="p-3">
+                  <span>{prohibited_time_end?.value}</span>
+                  <br />
+                  <span>{prohibited_time_end_jp?.value}</span>
+                </th>
+              </tr>
+            </thead>
+
             {/* ⭐ ANIMATED TBODY ⭐ */}
             <motion.tbody variants={parentVariant} initial="hidden" animate="show">
               {ProhibitedTime.map((prayer, index) => (
@@ -285,6 +325,9 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
             </motion.tbody>
           </table>
         </div>
+
+
+
       </div>
 
       {/* Mobile Components */}
@@ -297,7 +340,7 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
         <span>禁止時間開始</span>
       </h4>
 
-      <ProhibitedTimeMobile prayerTimes={ProhibitedTime.slice(0, 4)} prayer_time={prayer_time} />
+      <ProhibitedTimeMobile prayerTimes={ProhibitedTime.slice(0, 4)} prayer_time={prayer_time} isDisabled={isDisabled} />
 
       <p className="mt-4 text-sm text-[#FF0000]">{prayer_time?.description}</p>
     </div>

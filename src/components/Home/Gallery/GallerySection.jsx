@@ -1,7 +1,8 @@
 import { getImageGallery, getPage, getSettings } from '@/helper/actions'
 import React from 'react'
-import ImageGallery from './ImageGallery'
+
 import { getMetaValueByMetaName } from '@/helper/metaHelpers';
+import GalleryClientComponent from './GalleryClientComponent';
 
 export default async function GallerySection() {
   const gallery = await getImageGallery();
@@ -22,7 +23,7 @@ export default async function GallerySection() {
     <div
     id='gallery'
     >
-      <ImageGallery gallery={gallery} img_gallery_Extradata={img_gallery_Extradata} view_more_button_text={view_more_button_text} />
+      <GalleryClientComponent gallery={gallery} img_gallery_Extradata={img_gallery_Extradata} view_more_button_text={view_more_button_text} />
     </div>
   )
 }

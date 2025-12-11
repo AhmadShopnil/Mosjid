@@ -2,7 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { getMetaValueFromExtraFields } from "@/helper/metaHelpers";
 
-export default function ProhibitedTimeMobile({ prayerTimes, prayer_time }) {
+export default function ProhibitedTimeMobile({ prayerTimes, prayer_time, isDisabled }) {
+
   const jamat_start = prayer_time?.custom_information.find(
     (item) => item.label === "jamat_start"
   );
@@ -16,36 +17,44 @@ export default function ProhibitedTimeMobile({ prayerTimes, prayer_time }) {
     (item) => item.label === "wakt_end"
   );
 
+  const prohibited_time_start_title = prayer_time?.custom_information.find(
+    (item) => item.label === "prohibited_time_start"
+  );
+  const prohibited_time_start_title_jp = prayer_time?.custom_information.find(
+    (item) => item.label === "prohibited_time_start_jp"
+  );
+  const prohibited_time_end_title = prayer_time?.custom_information.find(
+    (item) => item.label === "prohibited_time_end"
+  );
 
-
-  const prohibited_time_start_title = prayer_time?.custom_information.find((item) => item.label === "prohibited_time_start")
-  const prohibited_time_start_title_jp = prayer_time?.custom_information.find((item) => item.label === "prohibited_time_start_jp")
-  const prohibited_time_end_title = prayer_time?.custom_information.find((item) => item.label === "prohibited_time_end")
-
-  const prohibited_time_end_title_jp = prayer_time?.custom_information.find((item) => item.label === "wakt_end_jp")
-
-
+  const prohibited_time_end_title_jp = prayer_time?.custom_information.find(
+    (item) => item.label === "wakt_end_jp"
+  );
 
   return (
     <div className="mt-6 grid gap-5 sm:hidden">
       {prayerTimes?.map((prayer, index) => {
-
-        const prohibited_time_start = getMetaValueFromExtraFields(prayer, "prohibited-time-start")
-        const prohibited_time_end = getMetaValueFromExtraFields(prayer, "prohibited-time-end")
-
-
-        // const prayerTime = getMetaValueFromExtraFields(prayer, "time");
-        // const waktStartTime = getMetaValueFromExtraFields(prayer, "start_time");
-        // const waktStartTime_2 = getMetaValueFromExtraFields(
-        //   prayer,
-        //   "start_time_2"
-        // );
-        // const waktEndTime = getMetaValueFromExtraFields(prayer, "end_time");
+        const prohibited_time_start = getMetaValueFromExtraFields(
+          prayer,
+          "prohibited-time-start"
+        );
+        const prohibited_time_end = getMetaValueFromExtraFields(
+          prayer,
+          "prohibited-time-end"
+        );
 
         return (
           <div
             key={index}
-            className="rounded-2xl border border-gray-100 bg-gradient-to-tr from-[#F9FFF5] to-[#FFFFFF] p-3 shadow-md transition hover:shadow-lg"
+            className={`
+              rounded-2xl border border-gray-100 bg-gradient-to-tr from-[#F9FFF5] to-[#FFFFFF]
+              p-3 shadow-md transition
+              ${
+                isDisabled
+                  ? "opacity-40 grayscale pointer-events-none"
+                  : "hover:shadow-lg"
+              }
+            `}
           >
             {/* Header */}
             <div className="mb-4 flex items-center justify-between border-b-2 border-[#E5F5DE] pb-2">
@@ -65,38 +74,30 @@ export default function ProhibitedTimeMobile({ prayerTimes, prayer_time }) {
                     {prayer?.sub_title}
                   </span>
                 </div>
-
-
               </div>
-              {/* <span className="rounded-md bg-[#E6F3FF] px-3 py-1 text-md font-medium text-[#1D6FD6]">
-                {prayerTime}
-              </span> */}
             </div>
 
             {/* Times */}
             <div className="grid grid-cols-2 gap-3 text-center">
-
               <div className="flex flex-col items-center">
-                <span className="text-xs text-[#00401A]">{prohibited_time_start_title?.value}</span>
-                <span className="text-xs text-gray-500">{prohibited_time_start_title_jp?.value}</span>
-                <span className="mt-1 text-base font-medium text-[#3E8B18]  ">
+                <span className="text-xs text-[#00401A]">
+                  {prohibited_time_start_title?.value}
+                </span>
+                <span className="text-xs text-gray-500">
+                  {prohibited_time_start_title_jp?.value}
+                </span>
+                <span className="mt-1 text-base font-medium text-[#3E8B18]">
                   {prohibited_time_start}
                 </span>
-                {/* {waktStartTime_2 && (
-                  <span className="text-sm font-medium text-[#3E8B18] border-t-1 border-gray-300">
-                    {waktStartTime_2}
-                  </span>
-                )} */}
               </div>
-              {/* <div className="flex flex-col items-center">
-                <span className="text-xs text-gray-500">{jamat_start?.value}</span>
-                <span className="mt-1 text-base font-medium text-[#56410F]">
-                  {prayerTime}
-                </span>
-              </div> */}
+
               <div className="flex flex-col items-center">
-                <span className="text-xs text-[#00401A]">{prohibited_time_end_title?.value}</span>
-                <span className="text-xs text-gray-500">{prohibited_time_end_title_jp?.value}</span>
+                <span className="text-xs text-[#00401A]">
+                  {prohibited_time_end_title?.value}
+                </span>
+                <span className="text-xs text-gray-500">
+                  {prohibited_time_end_title_jp?.value}
+                </span>
                 <span className="mt-1 text-base font-medium text-[#FF0000]">
                   {prohibited_time_end}
                 </span>
