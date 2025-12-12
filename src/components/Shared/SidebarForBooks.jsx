@@ -5,7 +5,7 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useFatwaFilters } from "@/context/FatwaFilterContext";
 
-export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate }) {
+export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, icon }) {
   const {
     selectedBooks,
     setSelectedBooks,
@@ -154,7 +154,7 @@ export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate }) 
               >
                 {/* Icon */}
                 <img
-                  src={book?.icon || "/images/QuickLinks/fatwa.png"}
+                  src={icon || "/images/QuickLinks/fatwa.png"}
                   alt={book?.name_en}
                   className={`w-[42px] h-[42px] object-contain transition ${isBookExpanded ||
                     hovered === book.id ||

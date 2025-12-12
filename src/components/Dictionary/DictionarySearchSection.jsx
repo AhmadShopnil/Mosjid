@@ -52,23 +52,27 @@ export default function DictionarySearchSection({ data_for_filter }) {
   const { books, chapter, section } = data_for_filter;
 
 
-  const languages = [
-    {
-      title: "English",
-      icon: "/images/others/English.png",
+  // const languages = [
+  //   {
+  //     title: "English",
+  //     icon: "/images/others/English.png",
 
-    },
-    {
-      title: "Japanese",
-      icon: "/images/others/Japan.png"
-    },
-    {
-      title: "Arabic",
-      icon: "/images/others/Arabic.png"
-    },
-  ]
+  //   },
+  //   {
+  //     title: "Japanese",
+  //     icon: "/images/others/Japan.png"
+  //   },
+  //   {
+  //     title: "Arabic",
+  //     icon: "/images/others/Arabic.png"
+  //   },
+  // ]
 
-
+const languages = [
+  { title: "English", icon: "/images/others/eng.svg", code: "en" },
+  { title: "Japanese", icon: "/images/others/jp.svg", code: "ja" },
+  { title: "Arabic", icon: "/images/others/ar.svg", code: "ar" },
+];
 
 
 
@@ -90,12 +94,12 @@ export default function DictionarySearchSection({ data_for_filter }) {
             <button
               key={language?.title}
               onClick={() => setSelectedLanguage(language?.title)}
-              className={`px-4 flex gap-1 py-2 rounded-full text-base font-bold  transition-colors ${selectedLanguage === language?.title ? "bg-[#00401A] text-white" :
+              className={`px-4 flex  gap-1 py-2 rounded-full text-base font-bold  transition-colors ${selectedLanguage === language?.title ? "bg-[#00401A] text-white" :
                 "bg-white text-[#00401A] hover:bg-gray-300 border border-[#00401a51]"
                 }`}
             >
 
-              <div className=" my-auto">
+              <div className="hidden sm:flex my-auto">
                 <Image
                   src={language?.icon}
                   alt='a1'
@@ -103,7 +107,7 @@ export default function DictionarySearchSection({ data_for_filter }) {
                   height={10}
                 />
               </div>
-              <div className=" my-auto">
+              <div className=" my-auto text-xs  sm:text-base">
                 {language?.title}
               </div>
             </button>

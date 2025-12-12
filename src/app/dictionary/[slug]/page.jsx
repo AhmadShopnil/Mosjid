@@ -9,6 +9,7 @@ import InnerHeader from '@/components/Shared/InnerHeader'
 import SidebarDrawerForBooks from '@/components/Shared/SidebarDrawerForBooks'
 import { getFatwahFiltersData, getPage, getSettings } from '@/helper/actions'
 import { formatFatwaBooksForSidebar } from '@/helper/formatFatwaBooksForSidebar'
+import { getImageUrl } from '@/helper/getImageUrl'
 import React from 'react'
 
 
@@ -25,8 +26,14 @@ export default async function page() {
   const chapter = await getFatwahFiltersData("bookchapters");
   const section = await getFatwahFiltersData("booksections");
 
+  // const formatFatwaBooksForSidebarData = formatFatwaBooksForSidebar(books)
 
-  const formatFatwaBooksForSidebarData = formatFatwaBooksForSidebar(books)
+const sections = homePage?.sections_on_api;
+  const dictionaryExtraData = sections.find(
+    (s) => s.title_slug === "dictionary"
+  );
+
+  const icon = getImageUrl(dictionaryExtraData?.background_media);
 
   const data_for_filter = { majhabs, books, chapter, section }
   const requestData = "Dictionary"
@@ -49,6 +56,7 @@ export default async function page() {
           isFatwah_Dictionary_Filter={true}
           data_for_filter={data_for_filter}
           dataForContact={requestData}
+          icon={icon}
         />
 
         {/* main content */}

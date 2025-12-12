@@ -76,7 +76,7 @@ export default function ImageGalleryInnerPage({ gallery, loading }) {
       {/* Modal with navigation */}
       {selectedIndex !== null && (
         <div
-          className="fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 p-4 mt-22"
           onClick={closeModal}
         >
           <div

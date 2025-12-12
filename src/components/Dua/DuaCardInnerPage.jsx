@@ -60,7 +60,7 @@ export const DuaCardInnerPage = ({ dua }) => {
           {dua_main}
         </p> */}
         <div
-          className="text-[#333333] leading-8 text-base"
+          className="text-[#333333] leading-8 font-semibold text-[24px] sm:text-[30px]"
           dangerouslySetInnerHTML={{ __html: dua?.description }}
         />
 

@@ -61,9 +61,9 @@ export default function SelectedWordDetails({ selectedItem }) {
           {/* Left Side */}
           <div className="space-y-4">
             <LabelBox label="Japanese" value={selectedItem?.word_ja} />
-            <LabelBox label="Pron in English" value={selectedItem?.pronunciation_en} />
             <LabelBox label="Pron in Japanese" value={selectedItem?.pronunciation_ja} />
-            <LabelBox label="Pron in Arabic" value={selectedItem?.pronunciation_ar} />
+            <LabelBox label="Romaji" value={selectedItem?.pronunciation_en} />
+            <LabelBox label="Japanese Reading(kana)" value={selectedItem?.pronunciation_ar} />
 
 
             {/* <LabelBox label="Usage" value={selectedItem?.usage} /> */}
