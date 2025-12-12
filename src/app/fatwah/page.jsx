@@ -1,6 +1,7 @@
 import FatwahClientPage from '@/components/Fatwah/FatwahClientPage'
 
 import { getFatwah, getFatwahFiltersData, getPage, getSettings } from '@/helper/actions'
+import { getImageUrl } from '@/helper/getImageUrl';
 
 import React from 'react'
 
@@ -17,18 +18,14 @@ export default async function page() {
   const section = await getFatwahFiltersData("booksections")
   const data_for_filter = { majhabs, books, chapter, section }
 
-  // console.log("books", books)
 
 
-
-
-  //  const requestData = selected?.name ? `Blogs of ${selected?.name} ` : "Blogs"
   const requestData = "Fatwa"
 
   return (
     <div>
 
-   <FatwahClientPage fatwahs={fatwahs} settings={settings} homePage={homePage} books={books} data_for_filter={data_for_filter}/>
+      <FatwahClientPage fatwahs={fatwahs} settings={settings} homePage={homePage} books={books} data_for_filter={data_for_filter} />
 
     </div>
   )

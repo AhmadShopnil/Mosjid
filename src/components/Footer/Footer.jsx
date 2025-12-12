@@ -25,8 +25,8 @@ export default async function Footer() {
 
         <div className='absolute top-[-140px] left-0 w-full '>
           <FooterContent />
-
         </div>
+
 
 
       </div>

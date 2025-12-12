@@ -49,10 +49,10 @@ export default function ImageGallery({
   }, [selectedIndex]);
 
 
-  const heading_part_1 = splitBySlash(img_gallery_Extradata?.title)[0];
+ const heading_part_1 = splitBySlash(img_gallery_Extradata?.title)[0];
   const heading_part_2 = splitBySlash(img_gallery_Extradata?.title)[1];
   const image = getImageUrl(img_gallery_Extradata?.image_media);
-  const icon = getImageUrl(img_gallery_Extradata?.background_media);
+   const icon = getImageUrl(img_gallery_Extradata?.background_media);
 
 
 
@@ -72,7 +72,7 @@ export default function ImageGallery({
           />
 
           <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
-            <p><span >{heading_part_1} </span>
+           <p><span >{heading_part_1} </span>
               <span className="text-[#F7BA2A]">{heading_part_2}</span>
             </p>
             <p>{img_gallery_Extradata?.sub_title}</p>
@@ -81,9 +81,9 @@ export default function ImageGallery({
         </div>
 
 
-        <Link
-          href="/gallery"
-          className="px-5 py-2.5 text-sm sm:text-base font-bold text-[#001609] border border-[#00401A] rounded-full
+        <Link 
+        href="/gallery"
+        className="px-5 py-2.5 text-sm sm:text-base font-bold text-[#001609] border border-[#00401A] rounded-full
           hover:bg-[#00401A] hover:text-white transition-colors duration-400 cursor-pointer">
           {view_more_button_text}
         </Link>
@@ -155,102 +155,47 @@ export default function ImageGallery({
 
 
       {/* Modal with slider */}
-      {/* Modal with navigation (same style as InnerPage gallery) */}
       {selectedIndex !== null && (
         <div
-          className="fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 p-4 mt-22"
+          className="fixed inset-0 backdrop-blur-md bg-black/60 flex items-center justify-center z-50 p-4"
           onClick={closeModal}
         >
           <div
-            className="relative max-w-4xl max-h-full flex flex-col items-center justify-center"
+            className="relative max-w-4xl max-h-full flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Image Section */}
-            <div className="relative flex items-center justify-center bg-white rounded-t-[20px]">
-              <img
-                src={images[selectedIndex].src}
-                alt={images[selectedIndex].alt}
-                className="max-w-full max-h-[80vh] object-contain rounded-t-2xl"
-              />
+            <img
+              src={images[selectedIndex].src}
+              alt={images[selectedIndex].alt}
+              className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl"
+            />
 
-              {/* Close Button */}
-              <button
-                onClick={closeModal}
-                className="absolute top-4 right-4 text-white bg-gray-800 bg-opacity-70 hover:bg-opacity-90 rounded-full 
-            px-3 py-1.5 transition-all duration-200 backdrop-blur-sm font-semibold"
-              >
-                ✕
-              </button>
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-white bg-gray-800 bg-opacity-70 hover:bg-opacity-90 rounded-full p-2 transition-all duration-200 backdrop-blur-sm"
+            >
+              ✕
+            </button>
 
-              {/* Prev Button */}
-              <button
-                onClick={showPrev}
-                className="absolute -left-24 top-1/2 -translate-y-1/2 cursor-pointer"
-              >
-                <Image
-                  src="/images/others/arr_left.png"
-                  alt="prev"
-                  width={54}
-                  height={54}
-                />
-              </button>
+            {/* Prev Button */}
+            <button
+              onClick={showPrev}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
+            >
+              ◀
+            </button>
 
-              {/* Next Button */}
-              <button
-                onClick={showNext}
-                className="absolute -right-24 top-1/2 -translate-y-1/2 cursor-pointer"
-              >
-                <Image
-                  src="/images/others/arr_right.png"
-                  alt="next"
-                  width={54}
-                  height={54}
-                />
-              </button>
-            </div>
-
-            {/* Description Section */}
-            <div className="bg-[#FFFFFF] w-full p-4 rounded-b-[20px] shadow-lg text-gray-800 text-center">
-              <p className="text-sm leading-relaxed text-[#00401A]">
-                {images[selectedIndex]?.description ||
-                  "This is a sample description for the image."}
-              </p>
-            </div>
-
-            {/* Social Share */}
-            <div className="mt-4 flex justify-end w-full">
-              <div className="flex items-center gap-6 text-[#D9E2DD]">
-                <div className="border-r-2 border-gray-300 pr-3">
-                  <Image src="/images/others/twiter.png" alt="" width={24} height={24} />
-                </div>
-                <div className="border-r-2 border-gray-300 pr-3">
-                  <Image src="/images/others/fb.png" alt="" width={16} height={16} />
-                </div>
-                <div className="border-r-2 border-gray-300 pr-3">
-                  <Image src="/images/others/whatsapp.png" alt="" width={21} height={21} />
-                </div>
-                <div className="border-r-2 border-gray-300 pr-3">
-                  <Image
-                    src="/images/others/printer_white.png"
-                    alt=""
-                    width={23}
-                    height={23}
-                  />
-                </div>
-                <div>
-                  <Image
-                    src="/images/others/download_white.png"
-                    alt=""
-                    width={23}
-                    height={23}
-                  />
-                </div>
-              </div>
-            </div>
+            {/* Next Button */}
+            <button
+              onClick={showNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
+            >
+              ▶
+            </button>
           </div>
         </div>
       )}
-
     </Container>
   );
 }

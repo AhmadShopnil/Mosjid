@@ -286,7 +286,7 @@ export async function getPryerTime() {
 }
 
 export async function getDonationsMethods() {
-  const API_URL = `${BASE_URL}/api/v1/posts?term_type=donations&is_featured=Yes`;
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=donations&is_featured=Yes&order_by=order_column:asc`;
 
   const res = await fetch(API_URL, {
     next: { revalidate: 30 },
@@ -296,7 +296,7 @@ export async function getDonationsMethods() {
 }
 
 export async function getAllDonationsMethods() {
-  const API_URL = `${BASE_URL}/api/v1/posts?term_type=donations`;
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=donations&order_by=order_column:asc`;
 
   const res = await fetch(API_URL, {
     next: { revalidate: 30 },

@@ -105,7 +105,7 @@ export default async function FatwahBox() {
 
       >
         {/* Mosque Image Positioned at Bottom Right */}
-        <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[400px] opacity-90">
+        <div className="absolute bottom-0 right-0 w-[180px] md:w-[250px] lg:w-[400px] opacity-80">
           <Image
             src="/images/fatwah/fatwahbg.png"
             alt="Mosque"

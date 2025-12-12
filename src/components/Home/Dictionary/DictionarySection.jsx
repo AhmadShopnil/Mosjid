@@ -32,11 +32,18 @@ export default function DictionarySection({ data_for_filter, homePage }) {
 
   const { books, chapter, section } = data_for_filter;
 
-  const languages = [
-    { title: "English", icon: "/images/others/English.png" },
-    { title: "Japanese", icon: "/images/others/Japan.png" },
-    { title: "Arabic", icon: "/images/others/Arabic.png" },
-  ];
+  // const languages = [
+  //   { title: "English", icon: "/images/others/English.png" },
+  //   { title: "Japanese", icon: "/images/others/Japan.png" },
+  //   { title: "Arabic", icon: "/images/others/Arabic.png" },
+  // ];
+
+
+const languages = [
+  { title: "English", icon: "/images/others/eng.svg", code: "en" },
+  { title: "Japanese", icon: "/images/others/jp.svg", code: "ja" },
+  { title: "Arabic", icon: "/images/others/ar.svg", code: "ar" },
+];
 
   const sections = homePage?.sections_on_api;
   const dictionaryExtraData = sections.find(

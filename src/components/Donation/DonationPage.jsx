@@ -20,7 +20,7 @@ import DonationCardList from './DonationCardList'
 
 
 
-export default function DonationPage({ homePage, settings, formattedCategories,allDonationsList }) {
+export default function DonationPage({ homePage, settings, formattedCategories,allDonationsList,donationsListForBottom }) {
   const { selected, setSelected, clearSelected } = useSelected();
   const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
   const [donations, setDonations] = useState([])
@@ -53,9 +53,9 @@ export default function DonationPage({ homePage, settings, formattedCategories,a
 
       setLoading(true)
 
-      let url = `/posts?term_type=donations&page=${currentPage}&per_page=${perPage}`
+      let url = `/posts?term_type=donations&page=${currentPage}&per_page=${perPage}&is_featured=Yes`
       if (selectedCat) {
-        url = `/posts?term_type=donations&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`
+        url = `/posts?term_type=donations&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}&is_featured=Yes`
       }
       try {
         const response = await axiosInstance.get(url)
@@ -125,7 +125,7 @@ export default function DonationPage({ homePage, settings, formattedCategories,a
         </div>
       </Container>
       <div>
-        <DonationCardList allDonationsList={allDonationsList}/>
+        <DonationCardList allDonationsList={donationsListForBottom}/>
       </div>
 
     </div>

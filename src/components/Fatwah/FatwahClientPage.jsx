@@ -11,6 +11,7 @@ import { useFatwaFilters } from '@/context/FatwaFilterContext'
 import axiosInstance from '@/helper/axiosInstance'
 import { useEffect, useState } from 'react'
 import BannerInnerFatwa from './BannerInnerFatwa'
+import { getImageUrl } from '@/helper/getImageUrl'
 
 export default function FatwahClientPage({ settings, homePage, books, data_for_filter }) {
 
@@ -35,7 +36,11 @@ export default function FatwahClientPage({ settings, homePage, books, data_for_f
   const [fatwahs, setFatwahs] = useState([]);
   const [topRatedFatwahs, setTopRated] = useState([]);
 
+  const sections = homePage?.sections_on_api;
+  const fatwah_ExtraData = sections.find((s) => s.title_slug === "fatwah");
 
+
+  const icon = getImageUrl(fatwah_ExtraData?.image_media)
 
 
   useEffect(() => {
@@ -59,12 +64,12 @@ export default function FatwahClientPage({ settings, homePage, books, data_for_f
 
         setFatwahs(data || []);
 
-   
+
 
       } catch (error) {
         console.error("Error fetching filtered fatwa:", error);
       } finally {
- 
+
       }
     }
 
@@ -106,7 +111,9 @@ export default function FatwahClientPage({ settings, homePage, books, data_for_f
           isAskQuestion={true}
           isFatwah_Dictionary_Filter={true}
           data_for_filter={data_for_filter}
-          dataForContact={requestData} />
+          dataForContact={requestData}
+          icon={icon}
+        />
 
 
 
