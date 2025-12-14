@@ -194,7 +194,7 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
 
 const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideApi);
 
-console.log("prohibitedTimes",calculatedProhibitedTimes)
+// console.log("prohibitedTimes",calculatedProhibitedTimes)
 
 
   return (
