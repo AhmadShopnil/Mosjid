@@ -70,7 +70,8 @@ export default function QuickContactForm({ section_3_title }) {
                     placeholder="Name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full border border-[#003014] h-[46px] text-[#333333] placeholder:text-[#333333] rounded-2xl px-3 py-2 text-sm outline-none focus:border-green-600"
+                    className="w-full border border-[#003014] h-[46px] text-[#333333] placeholder:text-[#333333] rounded-2xl px-3 py-2 text-sm 
+                      focus:border-none focus:outline-none focus:ring-2 focus:ring-green-400"
                 />
 
                 <input
@@ -79,7 +80,8 @@ export default function QuickContactForm({ section_3_title }) {
                     placeholder="Phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full border border-[#003014] h-[46px] text-[#333333] placeholder:text-[#333333] rounded-2xl px-3 py-2 text-sm outline-none focus:border-green-600"
+                    className="w-full border border-[#003014] h-[46px] text-[#333333] placeholder:text-[#333333] rounded-2xl px-3 py-2 text-sm 
+                      focus:border-none focus:outline-none focus:ring-2 focus:ring-green-400"
                 />
                 <input
                     type="email"
@@ -87,19 +89,23 @@ export default function QuickContactForm({ section_3_title }) {
                     placeholder="Email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full border border-[#003014] h-[46px] text-[#333333] placeholder:text-[#333333] rounded-2xl px-3 py-2 text-sm outline-none focus:border-green-600"
+                    className="w-full border border-[#003014] h-[46px] text-[#333333] placeholder:text-[#333333] rounded-2xl px-3 py-2 text-sm 
+                    focus:border-none focus:outline-none focus:ring-2 focus:ring-green-400"
                 />
                 <textarea
                     name="message"
                     placeholder="Message"
-                    rows="3"
+                    rows="4"
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full border border-[#003014] h-[46px] text-[#333333] placeholder:text-[#333333]  rounded-2xl px-3 py-2 text-sm outline-none focus:border-green-600"
+                    className="w-full border border-[#003014] text-[#333333] placeholder:text-[#333333]  rounded-2xl px-3 py-2 text-sm 
+                    
+                     focus:border-none focus:outline-none focus:ring-2 focus:ring-green-400"
                 />
                 <button
                     type="submit"
-                    className="w-full text-bold text-[20px] bg-[#52B920] text-white py-2 rounded-[100px] h-[50px] font-medium hover:bg-green-700 transition"
+                    className="w-full text-bold text-[20px] bg-[#52B920] text-white py-2 rounded-[100px] h-[50px] font-medium
+                     hover:bg-green-700 transition cursor-pointer"
                 >
                     Submit
                 </button>

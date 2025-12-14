@@ -82,17 +82,64 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
                 <span className="text-xs text-gray-500">{wakt_start_jp?.value}</span>
 
 
-                <span className="mt-1 text-sm font-medium text-[#3E8B18]  ">
-                  {waktStartTime}
-                </span>
-                {waktStartTime != waktStartTime_2 && (
-                  <span className="text-xs font-medium text-[#3E8B18] border-t-1 border-gray-300">
-                    {waktStartTime_2}
+
+                {waktStartTime != waktStartTime_2 ? (
+
+                  <div>
+
+                    <div className="flex items-center justify-center gap-1">
+                      <span className="mt-1 text-sm font-medium text-[#3E8B18]  ">
+                        {waktStartTime}
+                      </span>
+                      <Image
+                        src="/images/prayertimes/jahur.svg"
+                        alt="icon"
+                        width={25}
+                        height={25}
+                        className=''
+                      />
+                    </div>
+
+                    <div className=" border-t-1 border-gray-300 flex items-center justify-center gap-1">
+                      <span className="text-xs font-medium text-[#3E8B18]">
+                      </span>
+                      {waktStartTime_2}
+
+                      <div className='flex'>
+                        <Image
+                          src="/images/prayertimes/jahur.svg"
+                          alt="icon"
+                          width={25}
+                          height={25}
+                          className=''
+                        />
+
+                        <Image
+                          src="/images/prayertimes/jahur.svg"
+                          alt="icon"
+                          width={25}
+                          height={25}
+                          className=''
+                        />
+
+                      </div>
+
+                    </div>
+                  </div>
+
+                )
+
+                  :
+                  <span className="mt-1 text-sm font-medium text-[#3E8B18]  ">
+                    {waktStartTime}
                   </span>
-                )}
+
+                }
               </div>
               <div className="flex flex-col items-center">
-                <span className="text-xs text-[#00401A]">{jamat_start?.value}</span>
+                <span className="text-xs text-[#00401A]">{jamat_start?.value}
+
+                </span>
                 <span className="text-xs text-gray-500">{jamat_start_jp?.value}</span>
                 <span className="mt-1 text-sm font-medium text-[#56410F]">
                   {prayerTime}
@@ -101,14 +148,61 @@ export default function PrayerTimesMobile({ prayerTimes, prayer_time }) {
               <div className="flex flex-col items-center">
                 <span className="text-xs text-[#00401A]">{wakt_end?.value}</span>
                 <span className="text-xs text-gray-500">{wakt_end_jp?.value}</span>
-                <span className="mt-1 text-sm font-medium text-[#FF0000]">
-                  {waktEndTime}
-                </span>
-                {waktEndTime != waktEndTime2 && (
-                  <span className="text-xs font-medium text-[#FF0000] border-t-1 border-gray-300">
-                    {waktEndTime2}
+
+                {waktEndTime != waktEndTime2 ? (
+
+                  <div className="">
+
+                    <div className="flex items-center justify-center gap-1">
+                      <span className="mt-1 text-sm font-medium text-[#FF0000]">
+                        {waktEndTime}
+                      </span>
+                      <Image
+                        src="/images/prayertimes/jahur.svg"
+                        alt="icon"
+                        width={25}
+                        height={25}
+                        className=''
+                      />
+                    </div>
+
+
+                    <div className="border-t-1 border-gray-300 flex items-center justify-center gap-1 ">
+                      <span className="text-xs font-medium text-[#FF0000]  flex items-center justify-center gap-2">
+                        {waktEndTime2}
+                      </span>
+                      <div className='flex'>
+                        <Image
+                          src="/images/prayertimes/jahur.svg"
+                          alt="icon"
+                          width={25}
+                          height={25}
+                          className=''
+                        />
+
+                        <Image
+                          src="/images/prayertimes/jahur.svg"
+                          alt="icon"
+                          width={25}
+                          height={25}
+                          className=''
+                        />
+
+                      </div>
+                    </div>
+
+
+                  </div>
+
+                )
+
+
+                  :
+                  <span className="mt-1 text-sm font-medium text-[#FF0000]">
+                    {waktEndTime}
                   </span>
-                )}
+
+                }
               </div>
             </div>
           </div>

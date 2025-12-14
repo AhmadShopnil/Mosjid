@@ -290,7 +290,7 @@ body {
   border-radius:200px;
   background: linear-gradient(#ffff, #ffff) padding-box,
               linear-gradient(to bottom, #00FF1E, #00F4AF) border-box;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   
 }
 

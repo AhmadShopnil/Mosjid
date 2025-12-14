@@ -17,7 +17,7 @@ import { getImageUrl } from "@/helper/getImageUrl";
 import axios from "axios";
 import { formatPrayerData, mergePrayerTimes } from "@/helper/formatPrayerData";
 import { extractTimeUpdatedAt, getMostRecentTime } from "@/helper/extractTimeUpdatedAt";
-import { getProhibitedTimes } from "@/helper/CalculateProhebitedTime";
+import { getProhibitedTimesObject } from "@/helper/CalculateProhebitedTime";
 
 
 
@@ -192,9 +192,8 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
   const updated_time = getMostRecentTime(updatedAtArray)
 
 
-const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideApi);
-
-console.log("prohibitedTimes",calculatedProhibitedTimes)
+const prohibitedTimes = getProhibitedTimesObject(prayerTimesDataFromOusideApi);
+console.log({prayerTimesDataFromOusideApi})
 
 
   return (
@@ -323,8 +322,8 @@ console.log("prohibitedTimes",calculatedProhibitedTimes)
 
             {/* ⭐ ANIMATED TBODY ⭐ */}
             <motion.tbody variants={parentVariant} initial="hidden" animate="show">
-              {calculatedProhibitedTimes && ProhibitedTime.map((prayer, index) => (
-                <ProhibitedTimeTableRow key={index} prayer={prayer} index={index} calculatedProhibitedTimes={calculatedProhibitedTimes} />
+              {ProhibitedTime.map((prayer, index) => (
+                <ProhibitedTimeTableRow key={index} prayer={prayer} index={index} />
               ))}
             </motion.tbody>
           </table>
