@@ -9,7 +9,7 @@ export default function ProhibitedTimeTableRow({ prayer, index ,calculatedProhib
 
     const prohibited_time_start = getMetaValueFromExtraFields(prayer, "prohibited-time-start")
     const prohibited_time_end = getMetaValueFromExtraFields(prayer, "prohibited-time-end")
-    console.log("sunrire",   calculatedProhibitedTimes[prayer?.name]?.start)
+    // console.log("sunrire",   calculatedProhibitedTimes[prayer?.name]?.start)
 
     return (
         <motion.tr

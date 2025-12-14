@@ -2,20 +2,20 @@ import React from "react";
 import Image from "next/image";
 import { getMetaValueFromExtraFields } from "@/helper/metaHelpers";
 
-export default function ProhibitedTimeMobile({ prayerTimes, prayer_time, isDisabled }) {
+export default function ProhibitedTimeMobile({ prayerTimes, prayer_time, isDisabled,calculatedProhibitedTimes }) {
 
-  const jamat_start = prayer_time?.custom_information.find(
-    (item) => item.label === "jamat_start"
-  );
-  const name_of_salat = prayer_time?.custom_information.find(
-    (item) => item.label === "name_of_salat"
-  );
-  const wakt_start = prayer_time?.custom_information.find(
-    (item) => item.label === "wakt_start"
-  );
-  const wakt_end = prayer_time?.custom_information.find(
-    (item) => item.label === "wakt_end"
-  );
+  // const jamat_start = prayer_time?.custom_information.find(
+  //   (item) => item.label === "jamat_start"
+  // );
+  // const name_of_salat = prayer_time?.custom_information.find(
+  //   (item) => item.label === "name_of_salat"
+  // );
+  // const wakt_start = prayer_time?.custom_information.find(
+  //   (item) => item.label === "wakt_start"
+  // );
+  // const wakt_end = prayer_time?.custom_information.find(
+  //   (item) => item.label === "wakt_end"
+  // );
 
   const prohibited_time_start_title = prayer_time?.custom_information.find(
     (item) => item.label === "prohibited_time_start"
@@ -87,7 +87,8 @@ export default function ProhibitedTimeMobile({ prayerTimes, prayer_time, isDisab
                   {prohibited_time_start_title_jp?.value}
                 </span>
                 <span className="mt-1 text-base font-medium text-[#3E8B18]">
-                  {prohibited_time_start}
+                  {calculatedProhibitedTimes[prayer?.name]?.start} 
+                  {/* {prohibited_time_start} */}
                 </span>
               </div>
 
@@ -99,7 +100,8 @@ export default function ProhibitedTimeMobile({ prayerTimes, prayer_time, isDisab
                   {prohibited_time_end_title_jp?.value}
                 </span>
                 <span className="mt-1 text-base font-medium text-[#FF0000]">
-                  {prohibited_time_end}
+                   {calculatedProhibitedTimes[prayer?.name]?.end}
+                  {/* {prohibited_time_end} */}
                 </span>
               </div>
             </div>

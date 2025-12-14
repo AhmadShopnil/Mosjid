@@ -344,8 +344,13 @@ const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideAp
         <span>禁止時間開始</span>
       </h4>
 
-      <ProhibitedTimeMobile prayerTimes={ProhibitedTime.slice(0, 4)} prayer_time={prayer_time} isDisabled={isDisabled} />
-
+     {calculatedProhibitedTimes && <ProhibitedTimeMobile
+       prayerTimes={ProhibitedTime.slice(0, 4)}
+        prayer_time={prayer_time}
+         isDisabled={isDisabled}
+          calculatedProhibitedTimes={calculatedProhibitedTimes}
+         />
+}
       <p className="mt-4 text-sm text-[#FF0000]">{prayer_time?.description}</p>
     </div>
   );
