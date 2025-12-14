@@ -13,6 +13,7 @@ import { formatPrayerData, mergePrayerTimes } from "@/helper/formatPrayerData";
 import axios from "axios";
 import { extractTimeUpdatedAt, getMostRecentTime } from "@/helper/extractTimeUpdatedAt";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
+import { getProhibitedTimes } from "@/helper/CalculateProhebitedTime";
 
 
 
@@ -163,7 +164,7 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
   const updatedAtArray = extractTimeUpdatedAt(prayerTimes);
   const updated_time = getMostRecentTime(updatedAtArray)
 
-
+const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideApi);
 
 
 
@@ -292,8 +293,8 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
             </thead>
 
             <tbody>
-              {ProhibitedTime.map((prayer, index) => (
-                <ProhibitedTimeTableRow key={index} prayer={prayer} settings={settings} />
+              {calculatedProhibitedTimes && ProhibitedTime.map((prayer, index) => (
+                <ProhibitedTimeTableRow key={index} prayer={prayer} settings={settings} calculatedProhibitedTimes={calculatedProhibitedTimes} />
               ))}
             </tbody>
           </table>
