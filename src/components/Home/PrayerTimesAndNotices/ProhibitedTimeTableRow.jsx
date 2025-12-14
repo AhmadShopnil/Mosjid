@@ -5,10 +5,11 @@ import Image from 'next/image'
 import { motion } from "framer-motion"
 import React from 'react'
 
-export default function ProhibitedTimeTableRow({ prayer, index }) {
+export default function ProhibitedTimeTableRow({ prayer, index ,calculatedProhibitedTimes}) {
 
     const prohibited_time_start = getMetaValueFromExtraFields(prayer, "prohibited-time-start")
     const prohibited_time_end = getMetaValueFromExtraFields(prayer, "prohibited-time-end")
+    console.log("sunrire",   calculatedProhibitedTimes[prayer?.name]?.start)
 
     return (
         <motion.tr
@@ -38,11 +39,13 @@ export default function ProhibitedTimeTableRow({ prayer, index }) {
             </td>
 
             <td className="px-3 text-[#3E8B18] text-base text-center">
-                {prohibited_time_start}
+                {/* {prohibited_time_start} */}
+                {calculatedProhibitedTimes[prayer?.name]?.start} 
             </td>
 
             <td className="p-3 text-[#FF0000] text-base text-center">
-                {prohibited_time_end}
+                {/* {prohibited_time_end} */}
+                  {calculatedProhibitedTimes[prayer?.name]?.end}
             </td>
         </motion.tr>
     )

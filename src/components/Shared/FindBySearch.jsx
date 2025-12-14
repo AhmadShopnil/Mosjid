@@ -5,7 +5,7 @@ import { XCircle } from "lucide-react"; // optional: nice clear icon
 
 export default function FindBySearch({
   button_text = "Find",
-  onSearch = () => {},
+  onSearch = () => { },
 }) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -26,9 +26,8 @@ export default function FindBySearch({
 
   return (
     <div
-      className={`borderDonationHome shadow-md bg-white px-5 sm:px-6 py-5 sm:py-10 rounded-2xl ${
-        isDisabled ? "opacity-50 pointer-events-none select-none" : ""
-      }`}
+      className={`borderDonationHome shadow-md bg-white px-5 sm:px-6 py-5 sm:py-10 rounded-2xl ${isDisabled ? "opacity-50 pointer-events-none select-none" : ""
+        }`}
     >
       <div className="flex items-center flex-col lg:flex-row gap-3">
         {/* By Name */}
@@ -39,9 +38,14 @@ export default function FindBySearch({
             disabled={isDisabled}
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className={`h-[54px] w-full pl-10 pr-4 py-3 border border-green-900 rounded-full placeholder-gray-400 placeholder:text-sm ${
-              isDisabled ? "cursor-not-allowed bg-gray-100" : "focus:outline-none focus:ring-2 focus:ring-[#F7BA2A]"
-            }`}
+            className={`h-[54px] w-full pl-10 pr-4 py-3 
+              border border-green-900 rounded-full 
+              placeholder-gray-400 placeholder:text-sm
+              focus:border-transparent focus:ring-2 focus:ring-[#F7BA2A]
+              ${isDisabled
+                ? "cursor-not-allowed bg-gray-100"
+                : "focus:outline-none"
+              }`}
           />
         </div>
 
@@ -53,9 +57,17 @@ export default function FindBySearch({
             disabled={isDisabled}
             value={number}
             onChange={(e) => setNumber(e.target.value)}
-            className={`h-[54px] w-full pl-10 pr-4 py-3 border border-green-900 rounded-full placeholder-gray-400 placeholder:text-sm ${
-              isDisabled ? "cursor-not-allowed bg-gray-100" : "focus:outline-none focus:ring-2 focus:ring-[#F7BA2A]"
-            }`}
+            className={`h-[54px] w-full pl-10 pr-4 py-3 
+                      border border-green-900 rounded-full 
+                      placeholder-gray-400 placeholder:text-sm
+                      focus:border-transparent focus:ring-2 focus:ring-[#F7BA2A]
+                      ${isDisabled
+                ? "cursor-not-allowed bg-gray-100"
+                : "focus:outline-none"
+              }`}
+          // className={`h-[54px] w-full pl-10 pr-4 py-3 border border-green-900 
+          //   rounded-full placeholder-gray-400 placeholder:text-sm ${isDisabled ? "cursor-not-allowed bg-gray-100" : "focus:outline-none focus:ring-2 focus:ring-[#F7BA2A]"
+          //   }`}
           />
         </div>
 

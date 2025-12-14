@@ -59,8 +59,9 @@ export default function CustomSelectForDirectory({ options, lvl, selected, setSe
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
         type="button"
-        className="w-full h-[54px] rounded-3xl border appearance-none 
-         px-3 py-2 bg-white flex justify-between items-center focus:border-none focus:outline-none focus:ring-2 focus:ring-green-400 "
+        className="w-full h-[54px] rounded-3xl 
+         px-3 py-2 bg-white flex justify-between items-center border appearance-none 
+          focus:border-none focus:outline-none focus:ring-2 focus:ring-green-400 "
       >
         <span className="text-gray-700">
           {selected ? selected.labelEn : lvl}
