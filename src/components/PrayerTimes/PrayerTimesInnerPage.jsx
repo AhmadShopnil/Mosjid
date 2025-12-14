@@ -340,7 +340,7 @@ const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideAp
 
 
       {/* Mobile Cards */}
-      <PrayerTimesMobile prayerTimes={finalPrayerTimes} prayer_time={prayer_time} />
+      <PrayerTimesMobile prayerTimes={finalPrayerTimes} prayer_time={prayer_time} calculatedProhibitedTimes={calculatedProhibitedTimes}/>
 
       <h4 className=" block sm:hidden text-2xl text-center mt-5">
         <span className="text-[#F7BA2A]">Prohibited </span>
@@ -349,7 +349,12 @@ const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideAp
         <span className=" ">禁止時間開始</span>
       </h4>
 
-      <ProhibitedTimeMobile prayerTimes={ProhibitedTime.slice(0, 4)} prayer_time={prayer_time} isDisabled={isDisabled}/>
+      { calculatedProhibitedTimes&&  <ProhibitedTimeMobile
+       prayerTimes={ProhibitedTime.slice(0, 4)}
+       prayer_time={prayer_time} 
+       isDisabled={isDisabled} 
+       calculatedProhibitedTimes={calculatedProhibitedTimes}
+       />}
       {/* bottom note */}
       <p className="mt-4 text-sm  text-[#FF0000]">
         {prayer_time?.description}
