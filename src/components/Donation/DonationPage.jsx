@@ -70,9 +70,8 @@ export default function DonationPage({ homePage, settings, formattedCategories, 
   }, [selectedCat, currentPage])
 
 
-  // console.log("donations", donations)
-  const requestData = selected?.name ? `Dontion of ${selected?.name} ` : "Donations"
 
+  const requestData = selected?.name ? `Dontion of ${selected?.name} ` : "Donations"
 
 
   const containerVariants = {
