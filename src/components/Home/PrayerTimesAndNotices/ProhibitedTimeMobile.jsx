@@ -80,26 +80,26 @@ export default function ProhibitedTimeMobile({ prayerTimes, prayer_time, isDisab
             {/* Times */}
             <div className="grid grid-cols-2 gap-3 text-center">
               <div className="flex flex-col items-center">
-                <span className="text-xs text-[#00401A]">
+                <span className="text-[12px] text-[#00401A]">
                   {prohibited_time_start_title?.value}
                 </span>
-                <span className="text-xs text-gray-500">
+                <span className="text-[12px] text-gray-500">
                   {prohibited_time_start_title_jp?.value}
                 </span>
-                <span className="mt-1 text-base font-medium text-[#3E8B18]">
+                <span className="mt-1 text-[12px] font-medium text-[#3E8B18]">
                   {calculatedProhibitedTimes[prayer?.name]?.start} 
                   {/* {prohibited_time_start} */}
                 </span>
               </div>
 
               <div className="flex flex-col items-center">
-                <span className="text-xs text-[#00401A]">
+                <span className="text-[12px] text-[#00401A]">
                   {prohibited_time_end_title?.value}
                 </span>
-                <span className="text-xs text-gray-500">
+                <span className="text-[12px] text-gray-500">
                   {prohibited_time_end_title_jp?.value}
                 </span>
-                <span className="mt-1 text-base font-medium text-[#FF0000]">
+                <span className="mt-1 text-[12px] font-medium text-[#FF0000]">
                    {calculatedProhibitedTimes[prayer?.name]?.end}
                   {/* {prohibited_time_end} */}
                 </span>
