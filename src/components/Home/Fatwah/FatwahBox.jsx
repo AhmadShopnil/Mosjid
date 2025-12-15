@@ -1,17 +1,14 @@
 import React from 'react'
 import Image from "next/image";
-import { Download } from "lucide-react";
-import { getFatwa, getFatwah, getPage, getSettings } from '@/helper/actions';
+import { getFatwah, getPage, getSettings } from '@/helper/actions';
 import { getMetaValueByMetaName } from '@/helper/metaHelpers';
 import Link from 'next/link';
 import { getImageUrl } from '@/helper/getImageUrl';
-import { FaLongArrowAltRight } from "react-icons/fa";
 import FatwaListClient from './FatwaListClient';
 
 
 
 export default async function FatwahBox() {
-
   const fatwahs = await getFatwah();
   const settings = await getSettings()
   const view_more = getMetaValueByMetaName(settings, "view_more") || "";

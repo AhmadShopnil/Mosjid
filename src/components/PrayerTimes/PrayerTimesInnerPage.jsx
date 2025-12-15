@@ -39,12 +39,8 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
   const prayer_time = sections.find((s) => s.title_slug === "prayer_time");
   const heading_part_1 = splitBySlash(prayer_time?.title)[0]
   const heading_part_2 = splitBySlash(prayer_time?.title)[1]
-
   const arabic = getImageUrl(prayer_time?.image_media)
   const icon = getImageUrl(prayer_time?.background_media)
-
-
-
 
   const name_of_salat = prayer_time?.custom_information.find((item) => item.label === "name_of_salat")
   const jamat_start = prayer_time?.custom_information.find((item) => item.label === "jamat_start")
@@ -55,7 +51,6 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
   const jamat_start_jp = prayer_time?.custom_information.find((item) => item.label === "jamat_start_jp")
   const wakt_start_jp = prayer_time?.custom_information.find((item) => item.label === "wakt_start_jp")
   const wakt_end_jp = prayer_time?.custom_information.find((item) => item.label === "wakt_end_jp")
-
 
 
   const prohibited_time_start = prayer_time?.custom_information.find((item) => item.label === "prohibited_time_start")
@@ -164,12 +159,12 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
   const updatedAtArray = extractTimeUpdatedAt(prayerTimes);
   const updated_time = getMostRecentTime(updatedAtArray)
 
-const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideApi);
+  const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideApi);
 
 
 
   return (
-    <div className="   px-5 sm:px-8 pt-5 sm:pt-8  pb-24  gradient-bordernew shadow-lg relative overflow-hidden">
+    <div className="   px-3 sm:px-8 pt-5 sm:pt-8  pb-24  gradient-bordernew shadow-lg relative overflow-hidden">
       <div className="absolute top-0 right-0">
         <Image
           src="/images/prayertimes/1.png"
@@ -340,7 +335,7 @@ const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideAp
 
 
       {/* Mobile Cards */}
-      <PrayerTimesMobile prayerTimes={finalPrayerTimes} prayer_time={prayer_time} calculatedProhibitedTimes={calculatedProhibitedTimes}/>
+      <PrayerTimesMobile prayerTimes={finalPrayerTimes} prayer_time={prayer_time} calculatedProhibitedTimes={calculatedProhibitedTimes} />
 
       <h4 className=" block sm:hidden text-2xl text-center mt-5">
         <span className="text-[#F7BA2A]">Prohibited </span>
@@ -349,12 +344,12 @@ const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideAp
         <span className=" ">禁止時間開始</span>
       </h4>
 
-      { calculatedProhibitedTimes&&  <ProhibitedTimeMobile
-       prayerTimes={ProhibitedTime.slice(0, 4)}
-       prayer_time={prayer_time} 
-       isDisabled={isDisabled} 
-       calculatedProhibitedTimes={calculatedProhibitedTimes}
-       />}
+      {calculatedProhibitedTimes && <ProhibitedTimeMobile
+        prayerTimes={ProhibitedTime.slice(0, 4)}
+        prayer_time={prayer_time}
+        isDisabled={isDisabled}
+        calculatedProhibitedTimes={calculatedProhibitedTimes}
+      />}
       {/* bottom note */}
       <p className="mt-4 text-sm  text-[#FF0000]">
         {prayer_time?.description}
