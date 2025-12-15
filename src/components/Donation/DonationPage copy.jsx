@@ -17,7 +17,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 
 
-export default function DonationPage({ homePage, settings, formattedCategories, donationsListForBottom }) {
+export default function DonationPage({ homePage, settings, formattedCategories,donationsListForBottom }) {
   const { selected, setSelected, clearSelected } = useSelected();
   const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
   const [donations, setDonations] = useState([])
@@ -75,33 +75,36 @@ export default function DonationPage({ homePage, settings, formattedCategories, 
 
 
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.05,
-      },
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.05,
     },
-  }
+  },
+}
 
-  const itemVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-      filter: "blur(4px)",
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+    filter: "blur(4px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.45,
+      ease: "easeOut",
     },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: {
-        duration: 0.45,
-        ease: "easeOut",
-      },
-    },
-  }
+  },
+}
+
+
+
 
 
   return (
@@ -109,6 +112,7 @@ export default function DonationPage({ homePage, settings, formattedCategories, 
 
       <div>
         <BannerInnerPage />
+        {/* <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Donation" middleLink="/donation" currentPage={selected?.name} /> */}
         <BreadcrumbForNested
           items={[
             { label: "Home", link: "/" },
@@ -118,6 +122,7 @@ export default function DonationPage({ homePage, settings, formattedCategories, 
 
           ]}
         />
+
       </div>
 
 
@@ -126,40 +131,27 @@ export default function DonationPage({ homePage, settings, formattedCategories, 
         <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={requestData} />
 
         {/* main content */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`${selectedCat}-${currentPage}`}
-            className="w-full space-y-6"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            exit={{ opacity: 0, y: 10 }}
-          >
-            <motion.div variants={itemVariants}>
-              <InnerHeader
-                title={make_your_donation?.sub_title}
-                image={image_arabic}
-              />
-            </motion.div>
+        <div className=' w-full space-y-6'>
+          <InnerHeader title={make_your_donation?.sub_title} image={image_arabic} />
+          <div>
+            <MakeDonationInner
+              donations={donations}
+              settings={settings}
+              homePage={homePage}
+              loading={loading}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              setCurrentPage={setCurrentPage}
+              donationTitle={requestData}
+              
+              
+            />
+          </div>
 
-            <motion.div variants={itemVariants}>
-              <MakeDonationInner
-                donations={donations}
-                settings={settings}
-                homePage={homePage}
-                loading={loading}
-                currentPage={currentPage}
-                totalPages={totalPages}
-                setCurrentPage={setCurrentPage}
-                donationTitle={requestData}
-              />
-            </motion.div>
-          </motion.div>
-        </AnimatePresence>
-
+        </div>
       </Container>
       <div>
-        <DonationCardList allDonationsList={donationsListForBottom} />
+        <DonationCardList allDonationsList={donationsListForBottom}/>
       </div>
 
     </div>
