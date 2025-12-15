@@ -41,7 +41,7 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
   const handleSearch = ({ name, number }) => {
     const q = name || number || "";
     setSearchValue(q);
-    setCurrentPage(1);
+    setCurrentPage(1); 
   };
 
 
@@ -89,34 +89,34 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
 
 
 
-  // for animation
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.05,
-      },
+// for animation
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.05,
     },
-  }
+  },
+}
 
-  const itemVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-      filter: "blur(4px)",
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+    filter: "blur(4px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.45,
+      ease: "easeOut",
     },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: {
-        duration: 0.45,
-        ease: "easeOut",
-      },
-    },
-  }
+  },
+}
 
 
 
@@ -143,44 +143,23 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
 
 
         {/* main content */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`${selectedCat}-${currentPage}-${searchValue}`}
-            className="w-full space-y-6"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            exit={{ opacity: 0, y: 10 }}
-          >
-            <motion.div variants={itemVariants}>
-              <InnerHeader
-                title={blog_events_ExtraData?.sub_title}
-                image={image_arabic}
-              />
-            </motion.div>
+        <div className=' w-full space-y-6'>
+          <InnerHeader title={blog_events_ExtraData?.sub_title} image={image_arabic} />
+          <FindBySearch onSearch={(values) => handleSearch(values)} button_text="Find Blogs" />
+          <div>
+            <Blogs
+              section_title={section_title}
+              blogs={blogs}
+              settings={settings}
+              homePage={homePage}
+              loading={loading}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              setCurrentPage={setCurrentPage}
+            />
+          </div>
 
-            <motion.div variants={itemVariants}>
-              <FindBySearch
-                onSearch={(values) => handleSearch(values)}
-                button_text="Find Blogs"
-              />
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <Blogs
-                section_title={section_title}
-                blogs={blogs}
-                settings={settings}
-                homePage={homePage}
-                loading={loading}
-                currentPage={currentPage}
-                totalPages={totalPages}
-                setCurrentPage={setCurrentPage}
-              />
-            </motion.div>
-          </motion.div>
-        </AnimatePresence>
-
+        </div>
       </Container>
 
     </div>

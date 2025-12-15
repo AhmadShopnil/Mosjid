@@ -29,18 +29,18 @@ export function getProhibitedTimes(prayerTimes) {
   const asr = prayerTimes.find(p => p.prayer_name === "asr");
 
   if (
-    !fajr?.wakt_start_hanfi ||
+    !fajr?.wakt_end_hanfi ||
     !dhuhr?.wakt_start_hanfi ||
     !asr?.wakt_end_hanfi
   ) {
-    console.warn("Prayer times missing or not loaded yet", prayerTimes);
+    // console.warn("Prayer times missing or not loaded yet", prayerTimes);
     return null;
   }
 
   return {
     Sunrise: {
-      start: to12HourFormat(fajr.wakt_start_hanfi),
-      end: addMinutes(fajr.wakt_start_hanfi, 12),
+      start: to12HourFormat(fajr.wakt_end_hanfi),
+      end: addMinutes(fajr.wakt_end_hanfi, 12),
     },
     Solar: {
       start: addMinutes(dhuhr.wakt_start_hanfi, -5),

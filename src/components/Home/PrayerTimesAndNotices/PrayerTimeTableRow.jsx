@@ -38,41 +38,43 @@ export default function PrayerTimeTableRow({ prayer, index }) {
                     </span>
                 </span>
             </td>
-            <td className="p-3 text-[#56410F] text-base text-center">
+            <td className="p-3 text-[#56410F] text-base ">
                 {prayer?.time}
             </td>
 
-            <td className="px-3 text-[#3E8B18] text-base text-center">
+            <td className="px-3 text-[#3E8B18] text-base ">
                 {prayer?.wakt_start_hanfi !== prayer?.wakt_start_safi ? (
+
+
                     <>
-                        <div className='flex items-center justify-center gap-2 '>
+                        <div className='flex items-center  gap-2 '>
                             <span>  {formatTo12Hour(prayer?.wakt_start_hanfi)}</span>
                             <Image
                                 src="/images/prayertimes/jahur.svg"
                                 alt="icon"
-                                width={30}
-                                height={30}
+                                width={20}
+                                height={20}
                                 className=''
                             />
                         </div>
-                        
 
-                        <div className='flex items-center justify-center gap-2 border-t-1 border-gray-200'>
-                            <span>{formatTo12Hour(prayer?.wakt_start_safi)}</span>
+
+                        <div className='flex items-center  gap-2 '>
+                            <span className='border-t-1 border-gray-200 '>{formatTo12Hour(prayer?.wakt_start_safi)}</span>
                             <div className='flex'>
                                 <Image
                                     src="/images/prayertimes/jahur.svg"
                                     alt="icon"
-                                    width={30}
-                                    height={30}
+                                    width={20}
+                                    height={20}
                                     className=''
                                 />
 
                                 <Image
                                     src="/images/prayertimes/jahur.svg"
                                     alt="icon"
-                                    width={30}
-                                    height={30}
+                                    width={20}
+                                    height={20}
                                     className=''
                                 />
 
@@ -81,43 +83,44 @@ export default function PrayerTimeTableRow({ prayer, index }) {
 
 
                     </>
+
                 ) : (
                     <span>{formatTo12Hour(prayer?.wakt_start_hanfi)}</span>
                 )}
             </td>
 
-            <td className="px-3 text-[#FF0000] text-base text-center">
+            <td className="px-3 text-[#FF0000] text-base ">
                 {prayer?.wakt_end_safi !== prayer?.wakt_end_hanfi ? (
                     <>
-                        <div className="text-[#EB5757] flex items-center justify-center gap-2">
+                        <div className="text-[#EB5757] flex items-center  gap-2">
                             <span> {formatTo12Hour(prayer?.wakt_end_hanfi)}</span>
                             <Image
                                 src="/images/prayertimes/jahur.svg"
                                 alt="icon"
-                                width={30}
-                                height={30}
+                                width={20}
+                                height={20}
                                 className=''
                             />
 
                         </div>
 
-                        <div className="text-[#EB5757] flex items-center justify-center gap-2  border-t-1 border-gray-200 ">
-                            <span className=''>   {formatTo12Hour(prayer?.wakt_end_safi)}
+                        <div className="text-[#EB5757] flex items-center  gap-2 ">
+                            <span className=' border-t-1 border-gray-200 '>   {formatTo12Hour(prayer?.wakt_end_safi)}
                             </span>
                             <div className='flex'>
                                 <Image
                                     src="/images/prayertimes/jahur.svg"
                                     alt="icon"
-                                    width={30}
-                                    height={30}
+                                    width={20}
+                                    height={20}
                                     className=''
                                 />
 
                                 <Image
                                     src="/images/prayertimes/jahur.svg"
                                     alt="icon"
-                                    width={30}
-                                    height={30}
+                                    width={20}
+                                    height={20}
                                     className=''
                                 />
 
