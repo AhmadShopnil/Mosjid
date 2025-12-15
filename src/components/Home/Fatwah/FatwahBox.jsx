@@ -15,28 +15,22 @@ export default async function FatwahBox() {
   const fatwahs = await getFatwah();
   const settings = await getSettings()
   const view_more = getMetaValueByMetaName(settings, "view_more") || "";
- 
-  const homePage = await getPage("home-sections-heading-management")
+  const homePage = await getPage("home-sections-heading-management");
   const sections = homePage?.sections_on_api;
   const fatwah_ExtraData = sections.find((s) => s.title_slug === "fatwah");
   const fatwah_Top_header_ExtraData = sections.find((s) => s.title_slug === "fatwa-section-header");
-
   const image = getImageUrl(fatwah_ExtraData?.image_media)
   const penIcon = getImageUrl(fatwah_ExtraData?.background_media);
-
-
-  const Arabic_header_image = getImageUrl(fatwah_Top_header_ExtraData?.image_media)
-
+  const Arabic_header_image = getImageUrl(fatwah_Top_header_ExtraData?.image_media);
   const header_image = getImageUrl(fatwah_Top_header_ExtraData?.background_media);
-
   const fatwah_title_2 = fatwah_ExtraData?.custom_information.find((item) => item.label === "fatwah_title_2")
+
 
 
 
   return (
 
     <div className="  px-4 py-10 relative">
-
       {/* Top Section - Logo & Arabic Title */}
       <div className="max-w-7xl   mx-auto flex
          justify-between items-end mb-6">
@@ -64,22 +58,16 @@ export default async function FatwahBox() {
           <div className="hidden sm:flex  flex-col justify-end items-end gap-3 ">
             <Image
               src={Arabic_header_image}
-              
+
               alt="Logo"
               width={515}
               height={70}
             />
             <p className='text-[#F7BA2A] font-semibold text-[20px]  '>{fatwah_Top_header_ExtraData?.sub_title}</p>
-            {/* <Image
-              src="/images/fatwah/arabic3.png"
-              alt="Logo"
-              width={157}
-              height={36}
-            /> */}
+          
           </div>
           {/* for small screen */}
           <div className=" flex sm:hidden flex-col justify-end items-end gap-3 ">
-
             <Image
               src={Arabic_header_image}
               alt="Logo"
@@ -87,12 +75,6 @@ export default async function FatwahBox() {
               height={50}
             />
             <p className='text-[#F7BA2A] font-semibold text-[16px]  '>{fatwah_Top_header_ExtraData?.sub_title}</p>
-            {/* <Image
-              src="/images/fatwah/arabic3.png"
-              alt="Logo"
-              width={120}
-              height={30}
-            /> */}
           </div>
         </div>
 
@@ -160,9 +142,7 @@ export default async function FatwahBox() {
 
           </div>
           {/* List */}
-          <FatwaListClient fatwahs={fatwahs} penIcon={penIcon} settings={settings}/>
-       
-
+          <FatwaListClient fatwahs={fatwahs} penIcon={penIcon} settings={settings} />
         </div>
       </div>
     </div>

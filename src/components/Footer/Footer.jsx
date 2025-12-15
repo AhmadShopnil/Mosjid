@@ -28,13 +28,13 @@ export default async function Footer() {
         </div>
         
         
-
-      </div>
-      <div className='bg-[#003014] py-3 w-full  bottom-0 absolute flex items-center justify-center'>
+  <div className='bg-[#003014] py-3 w-full  bottom-0 absolute flex items-center justify-center'>
           <p className='text-[#E6ECE8] text-[15px] text-center '>{copyright_content}</p>
         </div>
+      </div>
+    
 
-      {/* <div className='bg-[#003014] w-full h-[50px] flex items-center justify-center  '>
+      {/* <div className='bg-red-300 w-full  flex items-center justify-center  '>
         <p className='text-[#E6ECE8] text-base text-center'>{copyright_content}</p>
       </div> */}
     </div>

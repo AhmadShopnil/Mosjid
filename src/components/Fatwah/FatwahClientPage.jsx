@@ -40,7 +40,7 @@ export default function FatwahClientPage({ settings, homePage, books, data_for_f
   const fatwah_ExtraData = sections.find((s) => s.title_slug === "fatwah");
 
 
-  const icon = getImageUrl(fatwah_ExtraData?.image_media)
+  const icon = getImageUrl(fatwah_ExtraData?.background_media);
 
 
   useEffect(() => {
@@ -78,7 +78,7 @@ export default function FatwahClientPage({ settings, homePage, books, data_for_f
 
 
 
-  // console.log("Test")
+  // console.log("icon fatwa",icon)
 
 
   const requestData = "Fatwa"
@@ -123,7 +123,6 @@ export default function FatwahClientPage({ settings, homePage, books, data_for_f
 
           <div className='grid grid-cols-1 xl:grid-cols-2 gap-3 lxl:gap-6  mt-6'>
             <FatwaListInner title="New Fatwa" titleWidth="w-[350px]" fatwahs={fatwahs} settings={settings} homePage={homePage} />
-            {/* <FatwaListInner title="Selected Fatwah " titleWidth="w-[220px]" fatwahs={fatwahs?.data} settings={settings} homePage={homePage} /> */}
             <FatwaListInner title="Top Rated Fatwa" titleWidth="w-[220px]" fatwahs={topRatedFatwahs} settings={settings} homePage={homePage} />
           </div>
         </div>

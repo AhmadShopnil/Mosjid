@@ -43,7 +43,7 @@ export async function GET() {
   } catch (error) {
     console.error("Prayer Times API Error:", error);
 
-    // If cache exists, return cached data (fallback)
+  
     if (cacheData) {
       return NextResponse.json({
         error: "Failed to fetch new data, sending cached data",
@@ -51,7 +51,7 @@ export async function GET() {
       });
     }
 
-    // No cache → send error response
+    
     return NextResponse.json(
       { error: "Failed to fetch prayer times" },
       { status: 500 }

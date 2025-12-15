@@ -239,20 +239,20 @@ const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideAp
                   <span>{name_of_salat?.value}</span>
                   <span className="text-[#C9E9BA]">{name_of_salat_jp?.value}</span>
                 </th>
-                <th className="p-3">
+                <th className="p-3 text-left">
                   {jamat_start?.value}
                   <br />
                   <span className="text-[#C9E9BA]"> {jamat_start_jp?.value}</span>
                 </th>
-                <th className="p-3">
+                <th className="p-3 text-left">
                   {wakt_start?.value}
                   <br />
-                  <span className="text-[#C9E9BA]">  {wakt_start_jp?.value}</span>
+                  <span className="text-[#C9E9BA] text-left">  {wakt_start_jp?.value}</span>
                 </th>
-                <th className="p-3">
+                <th className="p-3 text-left">
                   {wakt_end?.value}
                   <br />
-                  <span className="text-[#C9E9BA]"> {wakt_end_jp?.value}</span>
+                  <span className="text-[#C9E9BA] text-left"> {wakt_end_jp?.value}</span>
                 </th>
               </tr>
             </thead>
