@@ -26,6 +26,19 @@ body {
   font-family: var(--font-merriweather), serif;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 .gradient-border {
   position: relative;
   border-radius: 20px;
@@ -189,15 +202,6 @@ body {
   pointer-events: none;
 }
 
-/* .gradient-bg-quicklinks {
-  background: #51FA06;
-  background: linear-gradient(147deg, rgba(81, 250, 6, 1) 0%, rgba(0, 119, 36, 1) 100%);
-
-} */
-
-
-
-
 
 .quicklinks {
   background: #F5FFF8;
@@ -255,8 +259,6 @@ body {
   border: 1px solid transparent;
   
 }
-
-
 
 
 .up_navigation_button {
@@ -372,15 +374,6 @@ body {
   /* match rounded-xl */
   border-bottom-right-radius: 0.75rem;
 }
-
-
-
-/* .gradient-border-quicklinks {
-  border-radius: 30px;
-  padding: 1px;
-  background: linear-gradient(to right, #3096A3, #53FF00);
-} */
-
 
 .gradient-bredcumb {
   background: #38E300;
