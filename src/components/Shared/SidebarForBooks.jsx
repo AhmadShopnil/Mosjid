@@ -18,35 +18,23 @@ export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, ic
   } = useFatwaFilters();
 
   const router = useRouter();
-
   const [hovered, setHovered] = useState("");
 
-  // NEW: separate expansion states
   const [expandedBook, setExpandedBook] = useState(null);
   const [expandedChapter, setExpandedChapter] = useState(null);
 
-  // --------------------------
-  // ACCORDION: Toggle Book
-  // --------------------------
   const toggleBook = (bookId) => {
     setExpandedBook((prev) => (prev === bookId ? null : bookId));
     setExpandedChapter(null); // reset chapter when switching book
   };
 
-  // --------------------------
-  // ACCORDION: Toggle Chapter
-  // --------------------------
+
   const toggleChapter = (chapterId) => {
     setExpandedChapter((prev) => (prev === chapterId ? null : chapterId));
   };
 
-  // --------------------------
-  // HANDLE BOOK CLICK
-  // --------------------------
+
   const handleOnClickItem = (book) => {
-
-
-
     setSelectedBooks(book);
     setSelectedChapter(null);
     setSelectedSection(null);
@@ -64,57 +52,36 @@ export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, ic
           `/fatwah/fatwah-filtered`
         );
       }
-
-
     }
-
-
-
-
   };
 
-  // --------------------------
-  // HANDLE CHAPTER CLICK
-  // --------------------------
+
   const handleOnClickChapter = (chapter, book) => {
     setSelectedBooks(book);
     setSelectedChapter(chapter);
     setSelectedSection(null); // reset section
-
     toggleChapter(chapter.id);
-
-
-
 
     if (chapter?.sections?.length == 0) {
       if (setIsDrawerOpen) setIsDrawerOpen(false);
     }
 
-
-
     if (isNavigate) {
-
       if (chapter?.sections?.length == 0) {
         router.push(
           `/fatwah/fatwah-filtered`
         );
       }
-
     }
-
 
   };
 
-  // --------------------------
-  // HANDLE SECTION CLICK
-  // --------------------------
   const handleOnClickSection = (section, chapter, book) => {
     setSelectedBooks(book);
     setSelectedChapter(chapter);
     setSelectedSection(section);
 
     if (setIsDrawerOpen) setIsDrawerOpen(false);
-
 
     if (isNavigate) {
       router.push(
@@ -140,7 +107,7 @@ export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, ic
 
           return (
             <div key={book.id}>
-              {/* BOOK BUTTON */}
+
               <button
                 onMouseEnter={() => setHovered(book.id)}
                 onMouseLeave={() => setHovered("")}
@@ -210,7 +177,7 @@ export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, ic
                 )}
               </button>
 
-              {/* --------------------- CHAPTERS --------------------- */}
+              {/*chapters  */}
               {isBookExpanded && book?.chapters?.length > 0 && (
                 <div className="bg-[#EEF8E9] border-t border-gray-200 p-2 space-y-2">
                   {book.chapters.map((chapter) => {
@@ -219,7 +186,7 @@ export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, ic
 
                     return (
                       <div key={chapter.id}>
-                        {/* CHAPTER BUTTON */}
+
                         <button
                           onClick={() =>
                             handleOnClickChapter(chapter, book)
@@ -247,9 +214,7 @@ export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, ic
                               className="text-[#00401A]"
                             />
                           )}
-                        </button>
-
-                        {/* --------------------- SECTIONS --------------------- */}
+                        </button>                
                         {isChapterExpanded &&
                           chapter?.sections?.length > 0 && (
                             <div className="pl-6 pt-2 space-y-2">

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "@/components/Shared/Container";
+import CurriculumCard from "@/components/Services/IslamicSchool Curriculum/CurriculumCard";
 
 export default function IslamicCurriculum() {
   return (
@@ -75,6 +76,8 @@ export default function IslamicCurriculum() {
       <div
         className=" "
       >
+        <CurriculumCard/>
+        {/* <CurriculumSection/> */}
 
       </div>
 
