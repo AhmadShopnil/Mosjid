@@ -122,3 +122,55 @@
   },
 
   ];
+
+
+
+
+   export const servicesSideBarCategories = [
+    {
+      id: "Islamic School Curriculum",
+      link: "/islamic-school-curriculum",
+      targetId:"islamic-school-curriculum",
+      icon: "/images/QuickLinks/offer-service.png",
+      activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+      name: "Islamic School Curriculum",
+      subtitle: "祈りの時間",
+      isArrow: true,
+    },
+
+
+       {
+      id: "Islamic School",
+     name: "Islamic School",
+      subtitle: "祈りの時間",
+     subtitle: "提供されるサービス",
+     targetId: "islamic-school",
+     link: "/islamic-school",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
+    {
+      id: "madrasha-course",
+      name: "Madrasha Course",
+      subtitle: "祈りの時間",
+     subtitle: "提供されるサービス",
+     targetId: "madrasha-course",
+     link: "/madrasha-course",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
+     {
+      id: "Masjid View",
+      name: "Masjid View",
+      subtitle: "祈りの時間",
+     subtitle: "提供されるサービス",
+     targetId: "masjid-view",
+     link: "/masjid-view",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  }
+
+  ];
