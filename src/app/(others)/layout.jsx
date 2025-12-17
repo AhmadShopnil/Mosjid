@@ -1,5 +1,5 @@
 import { Geist, Geist_Mono, Merriweather } from "next/font/google";
-import "./globals.css";
+import "../../app/globals.css";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import ScrollToTopButton from "@/components/Shared/ScrollToTopButton";
@@ -9,6 +9,9 @@ import { SelectedProvider } from "@/context/SelectedContext";
 import { SelectedParrentProvider } from "@/context/SelectedContextParrent";
 import { FatwaFilterProvider } from "@/context/FatwaFilterContext";
 import { RegionFilterProvider } from "@/context/RegionFilterContext ";
+
+
+
 
 
 
