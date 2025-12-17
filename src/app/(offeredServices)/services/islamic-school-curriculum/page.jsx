@@ -10,13 +10,13 @@ export default function IslamicCurriculum() {
 
     <Container className=" px-1">
       {/* Main Grid */}
-      <div className="  mt-10 border-2 border-[#FFCE4D] rounded-[40px] p-4 bg-[#F9FFF2]">
+      <div className="mt-10 border-2 border-[#FFCE4D] rounded-[40px] p-4 bg-[#F9FFF2]">
 
         {/* big screen */}
         <div className=" hidden xl:flex">
           {/* Left Column */}
           <div className="space-y-4 w-[40%] ">
-            {leftLevels.map((item) => (
+            {leftLevels?.map((item) => (
               <LevelCard key={item.no} {...item} align="left" />
             ))}
           </div>
@@ -29,7 +29,7 @@ export default function IslamicCurriculum() {
                 alt="Islamic School"
                 width={240}
                 height={240}
-                className=" w-[220px] h-[220px] 2xl:w-[240px] 2xl:h-[240px] "
+                className="w-[220px] h-[220px] 2xl:w-[240px] 2xl:h-[240px]"
               />
             </div>
           </div>
@@ -37,7 +37,7 @@ export default function IslamicCurriculum() {
 
           {/* Right Column */}
           <div className="space-y-4 w-[40%] ">
-            {rightLevels.map((item) => (
+            {rightLevels?.map((item) => (
               <LevelCardReverse key={item.no} {...item} align="right" />
             ))}
           </div>
