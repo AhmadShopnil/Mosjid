@@ -43,12 +43,12 @@ export default function ServicesSidebarDrawer({
           fixed top-0 left-0 z-[1000] lg:z-[50] h-full w-[85%] max-w-[380px] bg-white shadow-lg
           transform transition-transform duration-300
           ${isDrawerOpen ? "translate-x-0" : "-translate-x-full"}
-          lg:translate-x-0 lg:static lg:w-[400px] lg:shadow-none
+          lg:translate-x-0 lg:static lg:w-full lg:shadow-none
           flex flex-col
         `}
       >
         {/* Header */}
-        <div className="lg:hidden flex justify-between items-center p-4 border-b border-[#C9E9BA] ">
+        <div className="lg:hidden flex justify-between items-center p-4 border-b border-[#C9E9BA]  ">
           <h3 className="text-lg font-semibold text-[#00401A]">Menu</h3>
           <button
             onClick={() => setIsDrawerOpen(false)}
@@ -59,7 +59,7 @@ export default function ServicesSidebarDrawer({
         </div>
 
         {/* Entire content scrollable */}
-        <div className="flex-1 overflow-y-auto p-4 xl:p-0 space-y-6">
+        <div className=" overflow-y-auto p-4 xl:p-0 space-y-6">
           {/* Category list */}
           <ServicesSidebar
             categories={categories}
