@@ -3,14 +3,71 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "@/components/Shared/Container";
-import CurriculumCard from "@/components/Services/IslamicSchool Curriculum/CurriculumCard";
+import CardCurriculum from "@/components/Services/IslamicSchool Curriculum/CardCurriculum";
+
+
+const curriculums = [
+
+  {
+    no: "01",
+    title: "Maktab Foundation",
+    ageGroup: "Ages:3–6",
+   titleJapanese: "マクタブ基礎課程",
+    ageGroupJapanese: "Ages:3–6",
+    academicFocus: ["Basic literacy", "Numeracy", "General knowledge", "Early social skills"],
+    religiousFocus: ["Qaida Nooraniyah", "Nazirah al-Qur'an", "Akhlaq (manners)", "Seerah stories"],
+    outcomes: ["Islamic Etiquette", "Child ready for schooling", "Qur'an recitation fluency", "Spiritual Maturity"]
+
+  },
+  {
+    no: "02",
+    title: "Maktab Foundation",
+    ageGroup: "Ages:3–6",
+   titleJapanese: "マクタブ基礎課程",
+    ageGroupJapanese: "Ages:3–6",
+    academicFocus: ["Basic literacy", "Numeracy", "General knowledge", "Early social skills"],
+    religiousFocus: ["Qaida Nooraniyah", "Nazirah al-Qur'an", "Akhlaq (manners)", "Seerah stories"],
+    outcomes: ["Islamic Etiquette", "Child ready for schooling", "Qur'an recitation fluency", "Spiritual Maturity"]
+
+  },
+  {
+    no: "03",
+    title: "Maktab Foundation",
+    ageGroup: "Ages:3–6",
+   titleJapanese: "マクタブ基礎課程",
+    ageGroupJapanese: "Ages:3–6",
+    academicFocus: ["Basic literacy", "Numeracy", "General knowledge", "Early social skills"],
+    religiousFocus: ["Qaida Nooraniyah", "Nazirah al-Qur'an", "Akhlaq (manners)", "Seerah stories"],
+    outcomes: ["Islamic Etiquette", "Child ready for schooling", "Qur'an recitation fluency", "Spiritual Maturity"]
+
+  },
+  {
+    no: "04",
+    title: "Maktab Foundation",
+    ageGroup: "Ages:3–6",
+   titleJapanese: "マクタブ基礎課程",
+    ageGroupJapanese: "Ages:3–6",
+    academicFocus: ["Basic literacy", "Numeracy", "General knowledge", "Early social skills"],
+    religiousFocus: ["Qaida Nooraniyah", "Nazirah al-Qur'an", "Akhlaq (manners)", "Seerah stories"],
+    outcomes: ["Islamic Etiquette", "Child ready for schooling", "Qur'an recitation fluency", "Spiritual Maturity"]
+
+  },
+
+]
+
+
+
 
 export default function IslamicCurriculum() {
   return (
 
-    <Container className=" px-1">
+    <div className=" px-1 h-auto ">
       {/* Main Grid */}
+<<<<<<< HEAD
       <div className="mt-10 border-2 border-[#FFCE4D] rounded-[40px] p-4 bg-[#F9FFF2]">
+=======
+      <div className=" border-2 border-[#FFCE4D] rounded-[40px] p-4 bg-[#F9FFF2]">
+>>>>>>> c989e7b39dc5fc98c1409d63f64f87e239922a17
 
         {/* big screen */}
         <div className=" hidden xl:flex">
@@ -74,14 +131,16 @@ export default function IslamicCurriculum() {
 
       {/* Bottom Section */}
       <div
-        className=" "
+        className="mt-10 flex flex-col gap-10  "
       >
-        <CurriculumCard/>
-        {/* <CurriculumSection/> */}
+        {
+          curriculums?.map((curriculum, i) => <CardCurriculum key={i} curriculum={curriculum} />)
+        }
 
+  
       </div>
 
-    </Container>
+    </div>
 
   );
 }
