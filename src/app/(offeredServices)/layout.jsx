@@ -66,31 +66,24 @@ export default async function ServicesLayout({ children }) {
                         <SelectedParrentProvider>
                             <SelectedProvider>
 
-
-
                                 {/* main  components start */}
                                 <DevelopmentBanner />
                                 <Header />
                                 <BannerInnerPage />
                                 <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Services" />
                                 <Container className=" my-6">
-                                  <div className="flex justify-between gap-2">
-
-                                    
-                                     <ServicesSidebarDrawer categories={servicesSideBarCategories} />
-                                
-
-                                    <div className="w-full xl:w-[76%]   space-y-6">
-                                        {children}
+                                    <div className="flex justify-between gap-4">
+                                        <ServicesSidebarDrawer categories={servicesSideBarCategories} />
+                                        <div className="w-full xl:w-[76%]   space-y-6">
+                                            {children}
+                                        </div>
                                     </div>
-                                  </div>
 
                                 </Container>
                                 <Footer />
                                 <ScrollToTopButton />
                                 <Toaster position="top-right" />
                                 {/* main  components End */}
-
 
 
                             </SelectedProvider>
