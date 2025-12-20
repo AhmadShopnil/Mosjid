@@ -61,9 +61,10 @@ export default function SelectedWordDetails({ selectedItem }) {
           {/* Left Side */}
           <div className="space-y-4">
             <LabelBox label="Japanese" value={selectedItem?.word_ja} />
-            <LabelBox label="Pron in Japanese" value={selectedItem?.pronunciation_ja} />
+            <LabelBox label="Japanese Reading(kana)" value={selectedItem?.pronunciation_ja} />
             <LabelBox label="Romaji" value={selectedItem?.pronunciation_en} />
-            <LabelBox label="Japanese Reading(kana)" value={selectedItem?.pronunciation_ar} />
+            <LabelBox label="Synonym" value={selectedItem?.pronunciation_ar} />
+
 
 
             {/* <LabelBox label="Usage" value={selectedItem?.usage} /> */}
@@ -74,9 +75,16 @@ export default function SelectedWordDetails({ selectedItem }) {
             <LabelBox label="Arabic" value={selectedItem?.word_ar} />
             <LabelBox label="English" value={selectedItem?.word_en} />
             <LabelBox label="Usage" value={selectedItem?.usage_ja} />
-            <LabelBox label="Explanation" value={selectedItem?.explanation_ja} />
+            <LabelBox label="Antonym" value={selectedItem?.pronunciation_ar} />
+
           </div>
+
         </div>
+
+        <div className='mt-4'>
+          <LabelBox label="Explanation" value={selectedItem?.explanation_ja} />
+        </div>
+
 
         <div className="text-center mt-6 text-[#000000] text-xl md:text-2xl">
           www.osakamasjid.org
