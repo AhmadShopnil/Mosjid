@@ -127,6 +127,16 @@
 
 
    export const servicesSideBarCategories = [
+       {
+     id: "Islamic Name",
+     name: "Islamic Name",
+     subtitle: "提供されるサービス",
+     targetId: "islamic-name",
+     link: "/islamic-name",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
     {
       id: "Islamic School Curriculum",
       link: "/islamic-school-curriculum",
@@ -137,13 +147,25 @@
       subtitle: "祈りの時間",
       isArrow: true,
     },
+    ,
+     {
+      id: "Loss & Found",
+      name: "Loss & Found",
+      subtitle: "祈りの時間",
+     
+     targetId: "masjid-view",
+     link: "/loss-and-found",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
 
 
        {
       id: "Islamic School",
      name: "Islamic School",
-      subtitle: "祈りの時間",
-     subtitle: "提供されるサービス",
+     subtitle: "祈りの時間",
+    
      targetId: "islamic-school",
      link: "/islamic-school",
      icon: "/images/QuickLinks/offer-service.png",
@@ -154,7 +176,7 @@
       id: "madrasha-course",
       name: "Madrasha Course",
       subtitle: "祈りの時間",
-     subtitle: "提供されるサービス",
+    
      targetId: "madrasha-course",
      link: "/madrasha-course",
      icon: "/images/QuickLinks/offer-service.png",
@@ -165,12 +187,15 @@
       id: "Masjid View",
       name: "Masjid View",
       subtitle: "祈りの時間",
-     subtitle: "提供されるサービス",
+   
      targetId: "masjid-view",
      link: "/masjid-view",
      icon: "/images/QuickLinks/offer-service.png",
      activeIcon: "/images/QuickLinks/hover/Blog & event.png",
      isArrow: true,
   }
+  
 
   ];
+
+  
