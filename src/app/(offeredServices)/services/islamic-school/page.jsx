@@ -150,7 +150,7 @@ export default function page() {
             スラーム学校の タイムライン
           </h3>
         </div>
-        <div className="w-full h-[20px] mt-5">
+        <div className="w-[90%] mx-auto h-[20px] mt-5">
           <Image
             src="/images/islamicSchool/frame.svg"
             width={1000}
@@ -159,7 +159,7 @@ export default function page() {
             className="w-full object-contain"
           />
         </div>
-        <div className="grid lg:grid-cols-6 xl:grid-cols-7 grid-cols-3 items-center justify-center sm:grid-cols-4 md:grid-cols-4  pt-5">
+        <div className="grid lg:grid-cols-6  xl:grid-cols-8 grid-cols-3 items-center justify-center sm:grid-cols-4 md:grid-cols-4 gap-[20px]">
           {timeLine?.map((item, index) => (
             <div key={index} className="relative w-34 text-center mt-20">
               <div>
