@@ -1,5 +1,6 @@
 
 import DirectoryPageClient from '@/components/Directory/DirectorySinglePage'
+import BannerInnerPageServerSide from '@/components/Shared/BannerInnerPageServerSide';
 import { getCategories, getDirectoryByCat, getPage, getSettings } from '@/helper/actions'
 import React from 'react'
 
@@ -22,8 +23,8 @@ export default async function page({ params }) {
 
   return (
     <div>
-
-      <DirectoryPageClient settings={settings} homePage={homePage} slug={slug} filterData={filterData} locations={locations}/>
+      <BannerInnerPageServerSide />
+      <DirectoryPageClient settings={settings} homePage={homePage} slug={slug} filterData={filterData} locations={locations} />
 
     </div>
   )

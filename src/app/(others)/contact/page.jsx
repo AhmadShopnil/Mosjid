@@ -1,6 +1,7 @@
 // /app/contact/page.js
 import ContactClient from "@/components/Contact/ContactPageClient";
 import BannerInnerPage from "@/components/Shared/BannerInnerPage";
+import BannerInnerPageServerSide from "@/components/Shared/BannerInnerPageServerSide";
 import Breadcrumb from "@/components/Shared/Breadcrumb";
 import Container from "@/components/Shared/Container";
 import InnerHeader from "@/components/Shared/InnerHeader";
@@ -23,7 +24,8 @@ const contactPage = await getPage("contact-us")
 
   return (
     <div>
-      <BannerInnerPage />
+       <BannerInnerPageServerSide />
+      {/* <BannerInnerPage /> */}
       <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Contact" />
 
       <Container className="flex gap-6 my-6">

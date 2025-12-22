@@ -107,7 +107,7 @@ export default function DonationPage({ homePage, settings, formattedCategories, 
     <div>
 
       <div>
-        <BannerInnerPage />
+ 
         <BreadcrumbForNested
           items={[
             { label: "Home", link: "/" },

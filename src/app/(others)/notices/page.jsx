@@ -1,6 +1,7 @@
 
 
 import NoticePage from '@/components/Notice/NoticePage'
+import BannerInnerPageServerSide from '@/components/Shared/BannerInnerPageServerSide';
 import { getCategories, getNotices, getPage, getSettings } from '@/helper/actions'
 import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
 import React from 'react'
@@ -21,6 +22,7 @@ export default async function page() {
   return (
     <div>
 
+      <BannerInnerPageServerSide />
       <NoticePage
         settings={settings}
         homePage={homePage}

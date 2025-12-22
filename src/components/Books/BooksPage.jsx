@@ -84,9 +84,6 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
 
   const sections = homePage?.sections_on_api;
   const islamic_books_ExtraData = sections.find((s) => s.title_slug === "islamic-books");
-  const heading_part_1 = splitBySlash(islamic_books_ExtraData?.title)[0]
-  const heading_part_2 = splitBySlash(islamic_books_ExtraData?.title)[1]
-
   const image_arabic = getImageUrl(islamic_books_ExtraData?.image_media);
   const icon = getImageUrl(islamic_books_ExtraData?.background_media);
 
@@ -100,16 +97,12 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
     clearSelectedParrent();
   }, [])
 
-  // console.log("books", books)
-
-
-
+ 
   return (
     <div>
 
       <div>
-        <BannerInnerPage />
-        {/* <BreadcrumbForNested homeLabel="Home" homeLink="/" middle="Books" middleLink="/books" currentPage={selected?.name} /> */}
+  
         <BreadcrumbForNested
           items={[
             { label: "Home", link: "/" },

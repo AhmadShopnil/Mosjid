@@ -18,6 +18,7 @@ import Breadcrumb from "@/components/Shared/Breadcrumb";
 import Container from "@/components/Shared/Container";
 import ServicesSidebarDrawer from "@/components/Services/Sidebar/ServicesSidebarDrawer";
 import { servicesSideBarCategories } from "@/data/sidebar";
+import PageLoader from "@/components/Shared/PageLoader";
 
 
 
@@ -75,6 +76,7 @@ export default async function ServicesLayout({ children }) {
                                     <div className="flex justify-between gap-4">
                                         <ServicesSidebarDrawer categories={servicesSideBarCategories} />
                                         <div className="w-full xl:w-[76%]   space-y-6">
+                                              <PageLoader />
                                             {children}
                                         </div>
                                     </div>

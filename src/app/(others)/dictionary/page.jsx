@@ -1,8 +1,8 @@
 
 import DictionaryPage from '@/components/Dictionary/DictionaryPage'
 import DictionarySearchSection from '@/components/Dictionary/DictionarySearchSection'
-
 import BannerInnerPage from '@/components/Shared/BannerInnerPage'
+import BannerInnerPageServerSide from '@/components/Shared/BannerInnerPageServerSide'
 import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
@@ -13,8 +13,6 @@ import { getFatwahFiltersData, getPage, getSettings } from '@/helper/actions'
 import { formatFatwaBooksForSidebar } from '@/helper/formatFatwaBooksForSidebar'
 import { getImageUrl } from '@/helper/getImageUrl'
 import React from 'react'
-
-
 
 
 export default async function page() {
@@ -45,7 +43,8 @@ export default async function page() {
     <div>
 
       <div>
-        <BannerInnerPage />
+         <BannerInnerPageServerSide />
+        {/* <BannerInnerPage /> */}
         <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Dictionary" />
       </div>
 
