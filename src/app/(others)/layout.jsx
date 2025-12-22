@@ -9,6 +9,11 @@ import { SelectedProvider } from "@/context/SelectedContext";
 import { SelectedParrentProvider } from "@/context/SelectedContextParrent";
 import { FatwaFilterProvider } from "@/context/FatwaFilterContext";
 import { RegionFilterProvider } from "@/context/RegionFilterContext ";
+import { AnimatePresence } from "framer-motion";
+import PageTransition from "@/components/Shared/PageTransition";
+import PageReveal from "@/components/Shared/PageReveal";
+import PageLoader from "@/components/Shared/PageLoader";
+
 
 
 
@@ -52,7 +57,11 @@ export default function RootLayout({ children }) {
               <SelectedProvider>
                 <DevelopmentBanner />
                 <Header />
-                {children}
+                <AnimatePresence mode="wait">
+                  <PageReveal >
+                    {children}
+                  </PageReveal>
+                </AnimatePresence>
                 <Footer />
                 <ScrollToTopButton />
                 <Toaster position="top-right" />

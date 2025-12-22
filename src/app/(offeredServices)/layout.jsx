@@ -22,6 +22,7 @@ import { servicesSideBarCategories } from "@/data/sidebar";
 
 
 
+
 // Geist Sans
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -66,18 +67,18 @@ export default async function ServicesLayout({ children }) {
                         <SelectedParrentProvider>
                             <SelectedProvider>
 
-
-
                                 {/* main  components start */}
                                 <DevelopmentBanner />
                                 <Header />
                                 <BannerInnerPage />
                                 <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Services" />
-                                <Container className="flex gap-6 my-6">
-                                    <ServicesSidebarDrawer categories={servicesSideBarCategories} />
-
-                                    <div className="w-full space-y-6">
-                                        {children}
+                                <Container className=" my-6">
+                                    <div className="flex justify-between gap-4">
+                                        <ServicesSidebarDrawer categories={servicesSideBarCategories} />
+                                        <div className="w-full xl:w-[76%]   space-y-6">
+                                             
+                                            {children}
+                                        </div>
                                     </div>
 
                                 </Container>
@@ -85,7 +86,6 @@ export default async function ServicesLayout({ children }) {
                                 <ScrollToTopButton />
                                 <Toaster position="top-right" />
                                 {/* main  components End */}
-
 
 
                             </SelectedProvider>

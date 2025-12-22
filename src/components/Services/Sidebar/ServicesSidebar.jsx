@@ -34,9 +34,7 @@ export default function ServicesSidebar({
   const handleOnClickItem = (category) => {
     setSelected(category);
     // setSelectedParrent(null);
-    console.log("link", category)
-
-
+    // console.log("link", category)
     router.push(`/services${category?.link}`);
 
   };
@@ -63,7 +61,7 @@ export default function ServicesSidebar({
                 onMouseEnter={() => setHovered(category.id)}
                 onMouseLeave={() => setHovered("")}
                 onClick={() => handleOnClickItem(category)}
-                className={`group w-full h-[60px] px-4 py-3 flex items-center gap-3  transition-all
+                className={`group w-full h-[61px] px-3 py-3 flex items-center gap-3  transition-all
                    
                   ${isExpanded ||
                     category.id == hovered ||
@@ -74,7 +72,7 @@ export default function ServicesSidebar({
                   `}
               >
                 {/* Icon with hover/active change */}
-                <span className="relative flex-shrink-0 w-[42px] h-[42px]">
+                <span className="relative flex-shrink-0 w-[40px] h-[40px]">
                   <img
                     src={category?.icon}
                     alt={category?.name + " icon"}
@@ -86,9 +84,9 @@ export default function ServicesSidebar({
 
 
                 {/* Text Content */}
-                <div className="flex-1 text-left">
+                <div className="flex-1 text-left py-1 ">
                   <p
-                    className={`font-bold text-sm transition-colors ${isExpanded ||
+                    className={`font-bold text-sm transition-colors  ${isExpanded ||
                         category.id == hovered ||
                         category?.id == selected?.id
 

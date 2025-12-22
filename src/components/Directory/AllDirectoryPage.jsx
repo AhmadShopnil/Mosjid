@@ -35,18 +35,12 @@ export default function AllDirectoryPage({ settings, homePage, slug, filterData,
     const [error, setError] = useState(null);
     const [directories, setDirectories] = useState([]);
 
-
     const formattedCategories = transformNoticeCategories(filterData?.cat);
     const sections = homePage?.sections_on_api;
     const directory_extradata = sections.find((s) => s.title_slug === "directory");
     const arabic_image = getImageUrl(directory_extradata?.image_media);
 
 
-
-    // useEffect(() => {
-    //     setSelectedSlug(slug)
-       
-    // }, [])
 
 
     useEffect(() => {
@@ -72,8 +66,6 @@ export default function AllDirectoryPage({ settings, homePage, slug, filterData,
 
 
 
-    // console.log({ selectedCat })
-
 
     const getCategoryIds = () => {
         const ids = [
@@ -81,7 +73,7 @@ export default function AllDirectoryPage({ settings, homePage, slug, filterData,
             selectedPrefecture?.id,
             selectedCity?.id,
             selectedDistrict?.id,
-         
+
         ].filter(Boolean);
 
         return ids.join(",");
@@ -125,16 +117,14 @@ export default function AllDirectoryPage({ settings, homePage, slug, filterData,
 
 
     const getData = () => {
-        //  console.log("from get data skug",selected)
-        // console.log("from get data selected",selected)
         fetchData();
     }
 
     return (
         <div>
             <div>
-                <BannerInnerPage />
-                {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Directory" /> */}
+             
+              
                 <BreadcrumbForNested
                     items={[
                         { label: "Home", link: "/" },

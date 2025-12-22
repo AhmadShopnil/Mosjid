@@ -3,12 +3,13 @@ import React from 'react'
 import DonationPage from '@/components/Donation/DonationPage';
 import { getAllDonationsMethods, getCategories, getDonationsMethods, getFeaturedCategories, getPage, getSettings } from '@/helper/actions'
 import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
+import BannerInnerPageServerSide from '@/components/Shared/BannerInnerPageServerSide';
 
 
 
 
 export default async function page() {
-  
+
   const settings = await getSettings();
   const homePage = await getPage("home-sections-heading-management")
   // const categories = await getCategories("donation_categories")
@@ -17,10 +18,10 @@ export default async function page() {
 
   const activeCategories = categories?.filter((cat) => cat?.is_status != "draft")
   const formattedCategories = transformNoticeCategories(activeCategories);
-  
-  const allDonationsList = await getDonationsMethods() 
+
+  const allDonationsList = await getDonationsMethods()
   const donationsListForBottom = await getAllDonationsMethods()
-  
+
 
 
   //  console.log({formattedCategories})
@@ -28,14 +29,14 @@ export default async function page() {
 
   return (
     <div>
-
+      <BannerInnerPageServerSide />
       <DonationPage
         settings={settings}
         homePage={homePage}
         formattedCategories={formattedCategories}
         allDonationsList={allDonationsList}
         donationsListForBottom={donationsListForBottom}
-   
+
       />
 
     </div>

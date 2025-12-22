@@ -96,7 +96,7 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
       opacity: 1,
       transition: {
         staggerChildren: 0.12,
-        delayChildren: 0.05,
+        delayChildren: 0.55,
       },
     },
   }
@@ -105,14 +105,14 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
     hidden: {
       opacity: 0,
       y: 20,
-      filter: "blur(4px)",
+      filter: "blur(1px)",
     },
     visible: {
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
       transition: {
-        duration: 0.45,
+        duration: 0.65,
         ease: "easeOut",
       },
     },

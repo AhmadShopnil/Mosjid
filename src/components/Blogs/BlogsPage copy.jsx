@@ -1,167 +1,167 @@
-"use client"
+// "use client"
 
-import Container from '@/components/Shared/Container'
-import InnerHeader from '@/components/Shared/InnerHeader'
-import React, { useEffect, useState } from 'react'
-import Blogs from './Blogs'
-import axiosInstance from '@/helper/axiosInstance'
-import SidebarMainDrawer from '../Shared/SidebarMainDrawer'
-import { getImageUrl } from '@/helper/getImageUrl'
-import { useSelected } from '@/context/SelectedContext'
-import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
-import { useSelectedParrent } from '@/context/SelectedContextParrent'
-import FindBySearch from '../Shared/FindBySearch'
-import { motion, AnimatePresence } from "framer-motion"
-
-
+// import Container from '@/components/Shared/Container'
+// import InnerHeader from '@/components/Shared/InnerHeader'
+// import React, { useEffect, useState } from 'react'
+// import Blogs from './Blogs'
+// import axiosInstance from '@/helper/axiosInstance'
+// import SidebarMainDrawer from '../Shared/SidebarMainDrawer'
+// import { getImageUrl } from '@/helper/getImageUrl'
+// import { useSelected } from '@/context/SelectedContext'
+// import BreadcrumbForNested from '../Shared/BreadcrumbForNested'
+// import { useSelectedParrent } from '@/context/SelectedContextParrent'
+// import FindBySearch from '../Shared/FindBySearch'
+// import { motion, AnimatePresence } from "framer-motion"
 
 
 
-export default function BlogsPage({ homePage, settings, formattedCategories }) {
-  const [searchValue, setSearchValue] = useState("");
-
-  const { selected, setSelected, clearSelected } = useSelected();
-  const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
-  const [blogs, setBlogs] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const [selectedCat, setSelectedCat] = useState(null)
-  // pagination states
-  const [currentPage, setCurrentPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(10)
-  const perPage = 10
 
 
-  useEffect(() => {
-    clearSelected();
-    clearSelectedParrent();
-  }, [])
+// export default function BlogsPage({ homePage, settings, formattedCategories }) {
+//   const [searchValue, setSearchValue] = useState("");
+
+//   const { selected, setSelected, clearSelected } = useSelected();
+//   const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
+//   const [blogs, setBlogs] = useState([])
+//   const [loading, setLoading] = useState(false)
+//   const [error, setError] = useState(null)
+//   const [selectedCat, setSelectedCat] = useState(null)
+//   // pagination states
+//   const [currentPage, setCurrentPage] = useState(1)
+//   const [totalPages, setTotalPages] = useState(10)
+//   const perPage = 10
 
 
-  const handleSearch = ({ name, number }) => {
-    const q = name || number || "";
-    setSearchValue(q);
-    setCurrentPage(1); 
-  };
+//   useEffect(() => {
+//     clearSelected();
+//     clearSelectedParrent();
+//   }, [])
 
 
-  // fetching data
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      setLoading(true);
-
-      let url = `/posts?term_type=post&page=${currentPage}&per_page=${perPage}`;
-
-      if (selectedCat) {
-        url = `/posts?term_type=post&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`;
-      }
-
-      // Add search query
-      if (searchValue) {
-        url += `&s=${searchValue}`;
-      }
-
-      try {
-        const response = await axiosInstance.get(url);
-        const data = response?.data?.data || [];
-        const meta = response?.data?.meta || {};
-
-        setBlogs(data);
-        setTotalPages(meta.last_page || 1);
-      } catch (err) {
-        console.error("Error fetching blogs:", err);
-        setError(err.message || "Failed to fetch blogs");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBlogs();
-  }, [selectedCat, currentPage, searchValue]); // ⬅️ searchValue dependency
+//   const handleSearch = ({ name, number }) => {
+//     const q = name || number || "";
+//     setSearchValue(q);
+//     setCurrentPage(1); 
+//   };
 
 
+//   // fetching data
+//   useEffect(() => {
+//     const fetchBlogs = async () => {
+//       setLoading(true);
 
-  const sections = homePage?.sections_on_api;
-  const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
-  const image_arabic = getImageUrl(blog_events_ExtraData?.image_media);
-  const requestData = selected?.name ? `Blogs of ${selected?.name} ` : "Blogs"
-  const section_title = selected?.name || selectedParrent?.name
+//       let url = `/posts?term_type=post&page=${currentPage}&per_page=${perPage}`;
+
+//       if (selectedCat) {
+//         url = `/posts?term_type=post&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}`;
+//       }
+
+//       // Add search query
+//       if (searchValue) {
+//         url += `&s=${searchValue}`;
+//       }
+
+//       try {
+//         const response = await axiosInstance.get(url);
+//         const data = response?.data?.data || [];
+//         const meta = response?.data?.meta || {};
+
+//         setBlogs(data);
+//         setTotalPages(meta.last_page || 1);
+//       } catch (err) {
+//         console.error("Error fetching blogs:", err);
+//         setError(err.message || "Failed to fetch blogs");
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchBlogs();
+//   }, [selectedCat, currentPage, searchValue]); // ⬅️ searchValue dependency
 
 
 
-// for animation
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.05,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-    filter: "blur(4px)",
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      duration: 0.45,
-      ease: "easeOut",
-    },
-  },
-}
+//   const sections = homePage?.sections_on_api;
+//   const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
+//   const image_arabic = getImageUrl(blog_events_ExtraData?.image_media);
+//   const requestData = selected?.name ? `Blogs of ${selected?.name} ` : "Blogs"
+//   const section_title = selected?.name || selectedParrent?.name
 
 
 
-  return (
-    <div>
+// // for animation
+// const containerVariants = {
+//   hidden: { opacity: 0 },
+//   visible: {
+//     opacity: 1,
+//     transition: {
+//       staggerChildren: 0.12,
+//       delayChildren: 0.05,
+//     },
+//   },
+// }
 
-      <div>
-        <BreadcrumbForNested
-          items={[
-            { label: "Home", link: "/" },
-            { label: "Blogs", link: "/blogs" },
-            { label: selectedParrent?.name, link: "/blogs" },
-            { label: selected?.name, link: null },
+// const itemVariants = {
+//   hidden: {
+//     opacity: 0,
+//     y: 20,
+//     filter: "blur(4px)",
+//   },
+//   visible: {
+//     opacity: 1,
+//     y: 0,
+//     filter: "blur(0px)",
+//     transition: {
+//       duration: 0.45,
+//       ease: "easeOut",
+//     },
+//   },
+// }
 
-          ]}
-        />
-
-      </div>
 
 
-      <Container className='flex gap-6 my-6'>
-        {/* sidebar */}
-        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={requestData} />
+//   return (
+//     <div>
+
+//       <div>
+//         <BreadcrumbForNested
+//           items={[
+//             { label: "Home", link: "/" },
+//             { label: "Blogs", link: "/blogs" },
+//             { label: selectedParrent?.name, link: "/blogs" },
+//             { label: selected?.name, link: null },
+
+//           ]}
+//         />
+
+//       </div>
 
 
-        {/* main content */}
-        <div className=' w-full space-y-6'>
-          <InnerHeader title={blog_events_ExtraData?.sub_title} image={image_arabic} />
-          <FindBySearch onSearch={(values) => handleSearch(values)} button_text="Find Blogs" />
-          <div>
-            <Blogs
-              section_title={section_title}
-              blogs={blogs}
-              settings={settings}
-              homePage={homePage}
-              loading={loading}
-              currentPage={currentPage}
-              totalPages={totalPages}
-              setCurrentPage={setCurrentPage}
-            />
-          </div>
+//       <Container className='flex gap-6 my-6'>
+//         {/* sidebar */}
+//         <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={requestData} />
 
-        </div>
-      </Container>
 
-    </div>
-  )
-}
+//         {/* main content */}
+//         <div className=' w-full space-y-6'>
+//           <InnerHeader title={blog_events_ExtraData?.sub_title} image={image_arabic} />
+//           <FindBySearch onSearch={(values) => handleSearch(values)} button_text="Find Blogs" />
+//           <div>
+//             <Blogs
+//               section_title={section_title}
+//               blogs={blogs}
+//               settings={settings}
+//               homePage={homePage}
+//               loading={loading}
+//               currentPage={currentPage}
+//               totalPages={totalPages}
+//               setCurrentPage={setCurrentPage}
+//             />
+//           </div>
+
+//         </div>
+//       </Container>
+
+//     </div>
+//   )
+// }

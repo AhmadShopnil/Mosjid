@@ -133,8 +133,7 @@ export default function DirectoryPageClient({ settings, homePage, slug, filterDa
     return (
         <div>
             <div>
-                <BannerInnerPage />
-                {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Directory" /> */}
+
                 <BreadcrumbForNested
                     items={[
                         { label: "Home", link: "/" },

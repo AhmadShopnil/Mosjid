@@ -26,7 +26,6 @@ export default async function page() {
         settings={settings}
         homePage={homePage}
         formattedCategories={formattedCategories}
-
       />
 
     </div>
