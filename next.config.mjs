@@ -4,7 +4,15 @@ const nextConfig = {
     BASE_URL: process.env.BASE_URL || "http://localhost:3000",
   },
   images: {
-    domains: ["mathmozocms.test", "www.admin.osakamasjid.org","admin.osakamasjid.org","osakamasjid.org"],
+    remotePatterns: [
+      // local/test host (no protocol -> allow http/https)
+      { hostname: "mathmozocms.test" },
+
+      // production/admin hosts (https)
+      { protocol: "https", hostname: "www.admin.osakamasjid.org" },
+      { protocol: "https", hostname: "admin.osakamasjid.org" },
+      { protocol: "https", hostname: "osakamasjid.org" }
+    ],
   },
   async rewrites() {
     return [
@@ -17,6 +25,4 @@ const nextConfig = {
   reactStrictMode: false,
 };
 
-
 export default nextConfig;
-
