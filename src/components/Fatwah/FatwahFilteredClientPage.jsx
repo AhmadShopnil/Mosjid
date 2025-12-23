@@ -36,7 +36,6 @@ export default function FatwahFilteredClientPage({ fatwahs, settings, homePage, 
         <div>
 
             <div>
-                <BannerInnerFatwa  />
                 <BreadcrumbForNested
                     items={[
                         { label: "Home", link: "/" },
@@ -60,13 +59,6 @@ export default function FatwahFilteredClientPage({ fatwahs, settings, homePage, 
                     dataForContact={requestData}
                     data_for_filter={data_for_filter}
                 />
-
-
-                {/* <div className='w-[400px] space-y-6'>
-             <Sidebar categories={categories} />
-           </div> */}
-
-
 
                 {/* main content */}
                 <div className=' w-full'>
