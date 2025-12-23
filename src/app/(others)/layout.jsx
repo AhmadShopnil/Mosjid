@@ -56,8 +56,8 @@ export default function RootLayout({ children }) {
           <RegionFilterProvider>
             <SelectedParrentProvider>
               <SelectedProvider>
-                <AnimatePresence mode="wait">
-                  <PageRevealWithSpinner >
+                {/* <AnimatePresence mode="wait">
+                  <PageRevealWithSpinner > */}
                     <div className=" min-h-screen bg-background">
                       <DevelopmentBanner />
                       <Header />
@@ -70,8 +70,8 @@ export default function RootLayout({ children }) {
                     </div>
 
 
-                  </PageRevealWithSpinner>
-                </AnimatePresence>
+                  {/* </PageRevealWithSpinner>
+                </AnimatePresence> */}
               </SelectedProvider>
             </SelectedParrentProvider>
           </RegionFilterProvider>

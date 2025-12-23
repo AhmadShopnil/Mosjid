@@ -477,3 +477,50 @@ body {
 .loading-complete .circular-loader circle {
   stroke-dashoffset: 0;
 }
+
+
+/* Circular Progress Animation */
+.circle-progress {
+  animation: circleFill 4s linear infinite;
+}
+
+@keyframes circleFill {
+  0% {
+    stroke-dashoffset: 283;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Bottom Progress Bar */
+.progress-bar-fill {
+  width: 0%;
+  animation: barFill 4s ease-in-out infinite;
+}
+
+@keyframes barFill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Optional Pulse Effect (if not exists) */
+.pulse-effect {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.85;
+  }
+}

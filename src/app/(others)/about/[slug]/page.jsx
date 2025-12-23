@@ -3,17 +3,14 @@ import BannerInnerPageServerSide from '@/components/Shared/BannerInnerPageServer
 import { getCategories, getPage, getSettings } from '@/helper/actions'
 import { transformNoticeCategories } from '@/helper/transformNoticeCategories'
 import React from 'react'
-import { AnimatePresence } from "framer-motion";
-
-import PageReveal from "@/components/Shared/PageReveal";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default async function page({ params }) {
     const { slug } = params;
 
-    // ⏳ Artificial delay (3 seconds)
-    await delay(3000);
+    // fake delay (3 seconds)
+    // await delay(3000);
 
     const settings = await getSettings();
     const homePage = await getPage("home-sections-heading-management")
@@ -23,7 +20,6 @@ export default async function page({ params }) {
 
     return (
         <div>
-
             <BannerInnerPageServerSide />
             <AboutInnerPage
                 slug={slug}
@@ -31,8 +27,6 @@ export default async function page({ params }) {
                 homePage={homePage}
                 formattedCategories={formattedCategories}
             />
-
-
         </div>
     )
 }
