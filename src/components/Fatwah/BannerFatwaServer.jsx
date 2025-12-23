@@ -16,7 +16,7 @@ export default async function BannerFatwaServer() {
   const center_bottom_image = getImageFromExtraFields(banner, "center_bottom_image");
   const center_bottom_title = getMetaValueFromExtraFields(banner, "center_bottom_title");
 
-  // console.log("inner banner", banner?.featured_image)
+
 
   return (
      <div
@@ -29,7 +29,7 @@ export default async function BannerFatwaServer() {
        >
          <div className="items-center justify-center">
            <Container className="h-[150px] sm:h-[180px] md:h-[286px]  relative">
-             {/* Main Wrapper */}
+         
              <div className="relative h-full w-full">
    
                {/* Left Logo */}
