@@ -10,14 +10,13 @@ import { getImageUrl } from "@/helper/getImageUrl"
 import BreadcrumbForNested from "../Shared/BreadcrumbForNested"
 import { useSelected } from "@/context/SelectedContext"
 import { useSelectedParrent } from "@/context/SelectedContextParrent"
-
 import SkeletonDescription from "../Shared/Skeleton/SkeletonDescription"
+import { motion, AnimatePresence } from "framer-motion";
 
 
 
-
-export default function AboutInnerPage({ homePage, settings, formattedCategories, slug }) {
-    const { selected,  clearSelected } = useSelected();
+export default function AboutInnerPage({ homePage, formattedCategories, slug }) {
+    const { selected, clearSelected } = useSelected();
     const { selectedParrent, clearSelectedParrent } = useSelectedParrent();
 
 
@@ -33,8 +32,8 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
 
 
     useEffect(() => {
-        clearSelected();
-        clearSelectedParrent();
+        // clearSelected();
+        // clearSelectedParrent();
 
     }, [])
 
@@ -45,7 +44,7 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
         const fetchAboutData = async () => {
             setLoading(true)
             let url = `/posts?term_type=about_info&category_slug=${slug}&page=${currentPage}&per_page=${perPage}`
-          
+
             try {
                 const response = await axiosInstance.get(url)
                 const data = response?.data?.data || []
@@ -70,13 +69,47 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
 
 
     const image_arabic = getImageUrl(about_ExtraData?.image_media);
-    //   const icon = getImageUrl(about_ExtraData?.background_media);
-    // console.log("about selected", selected)
+
+
+
+
+
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.1,
+            },
+        },
+    };
+
+    const itemVariants = {
+        hidden: {
+            opacity: 0,
+            y: 24,
+            filter: "blur(2px)",
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            transition: {
+                duration: 0.6,
+                ease: "easeOut",
+            },
+        },
+    };
+
+
+
+
 
     return (
         <div>
             <div>
-
                 <BreadcrumbForNested
                     items={[
                         { label: "Home", link: "/" },
@@ -85,7 +118,6 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
                         { label: selected?.name, link: null },
                     ]}
                 />
-
             </div>
 
             <Container className="flex gap-6 my-6">
@@ -97,35 +129,59 @@ export default function AboutInnerPage({ homePage, settings, formattedCategories
                     isAboutNavigate={true} />
 
                 {/* main content */}
-                <div className="w-full space-y-6">
-                    <InnerHeader title={about_ExtraData?.sub_title} image={image_arabic} />
+                <AnimatePresence mode="wait">
+                    <motion.div
+                      key={slug}
 
-                    {loading ? (
-                        <SkeletonDescription />
-                    ) : abouDatas?.length > 0 ? (
-                        <div>
-                            <div>
-                                <h4 className='text-[#333333] font-bold text-2xl'>{abouDatas[0]?.name} </h4>
+                        className="w-full space-y-6"
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit={{ opacity: 0, y: 12 }}
+                    >
+                        {/* Header */}
+                        <motion.div variants={itemVariants}>
+                            <InnerHeader
+                                title={about_ExtraData?.sub_title}
+                                image={image_arabic}
+                            />
+                        </motion.div>
 
-                                <div
-                                    className="text-[#333333] text-sm sm:text-base mt-4"
-                                    dangerouslySetInnerHTML={{ __html: abouDatas[0]?.description }}
-                                />
-                            </div>
+                        {/* Content */}
+                        {loading ? (
+                            <motion.div variants={itemVariants}>
+                                <SkeletonDescription />
+                            </motion.div>
+                        ) : abouDatas?.length > 0 ? (
+                            <motion.div variants={itemVariants}>
+                                <div>
+                                    <h4 className="text-[#333333] font-bold text-2xl">
+                                        {abouDatas[0]?.name}
+                                    </h4>
 
-                            <div className="border-t mt-8 pt-3 flex items-center gap-4 text-[#D9E2DD]">
-                                <SocialShare />
-                            </div>
-                        </div>
-                    ) : (
-                        <>
-                            <p className="text-sm md:text-base lg:text-lg text-center">
+                                    <div
+                                        className="text-[#333333] text-sm sm:text-base mt-4"
+                                        dangerouslySetInnerHTML={{
+                                            __html: abouDatas[0]?.description,
+                                        }}
+                                    />
+                                </div>
+
+                                <div className="border-t mt-8 pt-3 flex items-center gap-4 text-[#D9E2DD]">
+                                    <SocialShare />
+                                </div>
+                            </motion.div>
+                        ) : (
+                            <motion.p
+                                variants={itemVariants}
+                                className="text-sm md:text-base lg:text-lg text-center"
+                            >
                                 No data Found
-                            </p>
+                            </motion.p>
+                        )}
+                    </motion.div>
+                </AnimatePresence>
 
-                        </>
-                    )}
-                </div>
 
             </Container>
         </div>
