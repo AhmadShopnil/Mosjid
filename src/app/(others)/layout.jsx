@@ -10,9 +10,10 @@ import { SelectedParrentProvider } from "@/context/SelectedContextParrent";
 import { FatwaFilterProvider } from "@/context/FatwaFilterContext";
 import { RegionFilterProvider } from "@/context/RegionFilterContext ";
 import { AnimatePresence } from "framer-motion";
-import PageTransition from "@/components/Shared/PageTransition";
+
 import PageReveal from "@/components/Shared/PageReveal";
-import PageLoader from "@/components/Shared/PageLoader";
+import PageRevealWithSpinner from "@/components/Shared/LoadingAnimation/PageRevealWithSpinner";
+
 
 
 
@@ -55,16 +56,22 @@ export default function RootLayout({ children }) {
           <RegionFilterProvider>
             <SelectedParrentProvider>
               <SelectedProvider>
-                <DevelopmentBanner />
-                <Header />
                 <AnimatePresence mode="wait">
-                  <PageReveal >
-                    {children}
-                  </PageReveal>
+                  <PageRevealWithSpinner >
+                    <div className=" min-h-screen bg-background">
+                      <DevelopmentBanner />
+                      <Header />
+
+                      {children}
+
+                      <Footer />
+                      <ScrollToTopButton />
+                      <Toaster position="top-right" />
+                    </div>
+
+
+                  </PageRevealWithSpinner>
                 </AnimatePresence>
-                <Footer />
-                <ScrollToTopButton />
-                <Toaster position="top-right" />
               </SelectedProvider>
             </SelectedParrentProvider>
           </RegionFilterProvider>

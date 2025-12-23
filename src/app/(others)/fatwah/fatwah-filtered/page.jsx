@@ -1,13 +1,7 @@
 
+import BannerFatwaServer from '@/components/Fatwah/BannerFatwaServer'
 import FatwahFilteredClientPage from '@/components/Fatwah/FatwahFilteredClientPage'
-import FatwaFinder from '@/components/Fatwah/FatwahFinder'
-import FatwahSearchResult from '@/components/Fatwah/FatwahSearchResult'
-import BannerInnerPage from '@/components/Shared/BannerInnerPage'
-import Breadcrumb from '@/components/Shared/Breadcrumb'
-import Container from '@/components/Shared/Container'
-import SidebarDrawerForBooks from '@/components/Shared/SidebarDrawerForBooks'
 import { getFatwah, getFatwahFiltersData, getPage, getSettings } from '@/helper/actions'
-import { formatFatwaBooksForSidebar } from '@/helper/formatFatwaBooksForSidebar'
 import React from 'react'
 
 
@@ -28,7 +22,7 @@ export default async function page() {
   // console.log("fatwah", fatwahs?.data)
   return (
     <div>
-
+      <BannerFatwaServer />
       <FatwahFilteredClientPage
         fatwahs={fatwahs}
         settings={settings}
