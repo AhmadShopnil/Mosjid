@@ -14,10 +14,13 @@ export default function FatwaListInner({
   settings,
   homePage,
   title,
+  currentPage,
+  setCurrentPage,
+  totalPages,
   titleWidth = "w-[420px]",
 }) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(5);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [totalPages, setTotalPages] = useState(5);
   const view_more = getMetaValueByMetaName(settings, "view_more") || "";
   const read_more = getMetaValueByMetaName(settings, "read_more") || "";
   const download = getMetaValueByMetaName(settings, "download") || "";

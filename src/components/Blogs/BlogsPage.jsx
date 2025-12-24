@@ -77,7 +77,7 @@ export default function BlogsPage({ homePage, settings, formattedCategories }) {
     };
 
     fetchBlogs();
-  }, [selectedCat, currentPage, searchValue]); // ⬅️ searchValue dependency
+  }, [selectedCat, currentPage, searchValue]); // ⬅ searchValue dependency
 
 
 

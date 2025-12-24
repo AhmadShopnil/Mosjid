@@ -64,6 +64,9 @@ export async function getFatwahFiltersData(slug) {
 
 
 
+
+
+
 export async function getServices() {
   const API_URL = `${BASE_URL}/api/v1/posts?term_type=services&order_by=order_column:asc`;
 
