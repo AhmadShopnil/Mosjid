@@ -9,11 +9,14 @@ import Link from "next/link";
 import { getMediaLinkByMetaName } from "@/helper/metaHelpers";
 import { BASE_URL } from "@/helper/baseUrl";
 import { flattenMenu } from "@/helper/flattenMenu";
+import { useSelected } from "@/context/SelectedContext";
+import { useSelectedParrent } from "@/context/SelectedContextParrent";
 
 
 
 export default function MainMenu({ settings, menuItems }) {
-
+  const { selected, clearSelected } = useSelected();
+  const { selectedParrent, clearSelectedParrent } = useSelectedParrent();
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [activeSubDropdown, setActiveSubDropdown] = useState(null);
@@ -26,6 +29,20 @@ export default function MainMenu({ settings, menuItems }) {
 
   // format menu items in flat array for mobile version
   const mobileMenuItems = flattenMenu(menuItems);
+
+
+  // clear seceted item state
+  const handleOnclickMenuItem = () => {
+    clearSelected();
+    clearSelectedParrent();
+  }
+
+    const handleOnclickMenuItemForMobile = () => {
+      setIsOpen(false)
+    clearSelected();
+    clearSelectedParrent();
+  }
+
 
   return (
     <div className="relative bg-[#00401A] text-white py-2 xl:py-0">
@@ -50,9 +67,10 @@ export default function MainMenu({ settings, menuItems }) {
                 onMouseEnter={() => setActiveDropdown(i)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-             
+
 
                 <Link
+                  onClick={handleOnclickMenuItem}
                   href={`${item?.link}`}
                   className={`hover:text-yellow-400 px-1 py-1  flex justify-center
                      items-center ${activeDropdown === i && "text-yellow-400"}`}
@@ -94,6 +112,7 @@ export default function MainMenu({ settings, menuItems }) {
                   >
                     {item?.child?.map((sub, j) => (
                       <Link
+                      onClick={handleOnclickMenuItem}
                         key={j}
                         href={sub?.link}
                         className="flex items-center gap-2 px-4 py-2.5 font-bold  hover:text-[#F7BA2A] text-xs"
@@ -155,8 +174,9 @@ export default function MainMenu({ settings, menuItems }) {
             {mobileMenuItems?.map((item, i) => (
               <div key={i} className="relative group border-b border-gray-200 last:border-none">
                 <Link
+                
                   href={`${item?.link}`}
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleOnclickMenuItemForMobile }
                   className="group flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r
                    hover:from-green-50 hover:to-green-100 transition-all duration-200 "
                 >

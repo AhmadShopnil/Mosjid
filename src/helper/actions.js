@@ -297,6 +297,15 @@ export async function getDonationsMethods() {
   const json = await res.json();
   return json?.data || [];
 }
+export async function getDonationsMethodsByCat(slug) {
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=donations&category_id=${slug}&is_featured=Yes&order_by=order_column:asc`;
+
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+  return json?.data || [];
+}
 
 export async function getAllDonationsMethods() {
   const API_URL = `${BASE_URL}/api/v1/posts?term_type=donations&order_by=order_column:asc`;

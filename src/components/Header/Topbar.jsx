@@ -8,6 +8,7 @@ import { FaPhoneVolume } from "react-icons/fa6";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import Link from "next/link";
 import ToaysDateTime from "./ToaysDateTime";
+import ToaysDateTimeHijri from "./ToaysDateTimeHijri";
 
 const languages = [
   { title: "English", icon: "/images/others/eng.svg", code: "en" },
@@ -119,7 +120,7 @@ export default function Topbar({ settings,location }) {
 
       <div className="justify-end items-center gap-4 md:gap-6 hidden xl:flex ">
      
-     <ToaysDateTime location={location}/>
+     <ToaysDateTimeHijri location={location}/>
         {/* language selection */}
         <div className="flex items-center gap-2 justify-end min-w-[360px]">
           <span className="text-lg text-[#00401A] font-bold whitespace-nowrap">

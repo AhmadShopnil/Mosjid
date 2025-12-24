@@ -8,8 +8,6 @@ import InnerHeader from '@/components/Shared/InnerHeader'
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 import axiosInstance from "@/helper/axiosInstance"
 import DuaList from "./DuaList"
-import { DuaCardInnerPage } from "./DuaCardInnerPage"
-import { splitBySlash } from "@/helper/splitBySpace"
 import { getImageUrl } from "@/helper/getImageUrl"
 import { useSelected } from "@/context/SelectedContext"
 import { useSelectedParrent } from "@/context/SelectedContextParrent"
@@ -35,7 +33,7 @@ export default function DuaPageInner({ homePage, settings, formattedCategories }
     const handleSearch = ({ name, number }) => {
         const q = name || number || "";
         setSearchValue(q);
-        setCurrentPage(1); // new search → reset page
+        setCurrentPage(1); 
     };
 
 

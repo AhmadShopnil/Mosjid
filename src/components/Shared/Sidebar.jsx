@@ -13,6 +13,7 @@ export default function Sidebar({
   setIsDrawerOpen,
   categories,
   setSelectedCat,
+  isDonationNavigate,
   isNavigate,
   directoryNavigate,
   isFatwah_Dictionary_Filter,
@@ -64,7 +65,11 @@ export default function Sidebar({
         router.push(`/${isNavigate}`);
       } else if (isAboutNavigate) {
         router.push(`/about/${subItem?.slug}`);
-      } else if (category?.link) {
+      }
+      else if (isDonationNavigate) {
+        router.push(`/donation/${category.id}`);
+      }
+       else if (category?.link) {
         router.push(`${category?.link}`);
       } else {
         if (setSelectedCat != null) {

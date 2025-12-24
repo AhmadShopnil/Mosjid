@@ -14,7 +14,7 @@ export default async function Footer() {
   return (
     <div className='pt-[200px] lg:pt-[210px]'>
       <div
-        className='w-full h-[1110px] sm:h-[610px] lg:h-[530px] relative '
+        className='w-full h-[1350px] sm:h-[780px] lg:h-[530px] relative '
         style={{
           backgroundImage: "url('/images/footer/footerbg.png')",
           backgroundSize: "cover",
@@ -26,13 +26,13 @@ export default async function Footer() {
         <div className='absolute top-[-150px] left-0 w-full '>
           <FooterContent />
         </div>
-        
-        
-  <div className='bg-[#003014] py-3 w-full  bottom-0 absolute flex items-center justify-center'>
-          <p className='text-[#E6ECE8] text-[15px] text-center '>{copyright_content}</p>
+
+
+        <div className='bg-[#003014] px-2 py-3 w-full  bottom-0 absolute flex items-center justify-center'>
+          <p className='text-[#E6ECE8] text-[13px] sm:text-[14px] md:text-[15px] text-center '>{copyright_content}</p>
         </div>
       </div>
-    
+
 
       {/* <div className='bg-red-300 w-full  flex items-center justify-center  '>
         <p className='text-[#E6ECE8] text-base text-center'>{copyright_content}</p>

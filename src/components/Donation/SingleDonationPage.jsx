@@ -18,57 +18,18 @@ import SocialShare from '../Shared/SocialShare'
 
 
 
-export default function DonationPage({ homePage, settings, formattedCategories, donationsListForBottom }) {
+export default function SingleDonationPage({ homePage, settings, formattedCategories, donationsListForBottom,donations }) {
   const { selected, setSelected, clearSelected } = useSelected();
   const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
-  const [donations, setDonations] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
   const [selectedCat, setSelectedCat] = useState(null)
-  // pagination states
-  const [currentPage, setCurrentPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(10)
-  const perPage = 6
+
+
 
   const sections = homePage.sections_on_api;
   const make_your_donation = sections.find((s) => s.title_slug === "make-your-doantion");
   const image_arabic = getImageUrl(make_your_donation?.image_media);
 
 
-
-  useEffect(() => {
-    clearSelected();
-    clearSelectedParrent();
-  }, [])
-
-
-  // fetching data
-  useEffect(() => {
-    const fetchData = async () => {
-
-      setLoading(true)
-
-      let url = `/posts?term_type=donations&page=${currentPage}&per_page=${perPage}&is_featured=Yes`
-      if (selectedCat) {
-        url = `/posts?term_type=donations&category_id=${selectedCat}&page=${currentPage}&per_page=${perPage}&is_featured=Yes`
-      }
-      try {
-        const response = await axiosInstance.get(url)
-        const data = response?.data?.data || []
-        const meta = response?.data?.meta || {}
-
-        setDonations(data)
-        setTotalPages(meta.last_page || 1)
-      } catch (err) {
-        console.error("Error fetching donations:", err)
-        setError(err.message || "Failed to fetch donations")
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchData()
-  }, [selectedCat, currentPage])
 
 
 
@@ -123,12 +84,17 @@ export default function DonationPage({ homePage, settings, formattedCategories, 
 
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
-        <SidebarMainDrawer  isDonationNavigate={true} categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={requestData} />
+        <SidebarMainDrawer 
+        categories={formattedCategories}
+         setSelectedCat={setSelectedCat}
+          dataForContact={requestData}
+          isDonationNavigate={true}
+          />
 
         {/* main content */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={`${selectedCat}-${currentPage}`}
+            key={`${selectedCat}`}
             className="w-full space-y-6"
             variants={containerVariants}
             initial="hidden"
@@ -147,11 +113,7 @@ export default function DonationPage({ homePage, settings, formattedCategories, 
                 donations={donations}
                 settings={settings}
                 homePage={homePage}
-                loading={loading}
-                currentPage={currentPage}
-                totalPages={totalPages}
-                setCurrentPage={setCurrentPage}
-                donationTitle={requestData}
+               
               />
               <div className=" mt-6 flex items-center  text-[#D9E2DD]">
               <SocialShare />
