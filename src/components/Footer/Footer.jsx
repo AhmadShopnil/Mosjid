@@ -12,9 +12,9 @@ export default async function Footer() {
 
 
   return (
-    <div>
+    <div className='pt-[200px] lg:pt-[210px]'>
       <div
-        className='w-full h-[1110px] sm:h-[610px] lg:h-[530px] relative mt-[200px] lg:mt-[220px]'
+        className='w-full h-[1110px] sm:h-[610px] lg:h-[530px] relative '
         style={{
           backgroundImage: "url('/images/footer/footerbg.png')",
           backgroundSize: "cover",
