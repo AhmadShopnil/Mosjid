@@ -64,6 +64,9 @@ export async function getFatwahFiltersData(slug) {
 
 
 
+
+
+
 export async function getServices() {
   const API_URL = `${BASE_URL}/api/v1/posts?term_type=services&order_by=order_column:asc`;
 
@@ -287,6 +290,15 @@ export async function getPryerTime() {
 
 export async function getDonationsMethods() {
   const API_URL = `${BASE_URL}/api/v1/posts?term_type=donations&is_featured=Yes&order_by=order_column:asc`;
+
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+  return json?.data || [];
+}
+export async function getDonationsMethodsByCat(slug) {
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=donations&category_id=${slug}&is_featured=Yes&order_by=order_column:asc`;
 
   const res = await fetch(API_URL, {
     next: { revalidate: 30 },

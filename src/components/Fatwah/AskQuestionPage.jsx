@@ -173,6 +173,8 @@ export default function AskQuestionPage() {
                     {/* Buttons */}
                     <div className="flex justify-end gap-3 md:col-span-2 mt-3">
                         <button
+
+                            aria-label="reset"
                             type="button"
                             onClick={handleReset}
                             className="h-[56px] text-lg border border-green-500 text-green-700 bg-white hover:bg-green-50 font-medium py-2 px-32
@@ -181,6 +183,8 @@ export default function AskQuestionPage() {
                             Reset
                         </button>
                         <button
+
+                            aria-label="submit"
                             type="submit"
                             disabled={loading}
                             className="h-[56px] text-lg bg-[#F7BA2A] hover:bg-[#e4a819] text-white font-medium py-2 px-18 rounded-[10px]

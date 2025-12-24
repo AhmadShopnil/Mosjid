@@ -93,6 +93,8 @@ export default function ImageGalleryInnerPage({ gallery, loading }) {
 
               {/* Close Button */}
               <button
+                type="button"
+                aria-label="close"
                 onClick={closeModal}
                 className="absolute top-4 right-4 text-white bg-gray-800 bg-opacity-70 hover:bg-opacity-90 rounded-full 
                 px-3 py-1.5  transition-all duration-200 backdrop-blur-sm font-semibold"
@@ -102,11 +104,13 @@ export default function ImageGalleryInnerPage({ gallery, loading }) {
 
               {/* Prev Button */}
               <button
+                type="button"
+                aria-label="previous"
                 onClick={showPrev}
                 className="absolute -left-24 top-1/2 -translate-y-1/2 cursor-pointer "
               >
-                
-                  <Image
+
+                <Image
                   src="/images/others/arr_left.png"
                   alt='a1'
                   width={54}
@@ -117,10 +121,12 @@ export default function ImageGalleryInnerPage({ gallery, loading }) {
 
               {/* Next Button */}
               <button
+                type="button"
+                aria-label="next"
                 onClick={showNext}
                 className="absolute -right-24 top-1/2 -translate-y-1/2 cursor-pointer"
               >
-                  <Image
+                <Image
                   src="/images/others/arr_right.png"
                   alt='a1'
                   width={54}
@@ -136,65 +142,65 @@ export default function ImageGalleryInnerPage({ gallery, loading }) {
               <p className="text-sm leading-relaxed text-[#00401A]">
                 {images[selectedIndex]?.description || "This is a sample description for the image."}
               </p>
-              
-            </div>
-          
-             {/* social share */}
-
-          <div className="mt-4 flex justify-end w-full  ">
-            <div className="  flex items-center gap-6 text-[#D9E2DD]">
-              <div className="border-r-2 border-gray-300 pr-3">
-                <Image
-                  src="/images/others/twiter.png"
-                  alt='a1'
-                  width={24}
-                  height={24}
-                  className=""
-                />
-              </div>
-              <div className="border-r-2 border-gray-300 pr-3">
-                <Image
-                  src="/images/others/fb.png"
-                  alt='a1'
-                  width={16}
-                  height={16}
-                />
-              </div>
-              <div className="border-r-2 border-gray-300 pr-3">
-                <Image
-                  src="/images/others/whatsapp.png"
-                  alt='a1'
-                  width={21}
-                  height={21}
-                />
-              </div>
-              <div className="border-r-2 border-gray-300 pr-3">
-                <Image
-                  src="/images/others/printer_white.png"
-                  alt='a1'
-                  width={23}
-                  height={23}
-                />
-              </div>
-              <div>
-                <Image
-                  src="/images/others/download_white.png"
-                  alt='a1'
-                  width={23}
-                  height={23}
-                />
-              </div>
-
 
             </div>
+
+            {/* social share */}
+
+            <div className="mt-4 flex justify-end w-full  ">
+              <div className="  flex items-center gap-6 text-[#D9E2DD]">
+                <div className="border-r-2 border-gray-300 pr-3">
+                  <Image
+                    src="/images/others/twiter.png"
+                    alt='a1'
+                    width={24}
+                    height={24}
+                    className=""
+                  />
+                </div>
+                <div className="border-r-2 border-gray-300 pr-3">
+                  <Image
+                    src="/images/others/fb.png"
+                    alt='a1'
+                    width={16}
+                    height={16}
+                  />
+                </div>
+                <div className="border-r-2 border-gray-300 pr-3">
+                  <Image
+                    src="/images/others/whatsapp.png"
+                    alt='a1'
+                    width={21}
+                    height={21}
+                  />
+                </div>
+                <div className="border-r-2 border-gray-300 pr-3">
+                  <Image
+                    src="/images/others/printer_white.png"
+                    alt='a1'
+                    width={23}
+                    height={23}
+                  />
+                </div>
+                <div>
+                  <Image
+                    src="/images/others/download_white.png"
+                    alt='a1'
+                    width={23}
+                    height={23}
+                  />
+                </div>
+
+
+              </div>
+            </div>
+
+
+
           </div>
 
 
 
-          </div>
-
-
-       
         </div>
 
 

@@ -64,12 +64,14 @@ export default function IslamicNameSearch({
                 ? "cursor-not-allowed bg-gray-100"
                 : "focus:outline-none"
               }`}
-        
+
           />
         </div>
 
         {/* Search Button */}
         <button
+          type="button"
+          aria-label="search"
           onClick={handleSearch}
           disabled={isDisabled}
           className={`bg-[#F7BA2A] w-full lg:w-auto text-[#00401A] h-[56px] font-bold px-6 md:px-14 py-3 rounded-[10px] 
@@ -80,6 +82,8 @@ export default function IslamicNameSearch({
 
         {/* Clear Button */}
         <button
+          type="button"
+          aria-label="close"
           onClick={handleClear}
           disabled={isDisabled}
           className={`flex w-full lg:w-auto items-center justify-center gap-1 h-[56px] px-4 py-3  rounded-[10px] border

@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function DevelopmentBanner() {
 
- const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(true);
 
   if (!visible) return null;
 
@@ -17,10 +17,12 @@ export default function DevelopmentBanner() {
         <AlertTriangle className="w-10 h-10 md:w-5 md:h-5 shrink-0" />
       </div>
       <p>
-        <strong>Notice:</strong> Our website is currently <span className="font-semibold">under development</span>.  
+        <strong>Notice:</strong> Our website is currently <span className="font-semibold">under development</span>.
         Some features may not work as expected. Thank you for your patience!
       </p>
-        <button
+      <button
+        type="button"
+        aria-label="close"
         onClick={() => setVisible(false)}
         className="text-yellow-800 hover:text-yellow-950 text-xs sm:text-sm font-semibold ml-2"
       >

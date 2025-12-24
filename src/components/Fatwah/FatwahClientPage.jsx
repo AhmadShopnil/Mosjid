@@ -1,21 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
 import FatwaFinder from "@/components/Fatwah/FatwahFinder";
 import FatwahSlected from "@/components/Fatwah/FatwahSlected";
-import FatwaListInner from "@/components/Fatwah/FatwaListInner";
 import BreadcrumbForNested from "@/components/Shared/BreadcrumbForNested";
 import Container from "@/components/Shared/Container";
 import SidebarDrawerForBooks from "@/components/Shared/SidebarDrawerForBooks";
-import BannerInnerFatwa from "./BannerInnerFatwa";
-
 import { useFatwaFilters } from "@/context/FatwaFilterContext";
-import axiosInstance from "@/helper/axiosInstance";
 import { getImageUrl } from "@/helper/getImageUrl";
+import NewFatwa from "./NewFatwa";
+import TopRatedFatwa from "./TopRatedFatwa";
 
-/* ---------------- animation (same as NoticePage) ---------------- */
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -23,7 +19,7 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.12,
-      delayChildren: 0.55,
+      delayChildren: 0.35,
     },
   },
 };
@@ -39,7 +35,7 @@ const itemVariants = {
     y: 0,
     filter: "blur(0px)",
     transition: {
-      duration: 0.75,
+      duration: 0.35,
       ease: "easeOut",
     },
   },
@@ -56,10 +52,6 @@ export default function FatwahClientPage({
     selectedChapter,
   } = useFatwaFilters();
 
-  const [fatwahs, setFatwahs] = useState([]);
-  const [topRatedFatwahs, setTopRatedFatwahs] = useState([]);
-
-  /* ---------------- section data ---------------- */
 
   const sections = homePage?.sections_on_api || [];
   const fatwahExtraData = sections.find(
@@ -68,30 +60,7 @@ export default function FatwahClientPage({
 
   const icon = getImageUrl(fatwahExtraData?.background_media);
 
-  /* ---------------- fetch fatwa ---------------- */
 
-  useEffect(() => {
-    async function fetchFatwa() {
-      try {
-        const response = await axiosInstance.get("/fatwa");
-        const data = response?.data?.data?.data || [];
-        setFatwahs(data);
-      } catch (error) {
-        console.error("Error fetching fatwa:", error);
-      }
-    }
-
-    fetchFatwa();
-  }, []);
-
-
-
-  useEffect(() => {
-    const featured = fatwahs?.filter(
-      (item) => item?.is_featured === "Yes"
-    );
-    setTopRatedFatwahs(featured || []);
-  }, [fatwahs]);
 
   const requestData = "Fatwa";
 
@@ -99,8 +68,6 @@ export default function FatwahClientPage({
     <div>
 
       <div>
-        {/* <BannerInnerFatwa /> */}
-
         <BreadcrumbForNested
           items={[
             { label: "Home", link: "/" },
@@ -148,20 +115,15 @@ export default function FatwahClientPage({
               variants={containerVariants}
             >
               <motion.div variants={itemVariants}>
-                <FatwaListInner
-                  title="New Fatwa"
-                  titleWidth="w-[350px]"
-                  fatwahs={fatwahs}
+                <NewFatwa
                   settings={settings}
                   homePage={homePage}
                 />
               </motion.div>
 
               <motion.div variants={itemVariants}>
-                <FatwaListInner
-                  title="Top Rated Fatwa"
-                  titleWidth="w-[220px]"
-                  fatwahs={topRatedFatwahs}
+                <TopRatedFatwa
+                 
                   settings={settings}
                   homePage={homePage}
                 />

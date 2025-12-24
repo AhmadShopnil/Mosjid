@@ -1,22 +1,21 @@
 "use client"
 
-import Image from 'next/image'
+
 import React, { useState } from 'react'
 
-import { getDonationsMethods } from '@/helper/actions';
-import { getImageUrl } from '@/helper/getImageUrl';
 import { splitBySlash, splitBySpace } from '@/helper/splitBySpace';
 import BankInfoInner from './BankInfoInner';
 import DonationInputSection from './DonationInputSection';
 import { getMetaValueFromExtraFields } from '@/helper/metaHelpers';
 
 
-function MakeDonationInner({ donations,
+function MakeDonationInner({ 
+  donations,
   settings,
   homePage,
 
-  donationTitle }) {
-  const [activeTab, setActiveTab] = useState(donations[0]);
+ }) {
+ 
 
   // console.log("donations", donations)
   const corporation_title = getMetaValueFromExtraFields(donations[0], "corporation_title")
@@ -26,7 +25,7 @@ function MakeDonationInner({ donations,
 
   const heading_part_1 = splitBySlash(make_your_donation?.title)[0]
   const heading_part_2 = splitBySlash(make_your_donation?.title)[1]
-  const image_arabic = getImageUrl(make_your_donation?.image_media);
+
 
   // const donation_title_2 = make_your_donation?.custom_information.find((item) => item.label === "donation_title_2")
   const donate_now_button = make_your_donation?.custom_information.find((item) => item.label === "donate_button") || " Donate Now"

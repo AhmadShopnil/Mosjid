@@ -175,6 +175,8 @@ export default function ImageGallery({
 
               {/* Close Button */}
               <button
+                type="button"
+                aria-label="close"
                 onClick={closeModal}
                 className="absolute top-4 right-4 text-white bg-gray-800 bg-opacity-70 hover:bg-opacity-90 rounded-full 
             px-3 py-1.5 transition-all duration-200 backdrop-blur-sm font-semibold"
@@ -184,6 +186,8 @@ export default function ImageGallery({
 
               {/* Prev Button */}
               <button
+                type="button"
+                aria-label="previous"
                 onClick={showPrev}
                 className="absolute -left-24 top-1/2 -translate-y-1/2 cursor-pointer"
               >
@@ -197,6 +201,8 @@ export default function ImageGallery({
 
               {/* Next Button */}
               <button
+                type="button"
+                aria-label="next"
                 onClick={showNext}
                 className="absolute -right-24 top-1/2 -translate-y-1/2 cursor-pointer"
               >

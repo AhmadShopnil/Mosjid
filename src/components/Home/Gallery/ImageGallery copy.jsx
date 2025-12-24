@@ -49,10 +49,10 @@ export default function ImageGallery({
   }, [selectedIndex]);
 
 
- const heading_part_1 = splitBySlash(img_gallery_Extradata?.title)[0];
+  const heading_part_1 = splitBySlash(img_gallery_Extradata?.title)[0];
   const heading_part_2 = splitBySlash(img_gallery_Extradata?.title)[1];
   const image = getImageUrl(img_gallery_Extradata?.image_media);
-   const icon = getImageUrl(img_gallery_Extradata?.background_media);
+  const icon = getImageUrl(img_gallery_Extradata?.background_media);
 
 
 
@@ -72,7 +72,7 @@ export default function ImageGallery({
           />
 
           <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
-           <p><span >{heading_part_1} </span>
+            <p><span >{heading_part_1} </span>
               <span className="text-[#F7BA2A]">{heading_part_2}</span>
             </p>
             <p>{img_gallery_Extradata?.sub_title}</p>
@@ -81,9 +81,9 @@ export default function ImageGallery({
         </div>
 
 
-        <Link 
-        href="/gallery"
-        className="px-5 py-2.5 text-sm sm:text-base font-bold text-[#001609] border border-[#00401A] rounded-full
+        <Link
+          href="/gallery"
+          className="px-5 py-2.5 text-sm sm:text-base font-bold text-[#001609] border border-[#00401A] rounded-full
           hover:bg-[#00401A] hover:text-white transition-colors duration-400 cursor-pointer">
           {view_more_button_text}
         </Link>
@@ -172,6 +172,8 @@ export default function ImageGallery({
 
             {/* Close Button */}
             <button
+              type="button"
+              aria-label="close"
               onClick={closeModal}
               className="absolute top-4 right-4 text-white bg-gray-800 bg-opacity-70 hover:bg-opacity-90 rounded-full p-2 transition-all duration-200 backdrop-blur-sm"
             >
@@ -180,6 +182,8 @@ export default function ImageGallery({
 
             {/* Prev Button */}
             <button
+              type="button"
+              aria-label="previous"
               onClick={showPrev}
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
             >
@@ -188,6 +192,8 @@ export default function ImageGallery({
 
             {/* Next Button */}
             <button
+              type="button"
+              aria-label="next"
               onClick={showNext}
               className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition"
             >
