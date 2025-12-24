@@ -169,6 +169,8 @@ export default function OfferServicesSlider({
 
           {/* Left */}
           <button
+            type="button"
+            aria-label="Previous slide"
             onClick={() => scroll("left")}
             className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-green-50"
           >
@@ -177,6 +179,8 @@ export default function OfferServicesSlider({
 
           {/* Right */}
           <button
+            type="button"
+            aria-label="Next slide"
             onClick={() => scroll("right")}
             className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-green-50"
           >

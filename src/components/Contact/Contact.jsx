@@ -33,7 +33,7 @@ export default function Contact() {
 
   });
 
- 
+
   useEffect(() => {
     if (nameFromQuery) {
       setFormData((prev) => ({
@@ -118,6 +118,8 @@ export default function Contact() {
             className="w-full bg-white placeholder:text-base p-3 rounded-[10px] outline-none focus:ring-2 focus:ring-green-500 text-gray-700 placeholder-gray-400"
           />
           <button
+
+            aria-label="submit"
             type="submit"
             className="h-[60px] text-bold text-[20px] w-full bg-[#3E8B18] shadow-lg text-white font-semibold py-3 rounded-[10px] hover:opacity-90 transition"
           >

@@ -12,7 +12,7 @@ export default function BooksCardSuggetion({ book }) {
     return (
         <div
 
-         className={`snap-start flex-shrink-0 w-[150px] h-[250px] sm:w-[260px] sm:h-[420px]
+            className={`snap-start flex-shrink-0 w-[150px] h-[250px] sm:w-[260px] sm:h-[420px]
         flex flex-col items-center justify-between text-center rounded-full
         shadow-lg hover:shadow-xl bg-white cursor-pointer
         group border border-[#BDBDBD] hover:border-[#F7BA2A]`
@@ -40,6 +40,8 @@ export default function BooksCardSuggetion({ book }) {
 
             <div className="mb-4 md:pb-12">
                 <button
+                    type="button"
+                    aria-label="download"
                     className="cursor-pointer p-2 rounded-full border border-gray-300 text-gray-300
                     transition-colors duration-300 group-hover:border-[#F7BA2A] group-hover:text-[#F7BA2A]"
                 >

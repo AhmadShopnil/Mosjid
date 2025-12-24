@@ -5,7 +5,7 @@ import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import Image from "next/image";
 import React, { useState, useMemo } from "react";
 
-export default function SingleBlogDetailsCard({ blog,settings }) {
+export default function SingleBlogDetailsCard({ blog, settings }) {
   const [page, setPage] = useState(0);
   const charsPerPage = 1000; // Adjust page size
 
@@ -72,13 +72,14 @@ export default function SingleBlogDetailsCard({ blog,settings }) {
           {descriptionParts.length > 1 && (
             <div className="flex flex-col sm:flex-row justify-between items-center mt-6 gap-3">
               <button
+                type="button"
+                aria-label="Previous"
                 onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
                 disabled={page === 0}
-                className={`w-full sm:w-auto px-4 py-2 rounded-md border text-sm sm:text-base transition ${
-                  page === 0
-                    ? "text-gray-400 border-gray-200 cursor-not-allowed"
-                    : "text-[#00401A] border-[#00401A] hover:bg-[#00401A] hover:text-white"
-                }`}
+                className={`w-full sm:w-auto px-4 py-2 rounded-md border text-sm sm:text-base transition ${page === 0
+                  ? "text-gray-400 border-gray-200 cursor-not-allowed"
+                  : "text-[#00401A] border-[#00401A] hover:bg-[#00401A] hover:text-white"
+                  }`}
               >
                 ← Previous
               </button>
@@ -88,17 +89,18 @@ export default function SingleBlogDetailsCard({ blog,settings }) {
               </span>
 
               <button
+                type="button"
+                aria-label="Next"
                 onClick={() =>
                   setPage((prev) =>
                     Math.min(prev + 1, descriptionParts.length - 1)
                   )
                 }
                 disabled={page === descriptionParts.length - 1}
-                className={`w-full sm:w-auto px-4 py-2 rounded-md border text-sm sm:text-base transition ${
-                  page === descriptionParts.length - 1
-                    ? "text-gray-400 border-gray-200 cursor-not-allowed"
-                    : "text-[#00401A] border-[#00401A] hover:bg-[#00401A] hover:text-white"
-                }`}
+                className={`w-full sm:w-auto px-4 py-2 rounded-md border text-sm sm:text-base transition ${page === descriptionParts.length - 1
+                  ? "text-gray-400 border-gray-200 cursor-not-allowed"
+                  : "text-[#00401A] border-[#00401A] hover:bg-[#00401A] hover:text-white"
+                  }`}
               >
                 Next →
               </button>

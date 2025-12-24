@@ -84,6 +84,8 @@ export default function DuaList({ duas, settings, homePage, loading, currentPage
                                         <p className="sm:hidden text-[#00401A] font-semibold text-[12px] ">{item?.sub_title.slice(0, 18)}</p>
                                         <p className="hidden sm:block text-[#00401A] font-semibold text-[15px]">{item?.sub_title.slice(0, 130)}</p>
                                         <button
+                                            type="button"
+                                            aria-label="read more"
                                             onClick={() => setSelectedDua(item)}
                                             className="text-[#001609] font-semibold sm:font-bold text-xs md:text-sm
                                              hover:text-[#F7BA2A] flex gap-1 items-center mt-1 "

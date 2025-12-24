@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 import { FaLongArrowAltRight } from 'react-icons/fa';
 
 export default function NoticeCardHome({ notice, settings, handleOpenModal }) {
-  
+
     const read_more = getMetaValueByMetaName(settings, "read_more") || "";
 
 
@@ -33,6 +33,8 @@ export default function NoticeCardHome({ notice, settings, handleOpenModal }) {
                 <p className="sm:hidden text-[#00401A] text-sm">{notice?.sub_title.slice(0, 40)}</p>
                 <p className="hidden sm:block text-[#00401A] font-semibold text-base">{notice?.sub_title.slice(0, 120)}</p>
                 <button
+                    type="button"
+                    aria-label="view"
                     onClick={() => handleOpenModal(notice)}
                     className="text-[#001609] font-semibold sm:font-bold text-xs md:text-sm hover:text-[#F7BA2A]
                       flex gap-1 items-center  cursor-pointer"
@@ -40,7 +42,7 @@ export default function NoticeCardHome({ notice, settings, handleOpenModal }) {
                     {read_more}
                     <span className='mt-0.5'><FaLongArrowAltRight /></span>
                 </button>
-              
+
             </div>
 
         </div>

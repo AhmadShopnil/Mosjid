@@ -33,6 +33,8 @@ export default function BooksCarHome({ book }) {
 
             <div className="pb-4">
                 <button
+                    type="button"
+                    aria-label="download"
                     className="cursor-pointer p-2 rounded-full border border-gray-300 text-gray-300
           transition-colors duration-300 group-hover:border-orange-400 group-hover:text-orange-400"
                 >

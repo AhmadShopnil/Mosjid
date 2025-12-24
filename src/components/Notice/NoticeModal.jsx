@@ -24,6 +24,8 @@ export default function NoticeDetailsModal({
       >
         {/* Close Button */}
         <button
+          type="button"
+          aria-label="view"
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 transition"
         >
