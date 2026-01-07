@@ -2,6 +2,7 @@
 
 import Container from "@/components/Shared/Container";
 import { getImageUrl } from "@/helper/getImageUrl";
+import { getMetaValueFromExtraFields } from "@/helper/metaHelpers";
 import { splitBySlash } from "@/helper/splitBySpace";
 import Image from "next/image";
 import Link from "next/link";
@@ -219,7 +220,7 @@ export default function ImageGallery({
             <div className="bg-[#FFFFFF] w-full p-4 rounded-b-[20px] shadow-lg text-gray-800 text-center">
               <p className="text-sm leading-relaxed text-[#00401A]">
                 {images[selectedIndex]?.description ||
-                  "This is a sample description for the image."}
+                  "No Description"}
               </p>
             </div>
 
@@ -299,5 +300,6 @@ export function transformGalleryData(apiData) {
     id: index + 1,
     src: item.featured_image || "/images/gallery/default.png",
     alt: item.name || "Gallery Image",
+     description: getMetaValueFromExtraFields(item, "short_description_image_gallery")
   }));
 }
