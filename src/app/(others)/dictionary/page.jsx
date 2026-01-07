@@ -9,7 +9,7 @@ import InnerHeader from '@/components/Shared/InnerHeader'
 import SidebarDrawerForBooks from '@/components/Shared/SidebarDrawerForBooks'
 import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
 import { sideBarCategories } from '@/data/sidebar'
-import { getFatwahFiltersData, getPage, getSettings } from '@/helper/actions'
+import { getBooksData, getFatwahFiltersData, getPage, getSettings } from '@/helper/actions'
 import { formatFatwaBooksForSidebar } from '@/helper/formatFatwaBooksForSidebar'
 import { getImageUrl } from '@/helper/getImageUrl'
 import React from 'react'
@@ -17,12 +17,10 @@ import React from 'react'
 
 export default async function page() {
 
-
-  const settings = await getSettings()
   const homePage = await getPage("home-sections-heading-management")
 
   const majhabs = await getFatwahFiltersData("majhabs")
-  const books = await getFatwahFiltersData("books")
+  const books = await getBooksData(56)
   const chapter = await getFatwahFiltersData("bookchapters")
   const section = await getFatwahFiltersData("booksections")
 
@@ -34,7 +32,7 @@ export default async function page() {
 
   const icon = getImageUrl(dictionaryExtraData?.background_media);
 
-  const formatFatwaBooksForSidebarData = formatFatwaBooksForSidebar(books)
+
 
   const data_for_filter = { majhabs, books, chapter, section }
   const requestData = "Dictionary"
@@ -43,7 +41,7 @@ export default async function page() {
     <div>
 
       <div>
-         <BannerInnerPageServerSide />
+        <BannerInnerPageServerSide />
         {/* <BannerInnerPage /> */}
         <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Dictionary" />
       </div>
@@ -54,7 +52,7 @@ export default async function page() {
         <SidebarDrawerForBooks
           isMajhabShow={false}
           isSubmitRequest={true}
-          books={books?.data}
+          books={books}
           data_for_filter={data_for_filter}
           isFatwah_Dictionary_Filter={true}
           icon={icon}

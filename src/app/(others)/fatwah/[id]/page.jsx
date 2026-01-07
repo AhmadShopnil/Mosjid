@@ -6,9 +6,9 @@ import BannerInnerPage from '@/components/Shared/BannerInnerPage'
 import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import SidebarDrawerForBooks from '@/components/Shared/SidebarDrawerForBooks'
-import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
-import { getFatwa, getFatwah, getFatwahFiltersData, getPage, getSettings, getSingleFatwah } from '@/helper/actions'
-import { formatFatwaBooksForSidebar } from '@/helper/formatFatwaBooksForSidebar'
+
+import {  getBooksData, getFatwah, getFatwahFiltersData, getPage, getSettings, getSingleFatwah } from '@/helper/actions'
+
 import React from 'react'
 
 
@@ -30,7 +30,7 @@ export default async function page({ params }) {
 
 
     const majhabs = await getFatwahFiltersData("majhabs")
-    const books = await getFatwahFiltersData("books")
+   const books = await getBooksData(57)
     const chapter = await getFatwahFiltersData("bookchapters")
     const section = await getFatwahFiltersData("booksections")
     const data_for_filter = { majhabs, books, chapter, section }

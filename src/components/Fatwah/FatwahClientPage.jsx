@@ -10,8 +10,7 @@ import { useFatwaFilters } from "@/context/FatwaFilterContext";
 import { getImageUrl } from "@/helper/getImageUrl";
 import NewFatwa from "./NewFatwa";
 import TopRatedFatwa from "./TopRatedFatwa";
-import Image from "next/image";
-import InnerHeader from "../Shared/InnerHeader";
+
 
 
 
@@ -89,7 +88,7 @@ export default function FatwahClientPage({
       <Container className="flex gap-6 my-6">
 
         <SidebarDrawerForBooks
-          books={books?.data}
+          books={books}
           isAskQuestion
           isFatwah_Dictionary_Filter
           data_for_filter={data_for_filter}

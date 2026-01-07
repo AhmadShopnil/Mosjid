@@ -30,9 +30,7 @@ export default function DictionarySearchSection({ data_for_filter }) {
 
   const [searchText, setSearchText] = useState()
   const {
-    selectedMajhabs,
-    setSelectedMajhabs,
-
+ 
     selectedBooks,
     setSelectedBooks,
 
@@ -49,24 +47,10 @@ export default function DictionarySearchSection({ data_for_filter }) {
 
 
 
-  const { books, chapter, section } = data_for_filter;
+  const { books, } = data_for_filter;
 
 
-  // const languages = [
-  //   {
-  //     title: "English",
-  //     icon: "/images/others/English.png",
 
-  //   },
-  //   {
-  //     title: "Japanese",
-  //     icon: "/images/others/Japan.png"
-  //   },
-  //   {
-  //     title: "Arabic",
-  //     icon: "/images/others/Arabic.png"
-  //   },
-  // ]
 
   const languages = [
     { title: "English", icon: "/images/others/eng.svg", code: "en" },
@@ -83,8 +67,6 @@ export default function DictionarySearchSection({ data_for_filter }) {
       className="  ">
       <div className="bg-white rounded-[20px] gradient-border
       px-4 py-16  sm:p-10 relative shadow-md">
-
-
 
 
 
@@ -197,7 +179,7 @@ export default function DictionarySearchSection({ data_for_filter }) {
               lvl="Books"
               parrent_lvl={"Books"}
               selectedParrent={"Books"}
-              options={books?.data}
+              options={books}
               selected={selectedBooks}
               setSelected={setSelectedBooks}
             />

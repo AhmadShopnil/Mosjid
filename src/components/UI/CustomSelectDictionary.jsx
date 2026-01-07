@@ -100,15 +100,23 @@ export default function CustomSelectDictionary({
                 <button
                   key={index}
                   onClick={() => handleSelect(option)}
-                  className={`w-full text-left px-4 py-2 rounded-md transition ${
-                    selected?.name_en === option.name_en
+                  className={`w-full text-left px-4 py-2 rounded-md transition ${selected?.name_en === option.name_en
                       ? "bg-[#C9E9BA] text-green-900"
                       : "bg-white hover:bg-[#C9E9BA]"
-                  }`}
+                    }`}
                 >
-                  <p className="font-medium text-sm text-gray-800">
-                    {option?.name_en}
-                  </p>
+
+
+
+                  <div className="flex justify-between">
+                    <span className="font-medium text-sm text-gray-800">
+                      {option?.name_en}
+                    </span>
+                      <span className="font-medium text-sm text-gray-800">
+                    Total:  {option?.dictionaries_count}
+                    </span>
+                    
+                  </div>
                   <p className="text-xs text-gray-500">{option?.name_jp}</p>
                 </button>
               ))

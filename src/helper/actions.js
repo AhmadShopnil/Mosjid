@@ -52,6 +52,7 @@ export async function getSingleFatwah(id) {
   const json = await res.json();
   return json?.data || [];
 }
+
 export async function getFatwahFiltersData(slug) {
   const API_URL = `${BASE_URL}/api/v1/masterdata/${slug}`;
 
@@ -62,6 +63,34 @@ export async function getFatwahFiltersData(slug) {
   return json?.data || [];
 }
 
+
+export async function getDictionaryFiltersData(slug) {
+  const API_URL = `${BASE_URL}/api/v1/masterdata/${slug}`;
+
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+  return json?.data || [];
+}
+
+
+export async function getBooksData(id) {
+  const API_URL = `${BASE_URL}/api/v1/masterdata/books`;
+
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+
+  const data=json?.data?.data ;
+
+
+  const filtered=data?.filter((item,i)=>item?.module_id==id)
+ return filtered|| [];
+
+  // return json?.data || [];
+}
 
 
 

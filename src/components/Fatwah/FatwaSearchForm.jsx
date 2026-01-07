@@ -67,7 +67,7 @@ export default function FatwaSearchForm({ data_for_filter }) {
             selectedParrent={selectedMajhabs}
             selected={selectedBooks}
             setSelected={setSelectedBooks}
-            options={books?.data}
+            options={books}
           />
 
           <CustomSelectForFatwaFinder

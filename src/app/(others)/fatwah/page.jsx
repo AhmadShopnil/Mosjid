@@ -1,9 +1,9 @@
 import BannerFatwaServer from '@/components/Fatwah/BannerFatwaServer';
 import FatwahClientPage from '@/components/Fatwah/FatwahClientPage'
-import BannerInnerPageServerSide from '@/components/Shared/BannerInnerPageServerSide';
 
-import { getFatwah, getFatwahFiltersData, getPage, getSettings } from '@/helper/actions'
-import { getImageUrl } from '@/helper/getImageUrl';
+
+import { getBooksData, getFatwah, getFatwahFiltersData, getPage, getSettings } from '@/helper/actions'
+
 
 import React from 'react'
 
@@ -19,12 +19,13 @@ export default async function page() {
 
 
   const majhabs = await getFatwahFiltersData("majhabs")
-  const books = await getFatwahFiltersData("books")
+  const books = await getBooksData(57)
   const chapter = await getFatwahFiltersData("bookchapters")
   const section = await getFatwahFiltersData("booksections")
   const data_for_filter = { majhabs, books, chapter, section }
 
 
+// console.log("books ned", books)
 
   const requestData = "Fatwa"
 
