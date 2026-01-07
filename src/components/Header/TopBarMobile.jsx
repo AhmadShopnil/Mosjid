@@ -10,6 +10,7 @@ import Link from "next/link";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import LanguageSelector from "../Shared/LanguageSelector";
 import ToaysDateTimeHijri from "./ToaysDateTimeHijri";
+import ToaysDateTime from "./ToaysDateTime";
 
 export default function TopbarMobile({ settings }) {
   const phone = getMetaValueByMetaName(settings, "company_phone") || "";
@@ -91,7 +92,8 @@ export default function TopbarMobile({ settings }) {
               />
             </Link>
           </div>
-         <div className="py-0.5 flex justify-center ">
+         <div className="py-0.5 flex flex-col justify-center gap-1 ">
+           <ToaysDateTime location={null}/>
             <ToaysDateTimeHijri location={null}/>
          </div>
         </div>

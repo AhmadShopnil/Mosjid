@@ -15,7 +15,7 @@ import BannerInnerPageServerSide from '@/components/Shared/BannerInnerPageServer
 
 
 
-export default async function BlogsPage({ params }) {
+export default async function EventPage({ params }) {
   const { slug } = await params;
 
   const settings = await getSettings();

@@ -278,6 +278,17 @@ body {
   border: 1px solid transparent;
   
 }
+
+.borderGradientButton {
+  position: relative;
+  border-radius: 10px;
+  background: linear-gradient(#ffff, #ffff) padding-box,
+              linear-gradient(to bottom, #309caa, #53FF00) border-box;
+  border: 1px solid transparent;
+  
+}
+
+
 .islamicBookHome {
   position: relative;
   border-radius:200px;

@@ -41,7 +41,7 @@ export async function generateMetadata({ params }) {
       },
 
       alternates: {
-        canonical: `/${slug}`,
+        canonical: `/blogs/${slug}`,
       },
     };
   } catch (error) {

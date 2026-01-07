@@ -6,9 +6,9 @@ import BannerInnerPage from '@/components/Shared/BannerInnerPage'
 import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import SidebarDrawerForBooks from '@/components/Shared/SidebarDrawerForBooks'
-import SidebarMainDrawer from '@/components/Shared/SidebarMainDrawer'
-import { getFatwa, getFatwah, getFatwahFiltersData, getPage, getSettings, getSingleFatwah } from '@/helper/actions'
-import { formatFatwaBooksForSidebar } from '@/helper/formatFatwaBooksForSidebar'
+
+import {  getBooksData, getFatwah, getFatwahFiltersData, getPage, getSettings, getSingleFatwah } from '@/helper/actions'
+
 import React from 'react'
 
 
@@ -23,15 +23,19 @@ export default async function page({ params }) {
     const singleFatwah = await getSingleFatwah(id);
     const settings = await getSettings()
     const homePage = await getPage("home-sections-heading-management")
+    const sections = homePage?.sections_on_api || [];
+    const fatwahExtraData = sections.find(
+        (s) => s.title_slug === "fatwah"
+    );
 
 
     const majhabs = await getFatwahFiltersData("majhabs")
-    const books = await getFatwahFiltersData("books")
+   const books = await getBooksData(57)
     const chapter = await getFatwahFiltersData("bookchapters")
     const section = await getFatwahFiltersData("booksections")
     const data_for_filter = { majhabs, books, chapter, section }
 
-    const formatFatwaBooksForSidebarData = formatFatwaBooksForSidebar(books)
+
 
     const requestData = singleFatwah?.word_en ? `Fatwah of ${singleFatwah?.word_en} ` : "Fatwah"
     // console.log("singleFatwah",singleFatwah)
@@ -44,18 +48,11 @@ export default async function page({ params }) {
                 <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Fatwah" />
             </div>
             <Container className='mt-10'>
-                <FatwaFinder data_for_filter={data_for_filter} />
+                <FatwaFinder data_for_filter={data_for_filter} fatwahExtraData={fatwahExtraData}/>
             </Container>
 
             <Container className='flex gap-6 my-6'>
-                {/* 
-                <SidebarMainDrawer
-                    categories={formatFatwaBooksForSidebarData}
-                    isAskQuestion={true}
-                    isFatwah_Dictionary_Filter={true}
-                    isFatwahNavigate={true}
-                    dataForContact={requestData}
-                /> */}
+     
 
                 <SidebarDrawerForBooks
                     books={books?.data}

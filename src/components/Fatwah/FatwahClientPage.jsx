@@ -13,6 +13,7 @@ import TopRatedFatwa from "./TopRatedFatwa";
 
 
 
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -61,7 +62,6 @@ export default function FatwahClientPage({
   const icon = getImageUrl(fatwahExtraData?.background_media);
 
 
-
   const requestData = "Fatwa";
 
   return (
@@ -80,13 +80,15 @@ export default function FatwahClientPage({
 
 
       <Container className="mt-10">
-        <FatwaFinder data_for_filter={data_for_filter} />
+      
+
+        <FatwaFinder data_for_filter={data_for_filter} fatwahExtraData={fatwahExtraData} />
       </Container>
 
       <Container className="flex gap-6 my-6">
-    
+
         <SidebarDrawerForBooks
-          books={books?.data}
+          books={books}
           isAskQuestion
           isFatwah_Dictionary_Filter
           data_for_filter={data_for_filter}
@@ -123,7 +125,7 @@ export default function FatwahClientPage({
 
               <motion.div variants={itemVariants}>
                 <TopRatedFatwa
-                 
+
                   settings={settings}
                   homePage={homePage}
                 />

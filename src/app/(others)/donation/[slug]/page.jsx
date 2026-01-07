@@ -38,7 +38,7 @@ export async function generateMetadata({ params }) {
             },
 
             alternates: {
-                canonical: `/${slug}`,
+                canonical: `/donation/${slug}`,
             },
         };
     } catch (error) {

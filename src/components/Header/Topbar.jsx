@@ -118,14 +118,18 @@ export default function Topbar({ settings,location }) {
         }
       `}</style>
 
-      <div className="justify-end items-center gap-4 md:gap-6 hidden xl:flex ">
+      <div className="justify-end items-center gap-4 md:gap-4 hidden xl:flex ">
      
+     <div className="flex gap-2">
+       <ToaysDateTime location={location}/>
+       ,
      <ToaysDateTimeHijri location={location}/>
+     </div>
         {/* language selection */}
-        <div className="flex items-center gap-2 justify-end min-w-[360px]">
-          <span className="text-lg text-[#00401A] font-bold whitespace-nowrap">
-            Select Language:
-          </span>
+        <div className="flex items-center gap-2 justify-end min-w-[330px]">
+          {/* <span className="text-lg text-[#00401A] font-bold whitespace-nowrap">
+           Language:
+          </span> */}
 
           {languages.map((language) => (
             <button

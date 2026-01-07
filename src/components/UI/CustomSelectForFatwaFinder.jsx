@@ -83,9 +83,14 @@ export default function CustomSelectForFatwaFinder({
                         : "bg-white hover:bg-[#C9E9BA]"
                       }`}
                   >
-                    <p className="font-medium text-sm text-gray-800">
+                   <div className="flex justify-between">
+                     <span className="font-medium text-sm text-gray-800">
                       {option?.name_en}
-                    </p>
+                    </span>
+                      <span className="font-medium text-sm text-gray-800">
+                     Total: {option?.fatwas_count}
+                    </span>
+                   </div>
                     <p className="text-xs text-gray-500">{option?.name_jp}</p>
                   </button>
                 ))

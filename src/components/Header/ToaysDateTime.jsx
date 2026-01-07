@@ -35,15 +35,15 @@ export default function ToaysDateTime({ location }) {
   });
 
   return (
-    <div className="flex items-center gap-2 text-sm font-semibold text-[#00401A] min-w-[260px]">
+    <div className="flex items-center gap-2 text-xs xl:text-sm font-semibold text-[#00401A] ">
       <span className="whitespace-nowrap">{today}</span>
       <span className="whitespace-nowrap">{time}</span>
 
-      {location && (
+      {/* {location && (
         <span className="whitespace-nowrap">
           • {location.city}, {location.country}
         </span>
-      )}
+      )} */}
     </div>
   );
 }

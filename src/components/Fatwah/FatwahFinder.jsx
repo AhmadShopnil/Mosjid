@@ -1,41 +1,39 @@
 "use client"
 
-import { Search } from "lucide-react"
+
 import Image from "next/image"
 import FatwaSearchForm from "./FatwaSearchForm"
-import { getFatwahFiltersData } from "@/helper/actions"
+import { getImageUrl } from "@/helper/getImageUrl"
+import InnerHeader from "../Shared/InnerHeader"
 
-export default  function FatwaFinder({data_for_filter}) {
-
-
-
+export default function FatwaFinder({ data_for_filter, fatwahExtraData }) {
 
 
-// console.log({books})
+
+  const image = getImageUrl(fatwahExtraData?.image_media)
+
+  const fatwah_header_title = fatwahExtraData?.custom_information.find((item) => item.label === "fatwah_header_title")
+
+  // console.log({books})
 
 
   return (
     <div className=" ">
-      {/* Header */}
-      <div className="bg-[#52B920] h-[85px] text-white px-6 py-4 rounded-lg mt-4 flex justify-between items-center shadow-md">
-        <h1 className="text-4xl ">イスラム教のファトワ</h1>
-          <Image
-              src="/images/fatwah/fatwaharbic_white.png"
-              alt="Logo"
-              width={200}
-              height={60}
-              className='hidden sm:flex w-[223px] h-[60px]'
-            />
-      </div>
 
-     
+      {/* Header */}
+      <InnerHeader
+        title={fatwah_header_title?.value}
+        image={image}
+      />
+
+
 
       {/* Main Content */}
       <div className="bg-white  mt-4 rounded-lg shadow-lg">
-         {/* Title Section */}
-      <div className="bg-[#E5F5DE] text-center py-4  ">
-        <h2 className="text-3xl font-bold text-[#00401A]">Fatwa Finder</h2>
-      </div>
+        {/* Title Section */}
+        <div className="bg-[#E5F5DE] text-center py-4  ">
+          <h2 className="text-3xl font-bold text-[#00401A]">Fatwa Finder</h2>
+        </div>
         <div className="flex flex-col lg:flex-row gap-8 py-8">
           {/* Left Sidebar - Logo Section */}
           <div className="w-full lg:w-[30%] flex flex-col items-center justify-center">
@@ -51,7 +49,7 @@ export default  function FatwaFinder({data_for_filter}) {
           {/* Right Section - Search Form */}
           <div className="w-full lg:w-[65%]">
             <div className="">
-            <FatwaSearchForm data_for_filter={data_for_filter}/>
+              <FatwaSearchForm data_for_filter={data_for_filter} />
             </div>
           </div>
         </div>
