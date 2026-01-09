@@ -4,10 +4,11 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Container from "../Shared/Container";
 import { TbMailFilled } from "react-icons/tb";
-import { ImFacebook2 } from "react-icons/im";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import Link from "next/link";
+import ToaysDateTime from "./ToaysDateTime";
+import ToaysDateTimeHijri from "./ToaysDateTimeHijri";
 
 const languages = [
   { title: "English", icon: "/images/others/eng.svg", code: "en" },
@@ -15,7 +16,7 @@ const languages = [
   { title: "Arabic", icon: "/images/others/ar.svg", code: "ar" },
 ];
 
-export default function Topbar({ settings }) {
+export default function Topbar({ settings,location }) {
   const [selectedLanguage, setSelectedLanguage] = useState("English");
   const [isTranslateLoaded, setIsTranslateLoaded] = useState(false);
 
@@ -73,7 +74,7 @@ export default function Topbar({ settings }) {
       // optionally remove the global callback
       try {
         delete window.googleTranslateElementInit;
-      } catch (e) {}
+      } catch (e) { }
     };
   }, []);
 
@@ -117,9 +118,46 @@ export default function Topbar({ settings }) {
         }
       `}</style>
 
-      <div className="justify-end items-center gap-4 md:gap-6 hidden xl:flex ">
+      <div className="justify-end items-center gap-4 md:gap-4 hidden xl:flex ">
+     
+     <div className="flex gap-2">
+       <ToaysDateTime location={location}/>
+       ,
+     <ToaysDateTimeHijri location={location}/>
+     </div>
         {/* language selection */}
-        <div className="flex items-center gap-2  justify-end">
+        <div className="flex items-center gap-2 justify-end min-w-[330px]">
+          {/* <span className="text-lg text-[#00401A] font-bold whitespace-nowrap">
+           Language:
+          </span> */}
+
+          {languages.map((language) => (
+            <button
+              key={language.title}
+              type="button"
+              aria-label={`Change language to ${language.title}`}
+              onClick={() => changeLanguage(language.code, language.title)}
+              className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-bold
+        transition-colors whitespace-nowrap min-w-[120px] justify-center
+        ${selectedLanguage === language.title
+                  ? "bg-[#00401A] text-white"
+                  : "bg-white text-[#00401A] hover:bg-gray-300 border border-[#00401a51]"
+                }`}
+            >
+              <Image
+                src={language.icon}
+                alt=""
+                width={19}
+                height={13}
+                aria-hidden="true"
+                className="flex-shrink-0"
+              />
+              <span className="flex-shrink-0">{language.title}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* <div className="flex items-center gap-2  justify-end">
           <span className="text-lg text-[#00401A] font-bold">Select Language: </span>
           {languages.map((language) => (
             <button
@@ -137,7 +175,7 @@ export default function Topbar({ settings }) {
               <div className="text-sm font-bold my-auto">{language.title}</div>
             </button>
           ))}
-        </div>
+        </div> */}
 
         {/* mail */}
         <div className="flex gap-2 items-center">
@@ -158,7 +196,7 @@ export default function Topbar({ settings }) {
         {/* social links */}
         <div className="flex gap-2 justify-center items-center">
           <Link href={facebookLink} className="text-blue-500">
-              <Image
+            <Image
               src="/images/others/facebook.svg"
               alt="LinkedIn"
               width={26}
@@ -168,7 +206,7 @@ export default function Topbar({ settings }) {
           </Link>
           <Link href={instagramLink}>
             <Image
-             src="/images/others/ins.svg"
+              src="/images/others/ins.svg"
               alt="Instagram"
               width={26}
               height={26}

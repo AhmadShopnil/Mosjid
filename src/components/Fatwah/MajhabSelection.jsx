@@ -8,20 +8,9 @@ export default function MajhabSelection({ data_for_filter }) {
         selectedMajhabs,
         setSelectedMajhabs,
 
-        selectedBooks,
-        setSelectedBooks,
-
-        selectedChapter,
-        setSelectedChapter,
-
-        selectedSection,
-        setSelectedSection,
-
-        selectedSearchTerm,
-        setSelectedSearchTerm,
     } = useFatwaFilters();
 
-    const { majhabs, books, chapter, section } = data_for_filter;
+    const { majhabs, } = data_for_filter;
 
 
 

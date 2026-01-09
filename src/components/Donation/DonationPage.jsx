@@ -14,6 +14,7 @@ import { useSelected } from '@/context/SelectedContext'
 import { useSelectedParrent } from '@/context/SelectedContextParrent'
 import DonationCardList from './DonationCardList'
 import { motion, AnimatePresence } from "framer-motion"
+import SocialShare from '../Shared/SocialShare'
 
 
 
@@ -107,7 +108,7 @@ export default function DonationPage({ homePage, settings, formattedCategories, 
     <div>
 
       <div>
- 
+
         <BreadcrumbForNested
           items={[
             { label: "Home", link: "/" },
@@ -122,7 +123,7 @@ export default function DonationPage({ homePage, settings, formattedCategories, 
 
       <Container className='flex gap-6 my-6'>
         {/* sidebar */}
-        <SidebarMainDrawer categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={requestData} />
+        <SidebarMainDrawer  isDonationNavigate={true} categories={formattedCategories} setSelectedCat={setSelectedCat} dataForContact={requestData} />
 
         {/* main content */}
         <AnimatePresence mode="wait">
@@ -152,7 +153,11 @@ export default function DonationPage({ homePage, settings, formattedCategories, 
                 setCurrentPage={setCurrentPage}
                 donationTitle={requestData}
               />
+              <div className=" mt-6 flex items-center  text-[#D9E2DD]">
+              <SocialShare />
+            </div>
             </motion.div>
+            
           </motion.div>
         </AnimatePresence>
 

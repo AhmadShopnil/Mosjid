@@ -17,7 +17,8 @@ export default function SidebarMainDrawer({
   isNavigate = false,
   directoryNavigate=false,
   dataForContact="",
-  isAboutNavigate=false
+  isAboutNavigate=false,
+  isDonationNavigate=false
 }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -80,6 +81,7 @@ export default function SidebarMainDrawer({
             directoryNavigate={directoryNavigate}
             setIsDrawerOpen={setIsDrawerOpen}
             isAboutNavigate={isAboutNavigate}
+            isDonationNavigate={isDonationNavigate}
           />
 
           {/* Shown below sidebar content */}

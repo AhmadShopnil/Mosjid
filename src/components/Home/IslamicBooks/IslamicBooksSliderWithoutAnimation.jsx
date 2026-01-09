@@ -23,7 +23,7 @@ export default function IslamicBooksSlider({ books, islamic_books_ExtraData }) {
 
 
 
-// console.log('find_more_books_button',find_more_books_button)
+  // console.log('find_more_books_button',find_more_books_button)
 
 
   const scroll = (direction) => {
@@ -123,6 +123,8 @@ export default function IslamicBooksSlider({ books, islamic_books_ExtraData }) {
 
             {/* Left Arrow */}
             <button
+              type="button"
+              aria-label="previous"
               onClick={() => scroll("left")}
               className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-green-50"
             >
@@ -131,6 +133,8 @@ export default function IslamicBooksSlider({ books, islamic_books_ExtraData }) {
 
             {/* Right Arrow */}
             <button
+              type="button"
+              aria-label="next"
               onClick={() => scroll("right")}
               className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-green-50"
             >

@@ -86,6 +86,8 @@ function MakeDonation({ donationMethods, make_your_donation }) {
       <div className="flex gap-3 flex-wrap mt-6">
         {donationMethods?.map((tab, i) => (
           <button
+            type="button"
+            aria-label="option"
             key={i}
             onClick={() => setActiveTab(tab)}
             className={`px-4 py-2 rounded-md font-extrabold cursor-pointer text-sm border text-[#001609] transition duration-300 ${activeTab?.name === tab?.name

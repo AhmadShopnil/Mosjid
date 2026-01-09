@@ -15,7 +15,6 @@ export default function OfferServicesSlider({
   const scrollRef = useRef(null);
   const intervalRef = useRef(null);
 
-  // Duplicate services for infinite loop
   const loopServices = [...services, ...services];
 
   const heading_part_1 = splitBySlash(offered_services_ExtraData?.title)[0];
@@ -23,9 +22,35 @@ export default function OfferServicesSlider({
   const image = getImageUrl(offered_services_ExtraData?.image_media);
   const icon = getImageUrl(offered_services_ExtraData?.background_media);
 
-  // Manual scroll buttons
+  /* ---------------- Auto Scroll ---------------- */
+  const startAutoScroll = () => {
+    if (!scrollRef.current) return;
+
+    stopAutoScroll(); // avoid duplicate intervals
+
+    intervalRef.current = setInterval(() => {
+      const el = scrollRef.current;
+      el.scrollLeft += 1.2;
+
+      if (el.scrollLeft >= el.scrollWidth / 2) {
+        el.scrollLeft = 0;
+      }
+    }, 16);
+  };
+
+  const stopAutoScroll = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  /* ---------------- Manual Scroll Buttons ---------------- */
   const scroll = (direction) => {
     if (!scrollRef.current) return;
+
+    stopAutoScroll(); // 🔑 IMPORTANT
+
     const { scrollLeft, clientWidth } = scrollRef.current;
     const scrollAmount = clientWidth * 0.7;
 
@@ -36,30 +61,11 @@ export default function OfferServicesSlider({
           : scrollLeft + scrollAmount,
       behavior: "smooth",
     });
-  };
 
-  // Auto infinite scroll
-  const startAutoScroll = () => {
-    if (!scrollRef.current) return;
-
-    intervalRef.current = setInterval(() => {
-      scrollRef.current.scrollLeft += 1.2;
-
-      // Reset smoothly when half reached
-      if (
-        scrollRef.current.scrollLeft >=
-        scrollRef.current.scrollWidth / 2
-      ) {
-        scrollRef.current.scrollLeft = 0;
-      }
-    }, 16); // ~60fps
-  };
-
-  const stopAutoScroll = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
+    // Resume auto scroll after manual interaction
+    setTimeout(() => {
+      startAutoScroll();
+    }, 800);
   };
 
   useEffect(() => {
@@ -109,7 +115,6 @@ export default function OfferServicesSlider({
           viewport={{ once: true }}
           className="relative"
         >
-          {/* Scroll Container */}
           <div
             ref={scrollRef}
             onMouseEnter={stopAutoScroll}
@@ -121,10 +126,7 @@ export default function OfferServicesSlider({
                 key={`${service.id}-${index}`}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.05,
-                }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
                 viewport={{ once: true }}
               >
                 <div
@@ -144,11 +146,9 @@ export default function OfferServicesSlider({
                     />
                   </div>
 
-                  <div className="flex flex-col items-center mt-2 px-3">
-                    <p className="text-lg md:text-xl font-bold text-[#333333] leading-6 md:leading-8">
-                      {service?.name}
-                    </p>
-                  </div>
+                  <p className="text-lg md:text-xl font-bold text-[#333333]">
+                    {service?.name}
+                  </p>
 
                   <div className="pb-4">
                     <Image
@@ -167,16 +167,20 @@ export default function OfferServicesSlider({
             ))}
           </div>
 
-          {/* Left Arrow */}
+          {/* Left */}
           <button
+            type="button"
+            aria-label="Previous slide"
             onClick={() => scroll("left")}
             className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-green-50"
           >
             <ChevronLeft className="w-5 h-5 text-gray-700" />
           </button>
 
-          {/* Right Arrow */}
+          {/* Right */}
           <button
+            type="button"
+            aria-label="Next slide"
             onClick={() => scroll("right")}
             className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-green-50"
           >

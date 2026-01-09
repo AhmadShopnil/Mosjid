@@ -16,13 +16,13 @@ export default function DonationInputSection({
 
 
 
-    let submit_a_question_feature = "";
-    if (settings) {
-        submit_a_question_feature = getMetaValueByMetaName(settings, "donation_feature") || "";
-    }
+  let submit_a_question_feature = "";
+  if (settings) {
+    submit_a_question_feature = getMetaValueByMetaName(settings, "donation_feature") || "";
+  }
 
-    const isDisabled =
-        submit_a_question_feature?.toLowerCase?.().trim() === "no";
+  const isDisabled =
+    submit_a_question_feature?.toLowerCase?.().trim() === "no";
 
 
   return (
@@ -45,7 +45,7 @@ export default function DonationInputSection({
 
       {/* Input Section */}
       <div className="flex items-center flex-col lg:flex-row gap-3">
-        
+
         {/* Select */}
         <div className="relative flex-1 w-full">
           <CustomSelectRoundedWhite
@@ -85,6 +85,8 @@ export default function DonationInputSection({
 
         {/* Button */}
         <button
+          type="button"
+          aria-label="donate"
           disabled={isDisabled}
           className={`w-full lg:w-auto bg-[#F7BA2A] text-[#00401A] h-[56px] font-bold px-9 py-3 rounded-full 
             shadow-md transition text-lg

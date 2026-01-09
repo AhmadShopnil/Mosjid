@@ -9,7 +9,7 @@ export default function DonationCard({ data, handleOpenModal }) {
 
     const short_description_donation = getMetaValueFromExtraFields(data, "short_description_donation")
 
-// border-[#C9E9BA]
+    // border-[#C9E9BA]
 
     return (
         <div className='  relative w-[370px] flex flex-col  items-center'>
@@ -18,22 +18,22 @@ export default function DonationCard({ data, handleOpenModal }) {
             <div className='absolute flex justify-center'>
 
                 <div className='flex justify-center items-center rounded-full  w-[376px] h-[376px] bg-white border-[#C9E9BA] border-1'>
-                 <div className='border-6 w-full h-full border-[#f3b82ea9]  rounded-full '>
-                      <Image
-                        src={data?.featured_image}
-                        // src={data?.featured_image || "/images/donation/Donation.svg"}
-                        alt='a1'
-                        width={370}
-                        height={370}
-                        className='rounded-full w-full h-full ' 
-                    />
-                 </div>
+                    <div className='border-6 w-full h-full border-[#f3b82ea9]  rounded-full '>
+                        <Image
+                            src={data?.featured_image}
+                            // src={data?.featured_image || "/images/donation/Donation.svg"}
+                            alt='a1'
+                            width={370}
+                            height={370}
+                            className='rounded-full w-full h-full '
+                        />
+                    </div>
                 </div>
 
             </div>
- 
-                    
-{/* 
+
+
+            {/* 
             <div className="absolute flex justify-center">
                 <div className="relative w-[360px] h-[360px]">
 
@@ -77,6 +77,8 @@ export default function DonationCard({ data, handleOpenModal }) {
 
                     <div className=' '>
                         <button
+                            type="button"
+                            aria-label="veiw"
                             onClick={() => handleOpenModal(data)}
                             className='flex items-center justify-start  gap-2 bg-[#F7BA2A] px-5 py-3 rounded-[20px] cursor-pointer'>
                             <span className='text-[#003014] font-semibold text-sm'>View Details </span>

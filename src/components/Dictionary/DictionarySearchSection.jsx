@@ -30,9 +30,7 @@ export default function DictionarySearchSection({ data_for_filter }) {
 
   const [searchText, setSearchText] = useState()
   const {
-    selectedMajhabs,
-    setSelectedMajhabs,
-
+ 
     selectedBooks,
     setSelectedBooks,
 
@@ -49,30 +47,16 @@ export default function DictionarySearchSection({ data_for_filter }) {
 
 
 
-  const { books, chapter, section } = data_for_filter;
+  const { books, } = data_for_filter;
 
 
-  // const languages = [
-  //   {
-  //     title: "English",
-  //     icon: "/images/others/English.png",
 
-  //   },
-  //   {
-  //     title: "Japanese",
-  //     icon: "/images/others/Japan.png"
-  //   },
-  //   {
-  //     title: "Arabic",
-  //     icon: "/images/others/Arabic.png"
-  //   },
-  // ]
 
-const languages = [
-  { title: "English", icon: "/images/others/eng.svg", code: "en" },
-  { title: "Japanese", icon: "/images/others/jp.svg", code: "ja" },
-  { title: "Arabic", icon: "/images/others/ar.svg", code: "ar" },
-];
+  const languages = [
+    { title: "English", icon: "/images/others/eng.svg", code: "en" },
+    { title: "Japanese", icon: "/images/others/jp.svg", code: "ja" },
+    { title: "Arabic", icon: "/images/others/ar.svg", code: "ar" },
+  ];
 
 
 
@@ -83,8 +67,6 @@ const languages = [
       className="  ">
       <div className="bg-white rounded-[20px] gradient-border
       px-4 py-16  sm:p-10 relative shadow-md">
-
-
 
 
 
@@ -144,7 +126,10 @@ const languages = [
 
             {/* Clear button */}
             {searchTerm && (
-              <button onClick={() => setSearchTerm("")} className="text-teal-200 hover:text-white p-1 mr-2">
+              <button
+                type="button"
+                aria-label="clear"
+                onClick={() => setSearchTerm("")} className="text-teal-200 hover:text-white p-1 mr-2">
                 <X className="w-4 h-4" />
               </button>
             )}
@@ -152,7 +137,11 @@ const languages = [
             {/* Language indicator and more options */}
             <div className="flex items-center gap-2 mr-2">
               <span className="text-[#B0C4B8] text-sm">{selectedLanguage}</span>
-              <button className="text-teal-200 hover:text-white">
+              <button
+
+                type="button"
+                aria-label="options"
+                className="text-teal-200 hover:text-white">
                 <MoreVertical className="w-4 h-4" />
               </button>
             </div>
@@ -161,10 +150,16 @@ const languages = [
           </div>
           <div className="my-auto w-[100%] sm:w-[5%]">
             {/* Search button */}
-            <button className="hidden sm:flex bg-[#00401A] cursor-pointer rounded-full p-4 transition-colors">
+            <button
+              type="button"
+              aria-label="search"
+              className="hidden sm:flex bg-[#00401A] cursor-pointer rounded-full p-4 transition-colors">
               <Search className="w-5 h-5 text-[#F7BA2A]" />
             </button>
-            <button className="sm:hidden flex gap-2 bg-[#00401A] w-full cursor-pointer
+            <button
+              type="button"
+              aria-label="find"
+              className="sm:hidden flex gap-2 bg-[#00401A] w-full cursor-pointer
              rounded-xl p-3 items-center justify-center font-bold transition-colors">
               {/* <Search className="w-5 h-5 text-[#F7BA2A]" />  */}
               <span className="text-white text-sm">
@@ -184,7 +179,7 @@ const languages = [
               lvl="Books"
               parrent_lvl={"Books"}
               selectedParrent={"Books"}
-              options={books?.data}
+              options={books}
               selected={selectedBooks}
               setSelected={setSelectedBooks}
             />

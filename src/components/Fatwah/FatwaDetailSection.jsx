@@ -31,11 +31,11 @@ export default function FatwaDetailSection({ singleFatwah }) {
 
         <div className="flex items-center gap-3 w-full md:w-auto text-sm md:text-base">
           <p className="flex items-center font-medium text-[#000] border-r border-[#B0C4B8] pr-3">
-            Fatwa No: {singleFatwah?.fatwa_number}
+            <span className="hidden sm:block">Fatwa </span>No: {singleFatwah?.fatwa_number}
           </p>
 
           <p className="flex items-center font-medium text-[#000] border-r border-[#B0C4B8] pr-3">
-            Date: {formatDateToDDMMYYYY(singleFatwah?.created_at)}
+           <span className="hidden sm:block mr-0.5 "> Date: </span>   {formatDateToDDMMYYYY(singleFatwah?.created_at)}
           </p>
         </div>
 

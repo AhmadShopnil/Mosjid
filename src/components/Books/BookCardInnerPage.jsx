@@ -18,7 +18,7 @@ const colorClasses = [
   "bg-amber-100",
 ];
 
-export default function BookCardInnerPage({ book, index = 0, settings,download_books_button }) {
+export default function BookCardInnerPage({ book, index = 0, settings, download_books_button }) {
   const read_more_button_text = getMetaValueByMetaName(settings, "read_more") || "";
   const colorClass = colorClasses[index % colorClasses.length];
 
@@ -63,6 +63,8 @@ export default function BookCardInnerPage({ book, index = 0, settings,download_b
           </div>
 
           <button
+            type="button"
+            aria-label="download"
 
             className="flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full 
               border border-[#00401A] text-[#00401A] font-semibold text-sm sm:text-base 

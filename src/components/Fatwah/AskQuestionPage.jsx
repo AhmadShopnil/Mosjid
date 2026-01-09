@@ -1,196 +1,215 @@
 "use client";
+
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import axiosInstance from "@/helper/axiosInstance";
 
-export default function AskQuestionPage() {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        contact: "",
-        address: "",
-        homeAddress: "",
-        question: "",
-    });
 
+
+const INITIAL_FORM_STATE = {
+    name: "",
+    email: "",
+    contact: "",
+    subject: "",
+    question: "",
+};
+
+const postForm = async (endpoint, formData) => {
+    try {
+        const res = await axiosInstance.post(endpoint, formData);
+        return {
+            success: true,
+            message: res.data.message || "Submitted successfully",
+        };
+    } catch (error) {
+        const message = error.response?.data?.message || "Submission failed";
+        return { success: false, message };
+    }
+};
+
+
+
+export default function AskQuestionPage({ askFatwaPage }) {
+    const [formData, setFormData] = useState(INITIAL_FORM_STATE);
     const [loading, setLoading] = useState(false);
 
+
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
     };
 
     const handleReset = () => {
-        setFormData({
-            name: "",
-            email: "",
-            contact: "",
-            address: "",
-            question: "",
-        });
+        setFormData(INITIAL_FORM_STATE);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (loading) return;
+
         setLoading(true);
+
+        const payload = {
+            name: formData?.name,
+            email: formData?.email,
+            phone: formData?.contact,
+            subject: formData?.subject || "No Subject",
+            comment: formData?.question,
+        };
+
         try {
-            const res = await fetch("https://example.com/api/fatwa", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-            });
-            const data = await res.json();
-            alert("Form submitted successfully!");
-            console.log("Response:", data);
-        } catch (error) {
-            console.error(error);
-            alert("Failed to submit form. Please try again.");
+            const result = await postForm(
+                "/contacts/create",
+                payload
+            );
+
+            if (result.success) {
+                toast.success("Question Submited Successfully");
+                handleReset();
+            } else {
+                toast.error(result.message);
+            }
         } finally {
             setLoading(false);
         }
     };
 
+
+
     return (
-        <div className="bg-white border border-[#DDEEDC] rounded-[10px]  shadow-lg">
+        <div className="bg-white border border-[#DDEEDC] rounded-[10px] shadow-lg w-full">
             {/* Header */}
-            <div className="bg-[#E5F5DE] h-[76px] flex items-center justify-center ">
-                <h2 className="text-center text-xl md:text-2xl font-bold text-[#00401A] my-auto">
-                    Fatwah Form / <span className="">ファトワフォーム</span>
+            <div className="bg-[#E5F5DE] min-h-[64px] md:h-[76px] flex items-center justify-center px-4 text-center">
+                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#00401A]">
+                    {askFatwaPage?.sub_title}
                 </h2>
             </div>
 
-            <div className="p-4 md:p-6 lg:p-8">
-                {/* text Section */}
-                <div className="bg-white border border-gray-200 rounded-[20px] p-4 text-sm md:text-base leading-8 text-[#595959] mb-6">
-                    尊敬するムフティ・サヒブ様！教会前に二度目の結婚をしました。二度目の妻には二人の子供がいます。最近、最初の妻がこのことを知り、
-                    「私に言ってもしれもの他に妻がいたら、この妻は離婚するわ」と言いました。そこで私は、「もし私の他に妻がいたら、私はあなたを離婚する。
-                    離婚、離婚、離婚」と答えました。
-                    <br />
-                    こうして「離婚」という言葉を3回繰り返しました。
-                    <br />
-                    注：ここで言いたいのは、私は他に伴侶を持っているという具体的な意図を持っていなかったわけではありません。さて、ムフティ・サヒブから知っておいていただきたいのは、次の点です：
-                    <br />
-                    1. この件で三度の離婚は宣言されたか？
-                    <br />
-                    2. もしそうでなければ、またはどうするべきか？
-                    <br />
-
-                    <p className="mt-4 text-[#595959]">
-                        حُدُودَ اللَّهِ ۗ وَتِلْكَ حُدُودُ اللَّهِ يُبَيِّنُهَا لِقَوْمٍ يَعْلَمُونَ. (سورة البقرة، الآية:-230)-
-                        وفي سنن ابن ماجة : عن ابن عمر ـ رضي الله عنهما ـ قال: قال رسول الله صلى الله عليه وسلم: أبغض الحلال إلى الله الطلاق. (كتاب الطلاق ، ج:١، ص:٦٥٠، ط:دار إحياء الكتب العربية)-
-                        و في الهداية : وإذا أضافه إلى الشرط وقع عقيب الشرط اتفاقا مثل أن يقول لامرأته: إن دخلت الدار فأنت طالق ولا تصح إضافة الطلاق إلا أن يكون الحالف مالكا أو يضيفه إلى ملك والإضافة إلى سبب الملك كالتزوج كالإضافة إلى الملك فإن قال لأجنبية: إن دخلت الدار فأنت طالق ثم نكحها فدخلت الدار لم تطلق كذا في الكافي". (کتاب الطلاق، الباب الرابع فی الطلاق بالشرط، ج:1، ص:420، دارالفکر)-
-                        وفيها أيضا : ولا يفتقر إلى النية؛ لأنه صريح فيه لغلبة الاستعمال. (كتاب الطلاق،باب إيقاع الطلاق، ج:٢، ص:٣٥٩، ط:أشرفي)-
-                    </p>
-                </div>
+            <div className="p-3 sm:p-4 md:p-6 lg:p-8">
+                {/* Text Section */}
+                <div
+                    className="bg-white border border-gray-200 rounded-[16px] sm:rounded-[20px]
+        p-3 sm:p-4 md:p-6 lg:p-8
+        text-sm sm:text-base leading-7 sm:leading-8 text-[#595959] mb-5 sm:mb-6"
+                    dangerouslySetInnerHTML={{
+                        __html: askFatwaPage?.description,
+                    }}
+                />
 
                 {/* Form */}
-                <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-4 md:gap-6">
-                    {/* Name */}
-                    <div className="flex flex-col text-sm">
-                        <label className="text-sm mb-1 text-[#000000]">あなたの名前</label>
-                        <input
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            placeholder="Your Name"
-                            className="border text-[#00401A] border-[#B0C4B8] rounded-[10px] py-3 px-2 text-sm focus:ring-2 focus:ring-green-500 focus:outline-none"
-                            required
-                        />
-                    </div>
+                <form
+                    onSubmit={handleSubmit}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"
+                >
+                    <InputField
+                        label="あなたの名前"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Your Name"
+                    />
 
-                    {/* Email */}
-                    <div className="flex flex-col">
-                        <label className="text-sm mb-1 text-[#000000]">電子メールアドレス</label>
-                        <input
-                            name="email"
-                            type="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            placeholder="Email Address"
-                            className="border border-[#B0C4B8] rounded-[10px] py-3 px-2 text-sm
-                             focus:ring-2 focus:ring-green-500 focus:outline-none"
-                            required
-                        />
-                    </div>
+                    <InputField
+                        label="電子メールアドレス"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="Email Address"
+                    />
 
-                    {/* Whatsapp / Contact */}
-                    <div className="flex flex-col">
-                        <label className="text-sm mb-1 text-[#000000]">または連絡先</label>
-                        <input
-                            name="contact"
-                            value={formData.contact}
-                            onChange={handleChange}
-                            placeholder="Whatsapp Or Contact"
-                            className="border border-[#B0C4B8] rounded-[10px] py-3 px-2 text-sm
-                             focus:ring-2 focus:ring-green-500 focus:outline-none"
-                            required
-                        />
-                    </div>
+                    <InputField
+                        label="または連絡先"
+                        name="contact"
+                        value={formData.contact}
+                        onChange={handleChange}
+                        placeholder="Whatsapp Or Contact"
+                    />
 
-                    {/* Address */}
-                    <div className="flex flex-col">
-                        <label className="text-sm mb-1 text-[#000000]">住所</label>
-                        <select
-                            name="address"
-                            value={formData.address}
-                            onChange={handleChange}
-                            className="border border-[#B0C4B8] rounded-[10px] py-3 px-2 text-sm 
-                            focus:ring-2 focus:ring-green-500 focus:outline-none"
-                            required
-                        >
-                            <option value="">Address</option>
-                            <option value="Home Address">Home Address</option>
-                            <option value="Office Address">Office Address</option>
-                        </select>
-                    </div>
-
-                    {/* Home address */}
-                    <div className="flex flex-col md:col-span-2">
-                        <label className="text-sm mb-1 text-[#000000]">自宅住所</label>
-                        <input
-                            name="name"
-                            value={formData.homeAddress}
-                            onChange={handleChange}
-                            placeholder="Home Address"
-                            className="border border-[#B0C4B8] rounded-[10px] py-3 px-2 text-sm 
-                            focus:ring-2 focus:ring-green-500 focus:outline-none"
-                            required
-                        />
-                    </div>
+                    <InputField
+                        label="主題"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        placeholder="Subject"
+                    />
 
                     {/* Question */}
                     <div className="flex flex-col md:col-span-2">
-                        <label className="text-sm mb-1 text-[#000000]">質問の要約</label>
+                        <label className="text-sm mb-1 text-black">質問の要約</label>
                         <textarea
                             name="question"
                             value={formData.question}
                             onChange={handleChange}
+                            rows={6}
                             placeholder="Your Question in Short"
-                            rows={8}
-                            className="border border-[#B0C4B8] rounded-[10px] py-3 px-2 text-sm
-                             focus:ring-2 focus:ring-green-500 focus:outline-none"
                             required
+                            className="border border-[#B0C4B8] rounded-[10px] py-3 px-2 text-sm
+            focus:ring-2 focus:ring-green-500 focus:outline-none"
                         />
                     </div>
 
                     {/* Buttons */}
-                    <div className="flex justify-end gap-3 md:col-span-2 mt-3">
+                    <div className="flex flex-col sm:flex-row justify-end gap-3 md:col-span-2 mt-4">
                         <button
                             type="button"
                             onClick={handleReset}
-                            className="h-[56px] text-lg border border-green-500 text-green-700 bg-white hover:bg-green-50 font-medium py-2 px-32
-                             rounded-[10px] transition-all cursor-pointer"
+                            disabled={loading}
+                            className="h-[48px] sm:h-[56px] w-full sm:w-auto
+            px-6 sm:px-12 text-base sm:text-lg
+            borderGradientButton text-[#00401A] rounded-[10px]
+            hover:bg-green-50 transition cursor-pointer"
                         >
                             Reset
                         </button>
+
                         <button
                             type="submit"
                             disabled={loading}
-                            className="h-[56px] text-lg bg-[#F7BA2A] hover:bg-[#e4a819] text-white font-medium py-2 px-18 rounded-[10px]
-                             transition-all flex items-center gap-2  cursor-pointer"
+                            className="h-[48px] sm:h-[56px] w-full sm:w-auto
+            px-6 sm:px-12 text-base sm:text-lg
+            bg-[#F7BA2A] text-[#00401A] rounded-[10px]
+            hover:bg-[#e4a819] transition cursor-pointer"
                         >
                             {loading ? "Submitting..." : "Submit Your Question"}
                         </button>
                     </div>
                 </form>
             </div>
+        </div>
+    );
+
+}
+
+/* ----------------------------------
+   Reusable Input Component
+---------------------------------- */
+
+function InputField({
+    label,
+    name,
+    value,
+    onChange,
+    placeholder,
+    type = "text",
+}) {
+    return (
+        <div className="flex flex-col">
+            <label className="text-sm mb-1 text-black">{label}</label>
+            <input
+                name={name}
+                type={type}
+                value={value}
+                onChange={onChange}
+                placeholder={placeholder}
+                required
+                autoComplete="off"
+                className="border border-[#B0C4B8] rounded-[10px] py-3 px-2 text-sm
+        focus:ring-2 focus:ring-green-500 focus:outline-none"
+            />
         </div>
     );
 }

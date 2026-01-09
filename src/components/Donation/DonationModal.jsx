@@ -31,6 +31,8 @@ export default function DonationModal({
             >
                 {/* Close Button */}
                 <button
+                    type="button"
+                    aria-label="close"
                     onClick={onClose}
                     className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 transition"
                 >

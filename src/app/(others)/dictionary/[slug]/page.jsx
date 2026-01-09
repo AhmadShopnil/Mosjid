@@ -7,8 +7,7 @@ import Breadcrumb from '@/components/Shared/Breadcrumb'
 import Container from '@/components/Shared/Container'
 import InnerHeader from '@/components/Shared/InnerHeader'
 import SidebarDrawerForBooks from '@/components/Shared/SidebarDrawerForBooks'
-import { getFatwahFiltersData, getPage, getSettings } from '@/helper/actions'
-import { formatFatwaBooksForSidebar } from '@/helper/formatFatwaBooksForSidebar'
+import { getBooksData, getFatwahFiltersData, getPage, getSettings } from '@/helper/actions'
 import { getImageUrl } from '@/helper/getImageUrl'
 import React from 'react'
 
@@ -22,7 +21,7 @@ export default async function page() {
   const settings = await getSettings();
   const homePage = await getPage("home-sections-heading-management");
   const majhabs = await getFatwahFiltersData("majhabs");
-  const books = await getFatwahFiltersData("books");
+ const books = await getBooksData(56)
   const chapter = await getFatwahFiltersData("bookchapters");
   const section = await getFatwahFiltersData("booksections");
 
@@ -51,7 +50,7 @@ const sections = homePage?.sections_on_api;
         {/* sidebar */}
         <SidebarDrawerForBooks
           isSubmitRequest={true}
-          books={books?.data}
+          books={books}
           isMajhabShow={false}
           isFatwah_Dictionary_Filter={true}
           data_for_filter={data_for_filter}

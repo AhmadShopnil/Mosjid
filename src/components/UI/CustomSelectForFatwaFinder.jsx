@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 
+
 export default function CustomSelectForFatwaFinder({
   options,
   selected,
@@ -20,10 +21,10 @@ export default function CustomSelectForFatwaFinder({
     setIsOpen(false);
   };
 
-  // ------- Close on outside click -------
+
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // যদি ক্লিক container এর বাইরে হয় → close dropdown
+
       if (containerRef.current && !containerRef.current.contains(event.target)) {
         setIsOpen(false);
       }
@@ -34,6 +35,15 @@ export default function CustomSelectForFatwaFinder({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+
+
+
+
+
+
+
+
 
   return (
     <div ref={containerRef} className="relative w-full">
@@ -68,15 +78,19 @@ export default function CustomSelectForFatwaFinder({
                   <button
                     key={index}
                     onClick={() => handleSelect(option)}
-                    className={`w-full text-left px-4 py-2 rounded-md transition ${
-                      selected?.id === option?.id
+                    className={`w-full text-left px-4 py-2 rounded-md transition ${selected?.id === option?.id
                         ? "bg-[#C9E9BA] text-green-900"
                         : "bg-white hover:bg-[#C9E9BA]"
-                    }`}
+                      }`}
                   >
-                    <p className="font-medium text-sm text-gray-800">
+                   <div className="flex justify-between">
+                     <span className="font-medium text-sm text-gray-800">
                       {option?.name_en}
-                    </p>
+                    </span>
+                      <span className="font-medium text-sm text-gray-800">
+                     Total: {option?.fatwas_count}
+                    </span>
+                   </div>
                     <p className="text-xs text-gray-500">{option?.name_jp}</p>
                   </button>
                 ))

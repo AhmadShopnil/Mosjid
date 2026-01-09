@@ -74,13 +74,14 @@ export default function SingleEventDetailsCard({ event }) {
             {descriptionParts.length > 1 && (
               <div className="flex flex-col sm:flex-row justify-between items-center mt-6 gap-3">
                 <button
+                  type="button"
+                  aria-label="previous"
                   onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
                   disabled={page === 0}
-                  className={`w-full sm:w-auto px-4 py-2 rounded-md border text-sm sm:text-base transition ${
-                    page === 0
+                  className={`w-full sm:w-auto px-4 py-2 rounded-md border text-sm sm:text-base transition ${page === 0
                       ? "text-gray-400 border-gray-200 cursor-not-allowed"
                       : "text-[#00401A] border-[#00401A] hover:bg-[#00401A] hover:text-white"
-                  }`}
+                    }`}
                 >
                   ← Previous
                 </button>
@@ -90,17 +91,18 @@ export default function SingleEventDetailsCard({ event }) {
                 </span>
 
                 <button
+                  type="button"
+                  aria-label="next"
                   onClick={() =>
                     setPage((prev) =>
                       Math.min(prev + 1, descriptionParts.length - 1)
                     )
                   }
                   disabled={page === descriptionParts.length - 1}
-                  className={`w-full sm:w-auto px-4 py-2 rounded-md border text-sm sm:text-base transition ${
-                    page === descriptionParts.length - 1
+                  className={`w-full sm:w-auto px-4 py-2 rounded-md border text-sm sm:text-base transition ${page === descriptionParts.length - 1
                       ? "text-gray-400 border-gray-200 cursor-not-allowed"
                       : "text-[#00401A] border-[#00401A] hover:bg-[#00401A] hover:text-white"
-                  }`}
+                    }`}
                 >
                   Next →
                 </button>

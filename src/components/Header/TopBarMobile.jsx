@@ -9,6 +9,8 @@ import { ImFacebook2 } from "react-icons/im";
 import Link from "next/link";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import LanguageSelector from "../Shared/LanguageSelector";
+import ToaysDateTimeHijri from "./ToaysDateTimeHijri";
+import ToaysDateTime from "./ToaysDateTime";
 
 export default function TopbarMobile({ settings }) {
   const phone = getMetaValueByMetaName(settings, "company_phone") || "";
@@ -22,13 +24,11 @@ export default function TopbarMobile({ settings }) {
       <Container>
         <div className="flex flex-col  gap-2">
 
-          {/* 🌍 Language Selector */}
-          {/* <div className="w-full">
-            <LanguageSelector />
-          </div> */}
+      
 
-          {/* ✉️ Contact Info */}
+          {/*  Contact Info */}
           <div className="flex flex-col gap-2 w-full ">
+            
             {/* Email */}
             {company_email && (
               <div className="flex items-center  gap-2">
@@ -54,7 +54,7 @@ export default function TopbarMobile({ settings }) {
             )}
           </div>
 
-          {/* 🌐 Social Links */}
+          {/*  Social Links */}
           <div className="flex gap-5 items-center ml-1  mt-2">
             <Link
               href={facebookLink}
@@ -92,6 +92,10 @@ export default function TopbarMobile({ settings }) {
               />
             </Link>
           </div>
+         <div className="py-0.5 flex flex-col justify-center gap-1 ">
+           <ToaysDateTime location={null}/>
+            <ToaysDateTimeHijri location={null}/>
+         </div>
         </div>
       </Container>
    
