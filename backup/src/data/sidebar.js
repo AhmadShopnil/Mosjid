@@ -1,0 +1,201 @@
+ export const sideBarCategories = [
+    {
+      id: "Prayer Times",
+      icon: "/images/QuickLinks/prayer-times.png",
+      link: "/prayer-times",
+      activeIcon: "/images/QuickLinks/hover/1.png",
+      name: "Prayer Times",
+      subtitle: "祈りの時間",
+      isArrow: true,
+    },
+    {
+      id: "notice-board",
+      icon: "/images/QuickLinks/notice.png",
+      link: "/notices",
+      activeIcon: "/images/QuickLinks/hover/Blog & event-1.png",
+      name: "Notice Board",
+      subtitle: "掲示板",
+      isArrow: true,
+   
+    
+    },
+    {
+      id: "Fatwa",
+      icon: "/images/QuickLinks/fatwa.png",
+      link: "/fatwah",
+      activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
+      name: "Fatwa",
+      subtitle: "ファトワ",
+   
+      isArrow: true,
+     
+    },
+ 
+      {
+      id: "Offered Services",
+    name: "Offered Services",
+    subtitle: "提供されるサービス",
+    targetId: "offered-services",
+    link: "/",
+    icon: "/images/QuickLinks/offer-service.png",
+    // icon: "/images/QuickLinks/normal/Blog & event.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
+  {
+     id: "Dictionary",
+    name: "Dictionary",
+    subtitle: "辞書",
+    targetId: "dictionary",
+    link: "/dictionary",
+    icon: "/images/QuickLinks/dictionary.png",
+    // icon: "/images/QuickLinks/normal/Dictionary.png",
+    activeIcon: "/images/QuickLinks/hover/Dictionary.png",
+     isArrow: true,
+  },
+  {
+    id: "Directory",
+    name: "Directory",
+    subtitle: "ディレクトリ",
+    targetId: "directory",
+    link: "/directory",
+    icon: "/images/QuickLinks/directory.png",
+    // icon: "/images/QuickLinks/normal/Directory.png",
+    activeIcon: "/images/QuickLinks/hover/Directory.png",
+     isArrow: true,
+  },
+  {
+    id: "Blogs",
+    name: "Blogs",
+    subtitle: "ブログ",
+    targetId: "blogs-events",
+    link: "/blogs",
+    icon: "/images/QuickLinks/blog-event.png",
+    // icon: "/images/QuickLinks/normal/Donation.png",
+    activeIcon: "/images/QuickLinks/hover/Donation.png",
+     isArrow: true,
+  },
+  {
+    id: "Events",
+    name: "Events",
+    subtitle: "イベント",
+    targetId: "blogs-events",
+    link: "/events",
+    icon: "/images/QuickLinks/blog-event.png",
+    // icon: "/images/QuickLinks/normal/Donation.png",
+    activeIcon: "/images/QuickLinks/hover/Donation.png",
+     isArrow: true,
+  },
+  {
+    id: "Gallery",
+    name: "Gallery",
+    subtitle: "ギャラリー",
+    targetId: "gallery",
+    link: "/gallery",
+    icon: "/images/QuickLinks/gallery.png",
+    // icon: "/images/QuickLinks/normal/Gallery.png",
+    activeIcon: "/images/QuickLinks/hover/Gallery.png",
+     isArrow: true,
+    
+  },
+    {
+         id: "Islamic Books",
+    name: "Islamic Books",
+    subtitle: "イスラム教の本",
+    targetId: "books",
+     link: "/books",
+    icon: "/images/QuickLinks/books.png",
+    // icon: "/images/QuickLinks/normal/Gallery.png",
+    activeIcon: "/images/QuickLinks/hover/Gallery.png",
+     isArrow: true,
+  },
+    {
+        id: "About",
+    name: "About",
+    subtitle: "について",
+    targetId: "about",
+     link: "/about",
+   icon: "/images/QuickLinks/directory.png",
+    // icon: "/images/QuickLinks/normal/Gallery.png",
+    activeIcon: "/images/QuickLinks/hover/Gallery.png",
+     isArrow: true,
+  },
+
+  ];
+
+
+
+
+   export const servicesSideBarCategories = [
+       {
+     id: "Islamic Name",
+     name: "Islamic Name",
+     subtitle: "提供されるサービス",
+     targetId: "islamic-name",
+     link: "/islamic-name",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
+    {
+      id: "Islamic School Curriculum",
+      link: "/islamic-school-curriculum",
+      targetId:"islamic-school-curriculum",
+      icon: "/images/QuickLinks/offer-service.png",
+      activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+      name: "Islamic School Curriculum",
+      subtitle: "祈りの時間",
+      isArrow: true,
+    },
+    ,
+     {
+      id: "Loss & Found",
+      name: "Loss & Found",
+      subtitle: "祈りの時間",
+     
+     targetId: "masjid-view",
+     link: "/loss-and-found",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
+
+
+       {
+      id: "Islamic School",
+     name: "Islamic School",
+     subtitle: "祈りの時間",
+    
+     targetId: "islamic-school",
+     link: "/islamic-school",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
+    {
+      id: "madrasha-course",
+      name: "Madrasha Course",
+      subtitle: "祈りの時間",
+    
+     targetId: "madrasha-course",
+     link: "/madrasha-course",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
+     {
+      id: "Masjid View",
+      name: "Masjid View",
+      subtitle: "祈りの時間",
+   
+     targetId: "masjid-view",
+     link: "/masjid-view",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  }
+  
+
+  ];
+
+  

@@ -1,0 +1,537 @@
+@import "tailwindcss";
+
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-merriweather), serif;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.gradient-border {
+  position: relative;
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+
+  border-radius: inherit;
+  background: linear-gradient(to right, rgba(0, 244, 175, 1), rgba(0, 255, 30, 1));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+
+.gradient-bordernew {
+  background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 19px, transparent 19px) 0% 0%/20px 20px no-repeat,
+    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 19px, transparent 19px) 100% 0%/20px 20px no-repeat,
+    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 19px, transparent 19px) 0% 100%/20px 20px no-repeat,
+    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 19px, transparent 19px) 100% 100%/20px 20px no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 2px) calc(100% - 40px) no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 40px) calc(100% - 2px) no-repeat,
+    linear-gradient(62deg, rgba(0, 244, 175, 1) 0%, rgba(0, 255, 30, 1) 100%);
+  border-radius: 20px;
+
+  /* box-sizing:
+   content-box; */
+}
+
+
+
+
+
+.gradient-border2 {
+  position: relative;
+  border-radius: 20px;
+  /* Match Tailwind rounded-lg */
+  overflow: hidden;
+}
+
+.gradient-border2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  /* Border thickness */
+  border-radius: inherit;
+  background: linear-gradient(to right, rgba(0, 244, 175, 1), rgba(0, 255, 30, 1));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+
+.gradient-border3 {
+  position: relative;
+  border-radius: 0.9rem;
+  /* Match Tailwind rounded-lg */
+  overflow: hidden;
+}
+
+.gradient-border3::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  /* Border thickness */
+  border-radius: 100px;
+  background: linear-gradient(to right, rgba(49, 152, 160, 0.76), rgba(81, 249, 9, 0.692));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+
+
+
+.gradient-borderDirectory {
+  border: 1px solid #d1d5db;
+  border-radius: 20px;
+ 
+}
+
+.gradient-borderDirectory:hover {
+  border: 2px solid transparent;
+  border-radius: 20px;
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(to bottom right, #009688, #00FF00) border-box;
+}
+
+
+.gradient-borderdonation {
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(to bottom right, #009688, #00FF00) border-box;
+}
+
+
+
+
+
+
+
+
+.gradient-border_b2 {
+  position: relative;
+
+  overflow: hidden;
+}
+
+.gradient-border_b2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Position at the bottom */
+  height: 2px;
+  /* Border thickness */
+
+  background: linear-gradient(to right, rgb(163, 166, 163), rgb(245, 247, 246));
+  pointer-events: none;
+}
+
+
+.gradient-border_b {
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-border_b::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: linear-gradient(to right,
+      /* rgba(0, 0, 0, 1) 0%,    */
+      rgba(0, 0, 0, 1) 1%,
+      rgb(255, 255, 255) 95%,
+      rgb(255, 255, 255) 100%);
+  pointer-events: none;
+}
+
+
+.quicklinks {
+  background: #F5FFF8;
+  height: 200px;
+  width: 200px;
+  position: relative;
+  border-radius: 30px;
+  margin: 4px;
+}
+
+.quicklinks:hover {
+  background: #51FA06;
+  background: linear-gradient(147deg, rgba(81, 250, 6, 1) 0%, rgba(0, 119, 36, 1) 100%);
+}
+
+.quicklinks::before {
+  content: '';
+  background: linear-gradient(to right, #309caa, #53FF00);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: -1px;
+  z-index: -1;
+  border-radius: 31px;
+}
+
+
+
+
+
+
+.quicklinksMobile {
+  position: relative;
+  border-radius: 20px;
+  background: linear-gradient(#F5FFF8, #F5FFF8) padding-box,
+              linear-gradient(to right, #309caa, #53FF00) border-box;
+  border: 1px solid transparent;
+  margin: 4px;
+}
+
+.borderFatwaInner {
+  position: relative;
+  border-radius: 10px;
+  background: linear-gradient(#F5FFF8, #F5FFF8) padding-box,
+              linear-gradient(to bottom, #309caa, #53FF00) border-box;
+  border: 1px solid transparent;
+  
+}
+.borderNoticeInner {
+  position: relative;
+  border-radius: 10px;
+
+  border: 1px solid transparent;
+  
+}
+
+
+.up_navigation_button {
+  position: relative;
+  border-radius: 100px;
+  background: linear-gradient(#ffff, #ffff) padding-box,
+              linear-gradient(to bottom, #3198A0, #51F909) border-box;
+  border: 2px solid transparent;
+  
+}
+
+.borderDonationHome {
+  position: relative;
+  border-radius: 20px;
+  background: linear-gradient(#ffff, #ffff) padding-box,
+              linear-gradient(to bottom, #309caa, #53FF00) border-box;
+  border: 1px solid transparent;
+  
+}
+
+.borderGradientButton {
+  position: relative;
+  border-radius: 10px;
+  background: linear-gradient(#ffff, #ffff) padding-box,
+              linear-gradient(to bottom, #309caa, #53FF00) border-box;
+  border: 1px solid transparent;
+  
+}
+
+
+.islamicBookHome {
+  position: relative;
+  border-radius:200px;
+  background: white;
+  /* background: linear-gradient(#F5FFF8, #F5FFF8) padding-box,
+              linear-gradient(to bottom, #00FF1E, #00F4AF) border-box;
+  border: 1px solid transparent; */
+  
+}
+.islamicBookHome:hover {
+  position: relative;
+  border-radius:200px;
+  background: linear-gradient(#ffff, #ffff) padding-box,
+              linear-gradient(to bottom, #00FF1E, #00F4AF) border-box;
+  border: 2px solid transparent;
+  
+}
+
+.NoticePrayerTimeBorderHome {
+  position: relative;
+  border-radius: 20px;
+  background: linear-gradient(#F5FFF8, #F5FFF8) padding-box,
+              linear-gradient(to right, #00F4AF, #00FF1E) border-box;
+  border: 1px solid transparent;
+  
+}
+/* .NoticePrayerTimeBorderHome {
+  position: relative;
+  border-radius: 20px;
+  background: 
+    linear-gradient(#F5FFF8, #F5FFF8) padding-box,
+    linear-gradient(
+      to right, 
+      rgba(0, 255, 30, 1), 
+      rgba(0, 244, 175, 1)
+    ) border-box;
+  border: 1px solid transparent;
+} */
+
+
+
+
+
+
+.gradient-bg-fatwah {
+  background: #D0FFE4;
+  background: linear-gradient(24deg, rgba(208, 255, 228, 1) 0%, rgba(255, 255, 255, 1) 66%, rgba(244, 231, 203, 1) 100%);
+}
+
+.gradient-bg-headline {
+
+  background: #64A445;
+  background: linear-gradient(180deg, rgba(100, 164, 69, 1) 0%, rgba(48, 150, 163, 1) 100%);
+
+}
+
+
+.gradient-borderFatwah {
+  background:
+    /* top-left corner */
+    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 9px, transparent 9px) 100% 100%/10px 10px no-repeat,
+    /* top-right corner */
+    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 9px, transparent 9px) 0% 100%/10px 10px no-repeat,
+    /* bottom-left corner */
+    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 9px, transparent 9px) 100% 0%/10px 10px no-repeat,
+    /* bottom-right corner */
+    radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 9px, transparent 9px) 0% 0%/10px 10px no-repeat,
+    /* horizontal + vertical inner borders */
+    linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 2px) calc(100% - 20px) no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 20px) calc(100% - 2px) no-repeat,
+    /* main border gradient */
+    linear-gradient(62deg, rgba(0, 244, 175, 1) 0%, rgba(0, 255, 30, 1) 100%);
+  border-radius: 10px;
+}
+
+
+
+
+
+.gradient-border-bottom {
+  position: relative;
+}
+
+.gradient-border-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  /* thickness */
+  background: linear-gradient(to right, #A35024, #F6C249, #A35024);
+  border-bottom-left-radius: 0.75rem;
+  /* match rounded-xl */
+  border-bottom-right-radius: 0.75rem;
+}
+
+.gradient-bredcumb {
+  background: #38E300;
+  background: linear-gradient(180deg, rgba(56, 227, 0, 1) 0%, rgba(210, 255, 191, 1) 100%);
+}
+
+.gradient-bredcumb-a {
+  background: #3198A0;
+  background: linear-gradient(180deg, rgba(49, 152, 160, 1) 0%, rgba(81, 249, 9, 1) 100%);
+}
+
+.gradient-bg-sidebar-item {
+  background: #3198A0;
+  background: linear-gradient(180deg, rgba(49, 152, 160, 1) 0%, rgba(81, 249, 9, 1) 100%);
+}
+
+.gradient-bg-fatwah-finder {
+  background: #3198A0;
+  background: linear-gradient(180deg, rgba(49, 152, 160, 1) 0%, rgba(81, 249, 9, 1) 100%);
+}
+
+
+
+
+
+.gradient-bg-sidebar-item-b {
+  background: #ffff;
+}
+
+.gradient-bg-sidebar-item-b:hover {
+  background: #3198A0;
+  background: linear-gradient(180deg, rgba(49, 152, 160, 1) 0%, rgba(81, 249, 9, 1) 100%);
+  color: white !;
+}
+
+.polygon {
+  clipPath: polygon(0 0, 85% 0, 100% 100%, 0 100%);
+}
+
+
+/* Hide scrollbar on mobile */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+
+
+
+
+/* animation for page navgation */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap');
+
+/* Fonts */
+.font-serif-display { font-family: 'Cinzel', serif; }
+.font-sans-body { font-family: 'Lato', sans-serif; }
+
+/* Loader Animations */
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.5; box-shadow: 0 0 0 0 rgba(251,191,36,0.7); }
+  70% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 20px rgba(251,191,36,0); }
+  100% { transform: scale(0.8); opacity: 0.5; box-shadow: 0 0 0 0 rgba(251,191,36,0); }
+}
+
+@keyframes fill-up {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loader Styles */
+.loader-bg {
+  background: radial-gradient(circle at center, #064e3b 0%, #022c22 100%);
+}
+
+.pulse-effect {
+  animation: pulse-ring 2s infinite;
+}
+
+/* SVG circle EXACT behavior */
+.circular-loader circle {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 5s ease-in-out;
+}
+
+.loading-complete .circular-loader circle {
+  stroke-dashoffset: 0;
+}
+
+
+/* Circular Progress Animation */
+.circle-progress {
+  animation: circleFill 4s linear infinite;
+}
+
+@keyframes circleFill {
+  0% {
+    stroke-dashoffset: 283;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Bottom Progress Bar */
+.progress-bar-fill {
+  width: 0%;
+  animation: barFill 4s ease-in-out infinite;
+}
+
+@keyframes barFill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Optional Pulse Effect (if not exists) */
+.pulse-effect {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.85;
+  }
+}

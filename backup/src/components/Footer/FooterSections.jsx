@@ -1,0 +1,209 @@
+// components/Footer.jsx
+"use client";
+
+
+import Image from "next/image";
+import {
+  FaEnvelope,
+} from "react-icons/fa";
+import { FaPhoneVolume, FaLocationDot } from "react-icons/fa6";
+import { ImFacebook2 } from "react-icons/im";
+import { getMediaLinkByMetaName, getMetaValueByMetaName } from "@/helper/metaHelpers";
+import { BASE_URL } from "@/helper/baseUrl";
+import Link from "next/link";
+import QuickContactForm from "./QuickContactForm";
+
+export default function FooterSections({ settings }) {
+
+
+
+
+
+  const phone = getMetaValueByMetaName(settings, "company_phone") || "";
+  const company_email = getMetaValueByMetaName(settings, "company_email") || "";
+  const facebookLink = getMetaValueByMetaName(settings, "facebook_url") || "#";
+  const linkedinLink = getMetaValueByMetaName(settings, "linkedin_url") || "#";
+  const instagramLink =
+    getMetaValueByMetaName(settings, "instagram_url") || "#";
+  const location = getMetaValueByMetaName(settings, "office_location") || "";
+  const looter_logo_path = getMediaLinkByMetaName(settings, "footer_logo");
+  const footer_logo_url = `${BASE_URL}${looter_logo_path}`;
+    const website_title_footer = getMetaValueByMetaName(settings, "website_title") || "OSAKA MASJID";
+
+  const footer_content =
+    getMetaValueByMetaName(settings, "site_description") || "";
+  
+
+  // sectionTittles
+  const section_1_title = getMetaValueByMetaName(settings, "section_1_title") || "";
+  const section_2_title = getMetaValueByMetaName(settings, "section_2_title") || "";
+  const section_3_title = getMetaValueByMetaName(settings, "section_3_title") || "";
+
+
+
+  // Demo Data
+
+
+
+  const contactInfo = [
+    {
+      id: 1,
+      icon: <FaLocationDot className="text-[#00401A] min-w-[20px]" />,
+      iconImage: "/images/footer/location.svg",
+      text: location,
+    },
+    {
+      id: 2,
+      icon: <FaPhoneVolume className="text-[#00401A] min-w-[20px]" />,
+      iconImage: "/images/footer/calling.svg",
+      text: phone,
+    },
+    {
+      id: 3,
+      icon: <FaEnvelope className="text-[#00401A] min-w-[20px]" />,
+      iconImage: "/images/footer/mail2.svg",
+      text: company_email,
+    },
+  ];
+
+
+
+  const usefulLinks = [
+    { id: 1, label: "Home", url: "/" },
+    { id: 2, label: "Fatwa", url: "/fatwah" },
+    { id: 3, label: "Prayer Time", url: "/prayer-titmes" },
+    { id: 4, label: "Notice Board", url: "/notices" },
+    { id: 5, label: "Blog & Event", url: "/blogs" },
+    { id: 6, label: "Dictionary", url: "/dictionary" },
+    { id: 7, label: "Contact Us", url: "/contact" },
+  ];
+
+
+
+
+
+
+
+
+
+
+  return (
+    <footer className="bg-white shadow-md px-4 md:px-12 xl:px-16 py-10 rounded-[30px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4
+       gap-10 xl:gap-8">
+        {/* Logo + About */}
+        <div>
+          <div className="mb-4 gradient-border_b pb-3 flex gap-3 items-center">
+            <Image
+              src={footer_logo_url}
+              // src="/images/logo.png"
+              alt="Osaka Masjid Logo"
+              width={70}
+              height={75}
+              className="w-[61px] h-[76px]"
+            />
+            <span className="text-[#F7BA2A] font-bold text-3xl">{website_title_footer}</span>
+          </div>
+          <p className="text-[#333333] text-base">
+            {footer_content}
+          </p>
+        </div>
+
+        {/* Get In Touch */}
+        <div>
+          <h3 className="text-2xl text-[#00401A] font-bold mb-4 gradient-border_b pb-3.5">
+            {section_1_title}
+          </h3>
+          <ul className="space-y-4 text-sm text-gray-700">
+            {contactInfo.map((info) => (
+              <li key={info.id} className="flex items-start   gap-2.5">
+                <span className=" text-lg bg-[#D9E2DD] p-2 rounded-full w-[36px] h-[36px] ">
+
+                  {
+
+                    info?.id == 1 ? <span className="">{info?.icon} </span>
+                      :
+                      <Image
+                        src={info?.iconImage}
+
+                        alt="Osaka Masjid Logo"
+                        width={22}
+                        height={22}
+                        className="w-[22px] h-[22px] "
+                      />
+
+
+                  }
+
+
+
+
+                </span>
+                <span className="text-[#333333] text-base mt-0.5 ">{info?.text}</span>
+              </li>
+            ))}
+          </ul>
+          <div className='flex gap-2 mt-6 px-1  items-center'>
+            <Link
+              href={facebookLink}
+              className=''>
+              {/* <ImFacebook2 /> */}
+              <Image
+                src="/images/footer/facebook.svg"
+                alt='a1'
+                width={26}
+                height={26}
+                className='hidden sm:flex'
+              />
+            </Link>
+            <Link
+              href={instagramLink}
+              className=''>
+              <Image
+                src="/images/footer/ins.svg"
+                alt='a1'
+                width={26}
+                height={26}
+                className='hidden sm:flex'
+              />
+            </Link>
+            <Link
+              href={linkedinLink}
+              className='text-blue-500'>
+              <Image
+                src="/images/footer/link.svg"
+                alt='a1'
+                width={26}
+                height={26}
+                className='hidden sm:flex'
+              />
+
+            </Link>
+          </div>
+        </div>
+
+        {/* Useful Links */}
+        <div>
+          <h3 className="text-2xl text-[#00401A] font-bold mb-3 gradient-border_b pb-3.5">
+            {section_2_title}
+          </h3>
+          <ul className="space-y-2 text-sm text-gray-700">
+            {usefulLinks.map((link) => (
+              <li key={link.id}>
+                <a
+                  href={link.url}
+                  className="text-[#333333] text-lg hover:text-[#F7BA2A]"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Quick Contact Form */}
+        <QuickContactForm section_3_title={section_3_title} />
+      </div>
+    </footer>
+  );
+}
