@@ -52,7 +52,7 @@ export default function CustomSelectForFatwaFinder({
       <button
         onClick={() => setIsOpen(!isOpen)}
         type="button"
-        className="w-full h-[56px] border border-gray-200 rounded-md px-3 py-2 bg-white flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-green-400"
+        className="cursor-pointer w-full h-[56px] border border-gray-200 rounded-md px-3 py-2 bg-white flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-green-400"
       >
         <span className="text-gray-700">
           {selected ? selected?.name_en : lvl}
@@ -78,7 +78,7 @@ export default function CustomSelectForFatwaFinder({
                   <button
                     key={index}
                     onClick={() => handleSelect(option)}
-                    className={`w-full text-left px-4 py-2 rounded-md transition ${selected?.id === option?.id
+                    className={`cursor-pointer w-full text-left px-4 py-2 rounded-md transition ${selected?.id === option?.id
                         ? "bg-[#C9E9BA] text-green-900"
                         : "bg-white hover:bg-[#C9E9BA]"
                       }`}

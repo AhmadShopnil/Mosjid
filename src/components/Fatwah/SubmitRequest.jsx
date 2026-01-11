@@ -67,7 +67,7 @@ export default function SubmitRequest({ dataForContact }) {
                                 gradient-bg-fatwah-finder text-sm font-bold text-white
                                 h-[36px] px-6 py-2 rounded-[10px]
                                 shadow-md flex items-center justify-center gap-2
-                                cursor-not-allowed opacity-80
+                                cursor-not-allowed opacity-80 
                             "
                         >
                             <span>Submit A Request</span>

@@ -21,7 +21,7 @@ export default function MajhabSelection({ data_for_filter }) {
                 <button
                     key={i}
                     onClick={() => setSelectedMajhabs(m.name_en)}
-                    className={`h-[56px] flex flex-col justify-center items-center py-3 rounded-md text-sm font-semibold transition-all duration-300
+                    className={`cursor-pointer h-[56px] flex flex-col justify-center items-center py-3 rounded-md text-sm font-semibold transition-all duration-300
                 ${selectedMajhabs === m.name_en
                             ? "gradient-bg-fatwah-finder text-white shadow"
                             : "bg-[#D7EFD8] hover:bg-[#C9E8CA]"

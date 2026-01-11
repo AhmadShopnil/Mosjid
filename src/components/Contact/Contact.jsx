@@ -51,9 +51,7 @@ export default function Contact() {
     e.preventDefault();
 
     const payload = {
-      // subject: nameFromQuery || "No Subject",
-      // product_id: "",
-      // product_name: "",
+    
       name: formData?.name,
       email: formData?.email,
       phone: formData?.phone,
@@ -121,7 +119,7 @@ export default function Contact() {
 
             aria-label="submit"
             type="submit"
-            className="h-[60px] text-bold text-[20px] w-full bg-[#3E8B18] shadow-lg text-white font-semibold py-3 rounded-[10px] hover:opacity-90 transition"
+            className="cursor-pointer h-[60px] text-bold text-[20px] w-full bg-[#3E8B18] shadow-lg text-white font-semibold py-3 rounded-[10px] hover:opacity-90 transition"
           >
             Submit
           </button>
