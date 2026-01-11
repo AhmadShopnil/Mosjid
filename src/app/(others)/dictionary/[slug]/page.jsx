@@ -21,13 +21,13 @@ export default async function page() {
   const settings = await getSettings();
   const homePage = await getPage("home-sections-heading-management");
   const majhabs = await getFatwahFiltersData("majhabs");
- const books = await getBooksData(56)
+  const books = await getBooksData(56)
   const chapter = await getFatwahFiltersData("bookchapters");
   const section = await getFatwahFiltersData("booksections");
 
   // const formatFatwaBooksForSidebarData = formatFatwaBooksForSidebar(books)
 
-const sections = homePage?.sections_on_api;
+  const sections = homePage?.sections_on_api;
   const dictionaryExtraData = sections.find(
     (s) => s.title_slug === "dictionary"
   );

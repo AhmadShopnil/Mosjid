@@ -32,11 +32,6 @@ export default function DictionarySection({ data_for_filter, homePage }) {
 
   const { books, chapter, section } = data_for_filter;
 
-  // const languages = [
-  //   { title: "English", icon: "/images/others/English.png" },
-  //   { title: "Japanese", icon: "/images/others/Japan.png" },
-  //   { title: "Arabic", icon: "/images/others/Arabic.png" },
-  // ];
 
 
 const languages = [
@@ -203,7 +198,7 @@ const languages = [
               lvl="Books"
               parrent_lvl="Books"
               selectedParrent="Books"
-              options={books?.data}
+              options={books}
               selected={selectedBooks}
               setSelected={setSelectedBooks}
             />

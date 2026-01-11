@@ -49,7 +49,7 @@ export default function OfferServicesSlider({
   const scroll = (direction) => {
     if (!scrollRef.current) return;
 
-    stopAutoScroll(); // 🔑 IMPORTANT
+    stopAutoScroll(); 
 
     const { scrollLeft, clientWidth } = scrollRef.current;
     const scrollAmount = clientWidth * 0.7;
@@ -62,7 +62,7 @@ export default function OfferServicesSlider({
       behavior: "smooth",
     });
 
-    // Resume auto scroll after manual interaction
+  
     setTimeout(() => {
       startAutoScroll();
     }, 800);
@@ -172,7 +172,7 @@ export default function OfferServicesSlider({
             type="button"
             aria-label="Previous slide"
             onClick={() => scroll("left")}
-            className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-green-50"
+            className="cursor-pointer absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-green-50"
           >
             <ChevronLeft className="w-5 h-5 text-gray-700" />
           </button>
@@ -182,7 +182,7 @@ export default function OfferServicesSlider({
             type="button"
             aria-label="Next slide"
             onClick={() => scroll("right")}
-            className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-green-50"
+            className="cursor-pointer absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-green-50"
           >
             <ChevronRight className="w-5 h-5 text-gray-700" />
           </button>

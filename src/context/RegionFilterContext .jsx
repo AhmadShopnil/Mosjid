@@ -10,9 +10,7 @@ export function RegionFilterProvider({ children }) {
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
 
-  // ------------------------------
-  // When region changes → reset all lower levels
-  // ------------------------------
+
   const handleSelectRegion = (region) => {
     setSelectedRegion(region);
     setSelectedPrefecture(null);
@@ -20,18 +18,12 @@ export function RegionFilterProvider({ children }) {
     setSelectedDistrict(null);
   };
 
-  // ------------------------------
-  // When prefecture changes → reset city + district
-  // ------------------------------
   const handleSelectPrefecture = (prefecture) => {
     setSelectedPrefecture(prefecture);
     setSelectedCity(null);
     setSelectedDistrict(null);
   };
 
-  // ------------------------------
-  // When city changes → reset district
-  // ------------------------------
   const handleSelectCity = (city) => {
     setSelectedCity(city);
     setSelectedDistrict(null);

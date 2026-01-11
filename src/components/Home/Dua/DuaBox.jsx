@@ -162,7 +162,7 @@ export default function DuaBox({ homePage, settings, duas }) {
                     <button
                       onClick={() => handleOpenModal(dua)}
                       className="text-[#00401A] font-bold text-xs md:text-sm hover:text-[#F7BA2A] 
-                      flex gap-1 items-center"
+                      flex gap-1 items-center cursor-pointer"
                     >
                       {read_more}
                       <span className="mt-0.5">

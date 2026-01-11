@@ -132,7 +132,7 @@ export default function IslamicBooksSlider({ books, islamic_books_ExtraData }) {
               {/* Left Arrow */}
               <button
                 onClick={() => scroll("left")}
-                className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-green-50"
+                className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-green-50 cursor-pointer"
               >
                 <ChevronLeft className="w-5 h-5 text-gray-700" />
               </button>
@@ -140,7 +140,7 @@ export default function IslamicBooksSlider({ books, islamic_books_ExtraData }) {
               {/* Right Arrow */}
               <button
                 onClick={() => scroll("right")}
-                className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-green-50"
+                className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-green-50 cursor-pointer"
               >
                 <ChevronRight className="w-5 h-5 text-gray-700" />
               </button>
