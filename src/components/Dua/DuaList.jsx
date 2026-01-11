@@ -103,7 +103,7 @@ export default function DuaList({
                                         <button
                                             type="button"
                                             onClick={() => handleReadMore(item)}
-                                            className="text-[#001609] font-semibold text-xs md:text-sm hover:text-[#F7BA2A] flex gap-1 items-center mt-1"
+                                            className="text-[#001609] font-semibold text-xs md:text-sm hover:text-[#F7BA2A] flex gap-1 items-center mt-1 cursor-pointer"
                                         >
                                             {read_more}
                                             <span className="mt-0.5">

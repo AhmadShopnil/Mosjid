@@ -23,9 +23,7 @@ export default function DictionarySearchSection({ data_for_filter }) {
   const [warning, setWarning] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("English")
   const [searchTerm, setSearchTerm] = useState("")
-  //   const [selectedBook, setSelectedBook] = useState("Book")
-  //   const [selectedChapter, setSelectedChapter] = useState("Chapter")
-  //   const [selectedSection, setSelectedSection] = useState("Section")
+
 
 
   const [searchText, setSearchText] = useState()
@@ -77,7 +75,7 @@ export default function DictionarySearchSection({ data_for_filter }) {
               key={language?.title}
               onClick={() => setSelectedLanguage(language?.title)}
               className={`px-4 flex  gap-1 py-2 rounded-full text-base font-bold  transition-colors ${selectedLanguage === language?.title ? "bg-[#00401A] text-white" :
-                "bg-white text-[#00401A] hover:bg-gray-300 border border-[#00401a51]"
+                "bg-white text-[#00401A] hover:bg-gray-300 border border-[#00401a51] cursor-pointer"
                 }`}
             >
 

@@ -75,7 +75,8 @@ export default function FindBySearch({
         <button
           onClick={handleSearch}
           disabled={isDisabled}
-          className={`bg-[#F7BA2A] w-full lg:w-auto text-[#00401A] h-[56px] font-bold px-6 py-3 rounded-full shadow-md transition text-lg hover:bg-[#e0a520]`}
+          className={`bg-[#F7BA2A] w-full lg:w-auto text-[#00401A] h-[56px] font-bold px-6 py-3 rounded-full shadow-md
+             transition text-lg hover:bg-[#e0a520] cursor-pointer`}
         >
           {button_text}
         </button>
@@ -84,7 +85,7 @@ export default function FindBySearch({
         <button
           onClick={handleClear}
           disabled={isDisabled}
-          className={`flex w-full lg:w-auto items-center justify-center gap-1 h-[56px] px-4 py-3 rounded-full border border-gray-300 text-gray-700 font-semibold transition hover:bg-gray-100 hover:text-gray-900`}
+          className={`cursor-pointer flex w-full lg:w-auto items-center justify-center gap-1 h-[56px] px-4 py-3 rounded-full border border-gray-300 text-gray-700 font-semibold transition hover:bg-gray-100 hover:text-gray-900`}
         >
           <XCircle className="w-5 h-5" />
           Clear

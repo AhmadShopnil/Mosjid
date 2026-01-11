@@ -138,7 +138,7 @@ export default function Topbar({ settings,location }) {
               aria-label={`Change language to ${language.title}`}
               onClick={() => changeLanguage(language.code, language.title)}
               className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-bold
-        transition-colors whitespace-nowrap min-w-[120px] justify-center
+        transition-colors whitespace-nowrap min-w-[120px] justify-center cursor-pointer
         ${selectedLanguage === language.title
                   ? "bg-[#00401A] text-white"
                   : "bg-white text-[#00401A] hover:bg-gray-300 border border-[#00401a51]"

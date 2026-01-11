@@ -42,7 +42,7 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
   const handleSearch = ({ name, number }) => {
     const q = name || number || "";
     setSearchValue(q);
-    setCurrentPage(1); // new search → reset pagination
+    setCurrentPage(1); 
   };
 
 
@@ -78,7 +78,7 @@ export default function BooksPage({ homePage, settings, formattedCategories }) {
     };
 
     fetchBooks();
-  }, [selectedCat, currentPage, searchValue]); // ⬅️ searchValue dependency
+  }, [selectedCat, currentPage, searchValue]); //  searchValue dependency
 
 
 

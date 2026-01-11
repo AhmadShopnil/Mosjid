@@ -11,18 +11,14 @@ export function FatwaFilterProvider({ children }) {
   const [selectedSection, setSelectedSection] = useState(null);
   const [selectedSearchTerm, setSelectedSearchTerm] = useState("");
 
-  // -----------------------------------------
-  // When book changes → reset chapter + section
-  // -----------------------------------------
+
   const handleSelectBook = (book) => {
     setSelectedBooks(book);
     setSelectedChapter(null);  // reset chapter
     setSelectedSection(null);  // reset section
   };
 
-  // -----------------------------------------
-  // When chapter changes → reset section
-  // -----------------------------------------
+
   const handleSelectChapter = (chapter) => {
     setSelectedChapter(chapter);
     setSelectedSection(null); // reset section
