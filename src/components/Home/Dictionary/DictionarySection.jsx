@@ -122,7 +122,7 @@ const languages = [
             <button
               key={language.title}
               onClick={() => setSelectedLanguage(language.title)}
-              className={`px-4 flex gap-1 py-2 rounded-full text-base font-bold transition-colors ${
+              className={`cursor-pointer px-4 flex gap-1 py-2 rounded-full text-base font-bold transition-colors ${
                 selectedLanguage === language.title
                   ? "bg-[#00401A] text-white"
                   : "bg-white text-[#00401A] hover:bg-gray-300 border border-[#00401a51]"
