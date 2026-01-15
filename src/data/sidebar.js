@@ -193,8 +193,29 @@
      icon: "/images/QuickLinks/offer-service.png",
      activeIcon: "/images/QuickLinks/hover/Blog & event.png",
      isArrow: true,
+  },
+    {
+      id: "islamic-books-library",
+      name: "Islamic Books Library",
+      subtitle: "祈りの時間",
+   
+     targetId: "islamic-books-library",
+     link: "/islamic-books-library",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  } ,
+   {
+      id: "visitor-booking",
+      name: "Visitor Booking",
+      subtitle: "祈りの時間",
+   
+     targetId: "visitor-booking",
+     link: "/visitor-booking",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
   }
-  
 
   ];
 

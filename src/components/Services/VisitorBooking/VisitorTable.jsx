@@ -2,7 +2,8 @@
 
 
 import { TableSkeleton } from "../Skeletons/TableSkeleton";
-import LossTableRow from "./LossTableRow";
+
+import VisiTorTableRow from "./TableRow";
 
 const data = [
   { sl: 1, arabic: "محمد", japanese: "ムハンマド", english: "Muhammad", meaning: "The praised one" },
@@ -15,15 +16,16 @@ const data = [
 
 
 
-export default function FoundItemList({ loading = false }) {
+export default function VisitorTable({ loading = false,tableTitle }) {
 
 
   return (
     <div className="space-y-4">
       {/* Table Section */}
       <div>
-        <div className="bg-[#52B920] h-[50px] text-white flex items-center justify-center rounded-t-[10px]">
-          <h2 className="text-lg sm:text-xl font-bold">Lost Item</h2>
+        <div className="px-4 bg-[#52B920] h-[50px] text-white flex items-center justify-between rounded-t-[10px] ">
+          <h2 className="text-lg sm:text-xl ">{tableTitle?.en}</h2>
+          <h2 className="text-lg sm:text-xl ">{tableTitle?.jp}</h2>
         </div>
 
         <div className="overflow-x-auto">
@@ -44,10 +46,7 @@ export default function FoundItemList({ loading = false }) {
         </div>
       </div>
 
-      {/* Social Share */}
-      {/* <div className="py-4 flex justify-center sm:justify-end">
-        <SocialShare />
-      </div> */}
+    
     </div>
   );
 }
@@ -63,11 +62,15 @@ const TableHeader = () => (
       {[
         "SL.No",
         "Applicant Name",
-        "Lost Item name",
-        "Lost Spot/area",
-        "Lost date",
-        "Upload Image",
-        "Contact no"
+        "Organization Name",
+        "Contact",
+        "City/Country",
+        "Number Of Visitors",
+        "Date",
+        "Time",
+        "Duration Of Visit",
+        "Purpose Of Visit",
+        "Program Request"
       ].map((title, i) => (
         <th
           key={i}
@@ -83,7 +86,7 @@ const TableHeader = () => (
 const TableBody = ({ data }) => (
   <tbody>
     {data?.map((item, i) => (
-      <LossTableRow
+      <VisiTorTableRow
         key={item.sl}
         item={item}
         i={i}
