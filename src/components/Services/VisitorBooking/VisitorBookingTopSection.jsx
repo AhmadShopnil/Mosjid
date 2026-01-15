@@ -29,17 +29,27 @@ export default function VisitorBookingTopSection() {
                         Welcome to the House of Allah. We ask all visitors to uphold modesty, respect, and cleanliness during their time in the Masjid.
                     </p>
 
-                    <div className="w-full flex justify-center mt-2 md:mt-12  h-full">
-                        <div className="">
+                    <div className="">
+                        <div className="w-full flex justify-center mt-2 md:mt-8 h-full">
                             <Image
-                                src="/images/offerServices/book.svg"
+                                src="/images/offerServices/visitor-booking.svg"
                                 alt="book"
-                                width={200}
+                                width={180}
                                 height={200}
                                 className="object-contain"
                             />
                         </div>
-
+                        <div className="space-y-2 mt-4 lg:mt-6">
+                            <p className="text-[#B98C20] text-base mt-2">
+                                location:4-12-16 owada nishi yodogawa ku osaka shi,osaka fu, japan
+                            </p>
+                            <p className="text-[#B98C20] text-base mt-2">
+                                Visiting Hours:13.30 to 1700
+                            </p>
+                            <p className="text-[#B98C20] text-base mt-2">
+                                Contact:080-3822 4143
+                            </p>
+                        </div>
 
 
                     </div>

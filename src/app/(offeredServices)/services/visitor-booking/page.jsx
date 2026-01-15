@@ -1,8 +1,7 @@
 
-import BookListServicePage from '@/components/Services/IslamicBooksLibrary/BookListServicePage'
-import BookSearchSection from '@/components/Services/IslamicBooksLibrary/BookSearchSection'
-import IslamicBooksLibraryTopSection from '@/components/Services/IslamicBooksLibrary/IslamicBooksLibraryTopSection'
+
 import VisitorBookingTopSection from '@/components/Services/VisitorBooking/VisitorBookingTopSection'
+import VisitorForm from '@/components/Services/VisitorBooking/VisitorForm'
 import VisitorTable from '@/components/Services/VisitorBooking/VisitorTable'
 import React from 'react'
 
@@ -24,17 +23,19 @@ export default function page() {
             {/* top sections */}
             <VisitorBookingTopSection />
 
+            <VisitorForm />
+
             <div className='rounded-2xl p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909]'>
                 <div className='p-8 bg-white rounded-[15px]'>
                     <VisitorTable tableTitle={bookingListtableTitle} />
                 </div>
             </div>
-                <div className='rounded-2xl p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909]'>
+            <div className='rounded-2xl p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909]'>
                 <div className='p-8 bg-white rounded-[15px]'>
-                     <VisitorTable tableTitle={recordListTitle} />
+                    <VisitorTable tableTitle={recordListTitle} />
                 </div>
             </div>
-            
+
 
 
         </div>
