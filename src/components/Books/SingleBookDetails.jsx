@@ -76,7 +76,7 @@ export default function SingleBookDetails({ blog, settings }) {
                 aria-label="Previous"
                 onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
                 disabled={page === 0}
-                className={`w-full sm:w-auto px-4 py-2 rounded-md border text-sm sm:text-base transition ${page === 0
+                className={`w-full sm:w-auto px-4 py-2 rounded-md border text-sm sm:text-base transition cursor-pointer ${page === 0
                   ? "text-gray-400 border-gray-200 cursor-not-allowed"
                   : "text-[#00401A] border-[#00401A] hover:bg-[#00401A] hover:text-white"
                   }`}
@@ -97,7 +97,7 @@ export default function SingleBookDetails({ blog, settings }) {
                   )
                 }
                 disabled={page === descriptionParts.length - 1}
-                className={`w-full sm:w-auto px-4 py-2 rounded-md border text-sm sm:text-base transition ${page === descriptionParts.length - 1
+                className={`w-full sm:w-auto px-4 py-2 rounded-md border text-sm sm:text-base transition cursor-pointer ${page === descriptionParts.length - 1
                   ? "text-gray-400 border-gray-200 cursor-not-allowed"
                   : "text-[#00401A] border-[#00401A] hover:bg-[#00401A] hover:text-white"
                   }`}

@@ -1,4 +1,5 @@
-import { getDay_Month_Year } from '@/helper/formateDate'
+
+import { getMetaValueFromExtraFields } from '@/helper/metaHelpers';
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -6,10 +7,15 @@ import React from 'react'
 export default function RelatedEventCard({ data, link }) {
 
 
-    const day = getDay_Month_Year(data?.created_at, "day")
-    const month = getDay_Month_Year(data?.created_at, "month")
-    const year = getDay_Month_Year(data?.created_at, "year")
+    
+ const day = getMetaValueFromExtraFields(data, "day");
+  const month = getMetaValueFromExtraFields(data, "month");
+//   const time = getMetaValueFromExtraFields(data, "time");
+  const year = getMetaValueFromExtraFields(data, "year");
+//   const location = getMetaValueFromExtraFields(data, "location");
 
+
+//   console.log("data",data)
 
     return (
         <div className='border border-[#F7BA2A] w-[370px] h-[625px] flex flex-col  rounded-[20px]
@@ -41,7 +47,7 @@ export default function RelatedEventCard({ data, link }) {
                 <Link
                     href={link}
                     className='flex items-center justify-start  mt-6 gap-2'>
-                    <span className='text-[#003014] font-semibold text-sm'>Join this event</span>
+                    <span className='text-[#003014] font-semibold text-sm'>See Details</span>
                     <Image
                         src="/images/others/arrow-r.png"
                         alt='a1'
