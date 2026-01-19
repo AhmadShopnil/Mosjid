@@ -49,7 +49,7 @@ export default function SelectedWordDetails({ selectedItem }) {
 
   if (!selectedItem) return null; // or a placeholder message
 
-  console.log("items itemDetails",itemDetails)
+  // console.log("items itemDetails",itemDetails)
 
   return (
     <div>

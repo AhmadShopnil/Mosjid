@@ -10,10 +10,12 @@ import React from 'react'
 import BreadcrumbForNested from '../Shared/BreadcrumbForNested';
 
 
-export default function FatwahFilteredClientPage({  settings, homePage, books, data_for_filter }) {
+export default function FatwahFilteredClientPage({ settings, homePage, books, data_for_filter }) {
     const {
+        selectedMajhabs,
         selectedBooks,
         selectedChapter,
+        selectedSection,
     } = useFatwaFilters();
 
 
@@ -28,8 +30,10 @@ export default function FatwahFilteredClientPage({  settings, homePage, books, d
                     items={[
                         { label: "Home", link: "/" },
                         { label: "Fatwah", link: "/fatwah" },
+                        { label: selectedMajhabs, link: "/fatwah" },
                         { label: selectedBooks?.name_en, link: "/fatwah" },
-                        { label: selectedChapter?.name_en, link: null },
+                        { label: selectedChapter?.name_en, link: "/fatwah" },
+                        { label: selectedSection?.name_en, link: null },
 
                     ]}
                 />

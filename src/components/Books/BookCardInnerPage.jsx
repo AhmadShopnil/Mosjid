@@ -3,6 +3,7 @@
 import { getMetaValueByMetaName, getMetaValueFromExtraFields } from "@/helper/metaHelpers";
 import { Download } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const colorClasses = [
@@ -80,8 +81,11 @@ export default function BookCardInnerPage({ book, index = 0, settings, download_
           <h4 className="text-gray-900 text-lg font-bold mb-1">Summary / まとめ</h4>
           <div
             className="text-gray-700 text-sm sm:text-base leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: book?.description }}
+            dangerouslySetInnerHTML={{ __html: book?.description?.slice(0,700) }}
           />
+          <Link 
+          href={`/books/${book?.slug}`}
+          className="text-[#E0A520]  text-sm">{read_more_button_text}</Link>
         </div>
       </div>
     </div>

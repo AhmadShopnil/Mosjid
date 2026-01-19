@@ -13,16 +13,6 @@ import SkeletonBookCardInnerPage from './SkeletonBookCardInnerPage';
 export default function BookList({ books, settings, homePage, loading, currentPage, setCurrentPage, totalPages,download_books_button }) {
 
 
-  // extra data extract using utils function
-  const sections = homePage?.sections_on_api;
-  const blog_events_ExtraData = sections.find((s) => s.title_slug === "islamic-blog-and-events");
-  const blogsSectionTitle = blog_events_ExtraData?.custom_information.find((item) => item.label === "top_blogs")
-  const eventsSectionTitle = blog_events_ExtraData?.custom_information.find((item) => item.label === "upcoming_events")
-  const blog_events_title_2 = blog_events_ExtraData?.custom_information.find((item) => item.label === "blog_events_title_2")
-  const view_more_button_text = getMetaValueByMetaName(settings, "view_more") || "";
-
-
-  // console.log("event ness",eventsSectionTitle)
 
   return (
     <div className='  bg-white h-full'>
