@@ -32,11 +32,6 @@ export default function DictionarySection({ data_for_filter, homePage }) {
 
   const { books, chapter, section } = data_for_filter;
 
-  // const languages = [
-  //   { title: "English", icon: "/images/others/English.png" },
-  //   { title: "Japanese", icon: "/images/others/Japan.png" },
-  //   { title: "Arabic", icon: "/images/others/Arabic.png" },
-  // ];
 
 
 const languages = [
@@ -127,7 +122,7 @@ const languages = [
             <button
               key={language.title}
               onClick={() => setSelectedLanguage(language.title)}
-              className={`px-4 flex gap-1 py-2 rounded-full text-base font-bold transition-colors ${
+              className={`cursor-pointer px-4 flex gap-1 py-2 rounded-full text-base font-bold transition-colors ${
                 selectedLanguage === language.title
                   ? "bg-[#00401A] text-white"
                   : "bg-white text-[#00401A] hover:bg-gray-300 border border-[#00401a51]"
@@ -203,7 +198,7 @@ const languages = [
               lvl="Books"
               parrent_lvl="Books"
               selectedParrent="Books"
-              options={books?.data}
+              options={books}
               selected={selectedBooks}
               setSelected={setSelectedBooks}
             />

@@ -49,8 +49,10 @@ export default function FatwahClientPage({
   data_for_filter,
 }) {
   const {
-    selectedBooks,
-    selectedChapter,
+       selectedMajhabs,
+        selectedBooks,
+        selectedChapter,
+        selectedSection,
   } = useFatwaFilters();
 
 
@@ -70,10 +72,12 @@ export default function FatwahClientPage({
       <div>
         <BreadcrumbForNested
           items={[
-            { label: "Home", link: "/" },
-            { label: "Fatwah", link: "/fatwah" },
-            { label: selectedBooks?.name_en, link: "/fatwah" },
-            { label: selectedChapter?.name_en, link: null },
+              { label: "Home", link: "/" },
+                        { label: "Fatwah", link: "/fatwah" },
+                        { label: selectedMajhabs, link: "/fatwah" },
+                        { label: selectedBooks?.name_en, link: "/fatwah" },
+                        { label: selectedChapter?.name_en, link: "/fatwah" },
+                        { label: selectedSection?.name_en, link: null },
           ]}
         />
       </div>

@@ -21,7 +21,8 @@ export default function SidebarDrawerForBooks({
   directoryNavigate = false,
   dataForContact = "",
   data_for_filter,
-  icon
+  icon,
+  cntType
 }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -36,7 +37,7 @@ export default function SidebarDrawerForBooks({
             flex items-center justify-center w-10 h-10
             bg-[#EEF8E9] border border-[#C9E9BA] rounded-r-2xl
             shadow-md hover:bg-[#E2F4D9]
-            transition-transform duration-300 lg:hidden
+            transition-transform duration-300 lg:hidden 
           "
         >
           <MdArrowForwardIos />
@@ -89,6 +90,7 @@ export default function SidebarDrawerForBooks({
             directoryNavigate={directoryNavigate}
             setIsDrawerOpen={setIsDrawerOpen}
             icon={icon}
+            cntType={cntType}
           />
 
           {/* Shown below sidebar content */}

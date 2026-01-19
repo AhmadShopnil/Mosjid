@@ -5,7 +5,7 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useFatwaFilters } from "@/context/FatwaFilterContext";
 
-export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, icon }) {
+export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, icon,cntType="fatwas_count" }) {
   const {
     selectedBooks,
     setSelectedBooks,
@@ -112,7 +112,7 @@ export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, ic
                 onMouseEnter={() => setHovered(book.id)}
                 onMouseLeave={() => setHovered("")}
                 onClick={() => handleOnClickItem(book)}
-                className={`group w-full max-h-[70px] px-4 py-3 flex items-center gap-3 transition-all ${isBookExpanded ||
+                className={`group w-full max-h-[70px] px-4 py-3 flex items-center gap-3 transition-all cursor-pointer ${isBookExpanded ||
                   hovered === book.id ||
                   selectedBooks?.id === book.id
                   ? "gradient-bg-sidebar-item text-white rounded-t-[10px]"
@@ -142,6 +142,7 @@ export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, ic
                       }`}
                   >
                     {book?.name_en}
+                 <span className="ml-2 text-xs ">({book?.[cntType]})</span>
                   </p>
                   <p
                     className={`text-sm font-bold transition ${isBookExpanded ||
@@ -191,10 +192,11 @@ export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, ic
                           onClick={() =>
                             handleOnClickChapter(chapter, book)
                           }
-                          className="w-full px-3 py-2 h-[54px] flex items-center justify-between text-left text-sm text-[#00401A] bg-white hover:bg-[#C9E9BA] rounded-[10px]"
+                          className="cursor-pointer w-full px-3 py-2 h-[54px] flex items-center justify-between text-left text-sm text-[#00401A] bg-white hover:bg-[#C9E9BA] rounded-[10px]"
                         >
                           <div className="flex flex-col font-semibold leading-tight">
                             <span>{chapter?.name_en}</span>
+                             <span className="ml-2 text-xs ">    ({chapter?.[cntType]})</span>
                             <span className="text-gray-600 text-sm">
                               {chapter?.name_jp}
                             </span>
@@ -228,10 +230,11 @@ export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, ic
                                       book
                                     )
                                   }
-                                  className="w-full px-3 py-2 flex justify-between items-center bg-white hover:bg-[#C9E9BA] rounded-[10px] text-sm text-[#00401A]"
+                                  className="cursor-pointer w-full px-3 py-2 flex justify-between items-center bg-white hover:bg-[#C9E9BA] rounded-[10px] text-sm text-[#00401A]"
                                 >
                                   <div className="flex flex-col font-semibold leading-tight items-start">
                                     <span>{section?.name_en}</span>
+                                     <span className="ml-2 text-xs ">    ({section?.[cntType]})</span>
                                     <span className="text-gray-600 text-sm">
                                       {section?.name_jp}
                                     </span>

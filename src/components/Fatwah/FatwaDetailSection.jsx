@@ -67,13 +67,20 @@ export default function FatwaDetailSection({ singleFatwah }) {
       <div className="bg-white border border-[#DDEEDC] rounded-[20px] p-4 md:p-6 shadow-sm mt-7">
 
         {/* Title */}
-        <h2 className="text-[#00401A]   mt-4 mb-6"
+        <h4 className="text-[#00401A] text-center font-semibold   mb-2"
+        
+        style={{ fontSize: `${fontSize}px` }}
+        >
+          {singleFatwah?.majhab?.name_jp} /  {singleFatwah?.book?.name_jp} /  {singleFatwah?.chapter?.name_jp} /  {singleFatwah?.section?.name_jp} /
+        </h4>
+
+   {/* Title */}
+        <h2 className="text-[#00401A]   mb-6"
         
         style={{ fontSize: `${fontSizeOfTitle}px` }}
         >
           {singleFatwah?.word_ja}
         </h2>
-
         {/* Description (Dynamic Font Size) */}
         <div
           className="leading-relaxed text-[#595959]"

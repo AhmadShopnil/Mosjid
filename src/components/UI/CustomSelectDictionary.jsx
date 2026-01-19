@@ -65,7 +65,7 @@ export default function CustomSelectDictionary({
         onClick={() => setIsOpen(!isOpen)}
         type="button"
         className="w-full rounded-3xl border appearance-none border-gray-200 px-3 py-2 bg-gray-100
-        flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-green-400"
+        flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-green-400 cursor-pointer"
       >
         <span className="text-gray-700">
           {selected ? selected?.name_en : lvl}
@@ -113,7 +113,7 @@ export default function CustomSelectDictionary({
                       {option?.name_en}
                     </span>
                       <span className="font-medium text-sm text-gray-800">
-                    Total:  {option?.dictionaries_count}
+                    Count:  {option?.dictionaries_count}
                     </span>
                     
                   </div>

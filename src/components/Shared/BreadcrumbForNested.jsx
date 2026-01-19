@@ -14,7 +14,7 @@ export default function BreadcrumbForNested({ items = [] }) {
     <div className="w-full h-[40px] md:h-[60px] flex items-center gradient-bredcumb text-xs md:text-lg">
       <Container className="w-full h-full">
         <div className="flex h-full overflow-x-auto no-scrollbar gap-1.5">
-          {filteredItems.map((item, index) => {
+          {filteredItems?.map((item, index) => {
             const isLast = index === filteredItems.length - 1;
             const isFast = index === 0;
 
@@ -26,11 +26,7 @@ export default function BreadcrumbForNested({ items = [] }) {
               index === 0
                 ? "polygon(92% 50%, 75% 100%, 0% 100%, 0% 0%, 75% 0%)"
                 : "polygon(92% 50%, 75% 100%, 0% 100%, 15% 50%, 0% 0%, 75% 0%)";
-            // const clipPath =
-            //   index === 0
-            //     ? "polygon(85% 50%, 60% 100%, 0% 100%, 0% 0%, 60% 0%)"
-            //     : "polygon(92% 50%, 75% 100%, 0% 100%, 15% 50%, 0% 0%, 75% 0%)";
-
+         
 
             const marginLeft = index === 0 ? "" : "-ml-6 md:-ml-10";
 
@@ -40,7 +36,7 @@ export default function BreadcrumbForNested({ items = [] }) {
               `truncate ${marginLeft}`;
 
             // Last item or no link → plain white box
-            if (isLast || !item.link) {
+            if (isLast ) {
               return (
                 <div
                   key={index}
@@ -86,7 +82,7 @@ export default function BreadcrumbForNested({ items = [] }) {
                   width: "190px",
                 }}
               >
-                <span className="truncate px-3">{item.label}</span>
+                <span className="truncate px-3">{item?.label}</span>
               </Link>
             );
           })}

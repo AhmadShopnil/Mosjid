@@ -16,18 +16,15 @@ import React from 'react'
 
 export default async function page() {
 
-
-
-  const settings = await getSettings();
   const homePage = await getPage("home-sections-heading-management");
   const majhabs = await getFatwahFiltersData("majhabs");
- const books = await getBooksData(56)
+  const books = await getBooksData(56)
   const chapter = await getFatwahFiltersData("bookchapters");
   const section = await getFatwahFiltersData("booksections");
 
   // const formatFatwaBooksForSidebarData = formatFatwaBooksForSidebar(books)
 
-const sections = homePage?.sections_on_api;
+  const sections = homePage?.sections_on_api;
   const dictionaryExtraData = sections.find(
     (s) => s.title_slug === "dictionary"
   );
@@ -56,6 +53,7 @@ const sections = homePage?.sections_on_api;
           data_for_filter={data_for_filter}
           dataForContact={requestData}
           icon={icon}
+          cntType="dictionaries_count"
         />
 
         {/* main content */}

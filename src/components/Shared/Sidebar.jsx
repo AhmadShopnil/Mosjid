@@ -124,7 +124,7 @@ export default function Sidebar({
                 onMouseEnter={() => setHovered(category.id)}
                 onMouseLeave={() => setHovered("")}
                 onClick={() => handleOnClickItem(category)}
-                className={`group w-full h-[60px] px-4 py-3 flex items-center gap-3  transition-all
+                className={`group w-full h-[60px] px-4 py-3 flex items-center gap-3  transition-all cursor-pointer
                    
                   ${
                     isExpanded ||
@@ -146,26 +146,10 @@ export default function Sidebar({
                   />
                 </span>
 
-                {/* <span className="relative flex-shrink-0 w-[42px] h-[42px]">
-                  <img
-                    src={category?.icon}
-                    alt={category?.title + " icon"}
-                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-200
-                      ${isExpanded ? "opacity-0" : "opacity-100 group-hover:opacity-0"}`}
-                    draggable={false}
-                  />
-
-                  <img
-                    src={category.activeIcon}
-                    alt={category.title + " active icon"}
-                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-200
-                      ${isExpanded ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
-                    draggable={false}
-                  />
-                </span> */}
+               
 
                 {/* Text Content */}
-                <div className="flex-1 text-left">
+                <div className="flex-1 text-left ">
                   <p
                     className={`font-bold text-sm transition-colors ${
                       isExpanded ||
@@ -212,16 +196,16 @@ export default function Sidebar({
                 ) : null}
               </button>
 
-              {/* Sub Items */}
+              
               {/* Sub Items */}
               {category?.hasSubItems && isExpanded && (
-                <div className="bg-[#EEF8E9] border-t border-gray-200 p-2 space-y-2">
+                <div className="bg-[#EEF8E9] border-t border-gray-200 p-2 space-y-2  ">
                   {category?.childs?.map((subItem, index) => (
                     <button
                       onClick={() => handleOnClickSubItem(subItem, category)}
                       key={index}
                       className="w-full px-3 py-2 h-[54px] flex items-center justify-between text-left text-sm text-[#00401A]
-                      bg-white hover:bg-[#C9E9BA] transition-colors rounded-[10px]"
+                      bg-white hover:bg-[#C9E9BA] transition-colors rounded-[10px] cursor-pointer"
                     >
                       <div className="flex flex-col leading-tight font-semibold">
                         <span>{subItem?.name}</span>

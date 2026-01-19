@@ -57,6 +57,7 @@ export default async function page() {
           isFatwah_Dictionary_Filter={true}
           icon={icon}
           dataForContact={requestData}
+          cntType="dictionaries_count"
         />
 
         {/* main content */}

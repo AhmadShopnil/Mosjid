@@ -11,7 +11,7 @@ import IslamicBooks from "@/components/Home/IslamicBooks/IslamicBooks";
 import Fatwah from "@/components/Home/Fatwah/Fatwah";
 import PrayerTimesAndNotices from "@/components/Home/PrayerTimesAndNotices/PrayerTimesAndNotices";
 import OfferServices from "@/components/Home/OfferServices/OfferServices";
-import { getDua, getFatwa, getFatwahFiltersData, getMenus, getPage, getSettings, getUpdatesHeadline } from "@/helper/actions";
+import { getBooksData, getDua, getFatwa, getFatwahFiltersData, getMenus, getPage, getSettings, getUpdatesHeadline } from "@/helper/actions";
 import HeroMain from "@/components/Home/HeroSections/HeroMain";
 import QuickLinksMobile from "@/components/Home/QuickLinks/QuickLinksMobile";
 
@@ -24,7 +24,7 @@ export default async function Home() {
   const homePage = await getPage("home-sections-heading-management");
   const settings = await getSettings();
   const duas = await getDua();
-  const books = await getFatwahFiltersData("books")
+  const books = await getBooksData(56)
   const chapter = await getFatwahFiltersData("bookchapters")
   const section = await getFatwahFiltersData("booksections")
 

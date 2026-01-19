@@ -66,8 +66,6 @@ export default async function page({ params }) {
 
 
 
-
-
                 {/* main content */}
                 <div className=' w-full'>
                     <div>

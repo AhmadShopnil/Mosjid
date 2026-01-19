@@ -1,8 +1,6 @@
 "use client";
 
-import { useState } from "react";
 
-import SocialShare from "@/components/Shared/SocialShare";
 import { TableSkeleton } from "../Skeletons/TableSkeleton";
 import LossTableRow from "./LossTableRow";
 
