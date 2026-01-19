@@ -16,9 +16,6 @@ import React from 'react'
 
 export default async function page() {
 
-
-
-  const settings = await getSettings();
   const homePage = await getPage("home-sections-heading-management");
   const majhabs = await getFatwahFiltersData("majhabs");
   const books = await getBooksData(56)
@@ -56,6 +53,7 @@ export default async function page() {
           data_for_filter={data_for_filter}
           dataForContact={requestData}
           icon={icon}
+          cntType="dictionaries_count"
         />
 
         {/* main content */}

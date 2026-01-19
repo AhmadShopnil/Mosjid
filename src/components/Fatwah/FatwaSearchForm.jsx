@@ -1,13 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import CustomSelectForFatwaFinder from "../UI/CustomSelectForFatwaFinder";
 import { useFatwaFilters } from "@/context/FatwaFilterContext";
 
-export default function FatwaSearchForm({ data_for_filter }) {
-  const [searchText, setSearchText] = useState()
+export default function FatwaSearchForm({ data_for_filter, refresh =true }) {
+
+
+  // const [searchText, setSearchText] = useState()
   const {
     selectedMajhabs,
     setSelectedMajhabs,
@@ -25,14 +27,22 @@ export default function FatwaSearchForm({ data_for_filter }) {
     setSelectedSearchTerm,
   } = useFatwaFilters();
 
-  const { majhabs, books, chapter, section } = data_for_filter;
-
-  //  const { majhabs, books  } = data_for_filter;
+  const { majhabs, books } = data_for_filter;
 
 
-  const handleSearchTerm = () => {
-    setSelectedSearchTerm(searchText)
-  }
+  useEffect(() => {
+    if (refresh) {
+      setSelectedBooks("")
+      setSelectedChapter("")
+      setSelectedSection("")
+    }
+
+
+  }, [])
+
+  // const handleSearchTerm = () => {
+  //   setSelectedSearchTerm(searchText)
+  // }
 
 
 
@@ -102,7 +112,7 @@ export default function FatwaSearchForm({ data_for_filter }) {
       <div className="flex justify-center h-[56px] mt-4">
         <Link
           href="/fatwah/fatwah-filtered"
-          onClick={handleSearchTerm}
+          // onClick={handleSearchTerm}
           className="w-full text-lg flex items-center justify-center gap-2 bg-[#F7BA2A] hover:bg-[#f0aa00] text-[#00401A] py-2 rounded-md"
         >
           <Search size={18} />

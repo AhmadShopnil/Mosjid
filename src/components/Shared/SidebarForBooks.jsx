@@ -5,7 +5,7 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useFatwaFilters } from "@/context/FatwaFilterContext";
 
-export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, icon }) {
+export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, icon,cntType="fatwas_count" }) {
   const {
     selectedBooks,
     setSelectedBooks,
@@ -142,6 +142,7 @@ export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, ic
                       }`}
                   >
                     {book?.name_en}
+                 <span className="ml-2 text-xs ">({book?.[cntType]})</span>
                   </p>
                   <p
                     className={`text-sm font-bold transition ${isBookExpanded ||
@@ -195,6 +196,7 @@ export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, ic
                         >
                           <div className="flex flex-col font-semibold leading-tight">
                             <span>{chapter?.name_en}</span>
+                             <span className="ml-2 text-xs ">    ({chapter?.[cntType]})</span>
                             <span className="text-gray-600 text-sm">
                               {chapter?.name_jp}
                             </span>
@@ -232,6 +234,7 @@ export default function SidebarForBooks({ setIsDrawerOpen, books, isNavigate, ic
                                 >
                                   <div className="flex flex-col font-semibold leading-tight items-start">
                                     <span>{section?.name_en}</span>
+                                     <span className="ml-2 text-xs ">    ({section?.[cntType]})</span>
                                     <span className="text-gray-600 text-sm">
                                       {section?.name_jp}
                                     </span>

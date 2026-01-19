@@ -5,6 +5,7 @@ import RelatedItemCard from '../Shared/RelatedItemCard'
 import Container from '../Shared/Container'
 import { splitBySlash } from '@/helper/splitBySpace'
 import RelatedEventCard from './RelatedEventCard'
+import EventCard from './EventCard'
 
 export default function RelatedItemsSection({ datas, events_ExtraData }) {
 
@@ -33,8 +34,8 @@ export default function RelatedItemsSection({ datas, events_ExtraData }) {
                         ))
                     }
 
-
                 </div>
+             
             </Container>
 
         </div>

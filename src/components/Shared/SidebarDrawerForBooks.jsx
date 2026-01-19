@@ -21,7 +21,8 @@ export default function SidebarDrawerForBooks({
   directoryNavigate = false,
   dataForContact = "",
   data_for_filter,
-  icon
+  icon,
+  cntType
 }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -89,6 +90,7 @@ export default function SidebarDrawerForBooks({
             directoryNavigate={directoryNavigate}
             setIsDrawerOpen={setIsDrawerOpen}
             icon={icon}
+            cntType={cntType}
           />
 
           {/* Shown below sidebar content */}

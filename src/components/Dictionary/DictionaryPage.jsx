@@ -44,7 +44,7 @@ export default function DictionaryPage() {
         }, 400);
 
         return () => clearTimeout(timeout);
-    }, [selectedBooks, selectedChapter, selectedSection,selectedSearchTerm]);
+    }, [selectedBooks, selectedChapter, selectedSection, selectedSearchTerm]);
 
 
 
@@ -65,18 +65,24 @@ export default function DictionaryPage() {
                     <table className="w-full min-w-[900px] border-collapse table-fixed font-normal">
                         <thead>
                             <tr className="bg-[#D9E2DD] h-[28px]">
+                                <th
+                                    className="border border-[#B0C4B8] py-2 text-sm text-center w-[80px]"
+                                >
+                                    SL.No
+                                </th>
+
                                 {[
-                                    "SL.No",
+                                    // "SL.No",
                                     "Arabic",
                                     "English",
                                     "Japanese",
-                                    "Japanese Pron",
-                                    "Arabic Pron",
+                                    "Japanese kana",
+                                    "Romaji",
                                     "View"
                                 ].map((th, i) => (
                                     <th
                                         key={i}
-                                        className="border border-[#B0C4B8] py-2 text-sm text-center"
+                                        className={`border border-[#B0C4B8] py-2 text-sm text-center `}
                                     >
                                         {th}
                                     </th>
@@ -95,12 +101,12 @@ export default function DictionaryPage() {
                                         key={item.id}
                                         className={`${i % 2 === 0 ? "bg-white" : "bg-[#E5F5DE]"} h-[32px`}
                                     >
-                                        <td className="border border-gray-300 p-2 text-center">{i + 1}</td>
+                                        <td className="border border-gray-300 p-2 text-center w-[80px]">{i + 1}</td>
                                         <td className="border border-gray-300 p-2 text-center">{item?.word_ar}</td>
                                         <td className="border border-gray-300 p-2 text-center">{item?.word_en}</td>
                                         <td className="border border-gray-300 p-2 text-center">{item?.word_ja}</td>
                                         <td className="border border-gray-300 p-2 text-center">{item?.pronunciation_ja}</td>
-                                        <td className="border border-gray-300 p-2 text-center">{item?.pronunciation_ar}</td>
+                                        <td className="border border-gray-300 p-2 text-center">{item?.romaji_ja}</td>
 
                                         <td className="border border-gray-300 p-2 text-center">
                                             <button

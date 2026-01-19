@@ -8,8 +8,6 @@ export default function BookSuggetionsList({ datas }) {
 
 
 
-
-
     return (
         <div className='md:mt-10 py-8 lg:py-10 bg-[#F9FFF6]'>
 
