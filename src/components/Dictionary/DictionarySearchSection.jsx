@@ -1,9 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Search, ChevronDown, MoreVertical, X } from "lucide-react"
 import Image from "next/image"
-import CustomSelectRounded from "@/components/UI/CustomSelectRounded"
 import CustomSelectDictionary from "../UI/CustomSelectDictionary"
 import { useFatwaFilters } from "@/context/FatwaFilterContext"
 
@@ -24,9 +23,6 @@ export default function DictionarySearchSection({ data_for_filter }) {
   const [selectedLanguage, setSelectedLanguage] = useState("English")
   const [searchTerm, setSearchTerm] = useState("")
 
-
-
-  const [searchText, setSearchText] = useState()
   const {
  
     selectedBooks,
@@ -44,6 +40,12 @@ export default function DictionarySearchSection({ data_for_filter }) {
 
 
 
+  useEffect(() => {
+    setSelectedBooks("")
+     setSelectedChapter("")
+      setSelectedSection("")
+
+    }, [])
 
   const { books, } = data_for_filter;
 

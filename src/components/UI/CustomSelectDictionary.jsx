@@ -113,7 +113,7 @@ export default function CustomSelectDictionary({
                       {option?.name_en}
                     </span>
                       <span className="font-medium text-sm text-gray-800">
-                    Total:  {option?.dictionaries_count}
+                    Count:  {option?.dictionaries_count}
                     </span>
                     
                   </div>

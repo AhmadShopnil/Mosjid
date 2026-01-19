@@ -28,7 +28,9 @@ export default async function page() {
         settings={settings}
         homePage={homePage}
         books={books}
-        data_for_filter={data_for_filter} />
+        data_for_filter={data_for_filter}
+    
+        />
 
     </div>
   )

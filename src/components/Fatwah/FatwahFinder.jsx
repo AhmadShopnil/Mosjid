@@ -6,7 +6,7 @@ import FatwaSearchForm from "./FatwaSearchForm"
 import { getImageUrl } from "@/helper/getImageUrl"
 import InnerHeader from "../Shared/InnerHeader"
 
-export default function FatwaFinder({ data_for_filter, fatwahExtraData }) {
+export default function FatwaFinder({ data_for_filter, fatwahExtraData,refresh }) {
 
 
 
@@ -49,7 +49,7 @@ export default function FatwaFinder({ data_for_filter, fatwahExtraData }) {
           {/* Right Section - Search Form */}
           <div className="w-full lg:w-[65%]">
             <div className="">
-              <FatwaSearchForm data_for_filter={data_for_filter} />
+              <FatwaSearchForm data_for_filter={data_for_filter} refresh={refresh} />
             </div>
           </div>
         </div>

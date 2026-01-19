@@ -88,7 +88,7 @@ export default function CustomSelectForFatwaFinder({
                       {option?.name_en}
                     </span>
                       <span className="font-medium text-sm text-gray-800">
-                     Total: {option?.fatwas_count}
+                     Counts: {option?.fatwas_count}
                     </span>
                    </div>
                     <p className="text-xs text-gray-500">{option?.name_jp}</p>

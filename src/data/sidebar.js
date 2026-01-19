@@ -110,16 +110,17 @@
      isArrow: true,
   },
     {
-        id: "About",
+    id: "About",
     name: "About",
     subtitle: "について",
     targetId: "about",
-     link: "/about",
-   icon: "/images/QuickLinks/directory.png",
+    link: "/about",
+    icon: "/images/QuickLinks/directory.png",
     // icon: "/images/QuickLinks/normal/Gallery.png",
     activeIcon: "/images/QuickLinks/hover/Gallery.png",
-     isArrow: true,
+    isArrow: true,
   },
+  
 
   ];
 
@@ -160,18 +161,6 @@
      isArrow: true,
   },
 
-
-       {
-      id: "Islamic School",
-     name: "Islamic School",
-     subtitle: "祈りの時間",
-    
-     targetId: "islamic-school",
-     link: "/islamic-school",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
-  },
     {
       id: "madrasha-course",
       name: "Madrasha Course",
@@ -183,17 +172,7 @@
      activeIcon: "/images/QuickLinks/hover/Blog & event.png",
      isArrow: true,
   },
-     {
-      id: "Masjid View",
-      name: "Masjid View",
-      subtitle: "祈りの時間",
-   
-     targetId: "masjid-view",
-     link: "/masjid-view",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
-  },
+    
     {
       id: "islamic-books-library",
       name: "Islamic Books Library",
@@ -209,14 +188,57 @@
       id: "visitor-booking",
       name: "Visitor Booking",
       subtitle: "祈りの時間",
-   
+  
      targetId: "visitor-booking",
      link: "/visitor-booking",
      icon: "/images/QuickLinks/offer-service.png",
      activeIcon: "/images/QuickLinks/hover/Blog & event.png",
      isArrow: true,
   }
+  ,
+   {
+     id: " halal-certification",
+     name: "Halal Certification",
+     subtitle: "祈りの時間",
+     targetId: "halal-certification",
+     link: "/halal-certification",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
+   {
+     id: "donation-facility",
+     name: "Donation Facility",
+     subtitle: "祈りの時間",
+     targetId: "donation-facility",
+     link: "/donation-facility",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
+  
+  {
+     id: "Islamic School",
+     name: "Islamic School",
+     subtitle: "祈りの時間",
+     targetId: "islamic-school",
+     link: "/islamic-school",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
+   {
+      id: "Masjid View",
+      name: "Masjid View",
+      subtitle: "祈りの時間",
+   
+     targetId: "masjid-view",
+     link: "/masjid-view",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
 
   ];
 
-  
+ 
