@@ -16,11 +16,6 @@ import PageRevealWithSpinner from "@/components/Shared/LoadingAnimation/PageReve
 
 
 
-
-
-
-
-
 // Geist Sans
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,23 +56,17 @@ export default function RootLayout({ children }) {
                     <div className=" min-h-screen bg-background">
                       <DevelopmentBanner />
                       <Header />
-
-                      {children}
-
+                        {children}
                       <Footer />
                       <ScrollToTopButton />
                       <Toaster position="top-right" />
                     </div>
-
-
                   {/* </PageRevealWithSpinner>
                 </AnimatePresence> */}
               </SelectedProvider>
             </SelectedParrentProvider>
           </RegionFilterProvider>
         </FatwaFilterProvider>
-
-
 
       </body>
     </html>
