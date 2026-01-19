@@ -1,0 +1,117 @@
+// "use client";
+
+// import { useRef } from "react";
+// import html2pdf from "html2pdf.js";
+
+// export default function FatwaPdfWithFrame({ htmlData,children }) {
+//   const contentRef = useRef();
+
+//   const downloadPDF = () => {
+//     const element = contentRef.current;
+
+//     const options = {
+//       margin: 0,
+//       filename: "document.pdf",
+
+//       html2canvas: {
+//         scale: 2,
+//         useCORS: true,
+//         allowTaint: true,
+//       },
+
+//       jsPDF: {
+//         unit: "mm",
+//         format: "a4",
+//         orientation: "portrait",
+//       },
+//     };
+
+//     html2pdf().set(options).from(element).save();
+//   };
+
+//   return (
+//     <div
+//     onClick={downloadPDF}>
+    
+//       {children}
+
+//       {/* ===== HIDDEN PDF CONTENT ===== */}
+//       <div style={{ position: "absolute", left: "-9999px" }}>
+//         <div ref={contentRef}>
+
+//           <div className=""
+         
+          
+//           >
+
+//             {/* ===== BANNER HEADER ===== */}
+//             <div className=""
+//             style={{backgroundColor: "#96F474", }}
+            
+            
+//             >
+//               <img
+//                 src="/images/fatwah/pdfbanner.svg"
+//                 alt="banner"
+//                 className="banner-img"
+//               />
+//             </div>
+
+//             {/* ===== YOUR ORIGINAL DATA ===== */}
+//             <div className="content"
+            
+//               style={{padding:20, }}
+            
+//             >
+//               <div dangerouslySetInnerHTML={{ __html: htmlData }} />
+//             </div>
+
+//             {/* ===== FOOTER ===== */}
+//             <div className="footer">
+//               <p>Generated from My System</p>
+//             </div>
+
+//           </div>
+
+//         </div>
+//       </div>
+
+//       {/* ===== STYLES ===== */}
+//       <style jsx>{`
+//         .pdf-frame {
+//           border: 6px solid #0f172a;
+//           min-height: 1120px;
+//           padding: 10px;
+//         }
+
+//         .banner {
+//           width: 100%;
+//           text-align: center;
+//           margin-bottom: 10px;
+//         }
+
+//         .banner-img {
+//           width: 100%;
+//           max-height: 160px;
+//           object-fit: cover;
+//         }
+
+//         .content {
+//           padding: 10px;
+//         }
+
+//         .footer {
+//           border-top: 1px solid #ccc;
+//           margin-top: 10px;
+//           text-align: center;
+//         }
+
+//         .arabic {
+//           direction: rtl;
+//           text-align: right;
+//         }
+//       `}</style>
+
+//     </div>
+//   );
+// }

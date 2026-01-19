@@ -9,6 +9,11 @@ import { getImageUrl } from "@/helper/getImageUrl";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import Pagination from "../Shared/Pagination";
 
+import PdfDownloader from "./PdfDownloader";
+import FatwaPdfWithFrame from "./FatwaPdfWithFrame";
+import ChunkedFatwaPDF from "./ChunkedFatwaPDF";
+
+
 export default function FatwaListInner({
   fatwahs,
   settings,
@@ -103,8 +108,8 @@ export default function FatwaListInner({
                   </div>
                   <div>
                     <p
-                     className={`text-[#00401A] truncate   
-                     text-[13px] md:text-lg font-bold w-[140px]  sm:w-[300px] md:w-full `}
+                      className={`text-[#00401A] truncate   
+                     text-[13px] md:text-lg font-bold w-[140px]  sm:w-[300px]  `}
                     //   className={`text-[#00401A] truncate w-[110px] sm:w-[250px]  
                     //  text-sm md:text-lg font-bold md:${titleWidth}`}
                     >
@@ -112,10 +117,10 @@ export default function FatwaListInner({
                       {/* {item?.description_ja} */}
                       {/* {item?.description_en} */}
                     </p>
-                  
+
                     <Link
                       href={`/fatwah/${item?.id}`}
-                      className="text-[#00401A] font-bold text-xs md:text-sm hover:text-[#F7BA2A] 
+                      className="text-[#00401A]  font-bold text-xs md:text-sm hover:text-[#F7BA2A] 
                       flex gap-1 items-center "
                     >
                       {read_more}
@@ -126,14 +131,39 @@ export default function FatwaListInner({
                   </div>
                 </div>
 
-                {/* Download Button */}
-                <button
-                  className="flex items-center gap-2 px-3 md:px-5 py-3 cursor-pointer gradient-border3 
-                  rounded-[100px] text-[#00401A] font-bold text-xs sm:text-sm md:text-lg "
-                >
-                  {download}
-                  <Download className="w-4 h-4" />
-                </button>
+
+
+                {/* <DownloadFtwaPdfButton item={item} /> */}
+
+                {/* <PdfDownloader htmlData={item?.description_ja} >
+                    <button
+                    className="flex items-center gap-2 px-3 md:px-5 py-3 cursor-pointer gradient-border3 
+                  rounded-[100px] text-[#00401A] hover:text-[#F2994A]   font-bold text-xs sm:text-sm md:text-lg "
+                  >
+                    {download}
+                    <Download className="w-4 h-4" />
+                  </button> 
+                </PdfDownloader> */}
+
+
+                <FatwaPdfWithFrame htmlData={item?.description_ja}>
+                  <button
+                    className="flex items-center gap-2 px-3 md:px-5 py-3 cursor-pointer gradient-border3 
+                  rounded-[100px] text-[#00401A] hover:text-[#F2994A]   font-bold text-xs sm:text-sm md:text-lg "
+                  >
+                    {download}
+                    <Download className="w-4 h-4" />
+                  </button>
+
+                </FatwaPdfWithFrame>
+
+
+                {/* 
+                   <ChunkedFatwaPDF htmlData={item?.description_ja}>
+              
+
+                </ChunkedFatwaPDF> */}
+
               </li>
             ))}
           </ul>

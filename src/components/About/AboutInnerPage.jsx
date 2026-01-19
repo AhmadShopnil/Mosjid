@@ -66,11 +66,7 @@ export default function AboutInnerPage({ homePage, formattedCategories, slug }) 
 
     const sections = homePage?.sections_on_api;
     const about_ExtraData = sections.find((s) => s.title_slug === "about-data");
-
-
     const image_arabic = getImageUrl(about_ExtraData?.image_media);
-
-
 
 
 
@@ -168,7 +164,7 @@ export default function AboutInnerPage({ homePage, formattedCategories, slug }) 
                                 </div>
 
                                 <div className="border-t mt-8 pt-3 flex items-center gap-4 text-[#D9E2DD]">
-                                    <SocialShare />
+                                    <SocialShare data={abouDatas[0]?.description} />
                                 </div>
                             </motion.div>
                         ) : (

@@ -68,11 +68,6 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
     }, [])
 
 
-    // console.log("cat releted",blog?.categories[0]?.id)
-    // console.log("releted blogs",blogs)
-
-
-    // const requesData={blog?.name} blog 
     const requestData = blog?.name ? `blog of ${blog?.name} ` : "Blog"
 
     return (
@@ -90,7 +85,7 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
 
                     ]}
                 />
-                {/* <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Blogs" /> */}
+            
 
             </div>
 
@@ -107,7 +102,7 @@ export default function SingleBlogsPage({ homePage, settings, blog, formattedCat
 
                         <SingleBlogDetailsCard blog={blog} settings={settings} />
                         <div className='flex justify-end'>
-                            <SocialShare />
+                            <SocialShare data={blog?.description} />
                         </div>
 
                     </div>
