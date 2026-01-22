@@ -73,6 +73,7 @@ export default function MuslimConversionBookingForm() {
             <Input
                 type="date"
                 label="Burial Date"
+                
                 {...register("bookingDate")}
                 error={errors.bookingDate?.message}
             // highlight
