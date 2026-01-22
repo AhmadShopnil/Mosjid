@@ -73,12 +73,13 @@ export default async function ServicesLayout({ children }) {
                                 <BannerInnerPage />
                                 <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Services" />
                                 <Container className=" my-6">
-                                    <div className="flex justify-between xl:gap-4  ">
-                                        <div className=" w-20%">
+                                    <div className="flex justify-between gap-4">
+                                        <div className=" xl:w-[19%]">
+                                           
                                             <ServicesSidebarDrawer categories={servicesSideBarCategories} />
                                         </div>
-                                        <div className="w-full xl:w-[80%] 0  space-y-6">
-                                             
+                                        <div className="w-full xl:w-[80%]   space-y-6">
+
                                             {children}
                                         </div>
                                     </div>

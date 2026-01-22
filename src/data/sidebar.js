@@ -239,6 +239,36 @@
      isArrow: true,
   },
 
+    {
+     id: "burial-booking",
+     name: "Burial Booking",
+     subtitle: "祈りの時間",
+     targetId: "burial-booking",
+     link: "/burial-booking",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
+     {
+     id: "academic-documents",
+     name: "Madrasha",
+     subtitle: "祈りの時間",
+     targetId: "academic-documents",
+     link: "/academic-documents",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
+   {
+     id: "muslim-convertion",
+     name: "Muslim Convertion",
+     subtitle: "祈りの時間",
+     targetId: "muslim-convertion",
+     link: "/muslim-convertion",
+     icon: "/images/QuickLinks/offer-service.png",
+     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+     isArrow: true,
+  },
   ];
 
  

@@ -151,13 +151,6 @@ export default function SocialShare({ data }) {
   // images/fatwah/pdfbanner.svg
 
 
-  // Download page
-  const handleDownload = () => {
-    // const link = document.createElement("a");
-    // link.href = url;
-    // link.download = document.title || "page";
-    // link.click();
-  };
 
   if (!url) return null; // avoid hydration issues
 

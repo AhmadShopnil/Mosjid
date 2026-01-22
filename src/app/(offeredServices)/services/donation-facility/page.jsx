@@ -1,6 +1,7 @@
 
 
 import DonationFacilityTopSection from '@/components/Services/DonationFacility/DonationFacilityTopSection'
+import DonationForm from '@/components/Services/DonationFacility/DonationForm'
 import HalalCertificateForm from '@/components/Services/HalalCertification/HalalCertificateForm'
 import VisitorBookingTopSection from '@/components/Services/VisitorBooking/VisitorBookingTopSection'
 
@@ -13,8 +14,7 @@ export default function page() {
         <div className='space-y-8'>
             {/* top sections */}
             <DonationFacilityTopSection />
-
-         
+            <DonationForm />
 
         </div>
     )

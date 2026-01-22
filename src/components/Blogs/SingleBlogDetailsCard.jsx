@@ -1,7 +1,7 @@
 "use client";
 
 import { getDay_Month_Year } from "@/helper/formateDate";
-import { getMetaValueByMetaName } from "@/helper/metaHelpers";
+import { getMetaValueByMetaName, getMetaValueFromExtra_Fields, getMetaValueFromExtraFields } from "@/helper/metaHelpers";
 import Image from "next/image";
 import React, { useState, useMemo } from "react";
 
@@ -12,6 +12,7 @@ export default function SingleBlogDetailsCard({ blog, settings }) {
   const day = getDay_Month_Year(blog?.created_at, "day");
   const month = getDay_Month_Year(blog?.created_at, "month");
   const year = getDay_Month_Year(blog?.created_at, "year");
+  const blog_number = getMetaValueFromExtra_Fields(blog, "blog_number");
 
   // Split description into mock pages
   const descriptionParts = useMemo(() => {
@@ -39,7 +40,8 @@ export default function SingleBlogDetailsCard({ blog, settings }) {
         </h4>
 
         <div className="bg-[#00401A] text-white h-[40px] sm:h-[56px] rounded-[50px] px-5 sm:w-[168px] flex justify-center items-center text-sm sm:text-base md:text-[22px] whitespace-nowrap">
-          <span>Blog No {blog?.id}</span>
+        <span>Blog No {blog_number}</span>
+          {/* <span>Blog No {blog?.id}</span> */}
         </div>
       </div>
 
@@ -58,9 +60,12 @@ export default function SingleBlogDetailsCard({ blog, settings }) {
         {/* Content */}
         <div className="flex flex-col justify-between w-full">
           <div className="px-1 overflow-hidden">
-            <p className="text-[#333333] text-xs sm:text-sm mb-3 border-b pb-2 border-gray-200">
+            <div className="flex justify-between text-[#333333] text-xs sm:text-base mb-3 border-b pb-2 border-gray-200">
+              <p>{blog?.sub_title}</p>
+              <p className="">
               {month} {day}th, {year}
             </p>
+            </div>
 
             <div
               className="text-[#333333] text-sm sm:text-base leading-relaxed"

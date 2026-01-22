@@ -72,7 +72,7 @@ export default function CommonPDfDownloader({ htmlData, children }) {
               className="content"
               style={{ padding: 20, color: '#000', backgroundColor: '#fff' }} // safe colors
             >
-              <div dangerouslySetInnerHTML={{ __html: htmlData.replace(/oklch\([^)]+\)/g, '#000') }} />
+              <div dangerouslySetInnerHTML={{ __html: htmlData?.replace(/oklch\([^)]+\)/g, '#000') }} />
             </div>
 
 
