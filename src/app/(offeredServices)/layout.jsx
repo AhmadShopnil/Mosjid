@@ -48,7 +48,6 @@ export const metadata = {
     description: "Masjid Services",
 };
 
-
 export default async function ServicesLayout({ children }) {
 
     const menus = await getMenus(6);
