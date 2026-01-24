@@ -4,12 +4,12 @@ import LostComplainForm from '@/components/Services/LossAndFound/LostComplainFor
 
 
 export default function page() {
-    return (
-        <div className='space-y-8'>
-            <LossAndFoundTopSection />
-            <LostComplainForm/>
-            <LossAndFoundSection />
+  return (
+    <div className='space-y-8'>
+      <LossAndFoundTopSection />
+      <LostComplainForm />
+      <LossAndFoundSection />
 
-        </div>
-    )
+    </div>
+  )
 }
