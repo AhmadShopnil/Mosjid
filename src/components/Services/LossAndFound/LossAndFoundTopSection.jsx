@@ -7,7 +7,7 @@ export default function LossAndFoundTopSection() {
 
       {/*  Background Image */}
       <Image
-        src="/images/offerServices/IslamicName/bg.png" 
+        src="/images/offerServices/IslamicName/bg.png"
         alt="Islamic Names Background"
         fill
         priority
@@ -23,30 +23,27 @@ export default function LossAndFoundTopSection() {
         {/* Left Section */}
         <div>
           <h3 className="text-[#B98C20] text-[36px] font-bold mb-3 pb-3">
-            Islamic Names
+            Book Your Lost & Found
           </h3>
           <p className="text-[#B98C20] text-base mt-2">
-            Islamic names embody faith, heritage, and values, offering children
-            identity, blessings, and connection to tradition. They serve as
-            gifts of love, guiding lights, and lifelong reminders of culture and
-            spirituality.
+            If you’ve lost or found something within the masjid premises, our team is here to help ensure belongings are returned to their rightful owners.
           </p>
 
 
-       <div className=" flex  justify-center mt-8">
-           <Image
-            src="/images/offerServices/LostFound/topsectionIcon.svg" 
-            alt="Islamic Names Background"
-            width={170}
-            height={230}
-            className=""
-          />
-       </div>
-       <div className="space-y-1">
-        <p className="text-[#B98C20] text-base">location:</p>
-         <p className="text-[#B98C20] text-base">Visiting Hours:</p>
-          <p className="text-[#B98C20] text-base">Contact:</p>
-       </div>
+          <div className=" flex  justify-center mt-8">
+            <Image
+              src="/images/offerServices/LostFound/topsectionIcon.svg"
+              alt="Islamic Names Background"
+              width={170}
+              height={230}
+              className=""
+            />
+          </div>
+          <div className="space-y-1">
+            <p className="text-[#B98C20] text-base">location:</p>
+            <p className="text-[#B98C20] text-base">Visiting Hours:</p>
+            <p className="text-[#B98C20] text-base">Contact:</p>
+          </div>
 
         </div>
 
@@ -58,10 +55,10 @@ export default function LossAndFoundTopSection() {
 
           <div className="space-y-3 mt-4">
             {[
-              { icon: "1.svg", label: "Name List" },
-              { icon: "3.svg", label: "Blessed Name" },
-              { icon: "2.svg", label: "Search Name" },
-              { icon: "3.svg", label: "Islamic Naming Guidelines" },
+              { icon: "1.svg", label: "Lost Item Report" },
+              { icon: "3.svg", label: "Lost Items List" },
+              { icon: "3.svg", label: "Found Items List" },
+              { icon: "3.svg", label: "Guides Line" },
             ].map((item, i) => (
               <div
                 key={i}
