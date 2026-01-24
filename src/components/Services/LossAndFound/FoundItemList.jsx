@@ -1,4 +1,4 @@
-"use client";
+
 
 
 import { TableSkeleton } from "../Skeletons/TableSkeleton";

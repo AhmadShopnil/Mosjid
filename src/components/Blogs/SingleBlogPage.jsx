@@ -21,8 +21,8 @@ import { useSelectedParrent } from '@/context/SelectedContextParrent'
 
 
 export default function SingleBlogsPage({ homePage, settings, blog, formattedCategories }) {
-    const { selected, setSelected, clearSelected } = useSelected();
-    const { selectedParrent, setSelectedParrent, clearSelectedParrent } = useSelectedParrent();
+    const { selected  } = useSelected();
+    const { selectedParrent } = useSelectedParrent();
     const [blogs, setBlogs] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)

@@ -5,19 +5,19 @@ export default function LossAndFoundTopSection() {
   return (
     <div className="relative overflow-hidden rounded-[20px] ">
 
-      {/* 🔹 Background Image */}
+      {/*  Background Image */}
       <Image
-        src="/images/offerServices/IslamicName/bg.png" // 🔁 change to your bg image
+        src="/images/offerServices/IslamicName/bg.png" 
         alt="Islamic Names Background"
         fill
         priority
         className="object-cover  scale-110 opacity-30"
       />
 
-      {/* 🔹 Overlay (for readability) */}
+      {/*  Overlay (for readability) */}
       <div className="absolute inset-0 bg-[#F9FFF6]/70 " />
 
-      {/* 🔹 Content */}
+      {/*  Content */}
       <div className="relative px-4 sm:px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-8">
 
         {/* Left Section */}
@@ -35,7 +35,7 @@ export default function LossAndFoundTopSection() {
 
        <div className=" flex  justify-center mt-8">
            <Image
-            src="/images/offerServices/LostFound/topsectionIcon.svg" // 🔁 change to your bg image
+            src="/images/offerServices/LostFound/topsectionIcon.svg" 
             alt="Islamic Names Background"
             width={170}
             height={230}

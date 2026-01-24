@@ -1,8 +1,6 @@
-"use client";
 
-import { useState } from "react";
 
-import SocialShare from "@/components/Shared/SocialShare";
+
 import { TableSkeleton } from "../Skeletons/TableSkeleton";
 import LossTableRow from "./LossTableRow";
 
@@ -70,7 +68,7 @@ const TableHeader = () => (
         "Lost date",
         "Upload Image",
         "Contact no"
-      ].map((title, i) => (
+      ]?.map((title, i) => (
         <th
           key={i}
           className="border border-[#B0C4B8] py-2 text-center text-sm sm:text-base font-normal w-[14.28%]"

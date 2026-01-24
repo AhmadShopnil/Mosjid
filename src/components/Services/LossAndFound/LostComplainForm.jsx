@@ -21,28 +21,28 @@ export default function LostComplainForm() {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    const formData = new FormData();
-    Object.entries(form).forEach(([key, value]) => {
-      formData.append(key, value);
-    });
+  //   const formData = new FormData();
+  //   Object.entries(form).forEach(([key, value]) => {
+  //     formData.append(key, value);
+  //   });
 
-    try {
-      const res = await fetch("/api/lost-complain", {
-        method: "POST",
-        body: formData,
-      });
+  //   try {
+  //     const res = await fetch("/api/lost-complain", {
+  //       method: "POST",
+  //       body: formData,
+  //     });
 
-      if (!res.ok) throw new Error("Submission failed");
+  //     if (!res.ok) throw new Error("Submission failed");
 
-      alert("Lost complain submitted successfully");
-    } catch (error) {
-      console.error(error);
-      alert("Something went wrong");
-    }
-  };
+  //     alert("Lost complain submitted successfully");
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert("Something went wrong");
+  //   }
+  // };
 
   return (
    

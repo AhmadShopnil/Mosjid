@@ -99,7 +99,7 @@ export default function SingleBook({ homePage, settings, blog, formattedCategori
                     <div className=' w-full space-y-6'>
                         <InnerHeader title={islamic_books_ExtraData?.sub_title} image={image_arabic} />
 
-                        <SingleBookDetails blog={blog} settings={settings} />
+                        <SingleBookDetails book={blog} settings={settings} />
                         <div className='flex justify-end'>
                             <SocialShare />
                         </div>
