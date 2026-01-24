@@ -48,7 +48,6 @@ export const metadata = {
     description: "Masjid Services",
 };
 
-
 export default async function ServicesLayout({ children }) {
 
     const menus = await getMenus(6);
@@ -73,9 +72,11 @@ export default async function ServicesLayout({ children }) {
                                 <BannerInnerPage />
                                 <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Services" />
                                 <Container className=" my-6">
-                                    <div className="flex justify-between gap-4">
-                                        <ServicesSidebarDrawer categories={servicesSideBarCategories} />
-                                        <div className="w-full xl:w-[76%]   space-y-6">
+                                    <div className="flex justify-between xl:gap-4  ">
+                                        <div className=" w-20%">
+                                            <ServicesSidebarDrawer categories={servicesSideBarCategories} />
+                                        </div>
+                                        <div className="w-full xl:w-[80%] 0  space-y-6">
                                              
                                             {children}
                                         </div>

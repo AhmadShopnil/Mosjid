@@ -35,6 +35,7 @@ export default async function Home() {
 
 
   const quickLinks = await getMenus(6)
+
   // console.log({quickLinks})
 
   return (
@@ -59,7 +60,7 @@ export default async function Home() {
         className="hidden lg:block"
       >
         <Fatwah />
-        <OfferServices />
+        <OfferServices  />
         <DictionarySection data_for_filter={data_for_filter} homePage={homePage} />
         <DirecToryDonation />
         {/* <DuaSection/> */}

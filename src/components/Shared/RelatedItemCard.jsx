@@ -1,4 +1,5 @@
 import { getDay_Month_Year } from '@/helper/formateDate'
+import { getMetaValueFromExtraFields } from '@/helper/metaHelpers'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -9,14 +10,14 @@ export default function RelatedItemCard({ data, link }) {
     const day = getDay_Month_Year(data?.created_at, "day")
     const month = getDay_Month_Year(data?.created_at, "month")
     const year = getDay_Month_Year(data?.created_at, "year")
-
+ const short_description = getMetaValueFromExtraFields(data, "short_description");
 
     return (
         <div className='border border-[#F7BA2A] w-[370px] h-[400px] flex flex-col  rounded-[20px]
              bg-white hover:shadow-xl/30 cursor-pointer' >
 
             <div className='flex justify-center '>
-                <div className=' -mt-20 mx-auto rounded-full  w-[254px] h-[254px]'>
+                <div className='bg-white -mt-20 mx-auto rounded-full  w-[254px] h-[254px]'>
                     <Image
                         src={data?.featured_image}
                         alt='a1'
@@ -31,11 +32,13 @@ export default function RelatedItemCard({ data, link }) {
                <div>
                  <span className="text-[#00401A] text-xs sm:text-sm  md:text-base px-3 py-1.5 bg-[#4B6BFB0D] rounded-[6px] ">{month} {day}th, {year}</span>
                </div>
-                {/* <p className="text-[#F7BA2A] mb-1 text-xs sm:text-sm  md:text-base font-bold mt-2 ">{data?.name}</p> */}
-                <div
+                <p className="text-[#F7BA2A] mb-1 text-xs sm:text-sm  md:text-base font-bold mt-2 ">{data?.sub_title}</p>
+                  <p className="text-[#00401A] mb-1 text-xs sm:text-sm  md:text-base font-bold mt-2 ">{short_description?.slice(0,250)}</p>
+                {/* <div
                     className="text-[#181A2A] text-xs sm:text-sm md:text-base overflow-hidden"
                     dangerouslySetInnerHTML={{ __html: data?.description?.slice(0,300) }}
-                />
+                /> */}
+                
                 <Link
                     href={link}
                     className='flex items-center justify-start  mt-6 gap-2'>

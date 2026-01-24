@@ -6,16 +6,20 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { splitBySlash } from "@/helper/splitBySpace";
 import { getImageUrl } from "@/helper/getImageUrl";
 import { motion } from "framer-motion";
+import { BASE_URL } from "@/helper/baseUrl";
+import Link from "next/link";
 
 export default function OfferServicesSlider({
   services,
   offered_services_ExtraData,
+  offerServicesMenu
 }) {
   const [hoveredCard, setHoveredCard] = useState(null);
   const scrollRef = useRef(null);
   const intervalRef = useRef(null);
 
-  const loopServices = [...services, ...services];
+  const loopServices = [...offerServicesMenu, ...offerServicesMenu];
+ 
 
   const heading_part_1 = splitBySlash(offered_services_ExtraData?.title)[0];
   const heading_part_2 = splitBySlash(offered_services_ExtraData?.title)[1];
@@ -121,7 +125,7 @@ export default function OfferServicesSlider({
             onMouseLeave={startAutoScroll}
             className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth pb-10"
           >
-            {loopServices.map((service, index) => (
+            {loopServices?.map((service, index) => (
               <motion.div
                 key={`${service.id}-${index}`}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -129,26 +133,34 @@ export default function OfferServicesSlider({
                 transition={{ duration: 0.6, delay: index * 0.05 }}
                 viewport={{ once: true }}
               >
-                <div
+                <Link
                   className="flex-shrink-0 w-[150px] h-[250px] sm:w-[180px] sm:h-[300px] md:w-[195px] md:h-[360px]
                   flex flex-col items-center justify-between text-center rounded-full shadow-xl bg-white mx-auto cursor-pointer
                   group islamicBookHome p-2 sm:p-3"
                   onMouseEnter={() => setHoveredCard(service.id)}
                   onMouseLeave={() => setHoveredCard(null)}
+
+                  href={`services${service?.link}`}
                 >
                   <div className="p-4 sm:p-5 rounded-full mt-2 sm:mt-4 bg-[#F8F8F8] w-[100px] h-[100px] flex justify-center items-center">
                     <Image
-                      src={service?.featured_image}
-                      alt={service?.name}
+                     src={`${BASE_URL}${service?.menu_icon_url}`}
+                      // src={service?.menu_icon_url}
+                      alt={service?.label}
                       width={60}
                       height={60}
                       className="object-contain"
                     />
                   </div>
 
-                  <p className="text-lg md:text-xl font-bold text-[#333333]">
-                    {service?.name}
+               <div className="space-y-2">
+                   <p className="text-lg md:text-lg font-bold text-[#00401A]">
+                    {service?.label}
                   </p>
+                  <p className="text-sm md:text-base font-bold text-[#F7BA2A]">
+                    {service?.other_info_one}
+                  </p>
+               </div>
 
                   <div className="pb-4">
                     <Image
@@ -162,7 +174,7 @@ export default function OfferServicesSlider({
                       height={45}
                     />
                   </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>
