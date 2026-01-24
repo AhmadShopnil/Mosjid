@@ -1,13 +1,15 @@
 "use client";
 
 import { useRef } from "react";
-import html2pdf from "html2pdf.js";
 
 export default function FatwaPDF({ htmlData }) {
   const contentRef = useRef();
 
-  const downloadPDF = () => {
+  const downloadPDF = async () => {
+    const html2pdf = (await import("html2pdf.js")).default;
     const element = contentRef.current;
+
+    if (!element) return;
 
     const opt = {
       margin: 0,
