@@ -1,93 +1,66 @@
 "use client";
 
-import React, { useState } from "react";
-import { XCircle } from "lucide-react"; // optional: nice clear icon
+import { useState } from "react";
+import { XCircle } from "lucide-react";
 
 export default function IslamicNameSearch({
   button_text = "Find",
   onSearch = () => { },
 }) {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+  const [gender, setGender] = useState("");
+  const [keyword, setKeyword] = useState("");
 
-  const isDisabled = false;
-
-  // run search
   const handleSearch = () => {
-    onSearch({ name, number });
+    onSearch({ gender, keyword });
   };
-  // clear inputs
+
   const handleClear = () => {
-    setName("");
-    setNumber("");
-    onSearch({ name: "", number: "" });
+    setGender("");
+    setKeyword("");
+    onSearch({ gender: "", keyword: "" });
   };
 
   return (
-    <div
-      className={`borderDonationHome shadow-md bg-white px-5 sm:px-6 py-5 sm:py-10 rounded-2xl ${isDisabled ? "opacity-50 pointer-events-none select-none" : ""
-        }`}
-    >
-      <div className="flex items-center flex-col lg:flex-row gap-3">
-        {/* By Name */}
-        <div className="relative flex-1 w-full">
-          <input
-            type="text"
-            placeholder="By Gender"
-            disabled={isDisabled}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className={`h-[54px] w-full pl-10 pr-4 py-3 
-              border border-green-900 rounded-[10px]  
-              placeholder-gray-400 placeholder:text-sm
-              focus:border-transparent focus:ring-2 focus:ring-[#F7BA2A]
-              ${isDisabled
-                ? "cursor-not-allowed bg-gray-100"
-                : "focus:outline-none"
-              }`}
-          />
-        </div>
+    <div className="shadow-md bg-white px-5 sm:px-6 py-6 rounded-2xl">
 
-        {/* By Number */}
-        <div className="relative flex-1 w-full">
-          <input
-            type="text"
-            placeholder="By Word"
-            disabled={isDisabled}
-            value={number}
-            onChange={(e) => setNumber(e.target.value)}
-            className={`h-[54px] w-full pl-10 pr-4 py-3 
-                      border border-green-900 rounded-[10px]  
-                      placeholder-gray-400 placeholder:text-sm
-                      focus:border-transparent focus:ring-2 focus:ring-[#F7BA2A]
-                      ${isDisabled
-                ? "cursor-not-allowed bg-gray-100"
-                : "focus:outline-none"
-              }`}
+      <div className=" h-[50px] text-[#B98C20] flex items-center justify-between  rounded-t-[10px] mb-1.5 md:mb-3">
+        <h2 className="text-lg sm:text-xl font-bold">
+          Search Name
+        </h2>
+        <h2 className="text-lg sm:text-xl font-bold">
+          検索名
+        </h2>
+      </div>
 
-          />
-        </div>
+      <div className="flex flex-col lg:flex-row gap-3">
+        <select
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}
+          className="h-[54px] w-full border border-green-900 rounded-[10px] px-4"
+        >
+          <option value="">All Gender</option>
+          <option value="boy">Boy</option>
+          <option value="girl">Girl</option>
+        </select>
 
-        {/* Search Button */}
+        <input
+          type="text"
+          placeholder="Search by name or meaning"
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+          className="h-[54px] w-full border border-green-900 rounded-[10px] px-4"
+        />
+
         <button
-          type="button"
-          aria-label="search"
           onClick={handleSearch}
-          disabled={isDisabled}
-          className={`bg-[#F7BA2A] w-full lg:w-auto text-[#00401A] h-[56px] font-bold px-6 md:px-14 py-3 rounded-[10px] 
-            shadow-md transition text-lg hover:bg-[#e0a520]`}
+          className="bg-[#F7BA2A] h-[56px] px:4 md:px-8 lg:px-32 rounded-[10px] font-bold cursor-pointer"
         >
           {button_text}
         </button>
 
-        {/* Clear Button */}
         <button
-          type="button"
-          aria-label="close"
           onClick={handleClear}
-          disabled={isDisabled}
-          className={`flex w-full lg:w-auto items-center justify-center gap-1 h-[56px] px-4 py-3  rounded-[10px] border
-             border-gray-300 text-gray-700 font-semibold transition hover:bg-gray-100 hover:text-gray-900 cursor-pointer`}
+          className="flex items-center gap-1 h-[56px] px-4 rounded-[10px] border  cursor-pointer"
         >
           <XCircle className="w-5 h-5" />
           Clear

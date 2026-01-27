@@ -4,7 +4,7 @@ import React from "react";
 export default function IslamicNameTopSection() {
   return (
     <div className="relative overflow-hidden rounded-[20px] border border-gray-200">
-      
+
       {/* 🔹 Background Image */}
       <Image
         src="/images/offerServices/IslamicName/bg.png" // 🔁 change to your bg image
@@ -17,20 +17,36 @@ export default function IslamicNameTopSection() {
       {/* 🔹 Overlay (for readability) */}
       <div className="absolute inset-0 bg-[#F9FFF6]/70 " />
 
-      {/* 🔹 Content */}
-      <div className="relative px-4 sm:px-6 py-14 grid grid-cols-1 md:grid-cols-2 gap-8">
-        
+      {/*  Content */}
+      <div className="relative px-4 sm:px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+
         {/* Left Section */}
-        <div>
-          <h3 className="text-[#B98C20] text-[36px] font-bold mb-3 pb-3">
-            Islamic Names
-          </h3>
-          <p className="text-[#B98C20] text-base mt-2">
-            Islamic names embody faith, heritage, and values, offering children
-            identity, blessings, and connection to tradition. They serve as
-            gifts of love, guiding lights, and lifelong reminders of culture and
-            spirituality.
-          </p>
+        <div className="flex flex-col ">
+          <div className="">
+            <h3 className="text-[#B98C20] text-[36px] font-bold mb-3 pb-3">
+              Islamic Names
+            </h3>
+            <p className="text-[#B98C20] text-base mt-2">
+              Islamic names embody faith, heritage, and values, offering children
+              identity, blessings, and connection to tradition. They serve as
+              gifts of love, guiding lights, and lifelong reminders of culture and
+              spirituality.
+            </p>
+          </div>
+
+
+          <div className=" flex  justify-center my-8">
+            <Image
+              src="/images/offerServices/dua.svg"
+              alt="Islamic Names Background"
+              width={190}
+              height={200}
+              className=""
+            />
+          </div>
+
+
+
         </div>
 
         {/* Right Section */}
@@ -51,14 +67,14 @@ export default function IslamicNameTopSection() {
                 className="border border-[#F7BA2A] bg-white/50  p-4 flex items-center gap-4 rounded-[10px]"
               >
                 <Image
-                  src={`/images/offerServices/IslamicName/${item.icon}`}
+                  src={`/images/offerServices/IslamicName/${item?.icon}`}
                   alt={item.label}
                   width={50}
                   height={50}
                   className="w-[50px] h-[50px]"
                 />
                 <span className="text-[#B98C20] text-2xl font-bold">
-                  {item.label}
+                  {item?.label}
                 </span>
               </div>
             ))}
@@ -66,6 +82,11 @@ export default function IslamicNameTopSection() {
         </div>
 
       </div>
+
+
+
+
+     
     </div>
   );
 }
