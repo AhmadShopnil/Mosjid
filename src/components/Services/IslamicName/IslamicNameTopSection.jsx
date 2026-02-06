@@ -23,7 +23,7 @@ export default function IslamicNameTopSection() {
         {/* Left Section */}
         <div className="flex flex-col ">
           <div className="">
-            <h3 className="text-[#B98C20] text-[36px] font-bold mb-3 pb-3">
+            <h3 className="text-[#B98C20] text-[30px] md:text-[36px] font-bold mb-3 pb-3">
               Islamic Names
             </h3>
             <p className="text-[#B98C20] text-base mt-2">
@@ -51,7 +51,7 @@ export default function IslamicNameTopSection() {
 
         {/* Right Section */}
         <div>
-          <h3 className="text-[#B98C20] text-[36px] font-bold text-end mb-3 pb-3">
+          <h3 className="text-[#B98C20] text-[30px] md:text-[36px] font-bold text-end mb-3 pb-3">
             イスラム教の名前
           </h3>
 
@@ -64,16 +64,16 @@ export default function IslamicNameTopSection() {
             ].map((item, i) => (
               <div
                 key={i}
-                className="border border-[#F7BA2A] bg-white/50  p-4 flex items-center gap-4 rounded-[10px]"
+                className="border border-[#F7BA2A] bg-white/50 p-2.5 md:p-4 gap-2 md:gap-4 flex items-center gap-2 md:gap-4 rounded-[10px]"
               >
                 <Image
                   src={`/images/offerServices/IslamicName/${item?.icon}`}
                   alt={item.label}
                   width={50}
                   height={50}
-                  className="w-[50px] h-[50px]"
+                  className="w-[36px] h-[36px] md:w-[50px] md:h-[50px]"
                 />
-                <span className="text-[#B98C20] text-2xl font-bold">
+                <span className="text-[#B98C20] text-lg sm:text-xl md:text-2xl font-bold">
                   {item?.label}
                 </span>
               </div>

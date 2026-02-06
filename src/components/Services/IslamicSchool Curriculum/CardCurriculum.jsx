@@ -42,10 +42,8 @@ export default function CardCurriculum({ curriculum }) {
                     <div className='w-full h-[221px]  flex justify-end relative  
                 border-8 border-l-[#FFCE4D] border-t-[#FFCE4D] border-b-white border-r-white  rounded-tl-[60px]  '
                     >
-
-
                         <div className='absolute  w-[98%] h-[300px]  top-8'>
-                            <div className='grid grid-cols-3 gap-2'>
+                            <div className='grid grid-cols-1 xl:grid-cols-3 gap-2'>
                                 <Card title="Academic Focus" items={academicFocus} />
                                 <Card title="Religious Focus" items={religiousFocus} />
                                 <Card title="Outcomes" items={outcomes} />

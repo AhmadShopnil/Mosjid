@@ -46,8 +46,8 @@ export default function LostComplainForm() {
 
   return (
 
-    <div className="borderDonationHome rounded-[20px] px-8 py-8">
-      <h2 className="text-center text-2xl sm:text-3xl  md:text-4xl font-bold mb-8 text-[#000000] bg-red-100\">
+    <div className=" rounded-[20px] px-4 py-6 md:px-8 md:py-8 ">
+      <h2 className="text-center text-2xl sm:text-3xl  md:text-4xl font-bold mb-8 text-[#000000]">
         Lost Complain
       </h2>
 
@@ -61,7 +61,7 @@ export default function LostComplainForm() {
               name="applicantName"
               placeholder="今すぐ入力"
               onChange={handleChange}
-              className="w-full h-12 rounded-xl border border-green-700 px-4"
+              className="w-full  rounded-xl border border-green-700 h-[48px] md:h-[54px] text-sm md:text-base px-2  md:px-4"
             />
           </div>
 
@@ -73,7 +73,7 @@ export default function LostComplainForm() {
               name="itemName"
               placeholder="今すぐ入力"
               onChange={handleChange}
-              className="w-full h-12 rounded-xl border border-green-700 px-4"
+              className="w-full rounded-xl border border-green-700 h-[48px] md:h-[54px] text-sm md:text-base px-2  md:px-4"
             />
           </div>
 
@@ -85,7 +85,7 @@ export default function LostComplainForm() {
               name="spot"
               placeholder="今すぐ入力"
               onChange={handleChange}
-              className="w-full h-12 rounded-xl border border-green-700 px-4"
+              className="w-full  rounded-xl border border-green-700 h-[48px] md:h-[54px] text-sm md:text-base px-2  md:px-4"
             />
           </div>
 
@@ -95,7 +95,7 @@ export default function LostComplainForm() {
             <select
               name="date"
               onChange={handleChange}
-              className="w-full h-12 rounded-xl border border-green-700 px-4"
+              className="w-full  rounded-xl border border-green-700 h-[48px] md:h-[54px] text-sm md:text-base px-2  md:px-4"
             >
               <option value="">選択</option>
               <option value="today">Today</option>
@@ -109,7 +109,7 @@ export default function LostComplainForm() {
             <select
               name="type"
               onChange={handleChange}
-              className="w-full h-12 rounded-xl border border-green-700 px-4"
+              className="w-full  rounded-xl border border-green-700 h-[48px] md:h-[54px] text-sm md:text-base px-2  md:px-4"
             >
               <option value="">選択</option>
               <option value="document">Document</option>
@@ -125,7 +125,7 @@ export default function LostComplainForm() {
               type="file"
               name="image"
               onChange={handleChange}
-              className="w-full h-12 rounded-xl border border-green-700 px-4 py-2"
+              className="w-full  rounded-xl border border-green-700 h-[48px] md:h-[54px] text-sm md:text-base px-2  md:px-4 py-2"
             />
           </div>
 

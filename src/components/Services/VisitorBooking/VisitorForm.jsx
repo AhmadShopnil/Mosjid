@@ -32,7 +32,7 @@ export default function VisitorForm() {
     };
 
     return (
-        <div className="borderDonationHome rounded-[20px] px-8 py-8">
+        <div className="  px-4 py-6 md:px-8 md:py-8 ">
             <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-8">
                 Visitor Form
             </h2>

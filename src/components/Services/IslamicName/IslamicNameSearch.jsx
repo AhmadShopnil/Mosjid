@@ -21,13 +21,13 @@ export default function IslamicNameSearch({
   };
 
   return (
-    <div className="shadow-md bg-white px-5 sm:px-6 py-6 rounded-2xl">
+    <div className="shadow-md bg-white px-4 py-4  sm:px-6 md:py-10  rounded-2xl">
 
-      <div className=" h-[50px] text-[#B98C20] flex items-center justify-between  rounded-t-[10px] mb-1.5 md:mb-3">
-        <h2 className="text-lg sm:text-xl font-bold">
+      <div className=" text-[#B98C20] flex items-center justify-between  rounded-t-[10px] mb-1.5 md:mb-3">
+        <h2 className="text-xl sm:text-xl font-bold">
           Search Name
         </h2>
-        <h2 className="text-lg sm:text-xl font-bold">
+        <h2 className="text-xl sm:text-xl font-bold">
           検索名
         </h2>
       </div>
@@ -36,7 +36,7 @@ export default function IslamicNameSearch({
         <select
           value={gender}
           onChange={(e) => setGender(e.target.value)}
-          className="h-[54px] w-full border border-green-900 rounded-[10px] px-4"
+          className=" w-full border border-green-900 rounded-[10px] h-[48px] md:h-[54px] text-sm md:text-base px-2  md:px-4"
         >
           <option value="">All Gender</option>
           <option value="boy">Boy</option>
@@ -48,19 +48,19 @@ export default function IslamicNameSearch({
           placeholder="Search by name or meaning"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
-          className="h-[54px] w-full border border-green-900 rounded-[10px] px-4"
+          className=" w-full border border-green-900 rounded-[10px] h-[48px] md:h-[54px] text-sm md:text-base px-2  md:px-4"
         />
 
         <button
           onClick={handleSearch}
-          className="bg-[#F7BA2A] h-[56px] px:4 md:px-8 lg:px-32 rounded-[10px] font-bold cursor-pointer"
+          className="bg-[#F7BA2A]  rounded-[10px] font-bold cursor-pointer h-[48px] md:h-[54px] text-sm md:text-base px-2  md:px-4 lg:px-12"
         >
           {button_text}
         </button>
 
         <button
           onClick={handleClear}
-          className="flex items-center gap-1 h-[56px] px-4 rounded-[10px] border  cursor-pointer"
+          className="flex items-center justify-center  gap-1 rounded-[10px] border  cursor-pointer h-[48px] md:h-[54px] text-sm md:text-base px-2  md:px-4 lg:px-12"
         >
           <XCircle className="w-5 h-5" />
           Clear

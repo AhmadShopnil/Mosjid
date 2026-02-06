@@ -3,6 +3,7 @@
 import VisitorBookingTopSection from '@/components/Services/VisitorBooking/VisitorBookingTopSection'
 import VisitorForm from '@/components/Services/VisitorBooking/VisitorForm'
 import VisitorTable from '@/components/Services/VisitorBooking/VisitorTable'
+import GradientBorderWrapper1 from '@/components/Shared/GradientBorderWrapper1'
 import React from 'react'
 
 
@@ -23,15 +24,20 @@ export default function page() {
             {/* top sections */}
             <VisitorBookingTopSection />
 
-            <VisitorForm />
+            <GradientBorderWrapper1 rounded="rounded-[20px]"
+                innerRounded="rounded-[19px]" >
+                <VisitorForm />
+            </GradientBorderWrapper1>
+
+
 
             <div className='rounded-2xl p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909]'>
-                <div className='p-8 bg-white rounded-[15px]'>
+                <div className='p-4 md:p-8 bg-white rounded-[15px]'>
                     <VisitorTable tableTitle={bookingListtableTitle} />
                 </div>
             </div>
             <div className='rounded-2xl p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909]'>
-                <div className='p-8 bg-white rounded-[15px]'>
+                <div className='p-4 md:p-8 bg-white rounded-[15px]'>
                     <VisitorTable tableTitle={recordListTitle} />
                 </div>
             </div>
