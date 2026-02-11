@@ -203,6 +203,19 @@ export async function getSliders() {
   const json = await res.json();
   return json?.data || [];
 }
+
+
+export async function getBanners() {
+  const API_URL = `${BASE_URL}/api/v1/posts?term_type=banner&order_by=order_column:asc`;
+
+  const res = await fetch(API_URL, {
+    next: { revalidate: 30 },
+  });
+  const json = await res.json();
+  return json?.data || [];
+}
+
+
 export async function getBannerInnerPage() {
   const API_URL = `${BASE_URL}/api/v1/posts?term_type=banner_inner_page`;
 

@@ -13,6 +13,9 @@ import { AnimatePresence } from "framer-motion";
 
 import PageReveal from "@/components/Shared/PageReveal";
 import PageRevealWithSpinner from "@/components/Shared/LoadingAnimation/PageRevealWithSpinner";
+import BannerBottomSlider from "@/components/BannerBottom/BannerBottomSlider";
+import BannerBottom from "@/components/BannerBottom/BannerBottom";
+import Container from "@/components/Shared/Container";
 
 
 
@@ -58,19 +61,22 @@ export default function RootLayout({ children }) {
               <SelectedProvider>
                 {/* <AnimatePresence mode="wait">
                   <PageRevealWithSpinner > */}
-                    <div className=" min-h-screen bg-background">
-                      <DevelopmentBanner />
-                      <Header />
-
-                      {children}
-
-                      <Footer />
-                      <ScrollToTopButton />
-                      <Toaster position="top-right" />
-                    </div>
+                <div className=" min-h-screen bg-background">
+                  <DevelopmentBanner />
+                  <Header />
 
 
-                  {/* </PageRevealWithSpinner>
+                  {children}
+                  <Container>
+                    <BannerBottom />
+                  </Container>
+
+
+                  <Footer />
+                  <ScrollToTopButton />
+                  <Toaster position="top-right" />
+                </div>
+                {/* </PageRevealWithSpinner>
                 </AnimatePresence> */}
               </SelectedProvider>
             </SelectedParrentProvider>

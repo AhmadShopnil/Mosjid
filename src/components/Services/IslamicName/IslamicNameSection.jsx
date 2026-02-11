@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
 import IslamicNameTableRow from "./IslamicNameTableRow";
 import IslamicNameSearch from "./IslamicNameSearch";
 import BlessedNameTabs from "./BlessedNameTabs";
@@ -9,7 +11,11 @@ import { TableSkeleton } from "../Skeletons/TableSkeleton";
 import axiosInstance from "@/helper/axiosInstance";
 import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 
-/* ---------------- gender category map ---------------- */
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
 const GENDER_CATEGORY_MAP = {
   boy: "104",
   girl: "105",
@@ -18,7 +24,6 @@ const GENDER_CATEGORY_MAP = {
 export default function IslamicNameSection({ categories }) {
   const [names, setNames] = useState([]);
   const [loading, setLoading] = useState(false);
-
   const [activeBlessedCategory, setActiveBlessedCategory] = useState(null);
 
   const [searchState, setSearchState] = useState({
@@ -26,26 +31,16 @@ export default function IslamicNameSection({ categories }) {
     keyword: "",
   });
 
-  /* ---------------- helper: build category_id ---------------- */
   const buildCategoryId = ({ gender, blessedCategory }) => {
     const ids = [];
-
-    if (gender && GENDER_CATEGORY_MAP[gender]) {
-      ids.push(GENDER_CATEGORY_MAP[gender]);
-    }
-
-    if (blessedCategory) {
-      ids.push(blessedCategory.toString());
-    }
-
-    return ids.length ? ids.join(",") : "";
+    if (gender && GENDER_CATEGORY_MAP[gender]) ids.push(GENDER_CATEGORY_MAP[gender]);
+    if (blessedCategory) ids.push(blessedCategory.toString());
+    return ids.join(",");
   };
 
-  /* ---------------- fetch ---------------- */
   const fetchNames = useCallback(async ({ gender = "", blessedCategory = "", keyword = "" } = {}) => {
     try {
       setLoading(true);
-
       const category_id = buildCategoryId({ gender, blessedCategory });
 
       const query = new URLSearchParams({
@@ -56,34 +51,25 @@ export default function IslamicNameSection({ categories }) {
 
       const res = await axiosInstance.get(`/posts?${query}&strict=true`);
       setNames(res?.data?.data || []);
-    } catch (error) {
-      console.error("Fetch failed", error);
+    } catch (err) {
+      console.error(err);
       setNames([]);
     } finally {
       setLoading(false);
     }
   }, []);
 
-  /* ---------------- initial load ---------------- */
   useEffect(() => {
     fetchNames();
   }, [fetchNames]);
 
-  /* ---------------- search ---------------- */
   const handleSearch = ({ gender, keyword }) => {
     setSearchState({ gender, keyword });
-
-    fetchNames({
-      gender,
-      keyword,
-      blessedCategory: activeBlessedCategory,
-    });
+    fetchNames({ gender, keyword, blessedCategory: activeBlessedCategory });
   };
 
-  /* ---------------- tab click ---------------- */
   const handleCategoryChange = (category) => {
     setActiveBlessedCategory(category.id);
-
     fetchNames({
       gender: searchState.gender,
       keyword: searchState.keyword,
@@ -92,14 +78,19 @@ export default function IslamicNameSection({ categories }) {
   };
 
   return (
-    <div className="space-y-6">
+    <motion.div
+      className="space-y-6"
+      initial="hidden"
+      animate="visible"
+      variants={fadeUp}
+      transition={{ duration: 0.4 }}
+    >
       {/* Search */}
-
-
       <GradientBorderWrapper1>
         <IslamicNameSearch button_text="Search" onSearch={handleSearch} />
       </GradientBorderWrapper1>
-      {/* Blessed Name Tabs */}
+
+      {/* Tabs */}
       <GradientBorderWrapper1>
         <BlessedNameTabs
           categories={categories}
@@ -108,65 +99,62 @@ export default function IslamicNameSection({ categories }) {
         />
       </GradientBorderWrapper1>
 
-
       {/* Table */}
       <div>
-        <div className="bg-[#52B920] h-[50px] text-white flex items-center justify-between px-3 md:px-6 rounded-t-[10px]">
-          <h2 className="text-lg font-bold">Name List</h2>
-          <h2 className="text-lg font-bold">名前リスト</h2>
+        <div className="bg-[#52B920] h-[50px] text-white flex justify-between items-center px-4 rounded-t-[10px]">
+          <h2 className="font-bold">Name List</h2>
+          <h2 className="font-bold">名前リスト</h2>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full table-fixed min-w-[800px] border-collapse">
+          <table className="w-full min-w-[800px] border-collapse">
             <TableHeader />
 
-            {loading ? (
-              <TableSkeleton />
-            ) : names.length > 0 ? (
-              <TableBody data={names} />
-            ) : (
-              <EmptyState />
-            )}
+            <AnimatePresence mode="wait">
+              <motion.tbody
+                key={loading ? "loading" : names.length ? "data" : "empty"}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                {loading ? (
+                  <TableSkeleton />
+                ) : names.length ? (
+                  names.map((item, i) => (
+                    <IslamicNameTableRow key={item.id} islamicName={item} i={i} />
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={5} className="text-center py-10 text-gray-500">
+                      No Names found
+                    </td>
+                  </tr>
+                )}
+              </motion.tbody>
+            </AnimatePresence>
           </table>
         </div>
       </div>
 
       {/* Share */}
-      <div className="py-4 flex justify-center sm:justify-end">
+      <div className="flex justify-end">
         <SocialShare />
       </div>
-    </div>
+    </motion.div>
   );
 }
 
-/* ---------------- table helpers ---------------- */
+/* ---------------- Table Header ---------------- */
 
 const TableHeader = () => (
   <thead>
     <tr className="bg-[#D9E2DD]">
-      <th className="w-[60px] py-2 text-center text-sm">SL</th>
-      <th className="w-[200px] py-2 text-center text-sm">Arabic</th>
-      <th className="w-[200px] py-2 text-center text-sm">Japanese</th>
-      <th className="w-[200px] py-2 text-center text-sm">English</th>
-      <th className="w-auto py-2 text-center text-sm">Meaning</th>
+      <th className="w-[60px] py-2">SL</th>
+      <th className="w-[200px] py-2">Arabic</th>
+      <th className="w-[200px] py-2">Japanese</th>
+      <th className="w-[200px] py-2">English</th>
+      <th className="py-2">Meaning</th>
     </tr>
   </thead>
-);
-
-const TableBody = ({ data }) => (
-  <tbody>
-    {data.map((item, i) => (
-      <IslamicNameTableRow key={item.id} islamicName={item} i={i} />
-    ))}
-  </tbody>
-);
-
-const EmptyState = () => (
-  <tbody>
-    <tr>
-      <td colSpan={5} className="text-center py-10 text-gray-500">
-        No Names found
-      </td>
-    </tr>
-  </tbody>
 );
