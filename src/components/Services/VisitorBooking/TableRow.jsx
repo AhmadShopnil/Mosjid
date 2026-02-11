@@ -1,44 +1,28 @@
-import React from "react";
+export default function VisiTorTableRow({ item, i }) {
+  const cell =
+    "border border-gray-300 px-3 py-2 text-center text-sm " +
+    "overflow-x-auto whitespace-nowrap";
 
-export default function VisiTorTableRow({
-  item,
-  i,
+  const slCell =
+    "border border-gray-300 px-2 py-2 text-center text-sm " +
+    "w-[60px] min-w-[60px] max-w-[60px]";
 
-}) {
   return (
-    <tr
-      key={i}
-      className={`${i % 2 === 0 ? "bg-white" : "bg-[#E5F5DE]"} h-[28px]`}
-    >
-      <td className="border border-gray-300 p-3 text-center">01</td>
-      <td className="border border-gray-300 p-3 text-center">Arabic Shopnil</td>
-      <td className="border border-gray-300 p-3 text-center">
-        Mobile
-      </td>
-      <td className="border border-gray-300 p-3 text-center overflow-y-auto">
-        +8801729147191
-      </td>
-      <td className="border border-gray-300 p-3 text-center">
-        Japan
-      </td>
-      <td className="border border-gray-300 p-3 text-center">
-        05
-      </td>
-      <td className="border border-gray-300 p-3 text-center">
-        Gender
-      </td>
-      <td className="border border-gray-300 p-3 text-center">
-        10 July 2025
-      </td>
+    <tr className={`${i % 2 === 0 ? "bg-white" : "bg-[#E5F5DE]"} h-[42px]`}>
+      {/* SL column */}
+      <td className={slCell}>01</td>
 
-      <td className="border border-gray-300 p-3 text-center">2:30</td>
-
-
-      <td className="border border-gray-300 p-3 text-center">Madrasha</td>
-      <td className="border border-gray-300 p-3 text-center">mahfil</td>
-
-
-
+      {/* Other columns */}
+      <td className={cell}>Arabic Shopnil</td>
+      <td className={cell}>Mobile Contact Method</td>
+      <td className={cell}>+8801729147191 ext 999999</td>
+      <td className={cell}>Japan</td>
+      <td className={cell}>05</td>
+      <td className={cell}>Male</td>
+      <td className={cell}>10 July 2025</td>
+      <td className={cell}>2:30 PM</td>
+      <td className={cell}>Madrasha Name Very Very Long</td>
+      <td className={cell}>Mahfil Program Request Very Long Text</td>
     </tr>
   );
 }

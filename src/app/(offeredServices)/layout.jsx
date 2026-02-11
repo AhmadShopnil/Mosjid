@@ -18,6 +18,7 @@ import Breadcrumb from "@/components/Shared/Breadcrumb";
 import Container from "@/components/Shared/Container";
 import ServicesSidebarDrawer from "@/components/Services/Sidebar/ServicesSidebarDrawer";
 import { servicesSideBarCategories } from "@/data/sidebar";
+import BannerBottom from "@/components/BannerBottom/BannerBottom";
 
 
 
@@ -77,12 +78,13 @@ export default async function ServicesLayout({ children }) {
                                             <ServicesSidebarDrawer categories={servicesSideBarCategories} />
                                         </div>
                                         <div className="w-full xl:w-[80%] 0  space-y-6">
-                                             
+
                                             {children}
                                         </div>
                                     </div>
-
+                                    <BannerBottom />
                                 </Container>
+
                                 <Footer />
                                 <ScrollToTopButton />
                                 <Toaster position="top-right" />

@@ -23,27 +23,25 @@ export default function VisitorTable({ loading = false,tableTitle }) {
     <div className="space-y-4">
       {/* Table Section */}
       <div>
-        <div className="px-4 bg-[#52B920] h-[50px] text-white flex items-center justify-between rounded-t-[10px] ">
+        <div className="px-4 py-2 md:py-2 bg-[#52B920]  text-white flex items-center justify-between rounded-t-[10px] ">
           <h2 className="text-lg sm:text-xl ">{tableTitle?.en}</h2>
           <h2 className="text-lg sm:text-xl ">{tableTitle?.jp}</h2>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse table-fixed min-w-[800px]">
-            <TableHeader />
+       <div className="relative overflow-x-auto">
+  <table className="w-full min-w-[1200px] border-collapse table-fixed">
+    <TableHeader />
 
-            {loading ? (
-              <TableSkeleton />
-            ) : data?.length > 0 ? (
-              <TableBody
-                data={data}
-              
-              />
-            ) : (
-              <EmptyState />
-            )}
-          </table>
-        </div>
+    {loading ? (
+      <TableSkeleton />
+    ) : data?.length > 0 ? (
+      <TableBody data={data} />
+    ) : (
+      <EmptyState />
+    )}
+  </table>
+</div>
+
       </div>
 
     
@@ -57,7 +55,7 @@ export default function VisitorTable({ loading = false,tableTitle }) {
 
 
 const TableHeader = () => (
-  <thead>
+  <thead className="hidden md:table-header-group">
     <tr className="bg-[#FEF8EA] h-[42px]">
       {[
         "SL.No",
@@ -70,11 +68,14 @@ const TableHeader = () => (
         "Time",
         "Duration Of Visit",
         "Purpose Of Visit",
-        "Program Request"
+        "Program Request",
       ].map((title, i) => (
         <th
           key={i}
-          className="border border-[#B0C4B8] py-2 text-center text-sm sm:text-base font-normal w-[14.28%]"
+          className={`
+            border border-[#B0C4B8] py-2 text-center text-sm sm:text-base font-normal
+            ${i === 0 ? "w-[60px] min-w-[60px] max-w-[60px]" : ""}
+          `}
         >
           {title}
         </th>
@@ -82,6 +83,7 @@ const TableHeader = () => (
     </tr>
   </thead>
 );
+
 
 const TableBody = ({ data }) => (
   <tbody>

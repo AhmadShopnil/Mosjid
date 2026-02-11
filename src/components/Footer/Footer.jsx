@@ -12,7 +12,7 @@ export default async function Footer() {
 
 
   return (
-    <div className='pt-[200px] lg:pt-[210px]'>
+    <div className='pt-[150px] lg:pt-[150px]'>
       <div
         className='w-full h-[1350px] sm:h-[780px] lg:h-[530px] relative '
         style={{

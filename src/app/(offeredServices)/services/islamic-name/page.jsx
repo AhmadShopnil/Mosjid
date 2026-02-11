@@ -1,8 +1,15 @@
 import IslamicNameSection from '@/components/Services/IslamicName/IslamicNameSection'
 import IslamicNameTopSection from '@/components/Services/IslamicName/IslamicNameTopSection'
+import { getCategories } from '@/helper/actions';
 import React from 'react'
 
-export default function page() {
+export default async function page() {
+
+
+ const categories = await getCategories("blessed-name");
+
+
+
     return (
         <div className='space-y-8'>
             {/* top sections */}
@@ -13,7 +20,7 @@ export default function page() {
 
             {/* list section */}
             <div>
-                <IslamicNameSection />
+                <IslamicNameSection categories={categories} />
             </div>
 
         </div>

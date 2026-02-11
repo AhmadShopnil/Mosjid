@@ -20,6 +20,9 @@ export default function FooterSections({ settings }) {
 
 
   const phone = getMetaValueByMetaName(settings, "company_phone") || "";
+  const second_phone = getMetaValueByMetaName(settings, "second_phone") || "";
+  const third_phone = getMetaValueByMetaName(settings, "third_phone") || "";
+  third_phone
   const company_email = getMetaValueByMetaName(settings, "company_email") || "";
   const facebookLink = getMetaValueByMetaName(settings, "facebook_url") || "#";
   const linkedinLink = getMetaValueByMetaName(settings, "linkedin_url") || "#";
@@ -28,11 +31,11 @@ export default function FooterSections({ settings }) {
   const location = getMetaValueByMetaName(settings, "office_location") || "";
   const looter_logo_path = getMediaLinkByMetaName(settings, "footer_logo");
   const footer_logo_url = `${BASE_URL}${looter_logo_path}`;
-    const website_title_footer = getMetaValueByMetaName(settings, "website_title") || "OSAKA MASJID";
+  const website_title_footer = getMetaValueByMetaName(settings, "website_title") || "OSAKA MASJID";
 
   const footer_content =
     getMetaValueByMetaName(settings, "site_description") || "";
-  
+
 
   // sectionTittles
   const section_1_title = getMetaValueByMetaName(settings, "section_1_title") || "";
@@ -57,6 +60,18 @@ export default function FooterSections({ settings }) {
       icon: <FaPhoneVolume className="text-[#00401A] min-w-[20px]" />,
       iconImage: "/images/footer/calling.svg",
       text: phone,
+    },
+    {
+      id: 2,
+      icon: <FaPhoneVolume className="text-[#00401A] min-w-[20px]" />,
+      iconImage: "/images/footer/calling.svg",
+      text: second_phone,
+    },
+    {
+      id: 2,
+      icon: <FaPhoneVolume className="text-[#00401A] min-w-[20px]" />,
+      iconImage: "/images/footer/calling.svg",
+      text: third_phone,
     },
     {
       id: 3,
@@ -114,7 +129,7 @@ export default function FooterSections({ settings }) {
           <h3 className="text-2xl text-[#00401A] font-bold mb-4 gradient-border_b pb-3.5">
             {section_1_title}
           </h3>
-          <ul className="space-y-4 text-sm text-gray-700">
+          <ul className="space-y-3 text-sm text-gray-700">
             {contactInfo.map((info) => (
               <li key={info.id} className="flex items-start   gap-2.5">
                 <span className=" text-lg bg-[#D9E2DD] p-2 rounded-full w-[36px] h-[36px] ">
