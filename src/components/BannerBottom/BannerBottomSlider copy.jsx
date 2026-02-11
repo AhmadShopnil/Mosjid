@@ -47,7 +47,7 @@ export default function BannerBottomSlider({ banners }) {
       >
         {banners?.map((banner) => (
           <SwiperSlide key={banner.id}>
-            <div className="relative w-full h-[70px] md:h-[220px] lg:h-[260px]">
+            <div className="relative w-full h-[180px] md:h-[220px] lg:h-[260px]">
               <Image
                 src={banner.featured_image}
                 alt={banner.title || "Banner"}
