@@ -6,8 +6,14 @@ import { Autoplay, Navigation } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import "swiper/css";
+import Link from "next/link";
+import { getMetaValueFromExtra_Fields, getMetaValueFromExtraFields } from "@/helper/metaHelpers";
 
 export default function BannerBottomSlider({ banners }) {
+  // const banner_link = getMetaValueFromExtra_Fields(banners, "banner_link");
+
+  // const banner_link2 = getMetaValueFromExtraFields(banners, "banner_link");
+
   return (
     <div className="relative w-full group ">
       {/* Left Button */}
@@ -45,19 +51,27 @@ export default function BannerBottomSlider({ banners }) {
         slidesPerView={1}
         className="rounded-xl overflow-hidden"
       >
-        {banners?.map((banner) => (
-          <SwiperSlide key={banner.id}>
-            <div className="relative w-full h-[70px] md:h-[220px] lg:h-[260px]">
-              <Image
-                src={banner.featured_image}
-                alt={banner.title || "Banner"}
-                fill
-                className="object-fit"
-                priority
-              />
-            </div>
-          </SwiperSlide>
-        ))}
+        {banners?.map((banner) => {
+          const bannerLink = getMetaValueFromExtraFields(banner, "banner_link");
+          // অথবা যদি banner.link থাকে → const bannerLink = banner.link;
+
+          return (
+            <SwiperSlide key={banner.id}>
+              <Link href={bannerLink || "/"}>
+                <div className="relative w-full h-[70px] md:h-[220px] lg:h-[260px] cursor-pointer">
+                  <Image
+                    src={banner.featured_image}
+                    alt={banner.title || "Banner"}
+                    fill
+                    className="object-fit"
+                    priority
+                  />
+                </div>
+              </Link>
+            </SwiperSlide>
+          );
+        })}
+
       </Swiper>
     </div>
   );

@@ -106,9 +106,7 @@ export default function DonationPage({ homePage, settings, formattedCategories, 
 
   return (
     <div>
-
       <div>
-
         <BreadcrumbForNested
           items={[
             { label: "Home", link: "/" },

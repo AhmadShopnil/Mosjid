@@ -35,7 +35,7 @@ export default function BooksCardSuggetion({ book }) {
 
             <div className="flex flex-col items-center mt-4">
                 <p className="text-lg sm:text-xl font-bold text-[#333333] group-hover:text-[#F7BA2A]">{book?.name}</p>
-                {/* <p className="text-xs sm:text-sm text-[#333333]">{writer_name_books}</p> */}
+                <p className="text-xs sm:text-sm text-[#333333]">{book?.sub_title}</p>
             </div>
 
             <div className="mb-4 md:pb-12">

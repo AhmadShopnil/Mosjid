@@ -30,13 +30,9 @@ export default function SingleBook({ homePage, settings, blog, formattedCategori
     const sections = homePage?.sections_on_api;
  
 
-
-
     const islamic_books_ExtraData = sections.find((s) => s.title_slug === "islamic-books");
     const image_arabic = getImageUrl(islamic_books_ExtraData?.image_media);
     const icon = getImageUrl(islamic_books_ExtraData?.background_media);
-
-
 
     // fetching data
     useEffect(() => {
@@ -65,8 +61,6 @@ export default function SingleBook({ homePage, settings, blog, formattedCategori
         fetchBlogs()
     }, [])
 
-
-
     // const requesData={blog?.name} blog 
     const requestData = blog?.name ? `blog of ${blog?.name} ` : "Book"
 
@@ -81,11 +75,9 @@ export default function SingleBook({ homePage, settings, blog, formattedCategori
                         { label: "Books", link: "/books" },
                         { label: selectedParrent?.name, link: "/books" },
                         { label: selected?.name, link: null },
-
                     ]}
                 />
               
-
             </div>
 
 

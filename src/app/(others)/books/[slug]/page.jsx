@@ -53,15 +53,8 @@ export async function generateMetadata({ params }) {
   }
 }
 
-
-
-
-
-
-
 export default async function BookPage({ params }) {
   const { slug } = await params;
-
   const settings = await getSettings();
   const homePage = await getPage("home-sections-heading-management");
   const cat = await getCategories("books_categories")
@@ -80,7 +73,6 @@ export default async function BookPage({ params }) {
         homePage={homePage}
         formattedCategories={formattedCategories}
         blog={book} />
-
     </div>
   )
 }
