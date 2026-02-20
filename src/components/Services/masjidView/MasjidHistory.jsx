@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image"; // Import Next.js Image component
+import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 
 const MasjidHistory = () => {
   const timelineData = [
@@ -47,9 +48,10 @@ const MasjidHistory = () => {
 
   return (
     <section className="mb-6">
+      <SectionTitleRow leftTitle={'Masjid History'} rightTitle={'マスジドの歴史'} />
       <div>
         {/* The Growth Line: Only show on Large screens (4 columns) */}
-        <div className="hidden  lg:block -mb-12.5 relative z-10 pointer-events-none">
+        <div className="hidden  lg:block -mb-12.5 relative z-10 pointer-events-none pt-6">
           <Image
             src="/images/offerServices/masjidView/historyLine.svg"
             alt="Timeline Decoration"

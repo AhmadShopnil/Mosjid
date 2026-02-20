@@ -1,3 +1,4 @@
+import GradientBorder from "@/components/GradientBorder/GradientBorder";
 import React from "react";
 
 const bookings = [
@@ -9,9 +10,10 @@ const bookings = [
 
 const BookingList = () => {
   return (
-    <div className="w-full rounded-2xl border border-green-400 p-6 bg-white">
-      {/* Title */}
-      <h2 className="text-lg font-semibold text-gray-800 mb-4">Booking List</h2>
+      <GradientBorder>
+    <div className="w-full  p-4">
+
+      <h2 className="text-2xl font-semibold text-[#333333] mb-4">Booking List</h2>
 
       {/* Responsive Table */}
       <div className="overflow-x-auto">
@@ -44,7 +46,9 @@ const BookingList = () => {
           </tbody>
         </table>
       </div>
+      {/* Title */}
     </div>
+      </GradientBorder>
   );
 };
 

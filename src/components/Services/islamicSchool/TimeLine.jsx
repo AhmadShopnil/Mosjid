@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 
 const TimeLine = () => {
   const timeLine = [
@@ -15,32 +16,10 @@ const TimeLine = () => {
 
   return (
     <div className="pt-6">
-      <div className="flex flex-wrap justify-between items-center">
-        <h3
-          className=" text-3xl md:text-3xl
-          lg:text-4xl  font-bold text-[#B98C20] pb-5
-          bg-[linear-gradient(to_right,#00401A,white)]
-          bg-no-repeat
-          bg-left-bottom
-          bg-[length:100%_2px]
-        "
-        >
-          Time Line of Islamic School
-        </h3>
-
-        <h3
-          className=" text-3xl md:text-3xl
-          lg:text-4xl font-bold text-[#B98C20] pt-5 md:pt-0  pb-5
-          bg-[linear-gradient(to_left,#00401A,white)]
-          bg-no-repeat
-          bg-right-bottom
-          bg-[length:100%_2px]
-        "
-        >
-          スラーム学校の タイムライン
-        </h3>
-      </div>
-      <div className="w-[90%] lg:block hidden mx-auto h-[20px] mt-5">
+   <div className="mb-8 xl:mb-0">
+       <SectionTitleRow leftTitle={"Time Line of Islamic School"} rightTitle={"スラーム学校の タイムライン"} />
+   </div>
+      <div className="w-[90%] xl:block hidden mx-auto h-[20px] mt-5 mb-8">
         <Image
           src="/images/offerServices/islamicSchool/frame.svg"
           width={1000}
@@ -49,10 +28,11 @@ const TimeLine = () => {
           className="w-full object-contain"
         />
       </div>
-      <div className="grid lg:grid-cols-6  xl:grid-cols-8 grid-cols-2 items-center justify-center sm:grid-cols-4 md:grid-cols-4 gap-[20px]">
+      <div className="flex flex-wrap gap-8 items-center ">
         {timeLine?.map((item, index) => (
-          <div key={index} className="relative w-34 text-center mt-20">
+          <div key={index} className="relative w-34 text-center mt-8">
             <div>
+
               <div className=" ">
                 <img
                   src="/images/offerServices/islamicSchool/r2.svg"
