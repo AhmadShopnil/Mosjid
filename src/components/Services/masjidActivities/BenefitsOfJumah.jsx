@@ -1,5 +1,7 @@
 import React from 'react';
 import Image from 'next/image'; // Import Next.js Image component
+import GradientBorder from '@/components/GradientBorder/GradientBorder';
+import SectionTitleRow from '@/components/SectionTitleRow/SectionTitleRow';
 
 const adhanData = [
   { img: '/images/offerServices/masjidActivities/male.svg', title: "Over 300 men gather" },
@@ -14,10 +16,15 @@ const adhanData = [
 
 const BenefitsOfJumah = () => {
   return (
-    <div className="p-px rounded-2xl bg-gradient-to-b from-[#3198A0] to-[#51F909]">
-      <div className='bg-white p-5'>
+    <div className='pt-16'>
+       <SectionTitleRow leftTitle={'Benefits of Jumuʿah Prayer'} rightTitle={'ジュムア礼拝の利点'} />
+<div className='pt-6'>
+
+    <GradientBorder radius={20} innerClassName='p-[40px]'>
+      <div className='bg-white'>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {adhanData.map((item, index) => (
+          {adhanData?.map((item, index) => (
             <div 
               key={index} 
               className="relative w-full rounded-2xl"
@@ -56,6 +63,46 @@ const BenefitsOfJumah = () => {
           ))}
         </div>
       </div>
+    </GradientBorder>
+         <div className='flex justify-end'>
+                    <div className="flex items-center justify-end space-x-4 p-4  w-fit">
+          
+          {/* Twitter / X */}
+          <button className="flex items-center justify-center w-10 h-10 rounded-full  hover:opacity-90 transition-opacity">
+            <Image src="/images/offerServices/masjidActivities/twitter.svg" alt='twitter'  width="30" height="30" />
+          </button>
+    
+          <div className="h-8 w-[1px] bg-[#BDBDBD]" />
+    
+          {/* Facebook */}
+          <button className="flex items-center justify-center w-10 h-10">
+             <Image src="/images/offerServices/masjidActivities/facebook.svg" alt='facebook' width="30" height="30" />
+          </button>
+    
+          <div className="h-8 w-[1px] bg-[#BDBDBD]" />
+    
+          {/* WhatsApp */}
+          <button className="flex items-center justify-center w-10 h-10">
+           <Image src="/images/offerServices/masjidActivities/whatsapp.svg" alt='whatsapp' width="30" height="30" />
+          </button>
+    
+          <div className="h-8 w-[1px] bg-[#BDBDBD]" />
+    
+          {/* Print */}
+          <button className="flex items-center justify-center w-10 h-10 text-gray-600 hover:text-gray-800">
+           <Image src="/images/offerServices/masjidActivities/printer.svg" alt='printer' width="30" height="30" />
+          </button>
+    
+          <div className="h-8 w-[1px] bg-[#BDBDBD]" />
+    
+          {/* Download */}
+          <button className="flex items-center justify-center w-10 h-10 rounded-full transition-colors">
+             <Image src="/images/offerServices/masjidActivities/download.svg" alt='download'  width="30" height="30" />
+          </button>
+    
+        </div>
+          </div>
+</div>
     </div>
   );
 };

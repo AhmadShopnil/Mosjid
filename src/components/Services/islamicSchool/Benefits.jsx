@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 const Benefits = () => {
   const benefits = [
     {
@@ -45,31 +46,8 @@ const Benefits = () => {
     <div>
       <div className="">
         <div className="bg-[#F9FFF6] mt-10">
-          <div className="flex flex-wrap justify-between items-center">
-            <h3
-              className=" text-3xl md:text-3xl
-          lg:text-4xl  font-bold text-[#B98C20] pb-5
-          bg-[linear-gradient(to_right,#00401A,white)]
-          bg-no-repeat
-          bg-left-bottom
-          bg-[length:100%_2px]
-        "
-            >
-            Islamic School Benefit 
-            </h3>
+          <SectionTitleRow leftTitle={'Islamic School Benefit'} rightTitle={'イスラーム学校の利点'} />
 
-            <h3
-              className=" text-3xl md:text-3xl
-          lg:text-4xl font-bold text-[#B98C20] pt-5 md:pt-0  pb-5
-          bg-[linear-gradient(to_left,#00401A,white)]
-          bg-no-repeat
-          bg-right-bottom
-          bg-[length:100%_2px]
-        "
-            >
-           イスラーム学校の利点
-            </h3>
-          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-[40px] pt-5">
             {benefits?.map((benefit) => (
               <div

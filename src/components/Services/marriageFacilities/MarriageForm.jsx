@@ -1,3 +1,4 @@
+import GradientBorder from '@/components/GradientBorder/GradientBorder';
 import Image from 'next/image';
 import React from 'react';
 
@@ -29,15 +30,29 @@ const MarriageForm = () => {
           <p className="text-[14px] text-[#333333]">サイン</p>
           <p className="font-bold text-[18px] text-[#333333]">Sign <span>:</span></p>
         </div>
-        <div className="w-full md:w-2/3 border border-gray-300 rounded-md p-3 bg-gray-50 text-center text-xs text-gray-400 italic">
+        <div className="md:w-2/3 w-full">
+        <label
+          htmlFor="bride-sign"
+          className="flex items-center justify-center w-full border border-gray-300 rounded-md p-2.5 h-[46px] bg-gray-50 text-center text-xs text-gray-400 cursor-pointer"
+        >
           Attached Signature
-        </div>
+        </label>
+        <input
+          id="bride-sign"
+          type="file"
+          accept="image/*"
+          className="hidden"
+        />
+      </div>
       </div>
     </div>
   );
 
   return (
-    <div className=" bg-white border-green-600 rounded-xl  my-10">
+    <div className='pt-4'>
+      <GradientBorder>
+
+    <div className="p-4">
       
       {/* Header / Top Sections */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -104,27 +119,67 @@ const MarriageForm = () => {
         <div>
           <p className="text-[14px] text-[#333333]">結納金の量と内容</p>
           <p className="font-bold text-[18px] text-[#333333] mb-1">Amount of Dower (Mahar) With Detail</p>
-          <input className="w-full border border-gray-300 rounded-md p-2.5 h-[46px] text-sm" placeholder="Type Now" />
+          <input className="w-full border border-gray-300 outline-none focus:border-[#58b847] rounded-md p-2.5 h-[46px] text-sm" placeholder="Type Now" />
         </div>
       </div>
 
       {/* Signatures & Witnesses */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div className="space-y-4">
-           <div className="flex flex-col md:flex-row md:items-center">
-              <div className="w-1/3"><p className="text-[14px] text-[#333333]">新部のサイン</p><p className="font-bold text-[18px] text-[#333333]">Sign of Groom :</p></div>
-              <div className="w-2/3 border border-gray-300 rounded-md p-2.5 h-[46px] bg-gray-50 text-center text-xs text-gray-400">Attached Signature</div>
-           </div>
-           <WitnessSection />
-        </div>
-        <div className="space-y-4">
-           <div className="flex flex-col md:flex-row md:items-center">
-              <div className="w-1/3"><p className="text-[14px] text-[#333333]">花嫁のサイン</p><p className="font-bold text-[18px] text-[#333333]">Sign of Bride :</p></div>
-              <div className="w-2/3 border border-gray-300 rounded-md p-2.5 h-[46px] bg-gray-50 text-center text-xs text-gray-400">Attached Signature</div>
-           </div>
-           <WitnessSection />
-        </div>
+<div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+  {/* Groom */}
+  <div className="space-y-4">
+    <div className="flex flex-col md:flex-row md:items-center">
+      <div className="w-1/3">
+        <p className="text-[14px] text-[#333333]">新部のサイン</p>
+        <p className="font-bold text-[18px] text-[#333333]">Sign of Groom :</p>
       </div>
+
+      <div className="md:w-2/3 w-full">
+        <label
+          htmlFor="groom-sign"
+          className="flex items-center justify-center w-full border border-gray-300 rounded-md p-2.5 h-[46px] bg-gray-50 text-center text-xs text-gray-400 cursor-pointer"
+        >
+          Attached Signature
+        </label>
+        <input
+          id="groom-sign"
+          type="file"
+          accept="image/*"
+          className="hidden"
+        />
+      </div>
+    </div>
+
+    <WitnessSection />
+  </div>
+
+  {/* Bride */}
+  <div className="space-y-4">
+    <div className="flex flex-col md:flex-row md:items-center">
+      <div className="w-1/3">
+        <p className="text-[14px] text-[#333333]">花嫁のサイン</p>
+        <p className="font-bold text-[18px] text-[#333333]">Sign of Bride :</p>
+      </div>
+
+      <div className="md:w-2/3 w-full">
+        <label
+          htmlFor="bride-sign"
+          className="flex items-center justify-center w-full border border-gray-300 rounded-md p-2.5 h-[46px] bg-gray-50 text-center text-xs text-gray-400 cursor-pointer"
+        >
+          Attached Signature
+        </label>
+        <input
+          id="bride-sign"
+          type="file"
+          accept="image/*"
+          className="hidden"
+        />
+      </div>
+    </div>
+
+    <WitnessSection />
+  </div>
+</div>
+
 
       {/* Certification Footer */}
       <div className="mt-10 text-[#333333] border-gray-300 space-y-2 border-t pt-6">
@@ -139,17 +194,30 @@ const MarriageForm = () => {
         <div>
           <p className="text-[14px]text-[#333333]">名前で厳粛に結婚</p>
           <p className="font-bold text-[#333333] text-[18px] mb-1">Marriage Solemnized By Name</p>
-          <input className="w-full border border-gray-300 rounded-md px-2.5 h-[56px] text-sm" />
+          <input placeholder='Type Now ' className="w-full border border-gray-300 rounded-md outline-none focus:border-[#58b847] px-2.5 h-[56px] text-sm" />
         </div>
         <div>
           <p className="text-[14px] text-[#333333]">住所</p>
           <p className="font-bold text-[#333333] text-[18px] mb-1">Address</p>
-          <input className="w-full border border-gray-300 rounded-md h-[56px] px-3 text-sm" />
+          <input placeholder='Type Now' className="w-full border border-gray-300 rounded-md outline-none focus:border-[#58b847] h-[56px] px-3 text-sm" />
         </div>
         <div>
           <p className=" text-[#333333] text-[14px]">サイン</p>
           <p className="font-bold text-[#333333] text-[18px] mb-1">Sign</p>
-          <div className="border border-gray-300 rounded-md px-2.5 h-[56px] bg-gray-50 text-center text-xs flex items-center justify-center text-gray-400">Attached Signature</div>
+            <div className="md:w-2/3 w-full">
+        <label
+          htmlFor="bride-sign"
+          className="flex items-center justify-center border w-full  border-gray-300 rounded-md p-2.5 h-[56px] bg-gray-50 text-center text-xs text-gray-400 cursor-pointer"
+        >
+          Attached Signature
+        </label>
+        <input
+          id="bride-sign"
+          type="file"
+          accept="image/*"
+          className="hidden"
+        />
+      </div>
         </div>
       </div>
 
@@ -159,6 +227,9 @@ const MarriageForm = () => {
         <button className="bg-[#fde2e2] text-red-600 border border-red-300 px-8 py-2 rounded-md font-bold hover:bg-red-100 transition">Cancel</button>
         <button className="bg-white text-gray-700 border border-green-400 px-8 py-2 rounded-md font-bold hover:bg-green-50 transition">View Certificate</button>
       </div>
+
+    </div>
+      </GradientBorder>
     </div>
   );
 };
