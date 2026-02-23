@@ -33,7 +33,8 @@ export default function MadrashaBenefits() {
         <div className="h-px bg-amber-200 mb-6"></div>
 
         {/* Benefits Row */}
-        <div className="flex md:grid md:grid-cols-8 gap-4  bg-[#fffdf7] border border-[#B98C20] pt-20 px-6 pb-6 rounded-[20px]">
+        <div className="shadow-md grid grid-cols-1 md:grid-cols-4 xl:grid-cols-8 gap-18 xl:gap-4  bg-[#fffdf7] border
+         border-[#FFCE4D] pt-20 px-6 pb-6 rounded-[20px]">
           {benefits.map((benefit, index) => (
             <BenefitCard key={index} title={benefit} />
           ))}
@@ -51,10 +52,10 @@ export default function MadrashaBenefits() {
 
 function BenefitCard({ title }) {
   return (
-    <div className="min-w-[170px] md:min-w-0  border border-amber-300 rounded-xl bg-white px-4 py-5 text-center">
+    <div className="min-w-[170px] md:min-w-0  border-2 border-[#FFCE4D] rounded-xl bg-white px-4 py-5 text-center">
       
       {/* Circle Icon */}
-      <div className="w-24 h-24  -mt-20 mx-auto rounded-full border-2 border-amber-400 flex items-center justify-center bg-white">
+      <div className="w-24 h-24  -mt-20 mx-auto rounded-full border-3 border-amber-400 flex items-center justify-center bg-white">
         <img
           src="/images/offerServices/madrasha/book.svg"
           alt="icon"
@@ -63,7 +64,7 @@ function BenefitCard({ title }) {
       </div>
 
       {/* Text */}
-      <p className="text-sm font-medium text-green-900 leading-snug">
+      <p className="text-sm font-medium text-green-900 leading-snug mt-2">
         {title}
       </p>
     </div>

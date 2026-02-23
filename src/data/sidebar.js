@@ -261,7 +261,7 @@
      isArrow: true,
   },
      {
-     id: "arriage-facilitiesn",
+     id: "arriage-facilities",
      name: "Marriage Facilitiesn",
      subtitle: "祈りの時間",
      targetId: "marriage-facilities",

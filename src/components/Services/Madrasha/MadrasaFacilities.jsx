@@ -18,22 +18,22 @@ export default function MadrasaFacilities() {
   return (
     <div>
 
-   {/* Facilities Header */}
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl md:text-3xl font-semibold text-amber-700">
-            Madrasa Facilities
-          </h2>
-          <span className="text-amber-600 font-medium">
-            マドラサ施設
-          </span>
-        </div>
+      {/* Facilities Header */}
+      <div className="flex justify-between items-center mb-6 ">
+        <h2 className="text-2xl md:text-3xl font-semibold text-[#B98C20]">
+          Madrasa Facilities
+        </h2>
+        <span className="text-2xl md:text-3xl font-semibold text-[#B98C20]">
+          マドラサ施設
+        </span>
+      </div>
 
-        {/* Facilities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 mb-12">
-          {facilities.map((item, index) => (
-            <FacilityCard key={index} title={item} />
-          ))}
-        </div>
+      {/* Facilities Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 mb-12 ">
+        {facilities.map((item, index) => (
+          <FacilityCard key={index} title={item} />
+        ))}
+      </div>
 
     </div>
   )
@@ -42,21 +42,26 @@ export default function MadrasaFacilities() {
 
 function FacilityCard({ title }) {
   return (
-    <div className="flex items-center gap-3 border-2 border-green-800 rounded-xl px-3 py-3 bg-white">
-      
-      {/* Icon Box */}
-      <div className="flex-shrink-0 w-12 h-12 rounded-lg border-2 border-amber-400 flex items-center justify-center bg-[#fffdf7]">
-        <img
-          src="/icons/book.png"
-          alt="icon"
-          className="w-7 h-7 object-contain"
-        />
-      </div>
+    <div className="">
 
-      {/* Text */}
-      <p className="text-sm md:text-[15px] font-medium text-green-900 leading-snug">
-        {title}
-      </p>
+      <div className='flex items-center  '>
+
+        {/* Icon Box */}
+        <div className="z-10 w-[80px] h-[80px] flex-shrink-0  rounded-lg border-3 border-[#FFCE4D] flex items-center justify-center bg-[#fffdf7]">
+          <img
+            src="/images/offerServices/madrasha/book.svg"
+            alt="icon"
+            className="w-[60px] h-[60px] object-contain"
+          />
+        </div>
+
+        {/* Text */}
+        <div className='-ml-2  border-2 border-[#005312] rounded-lg px-4 py-4.5 bg-white w-full h-[94px] flex items-center'>
+          <p className="text-sm md:text-[18px] font-semibold text-[#005312] leading-snug">
+            {title}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

@@ -3,13 +3,19 @@
 import React from "react";
 import MadrashaBenefits from "./MadrashaBenefits";
 import MadrasaFacilities from "./MadrasaFacilities";
+import Image from "next/image";
+import MadrashaTimeline from "./MadrashaTimeline";
 
 
 
 
-export default function MadrasaSection() {
+export default function MadrasaSection({ madrashaPageData }) {
+
+
+
   return (
-    <section className="w-full ">
+    <section className="w-full space-y-4 md:space-y-6 ">
+     <MadrashaTimeline timeLineImage={madrashaPageData?.featured_image}/>
 
       <MadrasaFacilities />
 

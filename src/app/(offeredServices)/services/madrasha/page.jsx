@@ -1,10 +1,14 @@
 import MadrasaSection from '@/components/Services/Madrasha/page'
+import { getPage } from '@/helper/actions'
 import React from 'react'
 
-export default function page() {
+export default async function page() {
+
+const madrashaPageData = await getPage("madrasha-2")
+
   return (
     <div>
-<MadrasaSection/>
+      <MadrasaSection madrashaPageData={madrashaPageData} />
 
     </div>
   )
