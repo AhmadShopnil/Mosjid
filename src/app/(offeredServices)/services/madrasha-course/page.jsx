@@ -67,8 +67,6 @@ export default function IslamicCurriculum() {
             <div className="mt-10 border-2 border-[#FFCE4D] rounded-[40px] p-4 bg-[#F9FFF2]">
 
                 <div className=" border-2 border-[#FFCE4D] rounded-[40px] p-4 bg-[#F9FFF2]">
-
-
                     {/* big screen */}
                     <div className=" hidden xl:flex">
                         {/* Left Column */}
@@ -127,6 +125,9 @@ export default function IslamicCurriculum() {
 
 
                 </div>
+
+
+
 
 
                 {/* Bottom Section */}

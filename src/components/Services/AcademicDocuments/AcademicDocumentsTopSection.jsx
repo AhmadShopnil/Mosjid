@@ -32,10 +32,10 @@ export default function AcademicDocumentsTopSection() {
                 {/* title */}
                 <div className="flex flex-wrap justify-between">
                     <h3 className="text-[#B98C20] text-[36px] font-bold mb-3 pb-3">
-                        HALAL CERTIFICATE
+                        Academic Documents
                     </h3>
                     <h3 className="text-[#B98C20] text-[36px] font-bold text-end mb-3 pb-3">
-                        ハラール認証
+                       学術文書
                     </h3>
                 </div>
 
@@ -44,7 +44,7 @@ export default function AcademicDocumentsTopSection() {
                     <div>
 
                         <p className="text-[#B98C20] text-base mt-2 ">
-                            Welcome to the House of Allah. We ask all visitors to uphold modesty, respect, and cleanliness during their time in the Masjid.
+                           Welcome to the House of Allah. We ask all visitors to uphold modesty, respect, and cleanliness during their time in the Masjid.
                         </p>
 
                         <div className="">
