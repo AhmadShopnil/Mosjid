@@ -241,11 +241,11 @@
      isArrow: true,
   },
      {
-     id: "academic-documents",
+     id: "madrasha",
      name: "Madrasha",
      subtitle: "祈りの時間",
-     targetId: "academic-documents",
-     link: "/academic-documents",
+     targetId: "madrasha",
+     link: "/madrasha",
      icon: "/images/QuickLinks/offer-service.png",
      activeIcon: "/images/QuickLinks/hover/Blog & event.png",
      isArrow: true,
@@ -261,7 +261,7 @@
      isArrow: true,
   },
      {
-     id: "arriage-facilitiesn",
+     id: "arriage-facilities",
      name: "Marriage Facilitiesn",
      subtitle: "祈りの時間",
      targetId: "marriage-facilities",

@@ -1,3 +1,5 @@
+import GradientBorder from "@/components/GradientBorder/GradientBorder";
+import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 import Image from "next/image";
 
 const MasjidBenefits = () => {
@@ -15,37 +17,34 @@ const MasjidBenefits = () => {
   return (
     <div>
       <div className="pt-6">
-        <div className="rounded-b-[30px] p-[1px] bg-[linear-gradient(180deg,_#3198A0_0%,_#51F909_100%)]">
-          <div className="rounded-b-[29px] bg-[linear-gradient(96.62deg,_#FFFFFF_0.29%,_#FDF2FF_99.59%)] p-6">
+      
+          <GradientBorder>
+        <div className=" p-4">
             {/* Header Section */}
-            <div className="flex flex-col sm:flex-row justify-between items-baseline border-b border-gray-200 pb-3 mb-8">
-              <h2 className="text-3xl font-serif font-bold text-[#B98C20]">
-                Masjid Benefits
-              </h2>
-              <h2 className="text-3xl font-serif font-bold text-[#B98C20]">
-                マスジドの利点
-              </h2>
-            </div>
+               <SectionTitleRow leftTitle={'Masjid Benefits'} rightTitle={'マスジドの利点'} c />
+  
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
-              {benefitsData.map((benefit) => (
-                <div key={benefit.id} className="flex items-center gap-4">
-                  <div className="w-9 h-9">
-                    <Image
-                      src="/images/offerServices/masjidView/checkMark.svg"
-                      alt="Checkmark"
-                      width={36}
-                      height={36}
-                    />
-                  </div>
-                  <p className="text-[#333333] text-base md:text-2xl">
-                    {benefit.text}
-                  </p>
-                </div>
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6  pt-6">
+          {benefitsData.map((benefit) => (
+  <div key={benefit.id} className="flex items-center gap-4">
+    {/* Added flex-shrink-0 to ensure the width stays exactly 36px */}
+    <div className="w-9 h-9 flex-shrink-0"> 
+      <Image
+        src="/images/offerServices/masjidView/elements.svg"
+        alt="Checkmark"
+        width={36}
+        height={36}
+        className="w-full h-full object-contain" // Ensures image fills the 36px perfectly
+      />
+    </div>
+    <p className="text-[#333333] text-base md:text-2xl leading-tight">
+      {benefit.text}
+    </p>
+  </div>
+))}
             </div>
-          </div>
         </div>
+          </GradientBorder>
       </div>
 
       {/* Top Div with Gradient Border and 30px Radius */}

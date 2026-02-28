@@ -1,28 +1,42 @@
-
+'use client'
+import { useState } from "react";
+import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 
 const Booking = () => {
+  const [values, setValues] = useState({
+    applicantName: "",
+    eventType: "",
+    eventDate: "",
+    startTime: "",
+    endTime: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(values);
+  };
+
   return (
     <section
       className="
         rounded-[30px]
-        bg-[linear-gradient(rgba(249,255,246,0.9),rgba(249,255,246,0.9)),url('/public/images/MariageFacilities/booking.png')]
+        bg-[linear-gradient(rgba(249,255,246,0.9),rgba(249,255,246,0.6)),url('/public/images/MariageFacilities/booking.png')]
         bg-cover
         bg-center
         bg-no-repeat
       "
     >
-      <div className="p-4 md:p-8">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-baseline border-b border-gray-200 pb-3 mb-8">
-          <h2 className="text-3xl font-bold text-[#B98C20]">
-            Masjid Benefits
-          </h2>
-          <h2 className="text-3xl font-bold text-[#B98C20]">
-            マスジドの利点
-          </h2>
-        </div>
+      <div className="p-4">
+        <SectionTitleRow
+          leftTitle={"Marriage Event Booking"}
+          rightTitle={"結婚イベント予約"}
+        />
 
-        {/* Content */}
         <div className="bg-orange-50/30 flex items-center justify-center p-6 rounded-2xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
             {/* LEFT */}
@@ -43,7 +57,7 @@ const Booking = () => {
                       src={`/images/offerServices/marriageFacilities/${item.icon}`}
                       alt=""
                     />
-                    <span className="text-[#B98C20] font-bold whitespace-pre-line">
+                    <span className="text-[#B98C20] font-bold text-base">
                       {item.label}
                     </span>
                   </div>
@@ -52,35 +66,117 @@ const Booking = () => {
             </div>
 
             {/* RIGHT */}
-            <div className="space-y-5 text-[#B98C20]">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-5 text-[#B98C20]"
+            >
               {[
-                "Applicant Name",
-                "Event Type",
-                "Event Date",
-                "Start Time",
-                "End Time",
-              ].map((label, i) => (
-                <div key={i} className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
-                  <label className="font-bold">{label}</label>
-                  <input
-                    className="sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 h-14 bg-white/50 focus:outline-none"
-                  />
+                {
+                  label: "Applicant Name",
+                  name: "applicantName",
+                  type: "text",
+                  placeholder: "Enter full name",
+                  tag: "input",
+                },
+                {
+                  label: "Event Type",
+                  name: "eventType",
+                  tag: "select",
+                  options: [
+                    "Wedding",
+                    "Seminar",
+                    "Conference",
+                    "Party",
+                    "Other",
+                  ],
+                },
+                {
+                  label: "Event Date",
+                  name: "eventDate",
+                  type: "date",
+                  tag: "input",
+                },
+                {
+                  label: "Start Time",
+                  name: "startTime",
+                  type: "time",
+                  tag: "input",
+                },
+                {
+                  label: "End Time",
+                  name: "endTime",
+                  type: "time",
+                  tag: "input",
+                },
+              ].map((field) => (
+                <div
+                  key={field.name}
+                  className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center"
+                >
+                  <label className="font-bold">{field.label}</label>
+
+                  {field.tag === "select" ? (
+                    <select
+                      name={field.name}
+                      value={values[field.name]}
+                      onChange={handleChange}
+                      className="sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 h-14 bg-white/50 focus:outline-none appearance-none"
+                    >
+                      <option value="" disabled>
+                        Select an event type
+                      </option>
+                      {field.options.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <input
+                      name={field.name}
+                      type={field.type}
+                      value={values[field.name]}
+                      onChange={handleChange}
+                      placeholder={field.placeholder || ""}
+                      className="sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 h-14 bg-white/50 focus:outline-none"
+                    />
+                  )}
                 </div>
               ))}
 
               {/* Buttons */}
               <div className="flex flex-col sm:flex-row justify-end gap-3 pt-6">
-                <div className="p-px rounded-xl bg-gradient-to-b from-[#3198A0] to-[#51F909] w-full sm:max-w-[43.75rem]">
-                  <button className="w-full h-14 rounded-[11px] bg-white font-medium hover:bg-green-50">
-                    Submit Booking
-                  </button>
-                </div>
+                <button
+                  type="submit"
+                  className="w-full h-14 rounded-xl text-[#333333] font-medium transition-colors hover:opacity-90 sm:max-w-[43.75rem]"
+                  style={{
+                    border: "2px solid transparent",
+                    backgroundImage:
+                      "linear-gradient(white, white), linear-gradient(to bottom, #3198A0, #51F909)",
+                    backgroundOrigin: "border-box",
+                    backgroundClip: "padding-box, border-box",
+                  }}
+                >
+                  Submit Booking
+                </button>
 
-                <button className="border border-red-500 text-red-500 h-14 w-full sm:max-w-[22.75rem] rounded-xl font-medium hover:bg-red-50">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setValues({
+                      applicantName: "",
+                      eventType: "",
+                      eventDate: "",
+                      startTime: "",
+                      endTime: "",
+                    })
+                  }
+                  className="border border-[#FF0000] text-[#FF0000] bg-[#FFE9E9] h-14 w-full sm:max-w-[22.75rem] rounded-xl font-medium hover:bg-red-50 transition-colors"
+                >
                   Cancel
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -88,4 +184,4 @@ const Booking = () => {
   );
 };
 
-export default Booking;        
+export default Booking;

@@ -62,19 +62,19 @@ export default function FooterSections({ settings }) {
       text: phone,
     },
     {
-      id: 2,
+      id: 3,
       icon: <FaPhoneVolume className="text-[#00401A] min-w-[20px]" />,
       iconImage: "/images/footer/calling.svg",
       text: second_phone,
     },
     {
-      id: 2,
+      id: 4,
       icon: <FaPhoneVolume className="text-[#00401A] min-w-[20px]" />,
       iconImage: "/images/footer/calling.svg",
       text: third_phone,
     },
     {
-      id: 3,
+      id: 5,
       icon: <FaEnvelope className="text-[#00401A] min-w-[20px]" />,
       iconImage: "/images/footer/mail2.svg",
       text: company_email,

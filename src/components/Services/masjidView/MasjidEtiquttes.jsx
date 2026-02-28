@@ -1,3 +1,5 @@
+import GradientBorder from "@/components/GradientBorder/GradientBorder";
+import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 import Image from "next/image";
 import React from "react";
 
@@ -32,25 +34,19 @@ const MasjidEtiquttes = () => {
 
   return (
     <div className="mt-6">
-      <div className="rounded-[30px] p-[1px] bg-[linear-gradient(180deg,_#3198A0_0%,_#51F909_100%)]">
-        <div className=" rounded-[29px] bg-[linear-gradient(96.62deg,_#F4FFF2_0.29%,_#FFFFFF_99.59%)] p-8">
-          {/* Header Section */}
-          <div className="flex flex-col sm:flex-row justify-between items-baseline border-b border-gray-200 pb-3 mb-8">
-            <h2 className="text-3xl font-serif font-bold text-[#B98C20]">
-              Masjid Etiquettes
-            </h2>
-            <h2 className="text-3xl font-serif font-bold text-[#B98C20]">
-              マスジドのマナー
-            </h2>
-          </div>
+      {/* rounded-[29px] bg-[linear-gradient(96.62deg,_#F4FFF2_0.29%,_#FFFFFF_99.59%)] */}
+      <GradientBorder>
+        <div className="  p-4">
+  
+          <SectionTitleRow leftTitle={'Masjid Etiquttes'} rightTitle={'マスジドのマナー'} />
 
           {/* Responsive Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 pt-6">
             {masjidEtiquttes.map((benefit) => (
               <div key={benefit.id} className="flex items-center gap-4">
                 <div className="shrink-0 mt-1 w-9 h-9">
                   <Image
-                    src="/images/offerServices/masjidView/checkMark.svg"
+                    src="/images/offerServices/masjidView/elements.svg"
                     alt="Checkmark"
                     width={36}
                     height={36}
@@ -64,7 +60,7 @@ const MasjidEtiquttes = () => {
             ))}
           </div>
         </div>
-      </div>
+      </GradientBorder>
     </div>
   );
 };

@@ -36,7 +36,7 @@ const IslamicSchoolHeader = () => {
                     sm:text-4xl 
                     md:text-5xl 
                     lg:text-6xl 
-                    xl:text-7xl 
+               
                     font-bold 
                     md:pl-[30.63px]
                     bg-gradient-to-b 
@@ -49,7 +49,7 @@ const IslamicSchoolHeader = () => {
                     hover:scale-[1.02]
                   "
                         >
-                          Islamic School Development
+                          Islamic School Development Overview
                         </h2>
         
                         {/* Right-side image */}
@@ -81,17 +81,35 @@ const IslamicSchoolHeader = () => {
                           Timeline of Islamic School
                         </button>
         
-                        <button className="group relative inline-block rounded-[16px] p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909] transition-all duration-300 ease-in-out hover:scale-[1.03]">
-                          <span className="block rounded-[15px] bg-white px-4 py-[14px] font-bold text-[#333333] transition-all duration-300 ease-in-out group-hover:bg-gradient-to-b group-hover:from-[#3198A0] group-hover:to-[#51F909] group-hover:text-white group-hover:scale-[1.03]">
-                            Facilities of Islamic School
-                          </span>
-                        </button>
-        
-                        <button className="group relative inline-block rounded-[16px] p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909] transition-all duration-300 ease-in-out hover:scale-[1.03]">
-                          <span className="block rounded-[15px] bg-white px-4 py-[14px] font-bold text-[#333333] transition-all duration-300 ease-in-out group-hover:bg-gradient-to-b group-hover:from-[#3198A0] group-hover:to-[#51F909] group-hover:text-white group-hover:scale-[1.03]">
-                            Benefits of Islamic School
-                          </span>
-                        </button>
+<button 
+  className="group relative inline-block transition-all duration-300 ease-in-out hover:scale-[1.03]"
+  style={{
+    border: '1px solid transparent',
+    borderRadius: '16px',
+    backgroundImage: 'linear-gradient(white, white), linear-gradient(to bottom, #3198A0, #51F909)',
+    backgroundOrigin: 'border-box',
+    backgroundClip: 'padding-box, border-box'
+  }}
+>
+  <span className="block px-4 py-[14px] font-bold text-[#333333] transition-all duration-300 ease-in-out group-hover:bg-gradient-to-b group-hover:from-[#3198A0] group-hover:to-[#51F909] group-hover:text-white group-hover:rounded-[15px]">
+    Facilities of Islamic School
+  </span>
+</button>
+
+<button 
+  className="group relative inline-block transition-all duration-300 ease-in-out hover:scale-[1.03]"
+  style={{
+    border: '1px solid transparent',
+    borderRadius: '16px',
+    backgroundImage: 'linear-gradient(white, white), linear-gradient(to bottom, #3198A0, #51F909)',
+    backgroundOrigin: 'border-box',
+    backgroundClip: 'padding-box, border-box'
+  }}
+>
+  <span className="block px-4 py-[14px] font-bold text-[#333333] transition-all duration-300 ease-in-out group-hover:bg-gradient-to-b group-hover:from-[#3198A0] group-hover:to-[#51F909] group-hover:text-white group-hover:rounded-[15px]">
+    Benefits of Islamic School
+  </span>
+</button>
                       </div>
                     </div>
                   </div>

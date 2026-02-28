@@ -1,70 +1,100 @@
-import React from 'react'
+import React from "react";
 
-
-const academicFocus = ["Basic literacy", "Numeracy", "General knowledge", "Early social skills"]
-const religiousFocus = ["Qaida Nooraniyah", "Nazirah al-Qur'an", "Akhlaq (manners)", "Seerah stories"]
-const outcomes = ["Islamic Etiquette", "Child ready for schooling", "Qur'an recitation fluency", "Spiritual Maturity"]
-
-
-
-
-
+const academicFocus = ["Basic literacy", "Numeracy", "General knowledge", "Early social skills"];
+const religiousFocus = ["Qaida Nooraniyah", "Nazirah al-Qur'an", "Akhlaq (manners)", "Seerah stories"];
+const outcomes = ["Islamic Etiquette", "Child ready for schooling", "Qur'an recitation fluency", "Spiritual Maturity"];
 
 export default function CardCurriculum({ curriculum }) {
-    return (
-        <div className=' h-[500px]'>
+  return (
+    <div className="w-full">
 
-            <div
-                className='relative curriculum bg-[#EEF8E9] w-full h-[350px] border-8 border-[#FFCE4D] rounded-[110px]'
-            >
+      {/* ================= DESKTOP / LARGE SCREEN ================= */}
+      <div className="hidden lg:block h-[500px]">
+        <div className="relative bg-[#EEF8E9] w-full h-[350px] border-8 border-[#FFCE4D] rounded-[110px]">
 
-                <div className='absolute left-20 right-20 top-6  w-auto h-[150px]  flex justify-between'>
+          {/* Header */}
+          <div className="absolute left-20 right-20 top-6 flex justify-between">
+            <div className="flex gap-8">
+              <span className="text-[60px] font-bold text-[#B98C20]">
+                {curriculum?.no}
+              </span>
 
-                    <div className=' flex gap-8'>
-                        <div>
-                            <span className='text-[60px] font-bold text-[#B98C20]  '>{curriculum?.no}</span>
-                        </div>
-                        <div className='space-y-1 pt-4'>
-                            <p className='text-[20px] font-semibold text-[#B98C20]'>{curriculum?.title}</p>
-                            <p className='text-[20px] font-semibold text-[#B98C20]'>{curriculum?.ageGroup}</p>
-
-                        </div>
-                    </div>
-                    <div className='space-y-1 pt-4'>
-                        <p className='text-[20px] font-semibold text-[#B98C20]'>{curriculum?.titleJapanese}</p>
-                        <p className='text-[20px] font-semibold text-[#B98C20]'>{curriculum?.ageGroupJapanese}</p>
-                    </div>
-                </div>
-
-
-                <div className='absolute bg-white rounded-tl-[60px] w-[90%] h-[220px] -right-2 -bottom-2'>
-
-                    <div className='w-full h-[221px]  flex justify-end relative  
-                border-8 border-l-[#FFCE4D] border-t-[#FFCE4D] border-b-white border-r-white  rounded-tl-[60px]  '
-                    >
-                        <div className='absolute  w-[98%] h-[300px]  top-8'>
-                            <div className='grid grid-cols-1 xl:grid-cols-3 gap-2'>
-                                <Card title="Academic Focus" items={academicFocus} />
-                                <Card title="Religious Focus" items={religiousFocus} />
-                                <Card title="Outcomes" items={outcomes} />
-                            </div>
-                        </div>
-
-
-
-                    </div>
-
-                </div>
-
-
-
+              <div className="space-y-1 pt-4">
+                <p className="text-[20px] font-semibold text-[#B98C20]">
+                  {curriculum?.title}
+                </p>
+                <p className="text-[20px] font-semibold text-[#B98C20]">
+                  {curriculum?.ageGroup}
+                </p>
+              </div>
             </div>
+
+            <div className="space-y-1 pt-4 text-right">
+              <p className="text-[20px] font-semibold text-[#B98C20]">
+                {curriculum?.titleJapanese}
+              </p>
+              <p className="text-[20px] font-semibold text-[#B98C20]">
+                {curriculum?.ageGroupJapanese}
+              </p>
+            </div>
+          </div>
+
+          {/* Bottom Panel */}
+          <div className="absolute bg-white rounded-tl-[60px] w-[90%] h-[220px] -right-2 -bottom-2">
+            <div className="w-full h-[221px] flex justify-end relative border-8 border-l-[#FFCE4D] border-t-[#FFCE4D] border-b-white border-r-white rounded-tl-[60px]">
+              <div className="absolute w-[98%] top-8">
+                <div className="grid grid-cols-3 gap-2">
+                  <Card title="Academic Focus" items={academicFocus} />
+                  <Card title="Religious Focus" items={religiousFocus} />
+                  <Card title="Outcomes" items={outcomes} />
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-    )
+      </div>
+
+      {/* ================= MOBILE / SMALL SCREEN ================= */}
+      <div className="lg:hidden bg-[#EEF8E9] border-4 border-[#FFCE4D] rounded-[30px] p-4 space-y-4">
+
+        {/* Header */}
+        <div className="flex justify-between items-start">
+          <div className="flex gap-3">
+            <span className="text-[36px] font-bold text-[#B98C20]">
+              {curriculum?.no}
+            </span>
+
+            <div>
+              <p className="text-[16px] font-semibold text-[#B98C20]">
+                {curriculum?.title}
+              </p>
+              <p className="text-[14px] text-[#B98C20]">
+                {curriculum?.ageGroup}
+              </p>
+            </div>
+          </div>
+
+          <div className="text-right">
+            <p className="text-[15px] font-semibold text-[#B98C20]">
+              {curriculum?.titleJapanese}
+            </p>
+            <p className="text-[13px] text-[#B98C20]">
+              {curriculum?.ageGroupJapanese}
+            </p>
+          </div>
+        </div>
+
+        {/* Cards stacked */}
+        <div className="space-y-5 ">
+          <Card title="Academic Focus" items={academicFocus} />
+          <Card title="Religious Focus" items={religiousFocus} />
+          <Card title="Outcomes" items={outcomes} />
+        </div>
+      </div>
+    </div>
+  );
 }
-
-
-
 
 
 function Card({ title, items }) {
@@ -81,7 +111,7 @@ function Card({ title, items }) {
                         top: "-18px",
                     }}
                 >
-                    <span className='text-[18px]'> {title}</span>
+                    <span className='text-[15px] lg:text-[18px]'> {title}</span>
                 </div>
 
                 {/* List Items */}
@@ -89,8 +119,8 @@ function Card({ title, items }) {
                     <ul className="space-y-2">
                         {items.map((item, index) => (
                             <li key={index} className="flex items-center gap-3 border-b border-b-[#E0E0E0] pb-3 ">
-                                <span className="w-4 h-4 rounded-full flex-shrink-0 bg-[#52B920]" />
-                                <span className="text-[#333333] text-[18px]">{item}</span>
+                                <span className="w-4 h-4  rounded-full flex-shrink-0 bg-[#52B920]" />
+                                <span className="text-[#333333] text-[15px] lg:text-[18px]">{item}</span>
                             </li>
                         ))}
                     </ul>
@@ -106,7 +136,7 @@ function Card({ title, items }) {
                     <button
                         type="button"
                         aria-label="view"
-                        className="w-full px-2 py-2 text-[16px] text-[#3E8B18] font-bold rounded-[10px] bg-[#C9E9BA]"
+                        className="w-full px-2 py-2 text-[12px] lg:text-[16px] text-[#3E8B18] font-bold rounded-[10px] bg-[#C9E9BA]"
 
                     >
                         View in Details
@@ -119,7 +149,7 @@ function Card({ title, items }) {
                     <button
                         type="button"
                         aria-label="view"
-                        className="w-full px-2 py-2 text-[16px] font-bold text-white rounded-[10px] bg-[#52B920]"
+                        className="w-full px-2 py-2 text-[12px] lg:text-[16px] font-bold text-white rounded-[10px] bg-[#52B920]"
 
                     >
                         View in Japanese

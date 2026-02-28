@@ -1,4 +1,5 @@
 import { Download, Facebook, Printer, Twitter, Wheat } from "lucide-react";
+import Image from "next/image";
 import React from "react";
 
 // Custom SVG to create the inward curve (notch)
@@ -55,42 +56,44 @@ const EidPrayer = ({ number = "01", title = "Opening Bayan", subtitle = "(Religi
           </div>
         </div>
         <div >
-            <div className="flex items-center justify-end space-x-4 p-4  w-fit">
-      
-      {/* Twitter / X */}
-      <button className="flex items-center justify-center w-10 h-10 rounded-full  hover:opacity-90 transition-opacity">
-        <img src="/images/offerServices/masjidActivities/twitter.svg" alt="" />
-      </button>
-
-      <div className="h-8 w-[1px] bg-[#BDBDBD]" />
-
-      {/* Facebook */}
-      <button className="flex items-center justify-center w-10 h-10">
-         <img src="/images/offerServices/masjidActivities/facebook.svg" alt="" />
-      </button>
-
-      <div className="h-8 w-[1px] bg-[#BDBDBD]" />
-
-      {/* WhatsApp */}
-      <button className="flex items-center justify-center w-10 h-10">
-       <img src="/images/offerServices/masjidActivities/whatsapp.svg" alt="" />
-      </button>
-
-      <div className="h-8 w-[1px] bg-[#BDBDBD]" />
-
-      {/* Print */}
-      <button className="flex items-center justify-center w-10 h-10 text-gray-600 hover:text-gray-800">
-       <img src="/public/offerServices/images/masjidActivities/printer.svg" alt="" />
-      </button>
-
-      <div className="h-8 w-[1px] bg-[#BDBDBD]" />
-
-      {/* Download */}
-      <button className="flex items-center justify-center w-10 h-10 rounded-full transition-colors">
-         <img src="/public/offerServices/images/masjidActivities/download.svg" alt="" />
-      </button>
-
-    </div>
+      <div className='flex justify-end'>
+                 <div className="flex items-center justify-end space-x-4 p-4  w-fit">
+       
+       {/* Twitter / X */}
+       <button className="flex items-center justify-center w-10 h-10 rounded-full  hover:opacity-90 transition-opacity">
+         <Image src="/images/offerServices/masjidActivities/twitter.svg" alt='twitter'  width="30" height="30" />
+       </button>
+ 
+       <div className="h-8 w-[1px] bg-[#BDBDBD]" />
+ 
+       {/* Facebook */}
+       <button className="flex items-center justify-center w-10 h-10">
+          <Image src="/images/offerServices/masjidActivities/facebook.svg" alt='facebook' width="30" height="30" />
+       </button>
+ 
+       <div className="h-8 w-[1px] bg-[#BDBDBD]" />
+ 
+       {/* WhatsApp */}
+       <button className="flex items-center justify-center w-10 h-10">
+        <Image src="/images/offerServices/masjidActivities/whatsapp.svg" alt='whatsapp' width="30" height="30" />
+       </button>
+ 
+       <div className="h-8 w-[1px] bg-[#BDBDBD]" />
+ 
+       {/* Print */}
+       <button className="flex items-center justify-center w-10 h-10 text-gray-600 hover:text-gray-800">
+        <Image src="/images/offerServices/masjidActivities/printer.svg" alt='printer' width="30" height="30" />
+       </button>
+ 
+       <div className="h-8 w-[1px] bg-[#BDBDBD]" />
+ 
+       {/* Download */}
+       <button className="flex items-center justify-center w-10 h-10 rounded-full transition-colors">
+          <Image src="/images/offerServices/masjidActivities/download.svg" alt='download'  width="30" height="30" />
+       </button>
+ 
+     </div>
+       </div>
     </div> 
       </div>
     </div>

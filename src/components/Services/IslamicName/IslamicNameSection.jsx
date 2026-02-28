@@ -7,7 +7,7 @@ import IslamicNameTableRow from "./IslamicNameTableRow";
 import IslamicNameSearch from "./IslamicNameSearch";
 import BlessedNameTabs from "./BlessedNameTabs";
 import SocialShare from "@/components/Shared/SocialShare";
-import { TableSkeleton } from "../Skeletons/TableSkeleton";
+
 import axiosInstance from "@/helper/axiosInstance";
 import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 
@@ -158,3 +158,19 @@ const TableHeader = () => (
     </tr>
   </thead>
 );
+
+ const TableSkeleton = () => {
+  return (
+    <>
+      {Array.from({ length: 6 }).map((_, i) => (
+        <tr key={i} className="animate-pulse">
+          <td className="py-3 px-2"><div className="h-4 bg-gray-200 rounded" /></td>
+          <td className="py-3 px-2"><div className="h-4 bg-gray-200 rounded" /></td>
+          <td className="py-3 px-2"><div className="h-4 bg-gray-200 rounded" /></td>
+          <td className="py-3 px-2"><div className="h-4 bg-gray-200 rounded" /></td>
+          <td className="py-3 px-2"><div className="h-4 bg-gray-200 rounded" /></td>
+        </tr>
+      ))}
+    </>
+  );
+};

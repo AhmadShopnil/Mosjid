@@ -8,6 +8,8 @@ import {
   Library,
   ArrowLeftRight
 } from 'lucide-react';
+import SectionTitleRow from '@/components/SectionTitleRow/SectionTitleRow';
+import GradientBorder from '@/components/GradientBorder/GradientBorder';
 
 const FacilitiesSection = () => {
   // 1. JSON Data Structure for easy management
@@ -53,7 +55,12 @@ const FacilitiesSection = () => {
     <section>
       {/* Main Container with rounded green border matching your design */}
       <div>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+      <GradientBorder>
+        <div  className='p-4'>
+
+      <SectionTitleRow leftTitle={'Masjid Facilities'} rightTitle={'マスジドの設備'} />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-6">
           {/* LEFT/TOP: Facilities List (8 columns on desktop) */}
           <div className="lg:col-span-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-4">
@@ -85,6 +92,8 @@ const FacilitiesSection = () => {
           </div>
 
         </div>
+        </div>
+      </GradientBorder>
       </div>
     </section>
   );
