@@ -16,9 +16,14 @@ export const getMetaValueByMetaName = (data, metaName) => {
   return foundItem ? foundItem.meta_value : null;
 };
 
+// export const getMetaValueFromExtraFields = (jsonData, metaName) => {
+//   //console.log(jsonData?.extraFields);
+//   const foundItem = jsonData?.extraFields?.find((item) => item.meta_name === metaName);
+//   return foundItem ? foundItem.meta_value : null;
+// };
 export const getMetaValueFromExtraFields = (jsonData, metaName) => {
   //console.log(jsonData?.extraFields);
-  const foundItem = jsonData?.extraFields?.find((item) => item.meta_name === metaName);
+  const foundItem = jsonData?.extra_fields?.find((item) => item.meta_name === metaName);
   return foundItem ? foundItem.meta_value : null;
 };
 
@@ -30,11 +35,17 @@ export const getMetaValueFromExtra_Fields = (jsonData, metaName) => {
 
 
 
+// export const getImageFromExtraFields = (jsonData, metaName) => {
+//   //console.log(jsonData?.extraFields);
+//   const foundItem = jsonData?.extraFields?.find((item) => item.meta_name === metaName);
+//   return foundItem ? foundItem.single_image_url : null;
+// };
 export const getImageFromExtraFields = (jsonData, metaName) => {
   //console.log(jsonData?.extraFields);
-  const foundItem = jsonData?.extraFields?.find((item) => item.meta_name === metaName);
+  const foundItem = jsonData?.extra_fields?.find((item) => item.meta_name === metaName);
   return foundItem ? foundItem.single_image_url : null;
 };
+
 
 
 

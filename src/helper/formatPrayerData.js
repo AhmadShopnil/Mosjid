@@ -20,8 +20,8 @@ export function formatPrayerData(data) {
     };
 
     // Add extraFields into the same object
-    item.extraFields?.forEach(field => {
-      formatted[field.meta_name] = field.meta_value || null;
+    item?.extra_fields?.forEach(field => {
+      formatted[field?.meta_name] = field.meta_value || null;
     });
 
     return formatted;
