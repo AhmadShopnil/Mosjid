@@ -18,6 +18,7 @@ export default function QuickLinks({ quickLinks }) {
     const section = document.getElementById(id);
     if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+  console.log("quickLinks",quickLinks)
 
   return (
     <section className="bg-[#E5F5DE] py-8 relative ">
