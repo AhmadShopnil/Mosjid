@@ -15,7 +15,7 @@ export default async function BannerInnerPageServerSide() {
   const center_bottom_image = getImageFromExtraFields(banner, "center_bottom_image");
   const center_bottom_title = getMetaValueFromExtraFields(banner, "center_bottom_title");
 
-  console.log("inner banner", banner)
+  // console.log("inner banner", banner)
 
   return (
     <div
