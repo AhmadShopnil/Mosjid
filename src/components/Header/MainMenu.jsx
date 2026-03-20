@@ -11,6 +11,7 @@ import { BASE_URL } from "@/helper/baseUrl";
 import { flattenMenu } from "@/helper/flattenMenu";
 import { useSelected } from "@/context/SelectedContext";
 import { useSelectedParrent } from "@/context/SelectedContextParrent";
+import UserMenuButton from "../Auth/UserMenuButton";
 
 
 
@@ -37,8 +38,8 @@ export default function MainMenu({ settings, menuItems }) {
     clearSelectedParrent();
   }
 
-    const handleOnclickMenuItemForMobile = () => {
-      setIsOpen(false)
+  const handleOnclickMenuItemForMobile = () => {
+    setIsOpen(false)
     clearSelected();
     clearSelectedParrent();
   }
@@ -112,7 +113,7 @@ export default function MainMenu({ settings, menuItems }) {
                   >
                     {item?.child?.map((sub, j) => (
                       <Link
-                      onClick={handleOnclickMenuItem}
+                        onClick={handleOnclickMenuItem}
                         key={j}
                         href={sub?.link}
                         className="flex items-center gap-2 px-4 py-2.5 font-bold  hover:text-[#F7BA2A] text-xs"
@@ -143,7 +144,8 @@ export default function MainMenu({ settings, menuItems }) {
         </div>
 
         {/* Mobile Hamburger */}
-        <div className="xl:hidden ml-auto">
+        <div className="xl:hidden ml-auto flex items-center gap-3">
+          <UserMenuButton />
           <button onClick={toggleDrawer} aria-label="Toggle Menu">
             {isOpen ? <X className="w-7 h-7 text-white" /> : <Menu className="w-7 h-7 text-white" />}
           </button>
@@ -174,9 +176,9 @@ export default function MainMenu({ settings, menuItems }) {
             {mobileMenuItems?.map((item, i) => (
               <div key={i} className="relative group border-b border-gray-200 last:border-none">
                 <Link
-                
+
                   href={`${item?.link}`}
-                  onClick={handleOnclickMenuItemForMobile }
+                  onClick={handleOnclickMenuItemForMobile}
                   className="group flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r
                    hover:from-green-50 hover:to-green-100 transition-all duration-200 "
                 >

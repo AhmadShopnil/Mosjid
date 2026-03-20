@@ -3,7 +3,7 @@ import React from 'react'
 import SectionTitle from './SectionTitle'
 
 
-export default function MadrashaTimeline({ timeLineImage, timeline_image }) {
+export default function GraveyardTimeline({ timeLineImage, timeline_image }) {
 
 
 

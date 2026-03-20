@@ -9,6 +9,7 @@ import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import Link from "next/link";
 import ToaysDateTime from "./ToaysDateTime";
 import ToaysDateTimeHijri from "./ToaysDateTimeHijri";
+import UserMenuButton from "../Auth/UserMenuButton";
 
 const languages = [
   { title: "English", icon: "/images/others/eng.svg", code: "en" },
@@ -16,7 +17,7 @@ const languages = [
   { title: "Arabic", icon: "/images/others/ar.svg", code: "ar" },
 ];
 
-export default function Topbar({ settings,location }) {
+export default function Topbar({ settings, location }) {
   const [selectedLanguage, setSelectedLanguage] = useState("English");
   const [isTranslateLoaded, setIsTranslateLoaded] = useState(false);
 
@@ -119,12 +120,12 @@ export default function Topbar({ settings,location }) {
       `}</style>
 
       <div className="justify-end items-center gap-4 md:gap-4 hidden xl:flex ">
-     
-     <div className="flex gap-2">
-       <ToaysDateTime location={location}/>
-       ,
-     <ToaysDateTimeHijri location={location}/>
-     </div>
+
+        <div className="flex gap-2">
+          <ToaysDateTime location={location} />
+          ,
+          <ToaysDateTimeHijri location={location} />
+        </div>
         {/* language selection */}
         <div className="flex items-center gap-2 justify-end min-w-[330px]">
           {/* <span className="text-lg text-[#00401A] font-bold whitespace-nowrap">
@@ -223,6 +224,9 @@ export default function Topbar({ settings,location }) {
             />
           </Link>
         </div>
+
+        {/* Login / User Menu */}
+        <UserMenuButton />
       </div>
     </Container>
   );

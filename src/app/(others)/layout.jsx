@@ -9,6 +9,8 @@ import { SelectedProvider } from "@/context/SelectedContext";
 import { SelectedParrentProvider } from "@/context/SelectedContextParrent";
 import { FatwaFilterProvider } from "@/context/FatwaFilterContext";
 import { RegionFilterProvider } from "@/context/RegionFilterContext ";
+import { AuthProvider } from "@/context/AuthContext";
+import AuthModal from "@/components/Auth/AuthModal";
 import { AnimatePresence } from "framer-motion";
 
 import PageReveal from "@/components/Shared/PageReveal";
@@ -55,33 +57,36 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} antialiased`}
       >
-        <FatwaFilterProvider>
-          <RegionFilterProvider>
-            <SelectedParrentProvider>
-              <SelectedProvider>
-                {/* <AnimatePresence mode="wait">
-                  <PageRevealWithSpinner > */}
-                <div className=" min-h-screen bg-background">
-                  <DevelopmentBanner />
-                  <Header />
+        <AuthProvider>
+          <FatwaFilterProvider>
+            <RegionFilterProvider>
+              <SelectedParrentProvider>
+                <SelectedProvider>
+                  {/* <AnimatePresence mode="wait">
+                    <PageRevealWithSpinner > */}
+                  <div className=" min-h-screen bg-background">
+                    <DevelopmentBanner />
+                    <Header />
 
 
-                  {children}
-                  <Container>
-                    <BannerBottom />
-                  </Container>
+                    {children}
+                    <Container>
+                      <BannerBottom />
+                    </Container>
 
 
-                  <Footer />
-                  <ScrollToTopButton />
-                  <Toaster position="top-right" />
-                </div>
-                {/* </PageRevealWithSpinner>
-                </AnimatePresence> */}
-              </SelectedProvider>
-            </SelectedParrentProvider>
-          </RegionFilterProvider>
-        </FatwaFilterProvider>
+                    <Footer />
+                    <ScrollToTopButton />
+                    <Toaster position="top-right" />
+                  </div>
+                  {/* </PageRevealWithSpinner>
+                  </AnimatePresence> */}
+                  <AuthModal />
+                </SelectedProvider>
+              </SelectedParrentProvider>
+            </RegionFilterProvider>
+          </FatwaFilterProvider>
+        </AuthProvider>
 
 
 

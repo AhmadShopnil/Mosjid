@@ -19,7 +19,7 @@ export default function OfferServicesSlider({
   const intervalRef = useRef(null);
 
   const loopServices = [...offerServicesMenu, ...offerServicesMenu];
- 
+
 
   const heading_part_1 = splitBySlash(offered_services_ExtraData?.title)[0];
   const heading_part_2 = splitBySlash(offered_services_ExtraData?.title)[1];
@@ -53,7 +53,7 @@ export default function OfferServicesSlider({
   const scroll = (direction) => {
     if (!scrollRef.current) return;
 
-    stopAutoScroll(); 
+    stopAutoScroll();
 
     const { scrollLeft, clientWidth } = scrollRef.current;
     const scrollAmount = clientWidth * 0.7;
@@ -66,7 +66,7 @@ export default function OfferServicesSlider({
       behavior: "smooth",
     });
 
-  
+
     setTimeout(() => {
       startAutoScroll();
     }, 800);
@@ -143,24 +143,36 @@ export default function OfferServicesSlider({
                   href={`services${service?.link}`}
                 >
                   <div className="p-4 sm:p-5 rounded-full mt-2 sm:mt-4 bg-[#F8F8F8] w-[100px] h-[100px] flex justify-center items-center">
-                    <Image
+                    {service?.menu_icon_url && (
+                      <Image
+                        src={`${BASE_URL}${service?.menu_icon_url}`}
+                        // src={service?.menu_icon_url}
+                        alt={service?.label}
+                        width={60}
+                        height={60}
+                        className="object-contain"
+                      />
+                    )}
+
+
+                    {/* <Image
                      src={`${BASE_URL}${service?.menu_icon_url}`}
                       // src={service?.menu_icon_url}
                       alt={service?.label}
                       width={60}
                       height={60}
                       className="object-contain"
-                    />
+                    /> */}
                   </div>
 
-               <div className="space-y-2">
-                   <p className="text-lg md:text-lg font-bold text-[#00401A]">
-                    {service?.label}
-                  </p>
-                  <p className="text-sm md:text-base font-bold text-[#F7BA2A]">
-                    {service?.other_info_one}
-                  </p>
-               </div>
+                  <div className="space-y-2">
+                    <p className="text-lg md:text-lg font-bold text-[#00401A]">
+                      {service?.label}
+                    </p>
+                    <p className="text-sm md:text-base font-bold text-[#F7BA2A]">
+                      {service?.other_info_one}
+                    </p>
+                  </div>
 
                   <div className="pb-4">
                     <Image

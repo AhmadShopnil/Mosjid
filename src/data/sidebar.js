@@ -1,38 +1,38 @@
- export const sideBarCategories = [
-    {
-      id: "Prayer Times",
-      icon: "/images/QuickLinks/prayer-times.png",
-      link: "/prayer-times",
-      activeIcon: "/images/QuickLinks/hover/1.png",
-      name: "Prayer Times",
-      subtitle: "祈りの時間",
-      isArrow: true,
-    },
-    {
-      id: "notice-board",
-      icon: "/images/QuickLinks/notice.png",
-      link: "/notices",
-      activeIcon: "/images/QuickLinks/hover/Blog & event-1.png",
-      name: "Notice Board",
-      subtitle: "掲示板",
-      isArrow: true,
-   
-    
-    },
-    {
-      id: "Fatwa",
-      icon: "/images/QuickLinks/fatwa.png",
-      link: "/fatwah",
-      activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
-      name: "Fatwa",
-      subtitle: "ファトワ",
-   
-      isArrow: true,
-     
-    },
- 
-      {
-      id: "Offered Services",
+export const sideBarCategories = [
+  {
+    id: "Prayer Times",
+    icon: "/images/QuickLinks/prayer-times.png",
+    link: "/prayer-times",
+    activeIcon: "/images/QuickLinks/hover/1.png",
+    name: "Prayer Times",
+    subtitle: "祈りの時間",
+    isArrow: true,
+  },
+  {
+    id: "notice-board",
+    icon: "/images/QuickLinks/notice.png",
+    link: "/notices",
+    activeIcon: "/images/QuickLinks/hover/Blog & event-1.png",
+    name: "Notice Board",
+    subtitle: "掲示板",
+    isArrow: true,
+
+
+  },
+  {
+    id: "Fatwa",
+    icon: "/images/QuickLinks/fatwa.png",
+    link: "/fatwah",
+    activeIcon: "/images/QuickLinks/hover/Fatwa 03.png",
+    name: "Fatwa",
+    subtitle: "ファトワ",
+
+    isArrow: true,
+
+  },
+
+  {
+    id: "Offered Services",
     name: "Offered Services",
     subtitle: "提供されるサービス",
     targetId: "offered-services",
@@ -40,10 +40,10 @@
     icon: "/images/QuickLinks/offer-service.png",
     // icon: "/images/QuickLinks/normal/Blog & event.png",
     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
+    isArrow: true,
   },
   {
-     id: "Dictionary",
+    id: "Dictionary",
     name: "Dictionary",
     subtitle: "辞書",
     targetId: "dictionary",
@@ -51,7 +51,7 @@
     icon: "/images/QuickLinks/dictionary.png",
     // icon: "/images/QuickLinks/normal/Dictionary.png",
     activeIcon: "/images/QuickLinks/hover/Dictionary.png",
-     isArrow: true,
+    isArrow: true,
   },
   {
     id: "Directory",
@@ -62,7 +62,7 @@
     icon: "/images/QuickLinks/directory.png",
     // icon: "/images/QuickLinks/normal/Directory.png",
     activeIcon: "/images/QuickLinks/hover/Directory.png",
-     isArrow: true,
+    isArrow: true,
   },
   {
     id: "Blogs",
@@ -73,7 +73,7 @@
     icon: "/images/QuickLinks/blog-event.png",
     // icon: "/images/QuickLinks/normal/Donation.png",
     activeIcon: "/images/QuickLinks/hover/Donation.png",
-     isArrow: true,
+    isArrow: true,
   },
   {
     id: "Events",
@@ -84,7 +84,7 @@
     icon: "/images/QuickLinks/blog-event.png",
     // icon: "/images/QuickLinks/normal/Donation.png",
     activeIcon: "/images/QuickLinks/hover/Donation.png",
-     isArrow: true,
+    isArrow: true,
   },
   {
     id: "Gallery",
@@ -95,21 +95,21 @@
     icon: "/images/QuickLinks/gallery.png",
     // icon: "/images/QuickLinks/normal/Gallery.png",
     activeIcon: "/images/QuickLinks/hover/Gallery.png",
-     isArrow: true,
-    
+    isArrow: true,
+
   },
-    {
-         id: "Islamic Books",
+  {
+    id: "Islamic Books",
     name: "Islamic Books",
     subtitle: "イスラム教の本",
     targetId: "books",
-     link: "/books",
+    link: "/books",
     icon: "/images/QuickLinks/books.png",
     // icon: "/images/QuickLinks/normal/Gallery.png",
     activeIcon: "/images/QuickLinks/hover/Gallery.png",
-     isArrow: true,
+    isArrow: true,
   },
-    {
+  {
     id: "About",
     name: "About",
     subtitle: "について",
@@ -120,176 +120,185 @@
     activeIcon: "/images/QuickLinks/hover/Gallery.png",
     isArrow: true,
   },
-  
-
-  ];
 
 
+];
 
 
-   export const servicesSideBarCategories = [
-       {
-     id: "Islamic Name",
-     name: "Islamic Name",
-     subtitle: "提供されるサービス",
-     targetId: "islamic-name",
-     link: "/islamic-name",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
+
+
+export const servicesSideBarCategories = [
+  {
+    id: "Islamic Name",
+    name: "Islamic Name",
+    subtitle: "提供されるサービス",
+    targetId: "islamic-name",
+    link: "/islamic-name",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
   },
-    {
-      id: "Islamic School Curriculum",
-      link: "/islamic-school-curriculum",
-      targetId:"islamic-school-curriculum",
-      icon: "/images/QuickLinks/offer-service.png",
-      activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-      name: "Islamic School Curriculum",
-      subtitle: "祈りの時間",
-      isArrow: true,
-    },
-    ,
-     {
-      id: "Loss & Found",
-      name: "Loss & Found",
-      subtitle: "祈りの時間",
-     
-     targetId: "masjid-view",
-     link: "/loss-and-found",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
+  {
+    id: "Islamic School Curriculum",
+    link: "/islamic-school-curriculum",
+    targetId: "islamic-school-curriculum",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    name: "Islamic School Curriculum",
+    subtitle: "祈りの時間",
+    isArrow: true,
+  },
+  ,
+  {
+    id: "Loss & Found",
+    name: "Loss & Found",
+    subtitle: "祈りの時間",
+
+    targetId: "masjid-view",
+    link: "/loss-and-found",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
   },
 
-    {
-      id: "madrasha-course",
-      name: "Madrasha Course",
-      subtitle: "祈りの時間",
-    
-     targetId: "madrasha-course",
-     link: "/madrasha-course",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
+  {
+    id: "madrasha-course",
+    name: "Madrasha Course",
+    subtitle: "祈りの時間",
+
+    targetId: "madrasha-course",
+    link: "/madrasha-course",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
   },
-    
-    {
-      id: "islamic-books-library",
-      name: "Islamic Books Library",
-      subtitle: "祈りの時間",
-   
-     targetId: "islamic-books-library",
-     link: "/islamic-books-library",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
-  } ,
-   {
-      id: "visitor-booking",
-      name: "Visitor Booking",
-      subtitle: "祈りの時間",
-  
-     targetId: "visitor-booking",
-     link: "/visitor-booking",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
+
+  {
+    id: "islamic-books-library",
+    name: "Islamic Books Library",
+    subtitle: "祈りの時間",
+
+    targetId: "islamic-books-library",
+    link: "/islamic-books-library",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
+  },
+  {
+    id: "visitor-booking",
+    name: "Visitor Booking",
+    subtitle: "祈りの時間",
+
+    targetId: "visitor-booking",
+    link: "/visitor-booking",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
   }
   ,
-   {
-     id: " halal-certification",
-     name: "Halal Certification",
-     subtitle: "祈りの時間",
-     targetId: "halal-certification",
-     link: "/halal-certification",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
+  {
+    id: " halal-certification",
+    name: "Halal Certification",
+    subtitle: "祈りの時間",
+    targetId: "halal-certification",
+    link: "/halal-certification",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
   },
-   {
-     id: "donation-facility",
-     name: "Donation Facility",
-     subtitle: "祈りの時間",
-     targetId: "donation-facility",
-     link: "/donation-facility",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
-  },
-  
-
-   {
-      id: "Masjid View",
-      name: "Masjid View",
-      subtitle: "祈りの時間",
-   
-     targetId: "masjid-view",
-     link: "/masjid-view",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
+  {
+    id: "donation-facility",
+    name: "Donation Facility",
+    subtitle: "祈りの時間",
+    targetId: "donation-facility",
+    link: "/donation-facility",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
   },
 
-    {
-     id: "burial-booking",
-     name: "Burial Booking",
-     subtitle: "祈りの時間",
-     targetId: "burial-booking",
-     link: "/burial-booking",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
-  },
-     {
-     id: "madrasha",
-     name: "Madrasha",
-     subtitle: "祈りの時間",
-     targetId: "madrasha",
-     link: "/madrasha",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
-  },
-   {
-     id: "muslim-convertion",
-     name: "Muslim Convertion",
-     subtitle: "祈りの時間",
-     targetId: "muslim-convertion",
-     link: "/muslim-convertion",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
-  },
-     {
-     id: "arriage-facilities",
-     name: "Marriage Facilitiesn",
-     subtitle: "祈りの時間",
-     targetId: "marriage-facilities",
-     link: "/marriage-facilities",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
-  },
-    {
-     id: "Islamic School",
-     name: "Islamic School",
-     subtitle: "祈りの時間",
-     targetId: "islamic-school",
-     link: "/islamic-school",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
-  },
-      {
-     id: "masjid-activities",
-     name: "Masjid Activities",
-     subtitle: "祈りの時間",
-     targetId: "masjid-activities",
-     link: "/masjid-activities",
-     icon: "/images/QuickLinks/offer-service.png",
-     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-     isArrow: true,
-  },
-  ];
 
- 
+  {
+    id: "Masjid View",
+    name: "Masjid View",
+    subtitle: "祈りの時間",
+
+    targetId: "masjid-view",
+    link: "/masjid-view",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
+  },
+
+  {
+    id: "burial-booking",
+    name: "Burial Booking",
+    subtitle: "祈りの時間",
+    targetId: "burial-booking",
+    link: "/burial-booking",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
+  },
+  {
+    id: "madrasha",
+    name: "Madrasha",
+    subtitle: "祈りの時間",
+    targetId: "madrasha",
+    link: "/madrasha",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
+  },
+  {
+    id: "muslim-convertion",
+    name: "Muslim Convertion",
+    subtitle: "祈りの時間",
+    targetId: "muslim-convertion",
+    link: "/muslim-convertion",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
+  },
+  {
+    id: "arriage-facilities",
+    name: "Marriage Facilitiesn",
+    subtitle: "祈りの時間",
+    targetId: "marriage-facilities",
+    link: "/marriage-facilities",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
+  },
+  {
+    id: "Islamic School",
+    name: "Islamic School",
+    subtitle: "祈りの時間",
+    targetId: "islamic-school",
+    link: "/islamic-school",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
+  },
+  {
+    id: "masjid-activities",
+    name: "Masjid Activities",
+    subtitle: "祈りの時間",
+    targetId: "masjid-activities",
+    link: "/masjid-activities",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
+  },
+  {
+    id: "graveyard-land",
+    name: "Graveyard",
+    subtitle: "祈りの時間",
+    targetId: "graveyard-land",
+    link: "/graveyard-land",
+    icon: "/images/QuickLinks/offer-service.png",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
+  },
+];
+

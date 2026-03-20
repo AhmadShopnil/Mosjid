@@ -10,10 +10,10 @@ import PrayerTimesMobile from "../Home/PrayerTimesAndNotices/PrayerTimesMobile";
 import ProhibitedTimeTableRow from "../Home/PrayerTimesAndNotices/ProhibitedTimeTableRow";
 import ProhibitedTimeMobile from "../Home/PrayerTimesAndNotices/ProhibitedTimeMobile";
 import { formatPrayerData, mergePrayerTimes } from "@/helper/formatPrayerData";
-import axios from "axios";
 import { extractTimeUpdatedAt, getMostRecentTime } from "@/helper/extractTimeUpdatedAt";
 import { getMetaValueByMetaName } from "@/helper/metaHelpers";
 import { getProhibitedTimes } from "@/helper/CalculateProhebitedTime";
+import { getUpdatedAtArray } from "@/helper/getLatestUpdatedTime";
 
 
 
@@ -83,35 +83,6 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
 
     load();
   }, []);
-  // useEffect(() => {
-  //   const city = "Osaka";
-  //   const country = "Japan";
-  //   const method = 3;
-
-  //   const fetchPrayerTimes = async (school) => {
-  //     const url = `https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(
-  //       city
-  //     )}&country=${encodeURIComponent(country)}&method=${method}&school=${school}`;
-
-  //     try {
-  //       const response = await axios.get(url);
-  //       return response.data.data.timings;
-  //     } catch (err) {
-  //       console.error(`Error fetching ${school === 1 ? "Hanafi" : "Safi"} times:`, err);
-  //       return null;
-  //     }
-  //   };
-
-  //   const loadTimes = async () => {
-  //     const safiTimes = await fetchPrayerTimes(0);   
-  //     const hanafiTimes = await fetchPrayerTimes(1); 
-
-  //     if (safiTimes) setPrayerTimesFromOusideApi_Shafi(safiTimes);
-  //     if (hanafiTimes) setPrayerTimesFromOusideApi_Shafi_Hanafi(hanafiTimes);
-  //   };
-
-  //   loadTimes();
-  // }, []);
 
 
   const prayerTimesDataFromOusideApi = [
@@ -156,11 +127,15 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
   const finalPrayerTimes = mergePrayerTimes(formattedPrayerTimes, prayerTimesDataFromOusideApi);
 
 
-  const updatedAtArray = extractTimeUpdatedAt(prayerTimes);
-  const updated_time = getMostRecentTime(updatedAtArray)
+  // const updatedAtArray = extractTimeUpdatedAt(prayerTimes);
+  // const updated_time = getMostRecentTime(updatedAtArray)
 
   const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideApi);
 
+  const updatedAtArray = getUpdatedAtArray(prayerTimes);
+  const updated_time = getMostRecentTime(updatedAtArray)
+
+  console.log("prayet time update", updated_time)
 
 
   return (
