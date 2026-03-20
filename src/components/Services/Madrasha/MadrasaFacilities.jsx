@@ -14,7 +14,9 @@ const facilities = [
   "Rest Area For Younger Students or Break Time",
 ];
 
-export default function MadrasaFacilities() {
+export default function MadrasaFacilities({ madrasa_facilities }) {
+  const facilities = madrasa_facilities?.sub_sections;
+  // console.log("madrasa_facilities", madrasa_facilities)
   return (
     <div>
 
@@ -30,8 +32,8 @@ export default function MadrasaFacilities() {
 
       {/* Facilities Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 mb-12 ">
-        {facilities.map((item, index) => (
-          <FacilityCard key={index} title={item} />
+        {facilities?.map((item, index) => (
+          <FacilityCard key={index} item={item} />
         ))}
       </div>
 
@@ -40,7 +42,7 @@ export default function MadrasaFacilities() {
 }
 
 
-function FacilityCard({ title }) {
+function FacilityCard({ item }) {
   return (
     <div className="">
 
@@ -58,7 +60,7 @@ function FacilityCard({ title }) {
         {/* Text */}
         <div className='-ml-2  border-2 border-[#005312] rounded-lg px-4 py-4.5 bg-white w-full h-[94px] flex items-center'>
           <p className="text-sm md:text-[18px] font-semibold text-[#005312] leading-snug">
-            {title}
+            {item?.title}
           </p>
         </div>
       </div>

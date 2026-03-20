@@ -18,6 +18,7 @@ import axios from "axios";
 import { formatPrayerData, mergePrayerTimes } from "@/helper/formatPrayerData";
 import { extractTimeUpdatedAt, getMostRecentTime } from "@/helper/extractTimeUpdatedAt";
 import { getProhibitedTimes } from "@/helper/CalculateProhebitedTime";
+import { getUpdatedAtArray } from "@/helper/getLatestUpdatedTime";
 
 
 
@@ -188,13 +189,14 @@ export default function PrayerTimes({ settings, prayerTimes, ProhibitedTime, hom
   const formattedPrayerTimes = formatPrayerData(prayerTimes);
   const finalPrayerTimes = mergePrayerTimes(formattedPrayerTimes, prayerTimesDataFromOusideApi);
 
-  const updatedAtArray = extractTimeUpdatedAt(prayerTimes);
+  // const updatedAtArray = extractTimeUpdatedAt(prayerTimes);
+  // const updated_time = getMostRecentTime(updatedAtArray)
+
+  const updatedAtArray = getUpdatedAtArray(prayerTimes);
   const updated_time = getMostRecentTime(updatedAtArray)
+  const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideApi);
 
-
-const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideApi);
-
-// console.log("prohibitedTimes",calculatedProhibitedTimes)
+  // console.log("prohibitedTimes",calculatedProhibitedTimes)
 
 
   return (
@@ -344,13 +346,13 @@ const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideAp
         <span>禁止時間開始</span>
       </h4>
 
-     {calculatedProhibitedTimes && <ProhibitedTimeMobile
-       prayerTimes={ProhibitedTime.slice(0, 4)}
+      {calculatedProhibitedTimes && <ProhibitedTimeMobile
+        prayerTimes={ProhibitedTime.slice(0, 4)}
         prayer_time={prayer_time}
-         isDisabled={isDisabled}
-          calculatedProhibitedTimes={calculatedProhibitedTimes}
-         />
-}
+        isDisabled={isDisabled}
+        calculatedProhibitedTimes={calculatedProhibitedTimes}
+      />
+      }
       <p className="mt-4 text-sm text-[#FF0000]">{prayer_time?.description}</p>
     </div>
   );

@@ -1,24 +1,58 @@
 'use client'
 import { useState } from "react";
 import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
+import axiosInstance from "@/helper/axiosInstance";
 
-const Booking = () => {
+const Booking = ({ slots = [], onBookingSubmitted }) => {
   const [values, setValues] = useState({
     applicantName: "",
     eventType: "",
     eventDate: "",
-    startTime: "",
-    endTime: "",
+    slotId: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState({ text: "", type: "" });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  // Find the selected slot to display start/end time
+  const selectedSlot = slots.find((s) => s.id === Number(values.slotId));
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(values);
+
+    if (!values.applicantName || !values.eventDate || !values.slotId) {
+      setMessage({ text: "Please fill all required fields.", type: "error" });
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setMessage({ text: "", type: "" });
+
+      const payload = {
+        application_name: values.applicantName,
+        booked_date: values.eventDate,
+        start_time: selectedSlot?.start_time,
+        end_time: selectedSlot?.end_time,
+      };
+
+      await axiosInstance.post("/marriage", payload);
+
+      setMessage({ text: "Booking submitted successfully!", type: "success" });
+      setValues({ applicantName: "", eventType: "", eventDate: "", slotId: "" });
+
+      // Refresh data after successful booking
+      if (onBookingSubmitted) onBookingSubmitted();
+    } catch (err) {
+      console.error(err);
+      setMessage({ text: "Failed to submit booking. Please try again.", type: "error" });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -70,85 +104,90 @@ const Booking = () => {
               onSubmit={handleSubmit}
               className="space-y-5 text-[#B98C20]"
             >
-              {[
-                {
-                  label: "Applicant Name",
-                  name: "applicantName",
-                  type: "text",
-                  placeholder: "Enter full name",
-                  tag: "input",
-                },
-                {
-                  label: "Event Type",
-                  name: "eventType",
-                  tag: "select",
-                  options: [
-                    "Wedding",
-                    "Seminar",
-                    "Conference",
-                    "Party",
-                    "Other",
-                  ],
-                },
-                {
-                  label: "Event Date",
-                  name: "eventDate",
-                  type: "date",
-                  tag: "input",
-                },
-                {
-                  label: "Start Time",
-                  name: "startTime",
-                  type: "time",
-                  tag: "input",
-                },
-                {
-                  label: "End Time",
-                  name: "endTime",
-                  type: "time",
-                  tag: "input",
-                },
-              ].map((field) => (
-                <div
-                  key={field.name}
-                  className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center"
-                >
-                  <label className="font-bold">{field.label}</label>
+              {/* Applicant Name */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                <label className="font-bold">Applicant Name</label>
+                <input
+                  name="applicantName"
+                  type="text"
+                  value={values.applicantName}
+                  onChange={handleChange}
+                  placeholder="Enter full name"
+                  className="sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 h-14 bg-white/50 focus:outline-none"
+                />
+              </div>
 
-                  {field.tag === "select" ? (
-                    <select
-                      name={field.name}
-                      value={values[field.name]}
-                      onChange={handleChange}
-                      className="sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 h-14 bg-white/50 focus:outline-none appearance-none"
-                    >
-                      <option value="" disabled>
-                        Select an event type
+              {/* Event Type */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                <label className="font-bold">Event Type</label>
+                <select
+                  name="eventType"
+                  value={values.eventType}
+                  onChange={handleChange}
+                  className="sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 h-14 bg-white/50 focus:outline-none appearance-none"
+                >
+                  <option value="" disabled>Select an event type</option>
+                  {["Wedding", "Seminar", "Conference", "Party", "Other"].map((opt) => (
+                    <option key={opt} value={opt}>{opt}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Event Date */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                <label className="font-bold">Event Date</label>
+                <input
+                  name="eventDate"
+                  type="date"
+                  value={values.eventDate}
+                  onChange={handleChange}
+                  className="sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 h-14 bg-white/50 focus:outline-none"
+                />
+              </div>
+
+              {/* Time Slot Selection */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                <label className="font-bold">Time Slot</label>
+                <select
+                  name="slotId"
+                  value={values.slotId}
+                  onChange={handleChange}
+                  className="sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 h-14 bg-white/50 focus:outline-none appearance-none"
+                >
+                  <option value="" disabled>Select a time slot</option>
+                  {slots
+                    .filter((slot) => slot.status === "1")
+                    .map((slot) => (
+                      <option key={slot.id} value={slot.id}>
+                        {slot.name} ({slot.start_time} - {slot.end_time})
                       </option>
-                      {field.options.map((opt) => (
-                        <option key={opt} value={opt}>
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <input
-                      name={field.name}
-                      type={field.type}
-                      value={values[field.name]}
-                      onChange={handleChange}
-                      placeholder={field.placeholder || ""}
-                      className="sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 h-14 bg-white/50 focus:outline-none"
-                    />
-                  )}
+                    ))}
+                </select>
+              </div>
+
+              {/* Display selected slot time */}
+              {selectedSlot && (
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                  <span className="font-bold text-sm">Selected Time</span>
+                  <div className="sm:col-span-2 bg-green-50 border border-green-300 rounded-xl px-4 py-3 text-green-800 text-sm font-medium">
+                    {selectedSlot.start_time} – {selectedSlot.end_time}
+                  </div>
                 </div>
-              ))}
+              )}
+
+              {/* Message */}
+              {message.text && (
+                <p className={`text-sm font-medium ${message.type === "success" ? "text-green-600" : "text-red-600"}`}>
+                  {message.text}
+                </p>
+              )}
 
               {/* Buttons */}
               <div className="flex flex-col sm:flex-row justify-end gap-3 pt-6">
                 <button
                   type="submit"
-                  className="w-full h-14 rounded-xl text-[#333333] font-medium transition-colors hover:opacity-90 sm:max-w-[43.75rem]"
+                  disabled={loading}
+                  className="w-full h-14 rounded-xl text-[#333333] font-medium transition-colors hover:opacity-90 sm:max-w-[43.75rem] disabled:opacity-50"
                   style={{
                     border: "2px solid transparent",
                     backgroundImage:
@@ -157,20 +196,15 @@ const Booking = () => {
                     backgroundClip: "padding-box, border-box",
                   }}
                 >
-                  Submit Booking
+                  {loading ? "Submitting..." : "Submit Booking"}
                 </button>
 
                 <button
                   type="button"
-                  onClick={() =>
-                    setValues({
-                      applicantName: "",
-                      eventType: "",
-                      eventDate: "",
-                      startTime: "",
-                      endTime: "",
-                    })
-                  }
+                  onClick={() => {
+                    setValues({ applicantName: "", eventType: "", eventDate: "", slotId: "" });
+                    setMessage({ text: "", type: "" });
+                  }}
                   className="border border-[#FF0000] text-[#FF0000] bg-[#FFE9E9] h-14 w-full sm:max-w-[22.75rem] rounded-xl font-medium hover:bg-red-50 transition-colors"
                 >
                   Cancel

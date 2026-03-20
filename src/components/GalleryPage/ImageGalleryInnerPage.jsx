@@ -12,7 +12,7 @@ export default function ImageGalleryInnerPage({ gallery, loading }) {
   const [selectedIndex, setSelectedIndex] = useState(null);
 
    const desc = getMetaValueFromExtraFields(images[selectedIndex], "short_description_image_gallery");
-   console.log("desc", images[selectedIndex])
+  //  console.log("desc", images[selectedIndex])
 
   const openModal = (index) => setSelectedIndex(index);
   const closeModal = () => setSelectedIndex(null);

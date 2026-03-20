@@ -9,6 +9,8 @@ import { SelectedProvider } from "@/context/SelectedContext";
 import { SelectedParrentProvider } from "@/context/SelectedContextParrent";
 import { FatwaFilterProvider } from "@/context/FatwaFilterContext";
 import { RegionFilterProvider } from "@/context/RegionFilterContext ";
+import { AuthProvider } from "@/context/AuthContext";
+import AuthModal from "@/components/Auth/AuthModal";
 
 
 import { getMenus } from "@/helper/actions";
@@ -52,7 +54,7 @@ export const metadata = {
 export default async function ServicesLayout({ children }) {
 
     const menus = await getMenus(6);
-    const sideBarCategories = convertMenuToSidebar(menus?.items);
+    // const sideBarCategories = convertMenuToSidebar(menus?.items);
 
 
 
@@ -62,39 +64,41 @@ export default async function ServicesLayout({ children }) {
             <body
                 className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} antialiased`}
             >
-                <FatwaFilterProvider>
-                    <RegionFilterProvider>
-                        <SelectedParrentProvider>
-                            <SelectedProvider>
+                <AuthProvider>
+                    <FatwaFilterProvider>
+                        <RegionFilterProvider>
+                            <SelectedParrentProvider>
+                                <SelectedProvider>
 
-                                {/* main  components start */}
-                                <DevelopmentBanner />
-                                <Header />
-                                <BannerInnerPage />
-                                <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Services" />
-                                <Container className=" my-6">
-                                    <div className="flex justify-between xl:gap-4  ">
-                                        <div className=" w-20%">
-                                            <ServicesSidebarDrawer categories={servicesSideBarCategories} />
+                                    {/* main  components start */}
+                                    <DevelopmentBanner />
+                                    <Header />
+                                    <BannerInnerPage />
+                                    <Breadcrumb homeLabel="Home" homeLink="/" currentPage="Services" />
+                                    <Container className=" my-6">
+                                        <div className="flex justify-between xl:gap-4  ">
+                                            <div className=" w-20%">
+                                                <ServicesSidebarDrawer categories={servicesSideBarCategories} />
+                                            </div>
+                                            <div className="w-full xl:w-[80%] 0  space-y-6">
+
+                                                {children}
+                                            </div>
                                         </div>
-                                        <div className="w-full xl:w-[80%] 0  space-y-6">
+                                        <BannerBottom />
+                                    </Container>
 
-                                            {children}
-                                        </div>
-                                    </div>
-                                    <BannerBottom />
-                                </Container>
+                                    <Footer />
+                                    <ScrollToTopButton />
+                                    <Toaster position="top-right" />
+                                    {/* main  components End */}
 
-                                <Footer />
-                                <ScrollToTopButton />
-                                <Toaster position="top-right" />
-                                {/* main  components End */}
-
-
-                            </SelectedProvider>
-                        </SelectedParrentProvider>
-                    </RegionFilterProvider>
-                </FatwaFilterProvider>
+                                    <AuthModal />
+                                </SelectedProvider>
+                            </SelectedParrentProvider>
+                        </RegionFilterProvider>
+                    </FatwaFilterProvider>
+                </AuthProvider>
 
 
 
