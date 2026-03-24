@@ -10,19 +10,19 @@ export default function VisiTorTableRow({ item, i }) {
   return (
     <tr className={`${i % 2 === 0 ? "bg-white" : "bg-[#E5F5DE]"} h-[42px]`}>
       {/* SL column */}
-      <td className={slCell}>01</td>
+      <td className={slCell}>{String(i + 1).padStart(2, "0")}</td>
 
       {/* Other columns */}
-      <td className={cell}>Arabic Shopnil</td>
-      <td className={cell}>Mobile Contact Method</td>
-      <td className={cell}>+8801729147191 ext 999999</td>
-      <td className={cell}>Japan</td>
-      <td className={cell}>05</td>
-      <td className={cell}>Male</td>
-      <td className={cell}>10 July 2025</td>
-      <td className={cell}>2:30 PM</td>
-      <td className={cell}>Madrasha Name Very Very Long</td>
-      <td className={cell}>Mahfil Program Request Very Long Text</td>
+      {/* <td className={cell}>{item.full_name || "—"}</td> */}
+      {/* <td className={cell}>{item.organization_name || "—"}</td> */}
+      {/* <td className={cell}>{item.contact_number || "—"}</td> */}
+      {/* <td className={cell}>{item.country_name || "—"}</td> */}
+      {/* <td className={cell}>{item.number_of_visitors || "—"}</td> */}
+      <td className={cell}>{item.visit_date || "—"}</td>
+      <td className={cell}>{item.start_time || "—"}</td>
+      <td className={cell}>{item.end_time ? `${item.end_time} ${item.hours ? `(${item.hours}h)` : ''}` : (item.hours ? `${item.hours}h` : "—")}</td>
+      <td className={cell}>{item.purpose_visit || "—"}</td>
+      <td className={cell}>{item.program_request || "—"}</td>
     </tr>
   );
 }

@@ -102,9 +102,9 @@ export default function VisitorBookingTopSection() {
                         className="space-y-3 mt-4"
                     >
                         {[
-                            { icon: "1.svg", label: "Halal Certificate Form" },
-                            { icon: "3.svg", label: "Halal Certified List" },
-                            { icon: "2.svg", label: "Issuing Rules of Halal Certification" },
+                            { icon: "1.svg", label: "Book You Visit" },
+                            { icon: "3.svg", label: "Visitor Booking List" },
+                            { icon: "2.svg", label: "Visitor Record" },
                             { icon: "3.svg", label: "Visitor Guides Line" },
                         ].map((item, i) => (
                             <motion.div
