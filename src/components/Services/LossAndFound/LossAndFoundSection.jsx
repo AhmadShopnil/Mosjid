@@ -2,7 +2,7 @@ import React from 'react'
 import LostItemList from './LostItemList'
 import FoundItemList from './FoundItemList'
 
-export default function LossAndFoundSection() {
+export default function LossAndFoundSection({ losses, founds, loading }) {
     return (
         <div className='borderDonationHome rounded-[20px] px-3 sm:px-4 md:px-8 py-8'>
             <div className='border-b border-b-[#B0C4B8] mb-6 pb-3'>
@@ -11,8 +11,8 @@ export default function LossAndFoundSection() {
             </div>
 
             <div className='space-y-6 md:space-y-14'>
-                <LostItemList />
-                <FoundItemList />
+                <LostItemList data={losses} loading={loading} />
+                <FoundItemList data={founds} loading={loading} />
             </div>
 
 

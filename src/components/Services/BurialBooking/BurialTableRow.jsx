@@ -8,20 +8,14 @@ export default function BurialTableRow({
   return (
     <tr
       key={i}
-      className={`${i % 2 === 0 ? "bg-white" : "bg-[#E5F5DE]"} h-[28px]`}
+      className={`${i % 2 === 0 ? "bg-white" : "bg-[#E5F5DE]"} h-[42px]`}
     >
-      <td className="border border-gray-300 p-3 text-center">01</td>
-      <td className="border border-gray-300 p-3 text-center">Arabic Shopnil</td>
-      <td className="border border-gray-300 p-3 text-center">
-        Mijibunagor, Tangail
-      </td>
-      <td className="border border-gray-300 p-3 text-center">
-        10 July 2025
-      </td>
-      <td className="border border-gray-300 p-3 text-center">2:30</td>
-      <td className="border border-gray-300 p-3 text-center overflow-y-auto">
-        +8801729147191
-      </td>
+      <td className="border border-gray-300 p-3 text-center text-sm">{String(i + 1).padStart(2, "0")}</td>
+      <td className="border border-gray-300 p-3 text-center text-sm">{item.name || "—"}</td>
+      <td className="border border-gray-300 p-3 text-center text-sm">{item.deceased_name || "—"}</td>
+      <td className="border border-gray-300 p-3 text-center text-sm">{item.burial_date || "—"}</td>
+      <td className="border border-gray-300 p-3 text-center text-sm">{item.estimated_burial_time || "—"}</td>
+      <td className="border border-gray-300 p-3 text-center text-sm">{item.contact_no || "—"}</td>
 
 
 
