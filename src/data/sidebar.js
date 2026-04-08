@@ -261,8 +261,8 @@ export const servicesSideBarCategories = [
     isArrow: true,
   },
   {
-    id: "arriage-facilities",
-    name: "Marriage Facilitiesn",
+    id: "marriage-facilities",
+    name: "Marriage Facilities",
     subtitle: "祈りの時間",
     targetId: "marriage-facilities",
     link: "/marriage-facilities",

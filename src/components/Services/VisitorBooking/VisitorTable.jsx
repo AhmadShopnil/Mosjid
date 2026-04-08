@@ -5,18 +5,7 @@ import { TableSkeleton } from "../Skeletons/TableSkeleton";
 
 import VisiTorTableRow from "./TableRow";
 
-const data = [
-  { sl: 1, arabic: "محمد", japanese: "ムハンマド", english: "Muhammad", meaning: "The praised one" },
-  { sl: 2, arabic: "أحمد", japanese: "アフマド", english: "Ahmad", meaning: "Most commendable" },
-  { sl: 3, arabic: "علي", japanese: "アリ", english: "Ali", meaning: "High, exalted" },
-  { sl: 4, arabic: "عبدالله", japanese: "アブドゥッラー", english: "Abdullah", meaning: "Servant of Allah" },
-  { sl: 5, arabic: "يوسف", japanese: "ユースフ", english: "Yusuf", meaning: "Allah increases" },
-];
-
-
-
-
-export default function VisitorTable({ loading = false,tableTitle }) {
+export default function VisitorTable({ loading = false, tableTitle, data = [] }) {
 
 
   return (
@@ -59,11 +48,11 @@ const TableHeader = () => (
     <tr className="bg-[#FEF8EA] h-[42px]">
       {[
         "SL.No",
-        "Applicant Name",
-        "Organization Name",
-        "Contact",
-        "City/Country",
-        "Number Of Visitors",
+        // "Applicant Name",
+        // "Organization Name",
+        // "Contact",
+        // "City/Country",
+        // "Number Of Visitors",
         "Date",
         "Time",
         "Duration Of Visit",
@@ -89,7 +78,7 @@ const TableBody = ({ data }) => (
   <tbody>
     {data?.map((item, i) => (
       <VisiTorTableRow
-        key={item.sl}
+        key={item.id}
         item={item}
         i={i}
         
@@ -103,7 +92,7 @@ const EmptyState = () => (
   <tbody>
     <tr>
       <td colSpan={6} className="text-center py-10 text-gray-500">
-        No Names found.
+        No records found.
       </td>
     </tr>
   </tbody>

@@ -11,7 +11,7 @@ const menuList = [
 ]
 
 
-export default function BurialBookingTopSection() {
+export default function BurialBookingTopSection({ onSuccess }) {
     return (
         <div className="relative overflow-hidden rounded-[20px] ">
 
@@ -85,7 +85,7 @@ export default function BurialBookingTopSection() {
                     </h3>
 
                     <div className="space-y-3 mt-4">
-                        <BurialBookingForm />
+                        <BurialBookingForm onSuccess={onSuccess} />
                     </div>
                 </div>
 

@@ -31,7 +31,52 @@ const InputField = ({
   </div>
 );
 
-const WitnessSection = ({ side, data, onFieldChange }) => (
+const FileInputWithPreview = ({ id, label, value, onChange, heightClass = "h-[46px]" }) => {
+  const [preview, setPreview] = useState(null);
+
+  useEffect(() => {
+    if (!value) {
+      setPreview(null);
+      return;
+    }
+    if (typeof value === "string") {
+      setPreview(`https://admin.osakamasjid.org/public/${value}`);
+    } else if (value instanceof File) {
+      const objectUrl = URL.createObjectURL(value);
+      setPreview(objectUrl);
+      return () => URL.revokeObjectURL(objectUrl);
+    }
+  }, [value]);
+
+  return (
+    <div className="w-full flex flex-col gap-2">
+      <label
+        htmlFor={id}
+        className={`flex items-center justify-center w-full border border-gray-300 rounded-md p-2.5 ${heightClass} bg-gray-50 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100 transition-colors`}
+      >
+        {label}
+      </label>
+      <input
+        id={id}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={(e) => {
+          if (e.target.files && e.target.files.length > 0) {
+            onChange(e.target.files[0]);
+          }
+        }}
+      />
+      {preview && (
+        <div className="flex justify-center w-full border border-dashed border-gray-300 rounded p-2 bg-white">
+          <Image src={preview} alt="Preview" width={200} height={100} className="object-cover h-24 rounded" unoptimized />
+        </div>
+      )}
+    </div>
+  );
+};
+
+const WitnessSection = ({ side, data, attachedData, onFieldChange, onAttachedChange }) => (
   <div className="space-y-3">
     <InputField
       labelJp="証人１の氏名"
@@ -59,17 +104,11 @@ const WitnessSection = ({ side, data, onFieldChange }) => (
         </p>
       </div>
       <div className="md:w-2/3 w-full">
-        <label
-          htmlFor={`${side}-witness-sign`}
-          className="flex items-center justify-center w-full border border-gray-300 rounded-md p-2.5 h-[46px] bg-gray-50 text-center text-xs text-gray-400 cursor-pointer"
-        >
-          Attached Signature
-        </label>
-        <input
+        <FileInputWithPreview
           id={`${side}-witness-sign`}
-          type="file"
-          accept="image/*"
-          className="hidden"
+          label="Attached Signature"
+          value={attachedData ? attachedData[`${side}_witness_sign`] : null}
+          onChange={(file) => onAttachedChange && onAttachedChange(`${side}_witness_sign`, file)}
         />
       </div>
     </div>
@@ -77,9 +116,21 @@ const WitnessSection = ({ side, data, onFieldChange }) => (
 );
 
 const MarriageForm = ({ application, onCancel, onSubmitSuccess }) => {
-  // Initialize form data from the application's others_infomartions or empty
+  // Initialize form data from the application's informations or empty
   const getInitialData = () => {
-    const info = application?.others_infomartions;
+    let rawInfo = application?.others_infomartions || application?.informations || {};
+
+    if (typeof rawInfo === 'string') {
+      try {
+        rawInfo = JSON.parse(rawInfo);
+      } catch (e) {
+        rawInfo = {};
+      }
+    }
+
+    // The data might be nested inside an "informations" key, or directly on the object.
+    const info = rawInfo?.informations || rawInfo;
+
     return {
       groom: {
         muslim_name: info?.groom?.muslim_name || "",
@@ -114,12 +165,24 @@ const MarriageForm = ({ application, onCancel, onSubmitSuccess }) => {
         solemnized_by_name: info?.other?.solemnized_by_name || "",
         address: info?.other?.address || "",
       },
+      others: info?.others || {},
+      attached: {
+        ...(info?.attached || {}),
+        sign: info?.attached?.sign || null,
+        bride_sign: info?.attached?.bride_sign || null,
+        groom_sign: info?.attached?.groom_sign || null,
+        bride_witness_sign: info?.attached?.bride_witness_sign || null,
+        groom_witness_sign: info?.attached?.groom_witness_sign || null,
+        bride_photo: info?.attached?.bride_photo || null,
+        groom_photo: info?.attached?.groom_photo || null,
+      },
     };
   };
 
   const [formData, setFormData] = useState(getInitialData);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
+  console.log("application", application)
 
   // Re-initialize when application changes
   useEffect(() => {
@@ -148,13 +211,20 @@ const MarriageForm = ({ application, onCancel, onSubmitSuccess }) => {
     }));
   };
 
+  const handleAttachedChange = (field, file) => {
+    setFormData((prev) => ({
+      ...prev,
+      attached: { ...prev.attached, [field]: file },
+    }));
+  };
+
   const handleSubmit = async () => {
     try {
       setLoading(true);
       setMessage({ text: "", type: "" });
 
       const formPayload = new FormData();
-      // Use POST with _method = PUT so laravel accepts files correctly on update
+      // Use POST with _method = POST so laravel accepts files correctly on update
       formPayload.append("_method", "POST");
 
       // Groom
@@ -172,21 +242,22 @@ const MarriageForm = ({ application, onCancel, onSubmitSuccess }) => {
         formPayload.append(`informations[other][${key}]`, formData.other[key] || "");
       });
 
+      // Others (Maintained from previous booking forms)
+      if (formData.others) {
+        Object.keys(formData.others).forEach((key) => {
+          formPayload.append(`informations[others][${key}]`, formData.others[key] || "");
+        });
+      }
+
       // Attached
-      const groomSign = document.getElementById("groom-sign")?.files?.[0];
-      if (groomSign) formPayload.append("informations[attached][groom_sign]", groomSign);
-
-      const groomWitnessSign = document.getElementById("groom-witness-sign")?.files?.[0];
-      if (groomWitnessSign) formPayload.append("informations[attached][groom_witness_sign]", groomWitnessSign);
-
-      const brideSign = document.getElementById("bride-sign-main")?.files?.[0];
-      if (brideSign) formPayload.append("informations[attached][bride_sign]", brideSign);
-
-      const brideWitnessSign = document.getElementById("bride-witness-sign")?.files?.[0];
-      if (brideWitnessSign) formPayload.append("informations[attached][bride_witness_sign]", brideWitnessSign);
-
-      const solemnizerSign = document.getElementById("solemnizer-sign")?.files?.[0];
-      if (solemnizerSign) formPayload.append("informations[attached][sign]", solemnizerSign);
+      Object.keys(formData.attached).forEach((key) => {
+        const fileOrStr = formData.attached[key];
+        if (fileOrStr instanceof File) {
+          formPayload.append(`informations[attached][${key}]`, fileOrStr);
+        } else if (typeof fileOrStr === 'string' && fileOrStr) {
+          formPayload.append(`informations[attached][${key}]`, fileOrStr);
+        }
+      });
 
       console.log("formPayload", formPayload)
       // Submit via POST using axios, the proxy config will proxy this multipart/form-data request
@@ -435,17 +506,30 @@ const MarriageForm = ({ application, onCancel, onSubmitSuccess }) => {
                 </div>
 
                 <div className="md:w-2/3 w-full">
-                  <label
-                    htmlFor="groom-sign"
-                    className="flex items-center justify-center w-full border border-gray-300 rounded-md p-2.5 h-[46px] bg-gray-50 text-center text-xs text-gray-400 cursor-pointer"
-                  >
-                    Attached Signature
-                  </label>
-                  <input
+                  <FileInputWithPreview
                     id="groom-sign"
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
+                    label="Attached Signature"
+                    value={formData.attached.groom_sign}
+                    onChange={(file) => handleAttachedChange("groom_sign", file)}
+                  />
+                </div>
+              </div>
+
+              {/* Groom Photo */}
+              <div className="flex flex-col md:flex-row md:items-center">
+                <div className="w-1/3">
+                  <p className="text-[14px] text-[#333333]">新郎の写真</p>
+                  <p className="font-bold text-[18px] text-[#333333]">
+                    Groom Photo :
+                  </p>
+                </div>
+
+                <div className="md:w-2/3 w-full">
+                  <FileInputWithPreview
+                    id="groom-photo"
+                    label="Attached Photo"
+                    value={formData.attached.groom_photo}
+                    onChange={(file) => handleAttachedChange("groom_photo", file)}
                   />
                 </div>
               </div>
@@ -453,7 +537,9 @@ const MarriageForm = ({ application, onCancel, onSubmitSuccess }) => {
               <WitnessSection
                 side="groom"
                 data={formData.groom}
+                attachedData={formData.attached}
                 onFieldChange={handleGroomChange}
+                onAttachedChange={handleAttachedChange}
               />
             </div>
 
@@ -468,17 +554,30 @@ const MarriageForm = ({ application, onCancel, onSubmitSuccess }) => {
                 </div>
 
                 <div className="md:w-2/3 w-full">
-                  <label
-                    htmlFor="bride-sign-main"
-                    className="flex items-center justify-center w-full border border-gray-300 rounded-md p-2.5 h-[46px] bg-gray-50 text-center text-xs text-gray-400 cursor-pointer"
-                  >
-                    Attached Signature
-                  </label>
-                  <input
+                  <FileInputWithPreview
                     id="bride-sign-main"
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
+                    label="Attached Signature"
+                    value={formData.attached.bride_sign}
+                    onChange={(file) => handleAttachedChange("bride_sign", file)}
+                  />
+                </div>
+              </div>
+
+              {/* Bride Photo */}
+              <div className="flex flex-col md:flex-row md:items-center">
+                <div className="w-1/3">
+                  <p className="text-[14px] text-[#333333]">花嫁の写真</p>
+                  <p className="font-bold text-[18px] text-[#333333]">
+                    Bride Photo :
+                  </p>
+                </div>
+
+                <div className="md:w-2/3 w-full">
+                  <FileInputWithPreview
+                    id="bride-photo"
+                    label="Attached Photo"
+                    value={formData.attached.bride_photo}
+                    onChange={(file) => handleAttachedChange("bride_photo", file)}
                   />
                 </div>
               </div>
@@ -486,7 +585,9 @@ const MarriageForm = ({ application, onCancel, onSubmitSuccess }) => {
               <WitnessSection
                 side="bride"
                 data={formData.bride}
+                attachedData={formData.attached}
                 onFieldChange={handleBrideChange}
+                onAttachedChange={handleAttachedChange}
               />
             </div>
           </div>
@@ -542,17 +643,12 @@ const MarriageForm = ({ application, onCancel, onSubmitSuccess }) => {
               <p className="text-[#333333] text-[14px]">サイン</p>
               <p className="font-bold text-[#333333] text-[18px] mb-1">Sign</p>
               <div className="md:w-2/3 w-full">
-                <label
-                  htmlFor="solemnizer-sign"
-                  className="flex items-center justify-center border w-full border-gray-300 rounded-md p-2.5 h-[56px] bg-gray-50 text-center text-xs text-gray-400 cursor-pointer"
-                >
-                  Attached Signature
-                </label>
-                <input
+                <FileInputWithPreview
                   id="solemnizer-sign"
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
+                  label="Attached Signature"
+                  value={formData.attached.sign}
+                  onChange={(file) => handleAttachedChange("sign", file)}
+                  heightClass="h-[56px]"
                 />
               </div>
             </div>
@@ -574,13 +670,26 @@ const MarriageForm = ({ application, onCancel, onSubmitSuccess }) => {
 
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-4 mt-10">
-            <button
+            {
+              application?.others_infomartions?.informations?.bride?.name != null ?
+                <span className='bg-[#58b847] text-white px-8 py-2 rounded-md font-bold hover:bg-green-700 transition disabled:opacity-50'>Already submited</span>
+                :
+                <button
+                  onClick={handleSubmit}
+                  disabled={loading}
+                  className="bg-[#58b847] text-white px-8 py-2 rounded-md font-bold hover:bg-green-700 transition disabled:opacity-50 cursor-pointer"
+                >
+                  {loading ? "Submitting..." : "Submit"}
+                </button>
+
+            }
+            {/* <button
               onClick={handleSubmit}
               disabled={loading}
               className="bg-[#58b847] text-white px-8 py-2 rounded-md font-bold hover:bg-green-700 transition disabled:opacity-50 cursor-pointer"
             >
               {loading ? "Submitting..." : "Submit"}
-            </button>
+            </button> */}
             <button
               onClick={() => {
                 setFormData(getInitialData());
@@ -596,8 +705,8 @@ const MarriageForm = ({ application, onCancel, onSubmitSuccess }) => {
             </button>
           </div>
         </div>
-      </GradientBorder>
-    </div>
+      </GradientBorder >
+    </div >
   );
 };
 

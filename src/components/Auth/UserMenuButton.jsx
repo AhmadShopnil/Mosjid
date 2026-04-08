@@ -58,7 +58,7 @@ export default function UserMenuButton() {
                     {initials}
                 </div>
                 <span className="hidden sm:inline max-w-[100px] truncate">
-                    {user?.first_name || user?.name || "User"}
+                    {user?.first_name || user?.name || user?.full_name|| "User"}
                 </span>
                 <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`} />
             </button>
@@ -80,8 +80,8 @@ export default function UserMenuButton() {
                                 setDropdownOpen(false);
                                 logout();
                             }}
-                            className="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-600
-                hover:bg-red-50 transition-colors duration-150 cursor-pointer"
+                            className="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors
+                             duration-150 cursor-pointer"
                         >
                             <LogOut className="w-4 h-4" />
                             <span className="font-medium">Logout</span>

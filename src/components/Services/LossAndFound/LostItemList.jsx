@@ -4,18 +4,7 @@
 import { TableSkeleton } from "../Skeletons/TableSkeleton";
 import LossTableRow from "./LossTableRow";
 
-const data = [
-  { sl: 1, arabic: "محمد", japanese: "ムハンマド", english: "Muhammad", meaning: "The praised one" },
-  { sl: 2, arabic: "أحمد", japanese: "アフマド", english: "Ahmad", meaning: "Most commendable" },
-  { sl: 3, arabic: "علي", japanese: "アリ", english: "Ali", meaning: "High, exalted" },
-  { sl: 4, arabic: "عبدالله", japanese: "アブドゥッラー", english: "Abdullah", meaning: "Servant of Allah" },
-  { sl: 5, arabic: "يوسف", japanese: "ユースフ", english: "Yusuf", meaning: "Allah increases" },
-];
-
-
-
-
-export default function LostItemList({ loading = false }) {
+export default function LostItemList({ data = [], loading = false }) {
 
 
   return (
@@ -63,12 +52,12 @@ const TableHeader = () => (
       {[
         "SL.No",
         "Applicant Name",
-        "Lost Item name",
-        "Lost Spot/area",
-        "Lost date",
+        "Lost Item Name",
+        "Lost Spot/Area",
+        "Lost Date",
         "Upload Image",
-        "Contact no"
-      ]?.map((title, i) => (
+        "Contact No"
+      ].map((title, i) => (
         <th
           key={i}
           className="border border-[#B0C4B8] py-2 text-center text-sm sm:text-base font-normal w-[14.28%]"
@@ -84,7 +73,7 @@ const TableBody = ({ data }) => (
   <tbody>
     {data?.map((item, i) => (
       <LossTableRow
-        key={item.sl}
+        key={item.id}
         item={item}
         i={i}
         
@@ -97,8 +86,8 @@ const TableBody = ({ data }) => (
 const EmptyState = () => (
   <tbody>
     <tr>
-      <td colSpan={6} className="text-center py-10 text-gray-500">
-        No Names found.
+      <td colSpan={7} className="text-center py-10 text-gray-500">
+        No items found.
       </td>
     </tr>
   </tbody>

@@ -53,12 +53,14 @@ const Page = () => {
   return (
     <div>
       <Booking slots={slots} onBookingSubmitted={fetchData} />
-      <BookingList marriages={marriages} loading={loading} />
+
       <MyApplications
         applications={myApplications}
         loading={loading}
         onFillForm={handleFillForm}
       />
+
+      <BookingList marriages={marriages} loading={loading} />
       <div ref={formRef}>
         {selectedApplication && (
           <MarriageForm

@@ -10,25 +10,28 @@ export default function LossTableRow({
   return (
     <tr
       key={i}
-      className={`${i % 2 === 0 ? "bg-white" : "bg-[#E5F5DE]"} h-[28px]`}
+      className={`${i % 2 === 0 ? "bg-white" : "bg-[#E5F5DE]"} h-[42px]`}
     >
-      <td className="border border-gray-300 p-3 text-center">01</td>
-      <td className="border border-gray-300 p-3 text-center">Arabic Shopnil</td>
-      <td className="border border-gray-300 p-3 text-center">
-     Mobile
+      <td className="border border-gray-300 p-3 text-center text-sm">{String(i + 1).padStart(2, "0")}</td>
+      <td className="border border-gray-300 p-3 text-center text-sm">{item.name || "—"}</td>
+      <td className="border border-gray-300 p-3 text-center text-sm">{item.item_name || "—"}</td>
+      <td className="border border-gray-300 p-3 text-center text-sm">{item.spot_area || "—"}</td>
+      <td className="border border-gray-300 p-3 text-center text-sm">{item.lost_found_date || "—"}</td>
+      <td className="border border-gray-300 p-3 text-center text-sm relative group">
+        {item.item_image ? (
+          <a
+            href={`https://admin.osakamasjid.org/public/${item.item_image}`}
+            target="_blank"
+            rel="noreferrer"
+            className="text-blue-600 hover:text-blue-800 underline font-medium"
+          >
+            View
+          </a>
+        ) : (
+          <span className="text-gray-400">—</span>
+        )}
       </td>
-      <td className="border border-gray-300 p-3 text-center">
-        10 July 2025
-      </td>
-
-      <td className="border border-gray-300 p-3 text-center">White color S105</td>
-
-      <td className="border border-gray-300 p-3 text-center">
-       View
-      </td>
-      <td className="border border-gray-300 p-3 text-center overflow-y-auto">
-       +8801729147191
-      </td>
+      <td className="border border-gray-300 p-3 text-center text-sm">{item.contact_no || "—"}</td>
     </tr>
   );
 }

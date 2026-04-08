@@ -3,24 +3,17 @@
 
 import { TableSkeleton } from "../Skeletons/TableSkeleton";
 import BurialTableRow from "./BurialTableRow";
+import React, { useState } from "react";
+import BurialRegistrationModal from "./BurialRegistrationModal";
 
 
-const data = [
-  { sl: 1, arabic: "محمد", japanese: "ムハンマド", english: "Muhammad", meaning: "The praised one" },
-  { sl: 2, arabic: "أحمد", japanese: "アフマド", english: "Ahmad", meaning: "Most commendable" },
-  { sl: 3, arabic: "علي", japanese: "アリ", english: "Ali", meaning: "High, exalted" },
-  { sl: 4, arabic: "عبدالله", japanese: "アブドゥッラー", english: "Abdullah", meaning: "Servant of Allah" },
-  { sl: 5, arabic: "يوسف", japanese: "ユースフ", english: "Yusuf", meaning: "Allah increases" },
-];
-
-
-
-
-export default function BurialTable({ loading = false, tableTitle }) {
+export default function BurialTable({ loading = false, tableTitle, data = [], isBookingTable = false, onRegistrationSuccess }) {
+  const [activeModalId, setActiveModalId] = useState(null);
 
 
   return (
-    <div className="space-y-4">
+    <>
+      <div className="space-y-4">
       {/* Table Section */}
       <div>
         <div className="px-4 bg-[#52B920] h-[50px] text-white flex items-center justify-between rounded-t-[10px] ">
@@ -30,14 +23,15 @@ export default function BurialTable({ loading = false, tableTitle }) {
 
         <div className="overflow-x-auto">
           <table className="w-full border-collapse table-fixed min-w-[800px]">
-            <TableHeader />
+            <TableHeader isBookingTable={isBookingTable} />
 
             {loading ? (
               <TableSkeleton />
             ) : data?.length > 0 ? (
               <TableBody
                 data={data}
-
+                isBookingTable={isBookingTable}
+                onOpenModal={setActiveModalId}
               />
             ) : (
               <EmptyState />
@@ -48,6 +42,18 @@ export default function BurialTable({ loading = false, tableTitle }) {
 
 
     </div>
+    
+      {activeModalId && (
+        <BurialRegistrationModal 
+          bookingId={activeModalId} 
+          onClose={() => setActiveModalId(null)} 
+          onSuccess={() => {
+            setActiveModalId(null);
+            if (onRegistrationSuccess) onRegistrationSuccess();
+          }} 
+        />
+      )}
+    </>
   );
 }
 
@@ -56,21 +62,22 @@ export default function BurialTable({ loading = false, tableTitle }) {
 
 
 
-const TableHeader = () => (
-  <thead>
-    <tr className="bg-[#FEF8EA] h-[42px]">
-      {[
-        "SL.No",
-        "Applicant Name",
-        "Deceased Name",
-        "Burial Date",
-        "Burial Time",
-        "Contact",
+const TableHeader = ({ isBookingTable }) => {
+  const headers = [
+    "SL.No",
+    "Applicant Name",
+    "Deceased Name",
+    "Burial Date",
+    "Burial Time",
+    "Contact",
+  ];
 
+  if (isBookingTable) headers.push("Action");
 
-
-
-      ].map((title, i) => (
+  return (
+    <thead>
+      <tr className="bg-[#FEF8EA] h-[42px]">
+        {headers.map((title, i) => (
         <th
           key={i}
           className="border border-[#B0C4B8] py-2 text-[#3E8B18] text-center text-sm sm:text-base font-semibold w-[14.28%]"
@@ -79,17 +86,19 @@ const TableHeader = () => (
         </th>
       ))}
     </tr>
-  </thead>
-);
+    </thead>
+  );
+};
 
-const TableBody = ({ data }) => (
+const TableBody = ({ data, isBookingTable, onOpenModal }) => (
   <tbody>
     {data?.map((item, i) => (
       <BurialTableRow
-        key={item.sl}
+        key={item.id}
         item={item}
         i={i}
-
+        isBookingTable={isBookingTable}
+        onOpenModal={() => onOpenModal(item.id)}
       />
     ))}
   </tbody>
@@ -99,8 +108,8 @@ const TableBody = ({ data }) => (
 const EmptyState = () => (
   <tbody>
     <tr>
-      <td colSpan={6} className="text-center py-10 text-gray-500">
-        No Names found.
+      <td colSpan={7} className="text-center py-10 text-gray-500">
+        No records found.
       </td>
     </tr>
   </tbody>
