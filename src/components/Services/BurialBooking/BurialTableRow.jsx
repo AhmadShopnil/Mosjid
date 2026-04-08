@@ -3,7 +3,8 @@ import React from "react";
 export default function BurialTableRow({
   item,
   i,
-
+  isBookingTable,
+  onOpenModal
 }) {
   return (
     <tr
@@ -17,9 +18,16 @@ export default function BurialTableRow({
       <td className="border border-gray-300 p-3 text-center text-sm">{item.estimated_burial_time || "—"}</td>
       <td className="border border-gray-300 p-3 text-center text-sm">{item.contact_no || "—"}</td>
 
-
-
-
+      {isBookingTable && (
+        <td className="border border-gray-300 p-3 text-center text-sm">
+          <button
+            onClick={onOpenModal}
+            className="bg-green-600 hover:bg-green-700 text-white px-4 py-1.5 rounded-md transition font-medium text-xs md:text-sm shadow-sm"
+          >
+            Fill form
+          </button>
+        </td>
+      )}
     </tr>
   );
 }

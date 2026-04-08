@@ -43,7 +43,7 @@ export default function Page() {
 
             <div className='rounded-2xl p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909]'>
                 <div className='p-8 bg-white rounded-[15px]'>
-                    <BurialTable tableTitle={bookingTableTitle} data={bookingList} loading={loading} />
+                    <BurialTable tableTitle={bookingTableTitle} data={bookingList} loading={loading} isBookingTable={true} onRegistrationSuccess={fetchBurialData} />
                 </div>
             </div>
 

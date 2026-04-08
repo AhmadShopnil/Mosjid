@@ -6,9 +6,10 @@ import axiosInstance from "@/helper/axiosInstance";
 const Booking = ({ slots = [], onBookingSubmitted }) => {
   const [values, setValues] = useState({
     applicantName: "",
-    eventType: "",
+    phoneNumber: "",
     eventDate: "",
     slotId: "",
+    kabinNama: null,
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
@@ -18,13 +19,19 @@ const Booking = ({ slots = [], onBookingSubmitted }) => {
     setValues((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleFileChange = (e) => {
+    const { name } = e.target;
+    const file = e.target.files[0];
+    setValues((prev) => ({ ...prev, [name]: file }));
+  };
+
   // Find the selected slot to display start/end time
   const selectedSlot = slots.find((s) => s.id === Number(values.slotId));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!values.applicantName || !values.eventDate || !values.slotId) {
+    if (!values.applicantName || !values.phoneNumber || !values.eventDate || !values.slotId || !values.kabinNama) {
       setMessage({ text: "Please fill all required fields.", type: "error" });
       return;
     }
@@ -33,17 +40,18 @@ const Booking = ({ slots = [], onBookingSubmitted }) => {
       setLoading(true);
       setMessage({ text: "", type: "" });
 
-      const payload = {
-        application_name: values.applicantName,
-        booked_date: values.eventDate,
-        start_time: selectedSlot?.start_time,
-        end_time: selectedSlot?.end_time,
-      };
+      const formData = new FormData();
+      formData.append("booked_date", values.eventDate);
+      formData.append("start_time", selectedSlot?.start_time || "");
+      formData.append("end_time", selectedSlot?.end_time || "");
+      formData.append("informations[others][applicant_name]", values.applicantName);
+      formData.append("informations[others][phone_number]", values.phoneNumber);
+      formData.append("informations[attached][kabin_nama]", values.kabinNama);
 
-      await axiosInstance.post("/marriage", payload);
+      await axiosInstance.post("/marriage", formData);
 
       setMessage({ text: "Booking submitted successfully!", type: "success" });
-      setValues({ applicantName: "", eventType: "", eventDate: "", slotId: "" });
+      setValues({ applicantName: "", phoneNumber: "", eventDate: "", slotId: "", kabinNama: null });
 
       // Refresh data after successful booking
       if (onBookingSubmitted) onBookingSubmitted();
@@ -117,20 +125,17 @@ const Booking = ({ slots = [], onBookingSubmitted }) => {
                 />
               </div>
 
-              {/* Event Type */}
+              {/* Phone Number */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
-                <label className="font-bold">Event Type</label>
-                <select
-                  name="eventType"
-                  value={values.eventType}
+                <label className="font-bold">Phone Number</label>
+                <input
+                  name="phoneNumber"
+                  type="text"
+                  value={values.phoneNumber}
                   onChange={handleChange}
-                  className="sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 h-14 bg-white/50 focus:outline-none appearance-none"
-                >
-                  <option value="" disabled>Select an event type</option>
-                  {["Wedding", "Seminar", "Conference", "Party", "Other"].map((opt) => (
-                    <option key={opt} value={opt}>{opt}</option>
-                  ))}
-                </select>
+                  placeholder="Enter phone number"
+                  className="sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 h-14 bg-white/50 focus:outline-none"
+                />
               </div>
 
               {/* Event Date */}
@@ -175,6 +180,19 @@ const Booking = ({ slots = [], onBookingSubmitted }) => {
                 </div>
               )}
 
+              {/* Kabin Nama Attachment */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                <label className="font-bold">Kabin Nama</label>
+                <input
+                  key={values.kabinNama ? "has-file" : "no-file"}
+                  name="kabinNama"
+                  type="file"
+                  onChange={handleFileChange}
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  className="sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 py-3 bg-white/50 focus:outline-none"
+                />
+              </div>
+
               {/* Message */}
               {message.text && (
                 <p className={`text-sm font-medium ${message.type === "success" ? "text-green-600" : "text-red-600"}`}>
@@ -202,7 +220,7 @@ const Booking = ({ slots = [], onBookingSubmitted }) => {
                 <button
                   type="button"
                   onClick={() => {
-                    setValues({ applicantName: "", eventType: "", eventDate: "", slotId: "" });
+                    setValues({ applicantName: "", phoneNumber: "", eventDate: "", slotId: "", kabinNama: null });
                     setMessage({ text: "", type: "" });
                   }}
                   className="border border-[#FF0000] text-[#FF0000] bg-[#FFE9E9] h-14 w-full sm:max-w-[22.75rem] rounded-xl font-medium hover:bg-red-50 transition-colors"
