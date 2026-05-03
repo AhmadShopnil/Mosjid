@@ -1,10 +1,10 @@
 'use client'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 import axiosInstance from "@/helper/axiosInstance";
 import { useAuth } from "@/context/AuthContext";
 
-const Booking = ({ slots = [], onBookingSubmitted }) => {
+const Booking = ({ slots = [], onBookingSubmitted, onActionClick }) => {
   const { isAuthenticated, openAuthModal } = useAuth();
   const [values, setValues] = useState({
     applicantName: "",
@@ -15,22 +15,72 @@ const Booking = ({ slots = [], onBookingSubmitted }) => {
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
+  const [dynamicSlots, setDynamicSlots] = useState([]);
+  const [loadingSlots, setLoadingSlots] = useState(false);
+  const [kabinNamaPreview, setKabinNamaPreview] = useState(null);
+
+  useEffect(() => {
+    const fetchSlots = async () => {
+      if (!values.eventDate) {
+        setDynamicSlots([]);
+        return;
+      }
+      try {
+        setLoadingSlots(true);
+        const res = await axiosInstance.get('/slots', {
+          params: { booked_date: values.eventDate, type: 'marriage' }
+        });
+        if (res.data && res.data.slots) {
+          setDynamicSlots(res.data.slots);
+        } else {
+          setDynamicSlots([]);
+        }
+      } catch (err) {
+        console.error("Failed to fetch slots:", err);
+        setDynamicSlots([]);
+      } finally {
+        setLoadingSlots(false);
+      }
+    };
+    fetchSlots();
+  }, [values.eventDate]);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setValues((prev) => ({ ...prev, [name]: value }));
+    setValues((prev) => {
+      const newValues = { ...prev, [name]: value };
+      if (name === "eventDate") {
+        newValues.slotId = ""; // Reset slot when date changes
+      }
+      return newValues;
+    });
   };
 
   const handleFileChange = (e) => {
     const { name } = e.target;
     const file = e.target.files[0];
     setValues((prev) => ({ ...prev, [name]: file }));
+
+    if (name === "kabinNama") {
+      if (file && file.type.startsWith("image/")) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setKabinNamaPreview(reader.result);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        setKabinNamaPreview(null);
+      }
+    }
   };
 
   // Find the selected slot to display start/end time
-  const selectedSlot = slots.find((s) => s.id === Number(values.slotId));
+  const selectedSlot = dynamicSlots.find((s) => s.id === Number(values.slotId));
 
   const handleSubmit = async (e) => {
+
+    console.log("selectedSlot", selectedSlot);
     e.preventDefault();
 
     if (!values.applicantName || !values.phoneNumber || !values.eventDate || !values.slotId || !values.kabinNama) {
@@ -46,14 +96,20 @@ const Booking = ({ slots = [], onBookingSubmitted }) => {
       formData.append("booked_date", values.eventDate);
       formData.append("start_time", selectedSlot?.start_time || "");
       formData.append("end_time", selectedSlot?.end_time || "");
+      formData.append("slot_id", selectedSlot?.id || "");
       formData.append("informations[others][applicant_name]", values.applicantName);
       formData.append("informations[others][phone_number]", values.phoneNumber);
       formData.append("informations[attached][kabin_nama]", values.kabinNama);
 
-      await axiosInstance.post("/marriage", formData);
+
+      // console.log("Booking formData before api call", formData);
+
+      const bookingResponse = await axiosInstance.post("/marriage", formData);
+      console.log("Booking Response", bookingResponse);
 
       setMessage({ text: "Booking submitted successfully!", type: "success" });
       setValues({ applicantName: "", phoneNumber: "", eventDate: "", slotId: "", kabinNama: null });
+      setKabinNamaPreview(null);
 
       // Refresh data after successful booking
       if (onBookingSubmitted) onBookingSubmitted();
@@ -96,12 +152,16 @@ const Booking = ({ slots = [], onBookingSubmitted }) => {
                   { label: "Marriage\nForm", icon: "mariage.svg" },
                   { label: "Marriage\nGuideline", icon: "mariage.svg" },
                 ].map((item, i) => (
-                  <div key={i} className="flex flex-col items-center text-center">
+                  <div 
+                    key={i} 
+                    onClick={() => onActionClick && onActionClick(item.label)}
+                    className="flex flex-col items-center text-center cursor-pointer hover:opacity-80 transition"
+                  >
                     <img
                       src={`/images/offerServices/marriageFacilities/${item.icon}`}
                       alt=""
                     />
-                    <span className="text-[#B98C20] font-bold text-base">
+                    <span className="text-[#B98C20] font-bold text-base whitespace-pre-wrap">
                       {item.label}
                     </span>
                   </div>
@@ -160,16 +220,31 @@ const Booking = ({ slots = [], onBookingSubmitted }) => {
                     name="slotId"
                     value={values.slotId}
                     onChange={handleChange}
-                    className="sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 h-14 bg-white/50 focus:outline-none appearance-none"
+                    className={`sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 h-14 bg-white/50 focus:outline-none appearance-none ${!values.eventDate || loadingSlots ? 'opacity-70 cursor-not-allowed' : ''}`}
+                    disabled={!values.eventDate || loadingSlots}
                   >
-                    <option value="" disabled>Select a time slot</option>
-                    {slots
+                    <option value="" disabled>
+                      {!values.eventDate
+                        ? "Select event date first"
+                        : loadingSlots
+                          ? "Loading slots..."
+                          : "Select a time slot"}
+                    </option>
+                    {dynamicSlots
                       .filter((slot) => slot.status === "1")
-                      .map((slot) => (
-                        <option key={slot.id} value={slot.id}>
-                          {slot.name} ({slot.start_time} - {slot.end_time})
-                        </option>
-                      ))}
+                      .map((slot) => {
+                        const isBooked = slot.slot_trace_count >= 1;
+                        return (
+                          <option
+                            key={slot.id}
+                            value={slot.id}
+                            disabled={isBooked}
+                            className={isBooked ? "text-red-500 font-semibold bg-red-50" : "text-green-700"}
+                          >
+                            {slot.name} ({slot.start_time} - {slot.end_time}) {isBooked ? "- Already Booked" : ""}
+                          </option>
+                        );
+                      })}
                   </select>
                 </div>
 
@@ -186,14 +261,25 @@ const Booking = ({ slots = [], onBookingSubmitted }) => {
                 {/* Kabin Nama Attachment */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
                   <label className="font-bold">Kabin Nama</label>
-                  <input
-                    key={values.kabinNama ? "has-file" : "no-file"}
-                    name="kabinNama"
-                    type="file"
-                    onChange={handleFileChange}
-                    accept=".pdf,.jpg,.jpeg,.png"
-                    className="sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 py-3 bg-white/50 focus:outline-none"
-                  />
+                  <div className="sm:col-span-2 flex flex-col gap-3">
+                    <input
+                      key={values.kabinNama ? "has-file" : "no-file"}
+                      name="kabinNama"
+                      type="file"
+                      onChange={handleFileChange}
+                      accept=".pdf,.jpg,.jpeg,.png"
+                      className="border-2 border-[#F7BA2A] rounded-xl px-4 py-3 bg-white/50 focus:outline-none w-full"
+                    />
+                    {kabinNamaPreview && (
+                      <div className="mt-2">
+                        <img
+                          src={kabinNamaPreview}
+                          alt="Kabin Nama Preview"
+                          className="h-16 object-contain border border-gray-300 rounded-lg p-1 bg-white"
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 {/* Message */}
@@ -224,6 +310,7 @@ const Booking = ({ slots = [], onBookingSubmitted }) => {
                     type="button"
                     onClick={() => {
                       setValues({ applicantName: "", phoneNumber: "", eventDate: "", slotId: "", kabinNama: null });
+                      setKabinNamaPreview(null);
                       setMessage({ text: "", type: "" });
                     }}
                     className="border border-[#FF0000] text-[#FF0000] bg-[#FFE9E9] h-14 w-full sm:max-w-[22.75rem] rounded-xl font-medium hover:bg-red-50 transition-colors"

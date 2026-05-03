@@ -124,7 +124,9 @@ export default function Topbar({ settings, location }) {
         <div className="flex gap-2">
           <ToaysDateTime location={location} />
           ,
-          <ToaysDateTimeHijri location={location} />
+          <ToaysDateTimeHijri location={location}
+            timezone="Asia/Tokyo"
+            showGregorian={false} />
         </div>
         {/* language selection */}
         <div className="flex items-center gap-2 justify-end min-w-[330px]">
