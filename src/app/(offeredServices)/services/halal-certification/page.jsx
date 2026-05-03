@@ -1,25 +1,55 @@
+"use client";
 
-
+import React, { useState, useRef } from 'react'
 import HalalCertificateForm from '@/components/Services/HalalCertification/HalalCertificateForm'
 import HalalCertificateTopSection from '@/components/Services/HalalCertification/HalalCertificateTopSection'
-import VisitorBookingTopSection from '@/components/Services/VisitorBooking/VisitorBookingTopSection'
+import HalalCertifiedList from '@/components/Services/HalalCertification/HalalCertifiedList'
+import PolicyModal from '@/components/Shared/PolicyModal'
 
-import React from 'react'
+export default function Page() {
+    const [showForm, setShowForm] = useState(false);
+    const listRef = useRef(null);
+    const formRef = useRef(null);
+    
+    // Modal state
+    const [modalConfig, setModalConfig] = useState({ isOpen: false, slug: "", title: "" });
 
+    const handleActionClick = (action) => {
+        if (action === "Halal Certificate Form") {
+            setShowForm(true);
+            // Allow state to update and DOM to render before scrolling
+            setTimeout(() => {
+                formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        } else if (action === "Halal Certified List") {
+            listRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else if (action === "Issuing Rules of Halal Certification") {
+            setModalConfig({ isOpen: true, slug: "issuing-rules", title: action });
+        } else if (action === "Visitor Guides Line") {
+            setModalConfig({ isOpen: true, slug: "visitor-guides", title: action });
+        }
+    };
 
-
-export default function page() {
     return (
         <div className='space-y-8'>
             {/* top sections */}
-            <HalalCertificateTopSection />
+            <HalalCertificateTopSection onActionClick={handleActionClick} />
 
-            <HalalCertificateForm />
+            <div className="scroll-mt-32" ref={formRef}>
+                {showForm && <HalalCertificateForm onCancel={() => setShowForm(false)} />}
+            </div>
+            
+            <div className="my-10 scroll-mt-32" ref={listRef}>
+                <HalalCertifiedList />
+            </div>
 
-         
-
-
-
+            {/* Reusable Guidelines/Policies Modal */}
+            <PolicyModal 
+                isOpen={modalConfig.isOpen} 
+                onClose={() => setModalConfig({ ...modalConfig, isOpen: false })} 
+                slug={modalConfig.slug} 
+                title={modalConfig.title} 
+            />
         </div>
     )
 }

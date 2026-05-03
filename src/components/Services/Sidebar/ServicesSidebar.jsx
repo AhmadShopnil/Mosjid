@@ -9,13 +9,11 @@ import { useSelectedParrent } from "@/context/SelectedContextParrent";
 import { useFatwaFilters } from "@/context/FatwaFilterContext";
 
 
+
 export default function ServicesSidebar({
   categories,
-
 }) {
   const { selected, setSelected, clearSelected } = useSelected();
-
-
 
 
 
@@ -87,11 +85,11 @@ export default function ServicesSidebar({
                 <div className="flex-1 text-left py-1 ">
                   <p
                     className={`font-bold text-sm transition-colors  ${isExpanded ||
-                        category.id == hovered ||
-                        category?.id == selected?.id
+                      category.id == hovered ||
+                      category?.id == selected?.id
 
-                        ? "text-white"
-                        : "text-[#B98C20] group-hover:text-white"
+                      ? "text-white"
+                      : "text-[#B98C20] group-hover:text-white"
                       }`}
                   >
                     {category?.name}
@@ -99,10 +97,10 @@ export default function ServicesSidebar({
                   {category?.subtitle && (
                     <p
                       className={`text-sm font-bold transition-colors ${isExpanded ||
-                          category.id == hovered ||
-                          category?.id == selected?.id
-                          ? "text-white"
-                          : "text-[#00401A] group-hover:text-white"
+                        category.id == hovered ||
+                        category?.id == selected?.id
+                        ? "text-white"
+                        : "text-[#00401A] group-hover:text-white"
                         }`}
                     >
                       {category?.subtitle}
@@ -115,8 +113,8 @@ export default function ServicesSidebar({
                   <ChevronDown
                     size={24}
                     className={`flex-shrink-0 transition-transform ${isExpanded
-                        ? "rotate-180 text-white"
-                        : "text-[#141B34] group-hover:text-white"
+                      ? "rotate-180 text-white"
+                      : "text-[#141B34] group-hover:text-white"
                       }`}
                   />
                 ) : category?.isArrow ? (

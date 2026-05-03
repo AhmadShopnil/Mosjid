@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function DonationFacilityTopSection() {
+export default function DonationFacilityTopSection({ onActionClick }) {
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -91,10 +91,11 @@ export default function DonationFacilityTopSection() {
                         ].map((item, i) => (
                             <motion.div
                                 key={i}
+                                onClick={() => onActionClick && onActionClick(item.label)}
                                 initial={{ y: 20, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.4 + i * 0.15 }}
-                                className="border border-[#F7BA2A] bg-white/50 p-4 flex items-center gap-4 rounded-[10px]"
+                                className="cursor-pointer hover:bg-white/80 transition border border-[#F7BA2A] bg-white/50 p-4 flex items-center gap-4 rounded-[10px]"
                             >
                                 <Image
                                     src={`/images/offerServices/IslamicName/${item.icon}`}

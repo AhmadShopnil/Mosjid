@@ -3,6 +3,7 @@ import Booking from '@/components/Services/marriageFacilities/Booking'
 import BookingList from '@/components/Services/marriageFacilities/BookingList'
 import MyApplications from '@/components/Services/marriageFacilities/MyApplications'
 import MarriageForm from '@/components/Services/marriageFacilities/MarriageForm'
+import PolicyModal from '@/components/Shared/PolicyModal'
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import axiosInstance from '@/helper/axiosInstance'
 
@@ -12,7 +13,13 @@ const Page = () => {
   const [myApplications, setMyApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedApplication, setSelectedApplication] = useState(null);
+  
   const formRef = useRef(null);
+  const bookingListRef = useRef(null);
+  const myApplicationsRef = useRef(null);
+
+  // Modal state
+  const [modalConfig, setModalConfig] = useState({ isOpen: false, slug: "", title: "" });
 
   const fetchData = useCallback(async () => {
     try {
@@ -50,18 +57,35 @@ const Page = () => {
     fetchData(); // Refresh data after form submission
   };
 
+  const handleActionClick = (action) => {
+    if (action === "Booking\nList") {
+      bookingListRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (action === "Marriage\nForm") {
+      myApplicationsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (action === "Marriage\nGuideline") {
+      setModalConfig({ isOpen: true, slug: "marriage-guideline", title: "Marriage Guideline" });
+    }
+  };
+
+
+  
   return (
     <div>
-      <Booking slots={slots} onBookingSubmitted={fetchData} />
+      <Booking slots={slots} onBookingSubmitted={fetchData} onActionClick={handleActionClick} />
 
-      <MyApplications
-        applications={myApplications}
-        loading={loading}
-        onFillForm={handleFillForm}
-      />
+      <div className="scroll-mt-32" ref={myApplicationsRef}>
+        <MyApplications
+          applications={myApplicationsRef ? myApplications : []}
+          loading={loading}
+          onFillForm={handleFillForm}
+        />
+      </div>
 
-      <BookingList marriages={marriages} loading={loading} />
-      <div ref={formRef}>
+      <div className="mt-8 scroll-mt-32" ref={bookingListRef}>
+        <BookingList marriages={marriages} loading={loading} />
+      </div>
+
+      <div className="scroll-mt-32" ref={formRef}>
         {selectedApplication && (
           <MarriageForm
             application={selectedApplication}
@@ -70,6 +94,13 @@ const Page = () => {
           />
         )}
       </div>
+
+      <PolicyModal 
+        isOpen={modalConfig.isOpen} 
+        onClose={() => setModalConfig({ ...modalConfig, isOpen: false })} 
+        slug={modalConfig.slug} 
+        title={modalConfig.title} 
+      />
     </div>
   );
 };
