@@ -88,7 +88,7 @@ export default function HalalCertificateTopSection({ onActionClick }) {
                             { icon: "1.svg", label: "Halal Certificate Form" },
                             { icon: "3.svg", label: "Halal Certified List" },
                             { icon: "2.svg", label: "Issuing Rules of Halal Certification" },
-                            { icon: "3.svg", label: "Visitor Guides Line" },
+                            // { icon: "3.svg", label: " Guides Line" },
                         ].map((item, i) => (
                             <motion.div
                                 key={i}

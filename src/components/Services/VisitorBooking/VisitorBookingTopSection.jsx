@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function VisitorBookingTopSection() {
+export default function VisitorBookingTopSection({ onActionClick }) {
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -112,7 +112,8 @@ export default function VisitorBookingTopSection() {
                                 initial={{ y: 20, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.4 + i * 0.15 }}
-                                className="border border-[#F7BA2A] bg-white/50 p-2.5 md:p-4 flex items-center gap-2 md:gap-4 rounded-[10px]"
+                                onClick={() => onActionClick && onActionClick(item.label)}
+                                className="border border-[#F7BA2A] bg-white/50 p-2.5 md:p-4 flex items-center gap-2 md:gap-4 rounded-[10px] cursor-pointer hover:bg-white/80 transition"
                             >
                                 <Image
                                     src={`/images/offerServices/IslamicName/${item.icon}`}

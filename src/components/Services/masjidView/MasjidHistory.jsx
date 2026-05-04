@@ -48,7 +48,9 @@ const MasjidHistory = () => {
 
   return (
     <section className="mb-6">
-      <SectionTitleRow leftTitle={'Masjid History'} rightTitle={'マスジドの歴史'} />
+      <div className="mb-6">
+        <SectionTitleRow leftTitle={'Masjid History'} rightTitle={'マスジドの歴史'} />
+      </div>
       <div>
         {/* The Growth Line: Only show on Large screens (4 columns) */}
         <div className="hidden  lg:block -mb-12.5 relative z-10 pointer-events-none pt-6">
@@ -64,7 +66,7 @@ const MasjidHistory = () => {
         </div>
 
         {/* Grid Layout: 1 col (mobile), 2 cols (md), 4 cols (lg) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-end gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 items-end gap-4 md:gap-6 max-w-7xl mx-auto">
           {timelineData?.map((item, index) => (
             <div
               key={index}
