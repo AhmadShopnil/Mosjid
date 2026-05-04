@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 
@@ -5,14 +6,14 @@ import MuslimConversionBookingForm from "./MuslimConversionBookingForm";
 
 
 const menuList = [
-    { icon: "1.svg", label: "Conversion Booking" },
+    { icon: "1.svg", label: "Conversion Booking List" },
     { icon: "3.svg", label: "Converted  List" },
-    { icon: "2.svg", label: "Conversion Form" },
+    { icon: "2.svg", label: "My Applications" },
     { icon: "3.svg", label: "Conversion Guide Line " },
 ]
 
 
-export default function MuslimConvertionTopSection() {
+export default function MuslimConvertionTopSection({ onActionClick }) {
     return (
         <div className="relative overflow-hidden rounded-[20px] ">
 
@@ -64,11 +65,12 @@ export default function MuslimConvertionTopSection() {
                             />
                         </div>
 
-                        <div className="mt-10 grid grid-cols-4 gap-4 justify-around shadow-2xl  rounded-3xl py-8 px-6 ">
+                        <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 justify-around shadow-xl  rounded-3xl py-8 px-6 ">
                             {menuList.map((item, i) => (
                                 <div
                                     key={i}
                                     className="flex flex-col  justify-start items-center hover:cursor-pointer gap-4    "
+                                    onClick={() => onActionClick && onActionClick(item.label)}
                                 >
                                     <div className="w-[50px] h-[50px]  ">
                                         <Image
@@ -76,7 +78,7 @@ export default function MuslimConvertionTopSection() {
                                             alt={item.label}
                                             width={40}
                                             height={40}
-                                            className="w-[50px] h-[50px] mx-auto hover:shadow-2xl hover:bg-white hover:rounded-sm"
+                                            className="w-[50px] h-[50px] mx-auto hover:shadow-2xl  hover:rounded-sm"
                                         />
                                     </div>
                                     <span className="text-[#B98C20] text-center text-sm md:text-base font-bold w-28">
