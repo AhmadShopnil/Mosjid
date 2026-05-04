@@ -32,7 +32,7 @@ export default function GraveyardBenefit({ graveyard_benefits }) {
 
 function BenefitsCard({ item }) {
   return (
-    <div className="border-2 border-[#FFCE4D] rounded-[30px] p-3 shadow-xl ">
+    <div className="border-2 border-[#FFCE4D] rounded-[30px] p-2 shadow-xl ">
 
       <div className='flex flex-col items-center border-2 border-[#005312] rounded-[20px]  bg-white w-full min-h-[180px] 
       md:min-h-[220px] '>

@@ -19,10 +19,9 @@ const GraveyardTimeLine = ({ timeLines }) => {
           className="w-full object-contain"
         />
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 
-      gap-3 md:gap-4 xl:gap-6 items-center justify-center">
+      <div className="flex flex-wrap gap-3 md:gap-4 xl:gap-6 items-center ">
         {timeLines?.map((item, index) => (
-          <div key={index} className="relative w-34 text-center mt-11">
+          <div key={index} className="relative w-34 text-center mt-8">
             <div>
 
               <div className=" ">

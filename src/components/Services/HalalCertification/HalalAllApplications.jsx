@@ -10,7 +10,7 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-export default function HalalCertifiedList() {
+export default function HalalAllApplications() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,10 +19,9 @@ export default function HalalCertifiedList() {
   const fetchData = useCallback(async (page = 1) => {
     try {
       setLoading(true);
-      // Assuming your axiosInstance is configured correctly. If not using axiosInstance, use fetch or standard axios.
       const res = await axiosInstance.get(`/halal?page=${page}`);
 
-      const responseData = res?.data?.my_applications;
+      const responseData = res?.data?.all_applications;
       if (responseData) {
         setData(responseData.data || []);
         setCurrentPage(responseData.current_page || 1);
@@ -56,8 +55,8 @@ export default function HalalCertifiedList() {
     >
       <div>
         <div className="bg-[#52B920] h-[50px] text-white flex justify-between items-center px-4 rounded-t-[10px]">
-          <h2 className="font-bold">Halal Certified List</h2>
-          <h2 className="font-bold">ハラール認証リスト</h2>
+          <h2 className="font-bold">All Applications</h2>
+          <h2 className="font-bold">すべての申請</h2>
         </div>
 
         <div className="overflow-x-auto border-x border-b border-gray-200 rounded-b-[10px]">
@@ -87,8 +86,7 @@ export default function HalalCertifiedList() {
                   <TableSkeleton />
                 ) : data.length ? (
                   data.map((item, index) => {
-                    // Calculate absolute serial number based on pagination
-                    const sl = (currentPage - 1) * 20 + index + 1; // Assuming 20 items per page based on API response
+                    const sl = (currentPage - 1) * 20 + index + 1;
                     return (
                       <tr
                         key={item.id}
@@ -103,17 +101,11 @@ export default function HalalCertifiedList() {
                         <td className="border border-gray-300 p-3 text-center">{item.expiry_date || "-"}</td>
                         <td className="border border-gray-300 p-3 text-center">
                           {item.status === 1 ? (
-                            <span className="text-green-600 font-semibold">
-                              Approved
-                            </span>
+                            <span className="text-green-600 font-semibold">Approved</span>
                           ) : item.status === 2 ? (
-                            <span className="text-red-600 font-semibold">
-                              Rejected
-                            </span>
+                            <span className="text-red-600 font-semibold">Rejected</span>
                           ) : (
-                            <span className="text-yellow-600 font-semibold">
-                              Pending
-                            </span>
+                            <span className="text-yellow-600 font-semibold">Pending</span>
                           )}
                         </td>
                       </tr>
@@ -122,7 +114,7 @@ export default function HalalCertifiedList() {
                 ) : (
                   <tr>
                     <td colSpan={8} className="text-center py-10 text-gray-500">
-                      No Halal Certified items found.
+                      No applications found.
                     </td>
                   </tr>
                 )}

@@ -53,12 +53,12 @@ export default function UserMenuButton() {
                 id="user-menu-btn"
             >
                 {/* Avatar with initials */}
-                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#F6C249] to-[#A35024]
+                {/* <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#F6C249] to-[#A35024]
           flex items-center justify-center text-white text-xs font-bold uppercase">
                     {initials}
-                </div>
+                </div> */}
                 <span className="hidden sm:inline max-w-[100px] truncate">
-                    {user?.first_name || user?.name || user?.full_name|| "User"}
+                    {user?.first_name || user?.name || user?.full_name || "User"}
                 </span>
                 <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`} />
             </button>

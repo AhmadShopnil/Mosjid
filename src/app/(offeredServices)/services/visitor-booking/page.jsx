@@ -6,7 +6,8 @@ import VisitorBookingTopSection from '@/components/Services/VisitorBooking/Visit
 import VisitorForm from '@/components/Services/VisitorBooking/VisitorForm';
 import VisitorTable from '@/components/Services/VisitorBooking/VisitorTable';
 import GradientBorderWrapper1 from '@/components/Shared/GradientBorderWrapper1';
-import React, { useState, useEffect, useCallback } from 'react';
+import PolicyModal from '@/components/Shared/PolicyModal';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axiosInstance from '@/helper/axiosInstance';
 
 const bookingListtableTitle = {
@@ -23,6 +24,14 @@ export default function Page() {
     const [futureBookings, setFutureBookings] = useState([]);
     const [pastBookings, setPastBookings] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    // Modal state for guidelines
+    const [modalConfig, setModalConfig] = useState({ isOpen: false, slug: '', title: '' });
+
+    // Scroll refs
+    const formRef = useRef(null);
+    const bookingListRef = useRef(null);
+    const recordListRef = useRef(null);
 
     const fetchVisitors = useCallback(async () => {
         try {
@@ -41,26 +50,48 @@ export default function Page() {
         fetchVisitors();
     }, [fetchVisitors]);
 
+    const handleActionClick = (label) => {
+        if (label.includes('Guide')) {
+            setModalConfig({ isOpen: true, slug: 'visitor-guidelines', title: 'Visitor Guidelines' });
+        } else if (label.includes('Book')) {
+            formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else if (label.includes('Booking List')) {
+            bookingListRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else if (label.includes('Record')) {
+            recordListRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
     return (
         <div className='space-y-8'>
             {/* top sections */}
-            <VisitorBookingTopSection />
+            <VisitorBookingTopSection onActionClick={handleActionClick} />
 
-            <GradientBorderWrapper1 rounded="rounded-[20px]" innerRounded="rounded-[19px]">
-                <VisitorForm onSuccess={fetchVisitors} />
-            </GradientBorderWrapper1>
+            <div ref={formRef} className='scroll-mt-32'>
+                <GradientBorderWrapper1 rounded="rounded-[20px]" innerRounded="rounded-[19px]">
+                    <VisitorForm onSuccess={fetchVisitors} />
+                </GradientBorderWrapper1>
+            </div>
 
-            <div className='rounded-2xl p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909]'>
+            <div ref={bookingListRef} className='scroll-mt-32 rounded-2xl p-[1px]
+             bg-gradient-to-b from-[#3198A0] to-[#51F909]'>
                 <div className='p-4 md:p-8 bg-white rounded-[15px]'>
                     <VisitorTable tableTitle={bookingListtableTitle} data={futureBookings} loading={loading} />
                 </div>
             </div>
 
-            <div className='rounded-2xl p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909]'>
+            <div ref={recordListRef} className='scroll-mt-32 rounded-2xl p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909]'>
                 <div className='p-4 md:p-8 bg-white rounded-[15px]'>
                     <VisitorTable tableTitle={recordListTitle} data={pastBookings} loading={loading} />
                 </div>
             </div>
+
+            <PolicyModal
+                isOpen={modalConfig.isOpen}
+                onClose={() => setModalConfig({ ...modalConfig, isOpen: false })}
+                slug={modalConfig.slug}
+                title={modalConfig.title}
+            />
         </div>
     );
 }

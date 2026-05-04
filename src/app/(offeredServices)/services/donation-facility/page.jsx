@@ -19,7 +19,7 @@ export default function Page() {
         } else if (action === "Donation History Record") {
             historyListRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else if (action === "Donation Policies") {
-            setModalConfig({ isOpen: true, slug: "donation-policies", title: action });
+            setModalConfig({ isOpen: true, slug: "donation-guidelines", title: action });
         }
     };
 
@@ -28,17 +28,17 @@ export default function Page() {
             {/* top sections */}
             <DonationFacilityTopSection onActionClick={handleActionClick} />
             <DonationForm />
-            
+
             <div className="my-10">
                 <DonationLists bookingListRef={bookingListRef} historyListRef={historyListRef} />
             </div>
 
             {/* Reusable Guidelines/Policies Modal */}
-            <PolicyModal 
-                isOpen={modalConfig.isOpen} 
-                onClose={() => setModalConfig({ ...modalConfig, isOpen: false })} 
-                slug={modalConfig.slug} 
-                title={modalConfig.title} 
+            <PolicyModal
+                isOpen={modalConfig.isOpen}
+                onClose={() => setModalConfig({ ...modalConfig, isOpen: false })}
+                slug={modalConfig.slug}
+                title={modalConfig.title}
             />
         </div>
     )

@@ -13,7 +13,7 @@ const Page = () => {
   const [myApplications, setMyApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedApplication, setSelectedApplication] = useState(null);
-  
+
   const formRef = useRef(null);
   const bookingListRef = useRef(null);
   const myApplicationsRef = useRef(null);
@@ -63,12 +63,12 @@ const Page = () => {
     } else if (action === "Marriage\nForm") {
       myApplicationsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else if (action === "Marriage\nGuideline") {
-      setModalConfig({ isOpen: true, slug: "marriage-guideline", title: "Marriage Guideline" });
+      setModalConfig({ isOpen: true, slug: "marriage-guidelines", title: "Marriage Guideline" });
     }
   };
 
 
-  
+
   return (
     <div>
       <Booking slots={slots} onBookingSubmitted={fetchData} onActionClick={handleActionClick} />
@@ -95,11 +95,11 @@ const Page = () => {
         )}
       </div>
 
-      <PolicyModal 
-        isOpen={modalConfig.isOpen} 
-        onClose={() => setModalConfig({ ...modalConfig, isOpen: false })} 
-        slug={modalConfig.slug} 
-        title={modalConfig.title} 
+      <PolicyModal
+        isOpen={modalConfig.isOpen}
+        onClose={() => setModalConfig({ ...modalConfig, isOpen: false })}
+        slug={modalConfig.slug}
+        title={modalConfig.title}
       />
     </div>
   );

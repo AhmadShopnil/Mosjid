@@ -1,7 +1,17 @@
+"use client";
+
 import Image from 'next/image'
 import React from 'react'
 
 const GraveyardTopSection = () => {
+
+    const scrollToSection = (id) => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
     return (
         <div>
             <div className=" relative">
@@ -77,12 +87,15 @@ const GraveyardTopSection = () => {
                         {/* Buttons */}
                         <div className="py-[30px] px-4 md:px-18 xl:px-24">
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
-                                <button className="py-[14px] px-4 rounded-[16px] bg-[#52B920] text-white font-[700] transition-all
+                                <button
+                                    onClick={() => scrollToSection('graveyard-timeline')}
+                                    className="py-[14px] px-4 rounded-[16px] bg-[#52B920] text-white font-[700] transition-all
                                  duration-300 ease-in-out hover:opacity-90 hover:scale-[1.03] cursor-pointer">
-                                    Madrasa Time Line
+                                    Timeline of Graveyard
                                 </button>
 
                                 <button
+                                    onClick={() => scrollToSection('graveyard-facilities')}
                                     className="group relative inline-block transition-all duration-300 ease-in-out hover:scale-[1.03]"
                                     style={{
                                         border: '1px solid transparent',
@@ -94,11 +107,12 @@ const GraveyardTopSection = () => {
                                 >
                                     <span className="block px-4 py-[14px] font-bold text-[#005312] transition-all duration-100 ease-in-out group-hover:bg-gradient-to-b
                                      group-hover:from-[#3198A0] group-hover:to-[#51F909] group-hover:text-white rounded-[15px] cursor-pointer">
-                                        Facilities of Madrasa
+                                        Facilities of Graveyard
                                     </span>
                                 </button>
 
                                 <button
+                                    onClick={() => scrollToSection('graveyard-benefits')}
                                     className="group relative inline-block transition-all duration-300 ease-in-out hover:scale-[1.03]"
                                     style={{
                                         border: '1px solid transparent',
@@ -110,7 +124,7 @@ const GraveyardTopSection = () => {
                                 >
                                     <span className="block px-4 py-[14px] font-bold text-[#005312] transition-all duration-100 ease-in-out group-hover:bg-gradient-to-b 
                                     group-hover:from-[#3198A0] group-hover:to-[#51F909] group-hover:text-white rounded-[15px] cursor-pointer">
-                                        Benefits of a Madrasa
+                                        Benefits of a Graveyard
                                     </span>
                                 </button>
                             </div>
@@ -122,4 +136,4 @@ const GraveyardTopSection = () => {
     )
 }
 
-export default GraveyardTopSection
+export default GraveyardTopSection

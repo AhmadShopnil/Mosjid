@@ -46,7 +46,7 @@ export default function page() {
     const handleActionClick = (label) => {
         if (label.includes('Guide')) {
             // Open guidelines modal
-            setModalConfig({ isOpen: true, slug: 'conversion-guidelines', title: 'Conversion Guidelines' });
+            setModalConfig({ isOpen: true, slug: 'muslim-conversion-guidelines', title: 'Conversion Guidelines' });
         } else if (label.includes('Booking')) {
             bookingListRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else if (label.includes('Converted')) {
