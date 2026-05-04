@@ -54,7 +54,7 @@ const Page = () => {
   };
 
   const handleFormSubmitSuccess = () => {
-    fetchData(); // Refresh data after form submission
+    fetchData(); 
   };
 
   const handleActionClick = (action) => {
