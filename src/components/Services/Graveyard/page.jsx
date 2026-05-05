@@ -5,10 +5,8 @@ import React from "react";
 
 import GraveyardTopSection from "./GraveyardTopSection";
 import { getPage } from "@/helper/actions";
-import { getImageUrl } from "@/helper/getImageUrl";
 import GraveyardBenefit from "./GraveyardBenefit";
 import GraveyardFacilities from "./GraveyardFacilities";
-i
 import { ScrollSection } from "./GraveyardScrollWrapper";
 import GraveyardTimeLine from "./GraveyardTimeLine";
 
