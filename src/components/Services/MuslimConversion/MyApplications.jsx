@@ -1,8 +1,9 @@
 import GradientBorder from "@/components/GradientBorder/GradientBorder";
 import React from "react";
 import TableTitle from "../Shared/TableTitle";
+import { FiEdit } from "react-icons/fi";
 
-const MyApplications = ({ applications = [], loading = false }) => {
+const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
   const formatDate = (dateStr) => {
     if (!dateStr) return "—";
     const date = new Date(dateStr);
@@ -46,9 +47,9 @@ const MyApplications = ({ applications = [], loading = false }) => {
             <table className="w-full border-collapse min-w-[600px]">
               <thead>
                 <tr>
-                  {["Sl. No.", "Event Date", "Start Time", "End Time", "Status"].map((head) => (
+                  {["Sl. No.", "Event Date", "Start Time", "End Time", "Status", "Action"].map((head) => (
                     <th key={head}>
-                      <div className="bg-[#52B920] text-white border border-[#B0C4B8] font-bold rounded-t-full py-1.5 text-center whitespace-nowrap">{head}</div>
+                      <div className="bg-[#52B920] text-white border border-[#B0C4B8] font-bold rounded-t-full py-1.5 text-center whitespace-nowrap px-2">{head}</div>
                     </th>
                   ))}
                 </tr>
@@ -61,6 +62,20 @@ const MyApplications = ({ applications = [], loading = false }) => {
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatTime(app.start_time)}</td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatTime(app.end_time)}</td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{getStatusBadge(app.status)}</td>
+                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
+                      {(app.status === "1" || app.status === 1) ? (
+                        <button
+                          onClick={() => onFillForm && onFillForm(app.id)}
+                          className="inline-flex items-center gap-1 bg-[#52B920] text-white hover:bg-green-600 cursor-pointer
+                           px-3 lg:px-4 py-1.5 rounded-full text-xs font-medium transition-colors"
+                        >
+                          <FiEdit className="w-3.5 h-3.5" />
+                          Fill Form
+                        </button>
+                      ) : (
+                        <span className="text-gray-400">—</span>
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
