@@ -15,6 +15,7 @@ export default function page() {
     const [converted, setConverted] = useState([]);
     const [myApplications, setMyApplications] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [selectedApplication, setSelectedApplication] = useState(null);
 
     // Modal state for guidelines
     const [modalConfig, setModalConfig] = useState({ isOpen: false, slug: '', title: '' });
@@ -22,6 +23,7 @@ export default function page() {
     const bookingListRef = useRef(null);
     const convertedListRef = useRef(null);
     const myApplicationsRef = useRef(null);
+    const conversionFormRef = useRef(null);
 
     const fetchData = useCallback(async () => {
         try {
@@ -56,13 +58,28 @@ export default function page() {
         }
     };
 
+    const handleFillForm = (id) => {
+        const app = myApplications.find(a => a.id === id);
+        setSelectedApplication(app);
+        setTimeout(() => {
+            conversionFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    };
+
     return (
         <div className='space-y-8'>
             <MuslimConvertionTopSection onActionClick={handleActionClick} />
             <div ref={myApplicationsRef}>
-                <MyApplications applications={myApplications} loading={loading} />
+                <MyApplications applications={myApplications} loading={loading} onFillForm={handleFillForm} />
             </div>
-            <ConversionForm />
+            {selectedApplication && (
+                <div ref={conversionFormRef}>
+                    <ConversionForm 
+                        application={selectedApplication} 
+                        onCancel={() => setSelectedApplication(null)} 
+                    />
+                </div>
+            )}
             <div ref={bookingListRef}>
                 <BookingList bookings={bookings} loading={loading} />
             </div>

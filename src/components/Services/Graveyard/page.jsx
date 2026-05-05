@@ -8,8 +8,9 @@ import { getPage } from "@/helper/actions";
 import { getImageUrl } from "@/helper/getImageUrl";
 import GraveyardBenefit from "./GraveyardBenefit";
 import GraveyardFacilities from "./GraveyardFacilities";
-import GraveyardTimeLine from "./GraveyardTimeLine";
+i
 import { ScrollSection } from "./GraveyardScrollWrapper";
+import GraveyardTimeLine from "./GraveyardTimeLine";
 
 
 export default async function GraveyardSection() {
