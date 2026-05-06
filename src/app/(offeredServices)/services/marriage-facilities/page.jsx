@@ -54,13 +54,13 @@ const Page = () => {
   };
 
   const handleFormSubmitSuccess = () => {
-    fetchData(); 
+    fetchData();
   };
 
   const handleActionClick = (action) => {
     if (action === "Booking\nList") {
       bookingListRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else if (action === "Marriage\nForm") {
+    } else if (action === "My\nApplications") {
       myApplicationsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else if (action === "Marriage\nGuideline") {
       setModalConfig({ isOpen: true, slug: "marriage-guidelines", title: "Marriage Guideline" });

@@ -149,11 +149,11 @@ const Booking = ({ slots = [], onBookingSubmitted, onActionClick }) => {
               <div className="rounded-[30px] p-7.5 shadow-[0px_4px_10px_0px_rgba(0,0,0,0.1)] mt-auto flex justify-around items-end">
                 {[
                   { label: "Booking\nList", icon: "bookingIcon.svg" },
-                  { label: "Marriage\nForm", icon: "mariage.svg" },
+                  { label: "My\nApplications", icon: "mariage.svg" },
                   { label: "Marriage\nGuideline", icon: "mariage.svg" },
                 ].map((item, i) => (
-                  <div 
-                    key={i} 
+                  <div
+                    key={i}
                     onClick={() => onActionClick && onActionClick(item.label)}
                     className="flex flex-col items-center text-center cursor-pointer hover:opacity-80 transition"
                   >
@@ -177,7 +177,11 @@ const Booking = ({ slots = [], onBookingSubmitted, onActionClick }) => {
               >
                 {/* Applicant Name */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
-                  <label className="font-bold">Applicant Name</label>
+                  <div className="grid grid-col-2 gap-0.5">
+                    <label className="font-bold">Applicant Name</label>
+                    <label className="font-bold">申請者名</label>
+                  </div>
+
                   <input
                     name="applicantName"
                     type="text"
@@ -190,7 +194,11 @@ const Booking = ({ slots = [], onBookingSubmitted, onActionClick }) => {
 
                 {/* Phone Number */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
-                  <label className="font-bold">Phone Number</label>
+                  <div className="grid grid-col-2 gap-0.5">
+                    <label className="font-bold">Phone Number</label>
+                    <label className="font-bold">電話番号</label>
+                  </div>
+
                   <input
                     name="phoneNumber"
                     type="text"
@@ -203,7 +211,11 @@ const Booking = ({ slots = [], onBookingSubmitted, onActionClick }) => {
 
                 {/* Event Date */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
-                  <label className="font-bold">Event Date</label>
+                  <div className="grid grid-col-2 gap-0.5">
+                    <label className="font-bold">Event Date</label>
+                    <label className="font-bold">イベント日</label>
+                  </div>
+
                   <input
                     name="eventDate"
                     type="date"
@@ -215,7 +227,11 @@ const Booking = ({ slots = [], onBookingSubmitted, onActionClick }) => {
 
                 {/* Time Slot Selection */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
-                  <label className="font-bold">Time Slot</label>
+                  <div className="grid grid-col-2 gap-0.5">
+                    <label className="font-bold">Time Slot</label>
+                    <label className="font-bold">開始時間</label>
+                  </div>
+
                   <select
                     name="slotId"
                     value={values.slotId}
@@ -260,7 +276,11 @@ const Booking = ({ slots = [], onBookingSubmitted, onActionClick }) => {
 
                 {/* Kabin Nama Attachment */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
-                  <label className="font-bold">Kabin Nama</label>
+                  <div className="grid grid-col-2 gap-0.5">
+                    <label className="font-bold">Kabin Nama</label>
+                    <label className="font-bold">カビン・ナマ</label>
+                  </div>
+
                   <div className="sm:col-span-2 flex flex-col gap-3">
                     <input
                       key={values.kabinNama ? "has-file" : "no-file"}
@@ -294,7 +314,8 @@ const Booking = ({ slots = [], onBookingSubmitted, onActionClick }) => {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full h-14 rounded-xl text-[#333333] font-medium transition-colors hover:opacity-90 sm:max-w-[43.75rem] disabled:opacity-50"
+                    className="w-full h-14 rounded-xl text-[#333333] font-medium transition-colors
+                     hover:opacity-90 sm:max-w-[43.75rem] disabled:opacity-50 cursor-pointer"
                     style={{
                       border: "2px solid transparent",
                       backgroundImage:
