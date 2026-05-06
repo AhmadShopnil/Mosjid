@@ -1,9 +1,33 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import MarriageCertificate from './MarriageCertificate';
+import axiosInstance from '@/helper/axiosInstance';
 
 const CertificateModal = ({ isOpen, onClose, application }) => {
   const certificateRef = useRef(null);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [certData, setCertData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (isOpen && application?.id) {
+      const fetchCert = async () => {
+        setIsLoading(true);
+        try {
+          const res = await axiosInstance.get(`/marriage/${application.id}/certificate`);
+          if (res.data) {
+            setCertData(res.data);
+          }
+        } catch (err) {
+          console.error("Failed to fetch certificate", err);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      fetchCert();
+    } else {
+      setCertData(null);
+    }
+  }, [isOpen, application]);
 
   if (!isOpen || !application) return null;
 
@@ -34,16 +58,23 @@ const CertificateModal = ({ isOpen, onClose, application }) => {
   };
 
   // Map application data to the format MarriageCertificate expects
-  const { others_infomartions: info } = application;
+  const dataToMap = certData || application;
+  const infoObj = dataToMap?.others_infomartions || {};
+  const info = infoObj.informations || infoObj;
+  
   const groom = info?.groom || {};
   const bride = info?.bride || {};
+  const other = info?.other || {};
+  const attached = info?.attached || {};
+
+  const getImageUrl = (path) => path ? (path.startsWith('http') ? path : `https://admin.osakamasjid.org/storage/${path}`) : null;
 
   const mappedData = {
     details: {
-      certificateNo: application.id || "",
-      date: application.booked_date ? new Date(application.booked_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }) : "",
-      place: "Osaka Masjid",
-      mahar: info?.mahar || ""
+      certificateNo: dataToMap.unique_id || dataToMap.id || "",
+      date: other.date_of_marriage ? new Date(other.date_of_marriage).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }) : (dataToMap.booked_date ? new Date(dataToMap.booked_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }) : ""),
+      place: other.place_of_marriage || "Osaka Masjid",
+      mahar: other.mahar_details || ""
     },
     groom: {
       name: groom.name || "",
@@ -52,10 +83,11 @@ const CertificateModal = ({ isOpen, onClose, application }) => {
       age: groom.age || "",
       religion: groom.religion || "",
       nationality: groom.nationality || "",
-      passportNo: groom.passport_number || "",
+      passportNo: groom.passport_no || groom.passport_number || "",
       addressLine1: groom.address || "",
       addressLine2: "",
-      photoUrl: groom.image ? (groom.image.startsWith('http') ? groom.image : `https://mosjid.grozziieget.com/storage/${groom.image}`) : null
+      photoUrl: getImageUrl(attached.groom_photo || groom.image),
+      signUrl: getImageUrl(attached.groom_sign)
     },
     bride: {
       name: bride.name || "",
@@ -65,18 +97,20 @@ const CertificateModal = ({ isOpen, onClose, application }) => {
       maritalStatus: bride.marital_status || "",
       religion: bride.religion || "",
       nationality: bride.nationality || "",
-      passportNo: bride.passport_number || "",
+      passportNo: bride.passport_no || bride.passport_number || "",
       addressLine1: bride.address || "",
       addressLine2: "",
-      photoUrl: bride.image ? (bride.image.startsWith('http') ? bride.image : `https://mosjid.grozziieget.com/storage/${bride.image}`) : null
+      photoUrl: getImageUrl(attached.bride_photo || bride.image),
+      signUrl: getImageUrl(attached.bride_sign)
     },
     witnesses: [
-      { name: info?.witness_1?.name || "", address: info?.witness_1?.address || "" },
-      { name: info?.witness_2?.name || "", address: info?.witness_2?.address || "" }
+      { name: groom.witness_name || info?.witness_1?.name || "", address: groom.witness_address || info?.witness_1?.address || "", signUrl: getImageUrl(attached.groom_witness_sign) },
+      { name: bride.witness_name || info?.witness_2?.name || "", address: bride.witness_address || info?.witness_2?.address || "", signUrl: getImageUrl(attached.bride_witness_sign) }
     ],
     solemnizedBy: {
-      name: info?.solemnized_by?.name || "",
-      address: info?.solemnized_by?.address || ""
+      name: other.solemnized_by_name || info?.solemnized_by?.name || "",
+      address: other.address || info?.solemnized_by?.address || "",
+      signUrl: getImageUrl(attached.sign)
     }
   };
 
@@ -89,8 +123,8 @@ const CertificateModal = ({ isOpen, onClose, application }) => {
           <div className="flex gap-3">
             <button
               onClick={handleDownload}
-              disabled={isDownloading}
-              className={`px-5 py-2 ${isDownloading ? 'bg-green-400 cursor-not-allowed' : 'bg-[#52B920] hover:bg-green-600'} text-white rounded-md font-semibold transition-colors flex items-center gap-2`}
+              disabled={isDownloading || isLoading}
+              className={`px-5 py-2 ${(isDownloading || isLoading) ? 'bg-green-400 cursor-not-allowed' : 'bg-[#52B920] hover:bg-green-600'} text-white rounded-md font-semibold transition-colors flex items-center gap-2`}
             >
               {isDownloading ? (
                 <>
@@ -117,9 +151,15 @@ const CertificateModal = ({ isOpen, onClose, application }) => {
         {/* Body */}
         <div className="p-6 overflow-y-auto flex-1 flex justify-center">
           <div className="bg-white shadow-md">
-            <div ref={certificateRef}>
-              <MarriageCertificate data={mappedData} />
-            </div>
+            {isLoading ? (
+               <div className="flex justify-center items-center h-[500px] w-[800px] bg-white border-[1.5px] border-[#8CC63F]">
+                 <div className="animate-spin rounded-full h-10 w-10 border-4 border-green-500 border-t-transparent"></div>
+               </div>
+            ) : (
+               <div ref={certificateRef}>
+                 <MarriageCertificate data={mappedData} />
+               </div>
+            )}
           </div>
         </div>
       </div>

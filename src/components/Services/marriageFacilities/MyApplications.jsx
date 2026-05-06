@@ -2,6 +2,7 @@
 import GradientBorder from "@/components/GradientBorder/GradientBorder";
 import React, { useState } from "react";
 import CertificateModal from "./CertificateModal";
+import Link from "next/link";
 
 const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
@@ -57,21 +58,24 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
 
   const actionTake = (application) => {
 
-    console.log("application", application)
-    console.log("isFormFilled", isFormFilled(application))
-
-
     if (application?.form_status == 1 || isFormFilled(application)) {
       if (application?.download_status == 1) {
 
         return (
-          <button
-            onClick={() => handleOpenCertificate(application)}
+          <Link
+            href={`/services/marriage-facilities/certificate-download/${application?.id}`}
             className="bg-[#52B920] hover:bg-green-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full transition-colors cursor-pointer inline-flex items-center gap-1 mx-auto"
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-            Download Certificate
-          </button>
+            Certificate
+          </Link>
+          // <button
+          //   onClick={() => handleOpenCertificate(application)}
+          //   className="bg-[#52B920] hover:bg-green-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full transition-colors cursor-pointer inline-flex items-center gap-1 mx-auto"
+          // >
+          //   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+          //   Download Certificate
+          // </button>
         )
       }
       else {
@@ -86,7 +90,7 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
           onClick={() => onFillForm && onFillForm(application)}
           className="bg-[#52B920] hover:bg-green-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full transition-colors cursor-pointer"
         >
-          Fill Marriage Form
+          Fill Form
         </button>
       )
     }
@@ -101,7 +105,7 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
   return (
     <div className="mt-6 relative">
       <GradientBorder>
-        <div className="w-full p-4">
+        <div className="w-full p-4 lg:p-6">
           <h2 className="text-2xl font-semibold text-[#333333] mb-4">My Applications</h2>
 
           {loading ? (
