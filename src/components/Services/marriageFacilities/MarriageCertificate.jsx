@@ -1,0 +1,220 @@
+import React from 'react';
+
+const FieldRow = ({ labelEn, labelJp, value }) => (
+  <div className="flex items-end mb-2.5">
+    <div className="w-28 flex-shrink-0">
+      <p className="text-[9px] text-[#808080] leading-tight">{labelJp}</p>
+      <p className="text-[13px] font-bold text-[#085F2C] leading-tight">{labelEn}</p>
+    </div>
+    <div className="mx-1.5 text-[#085F2C] font-bold">:</div>
+    <div className="border-b border-dotted border-gray-400 flex-1 text-[14px] pb-0.5 text-center font-serif text-[#B58B2E] min-h-[20px] px-2 whitespace-nowrap overflow-hidden">
+      {value || ""}
+    </div>
+  </div>
+);
+
+const EmptyRow = ({ value }) => (
+  <div className="flex items-end mb-2.5">
+    <div className="w-28 flex-shrink-0"></div>
+    <div className="mx-1.5 opacity-0">:</div>
+    <div className="border-b border-dotted border-gray-400 flex-1 text-[14px] pb-0.5 text-center font-serif text-[#B58B2E] min-h-[20px] px-2 whitespace-nowrap overflow-hidden">
+      {value || ""}
+    </div>
+  </div>
+);
+
+const MarriageCertificate = ({ data = {} }) => {
+  const { groom = {}, bride = {}, details = {}, witnesses = [], solemnizedBy = {} } = data;
+
+  return (
+    <div className="w-[800px] max-w-full mx-auto bg-white border-[1.5px] border-[#8CC63F] p-8 pb-12 font-sans relative text-left overflow-hidden">
+      {/* Header */}
+      <div className="flex justify-between items-start mb-10 relative">
+        <div className="mt-2 z-10 relative">
+          <p className="text-gray-400 text-xs mb-1">証明書番号 :</p>
+          <h2 className="text-[19px] font-bold flex items-end text-[#111]">
+            Certificate No: 
+            <span className="border-b border-dotted border-gray-400 w-32 ml-2 inline-block text-center text-[#B58B2E] font-serif text-lg">
+              {details.certificateNo || ""}
+            </span>
+          </h2>
+        </div>
+        <div className="text-center absolute w-full left-0 top-0 pointer-events-none">
+          <p className="text-[#333] font-bold mb-0.5 tracking-widest text-sm ml-8">結婚証明書</p>
+          <h1 className="text-[32px] font-bold text-[#085F2C] tracking-wide" style={{ fontFamily: '"Times New Roman", Times, serif', textShadow: '0.5px 0.5px 0px rgba(0,0,0,0.1)' }}>
+            MARRIAGE CERTIFICATE
+          </h1>
+        </div>
+      </div>
+
+      {/* Particulars Section */}
+      <div className="grid grid-cols-2 gap-10 mt-14">
+        {/* Groom */}
+        <div>
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-[60px] h-[60px] border-[1.5px] border-[#8CC63F] rounded-[4px] flex items-center justify-center overflow-hidden bg-white">
+               {groom.photoUrl ? <img src={groom.photoUrl} alt="Groom" className="w-full h-full object-cover" /> : null}
+            </div>
+            <div>
+              <h3 className="text-[#085F2C] font-bold text-[17px] leading-tight" style={{ fontFamily: '"Times New Roman", Times, serif' }}>Particulars of<br/>Groom</h3>
+            </div>
+          </div>
+          <div className="bg-gradient-to-r from-[#F0C041] to-[#FAD463] p-2.5 mb-5 rounded-sm">
+            <p className="text-[9px] text-[#085F2C] opacity-80 mb-0.5 font-bold">イスラム教徒の名前</p>
+            <h4 className="text-[22px] text-[#333] tracking-wide" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{groom.muslimName || "Muslim Name"}</h4>
+          </div>
+          <div className="pr-2">
+            <FieldRow labelEn="Name" labelJp="名前" value={groom.name} />
+            <FieldRow labelEn="Father Name" labelJp="父親の名前" value={groom.fatherName} />
+            <FieldRow labelEn="Age" labelJp="年齢" value={groom.age} />
+            <FieldRow labelEn="Religion" labelJp="宗教" value={groom.religion} />
+            <FieldRow labelEn="Nationality" labelJp="国籍" value={groom.nationality} />
+            <FieldRow labelEn="Passport No." labelJp="パスポートナンバー" value={groom.passportNo} />
+            <FieldRow labelEn="Address" labelJp="住所" value={groom.addressLine1} />
+            <EmptyRow value={groom.addressLine2} />
+          </div>
+          <div className="bg-[#F0FDF4] p-3.5 mt-2 rounded-sm border border-[#E0F2E3]">
+            <p className="text-[9px] text-gray-500 mb-1">サイン</p>
+            <div className="flex items-end">
+              <span className="font-bold text-[#085F2C] text-[13px] w-12">Sign :</span>
+              <div className="border-b border-dotted border-gray-400 flex-1 ml-2"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bride */}
+        <div>
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-[60px] h-[60px] border-[1.5px] border-[#8CC63F] rounded-[4px] flex items-center justify-center overflow-hidden bg-white">
+               {bride.photoUrl ? <img src={bride.photoUrl} alt="Bride" className="w-full h-full object-cover" /> : null}
+            </div>
+            <div>
+              <h3 className="text-[#085F2C] font-bold text-[17px] leading-tight" style={{ fontFamily: '"Times New Roman", Times, serif' }}>Particulars of<br/>Bride</h3>
+            </div>
+          </div>
+          <div className="bg-gradient-to-r from-[#F0C041] to-[#FAD463] p-2.5 mb-5 rounded-sm">
+            <p className="text-[9px] text-[#085F2C] opacity-80 mb-0.5 font-bold">イスラム教徒の名前</p>
+            <h4 className="text-[22px] text-[#333] tracking-wide" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{bride.muslimName || "Muslim Name"}</h4>
+          </div>
+          <div className="pr-2">
+            <FieldRow labelEn="Name" labelJp="名前" value={bride.name} />
+            <FieldRow labelEn="Father Name" labelJp="父親の名前" value={bride.fatherName} />
+            <FieldRow labelEn="Age" labelJp="年齢" value={bride.age} />
+            <FieldRow labelEn="Marital Status" labelJp="未婚/既婚" value={bride.maritalStatus} />
+            <FieldRow labelEn="Religion" labelJp="宗教" value={bride.religion} />
+            <FieldRow labelEn="Nationality" labelJp="国籍" value={bride.nationality} />
+            <FieldRow labelEn="Passport No." labelJp="パスポートナンバー" value={bride.passportNo} />
+            <FieldRow labelEn="Address" labelJp="住所" value={bride.addressLine1} />
+            <EmptyRow value={bride.addressLine2} />
+          </div>
+          <div className="bg-[#F0FDF4] p-3.5 mt-2 rounded-sm border border-[#E0F2E3]">
+            <p className="text-[9px] text-gray-500 mb-1">サイン</p>
+            <div className="flex items-end">
+              <span className="font-bold text-[#085F2C] text-[13px] w-12">Sign :</span>
+              <div className="border-b border-dotted border-gray-400 flex-1 ml-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Marriage Details Section */}
+      <div className="grid grid-cols-3 gap-0 border-y-[1px] border-[#A5D071] py-5 mt-8">
+        <div className="text-center border-r-[1px] border-[#A5D071]">
+          <p className="text-[10px] text-gray-400 mb-0.5">結婚の日</p>
+          <p className="font-bold text-[#085F2C] text-[13px] mb-2">Date Of Marriage</p>
+          <p className="text-[20px] font-bold text-[#B58B2E]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.date || "30 January 2006"}</p>
+        </div>
+        <div className="text-center border-r-[1px] border-[#A5D071]">
+          <p className="text-[10px] text-gray-400 mb-0.5">結婚の場</p>
+          <p className="font-bold text-[#085F2C] text-[13px] mb-2">Place of Marriage</p>
+          <p className="text-[20px] font-bold text-[#B58B2E]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.place || "Osaka Masjid"}</p>
+        </div>
+        <div className="text-center">
+          <p className="text-[10px] text-gray-400 mb-0.5">結納金の量と内容</p>
+          <p className="font-bold text-[#085F2C] text-[13px] mb-2">Amount of Dower (Mahar)</p>
+          <p className="text-[20px] font-bold text-[#B58B2E]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.mahar || "10,0000"}</p>
+        </div>
+      </div>
+
+      {/* Witnesses */}
+      <div className="grid grid-cols-2 gap-10 mt-7">
+        {[0, 1].map((idx) => {
+          const w = witnesses[idx] || {};
+          return (
+            <div key={idx} className="pr-2">
+              <div className="flex items-end mb-3">
+                <div className="w-32 flex-shrink-0">
+                  <p className="text-[9px] text-[#808080] leading-tight">証人{idx + 1}の氏名</p>
+                  <p className="font-bold text-[#085F2C] text-[13px] leading-tight">{idx + 1}. Witness Name</p>
+                </div>
+                <div className="mx-1.5 text-[#085F2C] font-bold">:</div>
+                <div className="border-b border-dotted border-gray-400 flex-1 text-center font-serif text-[#B58B2E] text-[14px] pb-0.5 min-h-[20px] px-2 whitespace-nowrap overflow-hidden">
+                  {w.name || ""}
+                </div>
+              </div>
+              <div className="flex items-end mb-3">
+                <div className="w-32 flex-shrink-0">
+                  <p className="text-[9px] text-[#808080] leading-tight">住所</p>
+                  <p className="font-bold text-[#085F2C] text-[13px] leading-tight">Address</p>
+                </div>
+                <div className="mx-1.5 text-[#085F2C] font-bold">:</div>
+                <div className="border-b border-dotted border-gray-400 flex-1 text-center font-serif text-[#B58B2E] text-[14px] pb-0.5 min-h-[20px] px-2 whitespace-nowrap overflow-hidden">
+                  {w.address || ""}
+                </div>
+              </div>
+              <div className="bg-[#F0FDF4] p-3.5 rounded-sm border border-[#E0F2E3] mt-2">
+                <p className="text-[9px] text-gray-500 mb-1">サイン</p>
+                <div className="flex items-end">
+                  <span className="font-bold text-[#085F2C] text-[13px] w-12">Sign :</span>
+                  <div className="border-b border-dotted border-gray-400 flex-1 ml-2"></div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Certification Text */}
+      <div className="mt-8">
+        <p className="text-[9px] text-gray-400 mb-0.5">信仰告白、売春花嫁がイスラム法に従って結婚金の受け入れ（イジャブとクブル）</p>
+        <p className="font-bold text-[#222] text-[13px] tracking-wide">I certify that Bride & Groom have exchange the offering and acceptance (Ijab and Qubul)</p>
+        <p className="text-[9px] text-gray-400 mt-2.5 mb-0.5">の承認を証明する。従って、夫婦になることを宣言する。</p>
+        <p className="font-bold text-[#222] text-[13px] tracking-wide">according to Islamic Law and are declared Husband and Wife</p>
+      </div>
+
+      {/* Solemnized By */}
+      <div className="mt-6 w-[50%]">
+        <div className="flex items-end mb-3">
+          <div className="w-52 flex-shrink-0">
+            <p className="text-[9px] text-[#808080] leading-tight">名前で厳粛に結婚</p>
+            <p className="font-bold text-[#222] text-[13px] leading-tight">Marriage Solemnized By Name</p>
+          </div>
+          <div className="mx-1.5 text-[#222] font-bold">:</div>
+          <div className="border-b border-dotted border-gray-400 flex-1 text-center font-serif text-[#B58B2E] text-[14px] pb-0.5 min-h-[20px] px-2 whitespace-nowrap overflow-hidden">
+            {solemnizedBy.name || ""}
+          </div>
+        </div>
+        <div className="flex items-end mb-3">
+          <div className="w-52 flex-shrink-0">
+            <p className="text-[9px] text-[#808080] leading-tight">住所</p>
+            <p className="font-bold text-[#222] text-[13px] leading-tight">Address</p>
+          </div>
+          <div className="mx-1.5 text-[#222] font-bold">:</div>
+          <div className="border-b border-dotted border-gray-400 flex-1 text-center font-serif text-[#B58B2E] text-[14px] pb-0.5 min-h-[20px] px-2 whitespace-nowrap overflow-hidden">
+            {solemnizedBy.address || ""}
+          </div>
+        </div>
+      </div>
+      
+      <div className="bg-[#F0FDF4] p-3.5 rounded-sm border border-[#E0F2E3] mt-4">
+        <p className="text-[9px] text-gray-500 mb-1">サイン</p>
+        <div className="flex items-end">
+          <span className="font-bold text-[#085F2C] text-[13px] w-12">Sign :</span>
+          <div className="border-b border-dotted border-gray-400 flex-1 ml-2"></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MarriageCertificate;
