@@ -143,9 +143,9 @@ const Page = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 py-10 px-4">
+        <div className="min-h-screen ">
             <div className=" mx-auto">
-                <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <div className="flex flex-col md:flex-row items-center justify-between mb-4 gap-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
                     <button
                         onClick={() => router.back()}
                         className="flex items-center gap-2 text-gray-600 hover:text-[#52B920] transition-colors font-medium px-4 py-2"

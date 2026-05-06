@@ -1,6 +1,7 @@
 import GradientBorder from "@/components/GradientBorder/GradientBorder";
 import React from "react";
 import TableTitle from "../Shared/TableTitle";
+import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 
 const ConvertedList = ({ converted = [], loading = false }) => {
   const formatDate = (dateStr) => {
@@ -28,7 +29,7 @@ const ConvertedList = ({ converted = [], loading = false }) => {
   };
 
   return (
-    <GradientBorder>
+    <GradientBorderWrapper1>
       <div className="w-full p-4">
         <div className="mb-6">
           <TableTitle title1="Converted List" title2="変換済みリスト" />
@@ -67,7 +68,7 @@ const ConvertedList = ({ converted = [], loading = false }) => {
           </div>
         )}
       </div>
-    </GradientBorder>
+    </GradientBorderWrapper1>
   );
 };
 

@@ -30,7 +30,7 @@ const MarriageCertificate = ({ data = {} }) => {
   // console.log("data", data)
 
   return (
-    <div className="w-[1000px] max-w-full mx-auto bg-white border-[1.5px] border-[#3E8B18] pt-1.5 px-6 pb-8 font-sans relative text-left
+    <div className="w-[1200px] max-w-full mx-auto bg-white border-[1.5px] border-[#3E8B18] pt-1.5 px-6 pb-8 font-sans relative text-left
      overflow-hidden">
       {/* Header */}
       <div className="flex justify-between items-start mb-6 relative">

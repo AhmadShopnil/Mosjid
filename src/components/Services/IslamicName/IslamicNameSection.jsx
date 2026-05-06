@@ -21,7 +21,7 @@ const GENDER_CATEGORY_MAP = {
   girl: "105",
 };
 
-export default function IslamicNameSection({ categories }) {
+export default function IslamicNameSection({ categories, nameListRef, blessedNameRef, searchNameRef }) {
   const [names, setNames] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeBlessedCategory, setActiveBlessedCategory] = useState(null);
@@ -86,21 +86,25 @@ export default function IslamicNameSection({ categories }) {
       transition={{ duration: 0.4 }}
     >
       {/* Search */}
-      <GradientBorderWrapper1>
-        <IslamicNameSearch button_text="Search" onSearch={handleSearch} />
-      </GradientBorderWrapper1>
+      <div ref={searchNameRef} className="scroll-mt-32">
+        <GradientBorderWrapper1>
+          <IslamicNameSearch button_text="Search" onSearch={handleSearch} />
+        </GradientBorderWrapper1>
+      </div>
 
       {/* Tabs */}
-      <GradientBorderWrapper1>
-        <BlessedNameTabs
-          categories={categories}
-          activeCategory={activeBlessedCategory}
-          onChange={handleCategoryChange}
-        />
-      </GradientBorderWrapper1>
+      <div ref={blessedNameRef} className="scroll-mt-32">
+        <GradientBorderWrapper1>
+          <BlessedNameTabs
+            categories={categories}
+            activeCategory={activeBlessedCategory}
+            onChange={handleCategoryChange}
+          />
+        </GradientBorderWrapper1>
+      </div>
 
       {/* Table */}
-      <div>
+      <div ref={nameListRef} className="scroll-mt-32">
         <div className="bg-[#52B920] h-[50px] text-white flex justify-between items-center px-4 rounded-t-[10px]">
           <h2 className="font-bold">Name List</h2>
           <h2 className="font-bold">名前リスト</h2>

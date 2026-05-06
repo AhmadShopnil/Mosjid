@@ -4,6 +4,7 @@ import React from "react";
 
 import MuslimConversionBookingForm from "./MuslimConversionBookingForm";
 import { useAuth } from "@/context/AuthContext";
+import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 
 
 const menuList = [
@@ -37,14 +38,20 @@ export default function MuslimConvertionTopSection({ onActionClick }) {
             {/*  Content */}
             <div className="relative px-4 sm:px-6 py-10 ">
 
-                <div className="flex flex-wrap justify-between mb-4">
+
+                <SectionTitleRow
+                    leftTitle={"Muslim Conversion Booking"}
+                    rightTitle={"イスラム教改宗予約"}
+                />
+
+                {/* <div className="flex flex-wrap justify-between mb-4">
                     <h3 className="text-[#B98C20] text-[36px] font-bold ">
                         Muslim Conversion Booking
                     </h3>
                     <h3 className="text-[#B98C20] text-[36px] font-bold ">
                         イスラム教改宗予約
                     </h3>
-                </div>
+                </div> */}
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Left Section */}

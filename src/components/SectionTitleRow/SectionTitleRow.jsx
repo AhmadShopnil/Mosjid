@@ -6,7 +6,7 @@ const SectionTitleRow = ({
   gradientColor = "#00401A",
 }) => {
   return (
-    <div className="relative flex flex-wrap md:justify-between items-center w-full">
+    <div className="relative flex flex-wrap md:justify-between items-center w-full mb-3">
       {/* Mobile bottom border (Global line for mobile view) */}
       <div
         className="absolute bottom-0 left-0 w-full h-[2px] md:hidden"
@@ -21,7 +21,7 @@ const SectionTitleRow = ({
           {leftTitle}
         </h3>
         {/* Consistent Left Underline */}
-        <div 
+        <div
           className="hidden md:block absolute bottom-0 left-0 w-full h-[2px]"
           style={{
             background: `linear-gradient(to right, ${gradientColor}, transparent)`,
@@ -35,7 +35,7 @@ const SectionTitleRow = ({
           {rightTitle}
         </h3>
         {/* Consistent Right Underline */}
-        <div 
+        <div
           className="hidden md:block absolute bottom-0 right-0 w-full h-[2px]"
           style={{
             background: `linear-gradient(to left, ${gradientColor}, transparent)`,

@@ -21,6 +21,7 @@ export default function ConversionForm({ application, onCancel }) {
             return;
         }
 
+
         const formData = new FormData();
         formData.append("informations[name]", data.name || "");
         formData.append("informations[muslim_name]", data.muslimName || "");
@@ -29,7 +30,7 @@ export default function ConversionForm({ application, onCancel }) {
         formData.append("informations[witness_one]", data.witness1 || "");
         formData.append("informations[witness_two]", data.witness2 || "");
         formData.append("informations[witness_three]", data.witness3 || "");
-        formData.append("informations[prevous_religion]", data.previousReligion || "");
+        formData.append("informations[previous_religion]", data.previousReligion || "");
         formData.append("informations[nationality]", data.nationality || "");
         formData.append("informations[address]", data.address || "");
         formData.append("informations[declared_date]", data.declaredDate || "");
@@ -85,7 +86,7 @@ export default function ConversionForm({ application, onCancel }) {
     return (
         <section className="borderDonationHome p-4 sm:p-6 mt-6 relative">
             {onCancel && (
-                <button 
+                <button
                     onClick={onCancel}
                     className="absolute top-4 right-4 sm:top-6 sm:right-6 text-gray-400 hover:text-red-500 transition-colors"
                     title="Close form"
@@ -152,7 +153,7 @@ export default function ConversionForm({ application, onCancel }) {
                     <ImageField en="Imam Sign" jp="イマームのサイン" image={imamSign} setImage={setImamSign} />
                     <FormRow en="Passport No." jp="パスポート番号" {...register("passport")} />
 
-                    <ImageField en="Applicant Picture" jp="申請者の写真" image={applicantPhoto} setImage={setApplicantPhoto} />
+                    {/* <ImageField en="Applicant Picture" jp="申請者の写真" image={applicantPhoto} setImage={setApplicantPhoto} /> */}
                 </div>
 
                 {/* ACTION BUTTONS */}
@@ -160,10 +161,10 @@ export default function ConversionForm({ application, onCancel }) {
                     <button type="submit" disabled={loading} className="bg-[#52B920] text-white px-4 py-2.5 md:px-6 md:py-3.5 text-sm  md:text-base rounded-[10px] hover:bg-green-600 disabled:opacity-50 transition-colors">
                         {loading ? "Submitting..." : "Submit Form"}
                     </button>
-                    
+
                     {onCancel && (
-                        <button 
-                            type="button" 
+                        <button
+                            type="button"
                             onClick={onCancel}
                             className="bg-gray-100 text-gray-700 px-4 py-2.5 md:px-6 md:py-3.5 text-sm md:text-base rounded-[10px] hover:bg-gray-200 transition-colors mr-auto"
                         >
@@ -171,18 +172,18 @@ export default function ConversionForm({ application, onCancel }) {
                         </button>
                     )}
 
-                    <GradientBorderWrapper1>
+                    {/* <GradientBorderWrapper1>
                         <button type="button" className=" px-4 py-2.5 md:px-6 md:py-3.5 text-sm  md:text-base text-gray-700    shadow-sm rounded-[11px] cursor-pointer ">
                             View Certificate
                         </button>
-                    </GradientBorderWrapper1>
-                    <GradientBorderWrapper1
-                      
+                    </GradientBorderWrapper1> */}
+                    {/* <GradientBorderWrapper1
+
                     >
                         <button type="button" className=" px-4 py-2.5 md:px-6 md:py-3.5 text-sm  md:text-base text-gray-700 rounded-md cursor-pointer">
                             Download Certificate
                         </button>
-                    </GradientBorderWrapper1>
+                    </GradientBorderWrapper1> */}
 
                 </div>
             </form>
