@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import axiosInstance from "@/helper/axiosInstance";
+import SectionTitleSmall from "../Shared/SectionTitleSmall";
+
 
 const INITIAL_STATE = {
   name: "",
@@ -14,7 +16,7 @@ const INITIAL_STATE = {
   item_image: null,
 };
 
-export default function LostComplainForm({ onSuccess }) {
+export default function LostComplainForm({ onSuccess, reportRef }) {
   const [form, setForm] = useState(INITIAL_STATE);
   const [loading, setLoading] = useState(false);
 
@@ -61,13 +63,16 @@ export default function LostComplainForm({ onSuccess }) {
   };
 
   return (
-    <div className="rounded-[20px] px-4 py-6 md:px-8 md:py-8">
-      <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-[#000000]">
-        Loss & Found Complain
-      </h2>
+    <div ref={reportRef} className="rounded-[20px] px-4 py-6 md:px-8 md:py-8 scroll-mt-32">
+      <SectionTitleSmall
+        leftTitle={"Loss & Found Complain"}
+        rightTitle={"遺失物に関する苦情"}
+      />
+
+
 
       <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-1 md:grid-cols-7 gap-4 items-end">
+        <div className="grid grid-cols-1 md:grid-cols-7 gap-4 items-end mt-10">
           {/* Applicant Name */}
           <div>
             <label className="text-sm mb-1 block">Applicant Name</label>
@@ -84,7 +89,7 @@ export default function LostComplainForm({ onSuccess }) {
 
           {/* Lost Item Name */}
           <div>
-            <label className="text-sm mb-1 block">Lost Item Name</label>
+            <label className="text-sm mb-1 block">Item Name</label>
             <input
               type="text"
               name="item_name"
@@ -98,7 +103,7 @@ export default function LostComplainForm({ onSuccess }) {
 
           {/* Lost Spot */}
           <div>
-            <label className="text-sm mb-1 block">Lost Spot/Area</label>
+            <label className="text-sm mb-1 block">Spot/Area</label>
             <input
               type="text"
               name="spot_area"
