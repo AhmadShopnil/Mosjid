@@ -6,6 +6,7 @@ import HalalCertificateTopSection from '@/components/Services/HalalCertification
 import HalalCertifiedList from '@/components/Services/HalalCertification/HalalCertifiedList'
 import HalalAllApplications from '@/components/Services/HalalCertification/HalalAllApplications'
 import PolicyModal from '@/components/Shared/PolicyModal'
+import ServiceInnerHeader from '@/components/Services/Shared/ServiceInnerHeader';
 
 export default function Page() {
     const [showForm, setShowForm] = useState(false);
@@ -35,6 +36,10 @@ export default function Page() {
 
     return (
         <div className='space-y-8'>
+            <ServiceInnerHeader
+                title="ハラール認証"
+                title2="شهادة الحلال"
+            />
             {/* top sections */}
             <HalalCertificateTopSection onActionClick={handleActionClick} />
 

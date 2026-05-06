@@ -2,6 +2,8 @@ import GradientBorder from "@/components/GradientBorder/GradientBorder";
 import React from "react";
 import TableTitle from "../Shared/TableTitle";
 import { FiEdit } from "react-icons/fi";
+import Link from "next/link";
+import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 
 const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
   const formatDate = (dateStr) => {
@@ -28,9 +30,50 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
     return (<span className="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">Pending</span>);
   };
 
+  const isFormFilled = (app) => {
+    if (!app.others_infomartions) return false;
+    return !!app.others_infomartions?.informations?.name;
+  };
+
+  const actionTake = (application) => {
+    if (application?.form_status == 1 || isFormFilled(application)) {
+      if (application?.download_status == 1) {
+        return (
+          <Link
+            href={`/services/muslim-convertion/certificate-download/${application?.id}`}
+            className="bg-[#52B920] hover:bg-green-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full transition-colors cursor-pointer inline-flex items-center gap-1 mx-auto"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+            Certificate
+          </Link>
+        )
+      } else {
+        return (
+          <span className="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">
+            Certificate Not Generated Yet
+          </span>
+        )
+      }
+    } else if (application?.status === "1" || application?.status === 1) {
+      return (
+        <button
+          onClick={() => onFillForm && onFillForm(application.id)}
+          className="inline-flex items-center gap-1 bg-[#52B920] text-white hover:bg-green-600 cursor-pointer px-3 lg:px-4 py-1.5 rounded-full text-xs font-medium transition-colors"
+        >
+          <FiEdit className="w-3.5 h-3.5" />
+          Fill Form
+        </button>
+      )
+    } else {
+      return <span className="text-gray-400">—</span>;
+    }
+  };
+
   return (
-    <GradientBorder>
-      <div className="w-full p-4">
+
+    <GradientBorderWrapper1>
+
+      <div className="w-full p-4 lg:p-6">
         <div className="mb-6">
           <TableTitle title1="My Applications" title2="予約リスト" />
         </div>
@@ -63,18 +106,7 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatTime(app.end_time)}</td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{getStatusBadge(app.status)}</td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
-                      {(app.status === "1" || app.status === 1) ? (
-                        <button
-                          onClick={() => onFillForm && onFillForm(app.id)}
-                          className="inline-flex items-center gap-1 bg-[#52B920] text-white hover:bg-green-600 cursor-pointer
-                           px-3 lg:px-4 py-1.5 rounded-full text-xs font-medium transition-colors"
-                        >
-                          <FiEdit className="w-3.5 h-3.5" />
-                          Fill Form
-                        </button>
-                      ) : (
-                        <span className="text-gray-400">—</span>
-                      )}
+                      {actionTake(app)}
                     </td>
                   </tr>
                 ))}
@@ -83,7 +115,11 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
           </div>
         )}
       </div>
-    </GradientBorder>
+
+    </GradientBorderWrapper1>
+
+
+
   );
 };
 

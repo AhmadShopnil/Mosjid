@@ -1,4 +1,5 @@
 import GradientBorder from "@/components/GradientBorder/GradientBorder";
+import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 import React from "react";
 
 const BookingList = ({ bookings = [], loading = false }) => {
@@ -27,7 +28,7 @@ const BookingList = ({ bookings = [], loading = false }) => {
   };
 
   return (
-    <GradientBorder>
+    <GradientBorderWrapper1>
       <div className="w-full p-4">
         <h2 className="text-2xl font-semibold text-[#333333] mb-4">Booking List</h2>
         {loading ? (
@@ -64,7 +65,7 @@ const BookingList = ({ bookings = [], loading = false }) => {
           </div>
         )}
       </div>
-    </GradientBorder>
+    </GradientBorderWrapper1>
   );
 };
 

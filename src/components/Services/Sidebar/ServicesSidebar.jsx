@@ -59,7 +59,7 @@ export default function ServicesSidebar({
                 onMouseEnter={() => setHovered(category.id)}
                 onMouseLeave={() => setHovered("")}
                 onClick={() => handleOnClickItem(category)}
-                className={`group w-full h-[61px] px-3 py-3 flex items-center gap-3  transition-all
+                className={`group w-full h-[61px] px-3 py-3 flex items-center gap-3 cursor-pointer  transition-all
                    
                   ${isExpanded ||
                     category.id == hovered ||

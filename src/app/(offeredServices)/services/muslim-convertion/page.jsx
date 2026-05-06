@@ -8,6 +8,7 @@ import MyApplications from '@/components/Services/MuslimConversion/MyApplication
 import PolicyModal from '@/components/Shared/PolicyModal';
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axiosInstance from '@/helper/axiosInstance';
+import ServiceInnerHeader from '@/components/Services/Shared/ServiceInnerHeader';
 
 export default function page() {
     const [slots, setSlots] = useState([]);
@@ -68,22 +69,36 @@ export default function page() {
 
     return (
         <div className='space-y-8'>
+            <ServiceInnerHeader
+                title="イスラム教への改宗"
+                title2="التحول إلى الإسلام"
+            />
+
             <MuslimConvertionTopSection onActionClick={handleActionClick} />
-            <div ref={myApplicationsRef}>
+            <div ref={myApplicationsRef}
+                className='scroll-mt-32'
+            >
                 <MyApplications applications={myApplications} loading={loading} onFillForm={handleFillForm} />
             </div>
             {selectedApplication && (
-                <div ref={conversionFormRef}>
-                    <ConversionForm 
-                        application={selectedApplication} 
-                        onCancel={() => setSelectedApplication(null)} 
+                <div ref={conversionFormRef}
+
+                >
+                    <ConversionForm
+                        application={selectedApplication}
+                        onCancel={() => setSelectedApplication(null)}
                     />
                 </div>
             )}
-            <div ref={bookingListRef}>
+            <div ref={bookingListRef}
+                className='scroll-mt-32'
+
+            >
                 <BookingList bookings={bookings} loading={loading} />
             </div>
-            <div ref={convertedListRef}>
+            <div ref={convertedListRef}
+                className='scroll-mt-32'
+            >
                 <ConvertedList converted={converted} loading={loading} />
             </div>
 

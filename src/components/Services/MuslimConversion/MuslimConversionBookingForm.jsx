@@ -101,14 +101,14 @@ export default function MuslimConversionBookingForm() {
         >
             <Input
                 label="Applicant Name / 申請者名"
-                placeholder="申請者氏名"
+                // placeholder="申請者氏名"
                 {...register("name")}
                 error={errors.name?.message}
             />
 
             <Input
                 label="Father Name / 父親の名前"
-                placeholder="故人氏名"
+                // placeholder="故人氏名"
                 {...register("father_name")}
                 error={errors.father_name?.message}
             />
@@ -159,7 +159,7 @@ export default function MuslimConversionBookingForm() {
 
             <Input
                 label="Contact No. / お問い合わせ番号"
-                placeholder="電話番号"
+                // placeholder="電話番号"
                 {...register("contact_no")}
                 error={errors.contact_no?.message}
             />

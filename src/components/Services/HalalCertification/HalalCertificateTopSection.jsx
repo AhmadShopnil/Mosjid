@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
+import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 
 export default function HalalCertificateTopSection({ onActionClick }) {
     return (
@@ -40,12 +41,11 @@ export default function HalalCertificateTopSection({ onActionClick }) {
                     transition={{ duration: 0.6 }}
                     className="flex flex-wrap justify-between"
                 >
-                    <h3 className="text-[#B98C20] text-[36px] font-bold mb-3 pb-3">
-                        HALAL CERTIFICATE
-                    </h3>
-                    <h3 className="text-[#B98C20] text-[36px] font-bold text-end mb-3 pb-3">
-                        ハラール認証
-                    </h3>
+                    <SectionTitleRow
+                        leftTitle={"HALAL CERTIFICATE"}
+                        rightTitle={"ハラール認証"}
+                    />
+
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

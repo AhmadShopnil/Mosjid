@@ -104,6 +104,7 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
 
   return (
     <div className="mt-6 relative">
+
       <GradientBorder>
         <div className="w-full p-4 lg:p-6">
           <h2 className="text-2xl font-semibold text-[#333333] mb-4">My Applications</h2>

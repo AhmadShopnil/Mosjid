@@ -6,6 +6,7 @@ import MarriageForm from '@/components/Services/marriageFacilities/MarriageForm'
 import PolicyModal from '@/components/Shared/PolicyModal'
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import axiosInstance from '@/helper/axiosInstance'
+import ServiceInnerHeader from '@/components/Services/Shared/ServiceInnerHeader'
 
 const Page = () => {
   const [slots, setSlots] = useState([]);
@@ -71,6 +72,10 @@ const Page = () => {
 
   return (
     <div>
+      <ServiceInnerHeader
+        title="結婚施設"
+        title2="مرفق الزواج"
+      />
       <Booking slots={slots} onBookingSubmitted={fetchData} onActionClick={handleActionClick} />
 
       <div className="scroll-mt-32" ref={myApplicationsRef}>
