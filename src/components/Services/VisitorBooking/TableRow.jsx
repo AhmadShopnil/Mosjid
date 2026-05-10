@@ -5,7 +5,7 @@ export default function VisiTorTableRow({ item, i }) {
 
   const slCell =
     "border border-gray-300 px-2 py-2 text-center text-sm " +
-    "w-[60px] min-w-[60px] max-w-[60px]";
+    "w-[40px] min-w-[40px] max-w-[60px]";
 
   return (
     <tr className={`${i % 2 === 0 ? "bg-white" : "bg-[#E5F5DE]"} h-[42px]`}>

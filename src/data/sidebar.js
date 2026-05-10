@@ -221,6 +221,21 @@ export const servicesSideBarCategories = [
     icon: "/images/QuickLinks/offer-service.png",
     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
     isArrow: true,
+    hasSubItems: true,
+    childs: [
+      {
+        id: "madrasha",
+        name: "Madrasha Over View",
+        description: "マドラサの概要",
+        targetId: "madrasha",
+        link: "/madrasha",
+      },
+      {
+        name: "Admission Form",
+        link: "/admission-form",
+        description: "入学フォーム",
+      },
+    ],
   },
 
   {

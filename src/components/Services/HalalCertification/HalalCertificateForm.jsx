@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axiosInstance from "@/helper/axiosInstance";
 
 const INITIAL_STATE = {
@@ -33,6 +33,21 @@ export default function HalalCertificateForm({ onCancel }) {
     const [form, setForm] = useState(INITIAL_STATE);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState({ type: "", text: "" });
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await axiosInstance.get("/halal_categories");
+                if (response.data) {
+                    setCategories(response.data);
+                }
+            } catch (error) {
+                console.error("Error fetching halal categories:", error);
+            }
+        };
+        fetchCategories();
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -136,10 +151,11 @@ export default function HalalCertificateForm({ onCancel }) {
                         value={form.product_category}
                         onChange={handleChange}
                         options={[
-                            { value: "", label: "Select" },
-                            { value: "1", label: "Food" },
-                            { value: "2", label: "Cosmetics" },
-                            { value: "3", label: "Pharmaceutical" },
+                            { value: "", label: "Select Category" },
+                            ...categories.map((cat) => ({
+                                value: cat.id.toString(),
+                                label: cat.name,
+                            })),
                         ]}
                     />
 

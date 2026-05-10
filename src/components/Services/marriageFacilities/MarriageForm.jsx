@@ -167,7 +167,7 @@ const MarriageForm = ({ application, onCancel, onSubmitSuccess }) => {
       },
       others: info?.others || {},
       attached: {
-        ...(info?.attached || {}),
+        // ...(info?.attached || {}),
         sign: info?.attached?.sign || null,
         bride_sign: info?.attached?.bride_sign || null,
         groom_sign: info?.attached?.groom_sign || null,
