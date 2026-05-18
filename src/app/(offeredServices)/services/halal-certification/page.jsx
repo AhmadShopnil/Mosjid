@@ -11,8 +11,8 @@ import ServiceInnerHeader from '@/components/Services/Shared/ServiceInnerHeader'
 export default function Page() {
     const [showForm, setShowForm] = useState(false);
     const listRef = useRef(null);
-    const allApplicationsRef = useRef(null);
     const formRef = useRef(null);
+    const [activeTab, setActiveTab] = useState("all"); // "all" (All Certified), "my" (My Applications)
 
     // Modal state
     const [modalConfig, setModalConfig] = useState({ isOpen: false, slug: "", title: "" });
@@ -29,9 +29,6 @@ export default function Page() {
         } else if (action === "Issuing Rules of Halal Certification") {
             setModalConfig({ isOpen: true, slug: "halal-certificate-guidelines", title: action });
         }
-        // else if (action === " Guides Line") {
-        //     setModalConfig({ isOpen: true, slug: "halal-certificate-guidelines", title: action });
-        // }
     };
 
     return (
@@ -47,13 +44,50 @@ export default function Page() {
                 {showForm && <HalalCertificateForm onCancel={() => setShowForm(false)} />}
             </div>
 
-            <div className="my-10 scroll-mt-32" ref={listRef}>
-                <HalalCertifiedList />
-            </div>
+            {/* Premium Tabbed Applications Interface */}
+            <div className="my-12 scroll-mt-32 bg-white rounded-3xl border border-gray-150 p-6 shadow-sm" ref={listRef}>
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-150 pb-4 mb-6 gap-4">
+                    <div>
+                        <h3 className="text-xl font-bold text-[#00401A] flex items-center gap-2">
 
-            {/* <div className="my-10 scroll-mt-32" ref={allApplicationsRef}>
-                <HalalAllApplications />
-            </div> */}
+                            Halal Certification
+                        </h3>
+
+                    </div>
+
+                    {/* Premium tab switcher */}
+                    <div className="flex bg-gray-50 border border-gray-200 rounded-xl p-1 w-full sm:w-auto">
+                        <button
+                            type="button"
+                            onClick={() => setActiveTab("all")}
+                            className={`flex-1 sm:flex-initial px-5 py-2 rounded-lg text-sm font-bold transition-all duration-300 ${activeTab === "all"
+                                ? "bg-[#00401A] text-white shadow"
+                                : "text-gray-500 hover:text-green-700 hover:bg-green-50/50"
+                                }`}
+                        >
+                            All Certified Items
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => setActiveTab("my")}
+                            className={`flex-1 sm:flex-initial px-5 py-2 rounded-lg text-sm font-bold transition-all duration-300 ${activeTab === "my"
+                                ? "bg-[#00401A] text-white shadow"
+                                : "text-gray-500 hover:text-green-700 hover:bg-green-50/50"
+                                }`}
+                        >
+                            My Applications
+                        </button>
+                    </div>
+                </div>
+
+                <div className="mt-4 transition-all duration-300">
+                    {activeTab === "all" ? (
+                        <HalalCertifiedList />
+                    ) : (
+                        <HalalAllApplications />
+                    )}
+                </div>
+            </div>
 
             {/* Reusable Guidelines/Policies Modal */}
             <PolicyModal
