@@ -19,6 +19,9 @@ const Page = () => {
   const bookingListRef = useRef(null);
   const myApplicationsRef = useRef(null);
 
+
+
+  
   // Modal state
   const [modalConfig, setModalConfig] = useState({ isOpen: false, slug: "", title: "" });
 
@@ -67,8 +70,6 @@ const Page = () => {
       setModalConfig({ isOpen: true, slug: "marriage-guidelines", title: "Marriage Guideline" });
     }
   };
-
-
 
   return (
     <div>

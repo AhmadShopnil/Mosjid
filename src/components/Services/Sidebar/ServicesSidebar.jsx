@@ -30,11 +30,20 @@ export default function ServicesSidebar({
 
   // handle different useCase in same sidebar
   const handleOnClickItem = (category) => {
-    setSelected(category);
-    // setSelectedParrent(null);
-    // console.log("link", category)
-    router.push(`/services${category?.link}`);
+    if (category.hasSubItems) {
+      toggleExpand(category.id);
+    } else {
+      setSelected(category);
+      router.push(`/services${category?.link}`);
+    }
+  };
 
+  const handleOnClickSubItem = (subItem, category) => {
+    // We can set the selected item to the subItem if needed, 
+    // but the sidebar might expect a specific structure.
+    // For now, let's just navigate.
+    setSelected(subItem);
+    router.push(`/services${subItem?.link}`);
   };
 
 

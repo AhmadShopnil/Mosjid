@@ -74,7 +74,7 @@ export default function VisitorForm({ onSuccess }) {
             // Append all fields except start_time/end_time (they come from slot)
             const { slot_id, ...rest } = form;
             Object.entries(rest).forEach(([key, value]) => {
-                if(value) {
+                if (value) {
                     payload.append(key, value);
                 }
             });
@@ -142,7 +142,7 @@ export default function VisitorForm({ onSuccess }) {
                     <h3 className="font-semibold text-sm md:text-2xl text-[#B98C20]"> Visitor Booking</h3>
                     <h3 className="font-semibold text-sm md:text-2xl text-[#B98C20]"> 訪問者の予約</h3>
                 </div>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
                     <div>
                         <label className="text-sm block mb-1">Full Name</label>
@@ -222,7 +222,7 @@ export default function VisitorForm({ onSuccess }) {
                     <h3 className="font-semibold text-sm md:text-2xl text-[#B98C20]"> Visit Details</h3>
                     <h3 className="font-semibold text-sm md:text-2xl text-[#B98C20]"> 訪問の詳細</h3>
                 </div>
-              
+
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div>
                         <label className="text-sm block mb-1">Visit Date</label>
@@ -301,14 +301,14 @@ export default function VisitorForm({ onSuccess }) {
                         {loading ? 'Submitting...' : 'Submit'}
                     </button>
 
-                    <button
+                    {/* <button
                         type="button"
                         onClick={() => setForm(INITIAL_STATE)}
                         disabled={loading}
                         className="bg-[#FFE9E9] border border-[#FF0000] text-[#333333] text-lg px-8 py-2.5 rounded-[10px] hover:bg-red-50 disabled:opacity-60 transition"
                     >
                         Cancel
-                    </button>
+                    </button> */}
                 </div>
             </form>
         </div>

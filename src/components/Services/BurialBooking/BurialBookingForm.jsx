@@ -113,7 +113,7 @@ export default function BurialBookingForm({ onSuccess }) {
       {success && (
         <p className="text-green-600 text-sm font-medium">{success}</p>
       )}
-      
+
       {errorMsg && (
         <p className="text-red-600 text-sm font-medium">{errorMsg}</p>
       )}
@@ -127,14 +127,14 @@ export default function BurialBookingForm({ onSuccess }) {
           {loading ? "Submitting..." : "Submit"}
         </button>
 
-        <button
+        {/* <button
           type="button"
           disabled={loading}
           onClick={() => reset()}
           className="border border-red-500 text-red-600 bg-red-100 hover:bg-red-200 px-6 py-2 rounded-md cursor-pointer disabled:opacity-50"
         >
           Cancel
-        </button>
+        </button> */}
       </div>
     </form>
   );
@@ -151,10 +151,9 @@ function Input({ label, error, highlight, ...props }) {
       <input
         {...props}
         className={`w-full px-3 py-2 rounded-md outline-none bg-white
-          ${
-            highlight
-              ? "border-2 border-green-500"
-              : "border border-orange-300"
+          ${highlight
+            ? "border-2 border-green-500"
+            : "border border-orange-300"
           }`}
       />
 

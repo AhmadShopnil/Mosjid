@@ -4,6 +4,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axiosInstance from "@/helper/axiosInstance";
 import Pagination from "@/components/Shared/Pagination";
+import Link from "next/link";
+import { FiDownload } from "react-icons/fi";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -21,7 +23,8 @@ export default function HalalAllApplications() {
       setLoading(true);
       const res = await axiosInstance.get(`/halal?page=${page}`);
 
-      const responseData = res?.data?.all_applications;
+      // Now fetches my_applications as requested
+      const responseData = res?.data?.my_applications;
       if (responseData) {
         setData(responseData.data || []);
         setCurrentPage(responseData.current_page || 1);
@@ -45,6 +48,24 @@ export default function HalalAllApplications() {
     }
   };
 
+  const renderAction = (item) => {
+    const isApproved = item.status === 1 || item.status === "1";
+
+    if (isApproved) {
+      return (
+        <Link
+          href={`/services/halal-certification/certificate-download/${item.id}`}
+          className="bg-[#52B920] hover:bg-green-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full transition-colors cursor-pointer inline-flex items-center gap-1 mx-auto"
+        >
+          <FiDownload className="text-xs" />
+          Certificate
+        </Link>
+      );
+    }
+
+    return <span className="text-gray-400 text-xs italic">—</span>;
+  };
+
   return (
     <motion.div
       className="space-y-6"
@@ -55,8 +76,8 @@ export default function HalalAllApplications() {
     >
       <div>
         <div className="bg-[#52B920] h-[50px] text-white flex justify-between items-center px-4 rounded-t-[10px]">
-          <h2 className="font-bold">All Applications</h2>
-          <h2 className="font-bold">すべての申請</h2>
+          <h2 className="font-bold">My Applications</h2>
+          <h2 className="font-bold">マイ申請</h2>
         </div>
 
         <div className="overflow-x-auto border-x border-b border-gray-200 rounded-b-[10px]">
@@ -71,6 +92,7 @@ export default function HalalAllApplications() {
                 <th className="py-3 border border-gray-300">Issue Date</th>
                 <th className="py-3 border border-gray-300">Expiry Date</th>
                 <th className="py-3 border border-gray-300">Status</th>
+                <th className="py-3 border border-gray-300 w-[150px]">Action</th>
               </tr>
             </thead>
 
@@ -100,20 +122,23 @@ export default function HalalAllApplications() {
                         <td className="border border-gray-300 p-3 text-center">{item.issue_date || "-"}</td>
                         <td className="border border-gray-300 p-3 text-center">{item.expiry_date || "-"}</td>
                         <td className="border border-gray-300 p-3 text-center">
-                          {item.status === 1 ? (
+                          {item.status == 1 ? (
                             <span className="text-green-600 font-semibold">Approved</span>
-                          ) : item.status === 2 ? (
+                          ) : item.status == 2 ? (
                             <span className="text-red-600 font-semibold">Rejected</span>
                           ) : (
                             <span className="text-yellow-600 font-semibold">Pending</span>
                           )}
+                        </td>
+                        <td className="border border-gray-300 p-3 text-center">
+                          {renderAction(item)}
                         </td>
                       </tr>
                     );
                   })
                 ) : (
                   <tr>
-                    <td colSpan={8} className="text-center py-10 text-gray-500">
+                    <td colSpan={9} className="text-center py-10 text-gray-500">
                       No applications found.
                     </td>
                   </tr>
@@ -143,7 +168,7 @@ const TableSkeleton = () => {
     <>
       {Array.from({ length: 6 }).map((_, i) => (
         <tr key={i} className="animate-pulse">
-          {Array.from({ length: 8 }).map((_, j) => (
+          {Array.from({ length: 9 }).map((_, j) => (
             <td key={j} className="py-3 px-3 border border-gray-300">
               <div className="h-4 bg-gray-200 rounded" />
             </td>

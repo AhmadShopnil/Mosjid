@@ -10,6 +10,10 @@ import PolicyModal from '@/components/Shared/PolicyModal';
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axiosInstance from '@/helper/axiosInstance';
 
+const myBookingsTitle = {
+    en: "My Bookings",
+    jp: "私の予約"
+};
 const bookingListtableTitle = {
     en: "Visitor Booking List",
     jp: "訪問者予約リスト"
@@ -23,6 +27,7 @@ const recordListTitle = {
 export default function Page() {
     const [futureBookings, setFutureBookings] = useState([]);
     const [pastBookings, setPastBookings] = useState([]);
+    const [myBookingList, setMyBookingList] = useState([]);
     const [loading, setLoading] = useState(true);
 
     // Modal state for guidelines
@@ -37,6 +42,9 @@ export default function Page() {
         try {
             setLoading(true);
             const res = await axiosInstance.get('/visitors');
+
+            // console.log("res of visitor", res?.data)
+            setMyBookingList(res.data?.my_books?.data || []);
             setFutureBookings(res.data?.future_book?.data || []);
             setPastBookings(res.data?.past_book?.data || []);
         } catch (error) {
@@ -72,7 +80,12 @@ export default function Page() {
                     <VisitorForm onSuccess={fetchVisitors} />
                 </GradientBorderWrapper1>
             </div>
-
+            <div className='scroll-mt-32 rounded-2xl p-[1px]
+             bg-gradient-to-b from-[#3198A0] to-[#51F909]'>
+                <div className='p-4 md:p-8 bg-white rounded-[15px]'>
+                    <VisitorTable tableTitle={myBookingsTitle} data={myBookingList} loading={loading} />
+                </div>
+            </div>
             <div ref={bookingListRef} className='scroll-mt-32 rounded-2xl p-[1px]
              bg-gradient-to-b from-[#3198A0] to-[#51F909]'>
                 <div className='p-4 md:p-8 bg-white rounded-[15px]'>

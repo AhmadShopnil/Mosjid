@@ -20,7 +20,8 @@ export default function ConversionForm({ application, onCancel }) {
             toast.error("Please select an approved application to fill the form.");
             return;
         }
-
+        console.log("pictureArea",pictureArea)
+        console.log("imamSign",imamSign?.file)
 
         const formData = new FormData();
         formData.append("informations[name]", data.name || "");
@@ -37,12 +38,14 @@ export default function ConversionForm({ application, onCancel }) {
         formData.append("informations[passport_no]", data.passport || "");
 
         if (pictureArea?.file) {
-            formData.append("informations[attached][picture_area]", pictureArea.file);
-        }
-        if (imamSign?.file) {
-            formData.append("informations[attached][imam_sign]", imamSign.file);
+            formData.append("informations[attached][picture_area]", pictureArea?.file);
         }
 
+        if (imamSign?.file) {
+            formData.append("informations[attached][imam_sign]", imamSign?.file);
+        }
+
+        
         try {
             setLoading(true);
             const response = await axiosInstance.post(`/conversion/${appId}`, formData, {

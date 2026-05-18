@@ -19,10 +19,10 @@ export default function HalalCertifiedList() {
   const fetchData = useCallback(async (page = 1) => {
     try {
       setLoading(true);
-      // Assuming your axiosInstance is configured correctly. If not using axiosInstance, use fetch or standard axios.
       const res = await axiosInstance.get(`/halal?page=${page}`);
 
-      const responseData = res?.data?.my_applications;
+      // Mapped to all_applications as requested
+      const responseData = res?.data?.all_applications;
       if (responseData) {
         setData(responseData.data || []);
         setCurrentPage(responseData.current_page || 1);
@@ -87,8 +87,7 @@ export default function HalalCertifiedList() {
                   <TableSkeleton />
                 ) : data.length ? (
                   data.map((item, index) => {
-                    // Calculate absolute serial number based on pagination
-                    const sl = (currentPage - 1) * 20 + index + 1; // Assuming 20 items per page based on API response
+                    const sl = (currentPage - 1) * 20 + index + 1;
                     return (
                       <tr
                         key={item.id}

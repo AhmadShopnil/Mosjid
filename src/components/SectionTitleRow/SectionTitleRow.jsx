@@ -6,7 +6,7 @@ const SectionTitleRow = ({
   gradientColor = "#00401A",
 }) => {
   return (
-    <div className="relative flex flex-wrap md:justify-between items-center w-full mb-3">
+    <div className="relative flex flex-wrap md:justify-between items-center w-full mb-4">
       {/* Mobile bottom border (Global line for mobile view) */}
       <div
         className="absolute bottom-0 left-0 w-full h-[2px] md:hidden"
