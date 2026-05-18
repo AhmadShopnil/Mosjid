@@ -1,12 +1,12 @@
 import Image from "next/image";
 import React from "react";
 
-export default function AcademicDocumentsTopSection() {
+export default function AcademicDocumentsTopSection({ onActionClick }) {
 
     const menuList = [
-        { icon: "1.svg", label: "Admission Form" },
-        { icon: "3.svg", label: "List Of Students" },
-        { icon: "2.svg", label: "Monthly Progress Sheet" },
+        // { icon: "1.svg", label: "Admission Form" },
+        // { icon: "3.svg", label: "List Of Students" },
+        // { icon: "2.svg", label: "Monthly Progress Sheet" },
         { icon: "3.svg", label: "Adimission Rules Regulation" },
     ]
 
@@ -35,7 +35,7 @@ export default function AcademicDocumentsTopSection() {
                         Academic Documents
                     </h3>
                     <h3 className="text-[#B98C20] text-[36px] font-bold text-end mb-3 pb-3">
-                       学術文書
+                        学術文書
                     </h3>
                 </div>
 
@@ -44,7 +44,7 @@ export default function AcademicDocumentsTopSection() {
                     <div>
 
                         <p className="text-[#B98C20] text-base mt-2 ">
-                           Welcome to the House of Allah. We ask all visitors to uphold modesty, respect, and cleanliness during their time in the Masjid.
+                            Welcome to the House of Allah. We ask all visitors to uphold modesty, respect, and cleanliness during their time in the Masjid.
                         </p>
 
                         <div className="">
@@ -73,7 +73,8 @@ export default function AcademicDocumentsTopSection() {
                             {menuList?.map((item, i) => (
                                 <div
                                     key={i}
-                                    className="border border-[#F7BA2A] bg-white/50  p-4 flex items-center gap-4 rounded-[10px]"
+                                    onClick={() => onActionClick && onActionClick(item.label)}
+                                    className="cursor-pointer hover:bg-white/80 transition border border-[#F7BA2A] bg-white/50 p-4 flex items-center gap-4 rounded-[10px]"
                                 >
                                     <Image
                                         src={`/images/offerServices/IslamicName/${item.icon}`}
