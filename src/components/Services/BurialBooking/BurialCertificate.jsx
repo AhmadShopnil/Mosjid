@@ -56,7 +56,7 @@ export default function BurialCertificate({ data = {} }) {
           <h1 className="text-[34px] font-extrabold tracking-wider font-serif text-[#00401A] shadow-sm">
             BURIAL CERTIFICATE
           </h1>
-          <p className="text-[14px] font-bold mt-1 text-[#00401A]">شهادة الدفن</p>
+          {/* <p className="text-[14px] font-bold mt-1 text-[#00401A]">شهادة الدفن</p> */}
         </div>
 
         <div className="text-right">
