@@ -34,23 +34,23 @@ const FloorGuide = () => {
   ];
 
   return (
-    <div className='pb-6'>
+    <div className=''>
       <GradientBorder>
         <div className="w-full rounded-[12px] p-4 md:p-6" style={{
           background: 'linear-gradient(99.25deg, #FAFFF9 0.3%, #FFFFFF 99.39%)'
         }}>
           <div>
             <SectionTitleRow leftTitle={'Masjid Structure'} rightTitle={'マスジドの構造'} />
-            
+
             {/* CHANGED TO GRID SYSTEM */}
             <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-8 pt-6">
-              
+
               {/* LEFT SIDE: Building Image */}
               <div className="flex justify-center items-center">
                 <div className="relative">
-                  <img 
-                    src="/images/offerServices/masjidView/structure.svg" 
-                    alt="Building Illustration" 
+                  <img
+                    src="/images/offerServices/masjidView/structure.svg"
+                    alt="Building Illustration"
                     className="max-w-full h-auto drop-shadow-md"
                   />
                   <div className="hidden lg:block absolute top-0 right-[-40px] w-[40px] h-full">
@@ -63,7 +63,7 @@ const FloorGuide = () => {
                 {floorData.map((floor) => (
                   <div key={floor.id} className="relative group">
                     <div className="flex items-center gap-4">
-                      
+
                       {/* Floor Icon Indicator */}
                       <div className="shrink-0">
                         <div className="flex items-center justify-center bg-white">
@@ -76,7 +76,7 @@ const FloorGuide = () => {
                         <h3 className="text-2xl font-bold text-[#00401A]">
                           {floor.floorName}
                         </h3>
-                        
+
                         {/* Features List */}
                         <div className="flex flex-wrap gap-x-6 gap-y-2">
                           {floor.features.map((feature, idx) => (

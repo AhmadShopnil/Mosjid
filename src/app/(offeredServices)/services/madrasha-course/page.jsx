@@ -4,13 +4,14 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 import CardCurriculum from "@/components/Services/IslamicSchool Curriculum/CardCurriculum";
+import ServiceInnerHeader from "@/components/Services/Shared/ServiceInnerHeader";
 
 
 const curriculums = [
 
     {
         no: "01",
-        title: "Maktab Foundation",
+        title: "Maktab & Nazirah Foundation",
         ageGroup: "Ages:3–6",
         titleJapanese: "マクタブ基礎課程",
         ageGroupJapanese: "Ages:3–6",
@@ -63,6 +64,10 @@ export default function IslamicCurriculum() {
 
         <div className=" px-1 h-auto">
             {/* Main Grid */}
+             <ServiceInnerHeader
+                                title="マドラサ教育ロードマップ"
+                                title2="خريطة طريق التعليم في الجامعة الإسلامية"
+                              />
 
             <div className="mt-10 border-2 border-[#FFCE4D] rounded-[40px] p-4 bg-[#F9FFF2]">
 
@@ -149,7 +154,9 @@ export default function IslamicCurriculum() {
 
 function LevelCard({ no, title, align }) {
     return (
-        <motion.div
+        <div>
+            
+                               <motion.div
             initial={{ opacity: 0, x: align === "left" ? -30 : 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4 }}
@@ -169,6 +176,8 @@ function LevelCard({ no, title, align }) {
             </div>
 
         </motion.div>
+        </div>
+       
     );
 }
 function LevelCardReverse({ no, title, align }) {
@@ -218,15 +227,15 @@ function LevelCardMobile({ no, title }) {
 
 
 const leftLevels = [
-    { no: "01", title: "Maktab Foundation" },
-    { no: "02", title: "Primary School + Hifz Continuation" },
-    { no: "03", title: "Elementary + Full Time Hifz" },
-    { no: "04", title: "Middle School + Junior Aalim" },
+    { no: "01", title: "Maktab & Nazirah Foundation" },
+    { no: "02", title: "Nazirah & Hifz  Continuation" },
+    { no: "03", title: " Full‑Time Hifz + Pre‑Aalim" },
+    { no: "04", title: "Junior Aalim Level + Middle School" },
 ];
 
 const rightLevels = [
-    { no: "05", title: "High School + Thanaviya Aamma" },
-    { no: "06", title: "Senior High / Pre-University + Thanaviya Khassa" },
-    { no: "07", title: "University + Aaliya (Advanced Level)" },
+    { no: "05", title: "Thanawiya Aama (Foundation Level)" },
+    { no: "06", title: "Thanawiya Khasa (Intermediate Level)" },
+    { no: "07", title: "Aaliya (Advanced Level)" },
     { no: "08", title: "Postgraduate + Aalimiyyah & Takhassus" },
 ];

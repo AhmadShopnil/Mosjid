@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "@/components/Shared/Container";
 import CardCurriculum from "@/components/Services/IslamicSchool Curriculum/CardCurriculum";
+import ServiceInnerHeader from "@/components/Services/Shared/ServiceInnerHeader";
 
 
 const curriculums = [
@@ -62,6 +63,10 @@ export default function IslamicCurriculum() {
     return (
 
         <div className=" px-1 h-auto">
+               <ServiceInnerHeader
+                    title="イスラームイスクール教育ロードマップ"
+                    title2="خطة التعليم في المدرسة الإسلامية"
+                  />
             {/* Main Grid */}
 
             <div className="mt-10 border-2 border-[#FFCE4D] rounded-[40px] p-4 bg-[#F9FFF2]">

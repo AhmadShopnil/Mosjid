@@ -25,29 +25,49 @@ export default function BurialForm({ application, countries = [], relationships 
         contact_number: "",
         address: "",
         relationship: "",
+        // Attachments
+        id_card_file: null,
+        death_certificate_file: null,
+        id_card_preview: null,
+        death_certificate_preview: null
     });
 
     useEffect(() => {
         if (application) {
-            // Check if there is already filled form information in others_informations
-            const info = application?.others_infomartions?.informations || {};
+            // Check if there is already filled form information in others_infomartions
+            let info = application?.others_infomartions || {};
+            if (typeof info === 'string') {
+                try {
+                    info = JSON.parse(info);
+                } catch (e) {
+                    info = {};
+                }
+            }
+            
+            const finalInfo = info.informations || info;
+
             setFormData({
-                deceased_person_name: info.deceased_person_name || application.deceased_name || "",
-                gender: info.gender || "",
-                date_of_birth: info.date_of_birth || "",
-                date_of_death: info.date_of_death || "",
-                place_of_death: info.place_of_death || "",
-                nationality: info.nationality || "",
-                passport_no: info.passport_no || "",
-                id_card: info.id_card || "",
-                janazah_prayer_location: info.janazah_prayer_location || "",
-                janazah_date: info.janazah_date || "",
-                burial_date: info.burial_date || application.burial_date || "",
-                grave_number: info.grave_number || "",
-                applicant_name: info.applicant_name || application.name || "",
-                contact_number: info.contact_number || application.contact_no || "",
-                address: info.address || "",
-                relationship: info.relationship || application.relationship || "",
+                deceased_person_name: finalInfo.deceased_person_name || application.deceased_name || "",
+                gender: finalInfo.gender || "",
+                date_of_birth: finalInfo.date_of_birth || "",
+                date_of_death: finalInfo.date_of_death || "",
+                place_of_death: finalInfo.place_of_death || "",
+                nationality: finalInfo.nationality || "",
+                passport_no: finalInfo.passport_no || "",
+                id_card: finalInfo.id_card || "",
+                janazah_prayer_location: finalInfo.janazah_prayer_location || "",
+                janazah_date: finalInfo.janazah_date || "",
+                burial_date: application.burial_date || "",
+                grave_number: finalInfo.grave_number || "",
+                applicant_name: application.name || "",
+                contact_number: application.contact_no || "",
+                address: finalInfo.address || "",
+                relationship: application.relationship || "",
+                // Attached files: show pre-existing paths from database if present
+                id_card_preview: finalInfo.attached?.id_card || null,
+                death_certificate_preview: finalInfo.attached?.death_certificate || null,
+                id_card_file: null,
+                death_certificate_file: null
             });
         }
     }, [application]);
@@ -66,11 +86,45 @@ export default function BurialForm({ application, countries = [], relationships 
 
         try {
             const submitData = new FormData();
-            Object.entries(formData).forEach(([key, value]) => {
-                if (value !== undefined && value !== null) {
-                    submitData.append(key, value);
-                }
-            });
+
+            // Root level fields matching backend expectations
+            submitData.append("name", formData.applicant_name);
+            submitData.append("contact_no", formData.contact_number);
+            submitData.append("deceased_name", formData.deceased_person_name);
+            submitData.append("relationship", formData.relationship);
+            submitData.append("burial_date", formData.burial_date);
+            
+            if (application.estimated_burial_time) {
+                submitData.append("estimated_burial_time", application.estimated_burial_time);
+            }
+            if (application.start_time) {
+                submitData.append("start_time", application.start_time);
+            }
+            if (application.end_time) {
+                submitData.append("end_time", application.end_time);
+            }
+
+            // others_infomartions object format matching exact Postman schema keys
+            submitData.append("others_infomartions[gender]", formData.gender);
+            submitData.append("others_infomartions[address]", formData.address);
+            submitData.append("others_infomartions[id_card]", formData.id_card);
+            submitData.append("others_infomartions[nationality]", formData.nationality);
+            submitData.append("others_infomartions[passport_no]", formData.passport_no);
+            submitData.append("others_infomartions[grave_number]", formData.grave_number);
+            submitData.append("others_infomartions[janazah_date]", formData.janazah_date);
+            submitData.append("others_infomartions[relationship]", formData.relationship);
+            submitData.append("others_infomartions[date_of_birth]", formData.date_of_birth);
+            submitData.append("others_infomartions[date_of_death]", formData.date_of_death);
+            submitData.append("others_infomartions[place_of_death]", formData.place_of_death);
+            submitData.append("others_infomartions[janazah_prayer_location]", formData.janazah_prayer_location);
+
+            // Append newly uploaded files if selected
+            if (formData.id_card_file) {
+                submitData.append("others_infomartions[attached][id_card]", formData.id_card_file);
+            }
+            if (formData.death_certificate_file) {
+                submitData.append("others_infomartions[attached][death_certificate]", formData.death_certificate_file);
+            }
 
             // Endpoint matches the /burial/{id} submission for registration details
             const res = await axiosInstance.post(`/burial/${application.id}`, submitData, {
@@ -123,9 +177,9 @@ export default function BurialForm({ application, countries = [], relationships 
                         type="select"
                         options={[
                             { label: "Select Gender", value: "" },
-                            { label: "Male (男性)", value: "0" },
-                            { label: "Female (女性)", value: "1" },
-                            { label: "Other (その他)", value: "2" },
+                            { label: "Male (男性)", value: "Male" },
+                            { label: "Female (女性)", value: "Female" },
+                            { label: "Other (その他)", value: "Other" },
                         ]}
                         value={formData.gender}
                         onChange={(val) => handleInputChange("gender", val)}
@@ -166,7 +220,7 @@ export default function BurialForm({ application, countries = [], relationships 
                         type="select"
                         options={[
                             { label: "Select Nationality", value: "" },
-                            ...countries.map(c => ({ label: c.name, value: String(c.id) }))
+                            ...countries.map(c => ({ label: c.name, value: c.name }))
                         ]}
                         value={formData.nationality}
                         onChange={(val) => handleInputChange("nationality", val)}
@@ -262,12 +316,55 @@ export default function BurialForm({ application, countries = [], relationships 
                         type="select"
                         options={[
                             { label: "Select Relationship", value: "" },
-                            ...relationships.map(r => ({ label: r.name, value: String(r.id) }))
+                            ...relationships.map(r => ({ label: r.name, value: r.name }))
                         ]}
                         value={formData.relationship}
                         onChange={(val) => handleInputChange("relationship", val)}
                         required
                     />
+                </div>
+
+                {/* File Attachments Section */}
+                <div className="w-full h-[1px] bg-gray-300 my-8" />
+                
+                <h3 className="text-xl font-bold text-[#333333] mb-4">
+                  Attachments / 添付ファイル
+                </h3>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="flex flex-col gap-1.5">
+                        <div className="flex flex-col">
+                            <span className="text-sm font-extrabold text-[#333333] leading-tight">
+                                ID Card / Residence Card Copy
+                            </span>
+                            <span className="text-[10px] text-gray-500 leading-tight">
+                                身分証 / 在留カードのコピー
+                            </span>
+                        </div>
+                        <FileInputWithPreview
+                            id="attached-id-card"
+                            label={formData.id_card_file ? formData.id_card_file.name : "Choose ID Card Copy"}
+                            value={formData.id_card_file || formData.id_card_preview}
+                            onChange={(file) => handleInputChange("id_card_file", file)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col gap-1.5">
+                        <div className="flex flex-col">
+                            <span className="text-sm font-extrabold text-[#333333] leading-tight">
+                                Death Certificate Copy
+                            </span>
+                            <span className="text-[10px] text-gray-500 leading-tight">
+                                死亡診断書のコピー
+                            </span>
+                        </div>
+                        <FileInputWithPreview
+                            id="attached-death-certificate"
+                            label={formData.death_certificate_file ? formData.death_certificate_file.name : "Choose Death Certificate Copy"}
+                            value={formData.death_certificate_file || formData.death_certificate_preview}
+                            onChange={(file) => handleInputChange("death_certificate_file", file)}
+                        />
+                    </div>
                 </div>
 
                 <div className="flex justify-end gap-4 pt-6">
@@ -327,3 +424,52 @@ function FormField({ labelEn, labelJp, type = "text", placeholder, value, onChan
         </div>
     );
 }
+
+const FileInputWithPreview = ({ id, label, value, onChange, heightClass = "h-[50px]" }) => {
+  const [preview, setPreview] = useState(null);
+
+  useEffect(() => {
+    if (!value) {
+      setPreview(null);
+      return;
+    }
+    if (typeof value === "string") {
+      setPreview(`https://admin.osakamasjid.org/public/${value}`);
+    } else if (value instanceof File) {
+      const objectUrl = URL.createObjectURL(value);
+      setPreview(objectUrl);
+      return () => URL.revokeObjectURL(objectUrl);
+    }
+  }, [value]);
+
+  return (
+    <div className="w-full flex flex-col gap-2">
+      <label
+        htmlFor={id}
+        className={`flex items-center justify-center w-full border border-[#B0C4B8] rounded-[10px] p-3.5 ${heightClass} bg-white text-center text-xs text-gray-600 font-semibold cursor-pointer hover:bg-gray-50 transition-colors`}
+      >
+        {label}
+      </label>
+      <input
+        id={id}
+        type="file"
+        accept="image/*,application/pdf"
+        className="hidden"
+        onChange={(e) => {
+          if (e.target.files && e.target.files.length > 0) {
+            onChange(e.target.files[0]);
+          }
+        }}
+      />
+      {preview && (
+        <div className="flex justify-center w-full border border-dashed border-gray-300 rounded-lg p-2 bg-white">
+          {typeof value === "string" || (value instanceof File && value.type.startsWith("image/")) ? (
+            <img src={preview} alt="Preview" className="object-cover h-24 rounded max-w-xs" />
+          ) : (
+            <span className="text-xs text-gray-500 font-semibold">Selected Document (PDF/File)</span>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};

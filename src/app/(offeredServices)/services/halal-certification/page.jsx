@@ -60,7 +60,7 @@ export default function Page() {
                         <button
                             type="button"
                             onClick={() => setActiveTab("all")}
-                            className={`flex-1 sm:flex-initial px-5 py-2 rounded-lg text-sm font-bold transition-all duration-300 ${activeTab === "all"
+                            className={`flex-1 sm:flex-initial px-5 py-2 cursor-pointer rounded-lg text-sm font-bold transition-all duration-300 ${activeTab === "all"
                                 ? "bg-[#00401A] text-white shadow"
                                 : "text-gray-500 hover:text-green-700 hover:bg-green-50/50"
                                 }`}
@@ -70,7 +70,7 @@ export default function Page() {
                         <button
                             type="button"
                             onClick={() => setActiveTab("my")}
-                            className={`flex-1 sm:flex-initial px-5 py-2 rounded-lg text-sm font-bold transition-all duration-300 ${activeTab === "my"
+                            className={`flex-1 sm:flex-initial px-5 py-2 cursor-pointer rounded-lg text-sm font-bold transition-all duration-300 ${activeTab === "my"
                                 ? "bg-[#00401A] text-white shadow"
                                 : "text-gray-500 hover:text-green-700 hover:bg-green-50/50"
                                 }`}

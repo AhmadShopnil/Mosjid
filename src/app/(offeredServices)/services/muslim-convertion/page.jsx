@@ -82,7 +82,6 @@ export default function page() {
             </div>
             {selectedApplication && (
                 <div ref={conversionFormRef}
-
                 >
                     <ConversionForm
                         application={selectedApplication}

@@ -47,8 +47,8 @@ const MasjidHistory = () => {
   ];
 
   return (
-    <section className="mb-6">
-      <div className="mb-6">
+    <section className="">
+      <div className="">
         <SectionTitleRow leftTitle={'Masjid History'} rightTitle={'マスジドの歴史'} />
       </div>
       <div>

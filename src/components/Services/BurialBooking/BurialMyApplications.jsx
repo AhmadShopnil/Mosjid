@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 
 const BurialMyApplications = ({ applications = [], loading = false, onFillForm }) => {
-    
+
     const formatDate = (dateStr) => {
         if (!dateStr) return "—";
         const date = new Date(dateStr);
@@ -131,7 +131,8 @@ const BurialMyApplications = ({ applications = [], loading = false, onFillForm }
                                             {String(index + 1).padStart(2, "0")}
                                         </td>
                                         <td className="py-3 px-2 border border-[#B0C4B8] text-center text-gray-700 text-sm whitespace-nowrap">
-                                            {formatDate(app.booked_date)}
+                                            {formatDate(app.burial_date)}
+
                                         </td>
                                         <td className="py-3 px-2 border border-[#B0C4B8] text-center text-gray-700 text-sm whitespace-nowrap">
                                             {formatTime(app.start_time || app.estimated_burial_time)}
