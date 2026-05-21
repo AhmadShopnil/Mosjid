@@ -38,7 +38,7 @@ const MarriageCertificate = ({ data = {} }) => {
           <p className="text-[#9ca3af] text-xs mb-1">証明書番号</p>
           <h2 className="text-[17px] font-bold flex items-end text-[#000000]">
             Certificate No:
-            <span className=" w-32 ml-2 inline-block  text-[#B58B2E] font-serif text-[17px]">
+            <span className=" w-32 ml-2 inline-block  text-[#B58B2E]  text-[17px]">
               {details.certificateNo || ""}
             </span>
           </h2>
@@ -113,7 +113,7 @@ const MarriageCertificate = ({ data = {} }) => {
             <FieldRow labelEn="Address" labelJp="住所" value={groom.addressLine1} />
             <EmptyRow value={groom.addressLine2} />
           </div>
-          <div className="bg-[#F0FDF4] p-2 mt-1.5 rounded-sm border border-[#E0F2E3]">
+          <div className="bg-[#EEF8E9] p-2 mt-1.5 rounded-sm border border-[#E0F2E3]">
             <p className="text-[9px] text-[#6b7280] mb-0.5">サイン</p>
             <div className="flex items-end h-[20px]">
               <span className="font-bold text-[#085F2C] text-[13px] w-12 pb-1">Sign :</span>
@@ -150,7 +150,7 @@ const MarriageCertificate = ({ data = {} }) => {
             <FieldRow labelEn="Address" labelJp="住所" value={bride.addressLine1} />
             <EmptyRow value={bride.addressLine2} />
           </div>
-          <div className="bg-[#F0FDF4] p-2 mt-1.5 rounded-sm border border-[#E0F2E3]">
+          <div className="bg-[#EEF8E9] p-2 mt-1.5 rounded-sm border border-[#E0F2E3]">
             <p className="text-[9px] text-[#6b7280] mb-0.5">サイン</p>
             <div className="flex items-end h-[20px]">
               <span className="font-bold text-[#085F2C] text-[13px] w-12 pb-1">Sign :</span>
@@ -167,18 +167,18 @@ const MarriageCertificate = ({ data = {} }) => {
       <div className="grid grid-cols-3 gap-0 border-y-[1px] border-[#A5D071] py-3 mt-4">
         <div className="text-center border-r-[1px] border-[#A5D071]">
           <p className="text-[10px] text-[#9ca3af] mb-0.5">結婚の日</p>
-          <p className="font-bold text-[#085F2C] text-[13px] mb-2">Date Of Marriage</p>
-          <p className="text-[20px] font-bold text-[#B58B2E]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.date || "30 January 2006"}</p>
+          <p className="font-semibold text-[#085F2C] text-[13px]">Date Of Marriage</p>
+          <p className="text-[22px] font-bold text-[#B58B2E]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.date || "30 January 2006"}</p>
         </div>
         <div className="text-center border-r-[1px] border-[#A5D071]">
           <p className="text-[10px] text-[#9ca3af] mb-0.5">結婚の場</p>
-          <p className="font-bold text-[#085F2C] text-[13px] mb-2">Place of Marriage</p>
-          <p className="text-[20px] font-bold text-[#B58B2E]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.place || "Osaka Masjid"}</p>
+          <p className="font-semibold text-[#085F2C] text-[13px] ">Place of Marriage</p>
+          <p className="text-[22px] font-bold text-[#B58B2E]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.place || "Osaka Masjid"}</p>
         </div>
         <div className="text-center">
           <p className="text-[10px] text-[#9ca3af] mb-0.5">結納金の量と内容</p>
-          <p className="font-bold text-[#085F2C] text-[13px] mb-2">Amount of Dower (Mahar)</p>
-          <p className="text-[20px] font-bold text-[#B58B2E]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.mahar || "10,0000"}</p>
+          <p className="font-semibold text-[#085F2C] text-[13px] ">Amount of Dower (Mahar)</p>
+          <p className="text-[22px] font-bold text-[#B58B2E]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.mahar || "10,0000"}</p>
         </div>
       </div>
 
@@ -208,7 +208,7 @@ const MarriageCertificate = ({ data = {} }) => {
                   {w.address || ""}
                 </div>
               </div>
-              <div className="bg-[#F0FDF4] p-2 rounded-sm border border-[#E0F2E3] mt-1.5">
+              <div className="bg-[#EEF8E9] p-2 rounded-sm border border-[#E0F2E3] mt-1.5">
                 <p className="text-[9px] text-[#6b7280] mb-0.5">サイン</p>
                 <div className="flex items-end h-[20px]">
                   <span className="font-bold text-[#085F2C] text-[13px] w-12 pb-1">Sign :</span>
@@ -255,7 +255,7 @@ const MarriageCertificate = ({ data = {} }) => {
         </div>
       </div>
 
-      <div className="bg-[#F0FDF4] p-2 rounded-sm border border-[#E0F2E3] mt-2">
+      <div className="bg-[#EEF8E9] p-2 rounded-sm border border-[#E0F2E3] mt-2">
         <p className="text-[9px] text-[#6b7280] mb-0.5">サイン</p>
         <div className="flex items-end h-[20px]">
           <span className="font-bold text-[#085F2C] text-[13px] w-12 pb-1">Sign :</span>

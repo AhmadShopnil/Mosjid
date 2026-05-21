@@ -28,7 +28,7 @@ const TimeLine = () => {
           className="w-full object-contain"
         />
       </div>
-      <div className="flex flex-wrap gap-8 items-center ">
+      <div className="flex flex-wrap gap-6.5 items-center ">
         {timeLine?.map((item, index) => (
           <div key={index} className="relative w-34 text-center mt-8">
             <div>

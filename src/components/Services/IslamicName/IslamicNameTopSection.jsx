@@ -99,7 +99,20 @@ export default function IslamicNameTopSection({ onActionClick }) {
             </div>
 
             {/* Floating Dua Image */}
-            <motion.div
+               <div
+              className="flex justify-center my-8"
+           
+            >
+              <Image
+                src="/images/offerServices/book.svg"
+                alt=" "
+                width={190}
+                height={200}
+                className="object-contain"
+              />
+
+            </div>
+            {/* <motion.div
               className="flex justify-center my-8"
               animate={{ y: [0, -8, 0] }}
               transition={{
@@ -109,14 +122,14 @@ export default function IslamicNameTopSection({ onActionClick }) {
               }}
             >
               <Image
-                src="/images/offerServices/dua.svg"
-                alt="Dua Illustration"
+                src="/images/offerServices/book.svg"
+                alt=" "
                 width={190}
                 height={200}
                 className="object-contain"
               />
 
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           {/* Right Section */}
