@@ -1,6 +1,7 @@
 import GradientBorder from "@/components/GradientBorder/GradientBorder";
 import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 import React from "react";
+import TableTitle from "../Shared/TableTitle";
 
 const BookingList = ({ bookings = [], loading = false }) => {
   const formatDate = (dateStr) => {
@@ -30,7 +31,11 @@ const BookingList = ({ bookings = [], loading = false }) => {
   return (
     <GradientBorderWrapper1>
       <div className="w-full p-4">
-        <h2 className="text-2xl font-semibold text-[#333333] mb-4">Booking List</h2>
+
+         <div className="mb-6">
+          <TableTitle title1="Booking List" title2="予約リスト" />
+        </div>
+
         {loading ? (
           <div className="flex justify-center items-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>

@@ -154,7 +154,13 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
                         {getStatusBadge(application.status)}
                       </td>
                       <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
-                        {actionTake(application)}
+
+
+                        {application.status == 1 ? actionTake(application)
+                          :
+                          <span className="">Not Approved</span>
+                        }
+                        {/* {actionTake(application)} */}
                         {/* {application.status === "1" || application.status === 1 ? (
                           application.download_status === "1" || application.download_status === 1 ? (
                             <button

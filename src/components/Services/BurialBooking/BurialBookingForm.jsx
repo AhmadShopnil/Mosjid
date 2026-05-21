@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axiosInstance from "@/helper/axiosInstance";
 
 // Validation schema mapped exactly to API fields
@@ -12,7 +12,7 @@ const burialSchema = z.object({
   deceased_name: z.string().min(1, "Deceased name is required"),
   relationship: z.string().min(1, "Relationship is required"),
   burial_date: z.string().min(1, "Burial date is required"),
-  estimated_burial_time: z.string().min(1, "Burial time is required"),
+  slot_id: z.string().min(1, "Burial time slot is required"),
   contact_no: z.string().min(8, "Valid contact number required"),
 });
 
@@ -20,15 +20,52 @@ export default function BurialBookingForm({ onSuccess }) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const [dynamicSlots, setDynamicSlots] = useState([]);
+  const [loadingSlots, setLoadingSlots] = useState(false);
 
   const {
     register,
     handleSubmit,
     reset,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(burialSchema),
+    defaultValues: {
+      slot_id: "",
+    }
   });
+
+  const burial_date = watch("burial_date");
+
+  // Fetch slots whenever the selected burial date changes
+  useEffect(() => {
+    const fetchSlots = async () => {
+      if (!burial_date) {
+        setDynamicSlots([]);
+        return;
+      }
+      try {
+        setLoadingSlots(true);
+        const res = await axiosInstance.get('/slots', {
+          params: { booked_date: burial_date, type: 'burial' }
+        });
+        if (res.data && res.data.slots) {
+          setDynamicSlots(res.data.slots);
+        } else {
+          setDynamicSlots([]);
+        }
+      } catch (err) {
+        console.error("Failed to fetch slots:", err);
+        setDynamicSlots([]);
+      } finally {
+        setLoadingSlots(false);
+      }
+    };
+    fetchSlots();
+    setValue("slot_id", ""); // Reset slot on date change
+  }, [burial_date, setValue]);
 
   const onSubmit = async (data) => {
     try {
@@ -36,11 +73,20 @@ export default function BurialBookingForm({ onSuccess }) {
       setSuccess("");
       setErrorMsg("");
 
-      // Create Form-Data payload
+      const selectedSlot = dynamicSlots.find((s) => s.id === Number(data.slot_id));
+      if (!selectedSlot) throw new Error("Invalid slot selected");
+
+      // Create Form-Data payload matching exactly the expected backend parameters
       const formData = new FormData();
-      Object.entries(data).forEach(([key, value]) => {
-        if (value) formData.append(key, value);
-      });
+      formData.append("name", data.name);
+      formData.append("deceased_name", data.deceased_name);
+      formData.append("relationship", data.relationship);
+      formData.append("burial_date", data.burial_date);
+      formData.append("slot_id", String(selectedSlot.id));
+      formData.append("start_time", selectedSlot.start_time);
+      formData.append("end_time", selectedSlot.end_time);
+      formData.append("estimated_burial_time", selectedSlot.start_time);
+      formData.append("contact_no", data.contact_no);
 
       const res = await axiosInstance.post("/burial", formData, {
         headers: { "Content-Type": "multipart/form-data" }
@@ -53,6 +99,7 @@ export default function BurialBookingForm({ onSuccess }) {
 
       setSuccess("Form submitted successfully!");
       reset();
+      setDynamicSlots([]);
       if (onSuccess) onSuccess();
     } catch (err) {
       console.error(err);
@@ -96,12 +143,43 @@ export default function BurialBookingForm({ onSuccess }) {
         error={errors.burial_date?.message}
       />
 
-      <Input
-        type="time"
-        label="Estimated Burial Time"
-        {...register("estimated_burial_time")}
-        error={errors.estimated_burial_time?.message}
-      />
+      {/* Dynamic Burial Time Slot Selection */}
+      <div className="space-y-1">
+        <label className="block font-semibold text-[#c58a1f]">
+          Time Slot
+        </label>
+        <select
+          {...register("slot_id")}
+          disabled={!burial_date || loadingSlots}
+          className={`w-full px-3 py-2 rounded-md outline-none bg-white border border-orange-300 ${(!burial_date || loadingSlots) ? 'opacity-70 cursor-not-allowed' : ''}`}
+        >
+          <option value="" disabled>
+            {!burial_date
+              ? "Select burial date first"
+              : loadingSlots
+                ? "Loading slots..."
+                : "Select a time slot"}
+          </option>
+          {dynamicSlots
+            .filter((slot) => slot.status === "1")
+            .map((slot) => {
+              const isBooked = slot.slot_trace_count >= 1;
+              return (
+                <option
+                  key={slot.id}
+                  value={slot.id}
+                  disabled={isBooked}
+                  className={isBooked ? "text-red-500 font-semibold bg-red-50" : "text-green-700"}
+                >
+                  {slot.name} ({slot.start_time} - {slot.end_time}) {isBooked ? "- Already Booked" : ""}
+                </option>
+              );
+            })}
+        </select>
+        {errors.slot_id && (
+          <p className="text-xs text-red-500">{errors.slot_id.message}</p>
+        )}
+      </div>
 
       <Input
         label="Contact No."
@@ -122,19 +200,10 @@ export default function BurialBookingForm({ onSuccess }) {
         <button
           type="submit"
           disabled={loading}
-          className="border border-green-500 text-green-700 px-6 py-2 rounded-md hover:bg-green-100 disabled:opacity-50 cursor-pointer"
+          className="border border-green-500 text-green-700 px-6 py-2 rounded-md hover:bg-green-100 disabled:opacity-50 cursor-pointer animate-all duration-300"
         >
           {loading ? "Submitting..." : "Submit"}
         </button>
-
-        {/* <button
-          type="button"
-          disabled={loading}
-          onClick={() => reset()}
-          className="border border-red-500 text-red-600 bg-red-100 hover:bg-red-200 px-6 py-2 rounded-md cursor-pointer disabled:opacity-50"
-        >
-          Cancel
-        </button> */}
       </div>
     </form>
   );

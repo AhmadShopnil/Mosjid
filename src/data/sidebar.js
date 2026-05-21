@@ -231,7 +231,7 @@ export const servicesSideBarCategories = [
         link: "/madrasha",
       },
       {
-        name: "Admission Form",
+        name: "Admission ",
         link: "/admission-form",
         description: "入学フォーム",
       },

@@ -46,7 +46,7 @@ const ConvertedList = ({ converted = [], loading = false }) => {
             <table className="w-full border-collapse min-w-[600px]">
               <thead>
                 <tr>
-                  {["Sl. No.", "Event Date", "Start Time", "End Time", "Status"].map((head) => (
+                  {["Sl. No.", "Name", "Father Name", "Event Date", "Declared Date", "Previous Religion"].map((head) => (
                     <th key={head}>
                       <div className="bg-[#52B920] text-white border border-[#B0C4B8] font-bold rounded-t-full py-1.5 text-center whitespace-nowrap">{head}</div>
                     </th>
@@ -57,10 +57,11 @@ const ConvertedList = ({ converted = [], loading = false }) => {
                 {converted.map((item, index) => (
                   <tr key={item.id} className={index % 2 === 0 ? "bg-white" : "bg-[#52B920]/40"}>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{String(index + 1).padStart(2, "0")}</td>
+                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{item?.others_infomartions?.informations?.muslim_name}</td>
+                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{item?.father_name}</td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatDate(item.booked_date)}</td>
-                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatTime(item.start_time)}</td>
-                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatTime(item.end_time)}</td>
-                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{getStatusBadge(item.status)}</td>
+                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{item?.others_infomartions?.informations?.declared_date}</td>
+                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{item?.others_infomartions?.informations?.previous_religion}</td>
                   </tr>
                 ))}
               </tbody>

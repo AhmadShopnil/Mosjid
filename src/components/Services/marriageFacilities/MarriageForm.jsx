@@ -700,9 +700,7 @@ const MarriageForm = ({ application, onCancel, onSubmitSuccess }) => {
             >
               Cancel
             </button>
-            <button className="bg-white text-gray-700 border border-green-400 px-8 py-2 rounded-md font-bold hover:bg-green-50 transition cursor-pointer">
-              View Certificate
-            </button>
+
           </div>
         </div>
       </GradientBorder >
