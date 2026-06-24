@@ -137,7 +137,7 @@ const Booking = ({ slots = [], onBookingSubmitted, onActionClick }) => {
           rightTitle={"結婚イベント予約"}
         />
 
-        <div className="bg-orange-50/30 flex items-center justify-center p-6 rounded-2xl">
+        <div className="bg-orange-50/30 flex items-center justify-center p-0 md:p-2 lg:p-6 rounded-2xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
             {/* LEFT */}
             <div className="flex flex-col">
@@ -146,11 +146,12 @@ const Booking = ({ slots = [], onBookingSubmitted, onActionClick }) => {
                 used in design and publishing to demonstrate layout.
               </p>
 
-              <div className="rounded-[30px] p-7.5 shadow-[0px_4px_10px_0px_rgba(0,0,0,0.1)] mt-auto flex justify-around items-end">
+              <div className="rounded-[30px] p-4 lg:p-6 shadow-[0px_4px_10px_0px_rgba(0,0,0,0.1)] mt-auto flex flex-wrap justify-around 
+              items-end gap-3">
                 {[
-                  { label: "Booking\nList", icon: "bookingIcon.svg" },
-                  { label: "My\nApplications", icon: "mariage.svg" },
-                  { label: "Marriage\nGuideline", icon: "mariage.svg" },
+                  { label: "Booking List\n", label2: "予約一覧", icon: "bookingIcon.svg" },
+                  { label: "My Applications\n", label2: "私のアプリケーション", icon: "mariage.svg" },
+                  { label: "Marriage Guideline\n", label2: "結婚ガイドライン", icon: "mariage.svg" },
                 ].map((item, i) => (
                   <div
                     key={i}
@@ -161,9 +162,11 @@ const Booking = ({ slots = [], onBookingSubmitted, onActionClick }) => {
                       src={`/images/offerServices/marriageFacilities/${item.icon}`}
                       alt=""
                     />
-                    <span className="text-[#B98C20] font-bold text-base whitespace-pre-wrap">
-                      {item.label}
-                    </span>
+                    <div className="text-[#B98C20] font-bold text-base whitespace-pre-wrap ">
+                      <span>{item.label}</span>
+                      <span className="">{item.label2}</span>
+                      
+                    </div>
                   </div>
                 ))}
               </div>

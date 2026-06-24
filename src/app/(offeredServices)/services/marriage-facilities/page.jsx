@@ -62,11 +62,11 @@ const Page = () => {
   };
 
   const handleActionClick = (action) => {
-    if (action === "Booking\nList") {
+    if (action === "Booking List\n") {
       bookingListRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else if (action === "My\nApplications") {
+    } else if (action === "My Applications\n") {
       myApplicationsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else if (action === "Marriage\nGuideline") {
+    } else if (action === "Marriage Guideline\n") {
       setModalConfig({ isOpen: true, slug: "marriage-guidelines", title: "Marriage Guideline" });
     }
   };

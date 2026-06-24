@@ -22,7 +22,7 @@ export default function HalalCertifiedList() {
       const res = await axiosInstance.get(`/halal?page=${page}`);
 
       // Mapped to all_applications as requested
-      const responseData = res?.data?.all_applications;
+      const responseData = res?.data?.certificates;
       if (responseData) {
         setData(responseData.data || []);
         setCurrentPage(responseData.current_page || 1);
@@ -71,7 +71,7 @@ export default function HalalCertifiedList() {
                 <th className="py-3 border border-gray-300">Certificate No</th>
                 <th className="py-3 border border-gray-300">Issue Date</th>
                 <th className="py-3 border border-gray-300">Expiry Date</th>
-                <th className="py-3 border border-gray-300">Status</th>
+                {/* <th className="py-3 border border-gray-300">Status</th> */}
               </tr>
             </thead>
 
@@ -100,7 +100,7 @@ export default function HalalCertifiedList() {
                         <td className="border border-gray-300 p-3 text-center">{item.certificate_number || "-"}</td>
                         <td className="border border-gray-300 p-3 text-center">{item.issue_date || "-"}</td>
                         <td className="border border-gray-300 p-3 text-center">{item.expiry_date || "-"}</td>
-                        <td className="border border-gray-300 p-3 text-center">
+                        {/* <td className="border border-gray-300 p-3 text-center">
                           {item.status === 1 ? (
                             <span className="text-green-600 font-semibold">
                               Approved
@@ -114,7 +114,7 @@ export default function HalalCertifiedList() {
                               Pending
                             </span>
                           )}
-                        </td>
+                        </td> */}
                       </tr>
                     );
                   })

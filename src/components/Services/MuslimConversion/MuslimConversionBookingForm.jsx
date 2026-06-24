@@ -97,7 +97,7 @@ export default function MuslimConversionBookingForm() {
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="max-w-xl p-6 rounded-lg space-y-3"
+            className="max-w-xl lg:p-6 rounded-lg space-y-3"
         >
             <Input
                 label="Applicant Name / 申請者名"

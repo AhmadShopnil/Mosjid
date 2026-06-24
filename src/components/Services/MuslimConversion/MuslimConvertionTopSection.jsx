@@ -8,10 +8,10 @@ import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 
 
 const menuList = [
-    { icon: "1.svg", label: "Conversion Booking List" },
-    { icon: "3.svg", label: "Converted  List" },
-    { icon: "2.svg", label: "My Applications" },
-    { icon: "3.svg", label: "Conversion Guide Line " },
+    { icon: "1.svg", label: "Conversion Booking List" ,label2: "変換予約"},
+    { icon: "3.svg", label: "Converted  List",label2: "変換されたリスト" },
+    { icon: "2.svg", label: "My Applications",label2: "私のアプリケーション" },
+    { icon: "3.svg", label: "Conversion Guide Line " ,label2: "変換ガイドライン"},
 ]
 
 
@@ -75,7 +75,7 @@ export default function MuslimConvertionTopSection({ onActionClick }) {
                             />
                         </div>
 
-                        <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 justify-around shadow-xl  rounded-3xl py-8 px-6 ">
+                        <div className="mt-10 grid grid-cols-2 xl:grid-cols-4 gap-4 justify-around shadow-xl  rounded-3xl py-8 px-6 ">
                             {menuList.map((item, i) => (
                                 <div
                                     key={i}
@@ -91,9 +91,10 @@ export default function MuslimConvertionTopSection({ onActionClick }) {
                                             className="w-[50px] h-[50px] mx-auto hover:shadow-2xl  hover:rounded-sm"
                                         />
                                     </div>
-                                    <span className="text-[#B98C20] text-center text-sm md:text-base font-bold w-28">
-                                        {item.label}
-                                    </span>
+                                    <div className="text-[#B98C20] text-center text-sm md:text-base font-bold w-28">
+                                      <span>  {item.label}</span> <br />
+                                        <span>  {item.label2}</span>
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -107,7 +108,7 @@ export default function MuslimConvertionTopSection({ onActionClick }) {
                             {isAuthenticated ? (
                                 <MuslimConversionBookingForm />
                             ) : (
-                                <div className="flex flex-col items-center justify-center space-y-6 text-center bg-white/60 p-8 rounded-2xl h-full shadow-inner border border-green-100 w-full min-h-[400px]">
+                                <div className="flex flex-col items-center justify-center space-y-6 text-center bg-white/60 p-4 lg:p-8 rounded-2xl h-full shadow-inner border border-green-100 w-full min-h-[400px]">
                                     <div className="text-4xl p-4 rounded-full bg-white text-[#B98C20] shadow-sm">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                                     </div>
