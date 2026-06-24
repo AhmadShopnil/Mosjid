@@ -15,7 +15,7 @@ export default function BookList({ books, settings, homePage, loading, currentPa
 
 
   return (
-    <div className='  bg-white h-full'>
+    <div className='h-full  bg-white '>
 
       <div className=' flex justify-between'>
       </div>
