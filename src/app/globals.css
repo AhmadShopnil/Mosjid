@@ -417,7 +417,7 @@ body {
 .gradient-bg-sidebar-item-b:hover {
   background: #3198A0;
   background: linear-gradient(180deg, rgba(49, 152, 160, 1) 0%, rgba(81, 249, 9, 1) 100%);
-  color: white !;
+  color: white !important;
 }
 
 .polygon {
