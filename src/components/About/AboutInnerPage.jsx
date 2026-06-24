@@ -101,14 +101,13 @@ export default function AboutInnerPage({ homePage, formattedCategories, slug }) 
 
 
 
-
-
     return (
         <div>
             <div>
                 <BreadcrumbForNested
                     items={[
-                        { label: "Home", link: "/" },
+                        { label: "Home", link: "/" } ,
+
                         { label: "About", link: "/about" },
                         { label: selectedParrent?.name, link: "/about" },
                         { label: selected?.name, link: null },
