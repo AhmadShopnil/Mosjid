@@ -61,7 +61,7 @@ export default function SingleBook({ homePage, settings, blog, formattedCategori
         fetchBlogs()
     }, [])
 
-    // const requesData={blog?.name} blog 
+    // const 
     const requestData = blog?.name ? `blog of ${blog?.name} ` : "Book"
 
     return (
