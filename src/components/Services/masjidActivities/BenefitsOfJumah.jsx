@@ -55,7 +55,7 @@ const BenefitsOfJumah = () => {
         </GradientBorder>
 
         {/* Share buttons row */}
-        <div className="flex justify-end">
+        {/* <div className="flex justify-end">
           <div className="flex items-center justify-end space-x-3 p-4 w-fit">
             <button className="flex items-center justify-center w-8 h-8 rounded-full hover:opacity-85 transition-opacity cursor-pointer">
               <Image
@@ -102,7 +102,7 @@ const BenefitsOfJumah = () => {
               />
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

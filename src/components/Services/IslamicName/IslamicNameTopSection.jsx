@@ -140,10 +140,10 @@ export default function IslamicNameTopSection({ onActionClick }) {
               variants={container}
             >
               {[
-                { icon: "1.svg", label: "Name List" },
-                { icon: "3.svg", label: "Blessed Name" },
-                { icon: "2.svg", label: "Search Name" },
-                { icon: "3.svg", label: "Islamic Naming Guidelines" },
+                { icon: "1.svg", label: "Name List", labelJP:"氏名一覧" },
+                { icon: "3.svg", label: "Blessed Name", labelJP:"祝福された御名" },
+                { icon: "2.svg", label: "Search Name" , labelJP:"検索名"},
+                { icon: "3.svg", label: "Islamic Naming Guidelines", labelJP:"イスラームにおける命名の指針" },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -160,8 +160,10 @@ export default function IslamicNameTopSection({ onActionClick }) {
                     height={50}
                     className="w-[36px] h-[36px] md:w-[50px] md:h-[50px]"
                   />
-                  <span className="text-[#B98C20] text-lg sm:text-xl md:text-2xl font-bold">
-                    {item.label}
+                  <span className="text-[#B98C20] text-lg sm:text-xl md:text-[23px] font-bold">
+                    {item?.label}
+                     <span className="px-1">/</span>  
+                     {item?.labelJP}
                   </span>
                 </motion.div>
               ))}

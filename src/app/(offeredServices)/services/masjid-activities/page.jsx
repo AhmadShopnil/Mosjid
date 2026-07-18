@@ -20,8 +20,9 @@ const page = () => {
 
         <DailyActivities />
         <JumahPrayer />
+         <EidPrayer />
         <BenefitsOfJumah />
-        <EidPrayer />
+       
         <BenefitsOfEid />
     </div>
   )
