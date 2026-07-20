@@ -19,7 +19,12 @@ const MasjidBenefits = () => {
       <div className="">
 
         <GradientBorder>
-          <div className=" p-4">
+          <div className="w-full rounded-[12px] p-4 md:p-6"
+           style={{
+          background: 'linear-gradient(99.25deg, #FAFFF9 0.3%, #FFFFFF 99.39%)'
+        }}
+          
+          >
             {/* Header Section */}
             <SectionTitleRow leftTitle={'Masjid Benefits'} rightTitle={'マスジドの利点'} c />
 

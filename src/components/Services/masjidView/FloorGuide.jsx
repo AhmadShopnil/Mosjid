@@ -60,7 +60,7 @@ const FloorGuide = () => {
 
               {/* RIGHT SIDE: Floor Details */}
               <div className="flex flex-col space-y-3">
-                {floorData.map((floor) => (
+                {floorData?.map((floor) => (
                   <div key={floor.id} className="relative group">
                     <div className="flex items-center gap-4">
 

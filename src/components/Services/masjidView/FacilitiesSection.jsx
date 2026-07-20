@@ -57,7 +57,11 @@ const FacilitiesSection = () => {
       <div>
 
         <GradientBorder>
-          <div className='p-4'>
+          <div className='w-full rounded-[12px] p-4 md:p-6"'
+          style={{
+          background: 'linear-gradient(0deg, #FAFFF9 0.3%, #FFFFFF 99.39%)'
+        }}
+          >
 
             <SectionTitleRow leftTitle={'Masjid Facilities'} rightTitle={'マスジドの設備'} />
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-6">

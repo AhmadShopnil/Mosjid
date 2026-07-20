@@ -141,7 +141,7 @@ export default function AboutInnerPage({ homePage, formattedCategories, slug }) 
                                 image={image_arabic}
                             />
                         </motion.div>
-
+                        
                         {/* Content */}
                         {loading ? (
                             <motion.div variants={itemVariants}>
@@ -155,7 +155,7 @@ export default function AboutInnerPage({ homePage, formattedCategories, slug }) 
                                     </h4>
 
                                     <div
-                                        className="text-[#333333] text-sm sm:text-base mt-4"
+                                        className="text-[#333333] mt-4 prose "
                                         dangerouslySetInnerHTML={{
                                             __html: abouDatas[0]?.description,
                                         }}

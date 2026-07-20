@@ -36,7 +36,10 @@ const MasjidEtiquttes = () => {
     <div className="mt-6">
       {/* rounded-[29px] bg-[linear-gradient(96.62deg,_#F4FFF2_0.29%,_#FFFFFF_99.59%)] */}
       <GradientBorder>
-        <div className="  p-4">
+        <div className="w-full rounded-[12px] p-4 md:p-6"
+           style={{
+          background: 'linear-gradient(45deg, #FAFFF9 0.3%, #FFFFFF 99.39%)'
+        }}>
   
           <SectionTitleRow leftTitle={'Masjid Etiquttes'} rightTitle={'マスジドのマナー'} />
 

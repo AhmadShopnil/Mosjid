@@ -17,7 +17,7 @@ const JumahPrayer = () => {
     <div id="jumah-prayer" className="mt-16 scroll-mt-24">
       <SectionTitleRow leftTitle={"Jumuʿah Prayer Sequence"} rightTitle={"金曜礼拝の順序"} />
       
-      <div className="pt-16">
+      <div className="pt-6">
         <GradientBorder
           radius={20}
           innerClassName="pt-[80px] pb-[60px] pr-[30px] pl-[30px]"
@@ -26,20 +26,23 @@ const JumahPrayer = () => {
             {adhanData.map((item) => (
               <div
                 key={item.id}
-                className="relative w-full min-h-[180px] flex flex-col items-center justify-center p-5 rounded-[36px] bg-white border border-[#86efac]/35 shadow-md hover:shadow-lg transition-all duration-300"
+                className="relative w-full min-h-[180px] flex flex-col items-center justify-center p-5 rounded-[36px] bg-white
+                 border border-[#86efac]/35 shadow-md hover:shadow-lg transition-all duration-300"
               >
                 {/* Top Number Circle with Arrow */}
-                <div className="absolute -top-10 left-9 -translate-x-1/2 w-16 h-16 rounded-full bg-white border border-[#86efac] shadow-sm flex items-center justify-center relative">
+                <div className="absolute -top-10 left-9 -translate-x-1/2 w-16 h-16 rounded-full bg-white border border-[#86efac] 
+                shadow-sm flex items-center justify-center relative">
                   <span className="text-[#00401A] font-extrabold text-sm">{item.id}</span>
                   
                   {/* Small Green Triangle Accent Pointing Right */}
                   <div
-                    className="absolute -right-3 top-[22px] w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-[#86efac]"
+                    className="absolute -right-3 top-[22px] w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent 
+                    border-l-[8px] border-l-[#86efac]"
                   />
                 </div>
 
                 {/* Text Content */}
-                <div className="z-10 text-center px-2 py-4">
+                <div className="z-10 text-center px-2 py-4 lg:-mt-8 ">
                   <h2 className="text-[#00401A] text-xs font-bold leading-snug">
                     {item.title}
                   </h2>
