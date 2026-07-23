@@ -91,10 +91,9 @@ export default function IslamicNameTopSection({ onActionClick }) {
                 variants={fadeUp}
                 className="text-[#B98C20] text-base mt-2"
               >
-                Islamic names embody faith, heritage, and values, offering children
-                identity, blessings, and connection to tradition. They serve as
-                gifts of love, guiding lights, and lifelong reminders of culture and
-                spirituality.
+              A name is one of the greatest gifts parents give their child. In Islam, a good name reflects faith,
+               good character, and a noble identity.
+               The Prophet Muhammad ﷺ encouraged Muslims to choose names with beautiful and meaningful qualities.
               </motion.p>
             </div>
 
@@ -104,7 +103,7 @@ export default function IslamicNameTopSection({ onActionClick }) {
            
             >
               <Image
-                src="/images/offerServices/book.svg"
+                src="/images/offerServices/IslamicName/islamic_names_logo.png"
                 alt=" "
                 width={190}
                 height={200}
@@ -160,7 +159,7 @@ export default function IslamicNameTopSection({ onActionClick }) {
                     height={50}
                     className="w-[36px] h-[36px] md:w-[50px] md:h-[50px]"
                   />
-                  <span className="text-[#B98C20] text-lg sm:text-xl md:text-[23px] font-bold">
+                  <span className="text-[#B98C20] text-lg sm:text-xl lg:text-[23px] font-bold">
                     {item?.label}
                      <span className="px-1">/</span>  
                      {item?.labelJP}

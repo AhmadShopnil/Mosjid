@@ -104,7 +104,7 @@ export default function IslamicNameSection({ categories, nameListRef, blessedNam
       </div>
 
       {/* Table */}
-      <div ref={nameListRef} className="scroll-mt-32">
+      <div ref={nameListRef} className="scroll-mt-32 shadow-sm">
         <div className="bg-[#52B920] h-[50px] text-white flex justify-between items-center px-4 rounded-t-[10px]">
           <h2 className="font-bold">Name List</h2>
           <h2 className="font-bold">名前リスト</h2>
@@ -130,7 +130,7 @@ export default function IslamicNameSection({ categories, nameListRef, blessedNam
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={5} className="text-center py-10 text-gray-500">
+                    <td colSpan={6} className="text-center py-10 text-gray-500">
                       No Names found
                     </td>
                   </tr>
@@ -158,6 +158,7 @@ const TableHeader = () => (
       <th className="w-[200px] py-2">Arabic</th>
       <th className="w-[200px] py-2">Japanese</th>
       <th className="w-[200px] py-2">English</th>
+      <th className="py-2">Gender</th>
       <th className="py-2">Meaning</th>
     </tr>
   </thead>
@@ -168,6 +169,7 @@ const TableHeader = () => (
     <>
       {Array.from({ length: 6 }).map((_, i) => (
         <tr key={i} className="animate-pulse">
+          <td className="py-3 px-2"><div className="h-4 bg-gray-200 rounded" /></td>
           <td className="py-3 px-2"><div className="h-4 bg-gray-200 rounded" /></td>
           <td className="py-3 px-2"><div className="h-4 bg-gray-200 rounded" /></td>
           <td className="py-3 px-2"><div className="h-4 bg-gray-200 rounded" /></td>

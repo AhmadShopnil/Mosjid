@@ -9,7 +9,7 @@ export default function GradientBorderWrapper1({
     <div
       className={`p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909] ${rounded}`}
     >
-      <div className={`bg-white ${innerRounded}`}>
+      <div className={`bg-white shadow-sm ${innerRounded}`}>
         {children}
       </div>
     </div>
