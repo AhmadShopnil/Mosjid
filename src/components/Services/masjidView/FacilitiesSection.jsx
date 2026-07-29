@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import SectionTitleRow from '@/components/SectionTitleRow/SectionTitleRow';
 import GradientBorder from '@/components/GradientBorder/GradientBorder';
+import GradientBorderWrapper1 from '@/components/Shared/GradientBorderWrapper1';
 
 const FacilitiesSection = () => {
   // 1. JSON Data Structure for easy management
@@ -17,37 +18,37 @@ const FacilitiesSection = () => {
     {
       id: 1,
       title: "Separate Prayer Areas for Males and Females",
-      icon: <Users size={24} className="text-green-600" />,
+      icon: "/images/offerServices/masjidView/Separate.svg",
     },
     {
       id: 2,
       title: "Separate Entrances for Men and Women",
-      icon: <ArrowLeftRight size={24} className="text-green-600" />,
+      icon: "/images/offerServices/masjidView/Separate_Entrance.svg",
     },
     {
       id: 3,
       title: "Toilet Facilities for Both Genders",
-      icon: <Bath size={24} className="text-green-600" />,
+      icon: "/images/offerServices/masjidView/Separate.svg",
     },
     {
       id: 4,
       title: "Islamic Education Room for Adults and Children",
-      icon: <School size={24} className="text-green-600" />,
+      icon: "/images/offerServices/masjidView/Separate.svg",
     },
     {
       id: 5,
       title: "Adult Reading and Study Area",
-      icon: <BookOpen size={24} className="text-green-600" />,
+      icon: "/images/offerServices/masjidView/Dar.svg",
     },
     {
       id: 6,
       title: "Meeting Area Available",
-      icon: <LayoutDashboard size={24} className="text-green-600" />,
+      icon: "/images/offerServices/masjidView/Meeting_Area.svg",
     },
     {
       id: 7,
       title: "Islamic Resource Library (Adults)",
-      icon: <Library size={24} className="text-green-600" />,
+      icon: "/images/offerServices/masjidView/Teaching.svg",
     }
   ];
 
@@ -56,13 +57,12 @@ const FacilitiesSection = () => {
       {/* Main Container with rounded green border matching your design */}
       <div>
 
-        <GradientBorder>
+        <GradientBorderWrapper1>
           <div className='w-full rounded-[12px] p-4 md:p-6"'
           style={{
           background: 'linear-gradient(0deg, #FAFFF9 0.3%, #FFFFFF 99.39%)'
         }}
           >
-
             <SectionTitleRow leftTitle={'Masjid Facilities'} rightTitle={'マスジドの設備'} />
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-6">
               {/* LEFT/TOP: Facilities List (8 columns on desktop) */}
@@ -71,9 +71,14 @@ const FacilitiesSection = () => {
                   {facilityData.map((item) => (
                     <div key={item.id} className="flex items-center gap-4 group">
                       {/* Icon Container: Dashed/Rounded look */}
-                      <div className="shrink-0 w-12 h-12 rounded-full bg-green-50 flex items-center justify-center border border-green-100 transition-colors group-hover:bg-green-100">
-                        {item.icon}
+                       <div className="shrink-0">
+                        <div className="flex items-center justify-center bg-white">
+                          <img src={item?.icon} alt="" />
+                        </div>
                       </div>
+                      {/* <div className="shrink-0 w-12 h-12 rounded-full bg-green-50 flex items-center justify-center border border-green-100 transition-colors group-hover:bg-green-100">
+                        {item.icon}
+                      </div> */}
                       {/* Feature Title */}
                       <p className="text-[#333333]  text-base md:text-2xl leading-tight">
                         {item.title}
@@ -98,7 +103,7 @@ const FacilitiesSection = () => {
 
             </div>
           </div>
-        </GradientBorder>
+        </GradientBorderWrapper1>
       </div>
     </section>
   );

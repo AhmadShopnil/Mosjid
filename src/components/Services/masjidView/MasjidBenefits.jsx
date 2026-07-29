@@ -1,5 +1,6 @@
 import GradientBorder from "@/components/GradientBorder/GradientBorder";
 import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
+import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 import Image from "next/image";
 
 const MasjidBenefits = () => {
@@ -18,7 +19,7 @@ const MasjidBenefits = () => {
     <div>
       <div className="">
 
-        <GradientBorder>
+        <GradientBorderWrapper1>
           <div className="w-full rounded-[12px] p-4 md:p-6"
            style={{
           background: 'linear-gradient(99.25deg, #FAFFF9 0.3%, #FFFFFF 99.39%)'
@@ -49,7 +50,7 @@ const MasjidBenefits = () => {
               ))}
             </div>
           </div>
-        </GradientBorder>
+        </GradientBorderWrapper1>
       </div>
 
       {/* Top Div with Gradient Border and 30px Radius */}

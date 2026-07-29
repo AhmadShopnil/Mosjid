@@ -14,13 +14,16 @@ const EidPrayer = () => {
   return (
     <div id="eid-prayer" className="mt-16 scroll-mt-24">
       <SectionTitleRow leftTitle={"Eid Prayer Sequence"} rightTitle={"イード礼拝の順序"} />
-      
+
       <div className="pt-6">
-        <GradientBorder radius={20} innerClassName="p-8">
+        <GradientBorder
+          radius={20}
+          className="shadow-md"
+          innerClassName="p-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {adhanData.map((item) => (
-              <div 
-                key={item.id} 
+              <div
+                key={item.id}
                 className="relative flex items-center min-h-[90px] w-full pl-[56px] group"
               >
                 {/* Left Circle holding the step number */}
@@ -40,13 +43,13 @@ const EidPrayer = () => {
                 <div className="flex-grow bg-white border border-[#86efac] border-l-0 rounded-r-[24px] rounded-l-none h-[80px] flex items-center pl-6 pr-4 shadow-sm group-hover:shadow-md transition-shadow duration-300 relative">
                   {/* Subtle inner radial pastel glow */}
                   <div className="absolute inset-0 rounded-r-[24px] pointer-events-none bg-[radial-gradient(circle_at_bottom_left,rgba(81,249,9,0.05),transparent_50%)]" />
-                  
+
                   <div className="z-10">
-                    <h2 className="text-[#00401A] text-xs font-bold leading-snug">
+                    <h2 className="text-[#00401A] text-sm md:text-base font-bold leading-snug">
                       {item.title}
                     </h2>
                     {item.subtitle && (
-                      <p className="text-[#00401A] text-[11px] font-semibold opacity-90 mt-0.5 leading-snug">
+                      <p className="text-[#00401A] text-sm md:text-base font-bold opacity-90 mt-0.5 leading-snug">
                         {item.subtitle}
                       </p>
                     )}

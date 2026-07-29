@@ -1,5 +1,6 @@
 import GradientBorder from "@/components/GradientBorder/GradientBorder";
 import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
+import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 import Image from "next/image";
 import React from "react";
 
@@ -35,10 +36,9 @@ const MasjidEtiquttes = () => {
   return (
     <div className="mt-6">
       {/* rounded-[29px] bg-[linear-gradient(96.62deg,_#F4FFF2_0.29%,_#FFFFFF_99.59%)] */}
-      <GradientBorder>
-        <div className="w-full rounded-[12px] p-4 md:p-6"
-           style={{
-          background: 'linear-gradient(45deg, #FAFFF9 0.3%, #FFFFFF 99.39%)'
+      <GradientBorderWrapper1 rounded="rounded-[30px]" innerRounded="rounded-[29px]">
+        <div className="w-full rounded-[29px] p-4 md:p-6" style={{
+          background: 'linear-gradient(99.25deg, #FAFFF9 0.3%, #FFFFFF 99.39%)'
         }}>
   
           <SectionTitleRow leftTitle={'Masjid Etiquttes'} rightTitle={'マスジドのマナー'} />
@@ -56,14 +56,14 @@ const MasjidEtiquttes = () => {
                   />
                 </div>
                 <p className="text-[#333333] text-base md:text-2xl">
-                  <span className="font-bold mr-0.5">{benefit.title}:</span>
+                  <span className="font-bold text-[#00401A] mr-0.5">{benefit.title}:</span>
                   {benefit.text}
                 </p>
               </div>
             ))}
           </div>
         </div>
-      </GradientBorder>
+      </GradientBorderWrapper1>
     </div>
   );
 };

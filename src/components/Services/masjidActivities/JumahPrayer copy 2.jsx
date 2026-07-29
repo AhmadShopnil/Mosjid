@@ -1,6 +1,5 @@
 import GradientBorder from "@/components/GradientBorder/GradientBorder";
 import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
-import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 import Image from "next/image";
 import React from "react";
 
@@ -17,7 +16,7 @@ const JumahPrayer = () => {
   return (
     <div id="jumah-prayer" className="mt-16 scroll-mt-24">
       <SectionTitleRow leftTitle={"Jumuʿah Prayer Sequence"} rightTitle={"金曜礼拝の順序"} />
-
+      
       <div className="pt-6">
         <GradientBorder
           radius={20}
@@ -26,71 +25,47 @@ const JumahPrayer = () => {
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-16 gap-6">
             {adhanData.map((item) => (
-
-              <GradientBorderWrapper1
-                rounded="rounded-[20px]"
-                innerRounded="rounded-[19px]"
-                className="shadow-md hover:shadow-lg transition-all duration-300 "
-                innerClassName=""
+              <div
+                key={item.id}
+                className="relative w-full min-h-[180px] flex flex-col items-center justify-center p-5 rounded-[36px] bg-white
+                 border border-[#86efac]/35 shadow-md hover:shadow-lg transition-all duration-300"
               >
-                <div
-                  key={item.id}
-                  className="relative w-full min-h-[180px] flex flex-col items-center justify-start  rounded-[36px] bg-white
-                 "
-                >
-                  {/* Top Number Circle with Arrow */}
-                  <div className="absolute -top-5 left-9 -translate-x-1/2 w-16 h-16 rounded-full bg-white border border-[#86efac] 
+                {/* Top Number Circle with Arrow */}
+                <div className="absolute -top-10 left-9 -translate-x-1/2 w-16 h-16 rounded-full bg-white border border-[#86efac] 
                 shadow-sm flex items-center justify-center relative">
-                    <span className="text-[#00401A] font-extrabold text-sm">{item.id}</span>
-
-                    {/* Small Green Triangle Accent Pointing Right */}
-                    <div
-                      className="absolute -right-3 top-[22px] w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent 
+                  <span className="text-[#00401A] font-extrabold text-sm">{item.id}</span>
+                  
+                  {/* Small Green Triangle Accent Pointing Right */}
+                  <div
+                    className="absolute -right-3 top-[22px] w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent 
                     border-l-[8px] border-l-[#86efac]"
-                    />
-                  </div>
+                  />
+                </div>
 
-                  {/* Text Content */}
-                  <div className="z-10 text-center px-2 py-2 -mt-3 ">
-                    <h2 className="text-[#00401A] text-sm  font-bold ">
-                      {item.title}
-                    </h2>
-                    {item.subtitle && (
-                      <p className="text-[#00401A] text-sm md:text-base font-bold  mt-1 opacity-90">
-                        {item.subtitle}
-                      </p>
-                    )}
-                  </div>
+                {/* Text Content */}
+                <div className="z-10 text-center px-2 py-4 lg:-mt-8 ">
+                  <h2 className="text-[#00401A] text-xs font-bold leading-snug">
+                    {item.title}
+                  </h2>
+                  {item.subtitle && (
+                    <p className="text-[#00401A] text-xs font-bold leading-snug mt-1 opacity-90">
+                      {item.subtitle}
+                    </p>
+                  )}
+                </div>
 
-                  {/* Bottom Time Capsule */}
-                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[70%] h-14  flex items-center justify-center ">
-                    <GradientBorderWrapper1
-                      rounded="rounded-full"
-                      innerRounded="rounded-full"
-                      className="w-full text-center "
-                      innerClassName="px-4  py-2"
-                    >
-                      <span className="text-[#00401A] font-bold text-lg">
-                        {item.time}
-                      </span>
-                    </GradientBorderWrapper1>
-                  </div>
-                  {/* <div
+                {/* Bottom Time Capsule */}
+                <div
                   className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-10 flex items-center justify-center rounded-full bg-white border border-[#86efac] shadow-sm"
                 >
                   <span className="text-[#00401A] font-bold text-xs">
                     {item.time}
                   </span>
-                </div> */}
-
-                  {/* Subtle light-green gradient inner glow */}
-                  <div className="absolute inset-0 rounded-[36px] pointer-events-none bg-[radial-gradient(circle_at_bottom_left,rgba(81,249,9,0.05),transparent_60%)]" />
                 </div>
-              </GradientBorderWrapper1>
 
-
-
-
+                {/* Subtle light-green gradient inner glow */}
+                <div className="absolute inset-0 rounded-[36px] pointer-events-none bg-[radial-gradient(circle_at_bottom_left,rgba(81,249,9,0.05),transparent_60%)]" />
+              </div>
             ))}
           </div>
         </GradientBorder>
