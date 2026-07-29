@@ -10,7 +10,13 @@ const adhanData = [
   { id: "04", title: "Two Khutbahs", subtitle: "delivered in Arabic" },
 ];
 
-const EidPrayer = () => {
+const EidPrayer = ({
+  eid_prayer_sequence
+}) => {
+
+  const data = eid_prayer_sequence?.sub_sections;
+// console.log("activities",activities)
+
   return (
     <div id="eid-prayer" className="mt-16 scroll-mt-24">
       <SectionTitleRow leftTitle={"Eid Prayer Sequence"} rightTitle={"イード礼拝の順序"} />
@@ -21,14 +27,14 @@ const EidPrayer = () => {
           className="shadow-md"
           innerClassName="p-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {adhanData.map((item) => (
+            {data?.map((item,i) => (
               <div
                 key={item.id}
                 className="relative flex items-center min-h-[90px] w-full pl-[56px] group"
               >
                 {/* Left Circle holding the step number */}
                 <div className="absolute left-0 z-20 flex h-[56px] w-[56px] items-center justify-center rounded-full border-[1.5px] border-[#86efac] bg-white shadow-sm group-hover:scale-105 transition-transform duration-300">
-                  <span className="text-base font-bold text-[#00401A]">{item.id}</span>
+                  <span className="text-base font-bold text-[#00401A]">{i+1}</span>
                 </div>
 
                 {/* SVG Inward Curve Notch Mask */}
@@ -50,7 +56,7 @@ const EidPrayer = () => {
                     </h2>
                     {item.subtitle && (
                       <p className="text-[#00401A] text-sm md:text-base font-bold opacity-90 mt-0.5 leading-snug">
-                        {item.subtitle}
+                        {item.sub_title}
                       </p>
                     )}
                   </div>

@@ -60,7 +60,11 @@ const adhanData = [
   },
 ];
 
-const DailyActivities = () => {
+const DailyActivities = ({daily_activities}) => {
+
+const activities = daily_activities?.sub_sections;
+// console.log("activities",activities)
+
   return (
     <div id="daily-activities" className="scroll-mt-24">
       <SectionTitleRow leftTitle={"Daily Activities"} rightTitle={"日常活動"} />
@@ -72,7 +76,7 @@ const DailyActivities = () => {
           innerClassName="pt-[40px] pb-[25px] pr-[20px] pl-[20px]"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {adhanData.map((item) => (
+            {activities?.map((item) => (
 
               <GradientBorderWrapper1
                 rounded="rounded-[20px]"
@@ -94,7 +98,7 @@ const DailyActivities = () => {
                       innerClassName="px-3 py-2"
                     >
                       <span className="text-[#00401A] font-semibold text-sm">
-                        {item.label}
+                        {item?.title}
                       </span>
                     </GradientBorderWrapper1>
                   </div>
@@ -103,7 +107,7 @@ const DailyActivities = () => {
                   {/* Text Content */}
                   <div className="z-10 mt-4">
                     <h2 className="text-[#333333] text-sm md:text-base font-bold leading-relaxed">
-                      {item.title}
+                      {item.short_description}
                     </h2>
                   </div>
 

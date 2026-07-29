@@ -15,7 +15,8 @@ const eidBenefitsData = [
   { img: "/images/offerServices/masjidActivities/separate_entries.svg", title: "Enjoy halal meals at local restaurants after prayer" },
 ];
 
-const BenefitsOfEid = () => {
+const BenefitsOfEid = ({benefits_of_eid_prayer}) => {
+  
   return (
     <div id="benefits-of-eid" className="pt-16 scroll-mt-24">
       <SectionTitleRow leftTitle={"Benefits of Eid Prayer"} rightTitle={"イード礼拝の利点"} />

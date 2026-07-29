@@ -13,7 +13,10 @@ const adhanData = [
   { id: "06", title: "Iqamah for", subtitle: "Jumu'ah Salah", time: "13:30" },
 ];
 
-const JumahPrayer = () => {
+const JumahPrayer = ({jumuah_prayer_sequence}) => {
+const data = jumuah_prayer_sequence?.sub_sections;
+console.log("data",data)
+
   return (
     <div id="jumah-prayer" className="mt-16 scroll-mt-24">
       <SectionTitleRow leftTitle={"Jumuʿah Prayer Sequence"} rightTitle={"金曜礼拝の順序"} />
@@ -25,7 +28,7 @@ const JumahPrayer = () => {
           innerClassName="pt-[80px] pb-[60px] pr-[30px] pl-[30px]"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-16 gap-6">
-            {adhanData.map((item) => (
+            {data.map((item) => (
 
               <GradientBorderWrapper1
                 rounded="rounded-[20px]"
@@ -41,7 +44,7 @@ const JumahPrayer = () => {
                   {/* Top Number Circle with Arrow */}
                   <div className="absolute -top-5 left-9 -translate-x-1/2 w-16 h-16 rounded-full bg-white border border-[#86efac] 
                 shadow-sm flex items-center justify-center relative">
-                    <span className="text-[#00401A] font-extrabold text-sm">{item.id}</span>
+                    <span className="text-[#00401A] font-extrabold text-sm">{item.sub_title}</span>
 
                     {/* Small Green Triangle Accent Pointing Right */}
                     <div
@@ -55,11 +58,11 @@ const JumahPrayer = () => {
                     <h2 className="text-[#00401A] text-sm  font-bold ">
                       {item.title}
                     </h2>
-                    {item.subtitle && (
+                    {/* {item.short_description && (
                       <p className="text-[#00401A] text-sm md:text-base font-bold  mt-1 opacity-90">
-                        {item.subtitle}
+                        {item.short_description}
                       </p>
-                    )}
+                    )} */}
                   </div>
 
                   {/* Bottom Time Capsule */}
@@ -71,7 +74,7 @@ const JumahPrayer = () => {
                       innerClassName="px-4  py-2"
                     >
                       <span className="text-[#00401A] font-bold text-lg">
-                        {item.time}
+                        {item?.short_description}
                       </span>
                     </GradientBorderWrapper1>
                   </div>

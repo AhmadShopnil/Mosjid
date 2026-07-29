@@ -15,7 +15,7 @@ const adhanData = [
   { img: "/images/offerServices/masjidActivities/restaurants.svg", title: "Bayan (religious talk) in japanese" },
 ];
 
-const BenefitsOfJumah = () => {
+const BenefitsOfJumah = ({benefits_of_jumuah_prayer}) => {
   return (
     <div id="benefits-of-jumah" className="pt-16 scroll-mt-24">
       <SectionTitleRow leftTitle={"Benefits of Jumuʿah Prayer"} rightTitle={"ジュムア礼拝の利点"} />
