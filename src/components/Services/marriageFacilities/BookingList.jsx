@@ -1,5 +1,6 @@
 'use client'
 import GradientBorder from "@/components/GradientBorder/GradientBorder";
+import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 import React from "react";
 
 const BookingList = ({ marriages = [], loading = false }) => {
@@ -45,9 +46,19 @@ const BookingList = ({ marriages = [], loading = false }) => {
   };
 
   return (
-    <GradientBorder>
-      <div className="w-full p-4">
-        <h2 className="text-2xl font-semibold text-[#333333] mb-4">Booking List</h2>
+    <GradientBorderWrapper1
+      rounded="rounded-[20px]"
+      innerRounded="rounded-[19px]"
+      className="shadow-md hover:shadow-lg transition-all duration-300 "
+      innerClassName="">
+      <div className="w-full p-4 lg:p-6">
+
+        <div className="flex flex-wrap justify-between mb-4">
+          <h2 className="text-2xl font-semibold text-[#333333] ">Booking List</h2>
+          <h2 className="text-2xl font-semibold text-[#333333] mb-4">予約一覧</h2>
+        </div>
+
+
 
         {loading ? (
           <div className="flex justify-center items-center py-12">
@@ -100,7 +111,7 @@ const BookingList = ({ marriages = [], loading = false }) => {
           </div>
         )}
       </div>
-    </GradientBorder>
+    </GradientBorderWrapper1>
   );
 };
 
