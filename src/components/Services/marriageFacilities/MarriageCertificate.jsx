@@ -32,6 +32,15 @@ const MarriageCertificate = ({ data = {} }) => {
   return (
     <div className="w-[1200px] max-w-full mx-auto bg-white border-[1.5px] border-[#3E8B18] pt-1.5 px-6 pb-8 font-sans relative text-left
      overflow-hidden">
+      {/* Watermark Background */}
+      <div className="absolute  bottom-48 left-1/2 transform -translate-x-1/2 flex items-center justify-center pointer-events-none ">
+        <img
+          src="/images/offerServices/marriageFacilities/bg2.png"
+          alt="Watermark"
+          className="w-[500px] h-[500px] object-contain "
+        />
+      </div>
+
       {/* Header */}
       <div className="flex justify-between items-start mb-6 relative">
         <div className=" z-10 relative">
@@ -55,7 +64,7 @@ const MarriageCertificate = ({ data = {} }) => {
         <div className='grid grid-cols-2 gap-10 mb-4 mt-16'>
           {/* groom photo */}
           <div className="flex items-center gap-4 ">
-            <div className="w-[60px] h-[60px] border-[1.5px] border-[#8CC63F] rounded-[4px] flex items-center justify-center overflow-hidden bg-[#ffffff]">
+            <div className="w-[54px] h-[54px] border-[1.5px] border-[#8CC63F] rounded-[4px] flex items-center justify-center overflow-hidden bg-[#ffffff]">
               {groom?.photoUrl ? <img src={groom?.photoUrl} alt="Groom" className="w-full h-full object-cover" /> : null}
             </div>
             <div>
@@ -64,7 +73,7 @@ const MarriageCertificate = ({ data = {} }) => {
           </div>
           {/* bride photo */}
           <div className="flex items-center gap-4 ">
-            <div className="w-[60px] h-[60px] border-[1.5px] border-[#8CC63F] rounded-[4px] flex items-center justify-center overflow-hidden bg-[#ffffff]">
+            <div className="w-[54px] h-[54px] border-[1.5px] border-[#8CC63F] rounded-[4px] flex items-center justify-center overflow-hidden bg-[#ffffff]">
               {bride?.photoUrl ? <img src={bride?.photoUrl} alt="Bride" className="w-full h-full object-cover" /> : null}
             </div>
             <div>
@@ -164,21 +173,21 @@ const MarriageCertificate = ({ data = {} }) => {
       </div>
 
       {/* Marriage Details Section */}
-      <div className="grid grid-cols-3 gap-0 border-y-[1px] border-[#A5D071] py-3 mt-4">
+      <div className="grid grid-cols-3 gap-0  py-2 mt-3">
         <div className="text-center border-r-[1px] border-[#A5D071]">
-          <p className="text-[10px] text-[#9ca3af] mb-0.5">結婚の日</p>
-          <p className="font-semibold text-[#085F2C] text-[13px]">Date Of Marriage</p>
-          <p className="text-[22px] font-bold text-[#B58B2E]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.date || "30 January 2006"}</p>
+          <p className="text-[12px] text-[#828282] mb-0.5">結婚の日</p>
+          <p className=" text-[#005312] text-[17px]">Date Of Marriage</p>
+          <p className="text-[24px] font-bold text-[#B98C20]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.date || "30 January 2006"}</p>
         </div>
         <div className="text-center border-r-[1px] border-[#A5D071]">
-          <p className="text-[10px] text-[#9ca3af] mb-0.5">結婚の場</p>
-          <p className="font-semibold text-[#085F2C] text-[13px] ">Place of Marriage</p>
-          <p className="text-[22px] font-bold text-[#B58B2E]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.place || "Osaka Masjid"}</p>
+          <p className="text-[12px] text-[#828282] mb-0.5">結婚の場</p>
+          <p className="text-[#005312] text-[17px]">Place of Marriage</p>
+          <p className="text-[24px] font-bold text-[#B98C20]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.place || "Osaka Masjid"}</p>
         </div>
         <div className="text-center">
-          <p className="text-[10px] text-[#9ca3af] mb-0.5">結納金の量と内容</p>
-          <p className="font-semibold text-[#085F2C] text-[13px] ">Amount of Dower (Mahar)</p>
-          <p className="text-[22px] font-bold text-[#B58B2E]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.mahar || "10,0000"}</p>
+          <p className="text-[12px] text-[#828282] mb-0.5">結納金の量と内容</p>
+          <p className="text-[#005312] text-[17px] ">Amount of Dower (Mahar)</p>
+          <p className="text-[24px] font-bold text-[#B98C20]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.mahar || "10,0000"}</p>
         </div>
       </div>
 
