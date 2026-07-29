@@ -440,7 +440,8 @@ const Booking = ({ slots = [], onBookingSubmitted, onActionClick }) => {
                         setKabinNamaPreview(null);
                         setMessage({ text: "", type: "" });
                       }}
-                      className="border border-[#FF0000] text-[#FF0000] bg-[#FFE9E9] h-14 w-full sm:max-w-[22.75rem] rounded-xl font-medium hover:bg-red-50 transition-colors"
+                      className="border border-[#FF0000] text-[#FF0000] bg-[#FFE9E9] h-14 w-full cursor-pointer
+                       sm:max-w-[22.75rem] rounded-xl font-medium hover:bg-red-50 transition-colors "
                     >
                       Cancel
                     </button>
