@@ -11,11 +11,6 @@ import { FatwaFilterProvider } from "@/context/FatwaFilterContext";
 import { RegionFilterProvider } from "@/context/RegionFilterContext ";
 import { AuthProvider } from "@/context/AuthContext";
 import AuthModal from "@/components/Auth/AuthModal";
-import { AnimatePresence } from "framer-motion";
-
-import PageReveal from "@/components/Shared/PageReveal";
-import PageRevealWithSpinner from "@/components/Shared/LoadingAnimation/PageRevealWithSpinner";
-import BannerBottomSlider from "@/components/BannerBottom/BannerBottomSlider";
 import BannerBottom from "@/components/BannerBottom/BannerBottom";
 import Container from "@/components/Shared/Container";
 
