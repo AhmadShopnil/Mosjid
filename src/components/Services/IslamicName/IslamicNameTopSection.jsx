@@ -91,10 +91,9 @@ export default function IslamicNameTopSection({ onActionClick }) {
                 variants={fadeUp}
                 className="text-[#B98C20] text-base mt-2"
               >
-                Islamic names embody faith, heritage, and values, offering children
-                identity, blessings, and connection to tradition. They serve as
-                gifts of love, guiding lights, and lifelong reminders of culture and
-                spirituality.
+              A name is one of the greatest gifts parents give their child. In Islam, a good name reflects faith,
+               good character, and a noble identity.
+               The Prophet Muhammad ﷺ encouraged Muslims to choose names with beautiful and meaningful qualities.
               </motion.p>
             </div>
 
@@ -104,7 +103,7 @@ export default function IslamicNameTopSection({ onActionClick }) {
            
             >
               <Image
-                src="/images/offerServices/book.svg"
+                src="/images/offerServices/IslamicName/islamic_names_logo.png"
                 alt=" "
                 width={190}
                 height={200}
@@ -140,10 +139,10 @@ export default function IslamicNameTopSection({ onActionClick }) {
               variants={container}
             >
               {[
-                { icon: "1.svg", label: "Name List" },
-                { icon: "3.svg", label: "Blessed Name" },
-                { icon: "2.svg", label: "Search Name" },
-                { icon: "3.svg", label: "Islamic Naming Guidelines" },
+                { icon: "1.svg", label: "Name List", labelJP:"氏名一覧" },
+                { icon: "3.svg", label: "Blessed Name", labelJP:"祝福された御名" },
+                { icon: "2.svg", label: "Search Name" , labelJP:"検索名"},
+                { icon: "3.svg", label: "Islamic Naming Guidelines", labelJP:"イスラームにおける命名の指針" },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -160,8 +159,10 @@ export default function IslamicNameTopSection({ onActionClick }) {
                     height={50}
                     className="w-[36px] h-[36px] md:w-[50px] md:h-[50px]"
                   />
-                  <span className="text-[#B98C20] text-lg sm:text-xl md:text-2xl font-bold">
-                    {item.label}
+                  <span className="text-[#B98C20] text-lg sm:text-xl lg:text-[23px] font-bold">
+                    {item?.label}
+                     <span className="px-1">/</span>  
+                     {item?.labelJP}
                   </span>
                 </motion.div>
               ))}

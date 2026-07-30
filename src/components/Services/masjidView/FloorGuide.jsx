@@ -2,6 +2,7 @@ import React from 'react';
 import { CheckCircle2, User } from 'lucide-react';
 import SectionTitleRow from '@/components/SectionTitleRow/SectionTitleRow';
 import GradientBorder from '@/components/GradientBorder/GradientBorder';
+import GradientBorderWrapper1 from '@/components/Shared/GradientBorderWrapper1';
 
 const FloorGuide = () => {
   // 1. JSON Data Structure
@@ -35,8 +36,8 @@ const FloorGuide = () => {
 
   return (
     <div className=''>
-      <GradientBorder>
-        <div className="w-full rounded-[12px] p-4 md:p-6" style={{
+      <GradientBorderWrapper1 rounded="rounded-[30px]" innerRounded="rounded-[29px]">
+        <div className="w-full rounded-[29px] p-4 md:p-6" style={{
           background: 'linear-gradient(99.25deg, #FAFFF9 0.3%, #FFFFFF 99.39%)'
         }}>
           <div>
@@ -60,7 +61,7 @@ const FloorGuide = () => {
 
               {/* RIGHT SIDE: Floor Details */}
               <div className="flex flex-col space-y-3">
-                {floorData.map((floor) => (
+                {floorData?.map((floor) => (
                   <div key={floor.id} className="relative group">
                     <div className="flex items-center gap-4">
 
@@ -97,7 +98,7 @@ const FloorGuide = () => {
             </div>
           </div>
         </div>
-      </GradientBorder>
+      </GradientBorderWrapper1>
     </div>
   );
 };

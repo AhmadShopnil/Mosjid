@@ -3,6 +3,7 @@ import GradientBorder from "@/components/GradientBorder/GradientBorder";
 import React, { useState } from "react";
 import CertificateModal from "./CertificateModal";
 import Link from "next/link";
+import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 
 const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
@@ -105,9 +106,19 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
   return (
     <div className="mt-6 relative">
 
-      <GradientBorder>
+      <GradientBorderWrapper1
+        rounded="rounded-[20px]"
+        innerRounded="rounded-[19px]"
+        className="shadow-md hover:shadow-lg transition-all duration-300 "
+        innerClassName=""
+      >
         <div className="w-full p-4 lg:p-6">
-          <h2 className="text-2xl font-semibold text-[#333333] mb-4">My Applications</h2>
+          <div className="flex flex-wrap justify-between mb-4">
+            <h2 className="text-2xl font-semibold text-[#333333] ">My Applications</h2>
+            <h2 className="text-2xl font-semibold text-[#333333] mb-4">自分のアプリケーション</h2>
+          </div>
+
+
 
           {loading ? (
             <div className="flex justify-center items-center py-12">
@@ -198,7 +209,7 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
             </div>
           )}
         </div>
-      </GradientBorder>
+      </GradientBorderWrapper1>
 
       {/* Certificate Modal */}
       <CertificateModal

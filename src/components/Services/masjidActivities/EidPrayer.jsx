@@ -10,22 +10,31 @@ const adhanData = [
   { id: "04", title: "Two Khutbahs", subtitle: "delivered in Arabic" },
 ];
 
-const EidPrayer = () => {
+const EidPrayer = ({
+  eid_prayer_sequence
+}) => {
+
+  const data = eid_prayer_sequence?.sub_sections;
+// console.log("activities",activities)
+
   return (
     <div id="eid-prayer" className="mt-16 scroll-mt-24">
       <SectionTitleRow leftTitle={"Eid Prayer Sequence"} rightTitle={"イード礼拝の順序"} />
-      
+
       <div className="pt-6">
-        <GradientBorder radius={20} innerClassName="p-8">
+        <GradientBorder
+          radius={20}
+          className="shadow-md"
+          innerClassName="p-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {adhanData.map((item) => (
-              <div 
-                key={item.id} 
+            {data?.map((item,i) => (
+              <div
+                key={item.id}
                 className="relative flex items-center min-h-[90px] w-full pl-[56px] group"
               >
                 {/* Left Circle holding the step number */}
                 <div className="absolute left-0 z-20 flex h-[56px] w-[56px] items-center justify-center rounded-full border-[1.5px] border-[#86efac] bg-white shadow-sm group-hover:scale-105 transition-transform duration-300">
-                  <span className="text-base font-bold text-[#00401A]">{item.id}</span>
+                  <span className="text-base font-bold text-[#00401A]">{i+1}</span>
                 </div>
 
                 {/* SVG Inward Curve Notch Mask */}
@@ -40,14 +49,14 @@ const EidPrayer = () => {
                 <div className="flex-grow bg-white border border-[#86efac] border-l-0 rounded-r-[24px] rounded-l-none h-[80px] flex items-center pl-6 pr-4 shadow-sm group-hover:shadow-md transition-shadow duration-300 relative">
                   {/* Subtle inner radial pastel glow */}
                   <div className="absolute inset-0 rounded-r-[24px] pointer-events-none bg-[radial-gradient(circle_at_bottom_left,rgba(81,249,9,0.05),transparent_50%)]" />
-                  
+
                   <div className="z-10">
-                    <h2 className="text-[#00401A] text-xs font-bold leading-snug">
+                    <h2 className="text-[#00401A] text-sm md:text-base font-bold leading-snug">
                       {item.title}
                     </h2>
                     {item.subtitle && (
-                      <p className="text-[#00401A] text-[11px] font-semibold opacity-90 mt-0.5 leading-snug">
-                        {item.subtitle}
+                      <p className="text-[#00401A] text-sm md:text-base font-bold opacity-90 mt-0.5 leading-snug">
+                        {item.sub_title}
                       </p>
                     )}
                   </div>
@@ -58,7 +67,7 @@ const EidPrayer = () => {
         </GradientBorder>
 
         {/* Share buttons row */}
-        <div className="flex justify-end">
+        {/* <div className="flex justify-end">
           <div className="flex items-center justify-end space-x-3 p-4 w-fit">
             <button className="flex items-center justify-center w-8 h-8 rounded-full hover:opacity-85 transition-opacity cursor-pointer">
               <Image
@@ -105,7 +114,7 @@ const EidPrayer = () => {
               />
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

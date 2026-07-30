@@ -1,5 +1,6 @@
 import GradientBorder from "@/components/GradientBorder/GradientBorder";
 import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
+import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 import Image from "next/image";
 import React from "react";
 
@@ -14,48 +15,59 @@ const eidBenefitsData = [
   { img: "/images/offerServices/masjidActivities/separate_entries.svg", title: "Enjoy halal meals at local restaurants after prayer" },
 ];
 
-const BenefitsOfEid = () => {
+const BenefitsOfEid = ({benefits_of_eid_prayer}) => {
+  
   return (
     <div id="benefits-of-eid" className="pt-16 scroll-mt-24">
       <SectionTitleRow leftTitle={"Benefits of Eid Prayer"} rightTitle={"イード礼拝の利点"} />
-      
+
       <div className="pt-6">
-        <GradientBorder radius={20} innerClassName="p-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <GradientBorder radius={20} className="shadow-md" innerClassName="p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {eidBenefitsData.map((item, index) => (
-              <div
-                key={index}
-                className="relative w-full min-h-[100px] bg-white rounded-[24px] border border-[#86efac]/35 shadow-sm hover:shadow-md transition-all duration-300 p-4 flex items-center gap-4 overflow-hidden"
+
+              <GradientBorderWrapper1
+                rounded="rounded-[20px]"
+                innerRounded="rounded-[19px]"
+
+                className="shadow-sm hover:shadow-md transition-all duration-300  "
+                innerClassName="p-4"
               >
-                {/* Left Circle Icon Container */}
-                <div className="flex-shrink-0 w-16 h-16 rounded-full p-[1.5px] bg-gradient-to-b from-[#3198A0] to-[#51F909] shadow-sm">
-                  <div className="w-full h-full bg-white rounded-full flex items-center justify-center overflow-hidden">
-                    <Image
-                      src={item.img}
-                      alt=""
-                      width={30}
-                      height={30}
-                      className="object-contain"
-                    />
+
+                <div
+                  key={index}
+                  className="relative w-full min-h-[100px] lg:min-h-[130px]  p-4 flex items-center gap-4 overflow-hidden"
+                >
+                  {/* Left Circle Icon Container */}
+                  <div className="flex-shrink-0 w-16 h-16 rounded-full p-[1.5px] bg-gradient-to-b from-[#3198A0] to-[#51F909] shadow-sm">
+                    <div className="w-full h-full bg-white rounded-full flex items-center justify-center overflow-hidden">
+                      <Image
+                        src={item.img}
+                        alt=""
+                        width={30}
+                        height={30}
+                        className="object-contain"
+                      />
+                    </div>
                   </div>
-                </div>
 
-                {/* Right Text Content */}
-                <div className="flex-grow z-10">
-                  <h2 className="text-[#00401A] text-xs font-bold leading-snug">
-                    {item.title}
-                  </h2>
-                </div>
+                  {/* Right Text Content */}
+                  <div className="flex-grow z-10">
+                    <h2 className="text-[#00401A] text-sm md:text-base font-bold">
+                      {item.title}
+                    </h2>
+                  </div>
 
-                {/* Subtle pastel corner blur */}
-                <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-[#3198A0]/5 to-transparent rounded-bl-[24px] pointer-events-none" />
-              </div>
+                  {/* Subtle pastel corner blur */}
+                  <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-[#3198A0]/5 to-transparent rounded-bl-[24px] pointer-events-none" />
+                </div>
+              </GradientBorderWrapper1>
             ))}
           </div>
         </GradientBorder>
 
         {/* Share buttons row */}
-        <div className="flex justify-end">
+        {/* <div className="flex justify-end">
           <div className="flex items-center justify-end space-x-3 p-4 w-fit">
             <button className="flex items-center justify-center w-8 h-8 rounded-full hover:opacity-85 transition-opacity cursor-pointer">
               <Image
@@ -102,7 +114,7 @@ const BenefitsOfEid = () => {
               />
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
