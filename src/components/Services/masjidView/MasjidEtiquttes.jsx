@@ -4,7 +4,7 @@ import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 import Image from "next/image";
 import React from "react";
 
-const MasjidEtiquttes = () => {
+const MasjidEtiquttes = ({masjid_etiquttes}) => {
   const masjidEtiquttes = [
     {
       id: 1,

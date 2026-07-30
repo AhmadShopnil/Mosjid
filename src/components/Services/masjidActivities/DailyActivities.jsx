@@ -4,61 +4,6 @@ import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 import Image from "next/image";
 import React from "react";
 
-// const adhanData = [
-//   {
-//     id: "01",
-//     label: "After Fajr",
-//     title: "Qur'an Dars & Adult Tajweed, Tafsir, Grammar",
-//   },
-//   {
-//     id: "02",
-//     label: "After Zuhr",
-//     title: "Dawah, Tajweed, Hifz, and Hadith",
-//   },
-//   {
-//     id: "03",
-//     label: "After Asr",
-//     title: "Salah, Adult Hifz, Fiqh, and Mirāth Studies",
-//   },
-//   {
-//     id: "04",
-//     label: "After Maghrib",
-//     title: "Children’s Qur’an Learning Class",
-//   },
-//   {
-//     id: "05",
-//     label: "After Isha",
-//     title: "Dawah & Children’s Qur’an Class",
-//   },
-// ];
-
-const adhanData = [
-  {
-    id: "01",
-    label: "Congregational Prayers",
-    title: "Five Daily Congregational Prayers ",
-  },
-  {
-    id: "02",
-    label: "Qur’an Tafsir",
-    title: "Qur'an Study & Tafsir (Dars al-Qur'an) ",
-  },
-  {
-    id: "03",
-    label: "Islamic Learning",
-    title: "Islamic Education for Children & Adults ",
-  },
-  {
-    id: "04",
-    label: "Da‘wah Outreach",
-    title: "Da'wah & Community Outreach ",
-  },
-  {
-    id: "05",
-    label: "Fatwa Service",
-    title: "Fatwa & Islamic Consultation",
-  },
-];
 
 const DailyActivities = ({daily_activities}) => {
 
