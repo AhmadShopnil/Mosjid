@@ -18,45 +18,6 @@ const FacilitiesSection = ({ masjid_facilities }) => {
   const image = getImageUrl(masjid_facilities?.image_media);
 
 
-  // 1. JSON  Data 
-  const facilityData = [
-    {
-      id: 1,
-      title: "Separate Prayer Areas for Males and Females",
-      icon: "/images/offerServices/masjidView/Separate.svg",
-    },
-    {
-      id: 2,
-      title: "Separate Entrances for Men and Women",
-      icon: "/images/offerServices/masjidView/Separate_Entrance.svg",
-    },
-    {
-      id: 3,
-      title: "Toilet Facilities for Both Genders",
-      icon: "/images/offerServices/masjidView/Separate.svg",
-    },
-    {
-      id: 4,
-      title: "Islamic Education Room for Adults and Children",
-      icon: "/images/offerServices/masjidView/Separate.svg",
-    },
-    {
-      id: 5,
-      title: "Adult Reading and Study Area",
-      icon: "/images/offerServices/masjidView/Dar.svg",
-    },
-    {
-      id: 6,
-      title: "Meeting Area Available",
-      icon: "/images/offerServices/masjidView/Meeting_Area.svg",
-    },
-    {
-      id: 7,
-      title: "Islamic Resource Library (Adults)",
-      icon: "/images/offerServices/masjidView/Teaching.svg",
-    }
-  ];
-
   return (
     <section>
       {/* Main Container with rounded green border matching your design */}

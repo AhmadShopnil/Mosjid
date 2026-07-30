@@ -7,17 +7,7 @@ const MasjidBenefits = ({masjid_benefits}) => {
 
   const data = masjid_benefits?.sub_sections;
 
-  // const benefitsData = [
-  //   { id: 1, text: "Five Daily Prayers with Adhan and Jama'ah" },
-  //   { id: 2, text: "Spiritual Rewards and Waqf (Endowment) under Shariah Law" },
-  //   { id: 3, text: "Religious Consultancy for personal and family matters" },
-  //   { id: 4, text: "Qur'an Dars after Fajr for deeper understanding" },
-  //   { id: 5, text: "Da'wah Opportunities to share and strengthen faith" },
-  //   { id: 6, text: "Islamic Education for Adults and Children" },
-  //   { id: 7, text: "Welcoming Community of Muslims from Diverse Backgrounds" },
-  //   { id: 8, text: "Zakat and Sadaqatul Fitr collection" },
-  // ];
-
+ 
   return (
     <div>
       <div className="">

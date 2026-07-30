@@ -5,33 +5,11 @@ import Image from "next/image";
 import React from "react";
 
 const MasjidEtiquttes = ({masjid_etiquttes}) => {
-  const masjidEtiquttes = [
-    {
-      id: 1,
-      title: "Dress Modesty",
-      text: "Wear clean, respectful clothing. Women should wear hijab.",
-    },
-    {
-      id: 2,
-      title: "Be Quiet & Respectful",
-      text: "Keep phones silent and avoid loud talking.",
-    },
-    {
-      id: 3,
-      title: "No Photography",
-      text: "Please don’t take pictures inside the prayer area.",
-    },
-    {
-      id: 4,
-      title: "Men and Women Separate",
-      text: "Use your designated entrance and prayer space",
-    },
-    {
-      id: 5,
-      title: "Keep It Clean",
-      text: "No Eating or Drinking Inside the Masjid",
-    },
-  ];
+
+
+const data = masjid_etiquttes?.sub_sections;
+
+
 
   return (
     <div className="mt-6">
@@ -45,7 +23,7 @@ const MasjidEtiquttes = ({masjid_etiquttes}) => {
 
           {/* Responsive Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 pt-6">
-            {masjidEtiquttes.map((benefit) => (
+            {data?.map((benefit) => (
               <div key={benefit.id} className="flex items-center gap-4">
                 <div className="shrink-0 mt-1 w-9 h-9">
                   <Image
@@ -56,8 +34,8 @@ const MasjidEtiquttes = ({masjid_etiquttes}) => {
                   />
                 </div>
                 <p className="text-[#333333] text-base md:text-2xl">
-                  <span className="font-bold text-[#00401A] mr-0.5">{benefit.title}:</span>
-                  {benefit.text}
+                  <span className="font-bold text-[#00401A] mr-0.5">{benefit?.title}:</span>
+                  {benefit?.short_description}
                 </p>
               </div>
             ))}

@@ -10,12 +10,14 @@ import React from 'react'
 export default async function page() {
 
 
+
+  // extract page content
   const masjid_view_data = await getPage("masjid-view");
   const sections = masjid_view_data?.sections_on_api;
 
-  const masjid_facilities = sections.find((s) => s.title_slug === "masjid-facilities");
-  const masjid_etiquttes = sections.find((s) => s.title_slug === "masjid-etiquttes");
-  const masjid_benefits = sections.find((s) => s.title_slug === "masjid-benefits");
+  const masjid_facilities = sections?.find((s) => s.title_slug === "masjid-facilities");
+  const masjid_etiquttes = sections?.find((s) => s.title_slug === "masjid-etiquttes");
+  const masjid_benefits = sections?.find((s) => s.title_slug === "masjid-benefits");
 
 
 
