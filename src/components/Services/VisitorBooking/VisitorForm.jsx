@@ -58,13 +58,49 @@ export default function VisitorForm({ onSuccess }) {
         setForm((prev) => ({ ...prev, slot_id: "" }));
     }, [form.visit_date]);
 
+    // previous before phone no validation
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setForm((prev) => ({ ...prev, [name]: value }));
+
+    // };
+    // after before phone no validation
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setForm((prev) => ({ ...prev, [name]: value }));
+
+        if (name === "contact_number") {
+            const cleanValue = value.replace(/[^0-9-\s]/g, "");
+            const digitCount = cleanValue.replace(/\D/g, "").length;
+
+            if (digitCount > 11) return;
+
+            setForm((prev) => ({
+                ...prev,
+                [name]: cleanValue,
+            }));
+            return;
+        }
+
+        setForm((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const digits = form.contact_number.replace(/\D/g, "");
+        if (digits.length !== 11) {
+            setMessage({
+                text: "Contact number must be exactly 11 digits.",
+                type: "error",
+            });
+            return;
+        }
+
+
+
         try {
             setLoading(true);
             setMessage({ text: "", type: "" });
@@ -94,7 +130,7 @@ export default function VisitorForm({ onSuccess }) {
                 headers: { "Content-Type": "multipart/form-data" }
             });
 
-            console.log("Visitor API Response:", res.data);
+            // console.log("Visitor API Response:", res.data);
 
             // Sometimes the API returns 200 OK but with success: false or validation errors
             if (res.data?.success === false || res.data?.errors || res.data?.success === "error") {
@@ -211,6 +247,7 @@ export default function VisitorForm({ onSuccess }) {
                             type="text"
                             name="contact_number"
                             value={form.contact_number}
+                            placeholder="e.g., 090-1234-5678"
                             onChange={handleChange}
                             className="w-full h-12 rounded-xl border border-green-700 px-4 focus:outline-none focus:ring-1 focus:ring-green-600"
                         />
@@ -229,6 +266,7 @@ export default function VisitorForm({ onSuccess }) {
                         <input
                             type="date"
                             name="visit_date"
+                            min={new Date().toISOString().split('T')[0]}
                             value={form.visit_date}
                             onChange={handleChange}
                             required

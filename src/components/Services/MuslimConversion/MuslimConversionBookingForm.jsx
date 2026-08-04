@@ -16,7 +16,7 @@ const bookigSchema = z.object({
     contact_no: z.string().transform(val => val.replace(/\D/g, "")).refine(val => val.length === 11, { message: "Contact number must be exactly 11 digits" }),
 });
 
-export default function MuslimConversionBookingForm() {
+export default function MuslimConversionBookingForm({setRefreshBookings}) {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
@@ -87,11 +87,13 @@ export default function MuslimConversionBookingForm() {
             setSuccess("Booking submitted successfully!");
             reset();
             setDynamicSlots([]);
+             setRefreshBookings(true)
         } catch (err) {
             console.error(err);
             setErrorMsg("Failed to submit booking. Please try again.");
         } finally {
             setLoading(false);
+           
         }
     };
 
@@ -189,6 +191,9 @@ export default function MuslimConversionBookingForm() {
                         setSuccess("");
                         setErrorMsg("");
                         setDynamicSlots([]);
+                        // setTimeout(() => {
+                        //     window.location.reload();
+                        // }, 200);
                     }}
                     className="border border-red-500 text-red-600 bg-red-100 hover:bg-red-200 px-6 py-2 rounded-md cursor-pointer"
                 >

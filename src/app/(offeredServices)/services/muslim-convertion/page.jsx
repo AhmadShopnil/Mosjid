@@ -18,6 +18,7 @@ export default function page() {
     const [myApplications, setMyApplications] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedApplication, setSelectedApplication] = useState(null);
+    const [refreshBookings, setRefreshBookings] = useState(false);
 
     // Modal state for guidelines
     const [modalConfig, setModalConfig] = useState({ isOpen: false, slug: '', title: '' });
@@ -54,7 +55,7 @@ export default function page() {
 
     useEffect(() => {
         fetchData(currentPage);
-    }, [fetchData, currentPage]);
+    }, [fetchData, currentPage,refreshBookings]);
 
     const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {
@@ -90,7 +91,7 @@ export default function page() {
                 title2="التحول إلى الإسلام"
             />
 
-            <MuslimConvertionTopSection onActionClick={handleActionClick} />
+            <MuslimConvertionTopSection onActionClick={handleActionClick} setRefreshBookings={setRefreshBookings} />
             <div ref={myApplicationsRef}
                 className='scroll-mt-32'
             >
