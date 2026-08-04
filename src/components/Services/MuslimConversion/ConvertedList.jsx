@@ -2,6 +2,8 @@ import GradientBorder from "@/components/GradientBorder/GradientBorder";
 import React from "react";
 import TableTitle from "../Shared/TableTitle";
 import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
+import SectionTitleSmall from "@/components/SectionTitleRow/SectionTitleSmall";
+
 
 const ConvertedList = ({ converted = [], loading = false }) => {
   const formatDate = (dateStr) => {
@@ -29,10 +31,20 @@ const ConvertedList = ({ converted = [], loading = false }) => {
   };
 
   return (
-    <GradientBorderWrapper1>
+    <GradientBorderWrapper1
+      rounded="rounded-[20px]"
+      innerRounded="rounded-[19px]"
+      className="shadow-md hover:shadow-lg transition-all duration-300 "
+      innerClassName=""
+    >
       <div className="w-full p-4">
         <div className="mb-6">
-          <TableTitle title1="Converted List" title2="変換済みリスト" />
+          <SectionTitleSmall
+            leftTitle={"Converted List"}
+            rightTitle={"変換済みリスト"}
+          />
+
+          {/* <TableTitle title1="Converted List" title2="変換済みリスト" /> */}
         </div>
         {loading ? (
           <div className="flex justify-center items-center py-12">
@@ -46,7 +58,7 @@ const ConvertedList = ({ converted = [], loading = false }) => {
             <table className="w-full border-collapse min-w-[600px]">
               <thead>
                 <tr>
-                  {["Sl. No.", "Name", "Father Name", "Event Date", "Declared Date", "Previous Religion"].map((head) => (
+                  {["Sl. No.", "Name", "Father Name",  "Nationality", "Declared Date", "Previous Religion"].map((head) => (
                     <th key={head}>
                       <div className="bg-[#52B920] text-white border border-[#B0C4B8] font-bold rounded-t-full py-1.5 text-center whitespace-nowrap">{head}</div>
                     </th>
@@ -54,12 +66,22 @@ const ConvertedList = ({ converted = [], loading = false }) => {
                 </tr>
               </thead>
               <tbody>
-                {converted.map((item, index) => (
+                {converted?.map((item, index) => (
                   <tr key={item.id} className={index % 2 === 0 ? "bg-white" : "bg-[#52B920]/40"}>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{String(index + 1).padStart(2, "0")}</td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{item?.others_infomartions?.informations?.muslim_name}</td>
-                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{item?.father_name}</td>
-                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatDate(item.booked_date)}</td>
+                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
+                      {item?.father_name}
+                    </td>
+
+
+                    {/* <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
+                      {formatDate(item?.gender)}
+                    </td> */}
+
+                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
+                      {item?.others_infomartions?.informations?.nationality}
+                    </td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{item?.others_infomartions?.informations?.declared_date}</td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{item?.others_infomartions?.informations?.previous_religion}</td>
                   </tr>

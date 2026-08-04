@@ -20,8 +20,8 @@ export default function ConversionForm({ application, onCancel }) {
             toast.error("Please select an approved application to fill the form.");
             return;
         }
-        console.log("pictureArea",pictureArea)
-        console.log("imamSign",imamSign?.file)
+        console.log("pictureArea", pictureArea)
+        console.log("imamSign", imamSign?.file)
 
         const formData = new FormData();
         formData.append("informations[name]", data.name || "");
@@ -45,7 +45,7 @@ export default function ConversionForm({ application, onCancel }) {
             formData.append("informations[attached][imam_sign]", imamSign?.file);
         }
 
-        
+
         try {
             setLoading(true);
             const response = await axiosInstance.post(`/conversion/${appId}`, formData, {
@@ -53,6 +53,7 @@ export default function ConversionForm({ application, onCancel }) {
                     "Content-Type": "multipart/form-data",
                 },
             });
+            console.log("test conversion", response)
 
             if (response.status === 200 || response.status === 201 || response.data?.success) {
                 toast.success("Conversion form submitted successfully.");
@@ -87,7 +88,8 @@ export default function ConversionForm({ application, onCancel }) {
     };
 
     return (
-        <section className="borderDonationHome p-4 sm:p-6 mt-6 relative">
+        <section className=" p-4 sm:p-6 mt-6 relative rounded-[30px] border-2  border-[#52B920]/30
+         bg-[#F9FFF6]/80 backdrop-blur-sm shadow-[0_8px_30px_rgb(0,0,0,0.06)]  ">
             {onCancel && (
                 <button
                     onClick={onCancel}
@@ -101,7 +103,7 @@ export default function ConversionForm({ application, onCancel }) {
             )}
 
             <h2 className="text-xl sm:text-2xl font-semibold mb-6 pr-8">
-                Converted Person Information
+                 Person Information
             </h2>
 
             {application && (

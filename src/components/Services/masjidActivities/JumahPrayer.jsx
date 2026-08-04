@@ -47,10 +47,10 @@ console.log("data",data)
                     <span className="text-[#00401A] font-extrabold text-sm">{item.sub_title}</span>
 
                     {/* Small Green Triangle Accent Pointing Right */}
-                    <div
+                    {/* <div
                       className="absolute -right-3 top-[22px] w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent 
                     border-l-[8px] border-l-[#86efac]"
-                    />
+                    /> */}
                   </div>
 
                   {/* Text Content */}

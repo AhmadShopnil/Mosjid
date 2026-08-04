@@ -5,10 +5,10 @@ import Image from "next/image";
 import React from "react";
 
 
-const DailyActivities = ({daily_activities}) => {
+const DailyActivities = ({ daily_activities }) => {
 
-const activities = daily_activities?.sub_sections;
-// console.log("activities",activities)
+  const activities = daily_activities?.sub_sections;
+  // console.log("activities",activities)
 
   return (
     <div id="daily-activities" className="scroll-mt-24">
@@ -20,10 +20,12 @@ const activities = daily_activities?.sub_sections;
           radius={20}
           innerClassName="pt-[40px] pb-[25px] pr-[20px] pl-[20px]"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4">
             {activities?.map((item) => (
 
               <GradientBorderWrapper1
+                className="mb-6 lg:mb-0"
+                innerClassName=""
                 rounded="rounded-[20px]"
                 innerRounded="rounded-[19px]"
               >
@@ -42,7 +44,7 @@ const activities = daily_activities?.sub_sections;
                       className=" "
                       innerClassName="px-3 py-2"
                     >
-                      <span className="text-[#00401A] font-semibold text-sm">
+                      <span className="text-[#00401A] font-semibold text-[12px] md:text-sm">
                         {item?.title}
                       </span>
                     </GradientBorderWrapper1>
