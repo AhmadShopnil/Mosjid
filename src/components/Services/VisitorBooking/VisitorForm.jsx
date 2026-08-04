@@ -58,13 +58,6 @@ export default function VisitorForm({ onSuccess }) {
         setForm((prev) => ({ ...prev, slot_id: "" }));
     }, [form.visit_date]);
 
-    // previous before phone no validation
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setForm((prev) => ({ ...prev, [name]: value }));
-
-    // };
-    // after before phone no validation
     const handleChange = (e) => {
         const { name, value } = e.target;
 

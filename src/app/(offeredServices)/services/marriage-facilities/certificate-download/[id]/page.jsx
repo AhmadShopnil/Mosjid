@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import axiosInstance from '@/helper/axiosInstance';
 import MarriageCertificate from '@/components/Services/marriageFacilities/MarriageCertificate';
 import { FiArrowLeft, FiDownload } from 'react-icons/fi';
+import { splitAddress } from '@/helper/splitAddress';
 
 const Page = () => {
     const params = useParams();
@@ -97,6 +98,12 @@ const Page = () => {
         return `/api/proxy-image?url=${encodeURIComponent(fullUrl)}`;
     };
 
+const { addressLine1:addressLine1_groom, addressLine2:addressLine2_groom } = splitAddress(groom?.address);
+const { addressLine1:addressLine1_bride, addressLine2:addressLine2_bride } = splitAddress(bride?.address);
+
+console.log("test address,",groom,addressLine1_bride)
+
+
     const mappedData = {
         details: {
             certificateNo: dataToMap.unique_id || dataToMap.id || "",
@@ -112,8 +119,13 @@ const Page = () => {
             religion: groom.religion || "",
             nationality: groom.nationality || "",
             passportNo: groom.passport_no || groom.passport_number || "",
-            addressLine1: groom.address || "",
-            addressLine2: "",
+            addressLine1:addressLine1_groom || "",
+            
+            addressLine2: addressLine2_groom || "",
+            // addressLine example
+            // address: "west akur takur para tangail, dhaka , abngladesh",
+            // addressLine1:  "west akur takur para tangail",
+            // addressLine2:  " dhaka , abngladesh",
             photoUrl: getImageUrl(attached.groom_photo || groom.image),
             signUrl: getImageUrl(attached.groom_sign)
         },
@@ -126,8 +138,8 @@ const Page = () => {
             religion: bride.religion || "",
             nationality: bride.nationality || "",
             passportNo: bride.passport_no || bride.passport_number || "",
-            addressLine1: bride.address || "",
-            addressLine2: "",
+            addressLine1: addressLine1_bride || "",
+            addressLine2:addressLine2_bride || "",
             photoUrl: getImageUrl(attached.bride_photo || bride.image),
             signUrl: getImageUrl(attached.bride_sign)
         },
