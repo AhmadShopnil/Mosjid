@@ -107,7 +107,7 @@ export default function HalalAllApplications() {
                 {loading ? (
                   <TableSkeleton />
                 ) : data.length ? (
-                  data.map((item, index) => {
+                  data?.map((item, index) => {
                     const sl = (currentPage - 1) * 20 + index + 1;
                     return (
                       <tr

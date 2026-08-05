@@ -91,12 +91,12 @@ export default function LossAndFoundTopSection({ onActionClick }) {
             {/* Floating Icon */}
             <motion.div
               className="flex justify-center mt-8"
-              animate={{ y: [0, -8, 0] }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+              // animate={{ y: [0, -8, 0] }}
+              // transition={{
+              //   duration: 4,
+              //   repeat: Infinity,
+              //   ease: "easeInOut",
+              // }}
             >
               <Image
                 src="/images/offerServices/LostFound/topsectionIcon.svg"
@@ -122,10 +122,10 @@ export default function LossAndFoundTopSection({ onActionClick }) {
               variants={container}
             >
               {[
-                { icon: "1.svg", label: "Lost Item Report" },
-                { icon: "3.svg", label: "Lost Items List" },
-                { icon: "3.svg", label: "Found Items List" },
-                { icon: "3.svg", label: "Guides Line" },
+                { icon: "1.svg", label: "Lost Item Report",label2: "遺失物届"  },
+                { icon: "3.svg", label: "Lost Items List",label2: "遺失物リスト" },
+                { icon: "3.svg", label: "Found Items List",label2: "拾得物リスト" },
+                { icon: "3.svg", label: "Guides Line",label2: "ガイドライン" },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -142,8 +142,11 @@ export default function LossAndFoundTopSection({ onActionClick }) {
                     height={50}
                     className="w-[36px] h-[36px] md:w-[50px] md:h-[50px]"
                   />
-                  <span className="text-[#B98C20] text-lg sm:text-xl md:text-2xl font-bold">
-                    {item.label}
+                
+                   <span className="text-[#B98C20] text-lg sm:text-xl lg:text-[23px] font-bold">
+                    {item?.label}
+                    <span className="px-1">/</span>
+                    {item?.label2}
                   </span>
                 </motion.div>
               ))}

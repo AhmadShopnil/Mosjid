@@ -101,7 +101,8 @@ export default function Page() {
 
             {/* Render My Applications if user is authenticated */}
             {isAuthenticated && (
-                <div ref={myApplicationsRef} className='rounded-2xl p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909] scroll-mt-32'>
+                <div ref={myApplicationsRef} className='rounded-2xl p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909] 
+                scroll-mt-32'>
                     <div className='p-6 sm:p-8 bg-white rounded-[15px]'>
                         <BurialMyApplications
                             applications={myApplications}

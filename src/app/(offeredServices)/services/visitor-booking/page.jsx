@@ -53,9 +53,13 @@ export default function Page() {
             setPastBookings(res.data?.past_book?.data || []);
 
             // Pick total pages from whichever paginated key is available
-            const paginatedKey = res.data?.my_books || res.data?.future_book || res.data?.past_book;
-            setTotalPages(paginatedKey?.last_page || 1);
-            setCurrentPage(paginatedKey?.current_page || page);
+            const maxPages = Math.max(
+                res.data?.my_books?.last_page || 1,
+                res.data?.future_book?.last_page || 1,
+                res.data?.past_book?.last_page || 1
+            );
+            setTotalPages(maxPages);
+            setCurrentPage(page);
         } catch (error) {
             console.error("Failed to fetch visitors data:", error);
         } finally {

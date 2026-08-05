@@ -61,7 +61,7 @@ export default function MuslimConvertionTopSection({ onActionClick,setRefreshBoo
 
 
                             <p className="text-[#B98C20] text-base mt-2">
-                                Schedule your Shahada ceremony with our masjid and begin your journey into Islam, embracing a path of faith, peace, and spiritual growth
+                               A dedicated initiative of Osaka Masjid providing Shahadah services, Islamic education, mentoring, community support, and spiritual guidance for new Muslims.
                             </p>
                         </div>
 

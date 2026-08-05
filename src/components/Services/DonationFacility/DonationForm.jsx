@@ -21,13 +21,47 @@ export default function DonationForm() {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState({ text: "", type: "" });
 
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setForm((prev) => ({ ...prev, [name]: value }));
+
+        if (name === "contact_no") {
+            const cleanValue = value.replace(/[^0-9-\s]/g, "");
+            const digitCount = cleanValue.replace(/\D/g, "").length;
+
+            if (digitCount > 11) return;
+
+            setForm((prev) => ({
+                ...prev,
+                [name]: cleanValue,
+            }));
+            return;
+        }
+
+        setForm((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
     };
+
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setForm((prev) => ({ ...prev, [name]: value }));
+    // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const digits = form.contact_no.replace(/\D/g, "");
+
+        if (digits.length !== 11) {
+            setMessage({
+                text: "Contact number must be exactly 11 digits.",
+                type: "error",
+            });
+            return;
+        }
+
         setLoading(true);
         setMessage({ text: "", type: "" });
 
@@ -45,13 +79,13 @@ export default function DonationForm() {
     };
 
     return (
-        <div className="borderDonationHome rounded-[20px] px-8 py-8">
+        <div className="borderDonationHome shadow-md rounded-[20px] px-8 py-8">
             <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-8">
                 Donation Form
             </h2>
 
             <form onSubmit={handleSubmit}>
-               
+
                 {/* FORM FIELDS */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
                     <div>
@@ -72,8 +106,10 @@ export default function DonationForm() {
                             name="contact_no"
                             value={form.contact_no}
                             onChange={handleChange}
+                            placeholder="090-1234-5678"
                             className="w-full h-12 rounded-xl border border-green-700 px-4"
                         />
+                      
                     </div>
 
                     <div>

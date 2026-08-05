@@ -38,9 +38,12 @@ const Page = () => {
       setMyApplications(data.my_applications?.data || []);
 
       // Pick total pages from whichever paginated key is available
-      const paginatedKey = data.marriages || data.my_applications;
-      setTotalPages(paginatedKey?.last_page || 1);
-      setCurrentPage(paginatedKey?.current_page || page);
+      const maxPages = Math.max(
+          data.marriages?.last_page || 1,
+          data.my_applications?.last_page || 1
+      );
+      setTotalPages(maxPages);
+      setCurrentPage(page);
     } catch (err) {
       console.error('Error fetching marriage data:', err);
     } finally {

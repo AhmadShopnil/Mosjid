@@ -45,7 +45,10 @@ export default function Page() {
             </div>
 
             {/* Premium Tabbed Applications Interface */}
-            <div className="my-12 scroll-mt-32 bg-white rounded-3xl border border-gray-150 p-6 shadow-sm" ref={listRef}>
+           <div className='rounded-3xl p-[1px]  bg-gradient-to-b from-[#3198A0] to-[#51F909] shadow-md   my-12 scroll-mt-32'
+           ref={listRef}
+           >
+             <div className=" bg-white rounded-[23px]  p-6 ">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-150 pb-4 mb-6 gap-4">
                     <div>
                         <h3 className="text-xl font-bold text-[#00401A] flex items-center gap-2">
@@ -88,6 +91,7 @@ export default function Page() {
                     )}
                 </div>
             </div>
+           </div>
 
             {/* Reusable Guidelines/Policies Modal */}
             <PolicyModal
