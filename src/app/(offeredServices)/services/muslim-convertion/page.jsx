@@ -6,6 +6,7 @@ import BookingList from '@/components/Services/MuslimConversion/BookingList';
 import ConvertedList from '@/components/Services/MuslimConversion/ConvertedList';
 import MyApplications from '@/components/Services/MuslimConversion/MyApplications';
 import PolicyModal from '@/components/Shared/PolicyModal';
+import Pagination from '@/components/Shared/Pagination';
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axiosInstance from '@/helper/axiosInstance';
 import ServiceInnerHeader from '@/components/Services/Shared/ServiceInnerHeader';
@@ -17,6 +18,7 @@ export default function page() {
     const [myApplications, setMyApplications] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedApplication, setSelectedApplication] = useState(null);
+    const [refreshBookings, setRefreshBookings] = useState(false);
 
     // Modal state for guidelines
     const [modalConfig, setModalConfig] = useState({ isOpen: false, slug: '', title: '' });
@@ -26,15 +28,28 @@ export default function page() {
     const myApplicationsRef = useRef(null);
     const conversionFormRef = useRef(null);
 
-    const fetchData = useCallback(async () => {
+    // Pagination state
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+
+    const fetchData = useCallback(async (page = 1) => {
         try {
             setLoading(true);
-            const res = await axiosInstance.get('/conversion');
+            const res = await axiosInstance.get(`/conversion?page=${page}`);
             const data = res.data;
             setSlots(data.slots || []);
             setBookings(data.booking_list?.data || []);
             setConverted(data.converted_list?.data || []);
             setMyApplications(data.my_applications?.data || []);
+
+            // Pick total pages from whichever paginated key is available
+            const maxPages = Math.max(
+                data.booking_list?.last_page || 1,
+                data.converted_list?.last_page || 1,
+                data.my_applications?.last_page || 1
+            );
+            setTotalPages(maxPages);
+            setCurrentPage(page);
         } catch (err) {
             console.error('Error fetching conversion data:', err);
         } finally {
@@ -43,8 +58,14 @@ export default function page() {
     }, []);
 
     useEffect(() => {
-        fetchData();
-    }, [fetchData]);
+        fetchData(currentPage);
+    }, [fetchData, currentPage,refreshBookings]);
+
+    const handlePageChange = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
 
     const handleActionClick = (label) => {
         if (label.includes('Guide')) {
@@ -74,7 +95,7 @@ export default function page() {
                 title2="التحول إلى الإسلام"
             />
 
-            <MuslimConvertionTopSection onActionClick={handleActionClick} />
+            <MuslimConvertionTopSection onActionClick={handleActionClick} setRefreshBookings={setRefreshBookings} />
             <div ref={myApplicationsRef}
                 className='scroll-mt-32'
             >
@@ -100,6 +121,17 @@ export default function page() {
             >
                 <ConvertedList converted={converted} loading={loading} />
             </div>
+
+            {/* Single Pagination controlling all 3 tables */}
+            {!loading && totalPages > 1 && (
+                <div className="flex justify-center mt-4 pb-4">
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                    />
+                </div>
+            )}
 
             <PolicyModal
                 isOpen={modalConfig.isOpen}

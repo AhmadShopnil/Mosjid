@@ -6,6 +6,48 @@ import { motion } from "framer-motion";
 import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 
 export default function HalalCertificateTopSection({ onActionClick }) {
+
+/* ---------------- animation variants ---------------- */
+
+const container = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const fadeLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const fadeRight = {
+  hidden: { opacity: 0, x: 40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -93,9 +135,10 @@ export default function HalalCertificateTopSection({ onActionClick }) {
                             <motion.div
                                 key={i}
                                 onClick={() => onActionClick && onActionClick(item.label)}
-                                initial={{ y: 20, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.4 + i * 0.15 }}
+                                variants={fadeUp}
+                                whileHover={{ scale: 1.03, y: -2 }}
+                                transition={{ type: "spring", stiffness: 200, damping: 15 }}
+
                                 className="cursor-pointer hover:bg-white/80 transition border border-[#F7BA2A] bg-white/50 p-4 flex items-center gap-4 rounded-[10px]"
                             >
                                 <Image

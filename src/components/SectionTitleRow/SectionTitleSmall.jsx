@@ -22,7 +22,7 @@ const SectionTitleSmall = ({
         </h3>
         {/* Consistent Left Underline */}
         <div
-          className="hidden md:block absolute bottom-0 left-0 w-full h-[2px]"
+          className="hidden md:block absolute bottom-0 left-0 w-full h-[1px]"
           style={{
             background: `linear-gradient(to right, ${gradientColor}, transparent)`,
           }}
@@ -36,7 +36,7 @@ const SectionTitleSmall = ({
         </h3>
         {/* Consistent Right Underline */}
         <div
-          className="hidden md:block absolute bottom-0 right-0 w-full h-[2px]"
+          className="hidden md:block absolute bottom-0 right-0 w-full h-[1px]"
           style={{
             background: `linear-gradient(to left, ${gradientColor}, transparent)`,
           }}

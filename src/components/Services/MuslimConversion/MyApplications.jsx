@@ -4,6 +4,8 @@ import TableTitle from "../Shared/TableTitle";
 import { FiEdit } from "react-icons/fi";
 import Link from "next/link";
 import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
+import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
+import SectionTitleSmall from "@/components/SectionTitleRow/SectionTitleSmall";
 
 const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
   const formatDate = (dateStr) => {
@@ -71,11 +73,21 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
 
   return (
 
-    <GradientBorderWrapper1>
+    <GradientBorderWrapper1
+      rounded="rounded-[20px]"
+      innerRounded="rounded-[19px]"
+      className="shadow-md hover:shadow-lg transition-all duration-300 "
+      innerClassName=""
+    
+    >
 
       <div className="w-full p-4 lg:p-6">
         <div className="mb-6">
-          <TableTitle title1="My Applications" title2="予約リスト" />
+          <SectionTitleSmall
+            leftTitle={"My Applications"}
+            rightTitle={"予約リスト"}
+          />
+          {/* <TableTitle title1="My Applications" title2="予約リスト" /> */}
         </div>
 
         {loading ? (
@@ -90,7 +102,7 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
             <table className="w-full border-collapse min-w-[600px]">
               <thead>
                 <tr>
-                  {["Sl. No.", "Event Date", "Start Time", "End Time", "Status", "Action"].map((head) => (
+                  {["Sl. No.","UID", "Event Date", "Start Time", "End Time", "Status", "Action"].map((head) => (
                     <th key={head}>
                       <div className="bg-[#52B920] text-white border border-[#B0C4B8] font-bold rounded-t-full py-1.5 text-center whitespace-nowrap px-2">{head}</div>
                     </th>
@@ -98,10 +110,15 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
                 </tr>
               </thead>
               <tbody>
-                {applications.map((app, index) => (
+                {applications?.map((app, index) => (
                   <tr key={app.id} className={index % 2 === 0 ? "bg-white" : "bg-[#52B920]/40"}>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{String(index + 1).padStart(2, "0")}</td>
-                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatDate(app.booked_date)}</td>
+                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
+                      {app?.unique_id}
+                      </td>
+                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
+                      {formatDate(app?.booked_date)}
+                      </td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatTime(app.start_time)}</td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatTime(app.end_time)}</td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{getStatusBadge(app.status)}</td>

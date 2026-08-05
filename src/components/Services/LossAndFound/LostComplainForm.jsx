@@ -20,8 +20,32 @@ export default function LostComplainForm({ onSuccess, reportRef }) {
   const [form, setForm] = useState(INITIAL_STATE);
   const [loading, setLoading] = useState(false);
 
+  // const handleChange = (e) => {
+  //   const { name, value, files } = e.target;
+  //   setForm((prev) => ({
+  //     ...prev,
+  //     [name]: files ? files[0] : value,
+  //   }));
+  // };
+
+
   const handleChange = (e) => {
     const { name, value, files } = e.target;
+
+    // Contact number validation
+    if (name === "contact_no") {
+      const cleanValue = value.replace(/[^0-9-\s]/g, "");
+      const digitCount = cleanValue.replace(/\D/g, "").length;
+
+      if (digitCount > 11) return;
+
+      setForm((prev) => ({
+        ...prev,
+        [name]: cleanValue,
+      }));
+      return;
+    }
+
     setForm((prev) => ({
       ...prev,
       [name]: files ? files[0] : value,
@@ -30,11 +54,19 @@ export default function LostComplainForm({ onSuccess, reportRef }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const digits = form.contact_no.replace(/\D/g, "");
+
+    if (digits.length !== 11) {
+      alert("Contact number must be exactly 11 digits.");
+      return;
+    }
+
     setLoading(true);
 
     const formData = new FormData();
     Object.entries(form).forEach(([key, value]) => {
-      // Safely append non-null file/text blobs
+      // append non-null file/text 
       if (value !== "" && value !== null) {
         formData.append(key, value);
       }
@@ -191,7 +223,8 @@ export default function LostComplainForm({ onSuccess, reportRef }) {
           <button
             type="submit"
             disabled={loading}
-            className="bg-[#52B920] text-white text-lg px-8 py-2 md:py-2.5 rounded-[10px] hover:bg-green-600 transition disabled:opacity-60"
+            className="bg-[#52B920] text-white text-lg px-8 py-2 md:py-2.5 rounded-[10px] hover:bg-green-600 transition
+             disabled:opacity-60 cursor-pointer"
           >
             {loading ? "Submitting..." : "Submit"}
           </button>
@@ -200,7 +233,8 @@ export default function LostComplainForm({ onSuccess, reportRef }) {
             type="button"
             disabled={loading}
             onClick={() => setForm(INITIAL_STATE)}
-            className="bg-[#FFE9E9] border border-[#FF0000] text-[#333333] text-lg px-8 py-2 md:py-2.5 rounded-[10px] hover:bg-red-50 transition disabled:opacity-60"
+            className="bg-[#FFE9E9] border border-[#FF0000] text-[#333333] text-lg px-8 py-2 md:py-2.5 rounded-[10px]
+             hover:bg-red-50 transition disabled:opacity-60 cursor-pointer"
           >
             Cancel
           </button>

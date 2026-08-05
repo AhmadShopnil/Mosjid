@@ -7,15 +7,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axiosInstance from "@/helper/axiosInstance";
 
 //  Validation 
+//  Validation 
 const bookigSchema = z.object({
     name: z.string().min(1, "Applicant name is required"),
     father_name: z.string().min(1, "Father name is required"),
     booked_date: z.string().min(1, "Date is required"),
     slot_id: z.string().min(1, "Time slot is required"),
-    contact_no: z.string().min(8, "Valid contact number required"),
+    contact_no: z.string().transform(val => val.replace(/\D/g, "")).refine(val => val.length === 11, { message: "Contact number must be exactly 11 digits" }),
 });
 
-export default function MuslimConversionBookingForm() {
+export default function MuslimConversionBookingForm({setRefreshBookings}) {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
@@ -86,11 +87,13 @@ export default function MuslimConversionBookingForm() {
             setSuccess("Booking submitted successfully!");
             reset();
             setDynamicSlots([]);
+             setRefreshBookings(true)
         } catch (err) {
             console.error(err);
             setErrorMsg("Failed to submit booking. Please try again.");
         } finally {
             setLoading(false);
+           
         }
     };
 
@@ -115,6 +118,7 @@ export default function MuslimConversionBookingForm() {
 
             <Input
                 type="date"
+                min={new Date().toISOString().split('T')[0]}
                 label="Booking Date / 予約日"
                 {...register("booked_date")}
                 error={errors.booked_date?.message}
@@ -159,7 +163,7 @@ export default function MuslimConversionBookingForm() {
 
             <Input
                 label="Contact No. / お問い合わせ番号"
-                // placeholder="電話番号"
+                placeholder="090-1234-5678"
                 {...register("contact_no")}
                 error={errors.contact_no?.message}
             />
@@ -180,17 +184,21 @@ export default function MuslimConversionBookingForm() {
                     {loading ? "Submitting..." : "Submit"}
                 </button>
 
-                {/* <button
+                <button
                     type="button"
                     onClick={() => {
                         reset();
                         setSuccess("");
                         setErrorMsg("");
+                        setDynamicSlots([]);
+                        // setTimeout(() => {
+                        //     window.location.reload();
+                        // }, 200);
                     }}
                     className="border border-red-500 text-red-600 bg-red-100 hover:bg-red-200 px-6 py-2 rounded-md cursor-pointer"
                 >
                     Cancel
-                </button> */}
+                </button>
             </div>
         </form>
     );

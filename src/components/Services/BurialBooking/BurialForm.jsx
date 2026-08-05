@@ -147,7 +147,8 @@ export default function BurialForm({ application, countries = [], relationships 
     };
 
     return (
-        <div className="w-full max-w-7xl mx-auto rounded-[30px] border-2 border-[#52B920]/30 bg-[#F9FFF6]/80 backdrop-blur-sm p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.06)]">
+        <div className="w-full max-w-7xl mx-auto rounded-[30px] border-2 border-[#52B920]/30
+         bg-[#F9FFF6]/80 backdrop-blur-sm p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.06)]">
             <h2 className="text-[36px] font-extrabold text-[#333333] text-center mb-2">
                 Burial Form
             </h2>

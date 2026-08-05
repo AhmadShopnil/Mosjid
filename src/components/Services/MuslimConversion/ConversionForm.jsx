@@ -7,7 +7,12 @@ import axiosInstance from "@/helper/axiosInstance";
 import toast from "react-hot-toast";
 
 export default function ConversionForm({ application, onCancel }) {
-    const { register, handleSubmit, reset } = useForm();
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm();
     const appId = application?.id;
 
     const [applicantPhoto, setApplicantPhoto] = useState(null);
@@ -20,8 +25,17 @@ export default function ConversionForm({ application, onCancel }) {
             toast.error("Please select an approved application to fill the form.");
             return;
         }
-        console.log("pictureArea",pictureArea)
-        console.log("imamSign",imamSign?.file)
+        if (!pictureArea) {
+            toast.error("Picture Area is required.");
+            return;
+        }
+
+        if (!imamSign) {
+            toast.error("Imam Sign is required.");
+            return;
+        }
+        // console.log("pictureArea", pictureArea)
+        // console.log("imamSign", imamSign?.file)
 
         const formData = new FormData();
         formData.append("informations[name]", data.name || "");
@@ -45,7 +59,7 @@ export default function ConversionForm({ application, onCancel }) {
             formData.append("informations[attached][imam_sign]", imamSign?.file);
         }
 
-        
+
         try {
             setLoading(true);
             const response = await axiosInstance.post(`/conversion/${appId}`, formData, {
@@ -53,6 +67,7 @@ export default function ConversionForm({ application, onCancel }) {
                     "Content-Type": "multipart/form-data",
                 },
             });
+            console.log("test conversion", response)
 
             if (response.status === 200 || response.status === 201 || response.data?.success) {
                 toast.success("Conversion form submitted successfully.");
@@ -87,7 +102,8 @@ export default function ConversionForm({ application, onCancel }) {
     };
 
     return (
-        <section className="borderDonationHome p-4 sm:p-6 mt-6 relative">
+        <section className=" p-4 sm:p-6 mt-6 relative rounded-[30px] border-2  border-[#52B920]/30
+         bg-[#F9FFF6]/80 backdrop-blur-sm shadow-[0_8px_30px_rgb(0,0,0,0.06)]  ">
             {onCancel && (
                 <button
                     onClick={onCancel}
@@ -101,7 +117,7 @@ export default function ConversionForm({ application, onCancel }) {
             )}
 
             <h2 className="text-xl sm:text-2xl font-semibold mb-6 pr-8">
-                Converted Person Information
+                Person Information
             </h2>
 
             {application && (
@@ -135,26 +151,95 @@ export default function ConversionForm({ application, onCancel }) {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
 
-                    <FormRow en="Name" jp="氏名" {...register("name")} />
-                    <FormRow en="Nationality" jp="国籍" {...register("nationality")} />
+                    <FormRow
+                        en="Name"
+                        jp="氏名"
+                        error={errors.name}
+                        {...register("name", { required: "Name is required" })}
+                    />
 
-                    <FormRow en="Muslim Name" jp="イスラム教徒の名前" {...register("muslimName")} />
-                    <FormRow en="Address" jp="住所" {...register("address")} />
+                    <FormRow
+                        en="Nationality"
+                        jp="国籍"
+                        error={errors.nationality}
+                        {...register("nationality", { required: "Nationality is required" })}
+                    />
 
-                    <FormRow en="Date of Birth" jp="生年月日" type="date" {...register("dob")} />
-                    <FormRow en="Declared Date" jp="申告日" type="date" {...register("declaredDate")} />
+                    <FormRow
+                        en="Muslim Name"
+                        jp="イスラム教徒の名前"
+                        error={errors.muslimName}
+                        {...register("muslimName", { required: "Muslim Name is required" })}
+                    />
 
-                    <FormRow en="Mobile No" jp="携帯電話番号" {...register("mobile")} />
-                    <FormRow en="Witness" jp="証人" {...register("witness1")} />
+                    <FormRow
+                        en="Address"
+                        jp="住所"
+                        error={errors.address}
+                        {...register("address", { required: "Address is required" })}
+                    />
 
-                    <FormRow en="Witness" jp="証人" {...register("witness2")} />
-                    <FormRow en="Witness 3" jp="証人 3" {...register("witness3")} />
+                    <FormRow
+                        en="Date of Birth"
+                        jp="生年月日"
+                        type="date"
+                        error={errors.dob}
+                        {...register("dob", { required: "Date of Birth is required" })}
+                    />
 
-                    <ImageField en="Picture Area" jp="画像エリア" image={pictureArea} setImage={setPictureArea} />
-                    <FormRow en="Previous Religion" jp="以前の宗教" {...register("previousReligion")} />
+                    <FormRow
+                        en="Declared Date"
+                        jp="申告日"
+                        type="date"
+                        error={errors.declaredDate}
+                        {...register("declaredDate", { required: "Declared Date is required" })}
+                    />
 
-                    <ImageField en="Imam Sign" jp="イマームのサイン" image={imamSign} setImage={setImamSign} />
-                    <FormRow en="Passport No." jp="パスポート番号" {...register("passport")} />
+                    <FormRow
+                        en="Mobile No"
+                        jp="携帯電話番号"
+                        error={errors.mobile}
+                        {...register("mobile", { required: "Mobile Number is required" })}
+                    />
+
+                    <FormRow
+                        en="Witness"
+                        jp="証人"
+                        error={errors.witness1}
+                        {...register("witness1", { required: "Witness 1 is required" })}
+                    />
+
+                    <FormRow
+                        en="Witness"
+                        jp="証人"
+                        error={errors.witness2}
+                        {...register("witness2", { required: "Witness 2 is required" })}
+                    />
+
+                    <FormRow
+                        en="Witness 3"
+                        jp="証人 3"
+                        error={errors.witness3}
+                        {...register("witness3", { required: "Witness 3 is required" })}
+                    />
+
+                    <FormRow
+                        en="Previous Religion"
+                        jp="以前の宗教"
+                        error={errors.previousReligion}
+                        {...register("previousReligion", {
+                            required: "Previous Religion is required",
+                        })}
+                    />
+
+                    <FormRow
+                        en="Passport No."
+                        jp="パスポート番号"
+                        error={errors.passport}
+                        {...register("passport", {
+                            required: "Passport Number is required",
+                        })}
+                    />
 
                     {/* <ImageField en="Applicant Picture" jp="申請者の写真" image={applicantPhoto} setImage={setApplicantPhoto} /> */}
                 </div>
@@ -194,7 +279,7 @@ export default function ConversionForm({ application, onCancel }) {
     );
 }
 
-function FormRow({ en, jp, type = "text", ...props }) {
+function FormRow({ en, jp, type = "text", error, ...props }) {
     return (
         <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3">
             <label className="md:w-44">
@@ -208,15 +293,53 @@ function FormRow({ en, jp, type = "text", ...props }) {
 
             <span className="hidden md:block text-gray-400">:</span>
 
-            <input
-                type={type}
-                placeholder="Type Now"
-                {...props}
-                className="w-full md:flex-1 px-3 py-2.5 rounded-md border border-green-700 outline-none text-sm"
-            />
+            <div className="w-full md:flex-1">
+                <input
+                    type={type}
+                    placeholder="Type Now"
+                    {...props}
+                    className={`w-full px-3 py-2.5 rounded-md outline-none text-sm ${error
+                        ? "border border-red-500"
+                        : "border border-green-700"
+                        }`}
+                />
+
+                {error && (
+                    <p className="text-xs text-red-500 mt-1">
+                        {error.message}
+                    </p>
+                )}
+            </div>
         </div>
     );
 }
+
+
+
+// function FormRow({ en, jp, type = "text", error, ...props }) {
+//     return (
+//         <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3">
+//             <label className="md:w-44">
+//                 <p className="font-semibold text-gray-800 text-sm sm:text-base">
+//                     {en}
+//                 </p>
+//                 <p className="text-[11px] sm:text-xs text-gray-400">
+//                     {jp}
+//                 </p>
+//             </label>
+
+//             <span className="hidden md:block text-gray-400">:</span>
+
+//             <input
+//                 type={type}
+
+//                 placeholder="Type Now"
+//                 {...props}
+//                 className="w-full md:flex-1 px-3 py-2.5 rounded-md border border-green-700 outline-none text-sm"
+//             />
+//         </div>
+//     );
+// }
 
 function ImageField({ en, jp, image, setImage }) {
     const handleImageChange = (e) => {

@@ -51,14 +51,48 @@ export default function HalalCertificateForm({ onCancel }) {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+
+        if (name === "company_contact_no") {
+            const cleanValue = value.replace(/[^0-9-\s]/g, "");
+            const digitCount = cleanValue.replace(/\D/g, "").length;
+
+            if (digitCount > 11) return;
+
+            setForm((prev) => ({
+                ...prev,
+                [name]: cleanValue,
+            }));
+            return;
+        }
+
         setForm((prev) => ({
             ...prev,
             [name]: value,
         }));
     };
 
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setForm((prev) => ({
+    //         ...prev,
+    //         [name]: value,
+    //     }));
+    // };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+
+        const digits = form.company_contact_no.replace(/\D/g, "");
+
+        if (digits.length !== 11) {
+            setMessage({
+                type: "error",
+                text: "Contact number must be exactly 11 digits.",
+            });
+            return;
+        }
+
         setMessage({ type: "", text: "" });
         setLoading(true);
 
@@ -94,8 +128,14 @@ export default function HalalCertificateForm({ onCancel }) {
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <Input label="Company Name" name="company_name" value={form.company_name} onChange={handleChange} required />
-                    <Input label="Business Address" name="company_address" value={form.company_address} onChange={handleChange} required />
-                    <Input label="Contact No" name="company_contact_no" value={form.company_contact_no} onChange={handleChange} required />
+                    <Input
+                        label="Business Address" name="company_address" value={form.company_address} onChange={handleChange} required />
+                    <Input label="Contact No"
+                        name="company_contact_no"
+                        value={form.company_contact_no}
+                        onChange={handleChange}
+                        placeholder="090-1234-5678"
+                        required />
                     <Input label="Representative Name" name="company_representive" value={form.company_representive} onChange={handleChange} required />
                 </div>
 
@@ -212,7 +252,7 @@ const SectionTitle = ({ title }) => (
     </div>
 );
 
-const Input = ({ label, name, value, onChange, type = "text", required = false }) => (
+const Input = ({ label, name, value, onChange, type = "text", required = false,placeholder="" }) => (
     <div>
         <label className="text-sm block mb-1">{label} {required && <span className="text-red-500">*</span>}</label>
         <input
@@ -221,6 +261,7 @@ const Input = ({ label, name, value, onChange, type = "text", required = false }
             value={value}
             onChange={onChange}
             required={required}
+            placeholder={placeholder}
             className="w-full h-12 rounded-xl border border-green-700 px-4 focus:outline-none focus:ring-1 focus:ring-green-500"
         />
     </div>

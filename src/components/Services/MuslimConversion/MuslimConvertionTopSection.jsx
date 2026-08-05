@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
+import { motion } from "framer-motion";
 
 import MuslimConversionBookingForm from "./MuslimConversionBookingForm";
 import { useAuth } from "@/context/AuthContext";
@@ -15,7 +16,7 @@ const menuList = [
 ]
 
 
-export default function MuslimConvertionTopSection({ onActionClick }) {
+export default function MuslimConvertionTopSection({ onActionClick,setRefreshBookings }) {
     const { isAuthenticated, openAuthModal } = useAuth();
 
     return (
@@ -60,7 +61,7 @@ export default function MuslimConvertionTopSection({ onActionClick }) {
 
 
                             <p className="text-[#B98C20] text-base mt-2">
-                                Schedule your Shahada ceremony with our masjid and begin your journey into Islam, embracing a path of faith, peace, and spiritual growth
+                               A dedicated initiative of Osaka Masjid providing Shahadah services, Islamic education, mentoring, community support, and spiritual guidance for new Muslims.
                             </p>
                         </div>
 
@@ -75,27 +76,34 @@ export default function MuslimConvertionTopSection({ onActionClick }) {
                             />
                         </div>
 
-                        <div className="mt-10 grid grid-cols-2 xl:grid-cols-4 gap-4 justify-around shadow-xl  rounded-3xl py-8 px-6 ">
-                            {menuList.map((item, i) => (
-                                <div
-                                    key={i}
-                                    className="flex flex-col  justify-start items-center hover:cursor-pointer gap-4    "
-                                    onClick={() => onActionClick && onActionClick(item.label)}
-                                >
-                                    <div className="w-[50px] h-[50px]  ">
+                        {/* Menu Buttons  */}
+                        <div className="mt-10 rounded-[30px] p-4 lg:p-6 shadow-[0px_4px_10px_0px_rgba(0,0,0,0.1)] flex flex-wrap justify-around items-stretch gap-y-4 gap-x-2">
+                            {menuList?.map((item, i) => (
+                                <React.Fragment key={i}>
+                                    {i > 0 && (
+                                        <div className="hidden sm:flex items-center">
+                                            <div className="h-[80px] w-[2px] bg-[#F7BA2A]/40" />
+                                        </div>
+                                    )}
+                                    <motion.div
+                                        onClick={() => onActionClick && onActionClick(item.label)}
+                                        whileHover={{ scale: 1.05, y: -2 }}
+                                        transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                                        className="flex flex-col items-center text-center cursor-pointer transition w-24"
+                                    >
                                         <Image
                                             src={`/images/offerServices/IslamicName/${item.icon}`}
                                             alt={item.label}
-                                            width={40}
-                                            height={40}
-                                            className="w-[50px] h-[50px] mx-auto hover:shadow-2xl  hover:rounded-sm"
+                                            width={50}
+                                            height={50}
+                                            className="w-[50px] h-[50px] mx-auto"
                                         />
-                                    </div>
-                                    <div className="text-[#B98C20] text-center text-sm md:text-base font-bold w-28">
-                                      <span>  {item.label}</span> <br />
-                                        <span>  {item.label2}</span>
-                                    </div>
-                                </div>
+                                        <div className="font-bold text-sm mt-1">
+                                            <span className="text-[#B98C20] block leading-snug">{item.label}</span>
+                                            <span className="text-[#00401A] block leading-snug">{item.label2}</span>
+                                        </div>
+                                    </motion.div>
+                                </React.Fragment>
                             ))}
                         </div>
 
@@ -106,7 +114,7 @@ export default function MuslimConvertionTopSection({ onActionClick }) {
                     <div>
                         <div className="space-y-3 mt-4 h-full">
                             {isAuthenticated ? (
-                                <MuslimConversionBookingForm />
+                                <MuslimConversionBookingForm  setRefreshBookings={setRefreshBookings}/>
                             ) : (
                                 <div className="flex flex-col items-center justify-center space-y-6 text-center bg-white/60 p-4 lg:p-8 rounded-2xl h-full shadow-inner border border-green-100 w-full min-h-[400px]">
                                     <div className="text-4xl p-4 rounded-full bg-white text-[#B98C20] shadow-sm">

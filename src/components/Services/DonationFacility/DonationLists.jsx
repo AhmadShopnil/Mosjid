@@ -4,6 +4,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import GradientBorder from "@/components/GradientBorder/GradientBorder";
 import Pagination from "@/components/Shared/Pagination";
 import axiosInstance from "@/helper/axiosInstance";
+import SectionTitleSmall from "@/components/SectionTitleRow/SectionTitleSmall";
+import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 
 export default function DonationLists({ bookingListRef, historyListRef }) {
   const [data, setData] = useState({
@@ -68,7 +70,7 @@ export default function DonationLists({ bookingListRef, historyListRef }) {
 
   const registerData = data?.donation_register?.data || [];
   const historyData = data?.donation_history?.data || [];
-  
+
   // Note: the backend uses the same `page` param for both objects, so we just take last_page from register (or max of both).
   const totalPages = Math.max(
     data?.donation_register?.last_page || 1,
@@ -79,9 +81,19 @@ export default function DonationLists({ bookingListRef, historyListRef }) {
     <div className="space-y-12">
       {/* Donation Booking List */}
       <div className="mt-6 scroll-mt-32" ref={bookingListRef}>
-        <GradientBorder>
+        <GradientBorderWrapper1
+          rounded="rounded-[20px]"
+          innerRounded="rounded-[19px]"
+          className="shadow-md hover:shadow-lg transition-all duration-300 "
+          innerClassName="p-3"
+        >
           <div className="w-full p-4">
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">Donation Booking List</h2>
+
+            <SectionTitleSmall
+              leftTitle={"Donation Booking List"}
+              rightTitle={"寄付予約一覧"}
+            />
+            {/* <h2 className="text-2xl font-semibold text-[#333333] mb-4">Donation Booking List</h2> */}
 
             {loading ? (
               <div className="flex justify-center items-center py-12">
@@ -143,14 +155,27 @@ export default function DonationLists({ bookingListRef, historyListRef }) {
               </div>
             )}
           </div>
-        </GradientBorder>
+        </GradientBorderWrapper1>
       </div>
 
       {/* Donation History List */}
       <div className="mt-6 scroll-mt-32" ref={historyListRef}>
-        <GradientBorder>
+        <GradientBorderWrapper1
+          rounded="rounded-[20px]"
+          innerRounded="rounded-[19px]"
+          className="shadow-md hover:shadow-lg transition-all duration-300 "
+          innerClassName="p-3"
+
+
+        >
           <div className="w-full p-4">
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">Donation History List</h2>
+
+            <SectionTitleSmall
+              leftTitle={"Donation History List"}
+              rightTitle={"寄付履歴一覧"}
+            />
+
+
 
             {loading ? (
               <div className="flex justify-center items-center py-12">
@@ -212,7 +237,7 @@ export default function DonationLists({ bookingListRef, historyListRef }) {
               </div>
             )}
           </div>
-        </GradientBorder>
+        </GradientBorderWrapper1>
       </div>
 
       {/* Pagination */}

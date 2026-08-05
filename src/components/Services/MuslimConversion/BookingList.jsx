@@ -2,6 +2,7 @@ import GradientBorder from "@/components/GradientBorder/GradientBorder";
 import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 import React from "react";
 import TableTitle from "../Shared/TableTitle";
+import SectionTitleSmall from "@/components/SectionTitleRow/SectionTitleSmall";
 
 const BookingList = ({ bookings = [], loading = false }) => {
   const formatDate = (dateStr) => {
@@ -29,11 +30,22 @@ const BookingList = ({ bookings = [], loading = false }) => {
   };
 
   return (
-    <GradientBorderWrapper1>
+    <GradientBorderWrapper1
+      rounded="rounded-[20px]"
+      innerRounded="rounded-[19px]"
+      className="shadow-md hover:shadow-lg transition-all duration-300 "
+      innerClassName=""     
+      >
+    
+    
       <div className="w-full p-4">
 
          <div className="mb-6">
-          <TableTitle title1="Booking List" title2="予約リスト" />
+            <SectionTitleSmall
+            leftTitle={"Booking List"}
+            rightTitle={"予約リスト"}
+          />
+          {/* <TableTitle title1="Booking List" title2="予約リスト" /> */}
         </div>
 
         {loading ? (
