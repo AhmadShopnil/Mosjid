@@ -111,7 +111,8 @@ export default function HalalCertificateForm({ onCancel }) {
     };
 
     return (
-        <div className="borderDonationHome rounded-[20px] px-8 py-8">
+        <div className="border-2  border-[#52B920]/30
+         bg-[#F9FFF6]/80 backdrop-blur-sm shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-[20px] px-8 py-8">
             <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-8 border-b-2 border-gray-200 pb-2">
                 Halal Certificate Form
             </h2>
@@ -134,7 +135,7 @@ export default function HalalCertificateForm({ onCancel }) {
                         name="company_contact_no"
                         value={form.company_contact_no}
                         onChange={handleChange}
-                        placeholder="090-1234-5678"
+                        placeholder="000-0000-0000"
                         required />
                     <Input label="Representative Name" name="company_representive" value={form.company_representive} onChange={handleChange} required />
                 </div>

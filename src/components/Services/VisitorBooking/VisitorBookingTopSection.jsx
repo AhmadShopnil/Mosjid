@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
+import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 
 export default function VisitorBookingTopSection({ onActionClick }) {
     return (
@@ -38,14 +39,13 @@ export default function VisitorBookingTopSection({ onActionClick }) {
                     initial={{ y: -30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.6 }}
-                    className="flex flex-wrap justify-between"
+                    className=""
                 >
-                    <h3 className="text-[#B98C20] text-[30px] md:text-[36px] font-bold mb-1 pb-1 md:mb-3 md:pb-3">
-                        Masjid Visitation
-                    </h3>
-                    <h3 className="text-[#B98C20] text-[30px] md:text-[36px] font-bold text-end mb-3 pb-3">
-                        モスク訪問
-                    </h3>
+                    <SectionTitleRow
+                        leftTitle={" Masjid Visitation"}
+                        rightTitle={"モスク訪問"}
+                    />
+
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

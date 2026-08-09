@@ -199,6 +199,7 @@ export default function ConversionForm({ application, onCancel }) {
                         en="Mobile No"
                         jp="携帯電話番号"
                         error={errors.mobile}
+                        placeholder="000-0000-0000"
                         {...register("mobile", { required: "Mobile Number is required" })}
                     />
 
@@ -279,7 +280,7 @@ export default function ConversionForm({ application, onCancel }) {
     );
 }
 
-function FormRow({ en, jp, type = "text", error, ...props }) {
+function FormRow({ en, jp,placeholder="Type Now", type = "text", error, ...props }) {
     return (
         <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3">
             <label className="md:w-44">
@@ -296,7 +297,7 @@ function FormRow({ en, jp, type = "text", error, ...props }) {
             <div className="w-full md:flex-1">
                 <input
                     type={type}
-                    placeholder="Type Now"
+                    placeholder={placeholder}
                     {...props}
                     className={`w-full px-3 py-2.5 rounded-md outline-none text-sm ${error
                         ? "border border-red-500"

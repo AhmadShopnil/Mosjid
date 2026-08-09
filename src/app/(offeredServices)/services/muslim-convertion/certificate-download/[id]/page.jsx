@@ -48,7 +48,7 @@ const Page = () => {
                 filename: `Conversion_Certificate_${id}.pdf`,
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, useCORS: true, allowTaint: true },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
             };
 
             await html2pdf().from(element).set(opt).save();
@@ -84,7 +84,7 @@ const Page = () => {
 
     // Map API response to component props
     const info = certData?.others_infomartions?.informations || {};
-    const attached = certData?.others_infomartions?.attached || {};
+    const attached = certData?.others_infomartions?.informations?.attached || {};
 
     const getImageUrl = (path) => {
         if (!path) return null;
@@ -101,6 +101,7 @@ const Page = () => {
             return dateStr;
         }
     };
+    console.log("co img",attached)
 
     const mappedData = {
         applicant: {
@@ -132,6 +133,7 @@ const Page = () => {
         }
     };
 
+    
     return (
         <div className="min-h-screen ">
             <div className="mx-auto ">

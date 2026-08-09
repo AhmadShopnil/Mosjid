@@ -1,5 +1,6 @@
 "use client";
 
+import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 import Image from "next/image";
 import React from "react";
 
@@ -32,14 +33,19 @@ export default function AcademicDocumentsTopSection({ onActionClick }) {
             {/* 🔹 Content */}
             <div className="relative px-4 sm:px-6 py-14 ">
                 {/* title */}
-                <div className="flex flex-wrap justify-between">
+
+                <SectionTitleRow
+                    leftTitle={" Academic Documents"}
+                    rightTitle={"学術文書"}
+                />
+                {/* <div className="flex flex-wrap justify-between">
                     <h3 className="text-[#B98C20] text-[36px] font-bold mb-3 pb-3">
                         Academic Documents
                     </h3>
                     <h3 className="text-[#B98C20] text-[36px] font-bold text-end mb-3 pb-3">
                         学術文書
                     </h3>
-                </div>
+                </div> */}
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Left Section */}
