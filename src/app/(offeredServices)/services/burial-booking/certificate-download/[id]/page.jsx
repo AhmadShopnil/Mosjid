@@ -66,43 +66,8 @@ const Page = () => {
 
         if (!element) return;
 
-        const removedRules = [];
-
         try {
             setIsDownloading(true);
-
-            // Remove problematic oklch css rules temporarily
-            for (let i = 0; i < document.styleSheets.length; i++) {
-                const sheet = document.styleSheets[i];
-
-                try {
-                    const rules = sheet.cssRules || sheet.rules;
-
-                    if (!rules) continue;
-
-                    for (let j = rules.length - 1; j >= 0; j--) {
-                        const rule = rules[j];
-
-                        if (
-                            rule?.cssText &&
-                            rule.cssText.includes("oklch")
-                        ) {
-                            removedRules.push({
-                                sheet,
-                                cssText: rule.cssText,
-                                index: j,
-                            });
-
-                            sheet.deleteRule(j);
-                        }
-                    }
-                } catch (err) {
-                    console.debug(
-                        "Skipping stylesheet:",
-                        err
-                    );
-                }
-            }
 
             const html2pdf = (
                 await import("html2pdf.js")
@@ -119,6 +84,16 @@ const Page = () => {
                     scale: 2,
                     useCORS: true,
                     allowTaint: true,
+                    onclone: (clonedDoc) => {
+                        // Safely replace oklch(...) in all style tags without deleting stylesheets
+                        // so spacing, typography, and layout stay 100% identical between preview & PDF
+                        const styleSheets = clonedDoc.querySelectorAll("style");
+                        styleSheets.forEach((style) => {
+                            if (style.textContent && style.textContent.includes("oklch")) {
+                                style.textContent = style.textContent.replace(/oklch\([^)]+\)/g, "#000000");
+                            }
+                        });
+                    },
                 },
                 jsPDF: {
                     unit: "mm",
@@ -143,25 +118,6 @@ const Page = () => {
                 }`
             );
         } finally {
-            // Restore removed css rules
-            for (
-                let i = removedRules.length - 1;
-                i >= 0;
-                i--
-            ) {
-                const { sheet, cssText, index } =
-                    removedRules[i];
-
-                try {
-                    sheet.insertRule(cssText, index);
-                } catch (err) {
-                    console.error(
-                        "Failed to restore css rule:",
-                        err
-                    );
-                }
-            }
-
             setIsDownloading(false);
         }
     };
@@ -207,7 +163,11 @@ const Page = () => {
         deceased: {
             name: certData.deceased_name || "—",
 
+            fatherName: info.father_name || "—",
+
             gender: info.gender || "—",
+
+            address: info.address || "—",
 
             dateOfBirth: formatDate(
                 info.date_of_birth
@@ -227,6 +187,8 @@ const Page = () => {
                 info.passport_no || "—",
 
             idCard: info.id_card || "—",
+
+            photoUrl: certData.photo_url || info.photo_url || null,
 
             burialDate: formatDate(
                 certData.burial_date
