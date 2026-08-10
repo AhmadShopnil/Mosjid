@@ -149,7 +149,8 @@ export default function BurialBookingForm({ onSuccess }) {
 
       <Input
         type="date"
-        labelEn="Burial Date"
+        // labelEn="Burial Date"
+        labelEn="Booking Date"
         labelJp="イベント日"
         min={todayStr}
         {...register("burial_date", {
