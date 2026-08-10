@@ -13,7 +13,7 @@ const burialSchema = z.object({
   relationship: z.string().min(1, "Relationship is required"),
   burial_date: z.string().min(1, "Burial date is required"),
   slot_id: z.string().min(1, "Burial time slot is required"),
-  contact_no: z.string().min(8, "Valid contact number required"),
+  contact_no: z.string().min(11, "Phone number must contain at least 11 digits"),
 });
 
 export default function BurialBookingForm({ onSuccess }) {
@@ -22,6 +22,8 @@ export default function BurialBookingForm({ onSuccess }) {
   const [errorMsg, setErrorMsg] = useState("");
   const [dynamicSlots, setDynamicSlots] = useState([]);
   const [loadingSlots, setLoadingSlots] = useState(false);
+
+  const todayStr = new Date().toLocaleDateString("en-CA");
 
   const {
     register,
@@ -68,6 +70,12 @@ export default function BurialBookingForm({ onSuccess }) {
   }, [burial_date, setValue]);
 
   const onSubmit = async (data) => {
+    const cleanPhone = data.contact_no.replace(/\D/g, "");
+    if (cleanPhone.length !== 11) {
+      setErrorMsg("Phone number must contain exactly 11 digits (e.g., 090-1234-5678).");
+      return;
+    }
+
     try {
       setLoading(true);
       setSuccess("");
@@ -86,7 +94,7 @@ export default function BurialBookingForm({ onSuccess }) {
       formData.append("start_time", selectedSlot.start_time);
       formData.append("end_time", selectedSlot.end_time);
       formData.append("estimated_burial_time", selectedSlot.start_time);
-      formData.append("contact_no", data.contact_no);
+      formData.append("contact_no", cleanPhone);
 
       const res = await axiosInstance.post("/burial", formData, {
         headers: { "Content-Type": "multipart/form-data" }
@@ -113,121 +121,182 @@ export default function BurialBookingForm({ onSuccess }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-xl p-6 rounded-lg space-y-3"
+      className="space-y-5 text-[#B98C20] w-full"
     >
       <Input
-        label="Applicant Name"
-        placeholder="申請者氏名"
+        labelEn="Applicant Name"
+        labelJp="申請者氏名"
+        placeholder="Enter applicant name"
         {...register("name")}
         error={errors.name?.message}
       />
 
       <Input
-        label="Deceased Name"
-        placeholder="故人氏名"
+        labelEn="Deceased Name"
+        labelJp="故人氏名"
+        placeholder="Enter deceased name"
         {...register("deceased_name")}
         error={errors.deceased_name?.message}
       />
 
       <Input
-        label="Relationship to the deceased"
-        placeholder="故人との関係"
+        labelEn="Relationship"
+        labelJp="故人との関係"
+        placeholder="Relationship to the deceased"
         {...register("relationship")}
         error={errors.relationship?.message}
       />
 
       <Input
         type="date"
-        label="Burial Date"
-        {...register("burial_date")}
+        labelEn="Burial Date"
+        labelJp="イベント日"
+        min={todayStr}
+        {...register("burial_date", {
+          onChange: (e) => {
+            if (e.target.value && e.target.value < todayStr) {
+              e.target.value = "";
+              setErrorMsg("Please select a future date or today.");
+            } else {
+              setErrorMsg("");
+            }
+          }
+        })}
         error={errors.burial_date?.message}
       />
 
       {/* Dynamic Burial Time Slot Selection */}
-      <div className="space-y-1">
-        <label className="block font-semibold text-[#c58a1f]">
-          Time Slot
-        </label>
-        <select
-          {...register("slot_id")}
-          disabled={!burial_date || loadingSlots}
-          className={`w-full px-3 py-2 rounded-md outline-none bg-white border border-orange-300 ${(!burial_date || loadingSlots) ? 'opacity-70 cursor-not-allowed' : ''}`}
-        >
-          <option value="" disabled>
-            {!burial_date
-              ? "Select burial date first"
-              : loadingSlots
-                ? "Loading slots..."
-                : "Select a time slot"}
-          </option>
-          {dynamicSlots
-            .filter((slot) => slot.status === "1")
-            .map((slot) => {
-              const isBooked = slot.slot_trace_count >= 1;
-              return (
-                <option
-                  key={slot.id}
-                  value={slot.id}
-                  disabled={isBooked}
-                  className={isBooked ? "text-red-500 font-semibold bg-red-50" : "text-green-700"}
-                >
-                  {slot.name} ({slot.start_time} - {slot.end_time}) {isBooked ? "- Already Booked" : ""}
-                </option>
-              );
-            })}
-        </select>
-        {errors.slot_id && (
-          <p className="text-xs text-red-500">{errors.slot_id.message}</p>
-        )}
-      </div>
+      <Input
+        type="select"
+        labelEn="Time Slot"
+        labelJp="開始時間"
+        {...register("slot_id")}
+        disabled={!burial_date || loadingSlots}
+        error={errors.slot_id?.message}
+      >
+        <option value="" disabled>
+          {!burial_date
+            ? "Select burial date first"
+            : loadingSlots
+              ? "Loading slots..."
+              : "Select a time slot"}
+        </option>
+        {dynamicSlots
+          .filter((slot) => slot.status === "1")
+          .map((slot) => {
+            const isBooked = slot.slot_trace_count >= 1;
+            return (
+              <option
+                key={slot.id}
+                value={slot.id}
+                disabled={isBooked}
+                className={isBooked ? "text-red-500 font-semibold bg-red-50" : "text-green-700"}
+              >
+                {slot.name} ({slot.start_time} - {slot.end_time}) {isBooked ? "- Already Booked" : ""}
+              </option>
+            );
+          })}
+      </Input>
+
+      {/* Display selected slot time */}
+      {watch("slot_id") && dynamicSlots.find((s) => s.id === Number(watch("slot_id"))) && (
+        <div className="flex flex-col mb-3 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+            <span className="font-bold text-sm">Selected Time</span>
+            <div className="sm:col-span-2 bg-green-50 border border-green-300 rounded-xl px-4 py-3 text-green-800 text-sm font-medium">
+              {dynamicSlots.find((s) => s.id === Number(watch("slot_id"))).start_time} – {dynamicSlots.find((s) => s.id === Number(watch("slot_id"))).end_time}
+            </div>
+          </div>
+        </div>
+      )}
 
       <Input
-        label="Contact No."
-        placeholder="電話番号"
-        {...register("contact_no")}
+        labelEn="Phone Number"
+        labelJp="電話番号"
+        placeholder="e.g., 090-1234-5678"
+        {...register("contact_no", {
+          onChange: (e) => {
+            const val = e.target.value.replace(/[^0-9-\s]/g, "");
+            e.target.value = val;
+          }
+        })}
         error={errors.contact_no?.message}
       />
 
       {success && (
-        <p className="text-green-600 text-sm font-medium">{success}</p>
+        <p className="text-sm font-medium text-green-600">
+          {success}
+        </p>
       )}
 
       {errorMsg && (
-        <p className="text-red-600 text-sm font-medium">{errorMsg}</p>
+        <p className="text-sm font-medium text-red-600">
+          {errorMsg}
+        </p>
       )}
 
-      <div className="flex justify-end gap-4 pt-4">
+      {/* Buttons */}
+      <div className="flex flex-col sm:flex-row justify-end gap-3 pt-6">
         <button
           type="submit"
           disabled={loading}
-          className="border border-green-500 text-green-700 px-6 py-2 rounded-md hover:bg-green-100 disabled:opacity-50 cursor-pointer animate-all duration-300"
+          className="w-full h-14 rounded-xl text-[#333333] font-medium transition-colors hover:opacity-90 sm:max-w-[43.75rem] disabled:opacity-50 cursor-pointer"
+          style={{
+            border: "2px solid transparent",
+            backgroundImage: "linear-gradient(white, white), linear-gradient(to bottom, #3198A0, #51F909)",
+            backgroundOrigin: "border-box",
+            backgroundClip: "padding-box, border-box",
+          }}
         >
-          {loading ? "Submitting..." : "Submit"}
+          {loading ? "Submitting..." : "Submit Booking"}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => {
+            reset();
+            setSuccess("");
+            setErrorMsg("");
+          }}
+          className="border border-[#FF0000] text-[#FF0000] bg-[#FFE9E9] h-14 w-full cursor-pointer sm:max-w-[22.75rem] rounded-xl font-medium hover:bg-red-50 transition-colors"
+        >
+          Cancel
         </button>
       </div>
     </form>
   );
 }
 
-//  Reusable Input 
-function Input({ label, error, highlight, ...props }) {
+// Reusable Input
+function Input({ labelEn, labelJp, error, type = "text", ...props }) {
   return (
-    <div className="space-y-1">
-      <label className="block font-semibold text-[#c58a1f]">
-        {label}
-      </label>
-
-      <input
-        {...props}
-        className={`w-full px-3 py-2 rounded-md outline-none bg-white
-          ${highlight
-            ? "border-2 border-green-500"
-            : "border border-orange-300"
-          }`}
-      />
-
+    <div className="flex flex-col mb-3 w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+        <div className="grid grid-col-2 gap-0.5">
+          <label className="font-bold">{labelEn}</label>
+          <label className="font-bold text-[#00401A]">{labelJp}</label>
+        </div>
+        
+        {type === "select" ? (
+          <select
+            {...props}
+            className={`sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 h-14 bg-white/50 focus:outline-none appearance-none ${props.disabled ? 'opacity-70 cursor-not-allowed' : ''}`}
+          >
+            {props.children}
+          </select>
+        ) : (
+          <input
+            {...props}
+            type={type}
+            className="sm:col-span-2 border-2 border-[#F7BA2A] rounded-xl px-4 h-14 bg-white/50 focus:outline-none"
+          />
+        )}
+      </div>
       {error && (
-        <p className="text-xs text-red-500">{error}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+           <div className="hidden sm:block"></div>
+           <p className="sm:col-span-2 text-xs text-red-500 mt-1">{error}</p>
+        </div>
       )}
     </div>
   );

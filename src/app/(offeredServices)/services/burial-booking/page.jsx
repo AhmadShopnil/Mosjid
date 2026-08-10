@@ -5,6 +5,7 @@ import BurialTable from '@/components/Services/BurialBooking/BurialTable';
 import BurialMyApplications from '@/components/Services/BurialBooking/BurialMyApplications';
 import BurialForm from '@/components/Services/BurialBooking/BurialForm';
 import PolicyModal from '@/components/Shared/PolicyModal';
+import Pagination from '@/components/Shared/Pagination';
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axiosInstance from '@/helper/axiosInstance';
 import { useAuth } from '@/context/AuthContext';
@@ -17,6 +18,10 @@ export default function Page() {
     const [countries, setCountries] = useState([]);
     const [relationships, setRelationships] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    // Pagination state
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
 
     const [selectedApplication, setSelectedApplication] = useState(null);
 
@@ -37,16 +42,23 @@ export default function Page() {
         jp: "埋葬登録"
     };
 
-    const fetchBurialData = useCallback(async () => {
+    const fetchBurialData = useCallback(async (page = 1) => {
         try {
             setLoading(true);
-            const res = await axiosInstance.get('/burial');
+            const res = await axiosInstance.get(`/burial?page=${page}`);
             console.log("Burial res",res)
             setBookingList(res.data?.booking_list?.data || []);
             setRegisterList(res.data?.register_list?.data || []);
             setMyApplications(res.data?.my_applications?.data || []);
             setCountries(res.data?.countries || []);
             setRelationships(res.data?.relationships || []);
+
+            // Extract pagination info — use Math.max across all lists
+            const bookingLastPage = res.data?.booking_list?.last_page || 1;
+            const registerLastPage = res.data?.register_list?.last_page || 1;
+            const myAppsLastPage = res.data?.my_applications?.last_page || 1;
+            setTotalPages(Math.max(bookingLastPage, registerLastPage, myAppsLastPage));
+            setCurrentPage(page);
         } catch (error) {
             console.error("Failed to fetch burial records:", error);
         } finally {
@@ -55,8 +67,16 @@ export default function Page() {
     }, []);
 
     useEffect(() => {
-        fetchBurialData();
-    }, [fetchBurialData]);
+        fetchBurialData(currentPage);
+    }, [fetchBurialData, currentPage]);
+
+    const handlePageChange = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+            // Scroll to the top of the tables area
+            bookingListRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
 
     const handleActionClick = (action) => {
         if (action === "Booking List") {
@@ -88,13 +108,13 @@ export default function Page() {
 
     const handleFormSubmitSuccess = () => {
         setSelectedApplication(null);
-        fetchBurialData();
+        fetchBurialData(currentPage);
     };
 
     return (
         <div className='space-y-6 md:space-y-10 pb-12'>
             <BurialBookingTopSection
-                onSuccess={fetchBurialData}
+                onSuccess={() => fetchBurialData(currentPage)}
                 onActionClick={handleActionClick}
                 formRef={formRef}
             />
@@ -147,6 +167,17 @@ export default function Page() {
                 </div>
             </div>
 
+            {/* Shared Pagination at the bottom */}
+            {!loading && totalPages > 1 && (
+                <div className="flex justify-center mt-6">
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                    />
+                </div>
+            )}
+
             <PolicyModal
                 isOpen={modalConfig.isOpen}
                 onClose={() => setModalConfig({ ...modalConfig, isOpen: false })}
@@ -156,3 +187,4 @@ export default function Page() {
         </div>
     );
 }
+

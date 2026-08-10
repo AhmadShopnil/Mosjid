@@ -1,167 +1,249 @@
 import React from 'react';
 
 const FieldRow = ({ labelEn, labelJp, value }) => (
-  <div className="flex items-end mb-2">
-    <div className="w-36 flex-shrink-0">
-      <p className="text-[10px] text-[#828282] leading-tight">{labelJp}</p>
-      <p className="text-[14px] font-bold text-[#085F2C] leading-tight">{labelEn}</p>
-    </div>
-    <div className="mx-2 text-[#085F2C] font-bold">:</div>
-    <div className="border-b border-dotted border-[#9ca3af] flex-1 text-[15px] pb-0.5 text-center font-serif text-[#B58B2E] min-h-[20px] px-2 whitespace-nowrap overflow-hidden">
-      {value || ""}
-    </div>
-  </div>
-);
+  <div className="flex flex-col "
 
-const EmptyRow = ({ value }) => (
-  <div className="flex items-end mb-2">
-    <div className="w-36 flex-shrink-0"></div>
-    <div className="mx-2 opacity-0">:</div>
-    <div className="border-b border-dotted border-[#9ca3af] flex-1 text-[15px] pb-0.5 text-center font-serif text-[#B58B2E] min-h-[20px] px-2 whitespace-nowrap overflow-hidden">
-      {value || ""}
-    </div>
+    style={{ fontFamily: '"Merriweather", Times, serif' }}
+  >
+    <p className="text-[11px] text-[#BDBDBD] leading-tight mb-0.5">{labelJp}</p>
+    <p className="text-[13px]  text-[#000000] leading-tight">{labelEn}:
+      <span className="font-normal  ml-0.5">
+        {value || ""}</span></p>
   </div>
 );
 
 const ConversionCertificate = ({ data = {} }) => {
-  // Use dummy data if properties are missing
   const {
-    applicant = {
-
-    },
-    details = {
-
-    },
-    witnesses = [
-
-    ],
-    solemnizedBy = {
-
-    }
+    applicant = {},
+    details = {},
+    witnesses = [],
+    solemnizedBy = {}
   } = data;
 
+  console.log("convertion data", data)
+
+  //  pt-[65px] px-[75px] pb-[65px]
   return (
-    <div className="w-[1200px] max-w-full mx-auto bg-[#ffffff] border-[1.5px] border-[#3E8B18] pt-4 px-8 pb-10 font-sans relative text-left overflow-hidden">
-      {/* Header */}
-      <div className="flex justify-between items-start mb-8 relative">
-        <div className="z-10 relative">
-          <p className="text-[#9ca3af] text-xs mb-1">証明書番号</p>
-          <h2 className="text-[17px] font-bold flex items-end text-[#000000]">
-            Certificate No:
-            <span className="w-32 ml-2 inline-block text-[#B58B2E] font-serif text-[17px] border-b border-dotted border-[#9ca3af] text-center pb-0.5">
-              {applicant?.unique_id || ""}
-            </span>
-          </h2>
-        </div>
-
-        <div className="text-center absolute w-full left-0 top-0 mt-4 pointer-events-none">
-          <p className="text-[#00401A] font-bold mb-0.5 tracking-widest text-sm ml-8">イスラム改宗証明書</p>
-          <h1 className="text-[32px] font-bold text-[#00401A] tracking-wide" style={{ fontFamily: '"Times New Roman", Times, serif', textShadow: '0.5px 0.5px 0px rgba(0,0,0,0.1)' }}>
-            CERTIFICATE OF CONVERSION TO ISLAM
-          </h1>
-        </div>
+    <div className="w-[1123px] h-[794px] max-w-full mx-auto bg-[#ffffff]  font-sans relative 
+    px-[83px] pb-[88px] pt-[70px] 
+     text-left overflow-hidden flex flex-col ">
+      {/* SVG Border */}
+      <div className="absolute inset-0 pointer-events-none z-50">
+        <img
+          src="/images/offerServices/muslimConvertion/certificate_border.svg"
+          alt="Border"
+          className="w-full h-full"
+        />
       </div>
 
-      <div className="mt-16 mb-4 flex gap-6">
-        <div className="w-[80px] h-[80px] border-[1.5px] border-[#8CC63F] rounded-[4px] flex flex-shrink-0 items-center justify-center overflow-hidden bg-[#ffffff]">
-          {/* {applicant?.photoUrl ? <img src={applicant?.photoUrl} alt="Applicant" className="w-full h-full object-cover" /> : null} */}
-        </div>
-        <div className="flex-1 bg-gradient-to-r from-[#F0C041] via-[#FAD463] to-[#F0C041] p-3 rounded-sm flex items-center justify-center flex-col shadow-sm">
-          <p className="text-[10px] text-[#828282] opacity-90 mb-0.5 font-bold tracking-wide">イスラム教徒の名前</p>
-          <h4 className="text-[26px] text-[#333] font-bold tracking-wider" style={{ fontFamily: '"Times New Roman", Times, serif' }}>
-            {applicant.muslimName || "Muslim Name"}
-          </h4>
-        </div>
+      {/* Watermark Background */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none z-0 opacity-40">
+        <img
+          src="/images/offerServices/marriageFacilities/bg2.png"
+          alt="Watermark"
+          className="w-[500px] h-[500px] object-contain opacity-20"
+        />
       </div>
 
-      {/* Particulars Section */}
-      <div className="bg-[#F0FDF4] border border-[#E0F2E3] p-6 rounded-md mb-6">
-        <h3 className="text-[#085F2C] font-bold text-[18px] mb-4 border-b border-[#A5D071] pb-2 uppercase tracking-wide">Applicant Particulars</h3>
-
-        <div className="grid grid-cols-2 gap-x-12 gap-y-1">
-          <div className="pr-2">
-            <FieldRow labelEn="Previous Name" labelJp="以前の名前" value={applicant.name} />
-            <FieldRow labelEn="Date of Birth" labelJp="生年月日" value={applicant.dob} />
-            <FieldRow labelEn="Nationality" labelJp="国籍" value={applicant.nationality} />
-            <FieldRow labelEn="Passport No." labelJp="パスポート番号" value={applicant.passportNo} />
-            <FieldRow labelEn="Mobile No" labelJp="携帯電話番号" value={applicant.mobile} />
+      <div className="z-10 relative flex-1 flex flex-col">
+        {/* Header Row */}
+        <div className="flex justify-between items-start  w-full">
+          {/* Left Title */}
+          <div className="w-[35%]">
+            <h1 className="text-[25px] font-bold text-[#00401A] leading-tight"
+              style={{ fontFamily: '"Merriweather", Times, serif' }}
+            >
+              CERTIFICATE OF CONVERSION TO ISLAM
+            </h1>
           </div>
-          <div className="pl-2">
-            <FieldRow labelEn="Previous Religion" labelJp="以前の宗教" value={applicant.previousReligion} />
-            <FieldRow labelEn="Address" labelJp="住所" value={applicant.addressLine1} />
-            <EmptyRow value={applicant.addressLine2} />
+
+          {/* Center Arabic */}
+          <div className="w-[25%] text-center flex flex-col items-center justify-center ">
+            <h2 className="text-[26px] font-bold text-[#00401A] mb-1" style={{ fontFamily: '"Amiri", "Traditional Arabic", serif' }}>
+              بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+            </h2>
+            <p className="text-[11px] text-[#00401A] font-bold tracking-widest">
+              慈悲深く慈愛深き神の御名において
+            </p>
+          </div>
+
+          {/* Right Mosque Info */}
+          <div className="w-[30%] text-right">
+            <h2 className="text-[24px] font-bold text-[#00401A] mb-1" style={{ fontFamily: '"Merriweather", Times, serif' }}>Osaka Masjid</h2>
+            <p className="text-[11px] text-[#00401A]">
+              4-12-16, Owada, Nishi Yodogawa <br />
+              ku,Osaka, Japan, Tel/Fax: <br />
+              06-4862-6396
+            </p>
           </div>
         </div>
-      </div>
 
-      {/* Conversion Details Section */}
-      <div className="grid grid-cols-2 gap-0 border-y-[1px] border-[#A5D071] py-4 mt-6">
-        <div className="text-center border-r-[1px] border-[#A5D071]">
-          <p className="text-[11px] text-[#9ca3af] mb-1">申告日</p>
-          <p className="font-bold text-[#085F2C] text-[14px] mb-2">Declared Date</p>
-          <p className="text-[22px] font-bold text-[#B58B2E]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.declaredDate}</p>
+        {/* Sub Header */}
+        <div className="flex justify-between items-end  w-full  ">
+          <p className="text-[14px]  text-[#000000]"
+            style={{ fontFamily: '"Merriweather", Times, serif' }}
+          >
+            The Osaka Masjid hereby certifies that
+          </p>
+          <div className="text-right">
+            <p className="text-[10px] text-[#BDBDBD]  text-left">証明書番号:</p>
+            <p className="text-[14px]  text-[#000000] flex items-center">
+              Certificate No: <span className="ml-2 font-normal text-[15px]">{details?.certificateNo || ""}</span>
+            </p>
+          </div>
         </div>
-        <div className="text-center">
-          <p className="text-[11px] text-[#9ca3af] mb-1">場所</p>
-          <p className="font-bold text-[#085F2C] text-[14px] mb-2">Place</p>
-          <p className="text-[22px] font-bold text-[#B58B2E]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.place}</p>
+
+        {/* Yellow Banner */}
+        <div 
+          className="relative w-full py-4 flex justify-between items-center px-16 mb-8 mt-4"
+          style={{ background: 'linear-gradient(to right, #F0C041, #FAD463, #F0C041)' }}
+        >
+          {/* Photo */}
+          <div 
+            className="absolute left-1/2 top-1/2 w-[120px] h-[120px] rounded-full border-[5px] border-white bg-white shadow-sm z-20"
+            style={{ 
+              marginLeft: '-60px', 
+              marginTop: '-60px',
+              backgroundImage: applicant.photoUrl ? `url(${applicant.photoUrl})` : 'none',
+              backgroundColor: applicant.photoUrl ? 'transparent' : '#e5e7eb',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          ></div>
+          
+          <div className="w-[40%] z-10 relative">
+            <p className="text-[11px] text-[#828282] font-bold mb-0.5 opacity-90">名前</p>
+            <h3 className="text-[24px] font-bold text-[#333] leading-tight" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{applicant.name || "Name"}</h3>
+          </div>
+          
+          <div className="w-[40%] text-right z-10 relative">
+            <p className="text-[11px] text-[#828282] font-bold mb-0.5 opacity-90">イスラム教徒の名前</p>
+            <h3 className="text-[24px] font-bold text-[#333] leading-tight" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{applicant.muslimName || "Muslim Name"}</h3>
+          </div>
         </div>
-      </div>
 
-      {/* Certification Text */}
-      <div className="mt-8 mb-6 text-center">
-        <p className="text-[12px] text-[#828282] mb-1">
-          上記の者は、イスラム教を自らの自由意志で受け入れ、アッラー（神）が唯一であり、ムハンマドがその使徒であることを宣言しました。
-        </p>
-        <p className="font-bold text-[#222] text-[15px] tracking-wide leading-relaxed">
-          I certify that the above-mentioned person has embraced Islam of their own free will and <br /> declared that there is no god but Allah, and Muhammad is His Messenger.
-        </p>
-      </div>
-
-      {/* Witnesses */}
-      <div className="mt-6">
-        <h3 className="text-[#085F2C] font-bold text-[16px] mb-3 border-b border-dotted border-[#A5D071] inline-block pb-1">Witnesses</h3>
-        <div className="grid grid-cols-3 gap-6">
-          {[0, 1, 2].map((idx) => {
-            const w = witnesses[idx] || {};
-            return (
-              <div key={idx} className="bg-[#f9fafb] p-4 rounded-sm border border-[#f3f4f6]">
-                <div className="flex items-end mb-2">
-                  <div className="w-full">
-                    <p className="text-[10px] text-[#808080] leading-tight">証人 {idx + 1}</p>
-                    <p className="font-bold text-[#085F2C] text-[13px] leading-tight">Witness {idx + 1}</p>
-                  </div>
-                </div>
-                <div className="border-b border-dotted border-[#9ca3af] w-full text-left font-serif text-[#B58B2E] text-[15px] pb-1 min-h-[22px] whitespace-nowrap overflow-hidden">
-                  {w.name || `Witness ${idx + 1} Name`}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Solemnized By */}
-      <div className="mt-10 flex justify-end">
-        <div className="w-[45%]">
-          <div className="flex items-end mb-2">
-            <div className="w-40 flex-shrink-0">
-              <p className="text-[10px] text-[#808080] leading-tight">イマーム（指導者）</p>
-              <p className="font-bold text-[#222] text-[14px] leading-tight">Solemnized By</p>
+        {/* 3 Columns Section */}
+        <div className="flex w-full gap-8  flex-1">
+          {/* Left Column (40%) */}
+          <div className="w-[40%] flex flex-col justify-between ">
+            <div className='space-y-1 '>
+              <FieldRow labelEn="Nationality" labelJp="国籍" value={applicant?.nationality} />
+              <FieldRow labelEn="Gender" labelJp="性別" value={applicant?.gender || ""} />
+              <FieldRow labelEn="Address" labelJp="住所" value={applicant?.addressLine1} />
             </div>
-            <div className="mx-2 text-[#222] font-bold">:</div>
-            <div className="border-b border-dotted border-[#9ca3af] flex-1 text-center font-serif text-[#B58B2E] text-[15px] pb-0.5 min-h-[20px] px-2 whitespace-nowrap overflow-hidden">
-              {solemnizedBy.name || ""}
+
+            <div className="text-[11px] leading-relaxed text-[#333333] text-justify flex flex-col 
+             justify-between h-[240px]"
+              style={{ fontFamily: '"Merriweather", Times, serif' }}
+            >
+              <p>  The above named person has presented themselves expressing their desire to embrace the Islamic Faith. We have explained to them the five pillars of Islam and the six pillars of Iman. Accordingly, they have acknowledged their acceptance of the Islamic Faith by affirming:</p>
+
+              <p className="text-center font-bold" style={{ fontFamily: '"Amiri", "Traditional Arabic", serif', fontSize: '16px' }}>
+                اشهد ان لا اله الا الله واشهد ان محمدا عبده ورسوله
+              </p>
+
+              <p>  I bear witness that there is no god but Allah alone and I bear witness that Muhammad (Peace be upon Him) is His Servant and Messenger.
+                <br />
+                I also acknowledge that I believe in Allah, His angels, His Holy books, His prophets, the Day of Judgment and His Decree for good or bad. I renounce all religions other than Islam I will hereby and henceforth adhere to Islam as my Faith and Shari'ah.</p>
+            </div>
+
+            <div className="mt-2 text-center border-t border-[#9ca3af]  w-[180px]"
+
+              style={{ fontFamily: '"Merriweather", Times, serif' }}
+            >
+              {/* <p className="text-[10px] text-[#808080]">組織サイン</p> */}
+              <div className='h-[20px] '>
+                <img src="/images/osaka_sign.png" alt="sign" className="h-[20px] mx-auto  object-contain" />
+
+              </div>
+              <p className="text-[13px]  text-[#000000] "
+
+              >Organization Sign</p>
             </div>
           </div>
 
-          <div className="bg-[#F0FDF4] p-3 rounded-sm border border-[#E0F2E3] mt-4">
-            <p className="text-[10px] text-[#6b7280] mb-1">サイン</p>
-            <div className="flex items-end h-[40px]">
-              <span className="font-bold text-[#085F2C] text-[14px] w-14 pb-1">Sign :</span>
-              <div className="border-b border-dotted border-[#9ca3af] flex-1 ml-2 relative h-full flex items-end justify-center">
-                {solemnizedBy?.signUrl && <img src={solemnizedBy.signUrl} alt="sign" className="absolute bottom-1 max-h-[40px] max-w-[150px] object-contain mix-blend-multiply" />}
+          {/* Center Column (20%) */}
+          <div className="w-[20%] flex flex-col items-center justify-start pt-3  text-center  
+           divide-y divide-[#3E8B18]">
+            <div
+              className=' py-3'
+              style={{ fontFamily: '"Merriweather", Times, serif' }}
+            >
+              <p className="text-[10px] text-[#808080]">宣言者</p>
+              <p className="text-[14px] text-[#333333] mb-0.5">Declared by:</p>
+              <p className="text-[16px] font-bold text-[#000000]"
+                style={{ fontFamily: '"Merriweather", Times, serif' }}
+
+              >
+                {solemnizedBy?.name || "Amin"}
+              </p>
+              {/* <div className="w-[100px] h-[1px] bg-[#d1d5db] mx-auto mt-1"></div> */}
+            </div>
+
+            <div
+              className=' py-3'
+              style={{ fontFamily: '"Merriweather", Times, serif' }}
+            >
+              <p className="text-[10px] text-[#808080]">発行日</p>
+              <p className="text-[14px]  text-[#333333] mb-0.5">Issued On</p>
+              <p className="text-[16px] font-bold text-[#000000]"
+                style={{ fontFamily: '"Merriweather", Times, serif' }}
+              >{details.declaredDate || ""}</p>
+              {/* <div className="w-[100px] h-[1px] bg-[#d1d5db] mx-auto mt-1"></div> */}
+            </div>
+
+            <div
+              className=' py-3'
+              style={{ fontFamily: '"Merriweather", Times, serif' }}
+            >
+              <p className="text-[10px] text-[#808080]">目撃者</p>
+              <p className="text-[14px]  text-[#333] mb-0.5">Witnessed By</p>
+              <p className="text-[16px] font-bold text-[#000000]" style={{ fontFamily: '"Merriweather", Times, serif' }}
+              >{witnesses[0]?.name || ""}
+              </p>
+              {/* <div className="w-[100px] h-[1px] bg-[#d1d5db] mx-auto mt-1"></div> */}
+            </div>
+
+            <div
+              className=' py-3'
+              style={{ fontFamily: '"Merriweather", Times, serif' }}
+            >
+              <p className="text-[10px] text-[#808080]">目撃者</p>
+              <p className="text-[14px]  text-[#333333] mb-0.5">Witnessed By</p>
+              <p className="text-[16px] font-bold text-[#000000]" style={{ fontFamily: '"Merriweather", Times, serif' }}>
+                {witnesses[1]?.name || "amin"}
+              </p>
+              {/* <div className="w-[100px] h-[1px] bg-[#d1d5db] mx-auto mt-1"></div> */}
+            </div>
+          </div>
+
+          {/* Right Column (40%) */}
+          <div className="w-[40%] flex flex-col justify-between">
+            <div className='space-y-1 '>
+              <FieldRow labelEn="Date of Birth" labelJp="生年月日" value={applicant.dob} />
+              <FieldRow labelEn="Passport No" labelJp="パスポート番号" value={applicant.passportNo} />
+              <FieldRow labelEn="Phone" labelJp="電話" value={applicant.mobile} />
+            </div>
+
+            <div className="text-[11px] leading-relaxed text-[#333333] mt-2 flex flex-col  justify-between 
+            h-[240px]  text-justify"
+              style={{ fontFamily: '"Merriweather", Times, serif' }}
+            >
+              <p> 申請者が自らの自由意志によりイスラム教を信仰したことを確認しました。この証明書は、申請者がイスラム教を信仰し、その法に従って行動することを決意したことを証明するために発行されます。全能なるアッラーが、申請者を常に正しい道へと導き給いますように。誠にアッラーは最良の導き手です。</p>
+
+              <p> 申請者が自らの自由意志によりイスラム教を信仰したことを確認しました。この証明書は、申請者がイスラム教を信仰し、その法に従って行動することを決意したことを証明するために発行されます。全能なるアッラーが、申請者を常に正しい道へと導き給いますように。誠にアッラーは最良の導き手です。</p>
+            </div>
+
+            <div className="mt-2 text-center border-t border-[#9ca3af] pt-1 w-[180px] ml-auto">
+              {/* <p className="text-[10px] text-[#808080]">イマームのサイン</p> */}
+              <div className='h-[20px] '>
+                {solemnizedBy?.signUrl && (
+                  <img src={solemnizedBy.signUrl} alt="sign" className="h-[20px] mx-auto  object-contain" />
+                )}
               </div>
+              <p className="text-[13px] text-[#000000] ">Imam Sign</p>
+
             </div>
           </div>
         </div>

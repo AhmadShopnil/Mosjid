@@ -1,3 +1,4 @@
+import SectionTitleRow from '@/components/SectionTitleRow/SectionTitleRow';
 import React from 'react'
 
 
@@ -8,15 +9,19 @@ export default function GraveyardBenefit({ graveyard_benefits }) {
   return (
     <div>
 
+      <SectionTitleRow
+        leftTitle={"Benefits of Graveyard"}
+        rightTitle={"墓地の利点"}
+      />
       {/* Facilities Header */}
-      <div className="flex justify-between items-center mb-6 ">
+      {/* <div className="flex justify-between items-center mb-6 ">
         <h2 className="text-2xl md:text-3xl font-semibold text-[#B98C20]">
           Benefits of Graveyard
         </h2>
         <span className="text-2xl md:text-3xl font-semibold text-[#B98C20]">
           墓地の利点
         </span>
-      </div>
+      </div> */}
 
       {/* Facilities Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg-grid-cols-3 gap-x-4 gap-y-7 mb-12 ">

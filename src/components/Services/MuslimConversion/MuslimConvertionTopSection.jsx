@@ -68,7 +68,7 @@ export default function MuslimConvertionTopSection({ onActionClick,setRefreshBoo
 
                         <div className=" flex  justify-center my-8">
                             <Image
-                                src="/images/offerServices/muslim-convertion.svg"
+                                src="/images/offerServices/muslimConvertion/muslim-convertion.svg"
                                 alt="Islamic Names Background"
                                 width={550}
                                 height={200}

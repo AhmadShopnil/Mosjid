@@ -26,7 +26,7 @@ export default function GraveyardFacilities({ facilities_graveyard }) {
 
       {/* Benefits Header */}
       <div className="flex justify-between items-center mb-4 text-[#B98C20]">
-        <h2 className="text-2xl md:text-3xl font-semibold ">
+        <h2 className="text-2xl lg:text-4xl font-bold text-[#B98C20] ">
           Facilities of Graveyard
         </h2>
         <span className="text-2xl md:text-3xl font-semibold">
