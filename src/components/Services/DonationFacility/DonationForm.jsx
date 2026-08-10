@@ -20,6 +20,7 @@ export default function DonationForm() {
     const [form, setForm] = useState(INITIAL_STATE);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState({ text: "", type: "" });
+     const todayStr = new Date().toLocaleDateString("en-CA");
 
 
     const handleChange = (e) => {
@@ -128,6 +129,7 @@ export default function DonationForm() {
                         <input
                             type="date"
                             name="intended_date"
+                            min={todayStr}
                             value={form.intended_date}
                             onChange={handleChange}
                             className="w-full h-12 rounded-xl border border-green-700 px-4 bg-white"
