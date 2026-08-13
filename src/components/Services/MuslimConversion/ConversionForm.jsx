@@ -67,7 +67,7 @@ export default function ConversionForm({ application, onCancel }) {
                     "Content-Type": "multipart/form-data",
                 },
             });
-            console.log("test conversion", response)
+            // console.log("test conversion", response)
 
             if (response.status === 200 || response.status === 201 || response.data?.success) {
                 toast.success("Conversion form submitted successfully.");
@@ -241,6 +241,8 @@ export default function ConversionForm({ application, onCancel }) {
                             required: "Passport Number is required",
                         })}
                     />
+                     <ImageField en="Picture Area" jp="画像エリア" image={pictureArea} setImage={setPictureArea} />
+                     <ImageField en="Imam Sign" jp="イマームのサイン" image={imamSign} setImage={setImamSign} />
 
                     {/* <ImageField en="Applicant Picture" jp="申請者の写真" image={applicantPhoto} setImage={setApplicantPhoto} /> */}
                 </div>

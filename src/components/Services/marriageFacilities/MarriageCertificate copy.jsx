@@ -30,7 +30,7 @@
 //   // console.log("data", data)
 
 //   return (
-//     <div className="w-[1200px] max-w-full mx-auto bg-white pt-10 px-12 pb-12 font-sans relative text-left
+//     <div className="w-[870px] max-w-full mx-auto bg-white pt-24 px-24 pb-24 font-sans relative text-left
 //      overflow-hidden">
 //       {/* SVG Border */}
 //       <div className="absolute inset-0 pointer-events-none z-50">
@@ -53,26 +53,26 @@
 //       <div className="flex justify-between items-start mb-6 relative">
 //         <div className=" z-10 relative">
 //           <p className="text-[#9ca3af] text-xs mb-1">証明書番号</p>
-//           <h2 className="text-[17px] font-bold flex items-end text-[#000000]">
+//           <h2 className="text-[15px] semi-bold flex items-end text-[#000000]">
 //             Certificate No:
-//             <span className=" w-32 ml-2 inline-block  text-[#B58B2E]  text-[17px]">
+//             <span className=" w-32 ml-2 inline-block  text-[#B58B2E]  text-[13px]">
 //               {details.certificateNo || ""}
 //             </span>
 //           </h2>
 //         </div>
 
-//         <div className="text-center absolute w-full left-0 top-0 mt-4   pointer-events-none">
+//         <div className="text-center absolute w-full left-0 top-0 mt-4 pointer-events-none">
 //           <p className="text-[#00401A] font-bold mb-0.5 tracking-widest text-sm ml-8">結婚証明書</p>
-//           <h1 className="text-[36px] font-bold text-[#00401A] " style={{ fontFamily: '"Times New Roman", Times, serif', textShadow: '0.5px 0.5px 0px rgba(0,0,0,0.1)' }}>
+//           <h1 className="text-[33px] font-bold text-[#00401A] " style={{ fontFamily: '"Times New Roman", Times, serif', textShadow: '0.5px 0.5px 0px rgba(0,0,0,0.1)' }}>
 //             MARRIAGE CERTIFICATE
 //           </h1>
 //         </div>
 //       </div>
 //       <div className=''>
-//         <div className='grid grid-cols-2 gap-10 mb-4 mt-16'>
+//         <div className='grid grid-cols-2 gap-10 mb-4 mt-8'>
 //           {/* groom photo */}
 //           <div className="flex items-center gap-4 ">
-//             <div className="w-[54px] h-[54px] border-[1.5px] border-[#8CC63F] rounded-[4px] flex items-center justify-center overflow-hidden bg-[#ffffff]">
+//             <div className="w-[52px] h-[52px] border-[1.5px] border-[#8CC63F] rounded-[4px] flex items-center justify-center overflow-hidden bg-[#ffffff]">
 //               {groom?.photoUrl ? <img src={groom?.photoUrl} alt="Groom" className="w-full h-full object-cover" /> : null}
 //             </div>
 //             <div>
@@ -81,7 +81,7 @@
 //           </div>
 //           {/* bride photo */}
 //           <div className="flex items-center gap-4 ">
-//             <div className="w-[54px] h-[54px] border-[1.5px] border-[#8CC63F] rounded-[4px] flex items-center justify-center overflow-hidden bg-[#ffffff]">
+//             <div className="w-[52px] h-[52px] border-[1.5px] border-[#8CC63F] rounded-[4px] flex items-center justify-center overflow-hidden bg-[#ffffff]">
 //               {bride?.photoUrl ? <img src={bride?.photoUrl} alt="Bride" className="w-full h-full object-cover" /> : null}
 //             </div>
 //             <div>
@@ -91,21 +91,21 @@
 //         </div>
 
 //         {/* yellow part */}
-//         <div className="grid grid-cols-2 gap-10 bg-gradient-to-r from-[#F0C041] via-[#FAD463] to-[#F0C041] p-3   ">
+//         <div className="grid grid-cols-2 gap-10 bg-gradient-to-r from-[#F0C041] via-[#FAD463] to-[#F0C041] py-2 px-3   ">
 //           <div>
-//             <p className="text-[9px] text-[#828282] opacity-80 mb-0.5 font-bold">イスラム教徒の名前</p>
+//             <p className="text-[9px] text-[#828282] opacity-80  font-bold">イスラム教徒の名前</p>
 //             <h4 className="text-[22px] text-[#333] tracking-wide" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{groom.muslimName || "Muslim Name"}</h4>
 //           </div>
 
 //           <div>
-//             <p className="text-[9px] text-[#828282] opacity-80 mb-0.5 font-bold">イスラム教徒の名前</p>
+//             <p className="text-[9px] text-[#828282] opacity-80  font-bold">イスラム教徒の名前</p>
 //             <h4 className="text-[22px] text-[#333] tracking-wide" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{bride.muslimName || "Muslim Name"}</h4>
 //           </div>
 //         </div>
 //       </div>
 
 //       {/* Particulars Section */}
-//       <div className="grid grid-cols-2 gap-10 mt-4">
+//       <div className="grid grid-cols-2 gap-10 mt-2">
 //         {/* Groom */}
 //         <div>
 //           {/* <div className="flex items-center gap-4 mb-3">
@@ -181,21 +181,21 @@
 //       </div>
 
 //       {/* Marriage Details Section */}
-//       <div className="grid grid-cols-3 gap-0  py-2 mt-3">
+//       <div className="grid grid-cols-3 gap-0  py-1 mt-2">
 //         <div className="text-center border-r-[1px] border-[#A5D071]">
 //           <p className="text-[12px] text-[#828282] mb-0.5">結婚の日</p>
-//           <p className=" text-[#005312] text-[17px]">Date Of Marriage</p>
-//           <p className="text-[24px] font-bold text-[#B98C20]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.date || "30 January 2006"}</p>
+//           <p className=" text-[#005312] text-[16px]">Date Of Marriage</p>
+//           <p className="text-[22px] font-bold text-[#B98C20]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.date || "30 January 2006"}</p>
 //         </div>
 //         <div className="text-center border-r-[1px] border-[#A5D071]">
 //           <p className="text-[12px] text-[#828282] mb-0.5">結婚の場</p>
-//           <p className="text-[#005312] text-[17px]">Place of Marriage</p>
-//           <p className="text-[24px] font-bold text-[#B98C20]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.place || "Osaka Masjid"}</p>
+//           <p className="text-[#005312] text-[16px]">Place of Marriage</p>
+//           <p className="text-[22px] font-bold text-[#B98C20]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.place || "Osaka Masjid"}</p>
 //         </div>
 //         <div className="text-center">
 //           <p className="text-[12px] text-[#828282] mb-0.5">結納金の量と内容</p>
-//           <p className="text-[#005312] text-[17px] ">Amount of Dower (Mahar)</p>
-//           <p className="text-[24px] font-bold text-[#B98C20]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.mahar || "10,0000"}</p>
+//           <p className="text-[#005312] text-[16px] ">Amount of Dower (Mahar)</p>
+//           <p className="text-[22px] font-bold text-[#B98C20]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.mahar || "10,0000"}</p>
 //         </div>
 //       </div>
 

@@ -1,23 +1,23 @@
 import React from 'react';
 
 const FieldRow = ({ labelEn, labelJp, value }) => (
-  <div className="flex items-end mb-1.5">
-    <div className="w-28 flex-shrink-0">
-      <p className="text-[9px] text-[#828282] leading-tight">{labelJp}</p>
-      <p className="text-[13px] font-bold text-[#085F2C] leading-tight">{labelEn}</p>
+  <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: '3px' }}>
+    <div style={{ width: '100px', flexShrink: 0 }}>
+      <p style={{ fontSize: '8.5px', color: '#828282', lineHeight: '1.1', margin: 0 }}>{labelJp}</p>
+      <p style={{ fontSize: '11px', fontWeight: 'bold', color: '#085F2C', lineHeight: '1.1', margin: 0 }}>{labelEn}</p>
     </div>
-    <div className="mx-1.5 text-[#085F2C] font-bold">:</div>
-    <div className="border-b border-dotted border-[#9ca3af] flex-1 text-[14px] pb-0 text-center font-serif text-[#B58B2E] min-h-[16px] px-2 whitespace-nowrap overflow-hidden">
+    <div style={{ margin: '0 4px', color: '#085F2C', fontWeight: 'bold', fontSize: '11px' }}>:</div>
+    <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, fontSize: '12px', textAlign: 'center', fontFamily: 'Merriweather', color: '#B58B2E', minHeight: '14px', padding: '0 4px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
       {value || ""}
     </div>
   </div>
 );
 
 const EmptyRow = ({ value }) => (
-  <div className="flex items-end mb-1.5">
-    <div className="w-28 flex-shrink-0"></div>
-    <div className="mx-1.5 opacity-0">:</div>
-    <div className="border-b border-dotted border-[#9ca3af] flex-1 text-[14px] pb-0 text-center font-serif text-[#B58B2E] min-h-[16px] px-2 whitespace-nowrap overflow-hidden">
+  <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: '3px' }}>
+    <div style={{ width: '100px', flexShrink: 0 }}></div>
+    <div style={{ margin: '0 4px', opacity: 0 }}>:</div>
+    <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, fontSize: '12px', textAlign: 'center', fontFamily: 'Merriweather', color: '#B58B2E', minHeight: '14px', padding: '0 4px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
       {value || ""}
     </div>
   </div>
@@ -26,261 +26,307 @@ const EmptyRow = ({ value }) => (
 const MarriageCertificate = ({ data = {} }) => {
   const { groom = {}, bride = {}, details = {}, witnesses = [], solemnizedBy = {} } = data;
 
-
-  // console.log("data", data)
-
   return (
-    <div className="w-[870px] max-w-full mx-auto bg-white pt-24 px-24 pb-24 font-sans relative text-left
-     overflow-hidden">
-      {/* SVG Border */}
-      <div className="absolute inset-0 pointer-events-none z-50">
+    <div
+      style={{
+        width: '790px',
+        height: '1115px',
+        maxWidth: '100%',
+        margin: '0 auto',
+        backgroundColor: '#ffffff',
+        padding: '90px 90px',
+        fontFamily: 'sans-serif',
+        position: 'relative',
+        textAlign: 'left',
+        overflow: 'hidden',
+        boxSizing: 'border-box',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+        , fontFamily: 'Merriweather'
+      }}
+      
+    >
+      {/* SVG Decorative Border Overlay */}
+      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 50 }}>
         <img
           src="/images/offerServices/marriageFacilities/marriage-certificate-border.svg"
           alt="Border"
-          className="w-full h-full"
+          style={{ width: '100%', height: '100%', display: 'block' }}
         />
       </div>
+
       {/* Watermark Background */}
-      <div className="absolute  bottom-48 left-1/2 transform -translate-x-1/2 flex items-center justify-center pointer-events-none ">
+      <div style={{ position: 'absolute', bottom: '220px', left: '50%', transform: 'translateX(-50%)', pointerEvents: 'none', zIndex: 0, opacity: 0.12 }}>
         <img
           src="/images/offerServices/marriageFacilities/bg2.png"
           alt="Watermark"
-          className="w-[500px] h-[500px] object-contain "
+          style={{ width: '400px', height: '400px', objectFit: 'contain' }}
         />
       </div>
 
-      {/* Header */}
-      <div className="flex justify-between items-start mb-6 relative">
-        <div className=" z-10 relative">
-          <p className="text-[#9ca3af] text-xs mb-1">証明書番号</p>
-          <h2 className="text-[15px] semi-bold flex items-end text-[#000000]">
-            Certificate No:
-            <span className=" w-32 ml-2 inline-block  text-[#B58B2E]  text-[13px]">
-              {details.certificateNo || ""}
-            </span>
-          </h2>
-        </div>
-
-        <div className="text-center absolute w-full left-0 top-0 mt-4 pointer-events-none">
-          <p className="text-[#00401A] font-bold mb-0.5 tracking-widest text-sm ml-8">結婚証明書</p>
-          <h1 className="text-[33px] font-bold text-[#00401A] " style={{ fontFamily: '"Times New Roman", Times, serif', textShadow: '0.5px 0.5px 0px rgba(0,0,0,0.1)' }}>
-            MARRIAGE CERTIFICATE
-          </h1>
-        </div>
-      </div>
-      <div className=''>
-        <div className='grid grid-cols-2 gap-10 mb-4 mt-8'>
-          {/* groom photo */}
-          <div className="flex items-center gap-4 ">
-            <div className="w-[52px] h-[52px] border-[1.5px] border-[#8CC63F] rounded-[4px] flex items-center justify-center overflow-hidden bg-[#ffffff]">
-              {groom?.photoUrl ? <img src={groom?.photoUrl} alt="Groom" className="w-full h-full object-cover" /> : null}
-            </div>
-            <div>
-              <h3 className="text-[#085F2C] font-bold text-[17px] leading-tight" style={{ fontFamily: '"Times New Roman", Times, serif' }}>Particulars of<br />Groom</h3>
-            </div>
+      {/* Main Container Layer */}
+      <div 
+      className=''
+      
+      style={{ zIndex: 10, position: 'relative', display: 'flex', flexDirection: 'column', height: '100%',
+         justifyContent: 'space-between' }}
+         
+         >
+        
+        {/* ── Header ── */}
+        <div 
+        className=''
+        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', position: 'relative'
+          , height: '48px' }}>
+          <div style={{ zIndex: 10, position: 'relative' }}>
+            <p style={{ color: '#9ca3af', fontSize: '10px', margin: '0 0 1px 0' }}>証明書番号</p>
+            <h2 style={{ fontSize: '13px', fontWeight: '600', display: 'flex', alignItems: 'flex-end', color: '#000000', margin: 0 }}>
+              Certificate No:
+              <span style={{ width: '110px', marginLeft: '6px', display: 'inline-block', color: '#B58B2E', fontSize: '12px', fontWeight: 'bold' }}>
+                {details.certificateNo || ""}
+              </span>
+            </h2>
           </div>
-          {/* bride photo */}
-          <div className="flex items-center gap-4 ">
-            <div className="w-[52px] h-[52px] border-[1.5px] border-[#8CC63F] rounded-[4px] flex items-center justify-center overflow-hidden bg-[#ffffff]">
-              {bride?.photoUrl ? <img src={bride?.photoUrl} alt="Bride" className="w-full h-full object-cover" /> : null}
-            </div>
-            <div>
-              <h3 className="text-[#085F2C] font-bold text-[17px] leading-tight" style={{ fontFamily: '"Times New Roman", Times, serif' }}>Particulars of<br />Bride</h3>
-            </div>
+
+          <div style={{ textAlign: 'center', position: 'absolute', width: '100%', left: 0, top: 10, pointerEvents: 'none' }}>
+            <p style={{ color: '#00401A', fontWeight: 'bold', marginBottom: '1px', letterSpacing: '0.1em', fontSize: '12px', 
+              marginLeft: '24px' }}>結婚証明書</p>
+            <h1 
+            style={{ fontSize: '25px', fontWeight: 'bold', color: '#00401A', fontFamily: '"Merriweather", Times, serif',
+               margin: 0 }}>
+              MARRIAGE CERTIFICATE
+            </h1>
           </div>
         </div>
 
-        {/* yellow part */}
-        <div className="grid grid-cols-2 gap-10 bg-gradient-to-r from-[#F0C041] via-[#FAD463] to-[#F0C041] py-2 px-3   ">
+        {/* ── Particulars Top Header (Photos) & Yellow Name Banner ── */}
+        <div className=''>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px',
+             marginBottom: '6px' }}>
+            {/* Groom Photo */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ width: '42px', height: '42px', border: '1.5px solid #8CC63F', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', backgroundColor: '#ffffff', flexShrink: 0 }}>
+                {groom?.photoUrl ? (
+                  <div style={{ width: '100%', height: '100%', backgroundImage: `url(${groom.photoUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                ) : null}
+              </div>
+              <div>
+                <h3 style={{ color: '#085F2C', fontWeight: 'bold', fontSize: '14px', lineHeight: '1.2', fontFamily: '"Times New Roman", Times, serif', margin: 0 }}>Particulars of<br />Groom</h3>
+              </div>
+            </div>
+            {/* Bride Photo */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ width: '42px', height: '42px', border: '1.5px solid #8CC63F', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', backgroundColor: '#ffffff', flexShrink: 0 }}>
+                {bride?.photoUrl ? (
+                  <div style={{ width: '100%', height: '100%', backgroundImage: `url(${bride.photoUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                ) : null}
+              </div>
+              <div>
+                <h3 style={{ color: '#085F2C', fontWeight: 'bold', fontSize: '14px', lineHeight: '1.2', fontFamily: '"Times New Roman", Times, serif', margin: 0 }}>Particulars of<br />Bride</h3>
+              </div>
+            </div>
+          </div>
+
+          {/* Yellow Name Banner */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px',
+             background: 'linear-gradient(to right, #F0C041, #FAD463, #F0C041)', padding: '5px 10px', borderRadius: '2px' }}>
+            <div
+            style={{padding:' 5px 0' }}
+            >
+              <p style={{ fontSize: '8.5px', color: '#6b7280', fontWeight: 'bold', margin: '0 0 0 0' }}>イスラム教徒の名前</p>
+              <h4 style={{ fontSize: '18px', color: '#333333', letterSpacing: '0.02em', fontFamily: '"Times New Roman", Times, serif', margin: 0 }}>{groom.muslimName || "Muslim Name"}</h4>
+            </div>
+            <div
+            style={{padding:' 5px 0' }}
+            
+            >
+              <p style={{ fontSize: '8.5px', color: '#6b7280', fontWeight: 'bold', margin: '0 0 0 0' }}>イスラム教徒の名前</p>
+              <h4 style={{ fontSize: '18px', color: '#333333', letterSpacing: '0.02em', fontFamily: '"Times New Roman", Times, serif', margin: 0 }}>{bride.muslimName || "Muslim Name"}</h4>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Particulars Section (Groom & Bride details) ── */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+          {/* Groom */}
           <div>
-            <p className="text-[9px] text-[#828282] opacity-80  font-bold">イスラム教徒の名前</p>
-            <h4 className="text-[22px] text-[#333] tracking-wide" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{groom.muslimName || "Muslim Name"}</h4>
+            <div 
+            style={{ paddingRight: '2px' ,display: 'flex', flexDirection: 'column', gap: '6px' }}
+            >
+              <FieldRow labelEn="Name" labelJp="名前" value={groom.name} />
+              <FieldRow labelEn="Father Name" labelJp="父親の名前" value={groom.fatherName} />
+              <FieldRow labelEn="Age" labelJp="年齢" value={groom.age} />
+              <FieldRow labelEn="Religion" labelJp="宗教" value={groom.religion} />
+              <FieldRow labelEn="Nationality" labelJp="国籍" value={groom.nationality} />
+              <FieldRow labelEn="Passport No." labelJp="パスポートナンバー" value={groom.passportNo} />
+              <FieldRow labelEn="Address" labelJp="住所" value={groom.addressLine1} />
+              <EmptyRow value={groom.addressLine2} />
+            </div>
+            <div style={{ backgroundColor: '#EEF8E9', padding: '5px 8px', marginTop: '3px', borderRadius: '2px', border: '1px solid #E0F2E3' }}>
+              <p style={{ fontSize: '8.5px', color: '#6b7280', margin: '0 0 1px 0' }}>サイン</p>
+              <div style={{ display: 'flex', alignItems: 'flex-end', height: '20px' }}>
+                <span style={{ fontWeight: 'bold', color: '#085F2C', fontSize: '11px', width: '40px', paddingBottom: '1px' }}>Sign :</span>
+                <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, marginLeft: '4px', position: 'relative', height: '100%', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+                  {groom?.signUrl && (
+                    <div style={{ position: 'absolute', bottom: '1px', width: '120px', height: '24px', backgroundImage: `url(${groom.signUrl})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
 
+          {/* Bride */}
           <div>
-            <p className="text-[9px] text-[#828282] opacity-80  font-bold">イスラム教徒の名前</p>
-            <h4 className="text-[22px] text-[#333] tracking-wide" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{bride.muslimName || "Muslim Name"}</h4>
-          </div>
-        </div>
-      </div>
-
-      {/* Particulars Section */}
-      <div className="grid grid-cols-2 gap-10 mt-2">
-        {/* Groom */}
-        <div>
-          {/* <div className="flex items-center gap-4 mb-3">
-            <div className="w-[60px] h-[60px] border-[1.5px] border-[#8CC63F] rounded-[4px] flex items-center justify-center overflow-hidden bg-[#ffffff]">
-              {groom?.photoUrl ? <img src={groom?.photoUrl} alt="Groom" className="w-full h-full object-cover" /> : null}
+            <div 
+            style={{ paddingRight: '2px' ,display: 'flex', flexDirection: 'column', gap: '6px' }
+          }
+            >
+              <FieldRow labelEn="Name" labelJp="名前" value={bride.name} />
+              <FieldRow labelEn="Father Name" labelJp="父親の名前" value={bride.fatherName} />
+              <FieldRow labelEn="Age" labelJp="年齢" value={bride.age} />
+              <FieldRow labelEn="Religion" labelJp="宗教" value={bride.religion} />
+              <FieldRow labelEn="Nationality" labelJp="国籍" value={bride.nationality} />
+              <FieldRow labelEn="Passport No." labelJp="パスポートナンバー" value={bride.passportNo} />
+              <FieldRow labelEn="Address" labelJp="住所" value={bride.addressLine1} />
+              <EmptyRow value={bride.addressLine2} />
             </div>
-            <div>
-              <h3 className="text-[#085F2C] font-bold text-[17px] leading-tight" style={{ fontFamily: '"Times New Roman", Times, serif' }}>Particulars of<br />Groom</h3>
-            </div>
-          </div> */}
-          {/* <div className="bg-gradient-to-r from-[#F0C041] to-[#FAD463] p-2 mb-3 rounded-sm">
-            <p className="text-[9px] text-[#085F2C] opacity-80 mb-0.5 font-bold">イスラム教徒の名前</p>
-            <h4 className="text-[22px] text-[#333] tracking-wide" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{groom.muslimName || "Muslim Name"}</h4>
-          </div> */}
-          <div className="pr-2">
-            <FieldRow labelEn="Name" labelJp="名前" value={groom.name} />
-            <FieldRow labelEn="Father Name" labelJp="父親の名前" value={groom.fatherName} />
-            <FieldRow labelEn="Age" labelJp="年齢" value={groom.age} />
-            <FieldRow labelEn="Religion" labelJp="宗教" value={groom.religion} />
-            <FieldRow labelEn="Nationality" labelJp="国籍" value={groom.nationality} />
-            <FieldRow labelEn="Passport No." labelJp="パスポートナンバー" value={groom.passportNo} />
-            <FieldRow labelEn="Address" labelJp="住所" value={groom.addressLine1} />
-            <EmptyRow value={groom.addressLine2} />
-          </div>
-          <div className="bg-[#EEF8E9] p-2 mt-1.5 rounded-sm border border-[#E0F2E3]">
-            <p className="text-[9px] text-[#6b7280] mb-0.5">サイン</p>
-            <div className="flex items-end h-[20px]">
-              <span className="font-bold text-[#085F2C] text-[13px] w-12 pb-1">Sign :</span>
-              <div className="border-b border-dotted border-[#9ca3af] flex-1 ml-2 relative h-full flex items-end justify-center">
-                {groom?.signUrl && <img src={groom?.signUrl} alt="sign" className="absolute bottom-1 max-h-[30px] max-w-[150px]
-                 object-contain mix-blend-multiply"  />}
+            <div style={{ backgroundColor: '#EEF8E9', padding: '5px 8px', marginTop: '3px', borderRadius: '2px', border: '1px solid #E0F2E3' }}>
+              <p style={{ fontSize: '8.5px', color: '#6b7280', margin: '0 0 1px 0' }}>サイン</p>
+              <div style={{ display: 'flex', alignItems: 'flex-end', height: '20px' }}>
+                <span style={{ fontWeight: 'bold', color: '#085F2C', fontSize: '11px', width: '40px', paddingBottom: '1px' }}>Sign :</span>
+                <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, marginLeft: '4px', position: 'relative', height: '100%', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+                  {bride?.signUrl && (
+                    <div style={{ position: 'absolute', bottom: '1px', width: '120px', height: '24px', backgroundImage: `url(${bride.signUrl})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bride */}
-        <div>
-          {/* <div className="flex items-center gap-4 mb-3">
-            <div className="w-[60px] h-[60px] border-[1.5px] border-[#8CC63F] rounded-[4px] flex items-center justify-center overflow-hidden bg-[#ffffff]">
-              {bride?.photoUrl ? <img src={bride?.photoUrl} alt="Bride" className="w-full h-full object-cover" /> : null}
-            </div>
-            <div>
-              <h3 className="text-[#085F2C] font-bold text-[17px] leading-tight" style={{ fontFamily: '"Times New Roman", Times, serif' }}>Particulars of<br />Bride</h3>
-            </div>
-          </div> */}
-          {/* <div className="bg-gradient-to-r from-[#F0C041] to-[#FAD463] p-2 mb-3 rounded-sm">
-            <p className="text-[9px] text-[#085F2C] opacity-80 mb-0.5 font-bold">イスラム教徒の名前</p>
-            <h4 className="text-[22px] text-[#333] tracking-wide" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{bride.muslimName || "Muslim Name"}</h4>
-          </div> */}
-          <div className="pr-2">
-            <FieldRow labelEn="Name" labelJp="名前" value={bride.name} />
-            <FieldRow labelEn="Father Name" labelJp="父親の名前" value={bride.fatherName} />
-            <FieldRow labelEn="Age" labelJp="年齢" value={bride.age} />
-            {/* <FieldRow labelEn="Marital Status" labelJp="未婚/既婚" value={bride.maritalStatus} /> */}
-            <FieldRow labelEn="Religion" labelJp="宗教" value={bride.religion} />
-            <FieldRow labelEn="Nationality" labelJp="国籍" value={bride.nationality} />
-            <FieldRow labelEn="Passport No." labelJp="パスポートナンバー" value={bride.passportNo} />
-            <FieldRow labelEn="Address" labelJp="住所" value={bride.addressLine1} />
-            <EmptyRow value={bride.addressLine2} />
+        {/* ── Marriage Details Section ── */}
+        <div 
+        className=''
+        style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, padding: '2px 0' }}>
+          <div style={{ textAlign: 'center', borderRight: '1px solid #A5D071' }}>
+            <p style={{ fontSize: '10px', color: '#828282', margin: '0 0 1px 0' }}>結婚の日</p>
+            <p style={{ color: '#005312', fontSize: '13px', margin: 0 }}>Date Of Marriage</p>
+            <p style={{ fontSize: '16px', fontWeight: 'bold', color: '#B98C20', fontFamily: '"Times New Roman", Times, serif', margin: 0 }}>{details.date || "—"}</p>
           </div>
-          <div className="bg-[#EEF8E9] p-2 mt-1.5 rounded-sm border border-[#E0F2E3]">
-            <p className="text-[9px] text-[#6b7280] mb-0.5">サイン</p>
-            <div className="flex items-end h-[20px]">
-              <span className="font-bold text-[#085F2C] text-[13px] w-12 pb-1">Sign :</span>
-              <div className="border-b border-dotted border-[#9ca3af] flex-1 ml-2 relative h-full flex items-end justify-center">
-                {bride?.signUrl && <img src={bride.signUrl} alt="sign" className="absolute bottom-1 max-h-[30px] max-w-[150px] 
-                object-contain mix-blend-multiply"  />}
-              </div>
-            </div>
+          <div style={{ textAlign: 'center', borderRight: '1px solid #A5D071' }}>
+            <p style={{ fontSize: '10px', color: '#828282', margin: '0 0 1px 0' }}>結婚の場</p>
+            <p style={{ color: '#005312', fontSize: '13px', margin: 0 }}>Place of Marriage</p>
+            <p style={{ fontSize: '16px', fontWeight: 'bold', color: '#B98C20', fontFamily: '"Times New Roman", Times, serif', margin: 0 }}>{details.place || "Osaka Masjid"}</p>
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <p style={{ fontSize: '10px', color: '#828282', margin: '0 0 1px 0' }}>結納金の量と内容</p>
+            <p style={{ color: '#005312', fontSize: '13px', margin: 0 }}>Amount of Dower (Mahar)</p>
+            <p style={{ fontSize: '16px', fontWeight: 'bold', color: '#B98C20', fontFamily: '"Times New Roman", Times, serif', margin: 0 }}>{details.mahar || "—"}</p>
           </div>
         </div>
-      </div>
 
-      {/* Marriage Details Section */}
-      <div className="grid grid-cols-3 gap-0  py-1 mt-2">
-        <div className="text-center border-r-[1px] border-[#A5D071]">
-          <p className="text-[12px] text-[#828282] mb-0.5">結婚の日</p>
-          <p className=" text-[#005312] text-[16px]">Date Of Marriage</p>
-          <p className="text-[22px] font-bold text-[#B98C20]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.date || "30 January 2006"}</p>
-        </div>
-        <div className="text-center border-r-[1px] border-[#A5D071]">
-          <p className="text-[12px] text-[#828282] mb-0.5">結婚の場</p>
-          <p className="text-[#005312] text-[16px]">Place of Marriage</p>
-          <p className="text-[22px] font-bold text-[#B98C20]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.place || "Osaka Masjid"}</p>
-        </div>
-        <div className="text-center">
-          <p className="text-[12px] text-[#828282] mb-0.5">結納金の量と内容</p>
-          <p className="text-[#005312] text-[16px] ">Amount of Dower (Mahar)</p>
-          <p className="text-[22px] font-bold text-[#B98C20]" style={{ fontFamily: '"Times New Roman", Times, serif' }}>{details.mahar || "10,0000"}</p>
-        </div>
-      </div>
-
-      {/* Witnesses */}
-      <div className="grid grid-cols-2 gap-10 mt-4">
-        {[0, 1].map((idx) => {
-          const w = witnesses[idx] || {};
-          return (
-            <div key={idx} className="pr-2">
-              <div className="flex items-end mb-1.5">
-                <div className="w-32 flex-shrink-0">
-                  <p className="text-[9px] text-[#808080] leading-tight">証人{idx + 1}の氏名</p>
-                  <p className="font-bold text-[#085F2C] text-[13px] leading-tight">{idx + 1}. Witness Name</p>
+      
+      <div>
+          {/* ── Witnesses Section ── */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px',marginBottom:'10px' }}>
+          {[0, 1].map((idx) => {
+            const w = witnesses[idx] || {};
+            return (
+              <div key={idx} style={{ paddingRight: '2px' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: '2px' }}>
+                  <div style={{ width: '100px', flexShrink: 0 }}>
+                    <p style={{ fontSize: '8.5px', color: '#808080', lineHeight: '1.1', margin: 0 }}>証人{idx + 1}の氏名</p>
+                    <p style={{ fontWeight: 'bold', color: '#085F2C', fontSize: '11px', lineHeight: '1.1', margin: 0 }}>{idx + 1}. Witness Name</p>
+                  </div>
+                  <div style={{ margin: '0 4px', color: '#085F2C', fontWeight: 'bold', fontSize: '11px' }}>:</div>
+                  <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, textAlign: 'center', fontFamily: 'Merriweather', color: '#B58B2E', fontSize: '12px', minHeight: '14px', padding: '0 4px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
+                    {w.name || ""}
+                  </div>
                 </div>
-                <div className="mx-1.5 text-[#085F2C] font-bold">:</div>
-                <div className="border-b border-dotted border-[#9ca3af] flex-1 text-center font-serif text-[#B58B2E] text-[14px] pb-0 min-h-[16px] px-2 whitespace-nowrap overflow-hidden">
-                  {w.name || ""}
+                <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: '10px' }}>
+                  <div style={{ width: '100px', flexShrink: 0 }}>
+                    <p style={{ fontSize: '8.5px', color: '#808080', lineHeight: '1.1', margin: 0 }}>住所</p>
+                    <p style={{ fontWeight: 'bold', color: '#085F2C', fontSize: '11px', lineHeight: '1.1', margin: 0 }}>Address</p>
+                  </div>
+                  <div style={{ margin: '0 4px', color: '#085F2C', fontWeight: 'bold', fontSize: '11px' }}>:</div>
+                  <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, textAlign: 'center', fontFamily: 'Merriweather', color: '#B58B2E', fontSize: '12px', minHeight: '14px', padding: '0 4px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
+                    {w.address || ""}
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-end mb-1.5">
-                <div className="w-32 flex-shrink-0">
-                  <p className="text-[9px] text-[#808080] leading-tight">住所</p>
-                  <p className="font-bold text-[#085F2C] text-[13px] leading-tight">Address</p>
-                </div>
-                <div className="mx-1.5 text-[#085F2C] font-bold">:</div>
-                <div className="border-b border-dotted border-[#9ca3af] flex-1 text-center font-serif text-[#B58B2E] text-[14px] pb-0 min-h-[16px] px-2 whitespace-nowrap overflow-hidden">
-                  {w.address || ""}
-                </div>
-              </div>
-              <div className="bg-[#EEF8E9] p-2 rounded-sm border border-[#E0F2E3] mt-1.5">
-                <p className="text-[9px] text-[#6b7280] mb-0.5">サイン</p>
-                <div className="flex items-end h-[20px]">
-                  <span className="font-bold text-[#085F2C] text-[13px] w-12 pb-1">Sign :</span>
-                  <div className="border-b border-dotted border-[#9ca3af] flex-1 ml-2 relative h-full flex items-end justify-center">
-                    {w?.signUrl && <img src={w.signUrl} alt="sign" className="absolute bottom-1 max-h-[30px] max-w-[150px] 
-                    object-contain mix-blend-multiply" />}
+                <div style={{ backgroundColor: '#EEF8E9', padding: '5px 8px', borderRadius: '2px',
+                   border: '1px solid #E0F2E3', marginTop: '2px' }}>
+                  <p style={{ fontSize: '8.5px', color: '#6b7280', margin: '0 0 1px 0' }}>サイン</p>
+                  <div style={{ display: 'flex', alignItems: 'flex-end', height: '18px' }}>
+                    <span style={{ fontWeight: 'bold', color: '#085F2C', fontSize: '11px', width: '40px', paddingBottom: '1px' }}>Sign :</span>
+                    <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, marginLeft: '4px', position: 'relative', height: '100%', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+                      {w?.signUrl && (
+                        <div style={{ position: 'absolute', bottom: '1px', width: '120px', height: '22px', backgroundImage: `url(${w.signUrl})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
+            );
+          })}
+        </div>
+
+          {/* ── Certification Text ── */}
+        <div 
+         style={{marginBottom: '5px' }}
+        >
+          <p style={{ fontSize: '8.5px', color: '#9ca3af', margin: '0 0 1px 0' }}>信仰告白、売春花嫁がイスラム法に従って結婚金の受け入れ（イジャブとクブル）</p>
+          <p style={{ fontWeight: 'bold', color: '#222222', fontSize: '11px', letterSpacing: '0.01em', margin: 0 }}>I certify that Bride & Groom have exchange the offering and acceptance (Ijab and Qubul)</p>
+          <p style={{ fontSize: '8.5px', color: '#9ca3af', margin: '2px 0 1px 0' }}>の承認を証明する。従って、夫婦になることを宣言する。</p>
+          <p style={{ fontWeight: 'bold', color: '#222222', fontSize: '11px', letterSpacing: '0.01em', margin: 0 }}>according to Islamic Law and are declared Husband and Wife</p>
+        </div>
+
+        {/* ── Solemnized By Section ── */}
+        <div
+         style={{ display: 'grid', gridTemplateColumns: '1fr ', gap: '10px', alignItems: 'flex-end', 
+          fontFamily: 'Merriweather',  }}
+         >
+          <div
+          style={{display: 'flex', flexDirection: 'column', gap: '8px',  }}
+          >
+            <div 
+            style={{ display: 'flex', alignItems: 'flex-end', marginBottom: '2px' ,gap:'4px' }}
+            >
+              <div style={{ width: '150px', flexShrink: 0 }}>
+                <p style={{ fontSize: '8.5px', color: '#808080', lineHeight: '1.1', margin: 0 }}>名前で厳粛に結婚</p>
+                <p style={{ fontWeight: 'bold', color: '#222222', fontSize: '10.5px', lineHeight: '1.1', margin: 0 }}>Marriage Solemnized By Name</p>
+              </div>
+              <div style={{ margin: '0 4px', color: '#222222', fontWeight: 'bold', fontSize: '11px' }}>:</div>
+              <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, textAlign: 'center', fontFamily: 'Merriweather', color: '#B58B2E', fontSize: '11.5px', minHeight: '13px', padding: '0 4px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
+                {solemnizedBy.name || ""}
+              </div>
             </div>
-          );
-        })}
-      </div>
+            <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: '2px' }}>
+              <div style={{ width: '150px', flexShrink: 0 }}>
+                <p style={{ fontSize: '8.5px', color: '#808080', lineHeight: '1.1', margin: 0 }}>住所</p>
+                <p style={{ fontWeight: 'bold', color: '#222222', fontSize: '10.5px', lineHeight: '1.1', margin: 0 }}>Address</p>
+              </div>
+              <div style={{ margin: '0 4px', color: '#222222', fontWeight: 'bold', fontSize: '11px' }}>:</div>
+              <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, textAlign: 'center', fontFamily: 'Merriweather', color: '#B58B2E', fontSize: '11.5px', minHeight: '13px', padding: '0 4px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
+                {solemnizedBy.address || ""}
+              </div>
+            </div>
+          </div>
 
-      {/* Certification Text */}
-      <div className="mt-4">
-        <p className="text-[9px] text-[#9ca3af] mb-0.5">信仰告白、売春花嫁がイスラム法に従って結婚金の受け入れ（イジャブとクブル）</p>
-        <p className="font-bold text-[#222] text-[13px] tracking-wide">I certify that Bride & Groom have exchange the offering and acceptance (Ijab and Qubul)</p>
-        <p className="text-[9px] text-[#9ca3af] mt-1.5 mb-0.5">の承認を証明する。従って、夫婦になることを宣言する。</p>
-        <p className="font-bold text-[#222] text-[13px] tracking-wide">according to Islamic Law and are declared Husband and Wife</p>
-      </div>
-
-      {/* Solemnized By */}
-      <div className="mt-3 w-[50%]">
-        <div className="flex items-end mb-1.5">
-          <div className="w-52 flex-shrink-0">
-            <p className="text-[9px] text-[#808080] leading-tight">名前で厳粛に結婚</p>
-            <p className="font-bold text-[#222] text-[13px] leading-tight">Marriage Solemnized By Name</p>
-          </div>
-          <div className="mx-1.5 text-[#222] font-bold">:</div>
-          <div className="border-b border-dotted border-[#9ca3af] flex-1 text-center font-serif text-[#B58B2E] text-[14px] pb-0 min-h-[16px] px-2 whitespace-nowrap overflow-hidden">
-            {solemnizedBy.name || ""}
-          </div>
-        </div>
-        <div className="flex items-end mb-1.5">
-          <div className="w-52 flex-shrink-0">
-            <p className="text-[9px] text-[#808080] leading-tight">住所</p>
-            <p className="font-bold text-[#222] text-[13px] leading-tight">Address</p>
-          </div>
-          <div className="mx-1.5 text-[#222] font-bold">:</div>
-          <div className="border-b border-dotted border-[#9ca3af] flex-1 text-center font-serif text-[#B58B2E] text-[14px] pb-0 min-h-[16px] px-2 whitespace-nowrap overflow-hidden">
-            {solemnizedBy.address || ""}
+          <div style={{ backgroundColor: '#EEF8E9', padding: '5px 8px', borderRadius: '2px', border: '1px solid #E0F2E3' }}>
+            <p style={{ fontSize: '8.5px', color: '#6b7280', margin: '0 0 1px 0' }}>サイン</p>
+            <div style={{ display: 'flex', alignItems: 'flex-end', height: '18px' }}>
+              <span style={{ fontWeight: 'bold', color: '#085F2C', fontSize: '11px', width: '40px', paddingBottom: '1px' }}>Sign :</span>
+              <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, marginLeft: '4px', position: 'relative', height: '100%', display: 'flex', alignItems: 'flex-end', justify: 'center' }}>
+                {solemnizedBy?.signUrl && (
+                  <div style={{ position: 'absolute', bottom: '1px', width: '120px', height: '22px', backgroundImage: `url(${solemnizedBy.signUrl})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="bg-[#EEF8E9] p-2 rounded-sm border border-[#E0F2E3] mt-2">
-        <p className="text-[9px] text-[#6b7280] mb-0.5">サイン</p>
-        <div className="flex items-end h-[20px]">
-          <span className="font-bold text-[#085F2C] text-[13px] w-12 pb-1">Sign :</span>
-          <div className="border-b border-dotted border-[#9ca3af] flex-1 ml-2 relative h-full flex items-end justify-center">
-            {solemnizedBy?.signUrl && <img src={solemnizedBy.signUrl} alt="sign" className="absolute bottom-1 max-h-[30px] max-w-[150px]
-             object-contain mix-blend-multiply"  />}
-          </div>
-        </div>
       </div>
     </div>
   );

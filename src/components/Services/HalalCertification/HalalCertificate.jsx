@@ -1,177 +1,233 @@
 import React from 'react';
 
-const FieldRow = ({ labelEn, labelJp, value }) => (
-  <div className="flex items-end mb-3">
-    <div className="w-48 flex-shrink-0">
-      <p className="text-[10px] leading-tight uppercase font-semibold" style={{ color: '#6b7280' }}>{labelJp}</p>
-      <p className="text-[14px] font-bold leading-tight font-serif" style={{ color: '#00401A' }}>{labelEn}</p>
-    </div>
-    <div className="mx-2 font-bold" style={{ color: '#00401A' }}>:</div>
-    <div className="border-b border-dashed flex-1 text-[15px] pb-0.5 text-left font-serif min-h-[20px] px-3 font-semibold" style={{ borderColor: '#86efac', color: '#B98C20' }}>
-      {value || "—"}
-    </div>
-  </div>
-);
+const MERRIWEATHER_IMPORT = `@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap');`;
 
-const HalalCertificate = ({ data = {} }) => {
+/*
+ * HalalCertificate – 100% inline CSS for pixel-perfect html2canvas PDF rendering.
+ * A4 Portrait: 790 × 1115 px  (≈ 210 × 297 mm at 96 dpi)
+ * No Tailwind classes anywhere – prevents oklch parse errors & preview ↔ PDF drift.
+ */
+
+export default function HalalCertificate({ data = {} }) {
   const { details = {}, business = {}, entity = {}, product = {} } = data;
 
-  return (
-    <div 
-      className="w-[1000px] max-w-full mx-auto p-8 font-sans relative text-left overflow-hidden"
-      style={{
-        backgroundColor: '#ffffff',
-        border: '12px double #00401A',
-        background: 'linear-gradient(to bottom right, #ffffff, #fafaf9)'
-      }}
-    >
-      {/* Decorative Gold Inner Border */}
-      <div className="absolute inset-2 pointer-events-none" style={{ border: '1px solid #B98C20' }}></div>
-
-      {/* Arabesque Background Pattern Overlays (Subtle) */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none flex items-center justify-center">
-        <svg width="600" height="600" viewBox="0 0 100 100" fill="currentColor" style={{ color: '#00401A' }}>
-          <path d="M50 0 C60 20, 80 20, 100 50 C80 80, 60 80, 50 100 C40 80, 20 80, 0 50 C20 20, 40 20, 50 0 Z" />
-        </svg>
-      </div>
-
-      {/* Header section */}
-      <div className="relative flex justify-between items-start pb-6 mb-8 z-10" style={{ borderBottom: '2px solid #B98C20' }}>
-        <div>
-          <div className="flex items-center gap-3">
-            <div 
-              className="w-14 h-14 relative rounded-full flex items-center justify-center text-white shadow-md border"
-              style={{ backgroundColor: '#00401A', borderColor: '#B98C20' }}
-            >
-              {/* Halal Arabic Logo Icon */}
-              <span className="text-xl font-bold font-serif">حلال</span>
-            </div>
-            <div>
-              <h2 className="text-[20px] font-extrabold tracking-wide font-serif" style={{ color: '#00401A' }}>OSAKA MASJID</h2>
-              <p className="text-[10px] font-bold uppercase tracking-wider" style={{ color: '#6b7280' }}>Halal Certification Board</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="text-center absolute w-full left-0 top-0 pointer-events-none mt-1">
-          <p className="font-bold text-xs tracking-widest" style={{ color: '#B98C20' }}>ハラール証明書</p>
-          <h1 className="text-[34px] font-extrabold tracking-wider font-serif" style={{ color: '#00401A', textShadow: '1px 1px 0px rgba(0,0,0,0.05)' }}>
-            HALAL CERTIFICATE
-          </h1>
-          <p className="text-[14px] text-arabic font-bold mt-1" style={{ color: '#00401A' }}>شهادة الحلال</p>
-        </div>
-
-        <div className="text-right">
-          <p className="text-[10px] font-bold" style={{ color: '#9ca3af' }}>CERTIFICATE NO.</p>
-          <p className="text-[16px] font-bold font-mono tracking-wider" style={{ color: '#B98C20' }}>{details.certificateNo || "—"}</p>
-        </div>
-      </div>
-
-      {/* Solemn Certificate Text */}
-      <div className="text-center max-w-2xl mx-auto mb-8 z-10 relative space-y-2">
-        <p className="text-[14px] font-medium italic" style={{ color: '#374151' }}>
-          "This is to certify that the business enterprise, certified entity and products listed below have been inspected, audited and verified to be compliant with Halal dietary regulations in accordance with Islamic Law."
-        </p>
-        <p className="text-[11px] font-medium" style={{ color: '#6b7280' }}>
-          ここに、下記の事業者、対象品目、およびサービスがイスラム法に基づくハラール基準に適合していることを審査・監査の上、証明します。
-        </p>
-      </div>
-
-      {/* Main Grid Content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 z-10 relative mb-8">
-        
-        {/* Left Column: Business & Entity Info */}
-        <div 
-          className="space-y-4 p-5 rounded-2xl border shadow-sm"
-          style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)', borderColor: '#f0fdf4' }}
-        >
-          <h3 
-            className="text-[15px] font-bold pb-2 flex items-center gap-2"
-            style={{ color: '#00401A', borderBottom: '1px solid #dcfce7' }}
-          >
-            <span className="w-1.5 h-4 rounded-full" style={{ backgroundColor: '#B98C20' }}></span>
-            Certified Enterprise & Representative
-          </h3>
-          
-          <FieldRow labelEn="Company Name" labelJp="企業名" value={business.companyName} />
-          <FieldRow labelEn="Business Address" labelJp="会社住所" value={business.companyAddress} />
-          <FieldRow labelEn="Representative" labelJp="代表者名" value={business.representative} />
-          <FieldRow labelEn="Certified Entity" labelJp="認証対象組織" value={entity.certificateName || business.companyName} />
-          <FieldRow labelEn="Entity Address" labelJp="対象組織住所" value={entity.certificateAddress || business.companyAddress} />
-        </div>
-
-        {/* Right Column: Product & Scope Info */}
-        <div 
-          className="space-y-4 p-5 rounded-2xl border shadow-sm"
-          style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)', borderColor: '#f0fdf4' }}
-        >
-          <h3 
-            className="text-[15px] font-bold pb-2 flex items-center gap-2"
-            style={{ color: '#00401A', borderBottom: '1px solid #dcfce7' }}
-          >
-            <span className="w-1.5 h-4 rounded-full" style={{ backgroundColor: '#B98C20' }}></span>
-            Certification & Standard Details
-          </h3>
-          
-          <FieldRow labelEn="Product / Service" labelJp="対象製品・サービス" value={product.productName} />
-          <FieldRow labelEn="Category" labelJp="製品カテゴリー" value={product.category} />
-          <FieldRow labelEn="Scope of Certification" labelJp="認証範囲" value={product.scope} />
-          <FieldRow labelEn="Halal Standard" labelJp="適用ハラール基準" value={product.halalUse || "Osaka Masjid Halal Standard"} />
-          <FieldRow labelEn="Status" labelJp="認証ステータス" value="Certified (ハラール認証済み)" />
-        </div>
-      </div>
-
-      {/* Dates Section */}
-      <div 
-        className="grid grid-cols-2 gap-4 py-4 my-6 rounded-xl px-4 z-10 relative"
-        style={{ borderTop: '1px solid #dcfce7', borderBottom: '1px solid #dcfce7', backgroundColor: 'rgba(240, 253, 244, 0.3)' }}
-      >
-        <div className="text-center border-r" style={{ borderColor: '#dcfce7' }}>
-          <p className="text-[10px] font-bold uppercase" style={{ color: '#9ca3af' }}>Issue Date / 交付日</p>
-          <p className="text-[18px] font-bold font-serif mt-1" style={{ color: '#00401A' }}>{details.issueDate || "—"}</p>
-        </div>
-        <div className="text-center">
-          <p className="text-[10px] font-bold uppercase" style={{ color: '#9ca3af' }}>Expiry Date / 有効期限</p>
-          <p className="text-[18px] font-bold font-serif mt-1" style={{ color: '#b91c1c' }}>{details.expiryDate || "—"}</p>
-        </div>
-      </div>
-
-      {/* Footer Signatures and Seals */}
-      <div className="flex justify-between items-end mt-10 z-10 relative">
-        {/* Left Side: QR Code and Official Stamp */}
-        <div className="flex items-center gap-6">
-          {details.qrCodeLink && (
-            <div className="border p-2 bg-white rounded-lg shadow-sm" style={{ borderColor: '#e5e7eb' }}>
-              {/* We can construct a QR Code rendering or standard placeholder stamp */}
-              <div className="w-20 h-20 flex items-center justify-center bg-gray-50 border border-dashed border-gray-300 relative">
-                <span className="text-[8px] font-bold text-gray-400 text-center px-1">Masjid Verified QR</span>
-              </div>
-            </div>
-          )}
-          
-          <div 
-            className="w-24 h-24 rounded-full border-2 border-double flex flex-col items-center justify-center font-bold text-[9px] uppercase tracking-wider relative rotate-12 opacity-80 select-none"
-            style={{ color: '#ef4444', borderColor: '#ef4444' }}
-          >
-            <div className="absolute inset-1.5 border rounded-full" style={{ borderColor: '#fca5a5' }}></div>
-            <span>Osaka Masjid</span>
-            <span className="text-[7px] my-0.5 border-t border-b py-0.5 px-1" style={{ borderColor: '#f87171' }}>Official Seal</span>
-            <span>Halal Board</span>
-          </div>
-        </div>
-
-        {/* Right Side: Authorized Signature */}
-        <div className="w-64 text-center">
-          <div className="border-b border-dotted h-10 relative flex items-end justify-center pb-1" style={{ borderColor: '#9ca3af' }}>
-            {/* Elegant placeholder signature */}
-            <span className="font-serif italic text-lg tracking-wider" style={{ color: '#166534' }}>Osaka Masjid Halal Board</span>
-          </div>
-          <p className="text-[9px] mt-1 uppercase font-bold" style={{ color: '#9ca3af' }}>Authorized Signature</p>
-          <p className="text-[11px] font-bold" style={{ color: '#00401A' }}>Director of Halal Certification</p>
-        </div>
-      </div>
+  /* ─── shared micro-components (pure inline) ─── */
+  const Label = ({ jp, en }) => (
+    <div style={{ marginBottom: '1px' }}>
+      <span style={{ fontSize: '8px', color: '#999999', display: 'block', lineHeight: 1.2 }}>{jp}</span>
+      <span style={{ fontSize: '10px', fontWeight: 700, color: '#1B5E20', lineHeight: 1.2 }}>{en}</span>
     </div>
   );
-};
 
-export default HalalCertificate;
+  const Value = ({ children, color = '#212121' }) => (
+    <p style={{ fontSize: '12px', fontWeight: 600, color, margin: '2px 0 0 0', lineHeight: 1.3, wordBreak: 'break-word' }}>
+      {children || '—'}
+    </p>
+  );
+
+  const SectionTitle = ({ text, accent = '#1B5E20' }) => (
+    <div style={{
+      display: 'block',
+      backgroundColor: accent,
+      padding: '10px 14px 13px 14px',
+      borderRadius: '3px',
+      marginBottom: '10px',
+      width: 'fit-content'
+    }}>
+      <span style={{
+        fontSize: '10px',
+        fontWeight: 700,
+        color: '#ffffff',
+        letterSpacing: '0.06em',
+        display: 'block',
+        lineHeight: '1.4',
+        WebkitTextFillColor: '#ffffff'
+      }}>{text}</span>
+    </div>
+  );
+
+  return (
+    <>
+      {/* Inject Merriweather font so html2canvas captures it correctly */}
+      <style dangerouslySetInnerHTML={{ __html: MERRIWEATHER_IMPORT }} />
+      <div style={{
+        width: '790px', height: '1115px', margin: '0 auto', backgroundColor: '#ffffff',
+        position: 'relative', overflow: 'hidden', boxSizing: 'border-box',
+        fontFamily: '"Merriweather", "Georgia", serif',
+        border: '8px solid #1B5E20',
+        padding: '42px 48px'
+      }}>
+
+        {/* ── CSS Border System ── */}
+        <div style={{ position: 'absolute', top: '6px', left: '6px', right: '6px', bottom: '6px', border: '2px solid #C5943A', pointerEvents: 'none', zIndex: 5 }} />
+        <div style={{ position: 'absolute', top: '12px', left: '12px', right: '12px', bottom: '12px', border: '0.5px solid #1B5E20', opacity: 0.25, pointerEvents: 'none', zIndex: 5 }} />
+        {/* Corner brackets */}
+        {[
+          { top: '4px', left: '4px', bT: true, bL: true },
+          { top: '4px', right: '4px', bT: true, bR: true },
+          { bottom: '4px', left: '4px', bB: true, bL: true },
+          { bottom: '4px', right: '4px', bB: true, bR: true },
+        ].map((c, i) => (
+          <div key={i} style={{
+            position: 'absolute', width: '20px', height: '20px', zIndex: 6,
+            ...(c.top !== undefined && { top: c.top }),
+            ...(c.bottom !== undefined && { bottom: c.bottom }),
+            ...(c.left !== undefined && { left: c.left }),
+            ...(c.right !== undefined && { right: c.right }),
+            ...(c.bT && { borderTop: '3px solid #C5943A' }),
+            ...(c.bB && { borderBottom: '3px solid #C5943A' }),
+            ...(c.bL && { borderLeft: '3px solid #C5943A' }),
+            ...(c.bR && { borderRight: '3px solid #C5943A' }),
+          }} />
+        ))}
+
+        {/* ── Watermark ── */}
+        <div style={{ position: 'absolute', bottom: '120px', left: '50%', transform: 'translateX(-50%)', pointerEvents: 'none', zIndex: 0 }}>
+          <img src="/images/offerServices/halal_certificate/water_mark.png" alt="" style={{ width: '260px', height: 'auto', objectFit: 'contain', display: 'block' }} />
+        </div>
+
+        {/* ── Content ── */}
+        <div style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
+
+          {/* ═══ TOP HEADER ═══ */}
+          <div>
+            {/* JP subtitle */}
+            <p style={{ textAlign: 'center', fontSize: '24px', fontWeight: 500, color: '#000000', 
+               margin: '0 0 4px 0', 
+               fontFamily: '"Merriweather", sans-serif' }}>ハラール認証</p>
+
+            {/* Title row */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+              {/* Left: accent bar + text */}
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <div
+                  style={{
+                    width: "30px",
+                    height: "90px",
+                    background: "linear-gradient(to bottom, #00BD4E, #001C0B)",
+                    borderRadius: "2px",
+                    marginRight: "12px",
+                    flexShrink: 0,
+                  }}
+                />
+                {/* <div style={{ width: '30px', height: '90px', backgroundColor: '#1B5E20', borderRadius: '2px',
+                 marginRight: '12px', flexShrink: 0 }} /> */}
+
+
+                <div className=''
+
+                  style={{
+                    fontSize: '50px', fontWeight: 900, color: '#1D410B',
+                    lineHeight: 1, letterSpacing: '0.03em', fontFamily: '"Merriweather", serif'
+                  }}
+                >
+                  <div
+                  //  style={{ fontSize: '34px', fontWeight: 900, color: '#1D410B',
+                  //   lineHeight: 1, letterSpacing: '0.03em', fontFamily: '"Merriweather", serif' }}
+
+                  >HALAL</div>
+                  <div
+                  //  style={{ fontSize: '34px', fontWeight: 900, color: '#1D410B',
+                  //   lineHeight: 1, letterSpacing: '0.03em', fontFamily: '"Merriweather", serif' }}
+
+                  >CERTIFICATE</div>
+                </div>
+              </div>
+              {/* Right: badge */}
+              <img src="/images/offerServices/halal_certificate/certified_badge.svg" alt="Halal Certified" style={{ width: '105px', height: '105px', objectFit: 'contain', flexShrink: 0, display: 'block' }} />
+            </div>
+
+            {/* Certificate No */}
+            <div style={{ borderBottom: '1.5px solid #E0E0E0', paddingBottom: '7px', marginBottom: '12px' }}>
+              <span style={{ fontSize: '14px', color: '#BDBDBD', display: 'block', marginBottom: '1px',
+                 fontFamily: '"Merriweather", sans-serif' }}>証明書番号</span>
+              <span style={{ fontSize: '20px', fontWeight: 500, color: '#000000', fontFamily: '"Merriweather", serif' }}>Certificate No: </span>
+              <span style={{ fontSize: '20px', fontWeight: 600, color: '#1B5E20', fontFamily: '"Merriweather", serif' }}>{details.certificateNo || '—'}</span>
+            </div>
+          </div>
+
+          {/* ═══ BODY SECTIONS ═══ */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', flex: 1 }}>
+
+            {/* Section 1 – Enterprise */}
+            <div style={{ backgroundColor: '#F6F9F5', border: '1px solid #C8E6C9', borderRadius: '6px', padding: '12px 16px' }}>
+              <SectionTitle text="CERTIFIED ENTERPRISE & REPRESENTATIVE ／ 認定企業および代表者" />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: '20px', rowGap: '8px' }}>
+                <div><Label jp="企業名" en="Company Name" /><Value>{business.companyName}</Value></div>
+                <div><Label jp="代表者名" en="Representative" /><Value>{business.representative}</Value></div>
+                <div style={{ gridColumn: '1 / -1' }}><Label jp="会社住所" en="Business Address" /><Value color="#555555">{business.companyAddress}</Value></div>
+                <div><Label jp="認証対象組織" en="Certified Entity" /><Value>{entity.certificateName || business.companyName}</Value></div>
+                <div><Label jp="対象組織住所" en="Entity Address" /><Value color="#555555">{entity.certificateAddress || business.companyAddress}</Value></div>
+              </div>
+            </div>
+
+            {/* Section 2 – Standards */}
+            <div style={{ backgroundColor: '#FFFBF0', border: '1px solid #F5E6B8', borderRadius: '6px', padding: '12px 16px' }}>
+              <SectionTitle text="CERTIFICATION & STANDARD DETAILS ／ 認証および標準の詳細" accent="#C5943A" />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', columnGap: '16px', rowGap: '8px' }}>
+                <div><Label jp="対象製品・サービス" en="Product / Service" /><Value color="#C5943A">{product.productName}</Value></div>
+                <div><Label jp="製品カテゴリー" en="Category" /><Value>{product.category}</Value></div>
+                <div><Label jp="認証範囲" en="Scope" /><Value color="#555555">{product.scope}</Value></div>
+                <div><Label jp="適用ハラール基準" en="Halal Standard" /><Value>{product.halalUse || 'Osaka Masjid Standard'}</Value></div>
+                <div><Label jp="発行日" en="Issued On" /><Value color="#1B5E20">{details.issueDate}</Value></div>
+                <div><Label jp="有効期限" en="Valid Until" /><Value color="#C62828">{details.expiryDate}</Value></div>
+              </div>
+            </div>
+
+            {/* Declaration */}
+            <div style={{ textAlign: 'center', padding: '4px 6px' }}>
+              <p style={{ fontSize: '12px', fontWeight: 600, color: '#333333', margin: '0 0 3px 0' }}>
+                This Halal Certificate has been issued to the business organization named above, which has compiled with all the rules and guidelines set by the Islamic council of Japan.
+              </p>
+              <p style={{ fontSize: '11px', color: '#616161', margin: 0, fontStyle: 'italic' }}>
+                Note: All products are 100% halal including hand slaughtered chicken.
+              </p>
+            </div>
+
+            {/* Conditions */}
+            <div style={{ backgroundColor: '#FAFAF8', border: '1px solid #EEECE6', borderRadius: '4px', padding: '7px 12px' }}>
+              <p style={{ fontSize: '14px', fontWeight: 700, color: '#424242', margin: '0 0 3px 0' }}>Conditions:</p>
+              {[
+                'This certificate is valid only for the named above, located at the above address.',
+                'The ORIGINAL certificate must be displayed at the above premises at the place visible to the customer.',
+                'The certificate is not to be displayed by another organization or location.',
+                'Osaka Masjid reserves the right to inspect the above mentioned premises without prior notice.',
+                'Breach of any of this condition will invalidate the certification.'
+              ].map((t, i) => (
+                <p key={i} style={{ fontSize: '12px', color: '#757575', margin: '0 0 1px 0', lineHeight: 1.4, paddingLeft: '4px' }}>{i + 1}. {t}</p>
+              ))}
+            </div>
+          </div>
+
+          {/* ═══ FOOTER ═══ */}
+          <div style={{ borderTop: '1.5px solid #E0E0E0', paddingTop: '8px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '6px' }}>
+              {/* Left: signatory */}
+              <div style={{ fontSize: '9.5px', color: '#424242', lineHeight: 1.6 }}>
+                <p style={{ margin: 0 }}><span style={{ fontWeight: 700, color: '#1B5E20' }}>Name:</span> Authorized Officer</p>
+                <p style={{ margin: 0 }}><span style={{ fontWeight: 700, color: '#1B5E20' }}>Designation:</span> Director of Halal Certification</p>
+                <p style={{ margin: 0 }}><span style={{ fontWeight: 700, color: '#1B5E20' }}>Date:</span> {details.issueDate || '—'}</p>
+                <p style={{ margin: 0 }}><span style={{ fontWeight: 700, color: '#1B5E20' }}>On Behalf Of:</span> Osaka Masjid Halal Board</p>
+              </div>
+              {/* Right: signature */}
+              <div style={{ width: '210px', textAlign: 'center' }}>
+                <div style={{ borderBottom: '1.5px dotted #BDBDBD', height: '30px', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', paddingBottom: '2px' }}>
+                  <span style={{ fontStyle: 'italic', fontSize: '14px', color: '#1B5E20', fontWeight: 700 }}>Osaka Masjid Halal Board</span>
+                </div>
+                <p style={{ fontSize: '8px', color: '#9E9E9E', fontWeight: 700, textTransform: 'uppercase', margin: '3px 0 0 0' }}>Authorized Signature</p>
+              </div>
+            </div>
+            {/* Organization bar */}
+            <div style={{ textAlign: 'center', fontSize: '8px', color: '#757575', borderTop: '1px solid #F5F5F5', paddingTop: '5px' }}>
+              <span style={{ fontWeight: 700 }}>Organization Name</span> &nbsp;|&nbsp;
+              <span>Tel: 06-4862-6396</span> &nbsp;|&nbsp;
+              <span>Email: info@osakamasjid.org</span> &nbsp;|&nbsp;
+              <span>Address: 4-12-16, Owada, Nishi Yodogawa ku, Osaka, Japan</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </>
+  );
+}

@@ -48,7 +48,19 @@ const Page = () => {
                 margin: 0,
                 filename: `Marriage_Certificate_${id}.pdf`,
                 image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true, allowTaint: true },
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    onclone: (clonedDoc) => {
+                        const styleSheets = clonedDoc.querySelectorAll("style");
+                        styleSheets.forEach((style) => {
+                            if (style.textContent && style.textContent.includes("oklch")) {
+                                style.textContent = style.textContent.replace(/oklch\([^)]+\)/g, "#000000");
+                            }
+                        });
+                    },
+                },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
@@ -98,10 +110,10 @@ const Page = () => {
         return `/api/proxy-image?url=${encodeURIComponent(fullUrl)}`;
     };
 
-const { addressLine1:addressLine1_groom, addressLine2:addressLine2_groom } = splitAddress(groom?.address);
-const { addressLine1:addressLine1_bride, addressLine2:addressLine2_bride } = splitAddress(bride?.address);
+    const { addressLine1: addressLine1_groom, addressLine2: addressLine2_groom } = splitAddress(groom?.address);
+    const { addressLine1: addressLine1_bride, addressLine2: addressLine2_bride } = splitAddress(bride?.address);
 
-console.log("test address,",groom,addressLine1_bride)
+    // console.log("test address,",groom,addressLine1_bride)
 
 
     const mappedData = {
@@ -119,8 +131,8 @@ console.log("test address,",groom,addressLine1_bride)
             religion: groom.religion || "",
             nationality: groom.nationality || "",
             passportNo: groom.passport_no || groom.passport_number || "",
-            addressLine1:addressLine1_groom || "",
-            
+            addressLine1: addressLine1_groom || "",
+
             addressLine2: addressLine2_groom || "",
             // addressLine example
             // address: "west akur takur para tangail, dhaka , abngladesh",
@@ -139,7 +151,7 @@ console.log("test address,",groom,addressLine1_bride)
             nationality: bride.nationality || "",
             passportNo: bride.passport_no || bride.passport_number || "",
             addressLine1: addressLine1_bride || "",
-            addressLine2:addressLine2_bride || "",
+            addressLine2: addressLine2_bride || "",
             photoUrl: getImageUrl(attached.bride_photo || bride.image),
             signUrl: getImageUrl(attached.bride_sign)
         },

@@ -30,7 +30,7 @@ const FloorGuide = () => {
     {
       id: 1,
       floorName: "First Floor",
-      features: ["Male Entrance", "Female Entrance", "Male Wudu & Toilet Area", "Halal Store(1st floor)"],
+      features: ["Male Entrance", "Female Entrance", "Male Wudu & Toilet Area", "Halal Store"],
     },
   ];
 
