@@ -3,6 +3,7 @@ import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 import React from "react";
 import TableTitle from "../Shared/TableTitle";
 import SectionTitleSmall from "@/components/SectionTitleRow/SectionTitleSmall";
+import { isBookingExpired } from "@/helper/isBookingExpired";
 
 const BookingList = ({ bookings = [], loading = false }) => {
   const formatDate = (dateStr) => {
@@ -20,11 +21,25 @@ const BookingList = ({ bookings = [], loading = false }) => {
     return `${hour12}:${m} ${ampm}`;
   };
 
-  const getStatusBadge = (status) => {
+  const getStatusBadge = (booking) => {
+
+    const status = booking?.status;
+    const expired = isBookingExpired(
+      booking.booked_date,
+      booking.start_time,
+      booking.end_time
+    );
+
+
+    // console.log("booking convertion,", expired)
+
     if (status === "1" || status === 1) {
       return (<span className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">Approved</span>);
     } else if (status === "2" || status === 2) {
       return (<span className="bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">Rejected</span>);
+    }
+    if (expired){
+      return (<span className="bg-yellow-100 text-red-500 text-xs font-semibold px-3 py-1 rounded-full">Expired</span>);
     }
     return (<span className="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">Pending</span>);
   };
@@ -34,14 +49,14 @@ const BookingList = ({ bookings = [], loading = false }) => {
       rounded="rounded-[20px]"
       innerRounded="rounded-[19px]"
       className="shadow-md hover:shadow-lg transition-all duration-300 "
-      innerClassName=""     
-      >
-    
-    
+      innerClassName=""
+    >
+
+
       <div className="w-full p-4">
 
-         <div className="mb-6">
-            <SectionTitleSmall
+        <div className="mb-6">
+          <SectionTitleSmall
             leftTitle={"Booking List"}
             rightTitle={"予約リスト"}
           />
@@ -60,7 +75,7 @@ const BookingList = ({ bookings = [], loading = false }) => {
             <table className="w-full border-collapse min-w-[600px]">
               <thead>
                 <tr>
-                  {["Sl. No.", "Event Date", "Start Time", "End Time", "Status"].map((head) => (
+                  {["UID", "Event Date", "Start Time", "End Time", "Status"].map((head) => (
                     <th key={head}>
                       <div className="bg-[#52B920] text-white border border-[#B0C4B8] font-bold rounded-t-full py-1.5 text-center whitespace-nowrap">{head}</div>
                     </th>
@@ -70,11 +85,17 @@ const BookingList = ({ bookings = [], loading = false }) => {
               <tbody>
                 {bookings.map((booking, index) => (
                   <tr key={booking.id} className={index % 2 === 0 ? "bg-white" : "bg-[#52B920]/40"}>
-                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{String(index + 1).padStart(2, "0")}</td>
+                    {/* <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{String(index + 1).padStart(2, "0")}</td> */}
+
+                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
+                      {booking?.unique_id}
+                    </td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatDate(booking.booked_date)}</td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatTime(booking.start_time)}</td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatTime(booking.end_time)}</td>
-                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{getStatusBadge(booking.status)}</td>
+                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
+                      {getStatusBadge(booking)}
+                    </td>
                   </tr>
                 ))}
               </tbody>

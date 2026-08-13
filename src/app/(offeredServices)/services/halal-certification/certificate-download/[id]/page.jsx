@@ -75,8 +75,25 @@ const Page = () => {
                 margin: 0,
                 filename: `Halal_Certificate_${id}.pdf`,
                 image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true, allowTaint: true },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    onclone: async (clonedDoc) => {
+                        // Strip oklch colors that crash html2canvas parser
+                        const styleSheets = clonedDoc.querySelectorAll("style");
+                        styleSheets.forEach((style) => {
+                            if (style.textContent && style.textContent.includes("oklch")) {
+                                style.textContent = style.textContent.replace(/oklch\([^)]+\)/g, "#000000");
+                            }
+                        });
+                        // Wait for Merriweather (and all fonts) to fully load in the cloned document
+                        if (clonedDoc.fonts && clonedDoc.fonts.ready) {
+                            await clonedDoc.fonts.ready;
+                        }
+                    },
+                },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
             await html2pdf().from(element).set(opt).save();

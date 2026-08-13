@@ -1,13 +1,15 @@
-// components/BannerBottom.jsx (SERVER COMPONENT)
+// components/BannerBottom.jsx
 import { getBanners } from "@/helper/actions";
 import BannerBottomSlider from "./BannerBottomSlider";
 
 export default async function BannerBottom() {
   const banners = await getBanners();
 
-  return <div className="w-full h-[70px] md:h-[220px] lg:h-[260px]  ">
-    
-
-    <BannerBottomSlider banners={banners} />
-  </div>;
+  return (
+    <div className="w-full">
+      <div className="w-full max-w-[1920px] mx-auto">
+        <BannerBottomSlider banners={banners} />
+      </div>
+    </div>
+  );
 }

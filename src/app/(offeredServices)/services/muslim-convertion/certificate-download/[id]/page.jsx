@@ -101,7 +101,7 @@ const Page = () => {
             return dateStr;
         }
     };
-    console.log("co img",attached)
+    // console.log("co img",attached)
 
     const mappedData = {
         applicant: {

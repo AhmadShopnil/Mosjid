@@ -235,7 +235,7 @@ const ConversionCertificate = ({ data = {} }) => {
               <p> 申請者が自らの自由意志によりイスラム教を信仰したことを確認しました。この証明書は、申請者がイスラム教を信仰し、その法に従って行動することを決意したことを証明するために発行されます。全能なるアッラーが、申請者を常に正しい道へと導き給いますように。誠にアッラーは最良の導き手です。</p>
             </div>
 
-            <div className="mt-2 text-center border-t border-[#9ca3af] pt-1 w-[180px] ml-auto">
+            <div className="mt-2  text-center border-t border-[#9ca3af] pt-1 w-[180px] ml-auto">
               {/* <p className="text-[10px] text-[#808080]">イマームのサイン</p> */}
               <div className='h-[20px] '>
                 {solemnizedBy?.signUrl && (

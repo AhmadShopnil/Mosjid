@@ -23,11 +23,24 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
     return `${hour12}:${m} ${ampm}`;
   };
 
-  const getStatusBadge = (status) => {
+  const getStatusBadge = (app) => {
+
+const status = app?.status;
+    const expired = isBookingExpired(
+      booking.booked_date,
+      booking.start_time,
+      booking.end_time
+    );
+
+
+
     if (status === "1" || status === 1) {
       return (<span className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">Approved</span>);
     } else if (status === "2" || status === 2) {
       return (<span className="bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">Rejected</span>);
+    }
+    if (expired){
+      return (<span className="bg-yellow-100 text-red-500 text-xs font-semibold px-3 py-1 rounded-full">Expired</span>);
     }
     return (<span className="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">Pending</span>);
   };
@@ -102,7 +115,9 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
             <table className="w-full border-collapse min-w-[600px]">
               <thead>
                 <tr>
-                  {["Sl. No.","UID", "Event Date", "Start Time", "End Time", "Status", "Action"].map((head) => (
+                  {[
+                    // "Sl. No.",
+                  "UID", "Event Date", "Start Time", "End Time", "Status", "Action"].map((head) => (
                     <th key={head}>
                       <div className="bg-[#52B920] text-white border border-[#B0C4B8] font-bold rounded-t-full py-1.5 text-center whitespace-nowrap px-2">{head}</div>
                     </th>
@@ -112,7 +127,7 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
               <tbody>
                 {applications?.map((app, index) => (
                   <tr key={app.id} className={index % 2 === 0 ? "bg-white" : "bg-[#52B920]/40"}>
-                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{String(index + 1).padStart(2, "0")}</td>
+                    {/* <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{String(index + 1).padStart(2, "0")}</td> */}
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
                       {app?.unique_id}
                       </td>
@@ -121,7 +136,9 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
                       </td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatTime(app.start_time)}</td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatTime(app.end_time)}</td>
-                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{getStatusBadge(app.status)}</td>
+                    <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
+                      {getStatusBadge(app)}
+                      </td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
                       {actionTake(app)}
                     </td>
