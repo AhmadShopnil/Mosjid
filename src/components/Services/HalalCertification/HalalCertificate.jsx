@@ -13,9 +13,11 @@ export default function HalalCertificate({ data = {} }) {
 
   /* ─── shared micro-components (pure inline) ─── */
   const Label = ({ jp, en }) => (
-    <div style={{ marginBottom: '1px' }}>
-      <span style={{ fontSize: '8px', color: '#999999', display: 'block', lineHeight: 1.2 }}>{jp}</span>
-      <span style={{ fontSize: '10px', fontWeight: 700, color: '#1B5E20', lineHeight: 1.2 }}>{en}</span>
+    <div
+     style={{ marginBottom: '2px' }}
+     >
+      <span style={{ fontSize: '10px', color: '#999999', display: 'block', lineHeight: 1.2 }}>{jp}</span>
+      <span style={{ fontSize: '12px', fontWeight: 700, color: '#1B5E20', lineHeight: 1.2 }}>{en} :</span>
     </div>
   );
 
@@ -28,20 +30,21 @@ export default function HalalCertificate({ data = {} }) {
   const SectionTitle = ({ text, accent = '#1B5E20' }) => (
     <div style={{
       display: 'block',
-      backgroundColor: accent,
-      padding: '10px 14px 13px 14px',
+      // backgroundColor: accent,
+      padding: '0px 10px 12px 0px',
       borderRadius: '3px',
       marginBottom: '10px',
       width: 'fit-content'
     }}>
       <span style={{
-        fontSize: '10px',
-        fontWeight: 700,
-        color: '#ffffff',
+        fontSize: '13px',
+        fontWeight: 800,
+         color: accent,
+        // color: '#ffffff',
         letterSpacing: '0.06em',
         display: 'block',
         lineHeight: '1.4',
-        WebkitTextFillColor: '#ffffff'
+        // WebkitTextFillColor: '#ffffff'
       }}>{text}</span>
     </div>
   );
@@ -147,12 +150,19 @@ export default function HalalCertificate({ data = {} }) {
           </div>
 
           {/* ═══ BODY SECTIONS ═══ */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', flex: 1 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px',  }}>
 
-            {/* Section 1 – Enterprise */}
+        <div
+        
+        style={{ display: 'flex', flexDirection: 'row', gap: '10px', flex: 1 }}
+        >
+              {/* Section 1 – Enterprise */}
             <div style={{ backgroundColor: '#F6F9F5', border: '1px solid #C8E6C9', borderRadius: '6px', padding: '12px 16px' }}>
               <SectionTitle text="CERTIFIED ENTERPRISE & REPRESENTATIVE ／ 認定企業および代表者" />
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: '20px', rowGap: '8px' }}>
+              <div
+               style={{ display: 'flex', flexDirection: 'column', gap: '15px',  }}
+              // style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: '20px', rowGap: '8px' }}
+              >
                 <div><Label jp="企業名" en="Company Name" /><Value>{business.companyName}</Value></div>
                 <div><Label jp="代表者名" en="Representative" /><Value>{business.representative}</Value></div>
                 <div style={{ gridColumn: '1 / -1' }}><Label jp="会社住所" en="Business Address" /><Value color="#555555">{business.companyAddress}</Value></div>
@@ -162,18 +172,26 @@ export default function HalalCertificate({ data = {} }) {
             </div>
 
             {/* Section 2 – Standards */}
-            <div style={{ backgroundColor: '#FFFBF0', border: '1px solid #F5E6B8', borderRadius: '6px', padding: '12px 16px' }}>
+            <div 
+            style={{ backgroundColor: '#FFFBF0', border: '1px solid #F5E6B8', borderRadius: '6px', padding: '12px 16px' }}
+            // style={{ backgroundColor: '#FFFBF0', border: '1px solid #F5E6B8', borderRadius: '6px', padding: '12px 16px' }}
+            
+            >
               <SectionTitle text="CERTIFICATION & STANDARD DETAILS ／ 認証および標準の詳細" accent="#C5943A" />
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', columnGap: '16px', rowGap: '8px' }}>
+              <div 
+               style={{ display: 'flex', flexDirection: 'column', gap: '12px',  }}
+              // style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', columnGap: '16px', rowGap: '8px' }}
+              >
                 <div><Label jp="対象製品・サービス" en="Product / Service" /><Value color="#C5943A">{product.productName}</Value></div>
                 <div><Label jp="製品カテゴリー" en="Category" /><Value>{product.category}</Value></div>
-                <div><Label jp="認証範囲" en="Scope" /><Value color="#555555">{product.scope}</Value></div>
+                {/* <div><Label jp="認証範囲" en="Scope" /><Value color="#555555">{product.scope}</Value></div> */}
                 <div><Label jp="適用ハラール基準" en="Halal Standard" /><Value>{product.halalUse || 'Osaka Masjid Standard'}</Value></div>
                 <div><Label jp="発行日" en="Issued On" /><Value color="#1B5E20">{details.issueDate}</Value></div>
                 <div><Label jp="有効期限" en="Valid Until" /><Value color="#C62828">{details.expiryDate}</Value></div>
               </div>
             </div>
 
+        </div>
             {/* Declaration */}
             <div style={{ textAlign: 'center', padding: '4px 6px' }}>
               <p style={{ fontSize: '12px', fontWeight: 600, color: '#333333', margin: '0 0 3px 0' }}>
@@ -203,7 +221,7 @@ export default function HalalCertificate({ data = {} }) {
           <div style={{ borderTop: '1.5px solid #E0E0E0', paddingTop: '8px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '6px' }}>
               {/* Left: signatory */}
-              <div style={{ fontSize: '9.5px', color: '#424242', lineHeight: 1.6 }}>
+              <div style={{ fontSize: '11px', color: '#424242', lineHeight: 1.6 }}>
                 <p style={{ margin: 0 }}><span style={{ fontWeight: 700, color: '#1B5E20' }}>Name:</span> Authorized Officer</p>
                 <p style={{ margin: 0 }}><span style={{ fontWeight: 700, color: '#1B5E20' }}>Designation:</span> Director of Halal Certification</p>
                 <p style={{ margin: 0 }}><span style={{ fontWeight: 700, color: '#1B5E20' }}>Date:</span> {details.issueDate || '—'}</p>
@@ -214,16 +232,16 @@ export default function HalalCertificate({ data = {} }) {
                 <div style={{ borderBottom: '1.5px dotted #BDBDBD', height: '30px', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', paddingBottom: '2px' }}>
                   <span style={{ fontStyle: 'italic', fontSize: '14px', color: '#1B5E20', fontWeight: 700 }}>Osaka Masjid Halal Board</span>
                 </div>
-                <p style={{ fontSize: '8px', color: '#9E9E9E', fontWeight: 700, textTransform: 'uppercase', margin: '3px 0 0 0' }}>Authorized Signature</p>
+                <p style={{ fontSize: '10px', color: '#9E9E9E', fontWeight: 700, textTransform: 'uppercase', margin: '3px 0 0 0' }}>Authorized Signature</p>
               </div>
             </div>
             {/* Organization bar */}
-            <div style={{ textAlign: 'center', fontSize: '8px', color: '#757575', borderTop: '1px solid #F5F5F5', paddingTop: '5px' }}>
+            {/* <div style={{ textAlign: 'center', fontSize: '8px', color: '#757575', borderTop: '1px solid #F5F5F5', paddingTop: '5px' }}>
               <span style={{ fontWeight: 700 }}>Organization Name</span> &nbsp;|&nbsp;
               <span>Tel: 06-4862-6396</span> &nbsp;|&nbsp;
               <span>Email: info@osakamasjid.org</span> &nbsp;|&nbsp;
               <span>Address: 4-12-16, Owada, Nishi Yodogawa ku, Osaka, Japan</span>
-            </div>
+            </div> */}
           </div>
 
         </div>

@@ -6,6 +6,7 @@ import Link from "next/link";
 import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 import SectionTitleSmall from "@/components/SectionTitleRow/SectionTitleSmall";
+import { isBookingExpired } from "@/helper/isBookingExpired";
 
 const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
   const formatDate = (dateStr) => {
@@ -27,9 +28,9 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
 
 const status = app?.status;
     const expired = isBookingExpired(
-      booking.booked_date,
-      booking.start_time,
-      booking.end_time
+      app.booked_date,
+      app.start_time,
+      app.end_time
     );
 
 
@@ -39,7 +40,10 @@ const status = app?.status;
     } else if (status === "2" || status === 2) {
       return (<span className="bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">Rejected</span>);
     }
-    if (expired){
+    else if (status === "3" || status === 3) {
+      return (<span className="bg-green-200 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Converted</span>);
+    }
+    else if (expired){
       return (<span className="bg-yellow-100 text-red-500 text-xs font-semibold px-3 py-1 rounded-full">Expired</span>);
     }
     return (<span className="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">Pending</span>);
