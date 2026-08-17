@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import CertificateModal from "./CertificateModal";
 import Link from "next/link";
 import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
+import CancelBookingModal from "@/components/Shared/CancelBookingModal";
+import useBookingCancel from "@/hooks/useBookingCancel";
 
-const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
+const MyApplications = ({ applications = [], loading = false, onFillForm, onCancelSuccess }) => {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -42,6 +44,15 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
         </span>
       );
     }
+  
+    else if (status == "4" || status === 4) {
+      return (
+        <span className="bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">
+          Cancelled
+
+        </span>
+      );
+    }
     return (
       <span className="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">
         Pending
@@ -55,7 +66,10 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
     const { groom, bride } = application?.others_infomartions?.informations;
     return (groom?.name || bride?.name);
   };
-
+  const { cancelState, openCancel, closeCancel, confirmCancel } = useBookingCancel({
+    getEndpoint: (id) => `/marriage/${id}/status`,
+    onSuccess: () => onCancelSuccess && onCancelSuccess(),
+  });
 
   const actionTake = (application) => {
 
@@ -67,7 +81,8 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
             href={`/services/marriage-facilities/certificate-download/${application?.id}`}
             className="bg-[#52B920] hover:bg-green-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full transition-colors cursor-pointer inline-flex items-center gap-1 mx-auto"
           >
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
             Certificate
           </Link>
           // <button
@@ -85,7 +100,17 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
         </span>)
       }
 
-    } else {
+    }
+
+    else if (application?.status == "0" || application?.status == 0) {
+      return (<button
+        className="bg-red-500 hover:bg-red-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full
+                            transition-colors cursor-pointer"
+        onClick={() => openCancel(application)}
+      >Cancel</button>);
+    }
+
+    else if (application?.form_status == 0 && application?.status == "1") {
       return (
         <button
           onClick={() => onFillForm && onFillForm(application)}
@@ -98,10 +123,13 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
 
   }
 
-  const handleOpenCertificate = (application) => {
-    setSelectedCertificate(application);
-    setIsModalOpen(true);
-  };
+
+
+
+  // const handleOpenCertificate = (application) => {
+  //   setSelectedCertificate(application);
+  //   setIsModalOpen(true);
+  // };
 
   return (
     <div className="mt-6 relative">
@@ -134,7 +162,7 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
               <table className="w-full border-collapse min-w-[600px]">
                 <thead>
                   <tr>
-                    {["Sl. No.", "Event Date", "Start Time", "End Time", "Status", "Action"].map((head) => (
+                    {["UID", "Event Date", "Start Time", "End Time", "Status", "Action"].map((head) => (
                       <th key={head}>
                         <div className="bg-[#52B920] text-white border border-[#B0C4B8] font-bold rounded-t-full py-1.5 text-center whitespace-nowrap">
                           {head}
@@ -144,13 +172,16 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {applications.map((application, index) => (
+                  {applications?.map((application, index) => (
                     <tr
                       key={application.id}
                       className={index % 2 === 0 ? "bg-white" : "bg-[#52B920]/40"}
                     >
-                      <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
+                      {/* <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
                         {String(index + 1).padStart(2, "0")}
+                      </td> */}
+                      <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
+                        {application?.unique_id}
                       </td>
                       <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
                         {formatDate(application.booked_date)}
@@ -167,10 +198,16 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
                       <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
 
 
-                        {application.status == 1 ? actionTake(application)
-                          :
-                          <span className="">Not Approved</span>
+                        {actionTake(application)
                         }
+                        {/* {application?.status == 1 ? actionTake(application)
+                          :
+                          <button
+                            className=" bg-red-500 hover:bg-red-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full
+                            transition-colors cursor-pointer"
+                            onClick={() => handleCancleBooking(application)}
+                          >Cancle</button>
+                        } */}
                         {/* {actionTake(application)} */}
                         {/* {application.status === "1" || application.status === 1 ? (
                           application.download_status === "1" || application.download_status === 1 ? (
@@ -210,6 +247,14 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
           )}
         </div>
       </GradientBorderWrapper1>
+
+      {/* Cancel Booking Modal */}
+      <CancelBookingModal
+        isOpen={cancelState.isOpen}
+        isLoading={cancelState.isLoading}
+        onClose={closeCancel}
+        onConfirm={confirmCancel}
+      />
 
       {/* Certificate Modal */}
       <CertificateModal

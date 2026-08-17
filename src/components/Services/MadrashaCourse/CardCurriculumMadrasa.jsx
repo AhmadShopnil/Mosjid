@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-export default function CardCurriculum({
+export default function CardCurriculumMadrasa({
   curriculum,
   curriculumNo = "01",
 }) {
@@ -80,7 +80,7 @@ export default function CardCurriculum({
               border-b-white border-r-white rounded-tl-[60px]"
             >
               <div className="absolute w-[98%] top-8">
-                <div className="grid grid-cols-3 gap-2">
+                <div className="flex flex-wrap gap-2">
                   {curriculum?.item_lists?.map((data, i) => (
                     <Card
                       key={i}
@@ -283,7 +283,7 @@ function Card({
   onOpenModal,
 }) {
   return (
-    <div className="h-full flex flex-col w-full">
+    <div className="h-full flex flex-col w-[49%]">
 
       {/* =====================================================
           CARD CONTENT

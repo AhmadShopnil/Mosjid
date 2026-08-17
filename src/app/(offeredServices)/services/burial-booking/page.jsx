@@ -48,7 +48,7 @@ export default function Page() {
             const res = await axiosInstance.get(`/burial?page=${page}`);
             console.log("Burial res",res)
             setBookingList(res.data?.booking_list?.data || []);
-            setRegisterList(res.data?.register_list?.data || []);
+            setRegisterList(res.data?.complete_list?.data || []);
             setMyApplications(res.data?.my_applications?.data || []);
             setCountries(res.data?.countries || []);
             setRelationships(res.data?.relationships || []);

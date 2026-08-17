@@ -222,6 +222,16 @@ export const servicesSideBarCategories = [
     hasSubItems: true,
     childs: [
       {
+    id: "madrasha-course",
+    name: "Madrasha Course",
+    description: "マドラサ・コース",
+    targetId: "madrasha-course",
+    link: "/madrasha-course",
+    icon: "/images/offerServices/sidebar/MadrasaCourse.svg",
+    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+    isArrow: true,
+  },
+      {
         id: "madrasha",
         name: "Madrasha Over View",
         description: "マドラサの概要",
@@ -270,16 +280,16 @@ export const servicesSideBarCategories = [
     activeIcon: "/images/QuickLinks/hover/Blog & event.png",
     isArrow: true,
   },
-  {
-    id: "madrasha-course",
-    name: "Madrasha Course",
-    subtitle: "マドラサ・コース",
-    targetId: "madrasha-course",
-    link: "/madrasha-course",
-    icon: "/images/offerServices/sidebar/MadrasaCourse.svg",
-    activeIcon: "/images/QuickLinks/hover/Blog & event.png",
-    isArrow: true,
-  },
+  // {
+  //   id: "madrasha-course",
+  //   name: "Madrasha Course",
+  //   subtitle: "マドラサ・コース",
+  //   targetId: "madrasha-course",
+  //   link: "/madrasha-course",
+  //   icon: "/images/offerServices/sidebar/MadrasaCourse.svg",
+  //   activeIcon: "/images/QuickLinks/hover/Blog & event.png",
+  //   isArrow: true,
+  // },
 
   {
     id: "School-Curriculum",

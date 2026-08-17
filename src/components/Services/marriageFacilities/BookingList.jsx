@@ -38,6 +38,13 @@ const BookingList = ({ marriages = [], loading = false }) => {
         </span>
       );
     }
+    else if (status === "4" || status === 4) {
+      return (
+        <span className="bg-red-100 text-red-600 text-xs font-semibold px-3 py-1 rounded-full">
+         Cancelled
+        </span>
+      );
+    }
     return (
       <span className="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">
         Pending
@@ -74,7 +81,7 @@ const BookingList = ({ marriages = [], loading = false }) => {
             <table className="w-full border-collapse min-w-[600px]">
               <thead>
                 <tr>
-                  {["Sl. No.", "Event Date", "Start Time", "End Time", "Status"].map((head) => (
+                  {["UID", "Event Date", "Start Time", "End Time", "Status"].map((head) => (
                     <th key={head}>
                       <div className="bg-[#52B920] text-white border border-[#B0C4B8] font-bold rounded-t-full py-1.5 text-center whitespace-nowrap">
                         {head}
@@ -84,13 +91,13 @@ const BookingList = ({ marriages = [], loading = false }) => {
                 </tr>
               </thead>
               <tbody>
-                {marriages.map((booking, index) => (
+                {marriages?.map((booking, index) => (
                   <tr
                     key={booking.id}
                     className={index % 2 === 0 ? "bg-white" : "bg-[#52B920]/40"}
                   >
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
-                      {String(index + 1).padStart(2, "0")}
+                      {booking?.unique_id}
                     </td>
                     <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
                       {formatDate(booking.booked_date)}

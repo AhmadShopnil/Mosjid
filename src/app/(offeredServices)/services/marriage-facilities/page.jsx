@@ -100,6 +100,7 @@ const Page = () => {
           applications={myApplicationsRef ? myApplications : []}
           loading={loading}
           onFillForm={handleFillForm}
+          onCancelSuccess={() => fetchData(currentPage)}
         />
       </div>
 
