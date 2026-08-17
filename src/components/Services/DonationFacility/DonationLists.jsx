@@ -68,12 +68,14 @@ export default function DonationLists({ bookingListRef, historyListRef }) {
     );
   };
 
-  const registerData = data?.donation_register?.data || [];
+  
+  const registerData = data?.my_donations?.data || [];
+  // const registerData = data?.donation_register?.data || [];
   const historyData = data?.donation_history?.data || [];
 
   // Note: the backend uses the same `page` param for both objects, so we just take last_page from register (or max of both).
   const totalPages = Math.max(
-    data?.donation_register?.last_page || 1,
+    data?.my_donations?.last_page || 1,
     data?.donation_history?.last_page || 1
   );
 

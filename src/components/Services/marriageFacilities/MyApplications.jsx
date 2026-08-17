@@ -114,10 +114,10 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
 
 
 
-  const handleOpenCertificate = (application) => {
-    setSelectedCertificate(application);
-    setIsModalOpen(true);
-  };
+  // const handleOpenCertificate = (application) => {
+  //   setSelectedCertificate(application);
+  //   setIsModalOpen(true);
+  // };
 
   return (
     <div className="mt-6 relative">

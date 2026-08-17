@@ -27,6 +27,7 @@ const recordListTitle = {
 export default function Page() {
     const [futureBookings, setFutureBookings] = useState([]);
     const [pastBookings, setPastBookings] = useState([]);
+    const [visitedBookings, setvisitedBookings] = useState([]);
     const [myBookingList, setMyBookingList] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -51,6 +52,7 @@ export default function Page() {
             setMyBookingList(res.data?.my_books?.data || []);
             setFutureBookings(res.data?.future_book?.data || []);
             setPastBookings(res.data?.past_book?.data || []);
+            setvisitedBookings(res.data?.visited_lists?.data || []);
 
             // Pick total pages from whichever paginated key is available
             const maxPages = Math.max(
@@ -121,7 +123,7 @@ export default function Page() {
 
             <div ref={recordListRef} className='scroll-mt-32 rounded-2xl p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909]'>
                 <div className='p-4 md:p-8 bg-white rounded-[15px] shadow-md'>
-                    <VisitorTable tableTitle={recordListTitle} data={pastBookings} loading={loading} />
+                    <VisitorTable tableTitle={recordListTitle} data={visitedBookings} loading={loading} />
                 </div>
             </div>
 
