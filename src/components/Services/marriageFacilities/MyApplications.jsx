@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import CertificateModal from "./CertificateModal";
 import Link from "next/link";
 import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
+import CancelBookingModal from "@/components/Shared/CancelBookingModal";
+import useBookingCancel from "@/hooks/useBookingCancel";
 
-const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
+const MyApplications = ({ applications = [], loading = false, onFillForm, onCancelSuccess }) => {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -42,6 +44,15 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
         </span>
       );
     }
+  
+    else if (status == "4" || status === 4) {
+      return (
+        <span className="bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">
+          Cancelled
+
+        </span>
+      );
+    }
     return (
       <span className="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">
         Pending
@@ -55,9 +66,10 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
     const { groom, bride } = application?.others_infomartions?.informations;
     return (groom?.name || bride?.name);
   };
-  const handleCancleBooking = (application) => {
-    alert("Sure want to cancle ?")
-  };
+  const { cancelState, openCancel, closeCancel, confirmCancel } = useBookingCancel({
+    getEndpoint: (id) => `/marriage/${id}/status`,
+    onSuccess: () => onCancelSuccess && onCancelSuccess(),
+  });
 
   const actionTake = (application) => {
 
@@ -92,10 +104,10 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
 
     else if (application?.status == "0" || application?.status == 0) {
       return (<button
-        className=" bg-red-500 hover:bg-red-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full
+        className="bg-red-500 hover:bg-red-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full
                             transition-colors cursor-pointer"
-        onClick={() => handleCancleBooking(application)}
-      >Cancle</button>);
+        onClick={() => openCancel(application)}
+      >Cancel</button>);
     }
 
     else if (application?.form_status == 0 && application?.status == "1") {
@@ -235,6 +247,14 @@ const MyApplications = ({ applications = [], loading = false, onFillForm }) => {
           )}
         </div>
       </GradientBorderWrapper1>
+
+      {/* Cancel Booking Modal */}
+      <CancelBookingModal
+        isOpen={cancelState.isOpen}
+        isLoading={cancelState.isLoading}
+        onClose={closeCancel}
+        onConfirm={confirmCancel}
+      />
 
       {/* Certificate Modal */}
       <CertificateModal

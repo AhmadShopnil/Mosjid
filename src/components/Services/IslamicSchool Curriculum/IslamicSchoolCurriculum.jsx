@@ -2,74 +2,26 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-
+import Container from "@/components/Shared/Container";
 import CardCurriculum from "@/components/Services/IslamicSchool Curriculum/CardCurriculum";
 import ServiceInnerHeader from "@/components/Services/Shared/ServiceInnerHeader";
-import { getPage } from "@/helper/actions";
-import CardCurriculumMadrasa from "./CardCurriculumMadrasa";
-
-
-const curriculums = [
-
-    {
-        no: "01",
-        title: "Maktab & Nazirah Foundation",
-        ageGroup: "Ages:3–6",
-        titleJapanese: "マクタブ基礎課程",
-        ageGroupJapanese: "Ages:3–6",
-        academicFocus: ["Basic literacy", "Numeracy", "General knowledge", "Early social skills"],
-        religiousFocus: ["Qaida Nooraniyah", "Nazirah al-Qur'an", "Akhlaq (manners)", "Seerah stories"],
-        outcomes: ["Islamic Etiquette", "Child ready for schooling", "Qur'an recitation fluency", "Spiritual Maturity"]
-
-    },
-    {
-        no: "02",
-        title: "Maktab Foundation",
-        ageGroup: "Ages:3–6",
-        titleJapanese: "マクタブ基礎課程",
-        ageGroupJapanese: "Ages:3–6",
-        academicFocus: ["Basic literacy", "Numeracy", "General knowledge", "Early social skills"],
-        religiousFocus: ["Qaida Nooraniyah", "Nazirah al-Qur'an", "Akhlaq (manners)", "Seerah stories"],
-        outcomes: ["Islamic Etiquette", "Child ready for schooling", "Qur'an recitation fluency", "Spiritual Maturity"]
-
-    },
-    {
-        no: "03",
-        title: "Maktab Foundation",
-        ageGroup: "Ages:3–6",
-        titleJapanese: "マクタブ基礎課程",
-        ageGroupJapanese: "Ages:3–6",
-        academicFocus: ["Basic literacy", "Numeracy", "General knowledge", "Early social skills"],
-        religiousFocus: ["Qaida Nooraniyah", "Nazirah al-Qur'an", "Akhlaq (manners)", "Seerah stories"],
-        outcomes: ["Islamic Etiquette", "Child ready for schooling", "Qur'an recitation fluency", "Spiritual Maturity"]
-
-    },
-    {
-        no: "04",
-        title: "Maktab Foundation",
-        ageGroup: "Ages:3–6",
-        titleJapanese: "マクタブ基礎課程",
-        ageGroupJapanese: "Ages:3–6",
-        academicFocus: ["Basic literacy", "Numeracy", "General knowledge", "Early social skills"],
-        religiousFocus: ["Qaida Nooraniyah", "Nazirah al-Qur'an", "Akhlaq (manners)", "Seerah stories"],
-        outcomes: ["Islamic Etiquette", "Child ready for schooling", "Qur'an recitation fluency", "Spiritual Maturity"]
-
-    },
-
-]
 
 
 
 
-export default function MadrashaCourse({ madrasha_course_data }) {
 
 
+export default function IslamicCurriculum({ islamicCurriculum_data }) {
 
-    const sections = madrasha_course_data?.sections_on_api;
 
-    const item_1 = sections?.find((s) => s.title_slug === "maktab-nazirah-foundation");
-      const item_2 = sections?.find((s) => s.title_slug === "nazirah-hifz-continuation");
-      const item_3 = sections?.find((s) => s.title_slug === "fulltime-hifz-preaalim");
+    const sections = islamicCurriculum_data?.sections_on_api;
+
+    const item_1 = sections?.find((s) => s.title_slug === "maktab-foundation");
+    const item_2 = sections?.find((s) => s.title_slug === "primary-school-hifz-continuation");
+     const item_3 = sections?.find((s) => s.title_slug === "elementary-fulltime-hifz");
+      const item_4 = sections?.find((s) => s.title_slug === "elementary-fulltime-hifz");
+       const item_5 = sections?.find((s) => s.title_slug === "elementary-fulltime-hifz");
+    //   const masjid_benefits = sections?.find((s) => s.title_slug === "masjid-benefits");
 
     // console.log("maktab_nazirah_foundation", maktab_nazirah_foundation)
 
@@ -77,15 +29,17 @@ export default function MadrashaCourse({ madrasha_course_data }) {
     return (
 
         <div className=" px-1 h-auto">
-            {/* Main Grid */}
             <ServiceInnerHeader
-                title="マドラサ教育ロードマップ"
-                title2="خريطة طريق التعليم في الجامعة الإسلامية"
+                title="イスラームイスクール教育ロードマップ"
+                title2="خطة التعليم في المدرسة الإسلامية"
             />
+            {/* Main Grid */}
 
             <div className="mt-10 border-2 border-[#FFCE4D] rounded-[40px] p-4 bg-[#F9FFF2]">
 
                 <div className=" border-2 border-[#FFCE4D] rounded-[40px] p-4 bg-[#F9FFF2]">
+
+
                     {/* big screen */}
                     <div className=" hidden xl:flex">
                         {/* Left Column */}
@@ -145,26 +99,27 @@ export default function MadrashaCourse({ madrasha_course_data }) {
 
                 </div>
 
-
-
                 <div
                     className="mt-10 flex flex-col gap-10  "
                 >
-                  <CardCurriculumMadrasa 
-                  curriculumNo="01"
-                  curriculum={item_1} />
+                    <CardCurriculum
+                        curriculumNo="01"
+                        curriculum={item_1} />
 
 
-                   <CardCurriculumMadrasa 
-                   curriculumNo="02"
-                   curriculum={item_2}              
-                   />
-                   <CardCurriculumMadrasa 
-                   curriculumNo="03"
-                   curriculum={item_3}              
-                   />
+                    <CardCurriculum
+                        curriculumNo="02"
+                        curriculum={item_2}
+
+                    />
+                    <CardCurriculum
+                        curriculumNo="03"
+                        curriculum={item_3}
+
+                    />
 
                 </div>
+
                 {/* Bottom Section */}
                 {/* <div
                     className="mt-10 flex flex-col gap-10  "
@@ -184,30 +139,26 @@ export default function MadrashaCourse({ madrasha_course_data }) {
 
 function LevelCard({ no, title, align }) {
     return (
-        <div>
+        <motion.div
+            initial={{ opacity: 0, x: align === "left" ? -30 : 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex   items-center w-full"
+        >
 
-            <motion.div
-                initial={{ opacity: 0, x: align === "left" ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4 }}
-                className="flex   items-center w-full"
-            >
-
-                <div className="flex items-center justify-end border-y border-l border-[#FFCE4D] rounded-l-[100px] p-3 w-full
+            <div className="flex items-center justify-end border-y border-l border-[#FFCE4D] rounded-l-[100px] p-3 w-full
      h-[100px] 2xl:h-[120px] bg-white">
-                    <p className="text-[18px] 2xl:text-[20px] w-[90%]  text-right font-bold text-[#B98C20]">{title}</p>
-                </div>
+                <p className="text-[18px] 2xl:text-[20px] w-[90%]  text-right font-bold text-[#B98C20]">{title}</p>
+            </div>
 
-                <div>
-                    <div className="bg-white w-[120px] h-[120px] 2xl:w-[140px] 2xl:h-[140px] flex items-center justify-center rounded-[10px] border
+            <div>
+                <div className="bg-white w-[120px] h-[120px] 2xl:w-[140px] 2xl:h-[140px] flex items-center justify-center rounded-[10px] border
        border-[#FFCE4D] text-[#B98C20] font-bold text-[36px] ">
-                        <span>{no}</span>
-                    </div>
+                    <span>{no}</span>
                 </div>
+            </div>
 
-            </motion.div>
-        </div>
-
+        </motion.div>
     );
 }
 function LevelCardReverse({ no, title, align }) {
@@ -257,15 +208,15 @@ function LevelCardMobile({ no, title }) {
 
 
 const leftLevels = [
-    { no: "01", title: "Maktab & Nazirah Foundation" },
-    { no: "02", title: "Nazirah & Hifz  Continuation" },
-    { no: "03", title: " Full‑Time Hifz + Pre‑Aalim" },
-    { no: "04", title: "Junior Aalim Level + Middle School" },
+    { no: "01", title: "Maktab Foundation" },
+    { no: "02", title: "Primary School + Hifz Continuation" },
+    { no: "03", title: "Elementary + Full Time Hifz" },
+    { no: "04", title: "Middle School + Junior Aalim" },
 ];
 
 const rightLevels = [
-    { no: "05", title: "Thanawiya Aama (Foundation Level)" },
-    { no: "06", title: "Thanawiya Khasa (Intermediate Level)" },
-    { no: "07", title: "Aaliya (Advanced Level)" },
+    { no: "05", title: "High School + Thanaviya Aamma" },
+    { no: "06", title: "Senior High / Pre-University + Thanaviya Khassa" },
+    { no: "07", title: "University + Aaliya (Advanced Level)" },
     { no: "08", title: "Postgraduate + Aalimiyyah & Takhassus" },
 ];

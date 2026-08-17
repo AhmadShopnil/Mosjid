@@ -6,6 +6,8 @@ import axiosInstance from "@/helper/axiosInstance";
 import Pagination from "@/components/Shared/Pagination";
 import Link from "next/link";
 import { FiDownload } from "react-icons/fi";
+import CancelBookingModal from "@/components/Shared/CancelBookingModal";
+import useBookingCancel from "@/hooks/useBookingCancel";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -17,6 +19,11 @@ export default function HalalAllApplications() {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
+  const { cancelState, openCancel, closeCancel, confirmCancel } = useBookingCancel({
+    getEndpoint: (id) => `/halal/${id}/status`,
+    onSuccess: () => fetchData(currentPage),
+  });
 
   const fetchData = useCallback(async (page = 1) => {
     try {
@@ -61,67 +68,88 @@ export default function HalalAllApplications() {
           Certificate
         </Link>
       );
+    } else if (item.status == 0 || item.status == "0") {
+      return (
+        <button
+          onClick={() => openCancel(item)}
+          className="bg-red-500 hover:bg-red-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full transition-colors cursor-pointer"
+        >
+          Cancel
+        </button>
+      );
     }
 
     return <span className="text-gray-400 text-xs italic">—</span>;
   };
 
   return (
-    <motion.div
-      className="space-y-6"
-      initial="hidden"
-      animate="visible"
-      variants={fadeUp}
-      transition={{ duration: 0.4 }}
-    >
-      <div>
-        <div className="bg-[#52B920] h-[50px] text-white flex justify-between items-center px-4 rounded-t-[10px]">
-          <h2 className="font-bold">My Applications</h2>
-          <h2 className="font-bold">マイ申請</h2>
-        </div>
+    <>
+      <motion.div
+        className="space-y-6"
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+        transition={{ duration: 0.4 }}
+      >
+        <div>
+          <div className="bg-[#52B920] h-[50px] text-white flex justify-between items-center px-4 rounded-t-[10px]">
+            <h2 className="font-bold">My Applications</h2>
+            <h2 className="font-bold">マイ申請</h2>
+          </div>
 
-        <div className="overflow-x-auto border-x border-b border-gray-200 rounded-b-[10px]">
-          <table className="w-full min-w-[1000px] border-collapse">
-            <thead>
-              <tr className="bg-[#D9E2DD]">
-                <th className="w-[60px] py-3 border border-gray-300">SL</th>
-                <th className="py-3 border border-gray-300">Unique ID</th>
-                <th className="py-3 border border-gray-300">Company Name</th>
-                <th className="py-3 border border-gray-300">Product Name</th>
-                <th className="py-3 border border-gray-300">Certificate No</th>
-                <th className="py-3 border border-gray-300">Issue Date</th>
-                <th className="py-3 border border-gray-300">Expiry Date</th>
-                <th className="py-3 border border-gray-300">Status</th>
-                <th className="py-3 border border-gray-300 w-[150px]">Action</th>
-              </tr>
-            </thead>
+          <div className="overflow-x-auto border-x border-b border-gray-200 rounded-b-[10px]">
+            <table className="w-full min-w-[1000px] border-collapse">
+              <thead>
+                <tr className="bg-[#D9E2DD]">
+                  <th className="w-[60px] py-3 border border-gray-300">SL</th>
+                  <th className="py-3 border border-gray-300">Unique ID</th>
+                  <th className="py-3 border border-gray-300">Company Name</th>
+                  <th className="py-3 border border-gray-300">Product Name</th>
+                  <th className="py-3 border border-gray-300">Certificate No</th>
+                  <th className="py-3 border border-gray-300">Issue Date</th>
+                  <th className="py-3 border border-gray-300">Expiry Date</th>
+                  <th className="py-3 border border-gray-300">Status</th>
+                  <th className="py-3 border border-gray-300 w-[150px]">Action</th>
+                </tr>
+              </thead>
 
-            <AnimatePresence mode="wait">
-              <motion.tbody
-                key={loading ? "loading" : data.length ? "data" : "empty"}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
-              >
-                {loading ? (
-                  <TableSkeleton />
-                ) : data.length ? (
-                  data?.map((item, index) => {
-                    const sl = (currentPage - 1) * 20 + index + 1;
-                    return (
-                      <tr
-                        key={item.id}
-                        className={`${index % 2 === 0 ? "bg-white" : "bg-[#E5F5DE]"} h-[28px] transition hover:bg-green-50`}
-                      >
-                        <td className="border border-gray-300 p-3 text-center">{sl}</td>
-                        <td className="border border-gray-300 p-3 text-center">{item.unique_id || "-"}</td>
-                        <td className="border border-gray-300 p-3 text-center">{item.company_name || "-"}</td>
-                        <td className="border border-gray-300 p-3 text-center">{item.product_name || "-"}</td>
-                        <td className="border border-gray-300 p-3 text-center">{item.certificate_number || "-"}</td>
-                        <td className="border border-gray-300 p-3 text-center">{item.issue_date || "-"}</td>
-                        <td className="border border-gray-300 p-3 text-center">{item.expiry_date || "-"}</td>
-                        <td className="border border-gray-300 p-3 text-center">
+              <AnimatePresence mode="wait">
+                <motion.tbody
+                  key={loading ? "loading" : data.length ? "data" : "empty"}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  {loading ? (
+                    <TableSkeleton />
+                  ) : data.length ? (
+                    data?.map((item, index) => {
+                      const sl = (currentPage - 1) * 20 + index + 1;
+                      return (
+                        <tr
+                          key={item.id}
+                          className={`${index % 2 === 0 ? "bg-white" : "bg-[#E5F5DE]"} h-[28px] transition hover:bg-green-50`}
+                        >
+                          <td className="border border-gray-300 p-3 text-center">{sl}</td>
+                          <td className="border border-gray-300 p-3 text-center">{item.unique_id || "-"}</td>
+                          <td className="border border-gray-300 p-3 text-center">{item.company_name || "-"}</td>
+                          <td className="border border-gray-300 p-3 text-center">{item.product_name || "-"}</td>
+                          <td className="border border-gray-300 p-3 text-center">{item.certificate_number || "-"}</td>
+                          <td className="border border-gray-300 p-3 text-center">{item.issue_date || "-"}</td>
+                          <td className="border border-gray-300 p-3 text-center">{item.expiry_date || "-"}</td>
+                          <td className="border border-gray-300 p-3 text-center">
+                            {item.status == 1 ? (
+                              <span className="text-green-600 font-semibold">Approved</span>
+                            ) : item.status == 2 ? (
+                              <span className="text-red-600 font-semibold">Rejected</span>
+                            ) : item.status == 4 ? (
+                              <span className="text-orange-600 font-semibold">Cancelled</span>
+                            ) : (
+                              <span className="text-yellow-600 font-semibold">Pending</span>
+                            )}
+                          </td>
+                          {/* <td className="border border-gray-300 p-3 text-center">
                           {item.status == 1 ? (
                             <span className="text-green-600 font-semibold">Approved</span>
                           ) : item.status == 2 ? (
@@ -129,37 +157,46 @@ export default function HalalAllApplications() {
                           ) : (
                             <span className="text-yellow-600 font-semibold">Pending</span>
                           )}
-                        </td>
-                        <td className="border border-gray-300 p-3 text-center">
-                          {renderAction(item)}
-                        </td>
-                      </tr>
-                    );
-                  })
-                ) : (
-                  <tr>
-                    <td colSpan={9} className="text-center py-10 text-gray-500">
-                      No applications found.
-                    </td>
-                  </tr>
-                )}
-              </motion.tbody>
-            </AnimatePresence>
-          </table>
+                        </td> */}
+                          <td className="border border-gray-300 p-3 text-center">
+                            {renderAction(item)}
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <tr>
+                      <td colSpan={9} className="text-center py-10 text-gray-500">
+                        No applications found.
+                      </td>
+                    </tr>
+                  )}
+                </motion.tbody>
+              </AnimatePresence>
+            </table>
+          </div>
         </div>
-      </div>
 
-      {/* Pagination */}
-      {!loading && totalPages > 1 && (
-        <div className="flex justify-center mt-6">
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
-        </div>
-      )}
-    </motion.div>
+        {/* Pagination */}
+        {!loading && totalPages > 1 && (
+          <div className="flex justify-center mt-6">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
+        )}
+      </motion.div>
+
+      {/* Cancel Booking Modal */}
+      <CancelBookingModal
+        isOpen={cancelState.isOpen}
+        isLoading={cancelState.isLoading}
+        onClose={closeCancel}
+        onConfirm={confirmCancel}
+      />
+    </>
   );
 }
 

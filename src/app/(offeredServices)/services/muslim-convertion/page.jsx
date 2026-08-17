@@ -99,7 +99,7 @@ export default function page() {
             <div ref={myApplicationsRef}
                 className='scroll-mt-32'
             >
-                <MyApplications applications={myApplications} loading={loading} onFillForm={handleFillForm} />
+                <MyApplications applications={myApplications} loading={loading} onFillForm={handleFillForm} onCancelSuccess={() => fetchData(currentPage)} />
             </div>
             {selectedApplication && (
                 <div ref={conversionFormRef}
