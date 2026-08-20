@@ -9,6 +9,8 @@ import PolicyModal from '@/components/Shared/PolicyModal';
 import Pagination from '@/components/Shared/Pagination';
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axiosInstance from '@/helper/axiosInstance';
+import CancelBookingModal from '@/components/Shared/CancelBookingModal';
+import useBookingCancel from '@/hooks/useBookingCancel';
 
 const myBookingsTitle = {
     en: "My Bookings",
@@ -42,6 +44,11 @@ export default function Page() {
     const formRef = useRef(null);
     const bookingListRef = useRef(null);
     const recordListRef = useRef(null);
+
+    const { cancelState, openCancel, closeCancel, confirmCancel } = useBookingCancel({
+        getEndpoint: (id) => `/visitors/${id}/status`,
+        onSuccess: () => fetchVisitors(currentPage),
+    });
 
     const fetchVisitors = useCallback(async (page = 1) => {
         try {
@@ -111,7 +118,13 @@ export default function Page() {
             <div className='scroll-mt-32 rounded-2xl p-[1px]
              bg-gradient-to-b from-[#3198A0] to-[#51F909] shadow-md'>
                 <div className='p-4 md:p-8 bg-white rounded-[15px]'>
-                    <VisitorTable tableTitle={myBookingsTitle} data={myBookingList} loading={loading} />
+                    <VisitorTable 
+                        tableTitle={myBookingsTitle} 
+                        data={myBookingList} 
+                        loading={loading} 
+                        showStatus={true}
+                        onCancelClick={openCancel}
+                    />
                 </div>
             </div>
             <div ref={bookingListRef} className='scroll-mt-32 rounded-2xl p-[1px]
@@ -143,6 +156,13 @@ export default function Page() {
                 onClose={() => setModalConfig({ ...modalConfig, isOpen: false })}
                 slug={modalConfig.slug}
                 title={modalConfig.title}
+            />
+
+            <CancelBookingModal
+                isOpen={cancelState.isOpen}
+                isLoading={cancelState.isLoading}
+                onClose={closeCancel}
+                onConfirm={confirmCancel}
             />
         </div>
     );

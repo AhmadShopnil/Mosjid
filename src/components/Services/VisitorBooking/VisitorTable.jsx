@@ -5,7 +5,7 @@ import { TableSkeleton } from "../Skeletons/TableSkeleton";
 
 import VisiTorTableRow from "./TableRow";
 
-export default function VisitorTable({ loading = false, tableTitle, data = [] }) {
+export default function VisitorTable({ loading = false, tableTitle, data = [], showStatus, onCancelClick }) {
 
 
   return (
@@ -17,23 +17,23 @@ export default function VisitorTable({ loading = false, tableTitle, data = [] })
           <h2 className="text-lg sm:text-xl ">{tableTitle?.jp}</h2>
         </div>
 
-       <div className="relative overflow-x-auto">
-  <table className="w-full min-w-[1200px] border-collapse table-fixed">
-    <TableHeader />
+        <div className="relative overflow-x-auto">
+          <table className="w-full min-w-[1200px] border-collapse table-fixed">
+            <TableHeader showStatus={showStatus} />
 
-    {loading ? (
-      <TableSkeleton />
-    ) : data?.length > 0 ? (
-      <TableBody data={data} />
-    ) : (
-      <EmptyState />
-    )}
-  </table>
-</div>
+            {loading ? (
+              <TableSkeleton />
+            ) : data?.length > 0 ? (
+              <TableBody data={data} showStatus={showStatus} onCancelClick={onCancelClick} />
+            ) : (
+              <EmptyState />
+            )}
+          </table>
+        </div>
 
       </div>
 
-    
+
     </div>
   );
 }
@@ -43,45 +43,54 @@ export default function VisitorTable({ loading = false, tableTitle, data = [] })
 
 
 
-const TableHeader = () => (
-  <thead className="hidden md:table-header-group">
-    <tr className="bg-[#FEF8EA] h-[42px]">
-      {[
-        "SL.No",
-        // "Applicant Name",
-        // "Organization Name",
-        // "Contact",
-        // "City/Country",
-        // "Number Of Visitors",
-        "Date",
-        "Time",
-        "Duration Of Visit",
-        "Purpose Of Visit",
-        "Program Request",
-      ].map((title, i) => (
-        <th
-          key={i}
-          className={`
-            border border-[#B0C4B8] py-2 text-center text-sm sm:text-base font-normal
-            ${i === 0 ? "w-[60px] min-w-[60px] max-w-[60px]" : ""}
-          `}
-        >
-          {title}
-        </th>
-      ))}
-    </tr>
-  </thead>
-);
+const TableHeader = ({ showStatus }) => {
+  const headers = [
+    // "SL.No",
+    "Name",
+    "Date",
+    "Time",
+    "Duration Of Visit",
+    "Purpose Of Visit",
+    "Program Request",
+  ];
+
+  if (showStatus) {
+    headers.push("Status", "Action");
+  }
+
+  return (
+    <thead className="hidden md:table-header-group">
+      <tr className="bg-[#FEF8EA] h-[42px]">
+        {headers.map((title, i) => (
+          <th
+            key={i}
+            className={`
+              border border-[#B0C4B8] py-2 text-center text-sm sm:text-base font-normal
+              ${( i==2) ? "w-[90px] min-w-[90px] max-w-[90px]" : ""}
+            `}
+            // className={`
+            //   border border-[#B0C4B8] py-2 text-center text-sm sm:text-base font-normal
+            //   ${i === 0 ? "w-[60px] min-w-[60px] max-w-[60px]" : ""}
+            // `}
+          >
+            {title}
+          </th>
+        ))}
+      </tr>
+    </thead>
+  );
+};
 
 
-const TableBody = ({ data }) => (
+const TableBody = ({ data, showStatus, onCancelClick }) => (
   <tbody>
     {data?.map((item, i) => (
       <VisiTorTableRow
         key={item.id}
         item={item}
         i={i}
-        
+        showStatus={showStatus}
+        onCancelClick={onCancelClick}
       />
     ))}
   </tbody>

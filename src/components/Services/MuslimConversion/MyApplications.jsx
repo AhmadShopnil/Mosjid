@@ -9,6 +9,8 @@ import SectionTitleSmall from "@/components/SectionTitleRow/SectionTitleSmall";
 import { isBookingExpired } from "@/helper/isBookingExpired";
 import CancelBookingModal from "@/components/Shared/CancelBookingModal";
 import useBookingCancel from "@/hooks/useBookingCancel";
+import ActionTake from "@/components/Shared/ActionTake";
+import GetStatusBadge from "@/components/Shared/GetStatusBadge";
 
 const MyApplications = ({ applications = [], loading = false, onFillForm, onCancelSuccess }) => {
 
@@ -165,10 +167,18 @@ const MyApplications = ({ applications = [], loading = false, onFillForm, onCanc
                       <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatTime(app.start_time)}</td>
                       <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">{formatTime(app.end_time)}</td>
                       <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
-                        {getStatusBadge(app)}
+                        {/* {getStatusBadge(app)} */}
+                        <GetStatusBadge app={app} />
+
                       </td>
                       <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
-                        {actionTake(app)}
+                        <ActionTake
+                          application={app}
+                          openCancel={openCancel}
+                          onFillForm={onFillForm}
+                          isFormFilled={isFormFilled}
+                        />
+                        {/* {actionTake(app)} */}
                       </td>
                     </tr>
                   ))}

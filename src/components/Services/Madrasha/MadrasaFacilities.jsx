@@ -1,3 +1,4 @@
+import SectionTitleRow from '@/components/SectionTitleRow/SectionTitleRow';
 import React from 'react'
 
 
@@ -21,14 +22,12 @@ export default function MadrasaFacilities({ madrasa_facilities }) {
     <div>
 
       {/* Facilities Header */}
-      <div className="flex justify-between items-center mb-6 ">
-        <h2 className="text-2xl md:text-3xl font-semibold text-[#B98C20]">
-          Madrasa Facilities
-        </h2>
-        <span className="text-2xl md:text-3xl font-semibold text-[#B98C20]">
-          マドラサ施設
-        </span>
-      </div>
+
+      <SectionTitleRow
+        leftTitle={"Madrasa Facilities"}
+        rightTitle={"マドラサ施設"}
+      />
+
 
       {/* Facilities Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 mb-12 ">

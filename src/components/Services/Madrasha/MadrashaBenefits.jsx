@@ -1,3 +1,4 @@
+import SectionTitleRow from '@/components/SectionTitleRow/SectionTitleRow';
 import React from 'react'
 
 const benefits = [
@@ -24,15 +25,12 @@ export default function MadrashaBenefits({ madrasa_benefits }) {
     <div>
 
 
-      {/* Benefits Header */}
-      <div className="flex justify-between items-center mb-4 text-[#B98C20]">
-        <h2 className="text-2xl md:text-3xl font-semibold ">
-          Madrasa Benefits
-        </h2>
-        <span className="text-2xl md:text-3xl font-semibold">
-          マドラサのメリット
-        </span>
-      </div>
+     
+
+     <SectionTitleRow
+        leftTitle={"Madrasa Benefits"}
+        rightTitle={"マドラサのメリット"}
+      />
 
       {/* Divider */}
       <div className="h-px bg-amber-200 mb-6"></div>

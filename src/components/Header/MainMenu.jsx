@@ -120,7 +120,8 @@ export default function MainMenu({ settings, menuItems }) {
                         onMouseEnter={() => setActiveSubDropdown(j)}
                         onMouseLeave={() => setActiveSubDropdown(null)}
                       >
-                        <Image
+                    {
+                     (sub?.menu_icon_hover_url && sub?.menu_icon_url) && <Image
                           // src={sub.icon}
                           // src={`${BASE_URL}${sub?.menu_icon_url}`}
                           src={
@@ -133,6 +134,7 @@ export default function MainMenu({ settings, menuItems }) {
                           height={18}
                           className="object-contain"
                         />
+                    }
                         {sub?.label}
                       </Link>
                     ))}
@@ -184,13 +186,15 @@ export default function MainMenu({ settings, menuItems }) {
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 flex items-center justify-center rounded-lg bg-white shadow-sm border border-gray-100">
-                      <Image
+                     {
+                      item?.menu_icon_hover_url && <Image
                         src={`${BASE_URL}${item?.menu_icon_hover_url}`}
                         alt={item?.label}
                         width={24}
                         height={24}
                         className="object-contain w-5 h-5"
                       />
+                     }
                     </div>
                     <span className="font-medium text-gray-800 text-[15px] group-hover:text-green-600 transition-colors duration-200">
                       {item?.label}

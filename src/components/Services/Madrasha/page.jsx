@@ -8,6 +8,7 @@ import MadrashaTimeline from "./MadrashaTimeline";
 import MadrashaTopSection from "./MadrashaTopSection";
 import { getPage } from "@/helper/actions";
 import { getImageUrl } from "@/helper/getImageUrl";
+import SuggestionBox from "../SuggestionBox/SuggestionBox";
 
 
 
@@ -23,15 +24,17 @@ export default async function MadrasaSection({ madrashaPageData }) {
   const timeline_image = getImageUrl(madrasa_timeline?.image_media);
 
   return (
-    <section className="w-full space-y-4 md:space-y-6 ">
+    <section className="w-full space-y-4 md:space-y-7 ">
       <MadrashaTopSection />
 
       {timeline_image && <MadrashaTimeline timeline_image={timeline_image} />}
 
 
+      <MadrashaBenefits madrasa_benefits={madrasa_benefits} />
+
       <MadrasaFacilities madrasa_facilities={madrasa_facilities} />
 
-      <MadrashaBenefits madrasa_benefits={madrasa_benefits} />
+      <SuggestionBox />
 
     </section>
   );

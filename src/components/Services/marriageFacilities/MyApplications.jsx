@@ -6,6 +6,9 @@ import Link from "next/link";
 import GradientBorderWrapper1 from "@/components/Shared/GradientBorderWrapper1";
 import CancelBookingModal from "@/components/Shared/CancelBookingModal";
 import useBookingCancel from "@/hooks/useBookingCancel";
+import { isBookingExpired } from "@/helper/isBookingExpired";
+import GetStatusBadge, { getStatusBadge } from "@/components/Shared/GetStatusBadge";
+import ActionTake from "@/components/Shared/ActionTake";
 
 const MyApplications = ({ applications = [], loading = false, onFillForm, onCancelSuccess }) => {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
@@ -30,35 +33,52 @@ const MyApplications = ({ applications = [], loading = false, onFillForm, onCanc
     return `${hour12}:${m} ${ampm}`;
   };
 
-  const getStatusBadge = (status) => {
-    if (status === "1" || status === 1) {
-      return (
-        <span className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
-          Approved
-        </span>
-      );
-    } else if (status === "2" || status === 2) {
-      return (
-        <span className="bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">
-          Rejected
-        </span>
-      );
-    }
-  
-    else if (status == "4" || status === 4) {
-      return (
-        <span className="bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">
-          Cancelled
 
-        </span>
-      );
-    }
-    return (
-      <span className="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">
-        Pending
-      </span>
-    );
-  };
+
+  // const getStatusBadge = (app) => {
+  //   const status = app?.status;
+  //   const expired = isBookingExpired(
+  //     app.booked_date,
+  //     app.start_time,
+  //     app.end_time
+  //   );
+  //   // console.log("getStatusBadg", app)
+
+  //   if (status == "4" || status === 4) {
+  //     return (
+  //       <span className="bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">
+  //         Cancelled
+
+  //       </span>
+  //     );
+  //   }
+  //     else if (status === "2" || status === 2) {
+  //     return (
+  //       <span className="bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">
+  //         Rejected
+  //       </span>
+  //     );
+  //   }
+  //   else if (expired && app?.form_status == 0) {
+  //     return (<span className="bg-yellow-100 text-red-500 text-xs font-semibold px-3 py-1 rounded-full">Expired</span>);
+  //   }
+  //   else if (status === "1" || status === 1) {
+  //     return (
+  //       <span className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
+  //         Approved
+  //       </span>
+  //     );
+  //   } 
+
+
+
+
+  //   return (
+  //     <span className="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">
+  //       Pending
+  //     </span>
+  //   );
+  // };
 
   // Check if marriage form data has been filled
   const isFormFilled = (application) => {
@@ -72,6 +92,12 @@ const MyApplications = ({ applications = [], loading = false, onFillForm, onCanc
   });
 
   const actionTake = (application) => {
+    const status = application?.status;
+    const expired = isBookingExpired(
+      application.booked_date,
+      application.start_time,
+      application.end_time
+    );
 
     if (application?.form_status == 1 || isFormFilled(application)) {
       if (application?.download_status == 1) {
@@ -85,13 +111,7 @@ const MyApplications = ({ applications = [], loading = false, onFillForm, onCanc
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
             Certificate
           </Link>
-          // <button
-          //   onClick={() => handleOpenCertificate(application)}
-          //   className="bg-[#52B920] hover:bg-green-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full transition-colors cursor-pointer inline-flex items-center gap-1 mx-auto"
-          // >
-          //   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-          //   Download Certificate
-          // </button>
+
         )
       }
       else {
@@ -102,7 +122,7 @@ const MyApplications = ({ applications = [], loading = false, onFillForm, onCanc
 
     }
 
-    else if (application?.status == "0" || application?.status == 0) {
+    else if (application?.status == "0" && !expired) {
       return (<button
         className="bg-red-500 hover:bg-red-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full
                             transition-colors cursor-pointer"
@@ -110,7 +130,7 @@ const MyApplications = ({ applications = [], loading = false, onFillForm, onCanc
       >Cancel</button>);
     }
 
-    else if (application?.form_status == 0 && application?.status == "1") {
+    else if (application?.form_status == 0 && application?.status == "1" && !expired) {
       return (
         <button
           onClick={() => onFillForm && onFillForm(application)}
@@ -193,51 +213,19 @@ const MyApplications = ({ applications = [], loading = false, onFillForm, onCanc
                         {formatTime(application.end_time)}
                       </td>
                       <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
-                        {getStatusBadge(application.status)}
+                        {<GetStatusBadge app={application} />}
                       </td>
                       <td className="py-2 px-2 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
 
-
-                        {actionTake(application)
-                        }
-                        {/* {application?.status == 1 ? actionTake(application)
-                          :
-                          <button
-                            className=" bg-red-500 hover:bg-red-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full
-                            transition-colors cursor-pointer"
-                            onClick={() => handleCancleBooking(application)}
-                          >Cancle</button>
+                        <ActionTake
+                          application={application}
+                          openCancel={openCancel}
+                          onFillForm={onFillForm}
+                          isFormFilled={isFormFilled}
+                        />
+                        {/* {actionTake(application)
                         } */}
-                        {/* {actionTake(application)} */}
-                        {/* {application.status === "1" || application.status === 1 ? (
-                          application.download_status === "1" || application.download_status === 1 ? (
-                            <button
-                              onClick={() => handleOpenCertificate(application)}
-                              className="bg-[#52B920] hover:bg-green-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full transition-colors cursor-pointer inline-flex items-center gap-1 mx-auto"
-                            >
-                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                              Download Certificate
-                            </button>
-                          ) : application.form_status === 0 || application.form_status === "0" || !isFormFilled(application) ? (
-                            <button
-                              onClick={() => onFillForm && onFillForm(application)}
-                              className="bg-[#52B920] hover:bg-green-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full transition-colors cursor-pointer"
-                            >
-                              Fill Marriage Form
-                            </button>
-                          ) : (
-                            <button
-                              onClick={() => onFillForm && onFillForm(application)}
-                              className="bg-blue-500 hover:bg-blue-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full transition-colors cursor-pointer"
-                            >
-                              View
-                            </button>
-                          )
-                        ) : application.status === "2" || application.status === 2 ? (
-                          <span className="text-red-400 text-sm italic">Rejected</span>
-                        ) : (
-                          <span className="text-gray-400 text-sm italic">Pending Approval</span>
-                        )} */}
+
                       </td>
                     </tr>
                   ))}

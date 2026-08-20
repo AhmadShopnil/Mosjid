@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 const Benefits = () => {
+
   const benefits = [
     {
       id: 1,
@@ -52,9 +53,9 @@ const Benefits = () => {
             {benefits?.map((benefit) => (
               <div
                 key={benefit?.id}
-                className="border-2 rounded-[20px] border-[#FFCE4D] p-2 "
+                className="border-2 rounded-[20px] border-[#FFCE4D] p-2  bg-white "
               >
-                <div className="border-2 rounded-[20px] h-[180px] border-[#005312] flex flex-col items-center">
+                <div className="border-2 rounded-[20px] h-[180px] border-[#005312] flex flex-col items-center md:p-2">
                   <Image
                     src={"/images/offerServices/islamicSchool/frame2.svg"}
                     width={60}
