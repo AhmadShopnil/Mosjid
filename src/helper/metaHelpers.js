@@ -72,4 +72,20 @@ export const getMediaLinkByMetaName = (data, metaName) => {
 
 
 
+export const getPDFLinkByMetaName = (data, metaName) => {
+  if (!data || !metaName) return null;
+
+  const item = data?.extra_fields?.find(
+    (dataItem) => dataItem.meta_name === metaName
+  );
+// console.log("from utils", item)
+  if (item?.single_image_url ) {
+    return item.single_image_url ;
+  }
+
+  return null;
+};
+
+
+
 // {product?.extra_fields.find(field => field.meta_name === "product_model")?.meta_value}

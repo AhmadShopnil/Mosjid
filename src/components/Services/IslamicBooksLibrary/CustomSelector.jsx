@@ -68,7 +68,7 @@ export default function CustomSelector({
         flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-green-400 cursor-pointer"
       >
         <span className="text-[#00401A]">
-          {selected ? selected?.name_en : label}
+          {selected ? (selected?.name_en || selected?.name) : label}
         </span>
         <ChevronDown
           size={18}
@@ -100,29 +100,22 @@ export default function CustomSelector({
                 <button
                   key={index}
                   onClick={() => handleSelect(option)}
-                  className={`w-full text-left px-4 py-2 rounded-md transition ${selected?.name_en === option.name_en
+                  className={`w-full text-left px-4 py-2 rounded-md transition ${
+                    (selected?.name_en || selected?.name) === (option.name_en || option.name)
                       ? "bg-[#C9E9BA] text-[#00401A]"
                       : "bg-white hover:bg-[#C9E9BA]"
-                    }`}
+                  }`}
                 >
-
-
-
                   <div className="flex justify-between">
                     <span className="font-medium text-sm text-gray-800">
-                      {option?.name_en}
+                      {option?.name_en || option?.name}
                     </span>
-                      <span className="font-medium text-sm text-gray-800">
-                    Total:  {option?.dictionaries_count}
-                    </span>
-                    
                   </div>
-                  <p className="text-xs text-gray-500">{option?.name_jp}</p>
                 </button>
               ))
             ) : (
               <p className="font-medium text-sm text-gray-800">
-                No {lvl} Found
+                No options found
               </p>
             )}
           </div>,
