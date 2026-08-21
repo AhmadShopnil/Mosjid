@@ -83,8 +83,7 @@ export default function IslamicBooksLibraryTopSection() {
           </motion.h3>
 
           <motion.p variants={fadeUp} className="text-[#B98C20] text-base mt-2">
-            Welcome to the House of Allah. We ask all visitors to uphold modesty,
-            respect, and cleanliness during their time in the Masjid.
+            Explore a meaningful collection of Islamic books to deepen your knowledge, strengthen your faith, and enrich your spiritual journey. Discover valuable resources on the Qur’an, Hadith, Seerah, Islamic history, and more.
           </motion.p>
 
           {/* Floating Book Illustration */}
@@ -118,17 +117,22 @@ export default function IslamicBooksLibraryTopSection() {
 
           <motion.div className="space-y-3 mt-4" variants={container}>
             {[
-              { icon: "1.svg", label: "Book Your Visit" },
-              { icon: "3.svg", label: "Visitor Booking List" },
-              { icon: "2.svg", label: "Visitor Record" },
-              { icon: "3.svg", label: "Visitor Guidelines" },
+              { icon: "3.svg", label: "Books List", label_2: "書籍一覧", target: "books-list" },
+              { icon: "2.svg", label: "Books Categories", label_2: "本のカテゴリー", target: "books-categories" },
+              { icon: "3.svg", label: "Search Books", label_2: "本を検索", target: "search-books" },
             ].map((item, i) => (
-              <motion.div
+              <motion.button
                 key={i}
+                onClick={() => {
+                  const el = document.getElementById(item.target);
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
                 variants={fadeUp}
                 whileHover={{ scale: 1.03, y: -2 }}
                 transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                className="border border-[#F7BA2A] bg-white/60 p-4 flex items-center gap-4 rounded-[10px]"
+                className="w-full border border-[#F7BA2A] bg-white/60 p-4 flex items-center gap-4 rounded-[10px] cursor-pointer"
               >
                 <Image
                   src={`/images/offerServices/IslamicName/${item.icon}`}
@@ -137,10 +141,15 @@ export default function IslamicBooksLibraryTopSection() {
                   height={50}
                   className="w-[50px] h-[50px]"
                 />
-                <span className="text-[#B98C20] text-2xl font-bold">
-                  {item.label}
+                <span className="text-[#B98C20] text-lg sm:text-xl lg:text-[23px] font-bold">
+                  {item?.label}
+                  <span className="px-1">/</span>
+                  {item?.label_2}
                 </span>
-              </motion.div>
+                {/* <span className="text-[#B98C20] text-2xl font-bold">
+                  {item.label} / {item.label_2}
+                </span> */}
+              </motion.button>
             ))}
           </motion.div>
         </motion.div>

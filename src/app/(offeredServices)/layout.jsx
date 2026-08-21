@@ -21,6 +21,7 @@ import Container from "@/components/Shared/Container";
 import ServicesSidebarDrawer from "@/components/Services/Sidebar/ServicesSidebarDrawer";
 import { servicesSideBarCategories } from "@/data/sidebar";
 import BannerBottom from "@/components/BannerBottom/BannerBottom";
+import SuggestionBox from "@/components/Services/SuggestionBox/SuggestionBox";
 
 
 
@@ -85,6 +86,7 @@ export default async function ServicesLayout({ children }) {
                                                 {children}
                                             </div>
                                         </div>
+                                         {/* <SuggestionBox/> */}
                                         <BannerBottom />
                                     </Container>
 

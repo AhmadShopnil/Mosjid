@@ -9,6 +9,7 @@ import GraveyardBenefit from "./GraveyardBenefit";
 import GraveyardFacilities from "./GraveyardFacilities";
 import { ScrollSection } from "./GraveyardScrollWrapper";
 import GraveyardTimeLine from "./GraveyardTimeLine";
+import SuggestionBox from "../SuggestionBox/SuggestionBox";
 
 
 export default async function GraveyardSection() {
@@ -36,6 +37,8 @@ export default async function GraveyardSection() {
       <ScrollSection id="graveyard-benefits">
         <GraveyardBenefit graveyard_benefits={graveyard_benefits} />
       </ScrollSection>
+      
+      <SuggestionBox/>
 
     </section>
   );
