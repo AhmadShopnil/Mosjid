@@ -1,0 +1,115 @@
+"use client";
+
+import Image from "next/image";
+import React from "react";
+import { motion } from "framer-motion";
+import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
+
+export default function WasiyahTopSection({ onActionClick }) {
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="relative overflow-hidden rounded-[20px] border border-gray-200"
+        >
+            {/* Background Image */}
+            <motion.div
+                initial={{ scale: 1.2, opacity: 0 }}
+                animate={{ scale: 1.1, opacity: 0.3 }}
+                transition={{ duration: 1 }}
+                className="absolute inset-0"
+            >
+                <Image
+                    src="/images/offerServices/IslamicName/bg.png"
+                    alt="Background"
+                    fill
+                    priority
+                    className="object-cover"
+                />
+            </motion.div>
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-[#F9FFF6]/70" />
+
+            {/* Content */}
+            <div className="relative px-4 sm:px-6 py-14">
+                {/* Titles */}
+                <motion.div
+                    initial={{ y: -30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6 }}
+                    className="flex flex-wrap justify-between"
+                >
+                    <SectionTitleRow
+                        leftTitle={"Islamic Wasiyah Registration"}
+                        rightTitle={"イスラム遺言状登録"}
+                    />
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Left Section */}
+                    <motion.div
+                        initial={{ x: -40, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                    >
+                        <p className="text-[#B98C20] text-base mt-2">
+                            Secure your Islamic burial arrangements and religious obligations by registering your Wasiyah (Will) with Osaka Masjid.
+                        </p>
+
+                        <div className="w-full flex justify-center mt-4 md:mt-12">
+                            <motion.div
+                                initial={{ scale: 0.8, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{ duration: 0.6, delay: 0.4 }}
+                            >
+                                <Image
+                                    src="/images/offerServices/donation-facility.svg" 
+                                    alt="Wasiyah Facility"
+                                    width={180}
+                                    height={200}
+                                    className="object-contain"
+                                />
+                            </motion.div>
+                        </div>
+                    </motion.div>
+
+                    {/* Right Section */}
+                    <motion.div
+                        initial={{ x: 40, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                        className="space-y-3 mt-4"
+                    >
+                        {[
+                            { icon: "1.svg", label: "Register Wasiyah" },
+                            { icon: "3.svg", label: "My Wasiyah & History" },
+                            { icon: "2.svg", label: "Wasiyah Policies" },
+                        ].map((item, i) => (
+                            <motion.div
+                                key={i}
+                                onClick={() => onActionClick && onActionClick(item.label)}
+                                initial={{ y: 20, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ delay: 0.4 + i * 0.15 }}
+                                className="cursor-pointer hover:bg-white/80 transition border border-[#F7BA2A] bg-white/50 p-4 flex items-center gap-4 rounded-[10px]"
+                            >
+                                <Image
+                                    src={`/images/offerServices/IslamicName/${item.icon}`}
+                                    alt={item.label}
+                                    width={50}
+                                    height={50}
+                                    className="w-[50px] h-[50px]"
+                                />
+                                <span className="text-[#B98C20] text-2xl font-bold">
+                                    {item.label}
+                                </span>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            </div>
+        </motion.div>
+    );
+}

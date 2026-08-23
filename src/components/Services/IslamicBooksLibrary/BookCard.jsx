@@ -9,7 +9,7 @@ export default function BookCard({ book }) {
 
     // Map API response fields
     const title = book?.name || book?.title || "Untitled";
-    const image = book?.image || "/images/offerServices/book3d.svg";
+    const image = book?.featured_image || "/images/offerServices/book3d.svg";
 
     // PDF link — the primary field the API uses
     const pdfLink = getPDFLinkByMetaName(book, "pdf_book")
