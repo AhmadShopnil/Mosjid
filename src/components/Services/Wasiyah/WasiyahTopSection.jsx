@@ -64,13 +64,13 @@ export default function WasiyahTopSection({ onActionClick }) {
                                 animate={{ scale: 1, opacity: 1 }}
                                 transition={{ duration: 0.6, delay: 0.4 }}
                             >
-                                <Image
-                                    src="/images/offerServices/donation-facility.svg" 
+                                {/* <Image
+                                    src="/images/offerServices/donation-facility.svg"
                                     alt="Wasiyah Facility"
                                     width={180}
                                     height={200}
                                     className="object-contain"
-                                />
+                                /> */}
                             </motion.div>
                         </div>
                     </motion.div>
@@ -83,9 +83,9 @@ export default function WasiyahTopSection({ onActionClick }) {
                         className="space-y-3 mt-4"
                     >
                         {[
-                            { icon: "1.svg", label: "Register Wasiyah" },
-                            { icon: "3.svg", label: "My Wasiyah & History" },
-                            { icon: "2.svg", label: "Wasiyah Policies" },
+                            { icon: "1.svg", label: "Register Wasiyah" ,labelJP: "遺言（ワシヤ）の登録" },
+                            { icon: "3.svg", label: "My Wasiyah & History" ,labelJP: "私の遺言と歩み" },
+                            { icon: "2.svg", label: "Wasiyah Policies",labelJP: "ワシヤ（遺言）に関する規定" },
                         ].map((item, i) => (
                             <motion.div
                                 key={i}
@@ -102,9 +102,14 @@ export default function WasiyahTopSection({ onActionClick }) {
                                     height={50}
                                     className="w-[50px] h-[50px]"
                                 />
-                                <span className="text-[#B98C20] text-2xl font-bold">
-                                    {item.label}
+                                <span className="text-[#B98C20] text-lg sm:text-xl lg:text-[23px] font-bold">
+                                    {item?.label}
+                                    <span className="px-1">/</span>
+                                    {item?.labelJP}
                                 </span>
+                                {/* <span className="text-[#B98C20] text-2xl font-bold">
+                                    {item.label}
+                                </span> */}
                             </motion.div>
                         ))}
                     </motion.div>

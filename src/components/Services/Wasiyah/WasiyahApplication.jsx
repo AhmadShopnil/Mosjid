@@ -73,7 +73,7 @@ export default function WasiyahApplication() {
       {/* Header */}
       <div className="mb-6 lg:mb-10 text-center lg:text-left">
         <h2 className="text-2xl lg:text-3xl font-bold text-[#00401A]">
-          Wasiyah Registration
+          Wasiyah Registration / ワシヤ（遺言）の登録
         </h2>
         <p className="mt-2 text-sm text-gray-500 font-medium">
           Please provide your information and wishes carefully.

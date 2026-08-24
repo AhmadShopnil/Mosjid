@@ -24,9 +24,9 @@ const FacilitiesSection = ({ masjid_facilities }) => {
       <div>
 
         <GradientBorderWrapper1
-        rounded="rounded-[30px]" innerRounded="rounded-[29px]"
-        innerClassName="p-3"
-        
+          rounded="rounded-[30px]" innerRounded="rounded-[29px]"
+          innerClassName="p-3"
+
         >
           <div className='w-full rounded-[29px] p-4 md:p-6"'
             style={{
@@ -73,6 +73,7 @@ const FacilitiesSection = ({ masjid_facilities }) => {
                     alt="Masjid Facilities Illustration"
                     className="max-w-full h-auto object-contain grayscale opacity-80 "
                   />
+
                 </div>
               </div>
 

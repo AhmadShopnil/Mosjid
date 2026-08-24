@@ -2,18 +2,20 @@ import React from "react";
 import Image from "next/image";
 import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 
-const Facilities = () => {
-  const facilities = [
-    "Dedicated Qur’an Classrooms",
-    "Prayer Hall",
-    "Science And Computer Labs",
-    "Modest Dress Code",
-    "Enforcement",
-    "Certified Halal Meals",
-    "Playgrounds Fields",
-    "Health Clinic Station",
-    "Islamic Library",
-  ];
+const Facilities = ({isalamic_school_development_facilities}) => {
+  // const facilities = [
+  //   "Dedicated Qur’an Classrooms",
+  //   "Prayer Hall",
+  //   "Science And Computer Labs",
+  //   "Modest Dress Code",
+  //   "Enforcement",
+  //   "Certified Halal Meals",
+  //   "Playgrounds Fields",
+  //   "Health Clinic Station",
+  //   "Islamic Library",
+  // ];
+
+  const data=isalamic_school_development_facilities?.sub_sections
 
   return (
     <div className="pt-6 px-4 sm:px-0">
@@ -24,7 +26,7 @@ const Facilities = () => {
       
       {/* Grid Configuration: 1 col on mobile, 2 on tablet, 3 on desktop */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-8 pt-5">
-        {facilities?.map((facility, index) => (
+        {data?.map((facility, index) => (
           <div key={index} className="flex items-center justify-center">
             {/* Card Container */}
             <div className="relative flex items-center w-full max-w-[400px] h-[100px] sm:h-[114px]">
@@ -67,7 +69,7 @@ const Facilities = () => {
                   shadow-sm
                 "
               >
-                {facility}
+                {facility?.title}
               </div>
 
               {/* 3. The Circle Icon (Floats on the far left) */}
