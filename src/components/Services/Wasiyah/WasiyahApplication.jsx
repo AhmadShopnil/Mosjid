@@ -21,10 +21,10 @@ export default function WasiyahApplication() {
   const currentSection = wasiyahSections[currentStep];
 
   const updateField = (event) => {
-    const { name, value } = event.target;
+    const { name, value, type, files } = event.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === "file" ? files[0] : value,
     }));
   };
 

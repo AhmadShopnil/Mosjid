@@ -4,6 +4,7 @@ import FormInput from "./fields/FormInput";
 import FormSelect from "./fields/FormSelect";
 import FormTextarea from "./fields/FormTextarea";
 import FormCheckbox from "./fields/FormCheckbox";
+import FormFile from "./fields/FormFile";
 
 export default function WasiyahForm({
   section,
@@ -87,6 +88,20 @@ export default function WasiyahForm({
                     {...field}
                     checked={Boolean(value)}
                     onChange={() => updateCheckbox(field.name)}
+                  />
+                </div>
+              );
+
+            case "file":
+              return (
+                <div
+                  key={field.name}
+                  className={field.fullWidth ? "md:col-span-2" : ""}
+                >
+                  <FormFile
+                    {...field}
+                    value={value}
+                    onChange={updateField}
                   />
                 </div>
               );

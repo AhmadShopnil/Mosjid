@@ -18,6 +18,21 @@ export const wasiyahSections = [
         label: "Japanese Name",
         type: "input",
       },
+       {
+        name: "fatherName",
+        label: "Father’s name",
+        type: "input",
+      },
+       {
+        name: "passportNo",
+        label: "Passport No",
+        type: "input",
+      },
+       {
+        name: "idCardNo",
+        label: "I.D card No",
+        type: "input",
+      },
 
       {
         name: "dateOfBirth",
@@ -266,56 +281,57 @@ export const wasiyahSections = [
     ],
   },
 
-  {
-    id: "authorized",
-    title: "Authorized Person to Contact Osaka Masjid / 大阪モスク連絡担当者",
-    description:
-      "Specify who may coordinate with Osaka Masjid after your death.",
+  // {
+  //   id: "authorized",
+  //   title: "Authorized Person to Contact Osaka Masjid / 大阪モスク連絡担当者",
+  //   description:
+  //     "Specify who may coordinate with Osaka Masjid after your death.",
 
-    fields: [
-      {
-        name: "authorizedName",
-        label: "Full Name",
-        type: "input",
-      },
+  //   fields: [
+  //     {
+  //       name: "authorizedName",
+  //       label: "Full Name",
+  //       type: "input",
+  //     },
 
-      {
-        name: "authorizedRelationship",
-        label: "Relationship",
-        type: "input",
-      },
+    
+  //     {
+  //       name: "authorizedPhone",
+  //       label: "Phone",
+  //       type: "input",
+  //       inputType: "tel",
+  //     },
 
-      {
-        name: "authorizedPhone",
-        label: "Phone",
-        type: "input",
-        inputType: "tel",
-      },
+  //     {
+  //       name: "authorizedEmail",
+  //       label: "Email",
+  //       type: "input",
+  //       inputType: "email",
+  //     },
+  //       {
+  //       name: "position",
+  //       label: "Position",
+  //       type: "input",
+  //       inputType: "email",
+  //     },
 
-      {
-        name: "authorizedEmail",
-        label: "Email",
-        type: "input",
-        inputType: "email",
-      },
+  //     {
+  //       name: "immediateContactAuthorization",
+  //       label:
+  //         "Authorized to contact Osaka Masjid immediately after death",
+  //       type: "checkbox",
+  //       fullWidth: true,
+  //     },
 
-      {
-        name: "immediateContactAuthorization",
-        label:
-          "Authorized to contact Osaka Masjid immediately after death",
-        type: "checkbox",
-        fullWidth: true,
-      },
-
-      {
-        name: "funeralArrangementAuthorization",
-        label:
-          "Authorized to discuss funeral / burial arrangements",
-        type: "checkbox",
-        fullWidth: true,
-      },
-    ],
-  },
+  //     {
+  //       name: "funeralArrangementAuthorization",
+  //       label:
+  //         "Authorized to discuss funeral / burial arrangements",
+  //       type: "checkbox",
+  //       fullWidth: true,
+  //     },
+  //   ],
+  // },
 
   {
     id: "religious",
@@ -323,49 +339,116 @@ export const wasiyahSections = [
     description:
       "Provide information related to your religious obligations.",
 
+    // fields: [
+    //   {
+    //     name: "missedSalah",
+    //     label: "Missed Salah",
+    //     type: "textarea",
+    //     fullWidth: true,
+    //   },
+
+    //   {
+    //     name: "fasting",
+    //     label: "Fasting",
+    //     type: "textarea",
+    //     fullWidth: true,
+    //   },
+
+    //   {
+    //     name: "zakah",
+    //     label: "Zakah",
+    //     type: "textarea",
+    //     fullWidth: true,
+    //   },
+
+    //   {
+    //     name: "hajj",
+    //     label: "Hajj",
+    //     type: "textarea",
+    //     fullWidth: true,
+    //   },
+
+    //   {
+    //     name: "fidyaKaffarah",
+    //     label: "Fidya / Kaffarah",
+    //     type: "textarea",
+    //     fullWidth: true,
+    //   },
+
+    //   {
+    //     name: "sadaqahInstructions",
+    //     label: "Sadaqah / Nafli Sadaqaat Instructions",
+    //     type: "textarea",
+    //     fullWidth: true,
+    //   },
+    // ],
     fields: [
-      {
-        name: "missedSalah",
-        label: "Missed Salah",
-        type: "textarea",
-        fullWidth: true,
-      },
+  {
+    name: "missedSalahFajr",
+    label: "Missed Salah - Fajr",
+    type: "input",
+    fullWidth: true,
+  },
+  {
+    name: "missedSalahDhuhr",
+    label: "Missed Salah - Dhuhr",
+    type: "input",
+    fullWidth: true,
+  },
+  {
+    name: "missedSalahAsr",
+    label: "Missed Salah - Asr",
+    type: "input",
+    fullWidth: true,
+  },
+  {
+    name: "missedSalahMaghrib",
+    label: "Missed Salah - Maghrib",
+    type: "input",
+    fullWidth: true,
+  },
+  {
+    name: "missedSalahIsha",
+    label: "Missed Salah - Isha",
+    type: "input",
+    fullWidth: true,
+  },
 
-      {
-        name: "fasting",
-        label: "Fasting",
-        type: "textarea",
-        fullWidth: true,
-      },
+  {
+    name: "fasting",
+    label: "Fasting",
+    type: "input",
+    fullWidth: true,
+  },
 
-      {
-        name: "zakah",
-        label: "Zakah",
-        type: "textarea",
-        fullWidth: true,
-      },
+  {
+    name: "zakah",
+    label: "Zakah",
+    type: "input",
+    fullWidth: true,
+  },
 
-      {
-        name: "hajj",
-        label: "Hajj",
-        type: "textarea",
-        fullWidth: true,
-      },
+  {
+    name: "hajj",
+    label: "Hajj",
+    type: "input",
+    fullWidth: true,
+  },
 
-      {
-        name: "fidyaKaffarah",
-        label: "Fidya / Kaffarah",
-        type: "textarea",
-        fullWidth: true,
-      },
+  {
+    name: "fidyaKaffarah",
+    label: "Fidya / Kaffarah",
+    type: "input",
+    fullWidth: true,
+  },
 
-      {
-        name: "sadaqahInstructions",
-        label: "Sadaqah / Nafli Sadaqaat Instructions",
-        type: "textarea",
-        fullWidth: true,
-      },
-    ],
+  {
+    name: "sadaqahInstructions",
+    label: "Sadaqah / Nafli Sadaqaat Instructions",
+    type: "input",
+    fullWidth: true,
+  },
+]
   },
 
   {
@@ -405,13 +488,13 @@ export const wasiyahSections = [
 
       {
         name: "cemeteryName",
-        label: "Cemetery Name",
+        label: "Cemetery Name ( if burial have reservation )",
         type: "input",
       },
 
       {
         name: "reservationNumber",
-        label: "Reservation / Reference Number",
+        label: "Reservation / Reference Number ( if burial have reservation )",
         type: "input",
       },
     ],
@@ -433,8 +516,9 @@ export const wasiyahSections = [
 
       {
         name: "signature",
-        label: "Signature",
-        type: "input",
+        label: "Signature (Upload Image/PDF)",
+        type: "file",
+        accept: "image/*,.pdf",
         required: true,
       },
 

@@ -34,7 +34,7 @@ export default function Page() {
                 // Calculate max pages based on either my_donations, donation_register or donation_history
                 const maxPages = Math.max(
                     res.data?.my_donations?.last_page || res.data?.donation_register?.last_page || 1,
-                    res.data?.donation_history?.last_page || 1
+                    res.data?.dontions?.last_page || 1
                 );
                 setTotalPages(maxPages);
                 setCurrentPage(page);

@@ -25,7 +25,17 @@ export default function DonationLists({ bookingListRef, historyListRef, data, lo
     });
   };
 
-  const getStatusBadge = (status) => {
+  const getStatusBadge = (booking) => {
+
+    const status = booking?.status
+
+    const expired = isBookingExpired(
+      booking?.intended_date || booking?.booked_date,
+      booking?.start_time,
+      booking?.end_time
+    );
+
+
     if (status === "1" || status === 1) {
       return (
         <span className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
@@ -39,6 +49,23 @@ export default function DonationLists({ bookingListRef, historyListRef, data, lo
         </span>
       );
     }
+    else if (status === "3" || status === 3) {
+      return (
+        <span className="bg-green-200 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
+          Completed
+        </span>
+      );
+    }
+    if (expired && !booking?.form_status == 1) {
+      return (
+        <span className="bg-yellow-100 text-red-500 text-xs font-semibold px-3 py-1 rounded-full">
+          Expired
+        </span>
+      );
+    }
+
+
+
     return (
       <span className="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">
         Pending
@@ -48,7 +75,8 @@ export default function DonationLists({ bookingListRef, historyListRef, data, lo
 
   const myDonationBooking = data?.my_donations?.data || [];
   const registerData = data?.donation_register?.data || [];
-  const historyData = data?.donation_history?.data || [];
+  const historyData = data?.dontions?.data || [];
+  // const historyData = data?.donation_history?.data || [];
 
   const actionTake = (booking) => {
 
@@ -233,7 +261,7 @@ export default function DonationLists({ bookingListRef, historyListRef, data, lo
                               {booking.contact_no || "—"}
                             </td>
                             <td className="py-2 px-4 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
-                              {getStatusBadge(booking.status)}
+                              {getStatusBadge(booking)}
                             </td>
                           </tr>
                         );
@@ -312,7 +340,7 @@ export default function DonationLists({ bookingListRef, historyListRef, data, lo
                               {booking.contact_no || "—"}
                             </td>
                             <td className="py-2 px-4 border-r border-l border-r-[#B0C4B8] border-l-[#B0C4B8] text-center whitespace-nowrap">
-                              {getStatusBadge(booking.status)}
+                              {getStatusBadge(booking)}
                             </td>
                           </tr>
                         );
