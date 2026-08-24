@@ -15,7 +15,7 @@ const adhanData = [
 
 const JumahPrayer = ({jumuah_prayer_sequence}) => {
 const data = jumuah_prayer_sequence?.sub_sections;
-console.log("data",data)
+// console.log("data",data)
 
   return (
     <div id="jumah-prayer" className="mt-16 scroll-mt-24">

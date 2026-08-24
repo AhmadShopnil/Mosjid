@@ -79,7 +79,7 @@ export default function MadrashaCourse({ madrasha_course_data }) {
 
     const data = top_section_Course_outline?.sub_sections
     const leftSideData = data?.slice(0, 4)
-    const rightSideData = data?.slice(4, length - 1)
+    const rightSideData = data?.slice(4, data?.length - 1)
     
     return (
 
