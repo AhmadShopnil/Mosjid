@@ -6,15 +6,15 @@ export default function GetStatusBadge({ app }) {
   const status = app?.status;
 
   const expired = isBookingExpired(
-    app?.booked_date || app?.intended_date || app?.visit_date ,
+    app?.booked_date || app?.intended_date || app?.visit_date,
     app?.start_time,
     app?.end_time
   );
 
-  
+
   // console.log("status",app?.visit_date)
-  if (status == 4 || status == "4"  ) {
-  
+  if (status == 4 || status == "4") {
+
     return (
       <span className="bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">
         Cancelled
@@ -29,6 +29,13 @@ export default function GetStatusBadge({ app }) {
       </span>
     );
   }
+  if (status == 1) {
+    return (
+      <span className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
+        Approved
+      </span>
+    );
+  }
 
   if (expired && !app?.form_status == 1) {
     return (
@@ -38,13 +45,7 @@ export default function GetStatusBadge({ app }) {
     );
   }
 
-  if (status == 1) {
-    return (
-      <span className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
-        Approved
-      </span>
-    );
-  }
+
 
   return (
     <span className="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">

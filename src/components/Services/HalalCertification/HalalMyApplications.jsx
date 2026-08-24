@@ -14,7 +14,7 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-export default function HalalAllApplications() {
+export default function HalalMyApplications() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -140,24 +140,18 @@ export default function HalalAllApplications() {
                           <td className="border border-gray-300 p-3 text-center">{item.expiry_date || "-"}</td>
                           <td className="border border-gray-300 p-3 text-center">
                             {item.status == 1 ? (
-                              <span className="text-green-600 font-semibold">Approved</span>
+                              <span className="text-green-500 font-semibold">Approved</span>
                             ) : item.status == 2 ? (
                               <span className="text-red-600 font-semibold">Rejected</span>
                             ) : item.status == 4 ? (
                               <span className="text-orange-600 font-semibold">Cancelled</span>
-                            ) : (
+                            ) : item.status == 3 ? (
+                              <span className="text-green-700 font-semibold">Completed</span>
+                            ): (
                               <span className="text-yellow-600 font-semibold">Pending</span>
                             )}
                           </td>
-                          {/* <td className="border border-gray-300 p-3 text-center">
-                          {item.status == 1 ? (
-                            <span className="text-green-600 font-semibold">Approved</span>
-                          ) : item.status == 2 ? (
-                            <span className="text-red-600 font-semibold">Rejected</span>
-                          ) : (
-                            <span className="text-yellow-600 font-semibold">Pending</span>
-                          )}
-                        </td> */}
+                   
                           <td className="border border-gray-300 p-3 text-center">
                             {renderAction(item)}
                           </td>

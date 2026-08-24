@@ -2,17 +2,18 @@ import React from "react";
 import Image from "next/image";
 import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
 
-const TimeLine = () => {
-  const timeLine = [
-    { year: "2030", event: "Campaign Started" },
-    { year: "2030 Onward", event: "Community Engagement for Madrasa" },
-    { year: "2031–2034", event: "Land Assessment" },
-    { year: "2035", event: "Land Purchase Finalized" },
-    { year: "2035 Onward", event: "Motivating Children to learn Deen" },
-    { year: "2036", event: "Construction phase begins" },
-    { year: "2036–2044", event: "Meeting all future needs" },
-    { year: "2045", event: "Fully Built & Operational" },
-  ];
+const TimeLine = ({isalamic_school_development_timeline}) => {
+  // const timeLine = [
+  //   { year: "2030", event: "Campaign Started" },
+  //   { year: "2030 Onward", event: "Community Engagement for Madrasa" },
+  //   { year: "2031–2034", event: "Land Assessment" },
+  //   { year: "2035", event: "Land Purchase Finalized" },
+  //   { year: "2035 Onward", event: "Motivating Children to learn Deen" },
+  //   { year: "2036", event: "Construction phase begins" },
+  //   { year: "2036–2044", event: "Meeting all future needs" },
+  //   { year: "2045", event: "Fully Built & Operational" },
+  // ];
+  const data =isalamic_school_development_timeline?.sub_sections
 
   return (
     <div className="pt-6">
@@ -29,7 +30,7 @@ const TimeLine = () => {
         />
       </div>
       <div className="flex flex-wrap gap-6.5 items-center ">
-        {timeLine?.map((item, index) => (
+        {data?.map((item, index) => (
           <div key={index} className="relative w-34 text-center mt-8">
             <div>
 
@@ -40,7 +41,7 @@ const TimeLine = () => {
                   className="absolute z-[-1] left-[4.5px] -top-12.5"
                 />
                 <span className="absolute text-center -top-6.25 left-0 right-0 font-medium text-[#B98C20]">
-                  {item?.year}
+                  {item?.sub_title}
                 </span>
                 <img
                   src="/images/offerServices/islamicSchool/r3.svg"
@@ -50,7 +51,7 @@ const TimeLine = () => {
               </div>
             </div>
             <span className=" text-center absolute top-0 left-0 bottom-0 right-0 flex justify-center items-center px-2 font-bold text-[#B98C20]">
-              {item?.event}
+              {item?.title}
             </span>
             <img
               src="/images/offerServices/islamicSchool/r.svg"

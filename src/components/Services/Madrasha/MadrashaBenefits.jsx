@@ -24,9 +24,6 @@ export default function MadrashaBenefits({ madrasa_benefits }) {
   return (
     <div>
 
-
-     
-
      <SectionTitleRow
         leftTitle={"Madrasa Benefits"}
         rightTitle={"マドラサのメリット"}

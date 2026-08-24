@@ -1,48 +1,50 @@
 import React from "react";
 import Image from "next/image";
 import SectionTitleRow from "@/components/SectionTitleRow/SectionTitleRow";
-const Benefits = () => {
+const Benefits = ({isalamic_school_development_benefits}) => {
 
-  const benefits = [
-    {
-      id: 1,
-      content:
-        "Learning Qur’an, Hadith, Fiqh, and Islamic history with academic career",
-    },
-    {
-      id: 2,
-      content:
-        "Character development is rooted in prophetic teachings and Islamic values",
-    },
-    {
-      id: 3,
-      content:
-        "Feel safe expressing their faith through dress, prayer, and beliefs",
-    },
-    {
-      id: 4,
-      content: "Builds confidence and pride in Islamic heritage",
-    },
-    {
-      id: 5,
-      content: "Emphasis on honesty, respect, humility, and responsibility",
-    },
-    {
-      id: 6,
-      content: "Learning to navigate modern society with Islamic principles",
-    },
-    {
-      id: 7,
-      content:
-        "Teachers often serve as spiritual mentors as well as academic guides",
-    },
-    {
-      id: 8,
-      content:
-        "National or international academic standards with Islamic studies and values",
-    },
-  ];
+  // const benefits = [
+  //   {
+  //     id: 1,
+  //     content:
+  //       "Learning Qur’an, Hadith, Fiqh, and Islamic history with academic career",
+  //   },
+  //   {
+  //     id: 2,
+  //     content:
+  //       "Character development is rooted in prophetic teachings and Islamic values",
+  //   },
+  //   {
+  //     id: 3,
+  //     content:
+  //       "Feel safe expressing their faith through dress, prayer, and beliefs",
+  //   },
+  //   {
+  //     id: 4,
+  //     content: "Builds confidence and pride in Islamic heritage",
+  //   },
+  //   {
+  //     id: 5,
+  //     content: "Emphasis on honesty, respect, humility, and responsibility",
+  //   },
+  //   {
+  //     id: 6,
+  //     content: "Learning to navigate modern society with Islamic principles",
+  //   },
+  //   {
+  //     id: 7,
+  //     content:
+  //       "Teachers often serve as spiritual mentors as well as academic guides",
+  //   },
+  //   {
+  //     id: 8,
+  //     content:
+  //       "National or international academic standards with Islamic studies and values",
+  //   },
+  // ];
 
+const data=isalamic_school_development_benefits?.sub_sections
+  
   return (
     <div>
       <div className="">
@@ -50,7 +52,7 @@ const Benefits = () => {
           <SectionTitleRow leftTitle={'Islamic School Benefit'} rightTitle={'イスラーム学校の利点'} />
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-[40px] pt-5">
-            {benefits?.map((benefit) => (
+            {data?.map((benefit) => (
               <div
                 key={benefit?.id}
                 className="border-2 rounded-[20px] border-[#FFCE4D] p-2  bg-white "
@@ -65,7 +67,7 @@ const Benefits = () => {
                   />
                   <p className="text-center mt-2 text-[#005312]">
                     {" "}
-                    {benefit?.content}
+                    {benefit?.title}
                   </p>
                 </div>
               </div>

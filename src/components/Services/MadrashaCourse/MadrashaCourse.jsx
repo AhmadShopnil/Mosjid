@@ -7,6 +7,7 @@ import CardCurriculum from "@/components/Services/IslamicSchool Curriculum/CardC
 import ServiceInnerHeader from "@/components/Services/Shared/ServiceInnerHeader";
 import { getPage } from "@/helper/actions";
 import CardCurriculumMadrasa from "./CardCurriculumMadrasa";
+import { getImageUrl } from "@/helper/getImageUrl";
 
 
 const curriculums = [
@@ -66,14 +67,20 @@ export default function MadrashaCourse({ madrasha_course_data }) {
 
 
     const sections = madrasha_course_data?.sections_on_api;
+    const top_section_Course_outline = sections?.find((s) => s.title_slug === "topsection");
 
     const item_1 = sections?.find((s) => s.title_slug === "maktab-nazirah-foundation");
-      const item_2 = sections?.find((s) => s.title_slug === "nazirah-hifz-continuation");
-      const item_3 = sections?.find((s) => s.title_slug === "fulltime-hifz-preaalim");
+    const item_2 = sections?.find((s) => s.title_slug === "nazirah-hifz-continuation");
+    const item_3 = sections?.find((s) => s.title_slug === "fulltime-hifz-preaalim");
 
-    // console.log("maktab_nazirah_foundation", maktab_nazirah_foundation)
+    const image = getImageUrl(top_section_Course_outline?.image_media);
 
+    // console.log("top_section_Course_outline", top_section_Course_outline?.sub_sections)
 
+    const data = top_section_Course_outline?.sub_sections
+    const leftSideData = data?.slice(0, 4)
+    const rightSideData = data?.slice(4, length - 1)
+    
     return (
 
         <div className=" px-1 h-auto">
@@ -85,33 +92,35 @@ export default function MadrashaCourse({ madrasha_course_data }) {
 
             <div className="mt-10 border-2 border-[#FFCE4D] rounded-[40px] p-4 bg-[#F9FFF2]">
 
+                {/* top section */}
+
                 <div className=" border-2 border-[#FFCE4D] rounded-[40px] p-4 bg-[#F9FFF2]">
                     {/* big screen */}
                     <div className=" hidden xl:flex">
                         {/* Left Column */}
                         <div className="space-y-4 w-[40%] ">
-                            {leftLevels?.map((item) => (
-                                <LevelCard key={item.no} {...item} align="left" />
+                            {leftSideData?.map((item) => (
+                                <LevelCard key={item?.id} {...item} align="left" />
                             ))}
                         </div>
 
                         {/* Center Logo */}
                         <div className="w-[25%] px-3  inset-0 flex items-center justify-center pointer-events-none ">
                             <div className=" rounded-full ">
-                                <Image
-                                    src="/images/offerServices/islamicSchoolIcon.svg"
+                              { image && <Image
+                                    src={image}
                                     alt="Islamic School"
                                     width={240}
                                     height={240}
                                     className="w-[220px] h-[220px] 2xl:w-[240px] 2xl:h-[240px]"
-                                />
+                                /> }
                             </div>
                         </div>
 
 
                         {/* Right Column */}
                         <div className="space-y-4 w-[40%] ">
-                            {rightLevels?.map((item) => (
+                            {rightSideData?.map((item) => (
                                 <LevelCardReverse key={item.no} {...item} align="right" />
                             ))}
                         </div>
@@ -120,7 +129,7 @@ export default function MadrashaCourse({ madrasha_course_data }) {
                     {/* small screen */}
                     <div className="xl:hidden flex flex-col items-center justify-center">
                         <div className="space-y-4 w-full ">
-                            {leftLevels.map((item) => (
+                            {leftSideData.map((item) => (
                                 <LevelCardMobile key={item.no} {...item} align="left" />
                             ))}
                         </div>
@@ -134,7 +143,7 @@ export default function MadrashaCourse({ madrasha_course_data }) {
                             />
                         </div>
                         <div className="space-y-4 w-full ">
-                            {rightLevels.map((item) => (
+                            {rightSideData.map((item) => (
                                 <LevelCardMobile key={item.no} {...item} align="left" />
                             ))}
                         </div>
@@ -146,23 +155,23 @@ export default function MadrashaCourse({ madrasha_course_data }) {
                 </div>
 
 
-
+                {/* course details */}
                 <div
                     className="mt-10 flex flex-col gap-10  "
                 >
-                  <CardCurriculumMadrasa 
-                  curriculumNo="01"
-                  curriculum={item_1} />
+                    <CardCurriculumMadrasa
+                        curriculumNo="01"
+                        curriculum={item_1} />
 
 
-                   <CardCurriculumMadrasa 
-                   curriculumNo="02"
-                   curriculum={item_2}              
-                   />
-                   <CardCurriculumMadrasa 
-                   curriculumNo="03"
-                   curriculum={item_3}              
-                   />
+                    <CardCurriculumMadrasa
+                        curriculumNo="02"
+                        curriculum={item_2}
+                    />
+                    <CardCurriculumMadrasa
+                        curriculumNo="03"
+                        curriculum={item_3}
+                    />
 
                 </div>
                 {/* Bottom Section */}
@@ -182,7 +191,7 @@ export default function MadrashaCourse({ madrasha_course_data }) {
     );
 }
 
-function LevelCard({ no, title, align }) {
+function LevelCard({ title, sub_title, align }) {
     return (
         <div>
 
@@ -201,7 +210,7 @@ function LevelCard({ no, title, align }) {
                 <div>
                     <div className="bg-white w-[120px] h-[120px] 2xl:w-[140px] 2xl:h-[140px] flex items-center justify-center rounded-[10px] border
        border-[#FFCE4D] text-[#B98C20] font-bold text-[36px] ">
-                        <span>{no}</span>
+                        <span>{sub_title}</span>
                     </div>
                 </div>
 
@@ -210,7 +219,7 @@ function LevelCard({ no, title, align }) {
 
     );
 }
-function LevelCardReverse({ no, title, align }) {
+function LevelCardReverse({ sub_title, title, align }) {
     return (
         <motion.div
             initial={{ opacity: 0, x: align === "left" ? -30 : 30 }}
@@ -222,7 +231,7 @@ function LevelCardReverse({ no, title, align }) {
             <div>
                 <div className="bg-white w-[120px] h-[120px] 2xl:w-[140px] 2xl:h-[140px] flex items-center justify-center rounded-[10px] border
        border-[#FFCE4D] text-[#B98C20] font-bold text-[36px] ">
-                    <span>{no}</span>
+                    <span>{sub_title}</span>
                 </div>
             </div>
             <div className="flex items-center justify-start border-y border-r border-[#FFCE4D] rounded-r-[100px] p-3 w-full
@@ -235,7 +244,7 @@ function LevelCardReverse({ no, title, align }) {
     );
 }
 
-function LevelCardMobile({ no, title }) {
+function LevelCardMobile({ sub_title, title }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -244,7 +253,7 @@ function LevelCardMobile({ no, title }) {
             className="bg-white border border-[#FFCE4D] rounded-xl p-4 flex gap-4 items-center"
         >
             <div className="w-[60px] h-[60px] rounded-lg border border-[#FFCE4D] flex items-center justify-center text-[#B98C20] text-xl font-bold">
-                {no}
+                {sub_title}
             </div>
             <p className="font-semibold text-[#B98C20] text-sm leading-snug">
                 {title}

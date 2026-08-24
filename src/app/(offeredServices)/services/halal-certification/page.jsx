@@ -4,9 +4,10 @@ import React, { useState, useRef } from 'react'
 import HalalCertificateForm from '@/components/Services/HalalCertification/HalalCertificateForm'
 import HalalCertificateTopSection from '@/components/Services/HalalCertification/HalalCertificateTopSection'
 import HalalCertifiedList from '@/components/Services/HalalCertification/HalalCertifiedList'
-import HalalAllApplications from '@/components/Services/HalalCertification/HalalAllApplications'
+
 import PolicyModal from '@/components/Shared/PolicyModal'
 import ServiceInnerHeader from '@/components/Services/Shared/ServiceInnerHeader';
+import HalalMyApplications from '@/components/Services/HalalCertification/HalalMyApplications';
 
 export default function Page() {
     const [showForm, setShowForm] = useState(false);
@@ -87,7 +88,7 @@ export default function Page() {
                     {activeTab === "all" ? (
                         <HalalCertifiedList />
                     ) : (
-                        <HalalAllApplications />
+                        <HalalMyApplications />
                     )}
                 </div>
             </div>
