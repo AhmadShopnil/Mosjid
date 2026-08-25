@@ -219,7 +219,8 @@ export default function WasiyahApplication({ editData, onSuccessfulSubmit }) {
               type="button"
               onClick={previousStep}
               disabled={currentStep === 0}
-              className="w-full sm:w-auto rounded-xl border border-gray-300 px-6 py-3.5 text-sm font-bold text-gray-600 transition-colors hover:bg-gray-50 disabled:invisible"
+              className="w-full sm:w-auto rounded-xl border border-gray-300 px-6 py-3.5 text-sm font-bold text-gray-600 
+              transition-colors hover:bg-gray-50 disabled:invisible cursor-pointer"
             >
               Back
             </button>
@@ -244,7 +245,8 @@ export default function WasiyahApplication({ editData, onSuccessfulSubmit }) {
               <button
                 type="button"
                 onClick={nextStep}
-                className="w-full sm:w-auto rounded-xl bg-[#00401A] px-10 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#00401A]/20 transition-all hover:bg-[#002B11] hover:scale-[1.02]"
+                className="w-full sm:w-auto rounded-xl bg-[#00401A] px-10 py-3.5 text-sm font-bold text-white shadow-lg
+                 shadow-[#00401A]/20 transition-all hover:bg-[#002B11] hover:scale-[1.02] cursor-pointer"
               >
                 Continue
               </button>

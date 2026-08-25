@@ -125,7 +125,7 @@ export default function WasiyahLists({ onEdit, refreshTrigger }) {
                         <Edit className="w-4 h-4" />
                       </button>
 
-                      {wasiyat.status !== 1 && wasiyat.status !== "1" && wasiyat.download_status !== 1 && (
+                      {/* {wasiyat.status !== 1 && wasiyat.status !== "1" && wasiyat.download_status !== 1 && (
                         <button
                           onClick={() => handleSubmitReview(wasiyat.id)}
                           className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
@@ -133,7 +133,7 @@ export default function WasiyahLists({ onEdit, refreshTrigger }) {
                         >
                           <Send className="w-4 h-4" />
                         </button>
-                      )}
+                      )} */}
 
                       <button
                         onClick={() => {
