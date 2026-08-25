@@ -62,7 +62,7 @@ export default async function page() {
             />
 
             <div className="mt-8">
-              <SocialShare />
+              {/* <SocialShare /> */}
             </div>
           </div>
         </div>

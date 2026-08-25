@@ -197,14 +197,14 @@ export default function SocialShare({ data }) {
       </div>
 
       {/* Print */}
-      <div>
+      {/* <div>
         <button
           onClick={handlePrint}
           className="border-r-2 border-gray-300 pr-3 hover:opacity-70 cursor-pointer "
         >
           <Image src="/images/social/printer.svg" alt="Print" width={24} height={24} />
         </button>
-      </div>
+      </div> */}
 
 
       {/* Download */}

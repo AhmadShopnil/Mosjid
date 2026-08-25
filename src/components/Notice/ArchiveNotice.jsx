@@ -103,7 +103,7 @@ export default function ArchiveNotice({homePage}) {
 
                             {/* Divider */}
                             <div className="border-t mt-3 pt-3 flex items-center gap-3 text-[#D9E2DD]">
-                              <SocialShare/>
+                              <SocialShare data={notice?.description}/>
 
 
                             </div>

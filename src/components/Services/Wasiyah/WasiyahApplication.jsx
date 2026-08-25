@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Check } from "lucide-react";
+import toast from "react-hot-toast";
+import axiosInstance from "@/helper/axiosInstance";
 import WasiyahForm from "./WasiyahForm";
 import { wasiyahSections } from "./wasiyahFields";
 
@@ -13,10 +15,22 @@ wasiyahSections.forEach((section) => {
   });
 });
 
-export default function WasiyahApplication() {
+  // Accept editData from parent
+export default function WasiyahApplication({ editData, onSuccessfulSubmit }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState(initialData);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const formTopRef = useRef(null);
+
+  // When editData changes, populate form
+  useEffect(() => {
+    if (editData) {
+      // Ensure we fill out all fields matching our structure
+      const updatedData = { ...initialData, ...editData };
+      setFormData(updatedData);
+      setCurrentStep(0);
+    }
+  }, [editData]);
 
   const currentSection = wasiyahSections[currentStep];
 
@@ -58,8 +72,48 @@ export default function WasiyahApplication() {
   };
 
   const handleSubmit = async () => {
-    console.log("Wasiyah:", formData);
-    // API request here
+    setIsSubmitting(true);
+    const toastId = toast.loading(editData?.id ? "Updating Wasiyah..." : "Registering Wasiyah...");
+    
+    try {
+      const payload = new FormData();
+      Object.entries(formData).forEach(([key, val]) => {
+        if (val !== null && val !== undefined) {
+          // If boolean, pass as 1/0 or true/false depending on API. We'll use 1/0
+          if (typeof val === 'boolean') {
+            payload.append(key, val ? 1 : 0);
+          } else {
+            payload.append(key, val);
+          }
+        }
+      });
+      console.log("payload",payload)
+
+      if (editData?.id) {
+        // Update (Method spoofing for PUT with FormData in Laravel)
+        payload.append("_method", "PUT");
+        await axiosInstance.post(`/wasiyat/${editData.id}`, payload, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        toast.success("Wasiyah updated successfully!", { id: toastId });
+      } else {
+        // Create
+        await axiosInstance.post("/wasiyat", payload, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        toast.success("Wasiyah registered successfully!", { id: toastId });
+      }
+
+      setFormData(initialData);
+      setCurrentStep(0);
+      if (onSuccessfulSubmit) onSuccessfulSubmit();
+
+    } catch (error) {
+      console.error(error);
+      toast.error(error.response?.data?.message || "An error occurred.", { id: toastId });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const isLastStep = currentStep === wasiyahSections.length - 1;
@@ -174,10 +228,17 @@ export default function WasiyahApplication() {
               <button
                 type="button"
                 onClick={handleSubmit}
-                disabled={!formData.confirmation}
-                className="w-full sm:w-auto rounded-xl bg-gradient-to-r from-[#3198A0] to-[#51F909] px-10 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#3198A0]/20 transition-all hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+                disabled={!formData.confirmation || isSubmitting}
+                className="w-full sm:w-auto rounded-xl bg-gradient-to-r from-[#3198A0] to-[#51F909] px-10 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#3198A0]/20 transition-all hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
               >
-                Submit Wasiyah
+                {isSubmitting ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Processing...
+                  </>
+                ) : (
+                  editData?.id ? "Update Wasiyah" : "Submit Wasiyah"
+                )}
               </button>
             ) : (
               <button
