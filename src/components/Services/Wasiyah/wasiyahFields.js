@@ -387,66 +387,66 @@ export const wasiyahSections = [
     name: "missedSalahFajr",
     label: "Missed Salah - Fajr",
     type: "input",
-    fullWidth: true,
+    // fullWidth: true,
   },
   {
     name: "missedSalahDhuhr",
     label: "Missed Salah - Dhuhr",
     type: "input",
-    fullWidth: true,
+    // fullWidth: true,
   },
   {
     name: "missedSalahAsr",
     label: "Missed Salah - Asr",
     type: "input",
-    fullWidth: true,
+    // fullWidth: true,
   },
   {
     name: "missedSalahMaghrib",
     label: "Missed Salah - Maghrib",
     type: "input",
-    fullWidth: true,
+    // fullWidth: true,
   },
   {
     name: "missedSalahIsha",
     label: "Missed Salah - Isha",
     type: "input",
-    fullWidth: true,
+    // fullWidth: true,
   },
 
   {
     name: "fasting",
     label: "Fasting",
     type: "input",
-    fullWidth: true,
+    // fullWidth: true,
   },
 
   {
     name: "zakah",
     label: "Zakah",
     type: "input",
-    fullWidth: true,
+    // fullWidth: true,
   },
 
   {
     name: "hajj",
     label: "Hajj",
     type: "input",
-    fullWidth: true,
+    // fullWidth: true,
   },
 
   {
     name: "fidyaKaffarah",
     label: "Fidya / Kaffarah",
-    type: "input",
-    fullWidth: true,
+    type: "textarea",
+    // fullWidth: true,
   },
 
   {
     name: "sadaqahInstructions",
     label: "Sadaqah / Nafli Sadaqaat Instructions",
-    type: "input",
-    fullWidth: true,
+    type: "textarea",
+    // fullWidth: true,
   },
 ]
   },

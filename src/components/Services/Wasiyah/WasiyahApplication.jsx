@@ -101,7 +101,7 @@ export default function WasiyahApplication() {
 
           {/* Desktop/Tablet Vertical Stepper List */}
           <div className="hidden lg:flex flex-col gap-2">
-            {wasiyahSections.map((section, index) => {
+            {wasiyahSections?.map((section, index) => {
               const isActive = index === currentStep;
               const isPast = index < currentStep;
 
@@ -113,7 +113,7 @@ export default function WasiyahApplication() {
                     setCurrentStep(index);
                     scrollToForm();
                   }}
-                  className={`flex items-center gap-4 rounded-xl p-4 text-left transition-all duration-300 ${
+                  className={`flex items-center gap-4 rounded-xl p-4 text-left transition-all duration-300 cursor-pointer ${
                     isActive
                       ? "bg-gradient-to-r from-[#3198A0]/10 to-[#51F909]/10 border border-[#3198A0]/20 shadow-sm"
                       : "hover:bg-gray-50 border border-transparent"
