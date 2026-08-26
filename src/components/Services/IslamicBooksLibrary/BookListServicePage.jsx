@@ -5,7 +5,7 @@ import BookCard from './BookCard';
 // Skeleton loader for book cards
 function BookCardSkeleton() {
   return (
-    <div className="rounded-xl p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909]">
+    <div className="rounded-xl p-[1px] bg-gradient-to-b from-[#3198A0] to-[#bcc1ba]">
       <div className="flex gap-4 p-4 bg-white rounded-[11px] animate-pulse">
         <div className="w-[100px] h-[140px] bg-gray-200 rounded shrink-0" />
         <div className="flex-1 space-y-3 py-1">
