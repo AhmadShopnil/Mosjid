@@ -7,6 +7,8 @@ import { getPDFLinkByMetaName } from '@/helper/metaHelpers';
 export default function BookCard({ book }) {
     const [downloading, setDownloading] = useState(false);
 
+    console.log("book",book)
+
     // Map API response fields
     const title = book?.name || book?.title || "Untitled";
     const image = book?.featured_image || "/images/offerServices/book3d.svg";
@@ -22,7 +24,7 @@ export default function BookCard({ book }) {
     const writerCategory = book?.categories?.find(
         (c) => c?.taxonomy_type === "islamic-library-writer-name"
     );
-    const author = writerCategory?.name || book?.author || "—";
+    const author = writerCategory?.name ||  "";
 
     // Volume from extra_fields
     const volume = book?.extra_fields?.volume || book?.volume || null;
@@ -53,7 +55,7 @@ export default function BookCard({ book }) {
 
     return (
         <div className='rounded-xl p-[1px] bg-gradient-to-b from-[#3198A0] to-[#51F909]'>
-            <div className="flex gap-4 p-4 bg-white shadow-sm rounded-[11px]">
+            <div className="flex gap-4 p-4 bg-white shadow-sm rounded-[11px] h-full">
                 {/* Book Cover */}
                 <div className="w-[120px] shrink-0 border-r-2 border-gray-200 pr-3">
                     <Image

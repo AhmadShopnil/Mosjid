@@ -106,6 +106,7 @@ export default function IslamicBooksLibraryClient({
   const writerOptions = writers.map((w) => ({ ...w, name_en: w.name }));
   const topicOptions = topics.map((t) => ({ ...t, name_en: t.name }));
   const publisherOptions = publishers.map((p) => ({ ...p, name_en: p.name }));
+  console.log("books",books)
 
   return (
     <div className="space-y-6">
