@@ -111,7 +111,7 @@ export default function WasiyahHistoryModal({ wasiyatId, isOpen, onClose, onRest
 
                       <div className="flex items-center gap-2 shrink-0">
                         <button
-                          onClick={() => toggleExpand(version.id)}
+                          onClick={() => toggleExpand(version?.id)}
                           className="cursor-pointer px-3 py-1.5 text-xs font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
                         >
                           {isExpanded ? "Hide Details" : "View Data"}
@@ -119,7 +119,7 @@ export default function WasiyahHistoryModal({ wasiyatId, isOpen, onClose, onRest
 
                         {index !== 0 && (
                           <button
-                            onClick={() => handleRestore(version.id)}
+                            onClick={() => handleRestore(version?.id)}
                             className="cursor-pointer flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-[#3198A0]
                              bg-[#3198A0]/10 hover:bg-[#3198A0] hover:text-white rounded-lg transition-colors"
                           >

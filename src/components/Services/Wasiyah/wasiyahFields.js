@@ -503,13 +503,13 @@ export const wasiyahSections = [
 
       {
         name: "cemeteryName",
-        label: "Cemetery Name ( if burial have reservation )",
+        label: "Cemetery Name ( if have burial reservation )",
         type: "input",
       },
 
       {
         name: "reservationNumber",
-        label: "Reservation / Reference Number ( if burial have reservation )",
+        label: "Reservation / Reference Number ( if have burial reservation )",
         type: "input",
       },
     ],

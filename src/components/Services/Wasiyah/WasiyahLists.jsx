@@ -18,7 +18,7 @@ export default function WasiyahLists({ onEdit, refreshTrigger }) {
       const res = await axiosInstance.get("/wasiyat");
       if (res?.data?.wasiyats?.data) {
         setWasiyats(res.data.wasiyats.data);
-       
+
       }
     } catch (error) {
       console.error("Failed to fetch wasiyats", error);
@@ -47,7 +47,7 @@ export default function WasiyahLists({ onEdit, refreshTrigger }) {
       const toastId = toast.loading("Downloading certificate...");
       const res = await axiosInstance.get(`/wasiyat/${id}/certificate`);
       toast.dismiss(toastId);
-      
+
       if (res?.data) {
         // Assuming API returns PDF or data to generate PDF
         // If it's raw JSON data for a certificate, you might need to route to a certificate page
@@ -66,17 +66,33 @@ export default function WasiyahLists({ onEdit, refreshTrigger }) {
   };
 
   const getStatusBadge = (status, downloadStatus) => {
-    if (downloadStatus === 1) {
-      return <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full flex items-center gap-1 w-fit"><CheckCircle className="w-3 h-3"/> Approved</span>;
+      if (status == 2 && downloadStatus==1 ) {
+      return <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full flex items-center gap-1 w-fit">
+        <CheckCircle className="w-3 h-3" />
+         Certficate Generated
+      </span>;
     }
-    if (status === 1 || status === "1") {
-      return <span className="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full flex items-center gap-1 w-fit"><Clock className="w-3 h-3"/> Under Review</span>;
+    if (status == 2) {
+      return <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full flex items-center gap-1 w-fit">
+        <CheckCircle className="w-3 h-3" />
+        Approved
+      </span>;
     }
-    return <span className="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-bold rounded-full flex items-center gap-1 w-fit"><AlertCircle className="w-3 h-3"/> Draft</span>;
+   
+    if (status == 1 || status == "1") {
+      return <span className="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full flex items-center gap-1 w-fit">
+        <Clock className="w-3 h-3" /> Pending
+      </span>;
+    }
+    return <span className="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-bold rounded-full
+     flex items-center gap-1 w-fit">
+      <AlertCircle className="w-3 h-3" />
+      Pending
+    </span>;
   };
- console.log("wasiyats",wasiyats)
+  // console.log("wasiyats", wasiyats)
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8">
       <h2 className="text-xl font-bold text-[#00401A] mb-6 flex items-center gap-2">
         <FileText className="w-6 h-6 text-[#3198A0]" />
         My Wasiyah & History
@@ -117,9 +133,20 @@ export default function WasiyahLists({ onEdit, refreshTrigger }) {
                   </td>
                   <td className="px-4 py-4 text-right">
                     <div className="flex items-center justify-end gap-2">
+                          {wasiyat.download_status === 1 && (
+                        <button
+                          onClick={() => handleDownloadCertificate(wasiyat.id)}
+                          className="cursor-pointer p-2 text-[#3198A0] hover:text-white hover:bg-[#3198A0] bg-[#3198A0]/10 rounded-lg transition-all"
+                          title="Download Certificate"
+                        >
+                          <Download className="w-4 h-4" />
+                          {/* <span>Download</span> */}
+                        </button>
+                      )}
                       <button
                         onClick={() => onEdit({ ...wasiyat.data, id: wasiyat.id })}
-                        className="p-2 text-gray-500 hover:text-[#3198A0] hover:bg-[#3198A0]/10 rounded-lg transition-colors tooltip-trigger"
+                        className="p-2 text-gray-500 hover:text-[#3198A0] hover:bg-[#3198A0]/10 rounded-lg 
+                        transition-colors tooltip-trigger cursor-pointer"
                         title="Edit / Update"
                       >
                         <Edit className="w-4 h-4" />
@@ -140,21 +167,13 @@ export default function WasiyahLists({ onEdit, refreshTrigger }) {
                           setSelectedWasiyatId(wasiyat.id);
                           setHistoryModalOpen(true);
                         }}
-                        className="p-2 text-gray-500 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                        className="p-2 text-gray-500 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors cursor-pointer"
                         title="Version History"
                       >
                         <Clock className="w-4 h-4" />
                       </button>
 
-                      {wasiyat.download_status === 1 && (
-                        <button
-                          onClick={() => handleDownloadCertificate(wasiyat.id)}
-                          className="p-2 text-[#3198A0] hover:text-white hover:bg-[#3198A0] bg-[#3198A0]/10 rounded-lg transition-all"
-                          title="Download Certificate"
-                        >
-                          <Download className="w-4 h-4" />
-                        </button>
-                      )}
+                  
                     </div>
                   </td>
                 </tr>

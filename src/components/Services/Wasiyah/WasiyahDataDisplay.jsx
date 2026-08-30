@@ -244,7 +244,7 @@ export default function WasiyahDataDisplay({ version }) {
             </div>
 
             {/* ================= Final Confirmation ================= */}
-            <div className="text-sm font-medium text-gray-700 mb-2">
+            {/* <div className="text-sm font-medium text-gray-700 mb-2">
                 <h2 className="mb-3 text-xl font-semibold text-gray-800">
                     Final Confirmation
                 </h2>
@@ -263,7 +263,7 @@ export default function WasiyahDataDisplay({ version }) {
                         {version.data?.confirmation ? "Confirmed" : "Not Confirmed"}
                     </span>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
