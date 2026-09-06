@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 export default function CardCurriculum({
   curriculum,
-  curriculumNo = "01",
+  curriculumNo = "",
 }) {
   const [modalState, setModalState] = useState({
     isOpen: false,
@@ -46,7 +46,7 @@ export default function CardCurriculum({
             {/* Left Header */}
             <div className="flex gap-8">
               <span className="text-[60px] font-bold text-[#B98C20]">
-                {curriculumNo}
+                0{curriculumNo}
               </span>
 
               <div className="space-y-1 pt-4">

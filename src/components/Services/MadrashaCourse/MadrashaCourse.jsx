@@ -65,13 +65,21 @@ const curriculums = [
 export default function MadrashaCourse({ madrasha_course_data }) {
 
 
-
     const sections = madrasha_course_data?.sections_on_api;
     const top_section_Course_outline = sections?.find((s) => s.title_slug === "topsection");
 
     const item_1 = sections?.find((s) => s.title_slug === "maktab-nazirah-foundation");
     const item_2 = sections?.find((s) => s.title_slug === "nazirah-hifz-continuation");
     const item_3 = sections?.find((s) => s.title_slug === "fulltime-hifz-preaalim");
+
+
+    const curriculums_data = sections?.find((s) => s.title_slug === "madrasha-curriculums");
+    //   const masjid_benefits = sections?.find((s) => s.title_slug === "masjid-benefits");
+
+    const curriculums = curriculums_data?.sub_sections
+
+    // console.log("curriculums", curriculums)
+
 
     const image = getImageUrl(top_section_Course_outline?.image_media);
 
@@ -80,7 +88,11 @@ export default function MadrashaCourse({ madrasha_course_data }) {
     const data = top_section_Course_outline?.sub_sections
     const leftSideData = data?.slice(0, 4)
     const rightSideData = data?.slice(4, data?.length - 1)
-    
+     const rightSideDataForMobile = data?.slice(4, data?.length)
+    const bottomCenter = data[data.length - 1];
+
+    // console.log("curriculums last", last);
+
     return (
 
         <div className=" px-1 h-auto">
@@ -107,13 +119,13 @@ export default function MadrashaCourse({ madrasha_course_data }) {
                         {/* Center Logo */}
                         <div className="w-[25%] px-3  inset-0 flex items-center justify-center pointer-events-none ">
                             <div className=" rounded-full ">
-                              { image && <Image
+                                {image && <Image
                                     src={image}
                                     alt="Islamic School"
                                     width={240}
                                     height={240}
                                     className="w-[220px] h-[220px] 2xl:w-[240px] 2xl:h-[240px]"
-                                /> }
+                                />}
                             </div>
                         </div>
 
@@ -124,6 +136,10 @@ export default function MadrashaCourse({ madrasha_course_data }) {
                                 <LevelCardReverse key={item.no} {...item} align="right" />
                             ))}
                         </div>
+
+                    </div>
+                    <div className="mt-3">
+                        <LevelCardBottom key={bottomCenter?.no} bottomCenter={bottomCenter} align="right" />
                     </div>
 
                     {/* small screen */}
@@ -143,7 +159,7 @@ export default function MadrashaCourse({ madrasha_course_data }) {
                             />
                         </div>
                         <div className="space-y-4 w-full ">
-                            {rightSideData.map((item) => (
+                            {rightSideDataForMobile?.map((item) => (
                                 <LevelCardMobile key={item.no} {...item} align="left" />
                             ))}
                         </div>
@@ -159,6 +175,12 @@ export default function MadrashaCourse({ madrasha_course_data }) {
                 <div
                     className="mt-10 flex flex-col gap-10  "
                 >
+
+                    {curriculums?.map((curriculum, i) => <CardCurriculumMadrasa
+                        curriculumNo={i + 1}
+                        curriculum={curriculum} />)}
+
+                    {/*                     
                     <CardCurriculumMadrasa
                         curriculumNo="01"
                         curriculum={item_1} />
@@ -171,19 +193,10 @@ export default function MadrashaCourse({ madrasha_course_data }) {
                     <CardCurriculumMadrasa
                         curriculumNo="03"
                         curriculum={item_3}
-                    />
+                    /> */}
 
                 </div>
-                {/* Bottom Section */}
-                {/* <div
-                    className="mt-10 flex flex-col gap-10  "
-                >
-                    {
-                        curriculums?.map((curriculum, i) => <CardCurriculum key={i} curriculum={curriculum} />)
-                    }
 
-
-                </div> */}
 
             </div>
         </div>
@@ -244,7 +257,7 @@ function LevelCardReverse({ sub_title, title, align }) {
     );
 }
 
-function LevelCardMobile({ sub_title, title }) {
+function LevelCardMobile({ sub_title, title,short_description }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -256,13 +269,46 @@ function LevelCardMobile({ sub_title, title }) {
                 {sub_title}
             </div>
             <p className="font-semibold text-[#B98C20] text-sm leading-snug">
-                {title}
+             {title} {short_description && `(${short_description})`}
             </p>
         </motion.div>
     );
 }
 
 
+
+function LevelCardBottom({ bottomCenter }) {
+
+
+    const {  title, align, sub_title ,short_description} = bottomCenter
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, x: align === "left" ? -30 : 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex   items-center w-full"
+        >
+
+            <div className="flex items-center justify-end border-y border-l border-[#FFCE4D] rounded-l-[100px] p-3 w-full
+     h-[100px] 2xl:h-[120px] bg-white">
+                <p className="text-[18px] 2xl:text-[20px] w-[90%]  text-left font-bold text-[#B98C20]">{title}</p>
+            </div>
+
+            <div>
+                <div className="bg-white w-[120px] h-[120px] 2xl:w-[140px] 2xl:h-[140px] flex items-center justify-center rounded-[10px] border
+       border-[#FFCE4D] text-[#B98C20] font-bold text-[36px] ">
+                    <span>{sub_title}</span>
+                </div>
+            </div>
+            <div className="flex items-center justify-end border-y border-r border-[#FFCE4D] rounded-r-[100px] pr-12 w-full
+                 h-[100px] 2xl:h-[120px] bg-white">
+                <p className="text-[18px] 2xl:text-[20px] w-[90%]  text-right font-bold text-[#B98C20]">{short_description}</p>
+            </div>
+
+        </motion.div>
+    );
+}
 
 
 const leftLevels = [

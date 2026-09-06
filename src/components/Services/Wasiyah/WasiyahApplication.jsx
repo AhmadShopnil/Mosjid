@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Check } from "lucide-react";
 import toast from "react-hot-toast";
 import axiosInstance from "@/helper/axiosInstance";
+import { useAuth } from "@/context/AuthContext";
 import WasiyahForm from "./WasiyahForm";
 import { wasiyahSections } from "./wasiyahFields";
 
@@ -17,6 +18,7 @@ wasiyahSections.forEach((section) => {
 
   // Accept editData from parent
 export default function WasiyahApplication({ editData, onSuccessfulSubmit }) {
+  const { isAuthenticated, openAuthModal } = useAuth();
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState(initialData);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -134,10 +136,11 @@ export default function WasiyahApplication({ editData, onSuccessfulSubmit }) {
         </p>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-        
-        {/* Left Sidebar: Stepper */}
-        <div className="w-full lg:w-1/3 xl:w-1/4 shrink-0">
+      {isAuthenticated ? (
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+          
+          {/* Left Sidebar: Stepper */}
+          <div className="w-full lg:w-1/3 xl:w-1/4 shrink-0">
           
           {/* Mobile Progress Bar (hidden on desktop) */}
           <div className="lg:hidden mb-6">
@@ -253,8 +256,25 @@ export default function WasiyahApplication({ editData, onSuccessfulSubmit }) {
             )}
           </div>
         </div>
-
       </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center space-y-6 text-center bg-white/60 p-8 rounded-2xl h-full shadow-inner border border-green-100 w-full min-h-[400px]">
+          <div className="text-4xl p-4 rounded-full bg-white text-[#00401A] shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </div>
+          <h3 className="text-2xl font-bold text-[#00401A]">Authentication Required</h3>
+          <p className="text-gray-700 text-base max-w-md">
+            Please log in or register an account to continue with Wasiyah Registration.
+          </p>
+          <button
+            type="button"
+            onClick={() => openAuthModal("login")}
+            className="bg-[#00401A] hover:bg-[#002B11] text-white px-10 py-3 rounded-xl font-bold transition-all shadow-md mt-4 cursor-pointer"
+          >
+            Quick Login / Register
+          </button>
+        </div>
+      )}
     </div>
   );
 }

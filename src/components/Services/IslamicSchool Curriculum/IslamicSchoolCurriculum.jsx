@@ -18,12 +18,15 @@ export default function IslamicCurriculum({ islamicCurriculum_data }) {
 
     const item_1 = sections?.find((s) => s.title_slug === "maktab-foundation");
     const item_2 = sections?.find((s) => s.title_slug === "primary-school-hifz-continuation");
-     const item_3 = sections?.find((s) => s.title_slug === "elementary-fulltime-hifz");
-      const item_4 = sections?.find((s) => s.title_slug === "elementary-fulltime-hifz");
-       const item_5 = sections?.find((s) => s.title_slug === "elementary-fulltime-hifz");
+    const item_3 = sections?.find((s) => s.title_slug === "elementary-fulltime-hifz");
+    const item_4 = sections?.find((s) => s.title_slug === "elementary-fulltime-hifz");
+    const item_5 = sections?.find((s) => s.title_slug === "elementary-fulltime-hifz");
+    const data = sections?.find((s) => s.title_slug === "curriculum-");
     //   const masjid_benefits = sections?.find((s) => s.title_slug === "masjid-benefits");
 
-    // console.log("maktab_nazirah_foundation", maktab_nazirah_foundation)
+    const curriculums = data?.sub_sections
+
+    // console.log("curriculums", curriculums)
 
 
     return (
@@ -69,6 +72,10 @@ export default function IslamicCurriculum({ islamicCurriculum_data }) {
                                 <LevelCardReverse key={item.no} {...item} align="right" />
                             ))}
                         </div>
+
+                        {/* <div>
+                            <LevelCardBottom key={bottomCenter?.no} bottomCenter={bottomCenter} align="right"/>
+                        </div> */}
                     </div>
 
                     {/* small screen */}
@@ -102,6 +109,11 @@ export default function IslamicCurriculum({ islamicCurriculum_data }) {
                 <div
                     className="mt-10 flex flex-col gap-10  "
                 >
+
+                    {curriculums?.map((curriculum,i) => <CardCurriculum
+                        curriculumNo={i+1}
+                        curriculum={curriculum} />)}
+                    {/* 
                     <CardCurriculum
                         curriculumNo="01"
                         curriculum={item_1} />
@@ -116,7 +128,7 @@ export default function IslamicCurriculum({ islamicCurriculum_data }) {
                         curriculumNo="03"
                         curriculum={item_3}
 
-                    />
+                    /> */}
 
                 </div>
 
@@ -161,6 +173,7 @@ function LevelCard({ no, title, align }) {
         </motion.div>
     );
 }
+
 function LevelCardReverse({ no, title, align }) {
     return (
         <motion.div
@@ -204,6 +217,31 @@ function LevelCardMobile({ no, title }) {
     );
 }
 
+
+function LevelCardBottom({ no, title, align,sub_title }) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, x: align === "left" ? -30 : 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex   items-center w-full"
+        >
+
+            <div className="flex items-center justify-end border-y border-l border-[#FFCE4D] rounded-l-[100px] p-3 w-full
+     h-[100px] 2xl:h-[120px] bg-white">
+                <p className="text-[18px] 2xl:text-[20px] w-[90%]  text-right font-bold text-[#B98C20]">{title}</p>
+            </div>
+
+            <div>
+                <div className="bg-white w-[120px] h-[120px] 2xl:w-[140px] 2xl:h-[140px] flex items-center justify-center rounded-[10px] border
+       border-[#FFCE4D] text-[#B98C20] font-bold text-[36px] ">
+                    <span>{no}</span>
+                </div>
+            </div>
+
+        </motion.div>
+    );
+}
 
 
 
