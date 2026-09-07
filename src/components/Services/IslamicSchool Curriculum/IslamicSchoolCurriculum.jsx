@@ -107,29 +107,13 @@ export default function IslamicCurriculum({ islamicCurriculum_data }) {
                 </div>
 
                 <div
-                    className="mt-10 flex flex-col gap-10  "
+                    className="mt-10 flex flex-col gap-4 lg:gap-10 space-y-0 md:space-y-24 lg:space-y-0  "
                 >
 
                     {curriculums?.map((curriculum,i) => <CardCurriculum
                         curriculumNo={i+1}
                         curriculum={curriculum} />)}
-                    {/* 
-                    <CardCurriculum
-                        curriculumNo="01"
-                        curriculum={item_1} />
-
-
-                    <CardCurriculum
-                        curriculumNo="02"
-                        curriculum={item_2}
-
-                    />
-                    <CardCurriculum
-                        curriculumNo="03"
-                        curriculum={item_3}
-
-                    /> */}
-
+                 
                 </div>
 
                 {/* Bottom Section */}

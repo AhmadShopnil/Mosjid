@@ -173,28 +173,13 @@ export default function MadrashaCourse({ madrasha_course_data }) {
 
                 {/* course details */}
                 <div
-                    className="mt-10 flex flex-col gap-10  "
+                    className="mt-10 flex  flex-col  gap-4 lg:gap-10  space-y-0 md:space-y-24 lg:space-y-0   "
                 >
 
                     {curriculums?.map((curriculum, i) => <CardCurriculumMadrasa
                         curriculumNo={i + 1}
                         curriculum={curriculum} />)}
-
-                    {/*                     
-                    <CardCurriculumMadrasa
-                        curriculumNo="01"
-                        curriculum={item_1} />
-
-
-                    <CardCurriculumMadrasa
-                        curriculumNo="02"
-                        curriculum={item_2}
-                    />
-                    <CardCurriculumMadrasa
-                        curriculumNo="03"
-                        curriculum={item_3}
-                    /> */}
-
+     
                 </div>
 
 
