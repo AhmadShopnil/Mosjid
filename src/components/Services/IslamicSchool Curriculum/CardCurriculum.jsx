@@ -45,16 +45,16 @@ export default function CardCurriculum({
           <div className="absolute left-20 right-20 top-6 flex justify-between">
             {/* Left Header */}
             <div className="flex gap-8">
-              <span className="text-[60px] font-bold text-[#B98C20]">
+              <span className="text-[45px] xl:text-[60px] font-bold text-[#B98C20]">
                 0{curriculumNo}
               </span>
 
               <div className="space-y-1 pt-4">
-                <p className="text-[20px] font-semibold text-[#B98C20]">
+                <p className="text-[17px]  xl:text-[20px] font-semibold text-[#B98C20]">
                   {curriculum?.title}
                 </p>
 
-                <p className="text-[20px] font-semibold text-[#B98C20]">
+                <p className="text-[17px]  xl:text-[20px]  font-semibold text-[#B98C20]">
                   {curriculum?.short_description}
                 </p>
               </div>
@@ -62,11 +62,11 @@ export default function CardCurriculum({
 
             {/* Right Header */}
             <div className="space-y-1 pt-4 text-right">
-              <p className="text-[20px] font-semibold text-[#B98C20]">
+              <p className="text-[17px]  xl:text-[20px]  font-semibold text-[#B98C20]">
                 {curriculum?.sub_title}
               </p>
 
-              <p className="text-[20px] font-semibold text-[#B98C20]">
+              <p className="text-[17px]  xl:text-[20px]  font-semibold text-[#B98C20]">
                 {curriculum?.description}
               </p>
             </div>
@@ -231,7 +231,7 @@ export default function CardCurriculum({
             >
               <div
                 className="text-gray-700
-                text-[16px] md:text-[18px]
+                text-[16px] md:text-[17px]
                 leading-8 whitespace-pre-line"
               >
                 {modalData ? (
@@ -331,7 +331,7 @@ function Card({
             top: "-18px",
           }}
         >
-          <span className="text-[15px] lg:text-[18px]">
+          <span className="text-[15px] lg:text-[17px]">
             {data?.title?.en}
           </span>
         </div>
@@ -359,7 +359,7 @@ function Card({
                 {/* Item */}
                 <span
                   className="text-[#333333]
-                  text-[15px] lg:text-[18px]
+                  text-[15px] lg:text-[17px]
                   leading-snug"
                 >
                   {item?.en}

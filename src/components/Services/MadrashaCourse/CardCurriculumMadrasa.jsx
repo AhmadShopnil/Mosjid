@@ -45,16 +45,16 @@ export default function CardCurriculumMadrasa({
           <div className="absolute left-20 right-20 top-6 flex justify-between">
             {/* Left Header */}
             <div className="flex gap-8">
-              <span className="text-[60px] font-bold text-[#B98C20]">
+              <span className="text-[45px]  xl:text-[60px]  font-bold text-[#B98C20]">
                 {curriculumNo}
               </span>
 
               <div className="space-y-1 pt-4">
-                <p className="text-[20px] font-semibold text-[#B98C20]">
+                <p className="text-[17px]  xl:text-[20px]  font-semibold text-[#B98C20]">
                   {curriculum?.title}
                 </p>
 
-                <p className="text-[20px] font-semibold text-[#B98C20]">
+                <p className="text-[17px]  xl:text-[20px]  font-semibold text-[#B98C20]">
                   {curriculum?.short_description}
                 </p>
               </div>
@@ -62,11 +62,11 @@ export default function CardCurriculumMadrasa({
 
             {/* Right Header */}
             <div className="space-y-1 pt-4 text-right">
-              <p className="text-[20px] font-semibold text-[#B98C20]">
+              <p className="text-[17px]  xl:text-[20px]  font-semibold text-[#B98C20]">
                 {curriculum?.sub_title}
               </p>
 
-              <p className="text-[20px] font-semibold text-[#B98C20]">
+              <p className="text-[17px]  xl:text-[20px]  font-semibold text-[#B98C20]">
                 {curriculum?.description}
               </p>
             </div>
@@ -80,7 +80,7 @@ export default function CardCurriculumMadrasa({
               border-b-white border-r-white rounded-tl-[60px]"
             >
               <div className="absolute w-[98%] top-8">
-                <div className="flex flex-wrap gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   {curriculum?.item_lists?.map((data, i) => (
                     <Card
                       key={i}
@@ -134,7 +134,7 @@ export default function CardCurriculumMadrasa({
         </div>
 
         {/* Cards */}
-        <div className="space-y-6">
+        <div className="space-y-6 ">
           {curriculum?.item_lists?.map((data, i) => (
             <Card
               key={i}
@@ -143,6 +143,21 @@ export default function CardCurriculumMadrasa({
             />
           ))}
         </div>
+
+        {/* <div className="absolute w-[98%] top-8">
+          <div className="grid grid-cols-3 gap-2">
+            {curriculum?.item_lists?.map((data, i) => (
+              <Card
+                key={i}
+                data={data}
+                onOpenModal={openModal}
+              />
+            ))}
+          </div>
+        </div> */}
+
+
+
       </div>
 
       {/* =====================================================
@@ -203,7 +218,7 @@ export default function CardCurriculumMadrasa({
 
               {/* Short Description */}
               {/* <p
-                className="mt-2 text-[16px] md:text-[20px]
+                className="mt-2 text-[16px] md:text-[17px]  xl:text-[20px] 
                 font-medium text-[#B98C20]"
               >
                 {curriculum?.short_description}
@@ -283,7 +298,7 @@ function Card({
   onOpenModal,
 }) {
   return (
-    <div className="h-full flex flex-col w-[49%]">
+    <div className="h-full flex flex-col  w-full">
 
       {/* =====================================================
           CARD CONTENT
@@ -301,16 +316,15 @@ function Card({
           rounded-tr-[20px]
           flex-grow
 
-          ${
-            !showButtons
-              ? `
+          ${!showButtons
+            ? `
                 border-b-2
                 rounded-bl-[20px]
                 rounded-br-[20px]
                 shadow-sm
                 pb-4
               `
-              : ""
+            : ""
           }
         `}
       >
