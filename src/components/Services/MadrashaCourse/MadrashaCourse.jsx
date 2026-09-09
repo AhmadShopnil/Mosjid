@@ -80,7 +80,6 @@ export default function MadrashaCourse({ madrasha_course_data }) {
 
     // console.log("curriculums", curriculums)
 
-
     const image = getImageUrl(top_section_Course_outline?.image_media);
 
     // console.log("top_section_Course_outline", top_section_Course_outline?.sub_sections)
@@ -111,8 +110,8 @@ export default function MadrashaCourse({ madrasha_course_data }) {
                     <div className=" hidden xl:flex">
                         {/* Left Column */}
                         <div className="space-y-4 w-[40%] ">
-                            {leftSideData?.map((item) => (
-                                <LevelCard key={item?.id} {...item} align="left" />
+                            {leftSideData?.map((item,i) => (
+                                <LevelCard key={i} {...item} align="left" />
                             ))}
                         </div>
 
@@ -132,21 +131,21 @@ export default function MadrashaCourse({ madrasha_course_data }) {
 
                         {/* Right Column */}
                         <div className="space-y-4 w-[40%] ">
-                            {rightSideData?.map((item) => (
-                                <LevelCardReverse key={item.no} {...item} align="right" />
+                            {rightSideData?.map((item,i) => (
+                                <LevelCardReverse key={i} {...item} align="right" />
                             ))}
                         </div>
 
                     </div>
-                    <div className="mt-3">
+                    <div className="mt-3 hidden xl:flex">
                         <LevelCardBottom key={bottomCenter?.no} bottomCenter={bottomCenter} align="right" />
                     </div>
 
                     {/* small screen */}
                     <div className="xl:hidden flex flex-col items-center justify-center">
                         <div className="space-y-4 w-full ">
-                            {leftSideData.map((item) => (
-                                <LevelCardMobile key={item.no} {...item} align="left" />
+                            {leftSideData.map((item,i) => (
+                                <LevelCardMobile key={i} {...item} align="left" />
                             ))}
                         </div>
                         <div className=" rounded-full ">
@@ -159,8 +158,8 @@ export default function MadrashaCourse({ madrasha_course_data }) {
                             />
                         </div>
                         <div className="space-y-4 w-full ">
-                            {rightSideDataForMobile?.map((item) => (
-                                <LevelCardMobile key={item.no} {...item} align="left" />
+                            {rightSideDataForMobile?.map((item,i) => (
+                                <LevelCardMobile key={i} {...item} align="left" />
                             ))}
                         </div>
 
