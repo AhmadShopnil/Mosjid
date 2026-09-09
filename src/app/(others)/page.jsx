@@ -27,17 +27,10 @@ export default async function Home() {
   const books = await getBooksData(56)
   const chapter = await getFatwahFiltersData("bookchapters")
   const section = await getFatwahFiltersData("booksections")
-
-
-
-
   const data_for_filter = { books, chapter, section }
-
-
   const quickLinks = await getMenus(6)
 
-  // console.log({quickLinks})
-
+  
   return (
     <main className=" mb-10 ">
 

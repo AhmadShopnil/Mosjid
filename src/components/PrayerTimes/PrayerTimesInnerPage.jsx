@@ -16,7 +16,6 @@ import { getProhibitedTimes } from "@/helper/CalculateProhebitedTime";
 import { getUpdatedAtArray } from "@/helper/getLatestUpdatedTime";
 
 
-
 export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, ProhibitedTime }) {
   const [loading, setLoading] = useState();
 
@@ -59,6 +58,11 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
   const prohibited_time_end_jp = prayer_time?.custom_information.find((item) => item.label === "wakt_end_jp")
 
 
+
+
+
+
+
   useEffect(() => {
     async function load() {
       try {
@@ -83,6 +87,7 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
 
     load();
   }, []);
+
 
 
   const prayerTimesDataFromOusideApi = [
@@ -123,12 +128,20 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
     },
   ];
 
+
+
+
+
   const formattedPrayerTimes = formatPrayerData(prayerTimes);
   const finalPrayerTimes = mergePrayerTimes(formattedPrayerTimes, prayerTimesDataFromOusideApi);
 
-
   // const updatedAtArray = extractTimeUpdatedAt(prayerTimes);
   // const updated_time = getMostRecentTime(updatedAtArray)
+
+
+
+
+
 
   const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideApi);
 
@@ -233,6 +246,8 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
             </tbody>
           </table>
         </div>
+
+
 
 
         {/* Table 2 */}
