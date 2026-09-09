@@ -51,16 +51,10 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
   const wakt_start_jp = prayer_time?.custom_information.find((item) => item.label === "wakt_start_jp")
   const wakt_end_jp = prayer_time?.custom_information.find((item) => item.label === "wakt_end_jp")
 
-
   const prohibited_time_start = prayer_time?.custom_information.find((item) => item.label === "prohibited_time_start")
   const prohibited_time_end = prayer_time?.custom_information.find((item) => item.label === "prohibited_time_end")
   const prohibited_time_start_jp = prayer_time?.custom_information.find((item) => item.label === "prohibited_time_start_jp")
   const prohibited_time_end_jp = prayer_time?.custom_information.find((item) => item.label === "wakt_end_jp")
-
-
-
-
-
 
 
   useEffect(() => {
@@ -128,27 +122,18 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
     },
   ];
 
-
-
-
-
   const formattedPrayerTimes = formatPrayerData(prayerTimes);
   const finalPrayerTimes = mergePrayerTimes(formattedPrayerTimes, prayerTimesDataFromOusideApi);
 
   // const updatedAtArray = extractTimeUpdatedAt(prayerTimes);
   // const updated_time = getMostRecentTime(updatedAtArray)
 
-
-
-
-
-
   const calculatedProhibitedTimes = getProhibitedTimes(prayerTimesDataFromOusideApi);
 
   const updatedAtArray = getUpdatedAtArray(prayerTimes);
   const updated_time = getMostRecentTime(updatedAtArray)
 
-  console.log("prayet time update", updated_time)
+  // console.log("prayet time update", updated_time)
 
 
   return (
@@ -185,9 +170,6 @@ export default function PrayerTimesInnerPage({ settings, homePage, prayerTimes, 
             height={55}
             className=""
           />
-
-
-
 
           <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00401A]">
             <p><span className="text-[#F7BA2A]">{heading_part_1}</span> {heading_part_2} </p>
