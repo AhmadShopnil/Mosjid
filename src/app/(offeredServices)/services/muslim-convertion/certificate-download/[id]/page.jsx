@@ -16,12 +16,18 @@ const Page = () => {
     const [certData, setCertData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
+
+  
+
     useEffect(() => {
         if (id) {
             const fetchCert = async () => {
                 setIsLoading(true);
+                  console.log("Certificate id before fetch:", id);
                 try {
+                     console.log("Certificate id before fetch:", id);
                     const res = await axiosInstance.get(`/conversion/${id}/certificate`);
+                   
                     if (res.data) {
                         setCertData(res.data);
                     }

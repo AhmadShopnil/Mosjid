@@ -35,9 +35,9 @@ export default function CardCurriculum({
 
   return (
     <div className="w-full">
-      {/* =====================================================
-          LARGE SCREEN
-      ====================================================== */}
+   
+          {/* LARGE SCREEN */}
+
       <div className="hidden lg:block h-[500px]">
         <div className="relative bg-[#EEF8E9] w-full h-[350px] border-8 border-[#FFCE4D] rounded-[110px]">
 
@@ -80,7 +80,7 @@ export default function CardCurriculum({
               border-b-white border-r-white rounded-tl-[60px]"
             >
               <div className="absolute w-[98%] top-8">
-                <div className="grid grid-cols-3 gap-2">
+                 <div className="flex gap-2">
                   {curriculum?.item_lists?.map((data, i) => (
                     <Card
                       key={i}
@@ -89,6 +89,15 @@ export default function CardCurriculum({
                     />
                   ))}
                 </div>
+                {/* <div className="grid grid-cols-3 gap-2">
+                  {curriculum?.item_lists?.map((data, i) => (
+                    <Card
+                      key={i}
+                      data={data}
+                      onOpenModal={openModal}
+                    />
+                  ))}
+                </div> */}
               </div>
             </div>
           </div>

@@ -68,29 +68,33 @@ export default function MadrashaCourse({ madrasha_course_data }) {
     const sections = madrasha_course_data?.sections_on_api;
     const top_section_Course_outline = sections?.find((s) => s.title_slug === "topsection");
 
-    const item_1 = sections?.find((s) => s.title_slug === "maktab-nazirah-foundation");
-    const item_2 = sections?.find((s) => s.title_slug === "nazirah-hifz-continuation");
-    const item_3 = sections?.find((s) => s.title_slug === "fulltime-hifz-preaalim");
+    // const item_1 = sections?.find((s) => s.title_slug === "maktab-nazirah-foundation");
+    // const item_2 = sections?.find((s) => s.title_slug === "nazirah-hifz-continuation");
+    // const item_3 = sections?.find((s) => s.title_slug === "fulltime-hifz-preaalim");
+
+
+    // const curriculums_data = sections?.find((s) => s.title_slug === "madrasha-curriculums");
 
 
     const curriculums_data = sections?.find((s) => s.title_slug === "madrasha-curriculums");
+
+
+
+
+    // madrasa-curriculums
     //   const masjid_benefits = sections?.find((s) => s.title_slug === "masjid-benefits");
 
     const curriculums = curriculums_data?.sub_sections
 
-    // console.log("curriculums", curriculums)
 
     const image = getImageUrl(top_section_Course_outline?.image_media);
-
-    // console.log("top_section_Course_outline", top_section_Course_outline?.sub_sections)
-
     const data = top_section_Course_outline?.sub_sections
     const leftSideData = data?.slice(0, 4)
     const rightSideData = data?.slice(4, data?.length - 1)
-     const rightSideDataForMobile = data?.slice(4, data?.length)
+    const rightSideDataForMobile = data?.slice(4, data?.length)
     const bottomCenter = data[data.length - 1];
 
-    // console.log("curriculums last", last);
+
 
     return (
 
@@ -110,7 +114,7 @@ export default function MadrashaCourse({ madrasha_course_data }) {
                     <div className=" hidden xl:flex">
                         {/* Left Column */}
                         <div className="space-y-4 w-[40%] ">
-                            {leftSideData?.map((item,i) => (
+                            {leftSideData?.map((item, i) => (
                                 <LevelCard key={i} {...item} align="left" />
                             ))}
                         </div>
@@ -131,7 +135,7 @@ export default function MadrashaCourse({ madrasha_course_data }) {
 
                         {/* Right Column */}
                         <div className="space-y-4 w-[40%] ">
-                            {rightSideData?.map((item,i) => (
+                            {rightSideData?.map((item, i) => (
                                 <LevelCardReverse key={i} {...item} align="right" />
                             ))}
                         </div>
@@ -144,7 +148,7 @@ export default function MadrashaCourse({ madrasha_course_data }) {
                     {/* small screen */}
                     <div className="xl:hidden flex flex-col items-center justify-center">
                         <div className="space-y-4 w-full ">
-                            {leftSideData.map((item,i) => (
+                            {leftSideData.map((item, i) => (
                                 <LevelCardMobile key={i} {...item} align="left" />
                             ))}
                         </div>
@@ -158,7 +162,7 @@ export default function MadrashaCourse({ madrasha_course_data }) {
                             />
                         </div>
                         <div className="space-y-4 w-full ">
-                            {rightSideDataForMobile?.map((item,i) => (
+                            {rightSideDataForMobile?.map((item, i) => (
                                 <LevelCardMobile key={i} {...item} align="left" />
                             ))}
                         </div>
@@ -174,11 +178,11 @@ export default function MadrashaCourse({ madrasha_course_data }) {
                 <div
                     className="mt-10 flex  flex-col  gap-4 lg:gap-10  space-y-0 md:space-y-24 lg:space-y-0   "
                 >
-
                     {curriculums?.map((curriculum, i) => <CardCurriculumMadrasa
                         curriculumNo={i + 1}
-                        curriculum={curriculum} />)}
-     
+                        curriculum={curriculum} />)
+                    }
+
                 </div>
 
 
@@ -241,7 +245,7 @@ function LevelCardReverse({ sub_title, title, align }) {
     );
 }
 
-function LevelCardMobile({ sub_title, title,short_description }) {
+function LevelCardMobile({ sub_title, title, short_description }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -253,7 +257,7 @@ function LevelCardMobile({ sub_title, title,short_description }) {
                 {sub_title}
             </div>
             <p className="font-semibold text-[#B98C20] text-sm leading-snug">
-             {title} {short_description && `(${short_description})`}
+                {title} {short_description && `(${short_description})`}
             </p>
         </motion.div>
     );
@@ -264,7 +268,7 @@ function LevelCardMobile({ sub_title, title,short_description }) {
 function LevelCardBottom({ bottomCenter }) {
 
 
-    const {  title, align, sub_title ,short_description} = bottomCenter
+    const { title, align, sub_title, short_description } = bottomCenter
 
     return (
         <motion.div

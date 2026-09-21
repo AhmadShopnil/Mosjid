@@ -3,9 +3,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import axiosInstance from '@/helper/axiosInstance';
-import MarriageCertificate from '@/components/Services/marriageFacilities/MarriageCertificate';
+import  { preloadCertificateFonts } from '@/components/Services/marriageFacilities/MarriageCertificate';
 import { FiArrowLeft, FiDownload } from 'react-icons/fi';
 import { splitAddress } from '@/helper/splitAddress';
+import MarriageCertificate from '@/components/Services/marriageFacilities/MarriageCertificate-v1';
 
 const Page = () => {
     const params = useParams();
@@ -44,6 +45,9 @@ const Page = () => {
             setIsDownloading(true);
             const html2pdf = (await import('html2pdf.js')).default;
 
+            // Make sure the certificate fonts are loaded before capturing, so the PDF text matches the preview.
+            await preloadCertificateFonts();
+
             const opt = {
                 margin: 0,
                 filename: `Marriage_Certificate_${id}.pdf`,
@@ -52,13 +56,15 @@ const Page = () => {
                     scale: 2,
                     useCORS: true,
                     allowTaint: true,
-                    onclone: (clonedDoc) => {
+                    onclone: async (clonedDoc) => {
                         const styleSheets = clonedDoc.querySelectorAll("style");
                         styleSheets.forEach((style) => {
                             if (style.textContent && style.textContent.includes("oklch")) {
                                 style.textContent = style.textContent.replace(/oklch\([^)]+\)/g, "#000000");
                             }
                         });
+                        // html2canvas lays text out in this cloned document; wait for the fonts here too.
+                        await preloadCertificateFonts(clonedDoc);
                     },
                 },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
@@ -198,6 +204,8 @@ const Page = () => {
 
                 <div className="bg-white p-8 rounded-xl shadow-xl flex justify-center overflow-x-auto border border-gray-200">
                     <div ref={certificateRef} className="shrink-0 bg-white">
+
+
                         <MarriageCertificate data={mappedData} />
                     </div>
                 </div>

@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import axiosInstance from "@/helper/axiosInstance";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
+import ProgressSheetsModal from "@/components/Services/AcademicDocuments/ProgressSheetsModal";
+import Link from "next/link";
 
 const INITIAL_CHILD = {
   name: "",
@@ -319,7 +321,7 @@ export default function AdmissionForm() {
             </div>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {students.map((student) => {
+              {students?.map((student) => {
                 // Find nationality name
                 const nationalityName = countries.find(
                   (c) => String(c.id) === String(student.nationality_id)
@@ -375,7 +377,18 @@ export default function AdmissionForm() {
 
                       {/* Progress Sheet Button */}
                       <div className="pt-2">
-                        <button
+
+                        <Link
+                         href={`/services/admission-form/progress-sheet/${student.id}`}
+                         className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#00401A] hover:bg-[#00602A] text-white text-[11px] font-bold rounded-xl shadow-sm transition-all duration-300 cursor-pointer"
+                        >
+                           <svg className="w-3.5 h-3.5 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                          </svg>
+                          Progress Sheets / 進捗状況表示
+                        </Link>
+                        {/* progress sheet modal */}
+                        {/* <button
                           type="button"
                           onClick={() => setSelectedProgressStudent(student)}
                           className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#00401A] hover:bg-[#00602A] text-white text-[11px] font-bold rounded-xl shadow-sm transition-all duration-300 cursor-pointer"
@@ -389,7 +402,7 @@ export default function AdmissionForm() {
                               {student.progress_sheets.length}
                             </span>
                           )}
-                        </button>
+                        </button> */}
                       </div>
 
                       {/* Documents Download Links */}
@@ -835,185 +848,5 @@ const FileInputWithPreview = ({ label, name, onChange, required = false, value }
   );
 };
 
-/* Progress Sheets Modal Component */
-function ProgressSheetsModal({ student, onClose }) {
-  const getMonthName = (monthNumber) => {
-    const months = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ];
-    const index = parseInt(monthNumber) - 1;
-    return months[index] || `Month ${monthNumber}`;
-  };
 
-  const getMonthNameJp = (monthNumber) => {
-    const monthsJp = [
-      "1月 (January)", "2月 (February)", "3月 (March)", "4月 (April)",
-      "5月 (May)", "6月 (June)", "7月 (July)", "8月 (August)",
-      "9月 (September)", "10月 (October)", "11月 (November)", "12月 (December)"
-    ];
-    const index = parseInt(monthNumber) - 1;
-    return monthsJp[index] || `${monthNumber}月`;
-  };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-all duration-300">
-      <div className="relative w-full max-w-4xl bg-white rounded-[24px] border border-green-150 shadow-2xl overflow-hidden flex flex-col max-h-[85vh]">
-
-        {/* Header Section */}
-        <div className="bg-[#00401A] p-6 text-white flex justify-between items-center relative">
-          <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#B98C20] via-[#ffd67a] to-[#B98C20]"></div>
-          <div>
-            <p className="text-xs font-bold uppercase tracking-wider text-[#B98C20]">Student Progress Record</p>
-            <h3 className="text-2xl font-extrabold flex items-center gap-2 mt-1">
-              {student.name}
-              <span className="text-xs bg-green-800 text-green-300 font-bold px-2.5 py-1 rounded-lg">
-                ID: {student?.student_id || "N/A"}
-              </span>
-            </h3>
-          </div>
-          <button
-            onClick={onClose}
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors font-bold text-lg cursor-pointer animate-all duration-200"
-          >
-            ✕
-          </button>
-        </div>
-
-        {/* Content Section */}
-        <div className="p-6 overflow-y-auto flex-grow space-y-6">
-          {!student.progress_sheets || student.progress_sheets.length === 0 ? (
-            <div className="text-center py-16 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200 flex flex-col items-center justify-center space-y-3">
-              <div className="w-16 h-16 rounded-full bg-amber-50 flex items-center justify-center text-amber-500">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-              </div>
-              <h4 className="text-lg font-bold text-gray-700">No Progress Records Found</h4>
-              <p className="text-sm text-gray-400 max-w-md">There are currently no learning or attendance progress sheets registered for this student under this term.</p>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {/* Desktop Table View */}
-              <div className="hidden md:block overflow-x-auto border border-gray-200 rounded-2xl shadow-sm bg-white">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="bg-gray-50 border-b border-gray-200">
-                      <th className="p-4 text-xs font-bold text-[#00401A] uppercase">Month / Year</th>
-                      {/* <th className="p-4 text-xs font-bold text-[#00401A] uppercase">Department</th> */}
-                      <th className="p-4 text-xs font-bold text-[#00401A] uppercase">Program Type</th>
-                      <th className="p-4 text-xs font-bold text-[#00401A] uppercase">Attendance</th>
-                      <th className="p-4 text-xs font-bold text-[#00401A] uppercase">Attendance Rate</th>
-                      <th className="p-4 text-xs font-bold text-[#00401A] uppercase">Learning Status</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100 text-sm">
-                    {student.progress_sheets.map((sheet) => {
-                      const presentNum = parseInt(sheet.present || 0);
-                      const absentNum = parseInt(sheet.absent || 0);
-                      const totalDays = presentNum + absentNum;
-                      const attendanceRate = totalDays > 0 ? Math.round((presentNum / totalDays) * 100) : 0;
-
-                      return (
-                        <tr key={sheet.id} className="hover:bg-green-50/25 transition-colors">
-                          <td className="p-4 font-bold text-gray-800">
-                            {getMonthNameJp(sheet.month)} {sheet.year}
-                          </td>
-                          <td className="p-4">
-                            <span className="font-semibold text-gray-700 bg-gray-100 px-2.5 py-1 rounded-lg">
-                              {sheet.department?.name || "N/A"}
-                            </span>
-                          </td>
-                          {/* <td className="p-4 text-gray-600 font-medium">
-                            {sheet.program_type === "1" ? "Weekday (平日)" : sheet.program_type === "2" ? "Weekend (週末)" : "General"}
-                          </td> */}
-                          <td className="p-4">
-                            <div className="flex gap-2">
-                              <span className="bg-green-50 text-green-750 border border-green-150 px-2 py-0.5 rounded text-xs font-semibold">
-                                Pres: {presentNum}d
-                              </span>
-                              <span className="bg-red-50 text-red-750 border border-red-155 px-2 py-0.5 rounded text-xs font-semibold">
-                                Abs: {absentNum}d
-                              </span>
-                            </div>
-                          </td>
-                          <td className="p-4">
-                            <div className="flex items-center gap-2">
-                              <div className="w-16 bg-gray-200 rounded-full h-1.5">
-                                <div
-                                  className={`h-1.5 rounded-full ${attendanceRate >= 90 ? 'bg-green-500' : attendanceRate >= 75 ? 'bg-yellow-500' : 'bg-red-500'
-                                    }`}
-                                  style={{ width: `${attendanceRate}%` }}
-                                ></div>
-                              </div>
-                              <span className="font-bold text-gray-800">{attendanceRate}%</span>
-                            </div>
-                          </td>
-                          <td className="p-4">
-                            <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold ${sheet.learning_status?.name?.toLowerCase().includes('basic')
-                              ? 'bg-blue-50 text-blue-700 border border-blue-150'
-                              : 'bg-[#B98C20]/10 text-[#B98C20] border border-[#B98C20]/20'
-                              }`}>
-                              {sheet.learning_status?.name || "N/A"}
-                            </span>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-
-              {/* Mobile Card-Based View */}
-              <div className="md:hidden space-y-4">
-                {student.progress_sheets.map((sheet) => {
-                  const presentNum = parseInt(sheet.present || 0);
-                  const absentNum = parseInt(sheet.absent || 0);
-                  const totalDays = presentNum + absentNum;
-                  const attendanceRate = totalDays > 0 ? Math.round((presentNum / totalDays) * 100) : 0;
-
-                  return (
-                    <div key={sheet.id} className="border border-gray-200 rounded-2xl p-4 bg-white shadow-sm space-y-3 relative overflow-hidden">
-                      <div className="absolute top-0 left-0 w-2 h-full bg-[#00401A]"></div>
-                      <div className="flex justify-between items-center pl-2">
-                        <span className="font-extrabold text-gray-800 text-sm">
-                          {getMonthName(sheet.month)} {sheet.year}
-                        </span>
-                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${sheet.learning_status?.name?.toLowerCase().includes('basic')
-                          ? 'bg-blue-50 text-blue-700 border border-blue-150'
-                          : 'bg-[#B98C20]/10 text-[#B98C20] border border-[#B98C20]/20'
-                          }`}>
-                          {sheet.learning_status?.name || "N/A"}
-                        </span>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-y-2 text-xs text-gray-600 pl-2">
-                        <p><strong>Dept:</strong> {sheet.department?.name || "N/A"}</p>
-                        <p><strong>Program:</strong> {sheet.program_type === "1" ? "Weekday" : sheet.program_type === "2" ? "Weekend" : "General"}</p>
-                        <p><strong>Attendance:</strong> Pres: {presentNum} | Abs: {absentNum}</p>
-                        <p className="flex items-center gap-1">
-                          <strong>Rate:</strong>
-                          <span className="font-extrabold text-gray-800">{attendanceRate}%</span>
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Footer Section */}
-        <div className="bg-gray-50 p-4 border-t border-gray-200 flex justify-end">
-          <button
-            onClick={onClose}
-            className="px-6 py-2 bg-[#00401A] hover:bg-[#00602A] text-white font-bold rounded-xl shadow transition-colors cursor-pointer text-sm"
-          >
-            Close / 閉じる
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
