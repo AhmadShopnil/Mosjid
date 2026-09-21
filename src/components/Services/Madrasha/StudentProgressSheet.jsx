@@ -19,6 +19,7 @@ import {
     ClipboardCheck,
 } from "lucide-react";
 import axiosInstance from "@/helper/axiosInstance";
+import Link from "next/link";
 
 const MONTHS = [
     "January",
@@ -149,18 +150,27 @@ function ErrorState({ error, onRetry }) {
                         Unable to load progress sheet
                     </h2>
 
-                    <p className="mt-2 text-sm text-[#7B8780]">
-                        {error ||
-                            "Something went wrong while loading the student's progress."}
-                    </p>
+                    <p className="mt-2 mb-5 text-sm text-[#7B8780]">
 
-                    <button
+                        {error=="Forbidden" ? "You do not have permission to view other student's progress sheet." : "Something went wrong while loading the student's progress."}
+                        {/* {error ||
+                            "Something went wrong while loading the student's progress."} */}
+                    </p>
+                    <Link
+                    href={'/services/admission-form/student-list'}
+                    className=" rounded-lg bg-[#277343] px-4 py-2.5 text-xs font-semibold text-white transition
+                     hover:bg-[#205F36]"
+                    >
+                    Back to Student list
+                    </Link>
+
+                    {/* <button
                         type="button"
                         onClick={onRetry}
                         className="mt-5 rounded-lg bg-[#277343] px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-[#205F36]"
                     >
                         Try Again
-                    </button>
+                    </button> */}
                 </div>
             </div>
         </section>
