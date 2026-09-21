@@ -21,7 +21,7 @@ export default async function page() {
   const data_for_filter = { majhabs, books, chapter, section }
 
 
-
+  
   const sections = homePage?.sections_on_api || [];
   const fatwahExtraData = sections.find(
     (s) => s.title_slug === "fatwah"

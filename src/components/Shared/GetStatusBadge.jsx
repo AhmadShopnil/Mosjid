@@ -29,7 +29,7 @@ export default function GetStatusBadge({ app }) {
       </span>
     );
   }
-  if (status == 1) {
+  if (status == 1 && !expired) {
     return (
       <span className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
         Approved

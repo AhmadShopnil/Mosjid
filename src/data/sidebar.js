@@ -244,6 +244,17 @@ export const servicesSideBarCategories = [
         link: "/admission-form",
         description: "入場料",
       },
+       {
+        name: "Student List",
+        link: "/admission-form/student-list",
+        description: "学生名簿",
+      },
+// {
+//         name: "Student List",
+//         link: "/admission-form/進捗シート",
+//         description: "学生名簿",
+//       },
+      
     ],
   },
 

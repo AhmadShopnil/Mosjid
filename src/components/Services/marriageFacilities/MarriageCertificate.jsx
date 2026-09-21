@@ -1,333 +1,690 @@
 import React from 'react';
 
-const FieldRow = ({ labelEn, labelJp, value }) => (
-  <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: '3px' }}>
-    <div style={{ width: '100px', flexShrink: 0 }}>
-      <p style={{ fontSize: '8.5px', color: '#828282', lineHeight: '1.1', margin: 0 }}>{labelJp}</p>
-      <p style={{ fontSize: '11px', fontWeight: 'bold', color: '#085F2C', lineHeight: '1.1', margin: 0 }}>{labelEn}</p>
+/**
+ * Premium one-page Islamic Marriage Certificate
+ * ------------------------------------------------
+ * - Keeps the existing data shape:
+ *   groom, bride, details, witnesses, solemnizedBy
+ * - Designed for a single A4-like portrait page.
+ * - No external border/image asset is required.
+ * - Works with the existing photo/sign URLs.
+ */
+
+const COLORS = {
+  ink: '#17352B',
+  emerald: '#0B5D43',
+  deepEmerald: '#083F31',
+  gold: '#B28A3B',
+  softGold: '#D8BD7A',
+  ivory: '#FBF8F0',
+  paper: '#FFFDF8',
+  line: '#D8D0BF',
+  muted: '#77766F',
+};
+
+const Field = ({ label, labelAlt, value, compact = false }) => (
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: compact ? '82px 12px 1fr' : '92px 12px 1fr',
+    alignItems: 'end',
+    minHeight: compact ? '25px' : '28px',
+  }}>
+    <div>
+      <div style={{
+        fontSize: '7px',
+        color: COLORS.muted,
+        lineHeight: 1.05,
+        marginBottom: '2px',
+        fontFamily: '"Noto Sans", Arial, sans-serif',
+      }}>
+        {labelAlt}
+      </div>
+      <div style={{
+        fontSize: compact ? '8.5px' : '9px',
+        color: COLORS.ink,
+        fontWeight: 700,
+        lineHeight: 1.05,
+        fontFamily: '"Cormorant Garamond", Georgia, serif',
+      }}>
+        {label}
+      </div>
     </div>
-    <div style={{ margin: '0 4px', color: '#085F2C', fontWeight: 'bold', fontSize: '11px' }}>:</div>
-    <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, fontSize: '12px', textAlign: 'center', fontFamily: 'Merriweather', color: '#B58B2E', minHeight: '14px', padding: '0 4px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
-      {value || ""}
+
+    <div style={{
+      color: COLORS.gold,
+      fontSize: '9px',
+      fontWeight: 700,
+      textAlign: 'center',
+    }}>
+      :
+    </div>
+
+    <div style={{
+      borderBottom: `1px solid ${COLORS.line}`,
+      minHeight: '18px',
+      padding: '0 3px 2px',
+      textAlign: 'center',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      fontSize: compact ? '9px' : '9.5px',
+      color: COLORS.ink,
+      fontFamily: '"Cormorant Garamond", Georgia, serif',
+      fontWeight: 600,
+    }}>
+      {value || '\u00A0'}
     </div>
   </div>
 );
 
-const EmptyRow = ({ value }) => (
-  <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: '3px' }}>
-    <div style={{ width: '100px', flexShrink: 0 }}></div>
-    <div style={{ margin: '0 4px', opacity: 0 }}>:</div>
-    <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, fontSize: '12px', textAlign: 'center', fontFamily: 'Merriweather', color: '#B58B2E', minHeight: '14px', padding: '0 4px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
-      {value || ""}
+const SignatureBox = ({ title, signUrl }) => (
+  <div style={{
+    marginTop: '7px',
+    border: `1px solid ${COLORS.line}`,
+    background: '#FCFAF4',
+    padding: '6px 8px 5px',
+    minHeight: '43px',
+  }}>
+    <div style={{
+      fontSize: '6.5px',
+      color: COLORS.muted,
+      marginBottom: '2px',
+      letterSpacing: '0.04em',
+      textTransform: 'uppercase',
+      fontFamily: '"Noto Sans", Arial, sans-serif',
+    }}>
+      {title}
     </div>
+
+    <div style={{
+      height: '26px',
+      borderBottom: `1px solid ${COLORS.gold}`,
+      position: 'relative',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'flex-end',
+    }}>
+      {signUrl && (
+        <div style={{
+          position: 'absolute',
+          bottom: '0px',
+          width: '110px',
+          height: '28px',
+          backgroundImage: `url(${signUrl})`,
+          backgroundSize: 'contain',
+          backgroundPosition: 'center bottom',
+          backgroundRepeat: 'no-repeat',
+        }}
+        />
+      )}
+    </div>
+  </div>
+);
+
+const PersonCard = ({ person, type }) => {
+  const isGroom = type === 'Groom';
+
+  return (
+    <section style={{
+      border: `1px solid ${COLORS.line}`,
+      background: COLORS.paper,
+      padding: '10px 11px 9px',
+      position: 'relative',
+    }}>
+      <div style={{
+        position: 'absolute',
+        top: '-1px',
+        left: '-1px',
+        right: '-1px',
+        height: '3px',
+        background: COLORS.emerald,
+      }} />
+
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '9px',
+        marginBottom: '7px',
+      }}>
+        <div style={{
+          width: '47px',
+          height: '55px',
+          border: `1px solid ${COLORS.softGold}`,
+          background: '#F7F3E8',
+          flexShrink: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden',
+        }}>
+          {person?.photoUrl ? (
+            <div style={{
+              width: '100%',
+              height: '100%',
+              backgroundImage: `url(${person.photoUrl})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }} />
+          ) : (
+            <div style={{
+              fontSize: '17px',
+              color: COLORS.softGold,
+              fontFamily: 'Georgia, serif',
+            }}>
+              {isGroom ? 'G' : 'B'}
+            </div>
+          )}
+        </div>
+
+        <div>
+          <div style={{
+            fontSize: '7px',
+            color: COLORS.gold,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            fontFamily: '"Noto Sans", Arial, sans-serif',
+            marginBottom: '1px',
+          }}>
+            Particulars of
+          </div>
+
+          <div style={{
+            fontSize: '19px',
+            lineHeight: 1,
+            color: COLORS.deepEmerald,
+            fontWeight: 700,
+            fontFamily: '"Cormorant Garamond", Georgia, serif',
+          }}>
+            {type}
+          </div>
+
+          <div style={{
+            marginTop: '3px',
+            fontSize: '7px',
+            color: COLORS.muted,
+            fontFamily: '"Noto Sans", Arial, sans-serif',
+          }}>
+            {isGroom ? 'বরের পরিচয়' : 'কনের পরিচয়'}
+          </div>
+        </div>
+      </div>
+
+      <div style={{
+        background: '#F4EFE1',
+        borderTop: `1px solid ${COLORS.softGold}`,
+        borderBottom: `1px solid ${COLORS.softGold}`,
+        padding: '5px 7px',
+        marginBottom: '6px',
+      }}>
+        <div style={{
+          fontSize: '6.5px',
+          color: COLORS.muted,
+          marginBottom: '1px',
+          fontFamily: '"Noto Sans", Arial, sans-serif',
+        }}>
+          Muslim Name
+        </div>
+        <div style={{
+          color: COLORS.deepEmerald,
+          fontSize: '14px',
+          lineHeight: 1.05,
+          fontWeight: 700,
+          fontFamily: '"Cormorant Garamond", Georgia, serif',
+        }}>
+          {person?.muslimName || '\u00A0'}
+        </div>
+      </div>
+
+      <Field label="Name" labelAlt="名前" value={person?.name} compact />
+      <Field label="Father's Name" labelAlt="父親の名前" value={person?.fatherName} compact />
+      <Field label="Age" labelAlt="年齢" value={person?.age} compact />
+      <Field label="Religion" labelAlt="宗教" value={person?.religion} compact />
+      <Field label="Nationality" labelAlt="国籍" value={person?.nationality} compact />
+      <Field label="Passport No." labelAlt="パスポート番号" value={person?.passportNo} compact />
+      <Field label="Address" labelAlt="住所" value={person?.addressLine1} compact />
+      <Field label="" labelAlt="" value={person?.addressLine2} compact />
+
+      <SignatureBox title="Signature / 署名" signUrl={person?.signUrl} />
+    </section>
+  );
+};
+
+const WitnessCard = ({ witness, index }) => (
+  <div style={{
+    borderTop: `1px solid ${COLORS.line}`,
+    paddingTop: '5px',
+  }}>
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: '5px',
+      marginBottom: '3px',
+    }}>
+      <span style={{
+        width: '17px',
+        height: '17px',
+        border: `1px solid ${COLORS.gold}`,
+        borderRadius: '50%',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: COLORS.gold,
+        fontSize: '7px',
+        fontWeight: 700,
+        fontFamily: '"Noto Sans", Arial, sans-serif',
+      }}>
+        {index + 1}
+      </span>
+
+      <div>
+        <div style={{
+          fontSize: '8.5px',
+          fontWeight: 700,
+          color: COLORS.ink,
+          fontFamily: '"Cormorant Garamond", Georgia, serif',
+        }}>
+          Witness {index + 1}
+        </div>
+        <div style={{
+          fontSize: '6.5px',
+          color: COLORS.muted,
+          fontFamily: '"Noto Sans", Arial, sans-serif',
+        }}>
+          証人{index + 1}
+        </div>
+      </div>
+    </div>
+
+    <Field label="Name" labelAlt="氏名" value={witness?.name} compact />
+    <Field label="Address" labelAlt="住所" value={witness?.address} compact />
+    <SignatureBox title="Witness Signature / 署名" signUrl={witness?.signUrl} />
   </div>
 );
 
 const MarriageCertificate = ({ data = {} }) => {
-  const { groom = {}, bride = {}, details = {}, witnesses = [], solemnizedBy = {} } = data;
+  const {
+    groom = {},
+    bride = {},
+    details = {},
+    witnesses = [],
+    solemnizedBy = {},
+  } = data;
 
   return (
-    <div
-      style={{
-        width: '790px',
-        height: '1115px',
-        maxWidth: '100%',
-        margin: '0 auto',
-        backgroundColor: '#ffffff',
-        padding: '90px 90px',
-        fontFamily: 'sans-serif',
+    <div style={{
+      width: '794px',
+      height: '1123px',
+      maxWidth: '100%',
+      margin: '0 auto',
+      boxSizing: 'border-box',
+      position: 'relative',
+      overflow: 'hidden',
+      background: COLORS.ivory,
+      color: COLORS.ink,
+      fontFamily: '"Cormorant Garamond", Georgia, serif',
+      WebkitPrintColorAdjust: 'exact',
+      printColorAdjust: 'exact',
+    }}>
+      {/* Outer ornamental frame */}
+      <div style={{
+        position: 'absolute',
+        inset: '13px',
+        border: `1.5px solid ${COLORS.gold}`,
+        pointerEvents: 'none',
+      }} />
+      <div style={{
+        position: 'absolute',
+        inset: '19px',
+        border: `1px solid ${COLORS.emerald}`,
+        pointerEvents: 'none',
+      }} />
+
+      {/* Corner ornaments */}
+      {[
+        { top: '7px', left: '7px', borderTop: 1, borderLeft: 1 },
+        { top: '7px', right: '7px', borderTop: 1, borderRight: 1 },
+        { bottom: '7px', left: '7px', borderBottom: 1, borderLeft: 1 },
+        { bottom: '7px', right: '7px', borderBottom: 1, borderRight: 1 },
+      ].map((corner, i) => (
+        <div key={i} style={{
+          position: 'absolute',
+          width: '27px',
+          height: '27px',
+          borderColor: COLORS.gold,
+          borderStyle: 'solid',
+          boxSizing: 'border-box',
+          ...corner,
+        }} />
+      ))}
+
+      {/* Subtle center watermark */}
+      <div style={{
+        position: 'absolute',
+        left: '50%',
+        top: '53%',
+        transform: 'translate(-50%, -50%)',
+        opacity: 0.035,
+        color: COLORS.emerald,
+        fontSize: '220px',
+        lineHeight: 1,
+        fontFamily: 'serif',
+        pointerEvents: 'none',
+      }}>
+        ۞
+      </div>
+
+      <main style={{
         position: 'relative',
-        textAlign: 'left',
-        overflow: 'hidden',
+        zIndex: 2,
+        height: '100%',
         boxSizing: 'border-box',
+        padding: '43px 54px 36px',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between'
-        , fontFamily: 'Merriweather'
-      }}
-      
-    >
-      {/* SVG Decorative Border Overlay */}
-      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 50 }}>
-        <img
-          src="/images/offerServices/marriageFacilities/marriage-certificate-border.svg"
-          alt="Border"
-          style={{ width: '100%', height: '100%', display: 'block' }}
-        />
-      </div>
-
-      {/* Watermark Background */}
-      <div style={{ position: 'absolute', bottom: '220px', left: '50%', transform: 'translateX(-50%)', pointerEvents: 'none', zIndex: 0, opacity: 0.12 }}>
-        <img
-          src="/images/offerServices/marriageFacilities/bg2.png"
-          alt="Watermark"
-          style={{ width: '400px', height: '400px', objectFit: 'contain' }}
-        />
-      </div>
-
-      {/* Main Container Layer */}
-      <div 
-      className=''
-      
-      style={{ zIndex: 10, position: 'relative', display: 'flex', flexDirection: 'column', height: '100%',
-         justifyContent: 'space-between' }}
-         
-         >
-        
-        {/* ── Header ── */}
-        <div 
-        className=''
-        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', position: 'relative'
-          , height: '48px' }}>
-          <div style={{ zIndex: 10, position: 'relative' }}>
-            <p style={{ color: '#9ca3af', fontSize: '10px', margin: '0 0 1px 0' }}>証明書番号</p>
-            <h2 style={{ fontSize: '13px', fontWeight: '600', display: 'flex', alignItems: 'flex-end', color: '#000000', margin: 0 }}>
-              Certificate No:
-              <span style={{ width: '110px', marginLeft: '6px', display: 'inline-block', color: '#B58B2E', fontSize: '12px', fontWeight: 'bold' }}>
-                {details.certificateNo || ""}
-              </span>
-            </h2>
+      }}>
+        {/* Header */}
+        <header style={{ textAlign: 'center' }}>
+          <div style={{
+            fontSize: '20px',
+            color: COLORS.deepEmerald,
+            lineHeight: 1,
+            marginBottom: '7px',
+            fontFamily: 'serif',
+          }}>
+            بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
           </div>
 
-          <div style={{ textAlign: 'center', position: 'absolute', width: '100%', left: 0, top: 10, pointerEvents: 'none' }}>
-            <p style={{ color: '#00401A', fontWeight: 'bold', marginBottom: '1px', letterSpacing: '0.1em', fontSize: '12px', 
-              marginLeft: '24px' }}>結婚証明書</p>
-            <h1 
-            style={{ fontSize: '25px', fontWeight: 'bold', color: '#00401A', fontFamily: '"Merriweather", Times, serif',
-               margin: 0 }}>
-              MARRIAGE CERTIFICATE
-            </h1>
-          </div>
-        </div>
-
-        {/* ── Particulars Top Header (Photos) & Yellow Name Banner ── */}
-        <div className=''>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px',
-             marginBottom: '6px' }}>
-            {/* Groom Photo */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <div style={{ width: '42px', height: '42px', border: '1.5px solid #8CC63F', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', backgroundColor: '#ffffff', flexShrink: 0 }}>
-                {groom?.photoUrl ? (
-                  <div style={{ width: '100%', height: '100%', backgroundImage: `url(${groom.photoUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-                ) : null}
-              </div>
-              <div>
-                <h3 style={{ color: '#085F2C', fontWeight: 'bold', fontSize: '14px', lineHeight: '1.2', fontFamily: '"Times New Roman", Times, serif', margin: 0 }}>Particulars of<br />Groom</h3>
-              </div>
-            </div>
-            {/* Bride Photo */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <div style={{ width: '42px', height: '42px', border: '1.5px solid #8CC63F', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', backgroundColor: '#ffffff', flexShrink: 0 }}>
-                {bride?.photoUrl ? (
-                  <div style={{ width: '100%', height: '100%', backgroundImage: `url(${bride.photoUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-                ) : null}
-              </div>
-              <div>
-                <h3 style={{ color: '#085F2C', fontWeight: 'bold', fontSize: '14px', lineHeight: '1.2', fontFamily: '"Times New Roman", Times, serif', margin: 0 }}>Particulars of<br />Bride</h3>
-              </div>
-            </div>
+          <div style={{
+            fontSize: '6.5px',
+            letterSpacing: '0.22em',
+            color: COLORS.gold,
+            textTransform: 'uppercase',
+            fontFamily: '"Noto Sans", Arial, sans-serif',
+          }}>
+            In the Name of Allah, the Most Gracious, the Most Merciful
           </div>
 
-          {/* Yellow Name Banner */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px',
-             background: 'linear-gradient(to right, #F0C041, #FAD463, #F0C041)', padding: '5px 10px', borderRadius: '2px' }}>
-            <div
-            style={{padding:' 5px 0' }}
-            >
-              <p style={{ fontSize: '8.5px', color: '#6b7280', fontWeight: 'bold', margin: '0 0 0 0' }}>イスラム教徒の名前</p>
-              <h4 style={{ fontSize: '18px', color: '#333333', letterSpacing: '0.02em', fontFamily: '"Times New Roman", Times, serif', margin: 0 }}>{groom.muslimName || "Muslim Name"}</h4>
-            </div>
-            <div
-            style={{padding:' 5px 0' }}
-            
-            >
-              <p style={{ fontSize: '8.5px', color: '#6b7280', fontWeight: 'bold', margin: '0 0 0 0' }}>イスラム教徒の名前</p>
-              <h4 style={{ fontSize: '18px', color: '#333333', letterSpacing: '0.02em', fontFamily: '"Times New Roman", Times, serif', margin: 0 }}>{bride.muslimName || "Muslim Name"}</h4>
-            </div>
-          </div>
-        </div>
-
-        {/* ── Particulars Section (Groom & Bride details) ── */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
-          {/* Groom */}
-          <div>
-            <div 
-            style={{ paddingRight: '2px' ,display: 'flex', flexDirection: 'column', gap: '6px' }}
-            >
-              <FieldRow labelEn="Name" labelJp="名前" value={groom.name} />
-              <FieldRow labelEn="Father Name" labelJp="父親の名前" value={groom.fatherName} />
-              <FieldRow labelEn="Age" labelJp="年齢" value={groom.age} />
-              <FieldRow labelEn="Religion" labelJp="宗教" value={groom.religion} />
-              <FieldRow labelEn="Nationality" labelJp="国籍" value={groom.nationality} />
-              <FieldRow labelEn="Passport No." labelJp="パスポートナンバー" value={groom.passportNo} />
-              <FieldRow labelEn="Address" labelJp="住所" value={groom.addressLine1} />
-              <EmptyRow value={groom.addressLine2} />
-            </div>
-            <div style={{ backgroundColor: '#EEF8E9', padding: '5px 8px', marginTop: '3px', borderRadius: '2px', border: '1px solid #E0F2E3' }}>
-              <p style={{ fontSize: '8.5px', color: '#6b7280', margin: '0 0 1px 0' }}>サイン</p>
-              <div style={{ display: 'flex', alignItems: 'flex-end', height: '20px' }}>
-                <span style={{ fontWeight: 'bold', color: '#085F2C', fontSize: '11px', width: '40px', paddingBottom: '1px' }}>Sign :</span>
-                <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, marginLeft: '4px', position: 'relative', height: '100%', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
-                  {groom?.signUrl && (
-                    <div style={{ position: 'absolute', bottom: '1px', width: '120px', height: '24px', backgroundImage: `url(${groom.signUrl})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />
-                  )}
-                </div>
-              </div>
-            </div>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '10px',
+            margin: '11px 0 5px',
+          }}>
+            <div style={{ width: '75px', height: '1px', background: COLORS.softGold }} />
+            <div style={{
+              width: '7px',
+              height: '7px',
+              transform: 'rotate(45deg)',
+              border: `1px solid ${COLORS.gold}`,
+              background: COLORS.ivory,
+            }} />
+            <div style={{ width: '75px', height: '1px', background: COLORS.softGold }} />
           </div>
 
-          {/* Bride */}
-          <div>
-            <div 
-            style={{ paddingRight: '2px' ,display: 'flex', flexDirection: 'column', gap: '6px' }
-          }
-            >
-              <FieldRow labelEn="Name" labelJp="名前" value={bride.name} />
-              <FieldRow labelEn="Father Name" labelJp="父親の名前" value={bride.fatherName} />
-              <FieldRow labelEn="Age" labelJp="年齢" value={bride.age} />
-              <FieldRow labelEn="Religion" labelJp="宗教" value={bride.religion} />
-              <FieldRow labelEn="Nationality" labelJp="国籍" value={bride.nationality} />
-              <FieldRow labelEn="Passport No." labelJp="パスポートナンバー" value={bride.passportNo} />
-              <FieldRow labelEn="Address" labelJp="住所" value={bride.addressLine1} />
-              <EmptyRow value={bride.addressLine2} />
-            </div>
-            <div style={{ backgroundColor: '#EEF8E9', padding: '5px 8px', marginTop: '3px', borderRadius: '2px', border: '1px solid #E0F2E3' }}>
-              <p style={{ fontSize: '8.5px', color: '#6b7280', margin: '0 0 1px 0' }}>サイン</p>
-              <div style={{ display: 'flex', alignItems: 'flex-end', height: '20px' }}>
-                <span style={{ fontWeight: 'bold', color: '#085F2C', fontSize: '11px', width: '40px', paddingBottom: '1px' }}>Sign :</span>
-                <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, marginLeft: '4px', position: 'relative', height: '100%', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
-                  {bride?.signUrl && (
-                    <div style={{ position: 'absolute', bottom: '1px', width: '120px', height: '24px', backgroundImage: `url(${bride.signUrl})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />
-                  )}
-                </div>
-              </div>
-            </div>
+          <div style={{
+            fontSize: '8px',
+            letterSpacing: '0.28em',
+            color: COLORS.muted,
+            textTransform: 'uppercase',
+            fontFamily: '"Noto Sans", Arial, sans-serif',
+          }}>
+            Islamic Marriage Certificate
           </div>
-        </div>
 
-        {/* ── Marriage Details Section ── */}
-        <div 
-        className=''
-        style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, padding: '2px 0' }}>
-          <div style={{ textAlign: 'center', borderRight: '1px solid #A5D071' }}>
-            <p style={{ fontSize: '10px', color: '#828282', margin: '0 0 1px 0' }}>結婚の日</p>
-            <p style={{ color: '#005312', fontSize: '13px', margin: 0 }}>Date Of Marriage</p>
-            <p style={{ fontSize: '16px', fontWeight: 'bold', color: '#B98C20', fontFamily: '"Times New Roman", Times, serif', margin: 0 }}>{details.date || "—"}</p>
+          <h1 style={{
+            margin: '2px 0 1px',
+            fontSize: '31px',
+            lineHeight: 1,
+            color: COLORS.deepEmerald,
+            fontWeight: 700,
+            letterSpacing: '0.025em',
+            fontFamily: '"Cormorant Garamond", Georgia, serif',
+          }}>
+            MARRIAGE CERTIFICATE
+          </h1>
+
+          <div style={{
+            fontSize: '8px',
+            color: COLORS.gold,
+            fontFamily: '"Noto Sans", Arial, sans-serif',
+          }}>
+            結婚証明書
           </div>
-          <div style={{ textAlign: 'center', borderRight: '1px solid #A5D071' }}>
-            <p style={{ fontSize: '10px', color: '#828282', margin: '0 0 1px 0' }}>結婚の場</p>
-            <p style={{ color: '#005312', fontSize: '13px', margin: 0 }}>Place of Marriage</p>
-            <p style={{ fontSize: '16px', fontWeight: 'bold', color: '#B98C20', fontFamily: '"Times New Roman", Times, serif', margin: 0 }}>{details.place || "Osaka Masjid"}</p>
-          </div>
-          <div style={{ textAlign: 'center' }}>
-            <p style={{ fontSize: '10px', color: '#828282', margin: '0 0 1px 0' }}>結納金の量と内容</p>
-            <p style={{ color: '#005312', fontSize: '13px', margin: 0 }}>Amount of Dower (Mahar)</p>
-            <p style={{ fontSize: '16px', fontWeight: 'bold', color: '#B98C20', fontFamily: '"Times New Roman", Times, serif', margin: 0 }}>{details.mahar || "—"}</p>
-          </div>
-        </div>
 
-      
-      <div>
-          {/* ── Witnesses Section ── */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px',marginBottom:'10px' }}>
-          {[0, 1].map((idx) => {
-            const w = witnesses[idx] || {};
-            return (
-              <div key={idx} style={{ paddingRight: '2px' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: '2px' }}>
-                  <div style={{ width: '100px', flexShrink: 0 }}>
-                    <p style={{ fontSize: '8.5px', color: '#808080', lineHeight: '1.1', margin: 0 }}>証人{idx + 1}の氏名</p>
-                    <p style={{ fontWeight: 'bold', color: '#085F2C', fontSize: '11px', lineHeight: '1.1', margin: 0 }}>{idx + 1}. Witness Name</p>
-                  </div>
-                  <div style={{ margin: '0 4px', color: '#085F2C', fontWeight: 'bold', fontSize: '11px' }}>:</div>
-                  <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, textAlign: 'center', fontFamily: 'Merriweather', color: '#B58B2E', fontSize: '12px', minHeight: '14px', padding: '0 4px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
-                    {w.name || ""}
-                  </div>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: '10px' }}>
-                  <div style={{ width: '100px', flexShrink: 0 }}>
-                    <p style={{ fontSize: '8.5px', color: '#808080', lineHeight: '1.1', margin: 0 }}>住所</p>
-                    <p style={{ fontWeight: 'bold', color: '#085F2C', fontSize: '11px', lineHeight: '1.1', margin: 0 }}>Address</p>
-                  </div>
-                  <div style={{ margin: '0 4px', color: '#085F2C', fontWeight: 'bold', fontSize: '11px' }}>:</div>
-                  <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, textAlign: 'center', fontFamily: 'Merriweather', color: '#B58B2E', fontSize: '12px', minHeight: '14px', padding: '0 4px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
-                    {w.address || ""}
-                  </div>
-                </div>
-                <div style={{ backgroundColor: '#EEF8E9', padding: '5px 8px', borderRadius: '2px',
-                   border: '1px solid #E0F2E3', marginTop: '2px' }}>
-                  <p style={{ fontSize: '8.5px', color: '#6b7280', margin: '0 0 1px 0' }}>サイン</p>
-                  <div style={{ display: 'flex', alignItems: 'flex-end', height: '18px' }}>
-                    <span style={{ fontWeight: 'bold', color: '#085F2C', fontSize: '11px', width: '40px', paddingBottom: '1px' }}>Sign :</span>
-                    <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, marginLeft: '4px', position: 'relative', height: '100%', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
-                      {w?.signUrl && (
-                        <div style={{ position: 'absolute', bottom: '1px', width: '120px', height: '22px', backgroundImage: `url(${w.signUrl})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-          {/* ── Certification Text ── */}
-        <div 
-         style={{marginBottom: '5px' }}
-        >
-          <p style={{ fontSize: '8.5px', color: '#9ca3af', margin: '0 0 1px 0' }}>信仰告白、売春花嫁がイスラム法に従って結婚金の受け入れ（イジャブとクブル）</p>
-          <p style={{ fontWeight: 'bold', color: '#222222', fontSize: '11px', letterSpacing: '0.01em', margin: 0 }}>I certify that Bride & Groom have exchange the offering and acceptance (Ijab and Qubul)</p>
-          <p style={{ fontSize: '8.5px', color: '#9ca3af', margin: '2px 0 1px 0' }}>の承認を証明する。従って、夫婦になることを宣言する。</p>
-          <p style={{ fontWeight: 'bold', color: '#222222', fontSize: '11px', letterSpacing: '0.01em', margin: 0 }}>according to Islamic Law and are declared Husband and Wife</p>
-        </div>
-
-        {/* ── Solemnized By Section ── */}
-        <div
-         style={{ display: 'grid', gridTemplateColumns: '1fr ', gap: '10px', alignItems: 'flex-end', 
-          fontFamily: 'Merriweather',  }}
-         >
-          <div
-          style={{display: 'flex', flexDirection: 'column', gap: '8px',  }}
-          >
-            <div 
-            style={{ display: 'flex', alignItems: 'flex-end', marginBottom: '2px' ,gap:'4px' }}
-            >
-              <div style={{ width: '150px', flexShrink: 0 }}>
-                <p style={{ fontSize: '8.5px', color: '#808080', lineHeight: '1.1', margin: 0 }}>名前で厳粛に結婚</p>
-                <p style={{ fontWeight: 'bold', color: '#222222', fontSize: '10.5px', lineHeight: '1.1', margin: 0 }}>Marriage Solemnized By Name</p>
-              </div>
-              <div style={{ margin: '0 4px', color: '#222222', fontWeight: 'bold', fontSize: '11px' }}>:</div>
-              <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, textAlign: 'center', fontFamily: 'Merriweather', color: '#B58B2E', fontSize: '11.5px', minHeight: '13px', padding: '0 4px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
-                {solemnizedBy.name || ""}
-              </div>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: '2px' }}>
-              <div style={{ width: '150px', flexShrink: 0 }}>
-                <p style={{ fontSize: '8.5px', color: '#808080', lineHeight: '1.1', margin: 0 }}>住所</p>
-                <p style={{ fontWeight: 'bold', color: '#222222', fontSize: '10.5px', lineHeight: '1.1', margin: 0 }}>Address</p>
-              </div>
-              <div style={{ margin: '0 4px', color: '#222222', fontWeight: 'bold', fontSize: '11px' }}>:</div>
-              <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, textAlign: 'center', fontFamily: 'Merriweather', color: '#B58B2E', fontSize: '11.5px', minHeight: '13px', padding: '0 4px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
-                {solemnizedBy.address || ""}
-              </div>
+          <div style={{
+            marginTop: '6px',
+            display: 'flex',
+            justifyContent: 'center',
+          }}>
+            <div style={{
+              border: `1px solid ${COLORS.softGold}`,
+              padding: '3px 12px',
+              background: '#FCF8EC',
+              fontSize: '7px',
+              color: COLORS.muted,
+              fontFamily: '"Noto Sans", Arial, sans-serif',
+            }}>
+              Certificate No. <strong style={{ color: COLORS.ink }}>{details.certificateNo || '—'}</strong>
             </div>
           </div>
+        </header>
 
-          <div style={{ backgroundColor: '#EEF8E9', padding: '5px 8px', borderRadius: '2px', border: '1px solid #E0F2E3' }}>
-            <p style={{ fontSize: '8.5px', color: '#6b7280', margin: '0 0 1px 0' }}>サイン</p>
-            <div style={{ display: 'flex', alignItems: 'flex-end', height: '18px' }}>
-              <span style={{ fontWeight: 'bold', color: '#085F2C', fontSize: '11px', width: '40px', paddingBottom: '1px' }}>Sign :</span>
-              <div style={{ borderBottom: '1px dotted #9ca3af', flex: 1, marginLeft: '4px', position: 'relative', height: '100%', display: 'flex', alignItems: 'flex-end', justify: 'center' }}>
-                {solemnizedBy?.signUrl && (
-                  <div style={{ position: 'absolute', bottom: '1px', width: '120px', height: '22px', backgroundImage: `url(${solemnizedBy.signUrl})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />
-                )}
+        {/* Couple */}
+        <section style={{
+          marginTop: '15px',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '12px',
+        }}>
+          <PersonCard person={groom} type="Groom" />
+          <PersonCard person={bride} type="Bride" />
+        </section>
+
+        {/* Marriage facts */}
+        <section style={{
+          marginTop: '11px',
+          border: `1px solid ${COLORS.softGold}`,
+          background: '#F7F1E2',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr 1fr',
+        }}>
+          {[
+            ['Date of Marriage', '結婚の日', details.date],
+            ['Place of Marriage', '結婚の場', details.place],
+            ['Amount of Dower (Mahar)', '結納金の量と内容', details.mahar],
+          ].map(([label, alt, value], i) => (
+            <div key={label} style={{
+              textAlign: 'center',
+              padding: '7px 8px 8px',
+              borderRight: i < 2 ? `1px solid ${COLORS.softGold}` : 'none',
+            }}>
+              <div style={{
+                fontSize: '6.5px',
+                color: COLORS.muted,
+                fontFamily: '"Noto Sans", Arial, sans-serif',
+              }}>
+                {alt}
+              </div>
+              <div style={{
+                marginTop: '1px',
+                fontSize: '8.5px',
+                color: COLORS.deepEmerald,
+                fontWeight: 700,
+                fontFamily: '"Noto Sans", Arial, sans-serif',
+              }}>
+                {label}
+              </div>
+              <div style={{
+                marginTop: '2px',
+                fontSize: '13px',
+                color: COLORS.gold,
+                fontWeight: 700,
+              }}>
+                {value || '—'}
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          ))}
+        </section>
 
-      </div>
+        {/* Certification statement */}
+        <section style={{
+          marginTop: '10px',
+          padding: '8px 15px',
+          borderLeft: `3px solid ${COLORS.gold}`,
+          borderRight: `3px solid ${COLORS.gold}`,
+          background: '#FCFAF4',
+          textAlign: 'center',
+        }}>
+          <div style={{
+            fontSize: '7px',
+            color: COLORS.muted,
+            lineHeight: 1.25,
+            fontFamily: '"Noto Sans", Arial, sans-serif',
+          }}>
+            信仰告白、売春花嫁がイスラム法に従って結婚金の受け入れ（イジャブとクブル）
+          </div>
+          <div style={{
+            marginTop: '2px',
+            fontSize: '10.5px',
+            color: COLORS.deepEmerald,
+            fontWeight: 700,
+            lineHeight: 1.15,
+          }}>
+            I certify that Bride &amp; Groom have exchanged the offering and acceptance (Ijab and Qubul)
+          </div>
+          <div style={{
+            marginTop: '2px',
+            fontSize: '7px',
+            color: COLORS.muted,
+            lineHeight: 1.25,
+            fontFamily: '"Noto Sans", Arial, sans-serif',
+          }}>
+            の承認を証明する。従って、夫婦になることを宣言する。
+          </div>
+          <div style={{
+            marginTop: '2px',
+            fontSize: '10.5px',
+            color: COLORS.deepEmerald,
+            fontWeight: 700,
+            lineHeight: 1.15,
+          }}>
+            according to Islamic Law and are declared Husband and Wife.
+          </div>
+        </section>
+
+        {/* Witnesses */}
+        <section style={{ marginTop: '11px' }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '7px',
+            marginBottom: '6px',
+          }}>
+            <div style={{ width: '22px', height: '1px', background: COLORS.gold }} />
+            <div style={{
+              fontSize: '10px',
+              color: COLORS.deepEmerald,
+              fontWeight: 700,
+              letterSpacing: '0.04em',
+            }}>
+              WITNESSES
+            </div>
+            <div style={{
+              fontSize: '6.5px',
+              color: COLORS.muted,
+              fontFamily: '"Noto Sans", Arial, sans-serif',
+            }}>
+              / সাক্ষীগণ
+            </div>
+            <div style={{ flex: 1, height: '1px', background: COLORS.line }} />
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '20px',
+          }}>
+            {[0, 1].map((idx) => (
+              <WitnessCard
+                key={idx}
+                witness={witnesses[idx] || {}}
+                index={idx}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Solemnized by */}
+        <section style={{
+          marginTop: '10px',
+          borderTop: `1px solid ${COLORS.line}`,
+          paddingTop: '7px',
+        }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 205px',
+            gap: '15px',
+            alignItems: 'end',
+          }}>
+            <div>
+              <div style={{
+                fontSize: '7px',
+                color: COLORS.muted,
+                fontFamily: '"Noto Sans", Arial, sans-serif',
+              }}>
+                名前で厳粛に結婚
+              </div>
+              <div style={{
+                fontSize: '10px',
+                color: COLORS.deepEmerald,
+                fontWeight: 700,
+              }}>
+                Marriage Solemnized By
+              </div>
+
+              <div style={{ marginTop: '4px' }}>
+                <Field label="Name" labelAlt="氏名" value={solemnizedBy.name} compact />
+                <Field label="Address" labelAlt="住所" value={solemnizedBy.address} compact />
+              </div>
+            </div>
+
+            <SignatureBox
+              title="Solemnizer Signature / 署名"
+              signUrl={solemnizedBy?.signUrl}
+            />
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer style={{
+          marginTop: 'auto',
+          paddingTop: '9px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          borderTop: `1px solid ${COLORS.line}`,
+        }}>
+          <div style={{
+            fontSize: '6.5px',
+            color: COLORS.muted,
+            lineHeight: 1.3,
+            fontFamily: '"Noto Sans", Arial, sans-serif',
+          }}>
+            This certificate records the solemnization of marriage according to Islamic Law.
+          </div>
+
+          <div style={{
+            textAlign: 'right',
+            fontSize: '6.5px',
+            color: COLORS.muted,
+            fontFamily: '"Noto Sans", Arial, sans-serif',
+          }}>
+            <div>Official Marriage Record</div>
+            <div style={{ color: COLORS.gold, marginTop: '1px' }}>結婚記録</div>
+          </div>
+        </footer>
+      </main>
     </div>
   );
 };
