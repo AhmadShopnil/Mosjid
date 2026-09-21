@@ -454,10 +454,10 @@ export default function StudentList() {
             const result =
                 response?.data;
 
-            console.log(
-                "API Response:",
-                result
-            );
+            // console.log(
+            //     "API Response:",
+            //     result
+            // );
 
             setStudents(
                 Array.isArray(result?.data)
@@ -493,8 +493,8 @@ export default function StudentList() {
             console.error(err);
 
             setError(
-                err?.message ||
-                "Unable to load student information."
+                
+                "We couldn’t load the student information. Please check your internet connection and try again. If you’re not logged in, please log in to your account to view the student list."
             );
 
             setStudents([]);
