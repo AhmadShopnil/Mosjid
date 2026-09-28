@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import axiosInstance from "@/helper/axiosInstance";
-import { Edit, Send, Clock, Download, FileText, CheckCircle, AlertCircle } from "lucide-react";
+import { Edit, Send, Clock, Download, Eye, FileText, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import WasiyahHistoryModal from "./WasiyahHistoryModal";
+import { fetchCertificateData } from "./certificate/certificateData";
 import toast from "react-hot-toast";
 
 export default function WasiyahLists({ onEdit, refreshTrigger }) {
@@ -11,6 +13,7 @@ export default function WasiyahLists({ onEdit, refreshTrigger }) {
   const [loading, setLoading] = useState(true);
   const [historyModalOpen, setHistoryModalOpen] = useState(false);
   const [selectedWasiyatId, setSelectedWasiyatId] = useState(null);
+  const [downloadingId, setDownloadingId] = useState(null);
 
   const fetchWasiyats = useCallback(async () => {
     try {
@@ -42,26 +45,21 @@ export default function WasiyahLists({ onEdit, refreshTrigger }) {
     }
   };
 
-  const handleDownloadCertificate = async (id) => {
+  const handleDownloadCertificate = async (wasiyat) => {
+    setDownloadingId(wasiyat.id);
+    const toastId = toast.loading("Preparing certificate...");
     try {
-      const toastId = toast.loading("Downloading certificate...");
-      const res = await axiosInstance.get(`/wasiyat/${id}/certificate`);
-      toast.dismiss(toastId);
-
-      if (res?.data) {
-        // Assuming API returns PDF or data to generate PDF
-        // If it's raw JSON data for a certificate, you might need to route to a certificate page
-        // For now, if it returns a file URL in res.data.file_url:
-        if (res.data.file_url) {
-          window.open(res.data.file_url, "_blank");
-        } else {
-          toast.success("Certificate data fetched successfully!");
-          console.log("Certificate Data:", res.data);
-        }
-      }
+      const { data } = await fetchCertificateData(wasiyat.id, wasiyat);
+      // Loaded on demand: react-pdf is large and only needed when a certificate is generated.
+      const { createCertificatePdf, certificateFileName, downloadBlob } = await import("./certificate/generatePdf");
+      const blob = await createCertificatePdf(data);
+      downloadBlob(blob, certificateFileName(data, wasiyat.id));
+      toast.success("Certificate downloaded!", { id: toastId });
     } catch (error) {
-      toast.error("Failed to download certificate.");
-      console.error(error);
+      console.error("Failed to download certificate", error);
+      toast.error("Failed to download certificate.", { id: toastId });
+    } finally {
+      setDownloadingId(null);
     }
   };
 
@@ -78,7 +76,7 @@ export default function WasiyahLists({ onEdit, refreshTrigger }) {
         Approved
       </span>;
     }
-   
+
     if (status == 1 || status == "1") {
       return <span className="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full flex items-center gap-1 w-fit">
         <Clock className="w-3 h-3" /> Pending
@@ -133,19 +131,32 @@ export default function WasiyahLists({ onEdit, refreshTrigger }) {
                   </td>
                   <td className="px-4 py-4 text-right">
                     <div className="flex items-center justify-end gap-2">
+                      {wasiyat.download_status === 1 && (
+                        <Link
+                          href={`/services/wasiyath/certificate/${wasiyat.id}`}
+                          className="cursor-pointer p-2 text-gray-500 hover:text-[#3198A0] hover:bg-[#3198A0]/10 rounded-lg transition-colors"
+                          title="Preview Certificate"
+                        >
+                          <Eye className="w-4 h-4" />
+                        </Link>
+                      )}
                           {wasiyat.download_status === 1 && (
                         <button
-                          onClick={() => handleDownloadCertificate(wasiyat.id)}
-                          className="cursor-pointer p-2 text-[#3198A0] hover:text-white hover:bg-[#3198A0] bg-[#3198A0]/10 rounded-lg transition-all"
+                          onClick={() => handleDownloadCertificate(wasiyat)}
+                          disabled={downloadingId === wasiyat.id}
+                          className="cursor-pointer p-2 text-[#3198A0] hover:text-white hover:bg-[#3198A0] bg-[#3198A0]/10 rounded-lg transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                           title="Download Certificate"
                         >
-                          <Download className="w-4 h-4" />
-                          {/* <span>Download</span> */}
+                          {downloadingId === wasiyat.id ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                          ) : (
+                            <Download className="w-4 h-4" />
+                          )}
                         </button>
                       )}
                       <button
                         onClick={() => onEdit({ ...wasiyat.data, id: wasiyat.id })}
-                        className="p-2 text-gray-500 hover:text-[#3198A0] hover:bg-[#3198A0]/10 rounded-lg 
+                        className="p-2 text-gray-500 hover:text-[#3198A0] hover:bg-[#3198A0]/10 rounded-lg
                         transition-colors tooltip-trigger cursor-pointer"
                         title="Edit / Update"
                       >
@@ -173,7 +184,7 @@ export default function WasiyahLists({ onEdit, refreshTrigger }) {
                         <Clock className="w-4 h-4" />
                       </button>
 
-                  
+
                     </div>
                   </td>
                 </tr>

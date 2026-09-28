@@ -392,7 +392,7 @@ function MobileStudentItem({
             </div>
 
             <div className="mt-3 flex items-center justify-between border-t border-[#EEF1EF] pt-3">
-                <AttendanceProgress
+                {/* <AttendanceProgress
                     progressSheets={
                         student?.progress_sheets
                     }
@@ -404,7 +404,7 @@ function MobileStudentItem({
                 >
                     <Eye size={14} />
                     View
-                </button>
+                </button> */}
             </div>
         </div>
     );
@@ -788,9 +788,9 @@ export default function StudentList() {
                                                 Status
                                             </th>
 
-                                            <th className="px-4 py-3.5 text-right text-[10px] font-bold uppercase tracking-[0.06em] text-[#768279]">
+                                            {/* <th className="px-4 py-3.5 text-right text-[10px] font-bold uppercase tracking-[0.06em] text-[#768279]">
                                                 Action
-                                            </th>
+                                            </th> */}
                                         </tr>
                                     </thead>
 
@@ -967,7 +967,7 @@ export default function StudentList() {
                                                         </td>
 
                                                         {/* Action */}
-                                                        <td className="px-4 py-4 text-right">
+                                                        {/* <td className="px-4 py-4 text-right">
                                                             <Link
                                                                 href={`/services/admission-form/progress-sheet/${student.id}`}
                                                                 type="button"
@@ -981,7 +981,7 @@ export default function StudentList() {
 
                                                                 View
                                                             </Link>
-                                                        </td>
+                                                        </td> */}
                                                     </tr>
                                                 );
                                             }
