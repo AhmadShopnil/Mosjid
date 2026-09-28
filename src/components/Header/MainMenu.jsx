@@ -25,7 +25,15 @@ export default function MainMenu({ settings, menuItems }) {
 
   const toggleDrawer = () => setIsOpen(!isOpen);
   const logo_path = getMediaLinkByMetaName(settings, "footer_logo");
-  const masjid_image = getMediaLinkByMetaName(settings, "masjid_image");
+ const masjid_image = getMediaLinkByMetaName(settings, "masjid_image");
+
+ 
+   const imam_sign_path = getMediaLinkByMetaName(settings, "osaka_masjid_authorized_signature");
+   const imam_sign_url = `${BASE_URL}${imam_sign_path}`;
+
+
+  //  console.log("imam_sign_url", imam_sign_url);
+
   const logo_url = `${BASE_URL}${masjid_image}`;
 
   // format menu items in flat array for mobile version

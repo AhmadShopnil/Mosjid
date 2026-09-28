@@ -24,6 +24,20 @@ export async function getSettings() {
   return json?.data || [];
 }
 
+/**
+ * Client-component version of getSettings().
+ *
+ * Client components can't use `next: { revalidate }`, and calling the admin host directly
+ * from the browser would be a cross-origin request. This goes through the same-origin
+ * `/api` proxy declared in next.config.mjs (`/api/*` -> `${BASE_URL}/api/v1/*`), which
+ * reaches the same `/api/v1/frontend/settings` endpoint.
+ */
+export async function getSettingsClient() {
+  const res = await fetch("/api/frontend/settings");
+  const json = await res.json();
+  return json?.data || [];
+}
+
 export async function getMenus(id) {
   const API_URL = `${BASE_URL}/api/v1/menus?menu=${id}`;
 

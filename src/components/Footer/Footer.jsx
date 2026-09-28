@@ -10,6 +10,9 @@ export default async function Footer() {
     getMetaValueByMetaName(settings, "copyright_text") ||
     "OSAKA MASJID© 2026 | ALL RIGHTS RESERVED";
 
+// console.log("Footer settings:", settings);
+// osaka_masjid_authorized_signature
+
 
   return (
     <div className='pt-[150px] lg:pt-[150px]'>

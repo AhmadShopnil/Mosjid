@@ -20,12 +20,12 @@ const ConversionCertificate = ({ data = {} }) => {
     solemnizedBy = {}
   } = data;
 
-  console.log("convertion data", data)
+  // console.log("convertion data", data)
 
   //  pt-[65px] px-[75px] pb-[65px]
   return (
     <div className="w-[1123px] h-[794px] max-w-full mx-auto bg-[#ffffff]  font-sans relative 
-    px-[83px] pb-[88px] pt-[70px] 
+    px-[90px] pb-[88px] pt-[88px] 
      text-left overflow-hidden flex flex-col ">
       {/* SVG Border */}
       <div className="absolute inset-0 pointer-events-none z-50">
@@ -45,7 +45,7 @@ const ConversionCertificate = ({ data = {} }) => {
         />
       </div>
 
-      <div className="z-10 relative flex-1 flex flex-col">
+      <div className="z-10 relative  flex flex-col ">
         {/* Header Row */}
         <div className="flex justify-between items-start  w-full">
           {/* Left Title */}
@@ -95,7 +95,7 @@ const ConversionCertificate = ({ data = {} }) => {
 
         {/* Yellow Banner */}
         <div 
-          className="relative w-full py-4 flex justify-between items-center px-16 mb-8 mt-4"
+          className="relative w-full py-3 flex justify-between items-center px-12 mb-5 mt-3"
           style={{ background: 'linear-gradient(to right, #F0C041, #FAD463, #F0C041)' }}
         >
           {/* Photo */}
@@ -124,17 +124,17 @@ const ConversionCertificate = ({ data = {} }) => {
         </div>
 
         {/* 3 Columns Section */}
-        <div className="flex w-full gap-8  flex-1">
+        <div className="flex w-full gap-6   ">
           {/* Left Column (40%) */}
           <div className="w-[40%] flex flex-col justify-between ">
             <div className='space-y-1 '>
               <FieldRow labelEn="Nationality" labelJp="国籍" value={applicant?.nationality} />
-              <FieldRow labelEn="Gender" labelJp="性別" value={applicant?.gender || ""} />
+              {/* <FieldRow labelEn="Gender" labelJp="性別" value={applicant?.gender || ""} /> */}
               <FieldRow labelEn="Address" labelJp="住所" value={applicant?.addressLine1} />
             </div>
 
             <div className="text-[11px] leading-relaxed text-[#333333] text-justify flex flex-col 
-             justify-between h-[240px]"
+             justify-between h-[208px]"
               style={{ fontFamily: '"Merriweather", Times, serif' }}
             >
               <p>  The above named person has presented themselves expressing their desire to embrace the Islamic Faith. We have explained to them the five pillars of Islam and the six pillars of Iman. Accordingly, they have acknowledged their acceptance of the Islamic Faith by affirming:</p>
@@ -145,7 +145,8 @@ const ConversionCertificate = ({ data = {} }) => {
 
               <p>  I bear witness that there is no god but Allah alone and I bear witness that Muhammad (Peace be upon Him) is His Servant and Messenger.
                 <br />
-                I also acknowledge that I believe in Allah, His angels, His Holy books, His prophets, the Day of Judgment and His Decree for good or bad. I renounce all religions other than Islam I will hereby and henceforth adhere to Islam as my Faith and Shari'ah.</p>
+                I also acknowledge that I believe in Allah, His angels, His Holy books, His prophets, the Day of Judgment and His Decree for good or bad. 
+                </p>
             </div>
 
             <div className="mt-2 text-center border-t border-[#9ca3af]  w-[180px]"
@@ -176,7 +177,7 @@ const ConversionCertificate = ({ data = {} }) => {
                 style={{ fontFamily: '"Merriweather", Times, serif' }}
 
               >
-                {solemnizedBy?.name || "Amin"}
+                {solemnizedBy?.name || "Osaka Masjid"}
               </p>
               {/* <div className="w-[100px] h-[1px] bg-[#d1d5db] mx-auto mt-1"></div> */}
             </div>
@@ -227,7 +228,7 @@ const ConversionCertificate = ({ data = {} }) => {
             </div>
 
             <div className="text-[11px] leading-relaxed text-[#333333] mt-2 flex flex-col  justify-between 
-            h-[240px]  text-justify"
+            h-[208px]  text-justify"
               style={{ fontFamily: '"Merriweather", Times, serif' }}
             >
               <p> 申請者が自らの自由意志によりイスラム教を信仰したことを確認しました。この証明書は、申請者がイスラム教を信仰し、その法に従って行動することを決意したことを証明するために発行されます。全能なるアッラーが、申請者を常に正しい道へと導き給いますように。誠にアッラーは最良の導き手です。</p>
@@ -247,6 +248,7 @@ const ConversionCertificate = ({ data = {} }) => {
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   );

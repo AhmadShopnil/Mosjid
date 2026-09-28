@@ -154,7 +154,7 @@ const MarriageCertificate = ({ data = {} }) => {
             <div 
             style={{ paddingRight: '2px' ,display: 'flex', flexDirection: 'column', gap: '6px' }}
             >
-              <FieldRow labelEn="Name" labelJp="名前" value={groom.name} />
+              <FieldRow labelEn="Name" labelJp="名前" value={groom?.muslimName} />
               <FieldRow labelEn="Father Name" labelJp="父親の名前" value={groom.fatherName} />
               <FieldRow labelEn="Age" labelJp="年齢" value={groom.age} />
               <FieldRow labelEn="Religion" labelJp="宗教" value={groom.religion} />
@@ -182,7 +182,7 @@ const MarriageCertificate = ({ data = {} }) => {
             style={{ paddingRight: '2px' ,display: 'flex', flexDirection: 'column', gap: '6px' }
           }
             >
-              <FieldRow labelEn="Name" labelJp="名前" value={bride.name} />
+              <FieldRow labelEn="Name" labelJp="名前" value={bride?.muslimName} />
               <FieldRow labelEn="Father Name" labelJp="父親の名前" value={bride.fatherName} />
               <FieldRow labelEn="Age" labelJp="年齢" value={bride.age} />
               <FieldRow labelEn="Religion" labelJp="宗教" value={bride.religion} />
